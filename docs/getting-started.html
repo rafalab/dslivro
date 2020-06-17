@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 1 Começando com R e RStudio | Introducción a la Ciencia de Datos</title>
-  <meta name="description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <title>Capítulo 1 Começando com R e RStudio | Introdução à Ciência de Dados</title>
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 1 Começando com R e RStudio | Introducción a la Ciencia de Datos" />
+  <meta property="og:title" content="Capítulo 1 Começando com R e RStudio | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 1 Começando com R e RStudio | Introducción a la Ciencia de Datos" />
+  <meta name="twitter:title" content="Capítulo 1 Começando com R e RStudio | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la Ciencia de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução à Ciência de Dados</a>
           </h1>
         </div>
 
@@ -468,7 +468,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="o-console-do-r" class="section level2">
 <h2><span class="header-section-number">1.1</span> O console do R</h2>
 <p>A análise de dados interativa geralmente ocorre no console do R que executa comandos à medida que são digitados. Existem várias maneiras de obter acesso a um console R. Um é simplesmente iniciar o R no seu computador. O console fica assim:</p>
-<p><img src="R/img/R_console.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="R/img/R_console.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Como um exemplo rápido, tente usar o console para calcular uma gorjeta de 15% em uma refeição que custa US $ 19,71:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="fl">0.15</span> <span class="op">*</span><span class="st"> </span><span class="fl">19.71</span></a>
 <a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; [1] 2.96</span></a></code></pre></div>
@@ -477,7 +477,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="scripts" class="section level2">
 <h2><span class="header-section-number">1.2</span> <em>scripts</em></h2>
 <p>Uma das grandes vantagens de R sobre a análise de apontar e clicar <em>software_é que eles podem salvar seu trabalho como_scripts</em>, que podem ser editados e salvos com um editor de texto. O material deste livro foi desenvolvido usando o <em>Integrated Development Environment</em> (IDE) do RStudio<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>. O RStudio inclui um editor com muitos recursos específicos de R, um console para executar seu código e outros painéis úteis, incluindo um para exibir figuras.</p>
-<p><img src="R/img/rstudio.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="R/img/rstudio.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>A maioria dos consoles R disponíveis na Web também inclui um painel para editar <em>scripts</em>, mas nem todos permitem salvar <em>scripts</em> para uso posterior.</p>
 <p>Todos os R <em>scripts</em> usados para gerar este livro podem ser encontrados no GitHub<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</p>
 </div>
@@ -487,20 +487,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="painéis" class="section level3">
 <h3><span class="header-section-number">1.3.1</span> Painéis</h3>
 <p>Quando iniciarem o RStudio pela primeira vez, eles verão três painéis. O painel esquerdo mostra o console R. À direita, o painel superior inclui guias como <em>Environment_e_History</em>, enquanto o painel inferior mostra cinco guias: <em>Arquivo</em>, <em>Plots</em>, <em>Packages</em>, <em>Help_e_Viewer</em> (essas guias podem ser diferentes nas novas versões do RStudio). Eles podem clicar em cada guia para percorrer as diferentes opções.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Para iniciar um novo <em>script</em>, clique em <em>File</em>, depois em <em>New File</em> e, em seguida, em <em>R Script</em>.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Isso inicia um novo painel à esquerda e é aqui que você pode começar a digitar seu <em>script</em>.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_49.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_49.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 </div>
 <div id="combinações-de-teclas" class="section level3">
 <h3><span class="header-section-number">1.3.2</span> <em>Combinações de teclas</em></h3>
 <p>Muitas das tarefas que realizamos com o <em>mouse</em> podem ser realizadas com uma combinação de teclas (<em>key bindings</em> em inglês). Por exemplo, acabamos de mostrar como usar o mouse para iniciar um novo <em>script</em>, mas você também pode usar a seguinte combinação de teclas: Ctrl + Shift + N no Windows e Command + Shift + N no Mac.</p>
 <p>Embora muitas vezes demonstremos como usar o mouse neste tutorial, <strong>recomendamos vivamente que você memorize combinações de teclas para as operações que usa com mais frequência</strong>. O RStudio inclui uma folha de referência útil (<em>cheat sheet</em> em inglês) com os comandos mais usados. Você pode obtê-lo diretamente do RStudio assim:</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <!-- and it looks like this:
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_54.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_54.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 -->
 <p>Recomendamos que seja útil para que você possa procurar combinações de teclas ao apontar e clicar repetidamente.</p>
 </div>
@@ -509,19 +509,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Existem muitos editores projetados especificamente para codificação. Isso é útil porque a cor e o recuo são adicionados automaticamente para tornar o código mais legível. O RStudio é um desses editores e foi desenvolvido especificamente para R. Uma das principais vantagens do RStudio sobre outros editores é que podemos testar facilmente nosso código enquanto editamos nossos <em>scripts</em>. Aqui está um exemplo.</p>
 <p>Vamos começar abrindo um novo <em>script</em> como fizemos antes. Então, vamos nomear o <em>script</em>. Podemos fazer isso através do editor salvando o novo <em>script</em> atual sem nome. Para começar, clique no ícone Salvar ou use a combinação de teclas Ctrl + S no Windows e Command + S no Mac.
 <!--
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_26_37.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_26_37.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 --></p>
 <p>Quando você tenta salvar o documento pela primeira vez, o RStudio solicita um nome. Uma boa convenção é usar um nome descritivo, com letras minúsculas, sem espaços, apenas hífens para separar as palavras e, em seguida, seguido pelo sufixo <em>.R</em>. Vamos chamar esse <em>script</em>: <em>my-first-script.R</em>.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Agora estamos prontos para começar a editar nosso primeiro <em>script</em>. As primeiras linhas de código em um R <em>script</em> são dedicadas ao carregamento dos pacotes que iremos usar. Outro recurso útil do RStudio é que, quando escrevemos <code>library()</code>, O RStudio começa a concluir automaticamente o que estamos escrevendo com os pacotes que instalamos. Veja o que acontece quando escrevemos <code>library(ti)</code>:</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Outra característica que você deve ter notado é que, quando escrevem <code>library(</code> o segundo parêntese é adicionado automaticamente. Isso ajudará a evitar um dos erros de codificação mais comuns: esquecer de fechar um parêntese.</p>
 <p>Agora podemos continuar escrevendo código. Como exemplo, criaremos um gráfico mostrando os totais de assassinatos versus totais da população por estado dos EUA.Uma vez que eles terminem de escrever o código necessário para fazer esse gráfico, eles podem testá-lo executando o código. Para fazer isso, clique no botão <em>Run</em> no canto superior direito do painel de edição. Eles também podem usar a combinação de teclas: Ctrl + Shift + Enter no Windows ou Command + Shift + Return no Mac.</p>
 <!--
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_44_07.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_44_07.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 -->
 <p>Assim que executar o código, eles verão que ele aparece no console do R e, nesse caso, o gráfico resultante aparece no console de gráficos. Lembre-se de que o console gráfico possui uma interface útil que permite clicar para frente ou para trás em diferentes gráficos, ampliar o gráfico ou salvar os gráficos como arquivos.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_45_18.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_45_18.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Para executar uma linha de cada vez, em vez de todo o <em>script</em>, você pode usar Control-Enter no Windows e Command-Return no Mac.</p>
 </div>
 <div id="como-alterar-opções-globais" class="section level3">
@@ -529,24 +529,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Eles podem mudar bastante a aparência e a funcionalidade do RStudio.</p>
 <p>Para alterar as opções globais, clique em <em>Ferramentas</em> e, em seguida, em <em>Global Options …</em>.
 <!--
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_46_54.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_46_54.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Como exemplo, mostramos como alterar a aparência do editor. Para fazer isso, clique em _Appearance_ e, em seguida, consulte as opções de _Editor theme_.
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_03.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_03.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Você pode clicar nelas e ver exemplos de como será o seu editor.
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_11.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_11.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Pessoalmente, gosto da opção _Cobalt_, que faz com que seu editor fique assim:
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_24.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_24.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Como um segundo exemplo,
 --></p>
 <p>Como exemplo, mostramos como fazer uma alteração que <strong>recomendamos altamente</strong>: altere o espaço de trabalho <em>Save para .RData na saída_para_Never_e desmarque_Restore .RData no espaço de trabalho no início</em>. Por padrão, quando alguém sai do R, o programa salva todos os objetos que ele criou em um arquivo chamado .RData. Isso ocorre para que, ao reiniciar a sessão no mesmo arquivo, o programa carregue esses objetos. No entanto, descobrimos que isso causa confusão, principalmente quando compartilhamos código com colegas e assumimos que eles têm esse arquivo .RData. Para alterar essas opções, faça com que sua configuração <em>General</em> fique assim:</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="instalando-pacotes-r" class="section level2">
@@ -561,11 +561,11 @@ Como um segundo exemplo,
 <!--
 Eles também podem instalar pacotes usando o RStudio da seguinte maneira:
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_23_41.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_23_41.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Uma vantagem do uso do RStudio é que ele preenche automaticamente os nomes dos pacotes assim que eles começam a digitar, útil quando eles não se lembram da ortografia exata do pacote:
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Depois de selecionar seu pacote, recomendamos que você selecione todos os valores padrão:
 
@@ -627,7 +627,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslibro/edit/master/R/getting-started.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/R/getting-started.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 7 ggplot2 | Introducción a la Ciencia de Datos</title>
-  <meta name="description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <title>Capítulo 7 ggplot2 | Introdução à Ciência de Dados</title>
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 7 ggplot2 | Introducción a la Ciencia de Datos" />
+  <meta property="og:title" content="Capítulo 7 ggplot2 | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 7 ggplot2 | Introducción a la Ciencia de Datos" />
+  <meta name="twitter:title" content="Capítulo 7 ggplot2 | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la Ciencia de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução à Ciência de Dados</a>
           </h1>
         </div>
 
@@ -467,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="os-componentes-de-um-gráfico" class="section level2">
 <h2><span class="header-section-number">7.1</span> Os componentes de um gráfico</h2>
 <p>Construiremos um gráfico que resume o conjunto de dados de assassinatos por armas nos Estados Unidos da seguinte forma:</p>
-<p><img src="libro_files/figure-html/ggplot-example-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Podemos ver claramente quanto os estados variam de acordo com o tamanho da população e o número total de assassinatos. Não é de surpreender que também exista uma relação clara entre o total de assassinatos e o tamanho da população. Um estado que cai na linha tracejada cinza tem a mesma taxa de homicídios que a média dos EUA. As quatro regiões geográficas são indicadas com cores, o que mostra como a maioria dos estados do sul tem taxas de homicídio acima da média.</p>
 <p>Essa visualização de dados mostra praticamente todas as informações na tabela de dados. O código necessário para criar o gráfico é relativamente simples. Vamos aprender a criá-lo parte por parte.</p>
 <p>O primeiro passo para aprender <strong>ggplot2</strong> é ser capaz de separar um gráfico em componentes. Começaremos examinando o gráfico acima e introduzindo algumas das terminologias de <strong>ggplot2</strong>. Os três principais componentes a serem considerados são:</p>
@@ -492,7 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> murders)</a></code></pre></div>
 <p>Também podemos <em>pipe</em> os dados como o primeiro argumento. Portanto, essa linha de código é equivalente à anterior:</p>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>O código cria um gráfico, neste caso, um quadro em branco, pois a geometria não foi definida. A única opção de estilo que vemos é um fundo cinza.</p>
 <p>O que aconteceu é que o objeto foi criado e, por não ter sido designado, foi automaticamente avaliado. Mas podemos atribuir nosso gráfico a um objeto, por exemplo:</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> murders)</a>
@@ -538,7 +538,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Nós podemos remover o <code>x =</code> e <code>y =</code> se quiséssemos, pois esse é o primeiro e o segundo argumento esperado, como visto na página de ajuda.</p>
 <p>Em vez de definir nosso gráfico do zero, também podemos adicionar uma camada ao objeto <code>p</code> que foi definido anteriormente como <code>p &lt;- ggplot(data = murders)</code>:</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total))</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A escala e os rótulos são definidos por padrão ao adicionar essa camada. Como as funções <strong>dplyr</strong>, <code>aes</code> ele também usa os nomes de variáveis do componente do objeto: podemos usar <code>population</code> e <code>total</code> sem ter que chamá-los como <code>assassinatos $population</code> and <code>murders$ total NA a é NA população NA total NA aes</code>, eles receberão um erro.</p>
 </div>
 <div id="camadas" class="section level2">
@@ -547,7 +547,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Como cada ponto (cada estado neste caso) possui um rótulo, precisamos de um mapeamento estético para fazer a conexão entre os pontos e os rótulos. Lendo a página de ajuda, aprendemos que o mapeamento entre o ponto e o rótulo é fornecido através do argumento <code>label</code> do <code>aes</code>. Portanto, o código fica assim:</p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb271-2" data-line-number="2"><span class="kw">geom_text</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb))</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Adicionamos com sucesso uma segunda camada ao gráfico.</p>
 <p>Como exemplo do comportamento único de <code>aes</code> mencionado acima, observe que esta chamada:</p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1">p_test &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb))</a></code></pre></div>
@@ -558,12 +558,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.5.1</span> Como testar vários argumentos</h3>
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb274-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb274-2" data-line-number="2"><span class="kw">geom_text</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb))</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><code>size</code> <strong>no</strong> é um mapeamento: enquanto os mapeamentos usam dados de observações específicas e precisam estar dentro <code>aes()</code>, as operações que queremos afetar todos os pontos da mesma maneira não precisam ser incluídas dentro <code>aes</code>.</p>
 <p>Agora, como os pontos são maiores, é difícil ver os rótulos. Se lermos a página de ajuda para <code>geom_text</code>, vemos que o argumento <code>nudge_x</code> mova o texto levemente para a direita ou esquerda:</p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb275-2" data-line-number="2"><span class="kw">geom_text</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb), <span class="dt">nudge_x =</span> <span class="fl">1.5</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Isso é preferível, pois facilita a leitura do texto. Na seção <a href="ggplot2.html#add-on-packages">7.11</a> aprenderemos uma maneira melhor de garantir que possamos ver os pontos e os rótulos.</p>
 </div>
 </div>
@@ -582,7 +582,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Se necessário, podemos substituir o mapeamento global definindo um novo mapeamento dentro de cada camada. Essas definições <em>local_substituem o_global</em>. Aqui está um exemplo:</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb279-2" data-line-number="2"><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">800</span>, <span class="dt">label =</span> <span class="st">&quot;Hello there!&quot;</span>))</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Claramente, a segunda chamada para <code>geom_text</code> não use <code>population</code> e <code>total</code>.</p>
 </div>
 <div id="escalas" class="section level2">
@@ -592,7 +592,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb280-2" data-line-number="2"><span class="kw">geom_text</span>(<span class="dt">nudge_x =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb280-3" data-line-number="3"><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log10&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb280-4" data-line-number="4"><span class="kw">scale_y_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log10&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Como agora estamos na escala logarítmica, o ajuste na posição deve ser menor.</p>
 <p>Essa transformação específica é tão comum que <strong>ggplot2</strong> oferece duas funções especializadas <code>scale_x_log10</code> e <code>scale_y_log10</code>, que podemos usar para reescrever o código assim:</p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
@@ -610,7 +610,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb282-5" data-line-number="5"><span class="kw">xlab</span>(<span class="st">&quot;Populations in millions (log scale)&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb282-6" data-line-number="6"><span class="kw">ylab</span>(<span class="st">&quot;Total number of murders (log scale)&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb282-7" data-line-number="7"><span class="kw">ggtitle</span>(<span class="st">&quot;US Gun Murders in 2010&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Estamos quase terminando! A única coisa que precisamos é adicionar cor, legenda e alterações opcionais ao estilo.</p>
 </div>
 <div id="categorias-como-cores" class="section level2">
@@ -625,11 +625,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb283-7" data-line-number="7"><span class="kw">ggtitle</span>(<span class="st">&quot;US Gun Murders in 2010&quot;</span>)</a></code></pre></div>
 <p>e depois testaremos o que acontece quando adicionamos chamadas diferentes a <code>geom_point</code>. Por exemplo, podemos deixar todos os pontos em azul adicionando o argumento <code>color</code>:</p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">color =</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>No entanto, não queremos isso. Queremos atribuir cores de acordo com a região geográfica. Um bom comportamento padrão para <strong>ggplot2</strong> é que, se atribuirmos uma variável categórica à cor, ela atribuirá automaticamente uma cor diferente a cada categoria, além de uma legenda.</p>
 <p>Como a escolha da cor é determinada por uma característica de cada observação, esse é um mapeamento estético. Para atribuir uma cor a cada ponto, precisamos usar <code>aes</code>. Usamos o seguinte código:</p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>region), <span class="dt">size =</span> <span class="dv">3</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-12-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-12-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Os mapeamentos <code>x</code> e <code>y</code> são herdados daqueles já definidos em <code>p</code> então nós não os redefinimos. Nós também nos mudamos <code>aes</code> para o primeiro argumento, pois é aí que os mapeamentos são esperados nesta chamada.</p>
 <p>Aqui está outro comportamento padrão útil: <strong>ggplot2</strong> adiciona automaticamente uma legenda que atribui a cor à região. Para evitar adicionar essa legenda, definimos o argumento <code>geom_point</code> como <code>show.legend = FALSE</code>.</p>
 </div>
@@ -643,7 +643,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Para adicionar uma linha, usamos a função <code>geom_abline</code>. <strong>ggplot2</strong> usa <code>ab</code> no nome para nos lembrar de que estamos fornecendo a interceptação ( <code>a</code>) e o brinco ( <code>b</code>) A linha padrão possui a inclinação 1 e intercepta 0, portanto, apenas precisamos definir a interceptação:</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>region), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb287-2" data-line-number="2"><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">log10</span>(r))</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-example-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-example-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Aqui <code>geom_abline</code> não usa nenhuma informação do objeto de dados.</p>
 <p>Podemos alterar o tipo de linha e a cor das linhas usando argumentos. Além disso, primeiro o desenhamos para que não cubra nossos pontos.</p>
 <div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1">p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">log10</span>(r), <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></a>
@@ -685,7 +685,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb292-16" data-line-number="16"><span class="kw">ggtitle</span>(<span class="st">&quot;US Gun Murders in 2010&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb292-17" data-line-number="17"><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Region&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb292-18" data-line-number="18"><span class="kw">theme_economist</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/final-ggplot-example-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/final-ggplot-example-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="qplot" class="section level2">
 <h2><span class="header-section-number">7.13</span> Gráficos rápidos com <code>qplot</code></h2>
@@ -709,7 +709,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb296-2" data-line-number="2">p1 &lt;-<span class="st"> </span><span class="kw">qplot</span>(x)</a>
 <a class="sourceLine" id="cb296-3" data-line-number="3">p2 &lt;-<span class="st"> </span><span class="kw">qplot</span>(x,y)</a>
 <a class="sourceLine" id="cb296-4" data-line-number="4"><span class="kw">grid.arrange</span>(p1, p2, <span class="dt">ncol =</span> <span class="dv">2</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/gridExtra-example-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/gridExtra-example-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercícios-15" class="section level2">
 <h2><span class="header-section-number">7.15</span> Exercícios</h2>
@@ -823,7 +823,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslibro/edit/master/dataviz/ggplot2.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/dataviz/ggplot2.Rmd",
 "text": "Edit"
 },
 "history": {

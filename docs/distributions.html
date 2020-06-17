@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 8 Como visualizar distribuições de dados | Introducción a la Ciencia de Datos</title>
-  <meta name="description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <title>Capítulo 8 Como visualizar distribuições de dados | Introdução à Ciência de Dados</title>
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 8 Como visualizar distribuições de dados | Introducción a la Ciencia de Datos" />
+  <meta property="og:title" content="Capítulo 8 Como visualizar distribuições de dados | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 8 Como visualizar distribuições de dados | Introducción a la Ciencia de Datos" />
+  <meta name="twitter:title" content="Capítulo 8 Como visualizar distribuições de dados | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la Ciencia de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução à Ciência de Dados</a>
           </h1>
         </div>
 
@@ -482,7 +482,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #&gt; Female   Male 
 #&gt;  0.227  0.773</code></pre>
 <p>Essa <em>frequency table</em> de duas categorias é a forma mais simples de uma distribuição. Nós realmente não precisamos visualizá-lo, pois um número descreve tudo o que precisamos saber: 23% são mulheres e o restante são homens. Quando há mais categorias, um gráfico de barras simples descreve a distribuição. Aqui está um exemplo com as regiões estaduais dos EUA. EUA:</p>
-<p><img src="libro_files/figure-html/state-region-distribution-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/state-region-distribution-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Este gráfico simplesmente mostra quatro números, um para cada categoria. Geralmente usamos gráficos de barras quando temos poucos números. Embora esse gráfico em particular não forneça muito mais informações do que uma tabela de frequência, ele é um excelente exemplo de como convertemos um vetor em um gráfico que resume sucintamente todas as informações no vetor. Quando os dados são numéricos, a tarefa de exibir distribuições é mais desafiadora.</p>
 </div>
 <div id="cdf-intro" class="section level2">
@@ -491,7 +491,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Os livros de estatística nos ensinam que uma maneira mais útil de definir uma distribuição numérica de dados é definir uma função que indica a proporção dos dados abaixo <span class="math inline">\(a\)</span> para todos os valores possíveis de <span class="math inline">\(a\)</span>. Essa função é chamada de função de distribuição cumulativa, ou CDF, para abreviar. Nas estatísticas, a seguinte notação é usada:</p>
 <p><span class="math display">\[ F(a) = \mbox{Pr}(x \leq a) \]</span></p>
 <p>Aqui vemos um gráfico de <span class="math inline">\(F\)</span> para dados de altura masculina:</p>
-<p><img src="libro_files/figure-html/ecdf-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ecdf-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Semelhante ao que a tabela de frequência faz para dados categóricos, o CDF define a distribuição de dados numéricos. No gráfico, podemos ver que 16% dos valores são menores que 65, pois <span class="math inline">\(F(66)=\)</span> 0.164, o que <code>r round (ecdf(heights$height[heights$ sex == &quot;Male&quot;]) (72) * 100)</code>% dos valores são menores que 72, pois <span class="math inline">\(F(72)=\)</span> 0.841
 e assim. De fato, podemos relatar a proporção de valores entre duas alturas, digamos <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>, ao computar <span class="math inline">\(F(b) - F(a)\)</span>. Isso significa que, se enviarmos esse diagrama para o ET, ele terá todas as informações necessárias para reconstruir a lista completa. Parafraseando a expressão “uma imagem vale mais que mil palavras”, neste caso, uma imagem é tão informativa quanto 812 números.</p>
 <p>Uma observação final: como os CDFs podem ser matematicamente definidos, a palavra <em>empirical</em> é adicionada para distinguir quando os dados são usados. Portanto, usamos o termo CDF empírico ou eCDF para abreviar.</p>
@@ -500,7 +500,7 @@ e assim. De fato, podemos relatar a proporção de valores entre duas alturas, d
 <h2><span class="header-section-number">8.5</span> Histogramas</h2>
 <p>Embora o conceito de CDF seja amplamente discutido nos livros estatísticos, o gráfico não é muito popular na prática. O principal motivo é que ele não transmite facilmente características de interesse, como: Em que valor a distribuição se concentra? A distribuição é simétrica? Quais intervalos contêm 95% dos valores? Os histogramas são preferidos porque facilitam muito a resposta a essas perguntas. Os histogramas sacrificam apenas um pouco de informação para produzir gráficos muito mais fáceis de interpretar.</p>
 <p>A maneira mais fácil de criar um histograma é dividir o <em>span_dos nossos dados em_bins_não sobrepostos</em> do mesmo tamanho. Então, para cada compartimento, contamos o número de valores que estão nesse intervalo. O histograma representa graficamente essas contagens como barras com a base da barra definida pelos intervalos. Aqui está o histograma para os dados de altura que dividem o intervalo de valores em intervalos de uma polegada: <span class="math inline">\([49.5, 50.5], [51.5,52.5],(53.5,54.5],...,(82.5,83.5]\)</span></p>
-<p><img src="libro_files/figure-html/height-histogram-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/height-histogram-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Como você pode ver na figura acima, um histograma é semelhante a um gráfico de barras, mas difere no fato de o eixo x ser numérico, não categórico.</p>
 <p>Se enviarmos esse diagrama para o ET, ele aprenderá imediatamente alguns detalhes importantes sobre nossos dados. Primeiro, o intervalo de dados é de 50 a 84, com a maioria (acima de 95%) entre 63 e 75 polegadas. Além disso, as alturas são quase simétricas em torno de 69 polegadas. Finalmente, adicionando contagens, o ET pode obter uma aproximação muito boa da proporção dos dados em qualquer intervalo. Portanto, o histograma acima não é apenas fácil de interpretar, mas também oferece quase todas as informações contidas na lista bruta de 812 alturas com aproximadamente 30 contagens, uma para cada compartimento.</p>
 <p>Que informação perdemos? Lembre-se de que todos os valores em cada intervalo são tratados da mesma maneira ao calcular as alturas dos compartimentos. Por exemplo, o histograma não distingue entre 64, 64,1 e 64,2 polegadas. Como essas diferenças são quase imperceptíveis aos olhos, as implicações práticas são desprezíveis e conseguimos resumir os dados em apenas 23 números.</p>
@@ -509,44 +509,44 @@ e assim. De fato, podemos relatar a proporção de valores entre duas alturas, d
 <div id="densidade-suave" class="section level2">
 <h2><span class="header-section-number">8.6</span> Densidade suave</h2>
 <p>Os gráficos de densidade suave são esteticamente mais atraentes que os histogramas. Abaixo, vemos um gráfico de densidade suave para nossos dados de altura:</p>
-<p><img src="libro_files/figure-html/example-of-smoothed-density-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/example-of-smoothed-density-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Neste gráfico, não temos mais arestas vivas nos limites do intervalo e muitos dos picos locais foram removidos. Além disso, a escala do eixo y mudou de contagens para <em>densidade</em>.</p>
 <p>Para entender densidades suaves, precisamos entender <em>estimations</em>, um tópico que não abordamos até mais tarde. No entanto, oferecemos uma explicação heurística para ajudá-lo a entender o básico, para que você possa usar esta útil ferramenta de visualização de dados.</p>
 <p>O principal novo conceito que você precisa entender é que assumimos que nossa lista de valores observados é um subconjunto de uma lista muito maior de valores não observados. No caso de alturas, você pode imaginar que nossa lista de 812 os estudantes do sexo masculino vêm de uma lista hipotética que contém todas as alturas de todos os estudantes do mundo todo, todos medidos com grande precisão. Digamos que existem 1.000.000 dessas medidas. Essa lista de valores tem uma distribuição, como qualquer lista de valores, e essa distribuição considerável é realmente o que queremos transmitir ao ET, pois é muito mais geral. Infelizmente, não podemos ver essa lista enorme.</p>
 <p>No entanto, podemos fazer uma suposição que pode nos ajudar a aproximar isso. Se tivéssemos 1.000.000 valores, medidos com muita precisão, poderíamos fazer um histograma com compartimentos muito, muito pequenos. A suposição é que, se mostrarmos isso, a altura dos compartimentos consecutivos será semelhante. Aqui está o que entendemos por macio: não temos grandes saltos nas alturas de compartimentos consecutivos. Aqui está um histograma hipotético com compartimentos de tamanho 1:</p>
-<p><img src="libro_files/figure-html/simulated-data-histogram-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/simulated-data-histogram-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Quanto menores os compartimentos, mais suave o histograma se torna. Aqui estão os histogramas com larguras de compartimento de 1, 0,5 e 0,1:</p>
-<p><img src="libro_files/figure-html/simulated-data-histogram-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/simulated-data-histogram-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>A densidade suave é basicamente a curva que atravessa a parte superior das barras do histograma quando os compartimentos são muito, muito pequenos. Para que a curva não dependa do tamanho hipotético da lista hipotética, calculamos a curva usando frequências em vez de contagens:</p>
-<p><img src="libro_files/figure-html/simulated-density-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/simulated-density-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Agora de volta à realidade. Não temos milhões de medições. Em vez disso, temos 812 e não podemos fazer um histograma com compartimentos muito pequenos.</p>
 <p>Portanto, fazemos um histograma, usando tamanhos de compartimento apropriados para nossos dados e frequências de computação em vez de contagens. Além disso, desenhamos uma curva suave que passa pela parte superior das barras do histograma. Os gráficos a seguir mostram as etapas que levam a uma densidade suave:</p>
-<p><img src="libro_files/figure-html/smooth-density-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/smooth-density-2-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>No entanto, lembre-se de que <em>soft</em> (<em>smooth</em> em inglês) é um termo relativo. De fato, podemos controlar a suavidade da curva alterando o número de pontos nos compartimentos. Essa opção é conhecida como <em>bandwidth</em>, <em>span</em>, <em>window size</em> ou, em espanhol, <em>smoothing window</em> ou <em>smoothing parameter</em> e pode ser ajustada na função que calcula a curva de densidade suave. Aqui estão dois exemplos que usam diferentes níveis de suavidade no mesmo histograma:</p>
-<p><img src="libro_files/figure-html/densities-different-smoothness-1.png" width="100%" style="display: block; margin: auto;" />
+<p><img src="livro_files/figure-html/densities-different-smoothness-1.png" width="100%" style="display: block; margin: auto;" />
 Precisamos tomar essa decisão com cuidado, pois as visualizações resultantes podem alterar nossa interpretação dos dados. Devemos selecionar um grau de suavidade que possamos defender como representativo dos dados subjacentes. No caso da altura, realmente temos motivos para acreditar que a proporção de pessoas com alturas semelhantes deve ser a mesma. Por exemplo, a taxa de 72 polegadas deve ser mais semelhante à taxa de 71 do que a taxa de 78 ou 65. Isso implica que a curva deve ser razoavelmente suave; isto é, a curva deve se parecer mais com o exemplo à direita do que com a esquerda.</p>
 <p>Embora o histograma seja um resumo sem suposições, a densidade suavizada é baseada em algumas suposições.</p>
 <div id="como-interpretar-o-eixo-y" class="section level3">
 <h3><span class="header-section-number">8.6.1</span> Como interpretar o eixo y</h3>
 <p>Observe que a interpretação do eixo y de um gráfico de densidade suave não é óbvia. Ele é dimensionado para que a área sob a curva de densidade seja igual a 1. Se você imaginar que formamos um compartimento com uma base de 1 unidade de comprimento, o valor do eixo y indica a proporção de valores nesse compartimento. No entanto, isso é válido apenas para compartimentos de tamanho 1. Para intervalos de outro tamanho, a melhor proporção de dados nesse intervalo é determinada calculando a proporção da área total contida nesse intervalo. Por exemplo, aqui vemos a proporção de valores entre 65 e 68:</p>
-<p><img src="libro_files/figure-html/area-under-curve-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/area-under-curve-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A proporção dessa área é de aproximadamente
 0.3,
 o que significa que aproximadamente NaN%das alturas dos machos estão entre 65 e 68 polegadas.</p>
 <p>Ao entender isso, estamos prontos para usar a densidade suave como um resumo. Para esse conjunto de dados, nos sentimos confortáveis em assumir suavidade e, assim, compartilhar essa figura esteticamente agradável com o ET, que pode usá-lo para entender nossos dados de altura masculinos:</p>
-<p><img src="libro_files/figure-html/example-of-smoothed-density-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/example-of-smoothed-density-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="densidades-permitem-camadas" class="section level3">
 <h3><span class="header-section-number">8.6.2</span> Densidades permitem camadas</h3>
 <p>Como nota final, observamos que uma vantagem das densidades suaves sobre os histogramas para fins de exibição é que as densidades facilitam a comparação de duas distribuições. Isso se deve em grande parte às bordas irregulares do histograma, que agregam confusão. Aqui está um exemplo comparando as alturas masculina e feminina:</p>
-<p><img src="libro_files/figure-html/two-densities-one-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/two-densities-one-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Com o argumento correto, <code>ggplot</code> sombreia automaticamente a região de interseção com uma cor diferente. Mostraremos amostras de código <strong>ggplot2</strong> para densidades na Seção <a href="gapminder.html#gapminder">9</a> bem como na Seção <a href="distributions.html#other-geometries">8.16</a>.</p>
 </div>
 </div>
 <div id="exercícios-16" class="section level2">
 <h2><span class="header-section-number">8.7</span> Exercícios</h2>
 <p>1. No conjunto de dados <code>murders</code>, a região é uma variável categórica e sua distribuição é a seguinte:</p>
-<p><img src="libro_files/figure-html/barplot-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/barplot-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Arredondando para os 5% mais próximos, qual a proporção de estados na região “Norte Central”?</p>
 <p>2. Qual dos seguintes é verdadeiro?</p>
 <p>para. O gráfico acima é um histograma.
@@ -554,7 +554,7 @@ b. O gráfico acima mostra apenas quatro números com um gráfico de barras.
 c. As categorias não são números, portanto, não faz sentido representar graficamente a distribuição.
 d. Cores, não a altura das barras, descrevem a distribuição.</p>
 <p>3. O gráfico a seguir mostra o eCDF para a altura dos homens:</p>
-<p><img src="libro_files/figure-html/ecdf-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ecdf-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>De acordo com o gráfico, qual a porcentagem de homens com menos de 75 polegadas?</p>
 <p>para. 100%
 b. 95%
@@ -566,7 +566,7 @@ b. 64 polegadas
 c. 69 polegadas
 d. 74 polegadas</p>
 <p>5. Aqui está um eCDF das taxas de homicídio entre os estados:</p>
-<p><img src="libro_files/figure-html/ecdf-exercise-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ecdf-exercise-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Sabendo que existem 51 estados (contando DC) e com base neste gráfico, quantos estados têm taxas de homicídios superiores a 10 por 100.000 pessoas?</p>
 <p>para. 1
 b. 5
@@ -578,7 +578,7 @@ b. A maioria dos estados tem taxas de homicídio inferiores a 2 por 100.000.
 c. Todos os estados têm taxas de homicídio superiores a 2 por 100.000.
 d. Com exceção de 4 estados, as taxas de homicídio são inferiores a 5 por 100.000.</p>
 <p>7. Aqui está o histograma das alturas masculinas do nosso conjunto de dados <code>heights</code>:</p>
-<p><img src="libro_files/figure-html/height-histogram-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/height-histogram-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>De acordo com este gráfico, quantos homens existem entre 63,5 e 65,5?</p>
 <p>para. 10
 b. 24
@@ -590,13 +590,13 @@ b. 10%
 c. 25%
 d. cinquenta%</p>
 <p>9. Com base no gráfico de densidade abaixo, aproximadamente qual proporção de estados dos EUA? EUA Você tem populações com mais de 10 milhões de pessoas?</p>
-<p><img src="libro_files/figure-html/density-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/density-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>para. 0,02
 b. 0,15
 c. 0,50
 d. 0,55</p>
 <p>10. Abaixo estão três gráficos de densidade. É possível que eles sejam do mesmo conjunto de dados?</p>
-<p><img src="libro_files/figure-html/density-exercise-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/density-exercise-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Qual das seguintes afirmações é verdadeira?</p>
 <p>para. É impossível que eles sejam do mesmo conjunto de dados.
 b. Eles são do mesmo conjunto de dados, mas os gráficos são diferentes devido a erros de código.
@@ -611,7 +611,7 @@ d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala log
 <p><span class="math display">\[\mbox{Pr}(a &lt; x &lt; b) = \int_a^b \frac{1}{\sqrt{2\pi}s} e^{-\frac{1}{2}\left( \frac{x-m}{s} \right)^2} \, dx\]</span></p>
 <p>Eles não precisam memorizar ou entender os detalhes da fórmula. No entanto, lembre-se de que ele é completamente definido por apenas dois parâmetros: <span class="math inline">\(m\)</span> e <span class="math inline">\(s\)</span>. O restante dos símbolos da fórmula representa os extremos do intervalo que determinamos, <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span> e as constantes matemáticas conhecidas <span class="math inline">\(\pi\)</span> e <span class="math inline">\(e\)</span>. Esses dois parâmetros, <span class="math inline">\(m\)</span> e <span class="math inline">\(s\)</span>, são conhecidos respectivamente como <em>average</em> (ou <em>the mean</em>) e <em>the desvio padrão</em>, ou SD, da distribuição.</p>
 <p>A distribuição é simétrica, centrada na média, e a maioria dos valores (cerca de 95%) está dentro de 2 DP da média. É assim que a distribuição normal se parece quando a média é 0 e o SD é 1:</p>
-<p><img src="libro_files/figure-html/normal-distribution-density-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/normal-distribution-density-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>O fato de a distribuição ser definida por apenas dois parâmetros implica que, se a distribuição de um conjunto de dados puder ser aproximada por uma distribuição normal, todas as informações necessárias para descrever a distribuição poderão ser codificadas em apenas dois números: a média e a Desvio padrão. Agora vamos definir esses valores para uma lista arbitrária de números.</p>
 <p>Para uma lista de números contidos em um vetor <code>x</code>, a média é definida como:</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">sum</span>(x)<span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</a></code></pre></div>
@@ -628,7 +628,7 @@ d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala log
 <a class="sourceLine" id="cb310-4" data-line-number="4"><span class="co">#&gt; average      sd </span></a>
 <a class="sourceLine" id="cb310-5" data-line-number="5"><span class="co">#&gt;   69.31    3.61</span></a></code></pre></div>
 <p>Aqui está um gráfico da densidade suave e da distribuição normal com média = 69.3 e SD = 3.6 desenhada como uma linha preta com a densidade suave de nossas alturas de alunos azuis:</p>
-<p><img src="libro_files/figure-html/data-and-normal-densities-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/data-and-normal-densities-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A distribuição normal parece ser uma boa aproximação aqui. Veremos agora como essa aproximação funciona para prever a proporção de valores dentro dos intervalos.</p>
 </div>
 <div id="unidades-padrão" class="section level2">
@@ -674,7 +674,7 @@ d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala log
 <div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">theoretical_quantiles &lt;-<span class="st"> </span><span class="kw">qnorm</span>(p, <span class="dt">mean =</span> <span class="kw">mean</span>(x), <span class="dt">sd =</span> <span class="kw">sd</span>(x))</a></code></pre></div>
 <p>Para ver se eles correspondem ou não, nós os plotamos um contra o outro e desenhamos a linha de identidade:</p>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1"><span class="kw">qplot</span>(theoretical_quantiles, sample_quantiles) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/qqplot-original-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/qqplot-original-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Observe que esse código é muito mais fácil se usarmos unidades padrão:</p>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1">sample_quantiles &lt;-<span class="st"> </span><span class="kw">quantile</span>(z, p)</a>
 <a class="sourceLine" id="cb321-2" data-line-number="2">theoretical_quantiles &lt;-<span class="st"> </span><span class="kw">qnorm</span>(p)</a>
@@ -697,11 +697,11 @@ d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala log
 <h2><span class="header-section-number">8.12</span> Diagramas de caixas</h2>
 <p>Para apresentar os gráficos de caixas (<em>boxplots</em> em inglês), retornaremos aos dados de assassinatos nos EUA. EUA
 Suponha que queremos resumir a distribuição da taxa de homicídios. Usando a técnica de visualização de dados que aprendemos, podemos ver que a aproximação normal não se aplica aqui:</p>
-<p><img src="libro_files/figure-html/hist-qqplot-non-normal-data-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/hist-qqplot-non-normal-data-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Nesse caso, o histograma acima ou o gráfico de densidade suave serviria como um resumo relativamente sucinto.</p>
 <p>Agora, suponha que aqueles que estão acostumados a receber apenas dois números como resumos solicitem um resumo numérico mais compacto.</p>
 <p>Aqui Tukey ofereceu alguns conselhos. Primeiro, ele recomendou fornecer um resumo de cinco números compostos pelo intervalo, juntamente com os quartis (percentis 25, 50 e 75). Além disso, Tukey sugeriu ignorar os <em>outliers</em> ao calcular o intervalo e, em vez disso, plotá-los como pontos independentes. Mais adiante, ofereceremos uma explicação detalhada dos outliers. Por fim, ele recomendou que representássemos graficamente esses números como uma “caixa” com “bigodes”, assim:</p>
-<p><img src="libro_files/figure-html/first-boxplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/first-boxplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>com o gráfico definido pelos percentis 25% e 75% e os bigodes mostrando o intervalo. A distância entre esses dois é chamada de intervalo <em>interquartil</em>. Os dois pontos são discrepantes, conforme definido por Tukey. A mediana é mostrada com uma linha horizontal.</p>
 <p>A partir deste gráfico simples, agora conhecido como <em>box diagram</em>, sabemos que a mediana é de aproximadamente 2,5, que a distribuição não é simétrica e que o intervalo é de 0 a 5 para a grande maioria dos estados, com duas exceções.</p>
 <p>Discutimos como criar boxplots na Seção <a href="distributions.html#other-geometries">8.16</a>.</p>
@@ -715,9 +715,9 @@ Suponha que queremos resumir a distribuição da taxa de homicídios. Usando a t
 <h2><span class="header-section-number">8.14</span> Estudo de caso: descrição das alturas dos alunos (continuação)</h2>
 <p>Usando o histograma, gráficos de densidade e gráficos de QQ, ficamos convencidos de que os dados de altura masculina se aproximam muito de uma distribuição normal. Nesse caso, damos a ET um resumo muito sucinto: as alturas masculinas seguem uma distribuição normal com uma média de 69.3 polegadas e um SD de 3.6 polegadas. Com essas informações, o ET terá uma boa idéia do que esperar quando conhecer nossos alunos do sexo masculino. No entanto, para fornecer uma imagem completa, também devemos fornecer um resumo das alturas das fêmeas.</p>
 <p>Aprendemos que os boxplots são úteis quando queremos comparar rapidamente duas ou mais distribuições. Aqui vemos as alturas para machos e fêmeas:</p>
-<p><img src="libro_files/figure-html/female-male-boxplots-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/female-male-boxplots-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>O diagrama mostra imediatamente que os homens são, em média, mais altos que as mulheres. Os desvios padrão parecem ser semelhantes. Mas a aproximação normal também funciona para os dados de altura feminina coletados pela pesquisa? Esperamos que eles sigam uma distribuição normal, assim como os meninos. No entanto, gráficos exploratórios revelam que a aproximação não é tão útil:</p>
-<p><img src="libro_files/figure-html/histogram-qqplot-female-heights-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/histogram-qqplot-female-heights-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Vemos algo que não vemos nos meninos: o gráfico de densidade tem uma segunda protuberância. Além disso, o gráfico QQ mostra que os pontos mais altos tendem a ser mais altos do que o esperado pela distribuição normal. Finalmente, também vemos cinco pontos no gráfico QQ que sugerem alturas inferiores às esperadas para uma distribuição normal. Ao reportar novamente ao ET, podemos precisar fornecer um histograma, em vez de apenas a média e o desvio padrão para as alturas das fêmeas.</p>
 <p>No entanto, relemos a citação de Tukey e percebemos que percebemos o que não esperávamos ver. Se olharmos para outras distribuições de altura feminina, descobrimos que elas são bem aproximadas com uma distribuição normal. Então, por que nossos alunos são diferentes? Nossa classe é um requisito para o time de basquete feminino? Existe uma pequena proporção de mulheres que dizem ser mais altas do que são? Outra explicação, talvez mais provável, é que, na forma em que os alunos entraram em suas alturas, <code>FEMALE</code> era o sexo padrão e alguns machos entraram em suas alturas, mas esqueceram de mudar a variável sexo. De qualquer forma, a visualização de dados ajudou a descobrir uma possível falha em nossos dados.</p>
 <p>Em relação aos cinco menores valores, observe que esses valores são:</p>
@@ -737,7 +737,7 @@ Suponha que queremos resumir a distribuição da taxa de homicídios. Usando a t
 <p>Quantas medições temos para cada uma?</p>
 <p>2. Suponha que não possamos fazer um gráfico e queremos comparar as distribuições lado a lado. Não podemos simplesmente listar todos os números. Em vez disso, veremos os percentis. Crie uma tabela de cinco linhas que mostre <code>female_percentiles</code> e <code>male_percentiles</code> com os percentis 10, 30, 50, …, 90 para cada sexo. Em seguida, crie um <em>data frame</em> com esses dois como colunas.</p>
 <p>3. Estude os seguintes gráficos de caixa mostrando os tamanhos da população por país:</p>
-<p><img src="libro_files/figure-html/boxplot-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/boxplot-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Qual continente tem o país com o maior tamanho populacional?</p>
 <p>4. Qual continente tem o maior tamanho médio de população?</p>
 <p>5. Qual é o tamanho médio da população da África para o milhão mais próximo?</p>
@@ -771,7 +771,7 @@ d. Conforme observado na Questão 10, a aproximação normal tende a superestima
 <h3><span class="header-section-number">8.16.1</span> Gráficos de barra</h3>
 <p>Para gerar um diagrama de barras (<em>barplots</em> em inglês), podemos usar a geometria <code>geom_bar</code>. Por padrão, R conta os casos em cada categoria e desenha uma barra. Aqui vemos o gráfico de barras para as regiões dos Estados Unidos.</p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" data-line-number="1">murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(region)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/barplot-geom-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/barplot-geom-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Muitas vezes, já temos uma tabela com uma distribuição que queremos apresentar como um gráfico de barras. Aqui está um exemplo dessa tabela:</p>
 <div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1"><span class="kw">data</span>(murders)</a>
 <a class="sourceLine" id="cb327-2" data-line-number="2">tab &lt;-<span class="st"> </span>murders <span class="op">%&gt;%</span></a>
@@ -787,7 +787,7 @@ d. Conforme observado na Questão 10, a aproximação normal tende a superestima
 <a class="sourceLine" id="cb327-12" data-line-number="12"><span class="co">#&gt; 4 West             13      0.255</span></a></code></pre></div>
 <p>Não queremos mais <code>geom_bar</code> contar, mas apenas representar graficamente uma barra na altura fornecida pela variável <code>proportion</code>. Para isso, precisamos fornecer <code>x</code> (as categorias) e <code>y</code> (os valores) e use a opção <code>stat=&quot;identity&quot;</code>.</p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" data-line-number="1">tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(region, proportion)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/region-freq-barplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/region-freq-barplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="histogramas-1" class="section level3">
 <h3><span class="header-section-number">8.16.2</span> Histogramas</h3>
@@ -814,7 +814,7 @@ O código fica assim:</p>
 <a class="sourceLine" id="cb331-4" data-line-number="4"><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb331-5" data-line-number="5"><span class="kw">xlab</span>(<span class="st">&quot;Male heights in inches&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb331-6" data-line-number="6"><span class="kw">ggtitle</span>(<span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/height-histogram-geom-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/height-histogram-geom-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráficos-de-densidade" class="section level3">
 <h3><span class="header-section-number">8.16.3</span> Gráficos de densidade</h3>
@@ -828,7 +828,7 @@ O código fica assim:</p>
 <a class="sourceLine" id="cb333-2" data-line-number="2"><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb333-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb333-4" data-line-number="4"><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-density-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-density-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Para alterar a suavidade da densidade, usamos o argumento <code>adjust</code> multiplicar o valor padrão por esse <code>adjust</code>. Por exemplo, se queremos que o parâmetro de suavização seja duas vezes maior, usamos:</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb334-2" data-line-number="2"><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">+</span></a>
@@ -837,7 +837,7 @@ O código fica assim:</p>
 <div id="diagramas-de-caixas-1" class="section level3">
 <h3><span class="header-section-number">8.16.4</span> Diagramas de caixas</h3>
 <p>A geometria para a criação de gráficos de caixas é <code>geom_boxplot</code>. Como já discutimos, os boxplots são úteis para comparar distribuições. Por exemplo, abaixo, vemos as alturas mostradas acima para as mulheres, mas aqui em comparação aos homens. Para essa geometria, precisamos dos argumentos <code>x</code> como categorias e argumentos <code>y</code> valores semelhantes:</p>
-<p><img src="libro_files/figure-html/female-male-boxplots-geom-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/female-male-boxplots-geom-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráficos-qq-1" class="section level3">
 <h3><span class="header-section-number">8.16.5</span> Gráficos QQ</h3>
@@ -845,7 +845,7 @@ O código fica assim:</p>
 <div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb335-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> height)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb335-3" data-line-number="3"><span class="kw">geom_qq</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot-qq-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot-qq-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Por padrão, a variável de amostra é comparada a uma distribuição normal com uma média de 0 e um desvio padrão de 1. Para alterar isso, usamos o argumento <code>dparams</code> de acordo com a página de ajuda. Para adicionar uma linha de identidade, basta atribuir outra camada. Para linhas retas, usamos a função <code>geom_abline</code>. A linha padrão é a linha de identidade (inclinação = 1, interceptação = 0).</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1">params &lt;-<span class="st"> </span>heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb336-2" data-line-number="2"><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(height), <span class="dt">sd =</span> <span class="kw">sd</span>(height))</a>
@@ -873,7 +873,7 @@ O código fica assim:</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1">x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y, <span class="dt">fill =</span> z)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb340-2" data-line-number="2"><span class="kw">geom_raster</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb340-3" data-line-number="3"><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">terrain.colors</span>(<span class="dv">10</span>))</a></code></pre></div>
-<p><img src="libro_files/figure-html/ggplot2-image-new-colors-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ggplot2-image-new-colors-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="gráficos-rápidos" class="section level3">
 <h3><span class="header-section-number">8.16.7</span> Gráficos rápidos</h3>
@@ -895,7 +895,7 @@ O código fica assim:</p>
 <div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1"><span class="kw">qplot</span>(x, <span class="dt">geom =</span> <span class="st">&quot;density&quot;</span>)</a></code></pre></div>
 <p>Embora não tanto quanto com <code>ggplot</code>, temos alguma flexibilidade para melhorar os resultados de <code>qplot</code>. Olhando a página de ajuda, vemos várias maneiras pelas quais podemos melhorar a aparência do histograma anterior. Por exemplo:</p>
 <div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="kw">qplot</span>(x, <span class="dt">bins=</span><span class="dv">15</span>, <span class="dt">color =</span> <span class="kw">I</span>(<span class="st">&quot;black&quot;</span>), <span class="dt">xlab =</span> <span class="st">&quot;Population&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/qplot-example-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/qplot-example-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><strong>Nota técnica</strong>: o motivo pelo qual usamos <code>I(&quot;black&quot;)</code> é porque nós queremos <code>qplot</code> tentar <code>&quot;black&quot;</code> como um personagem ao invés de um fator. Esse é o comportamento padrão dentro <code>aes</code>, que é chamado internamente aqui. Em geral, a função <code>I</code> usado em R para dizer “mantenha como está”.</p>
 </div>
 </div>
@@ -960,7 +960,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslibro/edit/master/dataviz/distributions.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/dataviz/distributions.Rmd",
 "text": "Edit"
 },
 "history": {

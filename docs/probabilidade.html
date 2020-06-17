@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 13 Probabilidade | Introducción a la Ciencia de Datos</title>
-  <meta name="description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <title>Capítulo 13 Probabilidade | Introdução à Ciência de Dados</title>
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 13 Probabilidade | Introducción a la Ciencia de Datos" />
+  <meta property="og:title" content="Capítulo 13 Probabilidade | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 13 Probabilidade | Introducción a la Ciencia de Datos" />
+  <meta name="twitter:title" content="Capítulo 13 Probabilidade | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la Ciencia de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução à Ciência de Dados</a>
           </h1>
         </div>
 
@@ -520,12 +520,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb433-2" data-line-number="2">tab</a>
 <a class="sourceLine" id="cb433-3" data-line-number="3"><span class="co">#&gt; events</span></a>
 <a class="sourceLine" id="cb433-4" data-line-number="4"><span class="co">#&gt; blue  red </span></a>
-<a class="sourceLine" id="cb433-5" data-line-number="5"><span class="co">#&gt; 5943 4057</span></a></code></pre></div>
+<a class="sourceLine" id="cb433-5" data-line-number="5"><span class="co">#&gt; 6009 3991</span></a></code></pre></div>
 <p>e <code>prop.table</code> nos dá as proporções:</p>
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" data-line-number="1"><span class="kw">prop.table</span>(tab)</a>
 <a class="sourceLine" id="cb434-2" data-line-number="2"><span class="co">#&gt; events</span></a>
 <a class="sourceLine" id="cb434-3" data-line-number="3"><span class="co">#&gt;  blue   red </span></a>
-<a class="sourceLine" id="cb434-4" data-line-number="4"><span class="co">#&gt; 0.594 0.406</span></a></code></pre></div>
+<a class="sourceLine" id="cb434-4" data-line-number="4"><span class="co">#&gt; 0.601 0.399</span></a></code></pre></div>
 <p>Os números acima são probabilidades estimadas fornecidas por uma simulação de Monte Carlo. A teoria estatística, que não discutimos aqui, nos diz que onde <span class="math inline">\(B\)</span> à medida que aumenta, as estimativas se aproximam de 3/5 = 0,6 e 2/5 = 0,4.</p>
 <p>Embora este seja um exemplo simples e pouco útil, usaremos simulações de Monte Carlo para estimar probabilidades nos casos em que é difícil calcular quantidades exatas. Antes de nos aprofundarmos em exemplos mais complexos, usaremos alguns simples para demonstrar as ferramentas de computação disponíveis em R.</p>
 </div>
@@ -616,7 +616,7 @@ Vamos usar o jogo de cartas do Blackjack como exemplo. No Blackjack, eles recebe
 \mbox{Pr}(A \mbox{ or } B) = \mbox{Pr}(A) + \mbox{Pr}(B) - \mbox{Pr}(A \mbox{ and } B)
 \]</span></p>
 <p>Essa regra é intuitiva: pense em um diagrama de Venn. Se simplesmente adicionarmos as probabilidades, contaremos a interseção duas vezes, portanto, devemos subtrair uma instância.</p>
-<p><img src="libro_files/figure-html/venn-diagram-addition-rule-1.png" width="35%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/venn-diagram-addition-rule-1.png" width="35%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="combinações-e-permutações" class="section level2">
 <h2><span class="header-section-number">13.5</span> Combinações e permutações</h2>
@@ -802,7 +802,7 @@ Vamos usar o jogo de cartas do Blackjack como exemplo. No Blackjack, eles recebe
 <div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
 <a class="sourceLine" id="cb469-2" data-line-number="2">prob &lt;-<span class="st"> </span><span class="kw">sapply</span>(n, compute_prob)</a>
 <a class="sourceLine" id="cb469-3" data-line-number="3"><span class="kw">qplot</span>(n, prob)</a></code></pre></div>
-<p><img src="libro_files/figure-html/birthday-problem-mc-probabilities-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/birthday-problem-mc-probabilities-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Agora vamos calcular as probabilidades exatas em vez de usar simulações de Monte Carlo. Não apenas obtemos a resposta exata usando a matemática, mas os cálculos são muito mais rápidos, pois não precisamos realizar experimentos.</p>
 <p>Para simplificar a matemática, em vez de calcular a probabilidade de ocorrência, calcularemos a probabilidade de não ocorrer. Para isso, usamos a regra de multiplicação.</p>
 <p>Vamos começar com a primeira pessoa. A probabilidade de que a Pessoa 1 tenha um aniversário único é 1. A probabilidade de que a Pessoa 2 tenha um aniversário único, considerando que a Pessoa 1 já foi atribuída por dia, é 364/365. Então, como as duas primeiras pessoas têm aniversários únicos, a pessoa 3 tem 363 dias para escolher. Continuamos assim e descobrimos que as chances de todas as 50 pessoas terem um aniversário único são:</p>
@@ -816,7 +816,7 @@ Vamos usar o jogo de cartas do Blackjack como exemplo. No Blackjack, eles recebe
 <a class="sourceLine" id="cb470-4" data-line-number="4">}</a>
 <a class="sourceLine" id="cb470-5" data-line-number="5">eprob &lt;-<span class="st"> </span><span class="kw">sapply</span>(n, exact_prob)</a>
 <a class="sourceLine" id="cb470-6" data-line-number="6"><span class="kw">qplot</span>(n, prob) <span class="op">+</span><span class="st"> </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(n, eprob), <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/birthday-problem-exact-probabilities-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/birthday-problem-exact-probabilities-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Este gráfico mostra que a simulação de Monte Carlo fornece uma estimativa muito boa da probabilidade exata. Se não fosse possível calcular as probabilidades exatas, ainda poderíamos estimar com precisão as probabilidades.</p>
 <p>Infinito na prática</p>
 <p>A teoria descrita aqui requer repetir experimentos repetidamente para sempre. Na prática, não podemos fazer isso. Nos exemplos acima, usamos <span class="math inline">\(B=10,000\)</span> experimentos em Monte Carlo, e isso nos deu estimativas precisas. Quanto maior esse número, mais precisa será a estimativa até que a aproximação seja tão boa que seus computadores não consigam perceber a diferença. Mas em cálculos mais complexos, 10.000 podem ser insuficientes. Além disso, para alguns cálculos, 10.000 experimentos podem não ser computacionalmente viáveis. Na prática, não saberemos qual é a resposta, portanto, não saberemos se nossa estimativa de Monte Carlo é precisa. Sabemos que quanto maior é <span class="math inline">\(B\)</span>, melhor será a aproximação. Mas quão grande precisamos que seja? Essa é realmente uma pergunta desafiadora e, para respondê-la com frequência, é necessário treinamento avançado em estatística teórica.</p>
@@ -828,7 +828,7 @@ Vamos usar o jogo de cartas do Blackjack como exemplo. No Blackjack, eles recebe
 <a class="sourceLine" id="cb471-5" data-line-number="5">}</a>
 <a class="sourceLine" id="cb471-6" data-line-number="6">prob &lt;-<span class="st"> </span><span class="kw">sapply</span>(B, compute_prob)</a>
 <a class="sourceLine" id="cb471-7" data-line-number="7"><span class="kw">qplot</span>(<span class="kw">log10</span>(B), prob, <span class="dt">geom =</span> <span class="st">&quot;line&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/monte-carlo-convergence-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/monte-carlo-convergence-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Neste gráfico, podemos ver que os valores começam a se estabilizar (ou seja, eles variam menos de 0,01) em torno de 1000. Observe que a probabilidade exata, que neste caso sabemos, é 0.569.</p>
 </div>
 </div>
@@ -903,7 +903,7 @@ d. Ambos.</p>
 <div id="distribuições-teóricas-como-aproximações" class="section level3">
 <h3><span class="header-section-number">13.9.1</span> Distribuições teóricas como aproximações</h3>
 <p>A distribuição normal é derivada matematicamente: não precisamos de dados para defini-la. Para os cientistas de dados, quase tudo o que fazemos na prática envolve dados. Os dados são sempre, do ponto de vista técnico, discretos. Por exemplo, podemos considerar nossos dados de altura categóricos com cada altura específica como uma única categoria. A distribuição de probabilidade é definida pela proporção de alunos que indicam cada altura. Aqui está um gráfico dessa distribuição de probabilidade:</p>
-<p><img src="libro_files/figure-html/plot-of-height-frequencies-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/plot-of-height-frequencies-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Enquanto a maioria dos estudantes arredondava suas alturas para a polegada mais próxima, outros indicavam valores com mais precisão. Um aluno indicou que sua altura era de 69,6850393700787 polegadas, o que equivale a 177 centímetros. A probabilidade atribuída a esta altura é 0.001 ou 1 em 812. A probabilidade de 70 polegadas é muito maior em 0.106 mas faz sentido pensar que a probabilidade de ter exatamente 70 polegadas é diferente de 69,6850393700787? Claramente, é muito mais útil para fins de análise de dados tratar esse resultado como uma variável numérica contínua, considerando que muito poucas pessoas, ou talvez não, tenham exatamente 70 polegadas e que a razão pela qual obtemos mais valores 70 é porque as pessoas arredondam para a polegada mais próxima.</p>
 <p>Com distribuições contínuas, a probabilidade de um valor singular não é definida. Por exemplo, não faz sentido perguntar qual é a probabilidade de um valor distribuído normalmente ser 70. Em vez disso, definimos probabilidades para intervalos. Portanto, poderíamos perguntar qual é a probabilidade de alguém medir entre 69,5 e 70,5.</p>
 <p>Em casos como altura, onde os dados são arredondados, a aproximação normal é particularmente útil se estivermos trabalhando com intervalos que incluem exatamente um número redondo. Por exemplo, a distribuição normal é útil para aproximar a proporção de alunos que relatam valores de intervalo, como os três seguintes:</p>
@@ -947,7 +947,7 @@ F(a) = \mbox{Pr}(X\leq a) = \int_{-\infty}^a f(x)\, dx
 <div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">76</span>, m, s)</a>
 <a class="sourceLine" id="cb485-2" data-line-number="2"><span class="co">#&gt; [1] 0.0321</span></a></code></pre></div>
 <p>que matematicamente é a área cinza abaixo:</p>
-<p><img src="libro_files/figure-html/intergrals-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/intergrals-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A curva que você vê é a densidade de probabilidade para a distribuição normal. Em R, obtemos isso usando a função <code>dnorm</code>.</p>
 <p>Embora possa não ser imediatamente óbvio por que é útil conhecer as densidades de probabilidade, entender esse conceito será essencial para aqueles que desejam ajustar modelos a dados para os quais não há funções predefinidas disponíveis.</p>
 <p>Simulações de Monte Carlo para variáveis contínuas</p>
@@ -957,7 +957,7 @@ F(a) = \mbox{Pr}(X\leq a) = \int_{-\infty}^a f(x)\, dx
 <a class="sourceLine" id="cb486-3" data-line-number="3">s &lt;-<span class="st"> </span><span class="kw">sd</span>(x)</a>
 <a class="sourceLine" id="cb486-4" data-line-number="4">simulated_heights &lt;-<span class="st"> </span><span class="kw">rnorm</span>(n, m, s)</a></code></pre></div>
 <p>Não é de surpreender que a distribuição pareça normal:</p>
-<p><img src="libro_files/figure-html/simulated-heights-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/simulated-heights-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Essa é uma das funções mais úteis em R, pois permite gerar dados que imitam eventos naturais e responder a perguntas relacionadas ao que poderia acontecer por acaso ao executar simulações de Monte Carlo.</p>
 <p>Se, por exemplo, escolhermos 800 homens aleatoriamente, qual é a distribuição da pessoa mais alta? Quão raro é um homem de sete pés e sete pés de rodapé em um grupo de 800 homens? A seguinte simulação de Monte Carlo nos ajuda a responder a essa pergunta:</p>
 <div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" data-line-number="1">B &lt;-<span class="st"> </span><span class="dv">10000</span></a>
@@ -967,9 +967,9 @@ F(a) = \mbox{Pr}(X\leq a) = \int_{-\infty}^a f(x)\, dx
 <a class="sourceLine" id="cb487-5" data-line-number="5">})</a></code></pre></div>
 <p>Ter um <em>pés de rodapé</em> é bastante raro:</p>
 <div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" data-line-number="1"><span class="kw">mean</span>(tallest <span class="op">&gt;=</span><span class="st"> </span><span class="dv">7</span><span class="op">*</span><span class="dv">12</span>)</a>
-<a class="sourceLine" id="cb488-2" data-line-number="2"><span class="co">#&gt; [1] 0.0174</span></a></code></pre></div>
+<a class="sourceLine" id="cb488-2" data-line-number="2"><span class="co">#&gt; [1] 0.0199</span></a></code></pre></div>
 <p>Aqui vemos a distribuição resultante:</p>
-<p><img src="libro_files/figure-html/simulated-tallest-height-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/simulated-tallest-height-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Observe que isso não parece normal.</p>
 </div>
 </div>
@@ -1054,7 +1054,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslibro/edit/master/prob/intro-to-prob.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/prob/intro-to-prob.Rmd",
 "text": "Edit"
 },
 "history": {

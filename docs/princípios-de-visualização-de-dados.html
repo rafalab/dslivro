@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 10 Princípios de visualização de dados | Introducción a la Ciencia de Datos</title>
-  <meta name="description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <title>Capítulo 10 Princípios de visualização de dados | Introdução à Ciência de Dados</title>
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 10 Princípios de visualização de dados | Introducción a la Ciencia de Datos" />
+  <meta property="og:title" content="Capítulo 10 Princípios de visualização de dados | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 10 Princípios de visualização de dados | Introducción a la Ciencia de Datos" />
+  <meta name="twitter:title" content="Capítulo 10 Princípios de visualização de dados | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la Ciencia de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução à Ciência de Dados</a>
           </h1>
         </div>
 
@@ -465,9 +465,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.1</span> Como codificar dados usando pistas visuais</h2>
 <p>Começamos descrevendo alguns princípios para codificar dados. Existem várias abordagens à nossa disposição, incluindo posição, comprimento, ângulos, área, brilho e tom da cor.</p>
 <p>Para ilustrar como algumas dessas estratégias se comparam, suponha que desejamos relatar os resultados de duas pesquisas hipotéticas, realizadas em 2000 e depois em 2015, em relação à preferência do navegador. Para cada ano, estamos simplesmente comparando cinco quantidades: as cinco porcentagens. Uma representação gráfica de porcentagens amplamente usada e popularizada pelo Microsoft Excel é o gráfico de pizza:</p>
-<p><img src="libro_files/figure-html/piechart-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/piechart-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Aqui estamos representando quantidades com áreas e ângulos, pois o ângulo e a área de cada seção do gráfico são proporcionais à quantidade que o setor representa. Isso acaba sendo uma opção abaixo do ideal, pois, como mostram os estudos perceptivos, os seres humanos não são bons em quantificar com precisão ângulos e são ainda piores quando a área é o único sinal visual disponível. O gráfico em anel é um exemplo de gráfico que usa apenas a área:</p>
-<p><img src="libro_files/figure-html/donutchart-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/donutchart-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Para ver como é difícil quantificar ângulos e área, lembre-se de que as classificações e todas as porcentagens nos gráficos acima foram alteradas de 2000 para 2015. Você pode determinar as porcentagens reais e classificar a popularidade dos navegadores? Você pode ver como as porcentagens mudaram de 2000 para 2015? Não é fácil diferenciá-lo do gráfico. De fato, a função <code>pie</code> da página de ajuda de R observa que:</p>
 <blockquote>
 <p>Os gráficos de pizza são uma maneira muito ruim de exibir informações. O olho é bom em julgar medições lineares e ruim em julgar áreas relativas. Um diagrama de barras ou pontos é uma maneira preferível de exibir esse tipo de dados.</p>
@@ -546,10 +546,10 @@ IE
 </tbody>
 </table>
 <p>A maneira preferida de representar graficamente essas quantidades é usar comprimento e posição como pistas visuais, uma vez que os humanos são muito melhores em julgar medições lineares. O gráfico de barras usa essa abordagem usando barras de comprimento proporcional às quantias de interesse. Ao adicionar linhas horizontais aos valores escolhidos estrategicamente, neste caso, a cada múltiplo de 10, aliviaremos a carga visual da quantificação através da posição da parte superior das barras. Compare e compare as informações que podemos extrair dos dois pares de gráficos a seguir.</p>
-<p><img src="libro_files/figure-html/two-barplots-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/two-barplots-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Observe como é fácil ver as diferenças no gráfico de barras. De fato, agora podemos determinar as porcentagens reais seguindo uma linha horizontal para o eixo x.</p>
 <p>Se, por algum motivo, você precisar criar um gráfico circular, rotule cada seção do círculo com sua respectiva porcentagem para que o público não precise inferi-las a partir dos ângulos ou da área:</p>
-<p><img src="libro_files/figure-html/excel-barplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/excel-barplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Em geral, ao exibir quantidades, posição e comprimento sobre ângulos e/ ou área são os preferidos. O brilho e a cor são ainda mais difíceis de quantificar do que os ângulos. Mas, como veremos mais adiante, às vezes são úteis quando mais de duas dimensões devem ser exibidas ao mesmo tempo.</p>
 </div>
 <div id="saiba-quando-incluir-0" class="section level2">
@@ -558,20 +558,20 @@ IE
 <p><img src="dataviz/img/class2_8.jpg" width="70%" style="display: block; margin: auto;" /></p>
 <p>(Fonte: Fox News, via Media Matters<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>.)</p>
 <p>No gráfico acima, as detenções parecem ter triplicado quando, de fato, elas aumentaram apenas aproximadamente 16%. Iniciar o gráfico em 0 ilustra isso claramente:</p>
-<p><img src="libro_files/figure-html/barplot-from-zero-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/barplot-from-zero-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Abaixo, vemos outro exemplo, que é descrito em detalhes em um artigo do blog “Flowing Data”:</p>
 <p><img src="dataviz/img/Bush-cuts.png" width="70%" style="display: block; margin: auto;" />
 (Fonte: Fox News, através da Flowing Data<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>)</p>
 <p>Este gráfico faz um aumento de 13% parecer cinco vezes maior. Aqui está o gráfico apropriado:</p>
-<p><img src="libro_files/figure-html/barplot-from-zero-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/barplot-from-zero-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Finalmente, aqui está um exemplo extremo que faz uma diferença muito pequena de menos de 2% parecer 10 a 100 vezes maior:</p>
 <p><img src="dataviz/img/venezuela-election.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>(Fonte:
 Televisão venezuelana via Pakistan Today<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a> e Diego Mariano)</p>
 <p>Aqui está o gráfico apropriado:</p>
-<p><img src="libro_files/figure-html/barplot-from-zero-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/barplot-from-zero-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Ao usar a posição em vez do comprimento, não é necessário incluir 0. Esse é particularmente o caso quando queremos comparar as diferenças entre os grupos em relação à variabilidade dentro de um grupo. Aqui está um exemplo ilustrativo que mostra a expectativa média de vida de cada país estratificado por continente em 2012:</p>
-<p><img src="libro_files/figure-html/points-plot-not-from-zero-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/points-plot-not-from-zero-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Observe que, no gráfico à esquerda, que inclui 0, o espaço entre 0 e 43 não adiciona informações e dificulta a comparação da variabilidade entre e dentro do grupo.</p>
 </div>
 <div id="não-distorça-quantidades" class="section level2">
@@ -580,15 +580,15 @@ Televisão venezuelana via Pakistan Today<a href="#fn36" class="footnote-ref" id
 <p><img src="dataviz/img/state-of-the-union.png" width="70%" style="display: block; margin: auto;" />
 (Fonte: endereço do estado da união de 2011<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>)</p>
 <p>Se julgarmos pela área dos círculos, os Estados Unidos parecem ter uma economia cinco vezes maior que a da China e mais de 30 vezes maior que a da França. No entanto, se olharmos para os números atuais, veremos que esse não é o caso. As proporções são 2,6 e 5,8 vezes superiores às da China e da França, respectivamente. A razão para essa distorção é que o raio do círculo, em vez da área, se tornou proporcional à quantidade, o que implica que a razão entre as áreas é quadrada: 2,6 se torna 6,5 e 5,8 se torna 34,1. Aqui está uma comparação dos círculos que obtemos se tornarmos o valor proporcional ao raio e à área:</p>
-<p><img src="libro_files/figure-html/area-not-radius-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/area-not-radius-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Não é surpresa que, por padrão, <strong>ggplot2</strong> use a área em vez do raio. No entanto, nesse caso, realmente não devemos usar a área, pois podemos usar a posição e o comprimento:</p>
-<p><img src="libro_files/figure-html/barplot-better-than-area-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/barplot-better-than-area-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="classificar-categorias-por-valor-significativo" class="section level2">
 <h2><span class="header-section-number">10.4</span> Classificar categorias por valor significativo</h2>
 <p>Quando um dos eixos é usado para exibir categorias, como é feito nos gráficos de barras, o comportamento padrão de <strong>ggplot2</strong> é classificar as categorias em ordem alfabética quando definidas por cadeias de caracteres. Se eles são definidos por fatores, são ordenados de acordo com os níveis dos fatores. Raramente queremos usar a ordem alfabética. Em vez disso, devemos solicitar uma quantidade significativa. Em todos os casos anteriores, os gráficos de barras foram ordenados de acordo com os valores mostrados. A exceção foram gráficos de barras comparando navegadores. Nesse caso, mantivemos a ordem igual em todos os gráficos de barras para facilitar a comparação. Especificamente, em vez de solicitar navegadores separadamente nos dois anos, solicitamos os dois anos pelo valor médio de 2000 e 2015.</p>
 <p>Anteriormente, aprendemos a usar a função <code>reorder</code>, o que nos ajuda a alcançar esse objetivo. Para avaliar como a ordem correta pode ajudar a transmitir uma mensagem, suponha que desejamos criar um gráfico para comparar a taxa de homicídios em todos os estados dos EUA.estamos particularmente interessados nos estados mais perigosos e mais seguros. Lembre-se da diferença quando solicitamos alfabeticamente, a ação padrão, versus quando solicitamos pela taxa real:</p>
-<p><img src="libro_files/figure-html/do-not-order-alphabetically-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/do-not-order-alphabetically-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Podemos fazer o segundo gráfico assim:</p>
 <div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1"><span class="kw">data</span>(murders)</a>
 <a class="sourceLine" id="cb389-2" data-line-number="2">murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">murder_rate =</span> total<span class="op">/</span><span class="st"> </span>population <span class="op">*</span><span class="st"> </span><span class="dv">100000</span>) <span class="op">%&gt;%</span></a>
@@ -599,26 +599,26 @@ Televisão venezuelana via Pakistan Today<a href="#fn36" class="footnote-ref" id
 <a class="sourceLine" id="cb389-7" data-line-number="7"><span class="kw">theme</span>(<span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">6</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb389-8" data-line-number="8"><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)</a></code></pre></div>
 <p>A função <code>reorder</code> também nos permite reordenar grupos. Anteriormente, vimos um exemplo relacionado à distribuição de renda entre regiões. Aqui vemos as duas versões representadas graficamente uma contra a outra:</p>
-<p><img src="libro_files/figure-html/reorder-boxplot-example-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/reorder-boxplot-example-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>O primeiro gráfico classifica as regiões em ordem alfabética, enquanto o segundo gráfico as classifica pela mediana do grupo.</p>
 </div>
 <div id="mostrar-os-dados-1" class="section level2">
 <h2><span class="header-section-number">10.5</span> Mostrar os dados</h2>
 <p>Nosso foco foi exibir quantidades únicas em todas as categorias. Agora, voltamos nossa atenção para a visualização de dados, com foco na comparação de grupos.</p>
 <p>Para motivar nosso primeiro princípio, “mostrar os dados”, retornamos ao nosso exemplo artificial de descrição de alturas para ET, um alienígena. Desta vez, suponha que o ET esteja interessado na diferença de altura entre homens e mulheres. Um gráfico comumente usado para comparações de grupo e popularizado por software como o Microsoft Excel, é o <em>dynamite plot</em>, que mostra os erros médios e padrão (os erros padrão são definidos em um capítulo posterior, mas não os confundem com o desvio padrão do dados). O gráfico fica assim:</p>
-<p><img src="libro_files/figure-html/show-data-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/show-data-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A média de cada grupo é representada pelo topo de cada barra e as antenas se estendem da média para a média mais dois erros padrão. Se tudo o que o ET obtiver for esse gráfico, você terá poucas informações sobre o que esperar se encontrar um grupo de homens e mulheres. As barras vão para 0: isso significa que existem seres humanos pequenos com menos de um pé de altura? Todos os homens são mais altos que as mulheres mais altas? Existe uma variedade de alturas? O ET é incapaz de responder a essas perguntas, pois mal lhe fornecemos informações sobre a distribuição da altura.</p>
 <p>Isso nos leva ao nosso primeiro princípio: exibir os dados. Esse código <strong>ggplot2</strong> simples já gera um gráfico mais informativo que o gráfico de barras, exibindo todos os pontos de dados:</p>
 <div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb390-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(sex, height)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb390-3" data-line-number="3"><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/show-data-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/show-data-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>O gráfico acima nos dá uma idéia do alcance dos dados. No entanto, este gráfico também possui limitações, pois não podemos realmente ver toda a soma FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE y 812pontos plotados para mulheres e homens, respectivamente, e muitos pontos são plotados um sobre o outro. Como descrevemos anteriormente, visualizar a distribuição é muito mais informativo. Porém, antes de fazer isso, apontamos duas maneiras de melhorar um gráfico que mostra todos os pontos.</p>
 <p>O primeiro é adicionar <em>jitter</em>, que adiciona um pequeno deslocamento aleatório a cada ponto. Nesse caso, adicionar horizontal <em>jitter</em> não altera a interpretação, pois as alturas dos pontos não mudam, mas minimizamos o número de pontos que se sobrepõem e, portanto, temos uma melhor ideia visual de como os dados são distribuídos. Uma segunda melhoria vem do uso de <em>alpha blending</em>, que torna os pontos um pouco transparentes. Quanto mais pontos se sobrepuserem, mais escuro será o gráfico, o que também nos ajudará a ter uma idéia de como os pontos são distribuídos. Aqui está o mesmo gráfico com <em>jitter_e_alpha blending</em>:</p>
 <div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb391-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(sex, height)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb391-3" data-line-number="3"><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/show-points-with-jitter-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/show-points-with-jitter-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Agora começamos a sentir que, em média, os machos são mais altos que as fêmeas. Também observamos faixas pontilhadas horizontais escuras, o que mostra que muitos alunos indicam valores arredondados para o número inteiro mais próximo.</p>
 </div>
 <div id="como-facilitar-comparações" class="section level2">
@@ -626,53 +626,53 @@ Televisão venezuelana via Pakistan Today<a href="#fn36" class="footnote-ref" id
 <div id="use-eixos-comuns" class="section level3">
 <h3><span class="header-section-number">10.6.1</span> Use eixos comuns</h3>
 <p>Como existem muitos pontos, é mais eficaz mostrar distribuições do que pontos individuais. Portanto, mostramos histogramas para cada grupo:</p>
-<p><img src="libro_files/figure-html/common-axes-histograms-wrong-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/common-axes-histograms-wrong-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>No entanto, olhando para o gráfico acima, não é imediatamente óbvio que os homens são, em média, mais altos que as mulheres. Temos que observar com atenção para perceber que o eixo x tem uma faixa de valores mais alta no histograma masculino. Um princípio importante aqui é <strong>manter os eixos iguais</strong> ao comparar dados em dois gráficos. A seguir, vemos como a comparação se torna mais fácil:</p>
-<p><img src="libro_files/figure-html/common-axes-histograms-right-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/common-axes-histograms-right-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="alinhe-os-gráficos-verticalmente-para-ver-alterações-horizontais-e-horizontalmente-para-ver-alterações-verticais" class="section level3">
 <h3><span class="header-section-number">10.6.2</span> Alinhe os gráficos verticalmente para ver alterações horizontais e horizontalmente para ver alterações verticais</h3>
 <p>Nesses histogramas, o sinal visual relacionado a reduções ou aumentos de altura são alterações à esquerda ou à direita, respectivamente: alterações horizontais. O alinhamento vertical dos gráficos nos ajuda a ver essa alteração quando os eixos são fixos:</p>
-<p><img src="libro_files/figure-html/common-axes-histograms-right-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/common-axes-histograms-right-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb392-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(height, ..density..)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb392-3" data-line-number="3"><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb392-4" data-line-number="4"><span class="kw">facet_grid</span>(sex<span class="op">~</span>.)</a></code></pre></div>
 <p>O gráfico acima facilita a observação de que os machos são, em média, mais altos.</p>
 <p>Se quisermos obter o resumo compacto que os boxplots oferecem, precisamos alinhá-los horizontalmente, pois, por padrão, os boxplots se movem para cima e para baixo com base nas mudanças de altura. Seguindo o princípio “mostrar os dados”, sobrepusemos todos os pontos de dados:</p>
-<p><img src="libro_files/figure-html/boxplot-with-points-with-jitter-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/boxplot-with-points-with-jitter-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb393-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(sex, height)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb393-3" data-line-number="3"><span class="kw">geom_boxplot</span>(<span class="dt">coef=</span><span class="dv">3</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb393-4" data-line-number="4"><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb393-5" data-line-number="5"><span class="kw">ylab</span>(<span class="st">&quot;Height in inches&quot;</span>)</a></code></pre></div>
 <p>Agora compare e contraste estes três gráficos, com base exatamente nos mesmos dados:</p>
-<p><img src="libro_files/figure-html/show-the-data-comparison-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/show-the-data-comparison-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Observe quanto aprendemos mais nos dois gráficos à direita. Os gráficos de barras são úteis para exibir um número, mas não são muito úteis quando queremos descrever distribuições.</p>
 </div>
 <div id="considere-transformações" class="section level3">
 <h3><span class="header-section-number">10.6.3</span> Considere transformações</h3>
 <p>Incentivamos o uso de transformação logarítmica nos casos em que as alterações são multiplicativas. O tamanho da população foi um exemplo em que descobrimos que uma transformação logarítmica produziu uma transformação mais informativa.</p>
 <p>A combinação de um gráfico de barras escolhido incorretamente e a não utilização de uma transformação logarítmica, quando necessário, podem ser particularmente distorcidas. Como exemplo, considere este gráfico de barras mostrando os tamanhos médios da população para cada continente em 2015:</p>
-<p><img src="libro_files/figure-html/no-transformations-wrong-use-of-barplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/no-transformations-wrong-use-of-barplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Observando o gráfico acima, conclui-se que os países asiáticos são muito mais populosos do que os de outros continentes. Seguindo o princípio “mostrar os dados”, notamos rapidamente que isso se deve a dois países muito grandes, que assumimos serem a Índia e a China:</p>
-<p><img src="libro_files/figure-html/no-transformation-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/no-transformation-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Usar uma transformação logarítmica aqui produz um gráfico muito mais informativo. Comparamos o gráfico de barras original com um gráfico de caixa usando a transformação de escala logarítmica para o eixo y:</p>
-<p><img src="libro_files/figure-html/correct-transformation-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/correct-transformation-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Com o novo gráfico, percebemos que os países africanos realmente têm uma população mediana maior que a Ásia.</p>
 <p>Outras transformações a considerar são a transformação logística ( <code>logit</code>), que é útil para ver melhor as alterações nas probabilidades e a transformação da raiz quadrada ( <code>sqrt</code>), o que é útil para contagens.</p>
 </div>
 <div id="as-indicações-visuais-comparadas-devem-ser-adjacentes" class="section level3">
 <h3><span class="header-section-number">10.6.4</span> As indicações visuais comparadas devem ser adjacentes</h3>
 <p>Para cada continente, vamos comparar a renda em 1970 versus 2010. Ao comparar dados de renda entre regiões entre 1970 e 2010, fizemos um gráfico semelhante ao seguinte, mas desta vez investigamos os continentes em vez de regiões.</p>
-<p><img src="libro_files/figure-html/boxplots-not-adjacent-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/boxplots-not-adjacent-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>O comportamento padrão de <strong>ggplot2</strong> é classificar os rótulos em ordem alfabética para que os rótulos com 1970 apareçam antes dos rótulos com 2010. Isso dificulta as comparações porque a distribuição de um continente em 1970 é visualmente distante da sua distribuição em 2010. É muito mais fácil Faça a comparação entre 1970 e 2010 para cada continente quando as plotagens da caixa para esse continente estiverem próximas uma da outra:</p>
-<p><img src="libro_files/figure-html/boxplot-adjacent-comps-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/boxplot-adjacent-comps-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="use-cores" class="section level3">
 <h3><span class="header-section-number">10.6.5</span> Use cores</h3>
 <p>A comparação é ainda mais fácil se usarmos cores para indicar as duas coisas que queremos comparar:</p>
-<p><img src="libro_files/figure-html/boxplot-adjacent-comps-with-color-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/boxplot-adjacent-comps-with-color-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="pense-no-daltônico" class="section level2">
@@ -682,7 +682,7 @@ Televisão venezuelana via Pakistan Today<a href="#fn36" class="footnote-ref" id
 <a class="sourceLine" id="cb394-2" data-line-number="2"><span class="kw">c</span>(<span class="st">&quot;#999999&quot;</span>, <span class="st">&quot;#E69F00&quot;</span>, <span class="st">&quot;#56B4E9&quot;</span>, <span class="st">&quot;#009E73&quot;</span>,</a>
 <a class="sourceLine" id="cb394-3" data-line-number="3"><span class="st">&quot;#F0E442&quot;</span>, <span class="st">&quot;#0072B2&quot;</span>, <span class="st">&quot;#D55E00&quot;</span>, <span class="st">&quot;#CC79A7&quot;</span>)</a></code></pre></div>
 <p>Aqui estão as cores:
-<img src="libro_files/figure-html/color-blind-friendly-colors-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<img src="livro_files/figure-html/color-blind-friendly-colors-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Além disso, existem vários recursos que podem ajudá-lo a selecionar cores, por exemplo, este: [<a href="http://bconnelly.net/2013/10/creating-colorblind-friendly-figures/font/1(http://bconnelly.net/2013/" class="uri">http://bconnelly.net/2013/10/creating-colorblind-friendly-figures/font/1(http://bconnelly.net/2013/</a> 10/ create-colorblind-friendly-figures/).</p>
 </div>
 <div id="gráficos-para-duas-variáveis" class="section level2">
@@ -711,9 +711,9 @@ Televisão venezuelana via Pakistan Today<a href="#fn36" class="footnote-ref" id
 <a class="sourceLine" id="cb395-17" data-line-number="17"><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x =</span> location, <span class="dt">label =</span> country, <span class="dt">hjust =</span> hjust),</a>
 <a class="sourceLine" id="cb395-18" data-line-number="18"><span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb395-19" data-line-number="19"><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">ylab</span>(<span class="st">&quot;Life Expectancy&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/slope-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/slope-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Uma vantagem do <em>slope chart</em> é que ele rapidamente nos dá uma idéia das mudanças com base na inclinação das linhas. Embora estejamos usando o ângulo como uma sugestão visual, também estamos usando a posição para determinar valores exatos. Comparar melhorias é um pouco mais difícil com um diagrama de dispersão:</p>
-<p><img src="libro_files/figure-html/scatter-plot-instead-of-slope-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/scatter-plot-instead-of-slope-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>No diagrama de dispersão, seguimos o princípio de usar eixos comuns, porque os estamos comparando antes e depois. No entanto, se tivermos muitos pontos, os <em>slope charts</em> não serão mais úteis, pois é difícil ver todas as linhas.</p>
 </div>
 <div id="gráfico-de-bland-altman" class="section level3">
@@ -732,25 +732,25 @@ Televisão venezuelana via Pakistan Today<a href="#fn36" class="footnote-ref" id
 <a class="sourceLine" id="cb396-11" data-line-number="11"><span class="kw">geom_abline</span>(<span class="dt">lty =</span> <span class="dv">2</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb396-12" data-line-number="12"><span class="kw">xlab</span>(<span class="st">&quot;Average of 2010 and 2015&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb396-13" data-line-number="13"><span class="kw">ylab</span>(<span class="st">&quot;Difference between 2015 and 2010&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/bland-altman-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/bland-altman-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Aqui, simplesmente olhando o eixo y, vemos rapidamente quais países mostraram a maior melhoria. Além disso, temos uma idéia do valor geral do eixo x.</p>
 </div>
 </div>
 <div id="como-codificar-uma-terceira-variável" class="section level2">
 <h2><span class="header-section-number">10.9</span> Como codificar uma terceira variável</h2>
 <p>Um gráfico de dispersão anterior mostrou a relação entre sobrevivência infantil e renda média. Abaixo está uma versão deste gráfico que codifica três variáveis: participação na OPEP, região e população.</p>
-<p><img src="libro_files/figure-html/encoding-third-variable-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/encoding-third-variable-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Codificamos variáveis categóricas com cor e forma. Essas formas podem ser controladas com o argumento <code>shape</code>. Abaixo, mostramos as formas disponíveis para uso em R. Nos últimos cinco, a cor preenche a forma.</p>
-<p><img src="libro_files/figure-html/available-shapes-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/available-shapes-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Para variáveis contínuas, podemos usar cor, intensidade ou tamanho. Aqui está um exemplo de como fazer isso com um estudo de caso.</p>
 <p>Ao selecionar cores para quantificar uma variável numérica, escolhemos entre duas opções: seqüencial e divergente. As cores seqüenciais são adequadas para dados que variam do mais alto ao mais baixo. Valores altos são claramente diferenciados de valores baixos. Aqui estão alguns exemplos oferecidos pelo pacote <code>RColorBrewer</code>:</p>
 <div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1"><span class="kw">library</span>(RColorBrewer)</a>
 <a class="sourceLine" id="cb397-2" data-line-number="2"><span class="kw">display.brewer.all</span>(<span class="dt">type=</span><span class="st">&quot;seq&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/r-color-brewer-seq-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/r-color-brewer-seq-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Cores divergentes são usadas para representar valores que divergem de um centro. Colocamos ênfase igual nos dois extremos do intervalo de dados: mais alto que o centro e mais baixo que o centro. Um exemplo de quando usaríamos um padrão divergente seria quando mostramos a altura em quantos desvios padrão ela é da média. Aqui estão alguns exemplos de padrões divergentes:</p>
 <div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1"><span class="kw">library</span>(RColorBrewer)</a>
 <a class="sourceLine" id="cb398-2" data-line-number="2"><span class="kw">display.brewer.all</span>(<span class="dt">type=</span><span class="st">&quot;div&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/r-color-brewer-div-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/r-color-brewer-div-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="evitar-gráficos-pseudo-tridimensionais" class="section level2">
 <h2><span class="header-section-number">10.10</span> Evitar gráficos pseudo-tridimensionais</h2>
@@ -759,7 +759,7 @@ mostra três variáveis: dose, tipo de medicamento e sobrevida. Embora suas tela
 <p><img src="dataviz/img/fig8b.png" width="70%" style="display: block; margin: auto;" />
 (Imagem cortesia de Karl Broman)</p>
 <p>Os seres humanos não são bons em ver em três dimensões (o que explica por que o estacionamento paralelo é difícil) e nossa limitação é ainda pior em relação às pseudo-três dimensões. Para ver isso, tente determinar os valores da variável de sobrevivência no gráfico acima. Você pode dizer quando a fita roxa cruza a fita vermelha? Este é um exemplo em que podemos usar cores facilmente para representar a variável categórica em vez de um pseudo-3D:</p>
-<p><img src="libro_files/figure-html/colors-for-different-lines-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/colors-for-different-lines-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Veja como é mais fácil determinar os valores de sobrevivência.</p>
 <p>Às vezes, o pseudo-3D é usado de forma totalmente gratuita - os gráficos são criados para parecer 3D, mesmo quando a terceira dimensão não representa uma quantidade. Isso apenas aumenta a confusão e dificulta a transmissão da sua mensagem. Aqui estão dois exemplos:</p>
 <p><img src="dataviz/img/fig1e.png" width="45%" style="display: block; margin: auto;" /><img src="dataviz/img/fig2d.png" width="45%" style="display: block; margin: auto;" />
@@ -1102,13 +1102,13 @@ b. Quando <strong>ggplot2</strong> não estiver disponível.
 c. Quando estou jogando frisbee.
 d. Nunca. Gráficos e tabelas de barras são sempre melhores.</p>
 <p>2. Qual é o problema com o gráfico a seguir?</p>
-<p><img src="libro_files/figure-html/baplot-not-from-zero-exercises-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/baplot-not-from-zero-exercises-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>para. Os valores estão errados. A votação final foi 306-232.
 b. O eixo não começa em 0. A julgar pelo comprimento, parece que Trump recebeu três vezes mais votos quando, na verdade, ele era aproximadamente 30% a mais.
 c. As cores devem ser as mesmas.
 d. As porcentagens devem ser mostradas como um gráfico de pizza.</p>
 <p>3. Veja os dois gráficos a seguir. Eles mostram a mesma informação: taxas de sarampo em 1928 em todos os 50 estados.</p>
-<p><img src="libro_files/figure-html/measels-exercise-1.png" width="70%" style="display: block; margin: auto;" />
+<p><img src="livro_files/figure-html/measels-exercise-1.png" width="70%" style="display: block; margin: auto;" />
 Qual gráfico é mais fácil de ler se você deseja determinar quais são os melhores e os piores estados em termos de taxas e por quê?</p>
 <p>para. Eles dão a mesma informação, então ambos são igualmente bons.
 b. O gráfico à esquerda é melhor porque ordena os estados em ordem alfabética.
@@ -1122,7 +1122,7 @@ d. Ambos os gráficos devem ser um gráfico de pizza.</p>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(state, rate)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb401-2" data-line-number="2"><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb401-3" data-line-number="3"><span class="kw">coord_flip</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/barplot-plot-exercise-example-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/barplot-plot-exercise-example-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Defina estes objetos:</p>
 <div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1">state &lt;-<span class="st"> </span>dat<span class="op">$</span>state</a>
 <a class="sourceLine" id="cb402-2" data-line-number="2">rate &lt;-<span class="st"> </span>dat<span class="op">$</span>count<span class="op">/</span>dat<span class="op">$</span>population<span class="op">*</span><span class="dv">10000</span><span class="op">*</span><span class="dv">52</span><span class="op">/</span>dat<span class="op">$</span>weeks_reporting</a></code></pre></div>
@@ -1138,7 +1138,7 @@ d. Ambos os gráficos devem ser um gráfico de pizza.</p>
 <a class="sourceLine" id="cb403-7" data-line-number="7"><span class="kw">ggplot</span>(<span class="kw">aes</span>(region, avg)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb403-8" data-line-number="8"><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb403-9" data-line-number="9"><span class="kw">ylab</span>(<span class="st">&quot;Murder Rate Average&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/us-murders-barplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/us-murders-barplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>e decide se mudar para um estado na região oeste. Qual é o principal problema com esta interpretação?</p>
 <p>para. As categorias são organizadas em ordem alfabética.
 b. O gráfico não mostra erros padrão.
@@ -1149,9 +1149,9 @@ d. O Nordeste tem a menor média.</p>
 <a class="sourceLine" id="cb404-2" data-line-number="2">murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">rate =</span> total<span class="op">/</span>population<span class="op">*</span><span class="dv">100000</span>)</a></code></pre></div>
 <p>por região, mostrando todos os pontos e ordenando as regiões pela taxa média.</p>
 <p>8. Os gráficos abaixo mostram três variáveis contínuas.</p>
-<p><img src="libro_files/figure-html/pseudo-3d-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/pseudo-3d-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A linha <span class="math inline">\(x=2\)</span> parece separar os pontos. Mas, na realidade, não é o caso, como vemos quando representamos graficamente os dados em um par de pontos bidimensionais.</p>
-<p><img src="libro_files/figure-html/pseud-3d-exercise-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/pseud-3d-exercise-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Por que acontece isso?</p>
 <p>para. Os seres humanos não são bons em ler gráficos pseudo-3D.
 b. Deve haver um erro no código.
@@ -1191,7 +1191,7 @@ Desde então, “The Lancet” retirou o artigo e Andrew Wakefield foi finalment
 <a class="sourceLine" id="cb407-3" data-line-number="3"><span class="kw">geom_line</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb407-4" data-line-number="4"><span class="kw">ylab</span>(<span class="st">&quot;Cases per 10,000&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb407-5" data-line-number="5"><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span><span class="dv">1963</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/california-measles-time-series-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/california-measles-time-series-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Adicionamos uma linha vertical em 1963, já que foi quando a vacina foi introduzida<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>.</p>
 <p>Agora podemos exibir dados para todos os estados em um gráfico? Temos três variáveis para incluir: ano, status e taxa. Na figura do WSJ, eles usam o eixo x para o ano, o eixo y para o estado e o tom da cor para representar as taxas. No entanto, a escala de cores que eles usam, de amarelo a azul, de verde a laranja e vermelho, pode ser melhorada.</p>
 <p>Em nosso exemplo, queremos usar uma paleta seqüencial, pois não há um centro significativo, apenas taxas baixas e altas.</p>
@@ -1207,7 +1207,7 @@ Desde então, “The Lancet” retirou o artigo e Andrew Wakefield foi finalment
 <a class="sourceLine" id="cb408-9" data-line-number="9"><span class="dt">text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">8</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb408-10" data-line-number="10"><span class="kw">ggtitle</span>(the_disease) <span class="op">+</span></a>
 <a class="sourceLine" id="cb408-11" data-line-number="11"><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/vaccines-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/vaccines-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Este gráfico fornece evidências esmagadoras em favor da contribuição das vacinas. No entanto, uma limitação é que ela usa cores para representar quantidade, o que, como explicado acima, dificulta o conhecimento exato de quão altos os valores são. Posição e comprimento são melhores sinais. Se estamos dispostos a perder informações de status, podemos fazer uma versão do gráfico que mostra os valores com a posição. Também podemos mostrar a média dos EUA. EUA, que calculamos assim:</p>
 <div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" data-line-number="1">avg &lt;-<span class="st"> </span>us_contagious_diseases <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb409-2" data-line-number="2"><span class="kw">filter</span>(disease<span class="op">==</span>the_disease) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></a>
@@ -1227,7 +1227,7 @@ Desde então, “The Lancet” retirou o artigo e Andrew Wakefield foi finalment
 <a class="sourceLine" id="cb410-11" data-line-number="11"><span class="dt">mapping =</span> <span class="kw">aes</span>(x, y, <span class="dt">label=</span><span class="st">&quot;US average&quot;</span>),</a>
 <a class="sourceLine" id="cb410-12" data-line-number="12"><span class="dt">color=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb410-13" data-line-number="13"><span class="kw">geom_vline</span>(<span class="dt">xintercept=</span><span class="dv">1963</span>, <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/time-series-vaccines-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/time-series-vaccines-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Em teoria, poderíamos usar cores para representar estados, que são uma variável categórica, mas é difícil escolher 50 cores diferentes.</p>
 </div>
 <div id="exercícios-20" class="section level2">
@@ -1297,7 +1297,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslibro/edit/master/dataviz/dataviz-principles.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/dataviz/dataviz-principles.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 9 Visualização de dados na prática | Introducción a la Ciencia de Datos</title>
-  <meta name="description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <title>Capítulo 9 Visualização de dados na prática | Introdução à Ciência de Dados</title>
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 9 Visualização de dados na prática | Introducción a la Ciencia de Datos" />
+  <meta property="og:title" content="Capítulo 9 Visualização de dados na prática | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 9 Visualização de dados na prática | Introducción a la Ciencia de Datos" />
+  <meta name="twitter:title" content="Capítulo 9 Visualização de dados na prática | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la Ciencia de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução à Ciência de Dados</a>
           </h1>
         </div>
 
@@ -604,7 +604,7 @@ South Africa
 <div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1"><span class="kw">filter</span>(gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1962</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb351-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(fertility, life_expectancy)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb351-3" data-line-number="3"><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/fertility-versus-life-expectancy-1962-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/fertility-versus-life-expectancy-1962-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A maioria dos pontos é dividida em duas categorias diferentes:</p>
 <ol style="list-style-type: decimal">
 <li>Expectativa de vida em torno de 70 anos e 3 ou menos filhos por família.</li>
@@ -614,7 +614,7 @@ South Africa
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1"><span class="kw">filter</span>(gapminder, year <span class="op">==</span><span class="st"> </span><span class="dv">1962</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb352-2" data-line-number="2"><span class="kw">ggplot</span>( <span class="kw">aes</span>(fertility, life_expectancy, <span class="dt">color =</span> continent)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb352-3" data-line-number="3"><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/fertility-versus-life-expectancy-1962-with-color-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/fertility-versus-life-expectancy-1962-with-color-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Em 1962, a visão do “Ocidente versus o mundo em desenvolvimento” era baseada em uma certa realidade. Ainda é assim 50 anos depois?</p>
 </div>
 <div id="separe-em-facetas" class="section level2">
@@ -625,13 +625,13 @@ South Africa
 <a class="sourceLine" id="cb353-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(fertility, life_expectancy, <span class="dt">col =</span> continent)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb353-3" data-line-number="3"><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb353-4" data-line-number="4"><span class="kw">facet_grid</span>(continent<span class="op">~</span>year)</a></code></pre></div>
-<p><img src="libro_files/figure-html/fertility-versus-life-expectancy-facet-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/fertility-versus-life-expectancy-facet-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Acima, vemos um gráfico para cada combinação de continente/ ano. No entanto, este é apenas um exemplo e mais do que queremos, que é simplesmente comparar dois anos: 1962 e 2012. Nesse caso, existe apenas uma variável e usamos <code>.</code> para que <code>facet_grid</code> saiba que não estamos usando uma das variáveis:</p>
 <div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1"><span class="kw">filter</span>(gapminder, year<span class="op">%in%</span><span class="kw">c</span>(<span class="dv">1962</span>, <span class="dv">2012</span>)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb354-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(fertility, life_expectancy, <span class="dt">col =</span> continent)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb354-3" data-line-number="3"><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb354-4" data-line-number="4"><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>year)</a></code></pre></div>
-<p><img src="libro_files/figure-html/fertility-versus-life-expectancy-two-years-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/fertility-versus-life-expectancy-two-years-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Este gráfico mostra claramente que a maioria dos países mudou do conjunto <em>desenvolvido_mundo para o_estilo ocidental</em>. Em 2012, a visão do mundo ocidental versus o mundo em desenvolvimento não faz mais sentido. Isso é particularmente evidente ao comparar a Europa com a Ásia, este último agora com vários países que fizeram grandes melhorias.</p>
 <div id="facet_wrap" class="section level3">
 <h3><span class="header-section-number">9.3.1</span> <code>facet_wrap</code></h3>
@@ -643,7 +643,7 @@ South Africa
 <a class="sourceLine" id="cb355-5" data-line-number="5"><span class="kw">ggplot</span>( <span class="kw">aes</span>(fertility, life_expectancy, <span class="dt">col =</span> continent)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb355-6" data-line-number="6"><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb355-7" data-line-number="7"><span class="kw">facet_wrap</span>(<span class="op">~</span>year)</a></code></pre></div>
-<p><img src="libro_files/figure-html/fertility-versus-life-expectancy-five-years-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/fertility-versus-life-expectancy-five-years-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Este gráfico mostra claramente como a maioria dos países asiáticos melhorou a uma taxa muito mais rápida que a Europa.</p>
 </div>
 <div id="escalas-fixas-para-melhores-comparações" class="section level3">
@@ -653,7 +653,7 @@ South Africa
 <a class="sourceLine" id="cb356-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(fertility, life_expectancy, <span class="dt">col =</span> continent)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb356-3" data-line-number="3"><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb356-4" data-line-number="4"><span class="kw">facet_wrap</span>(. <span class="op">~</span><span class="st"> </span>year, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/facet-without-fixed-scales-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/facet-without-fixed-scales-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>No gráfico acima, devemos prestar atenção especial ao intervalo, para observar que o gráfico à direita tem uma expectativa de vida mais longa.</p>
 </div>
 </div>
@@ -665,28 +665,28 @@ South Africa
 <a class="sourceLine" id="cb357-2" data-line-number="2"><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;United States&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb357-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(year, fertility)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb357-4" data-line-number="4"><span class="kw">geom_point</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/fertility-time-series-plot-points-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/fertility-time-series-plot-points-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Observamos que a tendência não é linear, mas que durante os anos sessenta e setenta há uma queda acentuada abaixo de 2. Em seguida, a tendência retorna a 2 e se estabiliza nos anos noventa.</p>
 <p>Quando os pontos são espaçados regularmente e densamente, como vemos acima, criamos uma curva que conecta os pontos às linhas, para transmitir que esses dados são provenientes de uma única série, aqui um país. Para fazer isso, usamos a função <code>geom_line</code> em vez de <code>geom_point</code>.</p>
 <div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1">gapminder <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb358-2" data-line-number="2"><span class="kw">filter</span>(country <span class="op">==</span><span class="st"> &quot;United States&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb358-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(year, fertility)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb358-4" data-line-number="4"><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/fertility-time-series-plot-curve-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/fertility-time-series-plot-curve-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Isso é particularmente útil ao comparar dois países. Se criarmos um subconjunto dos dados para incluir dois países, um da Europa e outro da Ásia, adaptaremos o código acima:</p>
 <div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1">countries &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;South Korea&quot;</span>,<span class="st">&quot;Germany&quot;</span>)</a>
 <a class="sourceLine" id="cb359-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb359-3" data-line-number="3">gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">%in%</span><span class="st"> </span>countries) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb359-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="kw">aes</span>(year,fertility)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb359-5" data-line-number="5"><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/wrong-time-series-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/wrong-time-series-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Claramente, esse <strong>not</strong> é o gráfico que queremos. Em vez de uma linha para cada país, os pontos dos dois países são unidos porque não informamos <code>ggplot</code> que queremos duas linhas independentes. Para que <code>ggplot</code> para entender que existem duas curvas que devem ser feitas separadamente, atribuímos cada ponto a uma <code>group</code>, um para cada país:</p>
 <div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1">countries &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;South Korea&quot;</span>,<span class="st">&quot;Germany&quot;</span>)</a>
 <a class="sourceLine" id="cb360-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb360-3" data-line-number="3">gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">%in%</span><span class="st"> </span>countries <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(fertility)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb360-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="kw">aes</span>(year, fertility, <span class="dt">group =</span> country)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb360-5" data-line-number="5"><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/time-series-two-curves-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/time-series-two-curves-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Mas qual linha vai com qual país? Podemos atribuir cores para fazer essa distinção.
 Um efeito colateral útil do uso do argumento <code>color</code> para atribuir cores diferentes a diferentes países, os dados são agrupados automaticamente:</p>
 <div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1">countries &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;South Korea&quot;</span>,<span class="st">&quot;Germany&quot;</span>)</a>
@@ -694,7 +694,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb361-3" data-line-number="3">gapminder <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(country <span class="op">%in%</span><span class="st"> </span>countries <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(fertility)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb361-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="kw">aes</span>(year,fertility, <span class="dt">col =</span> country)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb361-5" data-line-number="5"><span class="kw">geom_line</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/fertility-time-series-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/fertility-time-series-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>O gráfico mostra claramente como a taxa de fertilidade da Coréia do Sul caiu drasticamente durante as décadas de 1960 e 1970, e em 1990 teve uma taxa semelhante à da Alemanha.</p>
 <div id="etiquetas-em-vez-de-legendas" class="section level3">
 <h3><span class="header-section-number">9.4.1</span> Etiquetas em vez de legendas</h3>
@@ -708,7 +708,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb362-6" data-line-number="6"><span class="kw">geom_line</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb362-7" data-line-number="7"><span class="kw">geom_text</span>(<span class="dt">data =</span> labels, <span class="kw">aes</span>(x, y, <span class="dt">label =</span> country), <span class="dt">size =</span> <span class="dv">5</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb362-8" data-line-number="8"><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/labels-better-than-legends-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/labels-better-than-legends-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>O gráfico mostra claramente como uma melhoria na expectativa de vida se seguiu a quedas nas taxas de fertilidade. Em 1960, os alemães viveram 15 anos a mais que os sul-coreanos, embora em 2010 a diferença esteja completamente fechada. Ele exemplifica a melhoria que muitos países não ocidentais fizeram nos últimos 40 anos.</p>
 </div>
 </div>
@@ -726,7 +726,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb364-3" data-line-number="3"><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span>past_year <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(gdp)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb364-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="kw">aes</span>(dollars_per_day)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb364-5" data-line-number="5"><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/dollars-per-day-distribution-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/dollars-per-day-distribution-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Nós usamos o argumento <code>color = &quot;black&quot;</code> traçar um limite e distinguir claramente os compartimentos.</p>
 <p>Neste gráfico, vemos que para a maioria dos países, as médias estão abaixo de $10 por día. Sin embargo, la mayoría del eje-x está dedicado a 35 países con promedio de menos de $ 10. Portanto, o gráfico não é muito informativo em relação aos países com valores abaixo de $ 10 por dia.</p>
 <p>Seria mais informativo ver rapidamente quantos países têm renda média diária de cerca de $1 (extremadamente pobre), $ 2 (muito ruim), $4 (pobre), $ 8 (média), $16 (acomodado), $ 32 (rico), $ 64 (muito rico) por dia. Essas mudanças são multiplicativas, e as transformações logarítmicas convertem as alterações multiplicativas em aditivos: quando a base 2 é usada, dobrar um valor se torna um aumento de 1.</p>
@@ -735,7 +735,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb365-2" data-line-number="2"><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span>past_year <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(gdp)) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb365-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">log2</span>(dollars_per_day))) <span class="op">+</span></a>
 <a class="sourceLine" id="cb365-4" data-line-number="4"><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/dollars-per-day-distribution-log-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/dollars-per-day-distribution-log-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>É assim que observamos mais de perto os países de renda média e baixa.</p>
 </div>
 <div id="qual-base" class="section level3">
@@ -754,7 +754,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb367-2" data-line-number="2"><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span>past_year) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb367-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">log10</span>(population))) <span class="op">+</span></a>
 <a class="sourceLine" id="cb367-4" data-line-number="4"><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="fl">0.5</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/population-histogram-log10-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/population-histogram-log10-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>No gráfico acima, vemos rapidamente que as populações dos países variam entre dez bilhões e dez bilhões.</p>
 </div>
 <div id="transformar-valores-ou-escala" class="section level3">
@@ -770,7 +770,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb368-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(dollars_per_day)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb368-4" data-line-number="4"><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb368-5" data-line-number="5"><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/dollars-per-day-log-scale-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/dollars-per-day-log-scale-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Observe que a transformação logarítmica da base 10 tem sua própria função: <code>scale_x_log10()</code>, mas atualmente a base 2 não, embora possamos definir facilmente uma.</p>
 <p>Outras transformações estão disponíveis através do argumento <code>trans</code>. Como aprenderemos mais adiante, a transformação da raiz quadrada ( <code>sqrt</code>) é útil ao considerar contagens. A transformação logística ( <code>logit</code>) é útil ao plotar proporções entre 0 e 1. A transformação <code>reverse</code> é útil quando queremos que os menores valores estejam à direita ou acima.</p>
 </div>
@@ -790,7 +790,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb369-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="kw">aes</span>(dollars_per_day, region)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb369-5" data-line-number="5"><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb369-6" data-line-number="6"><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/unnamed-chunk-368-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-368-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Já podemos ver que existe de fato uma dicotomia “oeste versus o resto”: existem dois grupos claros, com o rico grupo constituído pela América do Norte, Europa do Norte e Ocidental, Nova Zelândia e Austrália. Definimos grupos com base nesta observação:</p>
 <div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" data-line-number="1">gapminder &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb370-2" data-line-number="2"><span class="kw">mutate</span>(<span class="dt">group =</span> <span class="kw">case_when</span>(</a>
@@ -820,13 +820,13 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb372-6" data-line-number="6"><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb372-7" data-line-number="7"><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>))</a>
 <a class="sourceLine" id="cb372-8" data-line-number="8">p</a></code></pre></div>
-<p><img src="libro_files/figure-html/dollars-per-day-boxplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/dollars-per-day-boxplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Os diagramas de caixa têm a limitação de que, resumindo os dados em cinco números, recursos importantes dos dados podem ser perdidos. Uma maneira de evitar isso é exibindo os dados.</p>
 <div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb373-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.5</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/dollars-per-day-boxplot-with-data-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/dollars-per-day-boxplot-with-data-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Gráficos ### <em>ridge</em></p>
 <p>Mostrar cada ponto individual nem sempre revela características importantes da distribuição. Embora esse não seja o caso aqui, quando o número de pontos de dados é muito grande, acabamos sobrescrevendo e exibindo os dados pode sair pela culatra. Os diagramas de caixa ajudam nisso, fornecendo um resumo de cinco números, mas isso também tem limitações. Por exemplo, gráficos de caixa não revelam distribuições bimodais. Para ver isso, observe os dois gráficos abaixo que resumem o mesmo conjunto de dados:</p>
-<p><img src="libro_files/figure-html/boxplot-dont-show-bimodal-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/boxplot-dont-show-bimodal-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Nos casos em que estamos preocupados que o resumo do gráfico de caixa seja muito simplista, podemos exibir densidades suaves ou histogramas empilhados usando <em>ridge graphs</em>. Como estamos acostumados a visualizar densidades com valores no eixo x, as empilhamos verticalmente. Além disso, como precisamos de mais espaço nessa abordagem, é conveniente cobri-los. O pacote <strong>ggridges</strong> inclui uma função conveniente para fazer isso. Abaixo estão os dados da receita, mostrados acima com gráficos de caixa, mas agora exibidos com uma crista gráfica _.</p>
 <div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="kw">library</span>(ggridges)</a>
 <a class="sourceLine" id="cb374-2" data-line-number="2">p &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span></a>
@@ -834,17 +834,17 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb374-4" data-line-number="4"><span class="kw">ggplot</span>(<span class="kw">aes</span>(dollars_per_day, group)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb374-5" data-line-number="5"><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>)</a>
 <a class="sourceLine" id="cb374-6" data-line-number="6">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_density_ridges</span>()</a></code></pre></div>
-<p><img src="libro_files/figure-html/ridge-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ridge-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Lembre-se de que precisamos investir o <code>x</code> e <code>y</code> que foram usados para o gráfico da caixa. Um parâmetro útil de <code>geom_density_ridges</code> é <code>scale</code>, o que lhes permite determinar quanto se sobrepõem; por exemplo, <code>scale = 1</code> significa que não há sobreposição. Valores maiores que 1 resultam em maior sobreposição.</p>
 <p>Se o número de pontos de dados for pequeno o suficiente, podemos adicioná-los ao gráfico <em>ridge</em> usando o seguinte código:</p>
 <div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_density_ridges</span>(<span class="dt">jittered_points =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/ridge-plot-with-points-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ridge-plot-with-points-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Por padrão, a altura dos pontos é <em>jittered</em> e não deve ser interpretada de forma alguma. Para exibir pontos de dados, mas sem usar <em>jitter</em>, podemos usar o código a seguir para adicionar o que é conhecido como uma representação <em>rug</em> dos dados.</p>
 <div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_density_ridges</span>(<span class="dt">jittered_points =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb376-2" data-line-number="2"><span class="dt">position =</span> <span class="kw">position_points_jitter</span>(<span class="dt">height =</span> <span class="dv">0</span>),</a>
 <a class="sourceLine" id="cb376-3" data-line-number="3"><span class="dt">point_shape =</span> <span class="st">&#39;|&#39;</span>, <span class="dt">point_size =</span> <span class="dv">3</span>,</a>
 <a class="sourceLine" id="cb376-4" data-line-number="4"><span class="dt">point_alpha =</span> <span class="dv">1</span>, <span class="dt">alpha =</span> <span class="fl">0.7</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/ridge-plot-with-rug-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ridge-plot-with-rug-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exemplo-distribuições-de-renda-1970-versus-2010" class="section level3">
 <h3><span class="header-section-number">9.7.2</span> Exemplo: distribuições de renda 1970 versus 2010</h3>
@@ -859,7 +859,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb377-8" data-line-number="8"><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb377-9" data-line-number="9"><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb377-10" data-line-number="10"><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>west)</a></code></pre></div>
-<p><img src="libro_files/figure-html/income-hist-west-v-developing-two-years-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-hist-west-v-developing-two-years-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Antes de interpretar as conclusões deste gráfico, notamos que há mais países representados nos histogramas de 2010 do que em 1970: a contagem total é maior. Uma razão para isso é que vários países foram fundados após 1970. Por exemplo, a União Soviética foi dividida em diferentes países durante os anos 90. Outra razão é que mais dados estão disponíveis para mais países em 2010.</p>
 <p>Nós refizemos os gráficos usando apenas países com dados disponíveis para os dois anos. Na parte <em>data wrangling</em> deste livro, aprenderemos como usar as ferramentas <strong>tidyverse</strong> que nos permitirão escrever código eficiente para isso, mas aqui podemos usar código simples usando a função <code>intersect</code>:</p>
 <div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" data-line-number="1">country_list_<span class="dv">1</span> &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span></a>
@@ -874,7 +874,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <p>Estes 108 constituir
 86% da população mundial, portanto esse subconjunto deve ser representativo.</p>
 <p>Vamos refazer o gráfico, mas apenas para este subconjunto simplesmente adicionando <code>country %in% country_list</code> para a função <code>filter</code>:</p>
-<p><img src="libro_files/figure-html/income-histogram-west-v-devel-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-histogram-west-v-devel-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Agora vemos que os países ricos ficaram um pouco mais ricos, mas em termos de porcentagem, os países pobres parecem ter melhorado mais. Em particular, vemos que a proporção de países em desenvolvimento que ganha mais de US $ 16 por dia aumentou substancialmente.</p>
 <p>Para ver quais regiões específicas melhoraram mais, podemos refazer os boxplots que fizemos anteriormente, mas agora adicionamos o ano de 2010 e usamos <em>facet</em> para comparar os dois anos.</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1">gapminder <span class="op">%&gt;%</span></a>
@@ -885,7 +885,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb379-6" data-line-number="6"><span class="kw">scale_y_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb379-7" data-line-number="7"><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb379-8" data-line-number="8"><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>year)</a></code></pre></div>
-<p><img src="libro_files/figure-html/income-histogram-by-region-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-histogram-by-region-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Aqui, fazemos uma pausa para introduzir outro recurso importante do <strong>ggplot2</strong>. Como queremos comparar cada região antes e depois, seria conveniente ter o diagrama de caixa de 1970 próximo ao de 2010 para cada região. Em geral, as comparações são mais fáceis quando os dados são plotados um ao lado do outro.</p>
 <p>Portanto, em vez de nos separarmos em facetas, mantemos os dados de cada ano juntos e pedimos para colorir (ou preenchê-los) por ano. Observe que os grupos são separados automaticamente por ano e cada par de diagramas de caixas é desenhado lado a lado. Como o ano é um número, nós o tornamos um fator, já que <strong>ggplot2</strong> atribui automaticamente uma cor a cada categoria de um fator. Lembre-se que temos que converter as colunas <code>year</code> de numérico para fator.</p>
 <div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" data-line-number="1">gapminder <span class="op">%&gt;%</span></a>
@@ -896,9 +896,9 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb380-6" data-line-number="6"><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb380-7" data-line-number="7"><span class="kw">scale_y_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb380-8" data-line-number="8"><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/income-histogram-west-v-devel-by-year-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-histogram-west-v-devel-by-year-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Finalmente, destacamos que, se estivermos mais interessados em comparar os valores antes e depois, pode fazer mais sentido traçar aumentos percentuais. Ainda não estamos prontos para aprender como codificar isso, mas é assim que o gráfico seria:</p>
-<p><img src="libro_files/figure-html/income-west-v-devel-before-after-ratio-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-west-v-devel-before-after-ratio-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A exploração de dados anteriores sugere que a diferença de renda entre países ricos e pobres diminuiu consideravelmente nos últimos 40 anos. Usamos uma série de histogramas e gráficos de caixa para ver isso. Sugerimos uma maneira sucinta de transmitir essa mensagem com apenas um gráfico.</p>
 <p>Vamos começar observando que os gráficos de densidade para a distribuição de renda em 1970 e 2010 eles transmitem a mensagem de que a lacuna está se fechando:</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1">gapminder <span class="op">%&gt;%</span></a>
@@ -907,7 +907,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <a class="sourceLine" id="cb381-4" data-line-number="4"><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&quot;grey&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb381-5" data-line-number="5"><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb381-6" data-line-number="6"><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>year)</a></code></pre></div>
-<p><img src="libro_files/figure-html/income-smooth-density-by-year-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-smooth-density-by-year-1.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>No gráfico de 1970 vemos duas tendências claras: países pobres e ricos. No 2010 alguns dos países pobres parecem ter mudado para a direita, diminuindo a diferença.</p>
 <p>A próxima mensagem que devemos transmitir é que a razão para essa mudança na distribuição é que vários países pobres ficaram mais ricos do que alguns países ricos ficaram mais pobres. Para fazer isso, podemos atribuir uma cor aos grupos que identificamos durante a exploração de dados.</p>
 <p>No entanto, precisamos primeiro aprender a suavizar essas densidades de maneira a preservar informações sobre o número de países em cada grupo. Para entender por que precisamos disso, lembre-se da discrepância no tamanho de cada grupo:</p>
@@ -941,7 +941,7 @@ West
 <a class="sourceLine" id="cb382-5" data-line-number="5"><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb382-6" data-line-number="6"><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb382-7" data-line-number="7"><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>.)</a></code></pre></div>
-<p><img src="libro_files/figure-html/income-smooth-density-by-year-west-v-developing-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-smooth-density-by-year-west-v-developing-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>O gráfico acima mostra que há o mesmo número de países em cada grupo. Para mudar isso, precisaremos aprender como acessar as variáveis calculadas com a função <code>geom_density</code>.</p>
 </div>
 <div id="como-acessar-variáveis-calculadas" class="section level3">
@@ -958,10 +958,10 @@ West
 <a class="sourceLine" id="cb384-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb384-7" data-line-number="7">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb384-8" data-line-number="8"><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>.)</a></code></pre></div>
-<p><img src="libro_files/figure-html/income-smooth-density-counts-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-smooth-density-counts-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Se queremos que as densidades sejam mais suaves, usamos o argumento <code>bw</code> para que o mesmo parâmetro de suavização seja usado para cada densidade. Selecionamos 0,75 após testar vários valores.</p>
 <div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1">p <span class="op">+</span><span class="st"> </span><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">bw =</span> <span class="fl">0.75</span>) <span class="op">+</span><span class="st"> </span><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>.)</a></code></pre></div>
-<p><img src="libro_files/figure-html/income-smooth-density-counts-by-year-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-smooth-density-counts-by-year-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Este gráfico agora mostra o que está acontecendo muito claramente. A distribuição do mundo em desenvolvimento está mudando. Uma terceira tendência aparece, composta pelos países que mais diminuíram a diferença.</p>
 <p>Para visualizar se algum dos grupos definidos acima é a principal causa dessas alterações, podemos criar rapidamente um gráfico <em>ridge</em>:</p>
 <div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1">gapminder <span class="op">%&gt;%</span></a>
@@ -970,7 +970,7 @@ West
 <a class="sourceLine" id="cb386-4" data-line-number="4"><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb386-5" data-line-number="5"><span class="kw">geom_density_ridges</span>(<span class="dt">adjust =</span> <span class="fl">1.5</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb386-6" data-line-number="6"><span class="kw">facet_grid</span>(. <span class="op">~</span><span class="st"> </span>year)</a></code></pre></div>
-<p><img src="libro_files/figure-html/ridge-plot-income-five-regions-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ridge-plot-income-five-regions-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Outra maneira de conseguir isso é empilhando as densidades umas sobre as outras:</p>
 <div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1">gapminder <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb387-2" data-line-number="2"><span class="kw">filter</span>(year <span class="op">%in%</span><span class="st"> </span>years <span class="op">&amp;</span><span class="st"> </span>country <span class="op">%in%</span><span class="st"> </span>country_list) <span class="op">%&gt;%</span></a>
@@ -981,14 +981,14 @@ West
 <a class="sourceLine" id="cb387-7" data-line-number="7"><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>, <span class="dt">limit =</span> <span class="kw">c</span>(<span class="fl">0.125</span>, <span class="dv">300</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb387-8" data-line-number="8"><span class="kw">geom_density</span>(<span class="dt">alpha =</span> <span class="fl">0.2</span>, <span class="dt">bw =</span> <span class="fl">0.75</span>, <span class="dt">position =</span> <span class="st">&quot;stack&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb387-9" data-line-number="9"><span class="kw">facet_grid</span>(year <span class="op">~</span><span class="st"> </span>.)</a></code></pre></div>
-<p><img src="libro_files/figure-html/income-smooth-density-counts-by-region-and-year-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-smooth-density-counts-by-region-and-year-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Aqui podemos ver claramente como as distribuições para o leste da Ásia, América Latina e outros se deslocam visivelmente para a direita. Enquanto a África subsaariana permanece estagnada.</p>
 <p>Observe que ordenamos os níveis do grupo para que a densidade do Ocidente seja grafada primeiro, depois na África Subsaariana. Tendo ambas as extremidades representadas graficamente primeiro, permite-nos ver melhor a bimodalidade restante.</p>
 </div>
 <div id="densidades-ponderadas" class="section level3">
 <h3><span class="header-section-number">9.7.4</span> Densidades ponderadas</h3>
 <p>Como ponto final, notamos que essas distribuições pesam cada país igualmente. Portanto, se a maioria da população está melhorando, mas morando em um país muito grande, como a China, talvez não gostemos disso. De fato, podemos ponderar as densidades suaves usando o argumento de mapeamento <code>weight</code>. O gráfico fica assim:</p>
-<p><img src="libro_files/figure-html/income-smooth-density-counts-by-region-year-weighted-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/income-smooth-density-counts-by-region-year-weighted-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Esta figura em particular mostra muito claramente como a lacuna na distribuição de renda está diminuindo e que a maioria dos países ainda em situação de pobreza está na África Subsaariana.</p>
 </div>
 </div>
@@ -996,7 +996,7 @@ West
 <h2><span class="header-section-number">9.8</span> A falácia ecológica e a importância de mostrar os dados</h2>
 <p>Ao longo desta seção, comparamos regiões do mundo. Vimos que, em média, algumas regiões têm melhor desempenho que outras. Nesta seção, vamos nos concentrar na descrição da importância da variabilidade dentro dos grupos, examinando a relação entre as taxas de mortalidade infantil de um país e a renda média.</p>
 <p>Definimos mais algumas regiões e comparamos as médias entre as regiões:</p>
-<p><img src="libro_files/figure-html/ecological-fallacy-averages-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ecological-fallacy-averages-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A relação entre essas duas variáveis é quase perfeitamente linear e o gráfico mostra uma diferença dramática. Enquanto menos de 0,5% dos bebês morrem no Ocidente, na África Subsaariana a taxa é superior a 6%!</p>
 <p>Observe que o gráfico usa uma nova transformação, a transformação logística.</p>
 <div id="logit" class="section level3">
@@ -1010,7 +1010,7 @@ West
 <h3><span class="header-section-number">9.8.2</span> Mostrar os dados</h3>
 <p>Agora, de volta ao nosso gráfico. Com base no gráfico acima, concluímos que um país de baixa renda está destinado a ter uma baixa taxa de sobrevivência? Além disso, concluímos que as taxas de sobrevivência na África subsaariana são mais baixas do que no sul da Ásia, que por sua vez são mais baixas do que nas ilhas do Pacífico e assim por diante?</p>
 <p>Saltar para esta conclusão com base em um gráfico mostrando médias é chamado de <em>falácia ecológica</em>. A relação quase perfeita entre taxas de sobrevivência e renda é observada apenas para médias regionais. Depois de mostrar todos os dados, vemos uma história mais complicada:</p>
-<p><img src="libro_files/figure-html/ecological-fallacy-all-data-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/ecological-fallacy-all-data-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Especificamente, vemos que há muita variabilidade. Vemos que os países nas mesmas regiões podem ser bem diferentes e que os países com a mesma renda podem ter taxas de sobrevivência diferentes. Por exemplo, enquanto a África Subsaariana teve os piores resultados econômicos e de saúde em média, há uma grande variabilidade dentro desse grupo. Maurício e Botsuana são melhores que Angola e Serra Leoa, com Maurício comparável aos países ocidentais.</p>
 
 </div>
@@ -1062,7 +1062,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslibro/edit/master/dataviz/gapminder.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/dataviz/gapminder.Rmd",
 "text": "Edit"
 },
 "history": {

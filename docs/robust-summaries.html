@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 11 Resumos robustos | Introducción a la Ciencia de Datos</title>
-  <meta name="description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <title>Capítulo 11 Resumos robustos | Introdução à Ciência de Dados</title>
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 11 Resumos robustos | Introducción a la Ciencia de Datos" />
+  <meta property="og:title" content="Capítulo 11 Resumos robustos | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 11 Resumos robustos | Introducción a la Ciencia de Datos" />
+  <meta name="twitter:title" content="Capítulo 11 Resumos robustos | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la Ciencia de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução à Ciência de Dados</a>
           </h1>
         </div>
 
@@ -478,10 +478,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 qplot(outlier_example, bins = 30)
 ```
 
-<img src="libro_files/figure-html/histogram-reveals-outliers-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="livro_files/figure-html/histogram-reveals-outliers-1.png" width="70%" style="display: block; margin: auto;" />
 -->
 <div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1"><span class="kw">boxplot</span>(outlier_example)</a></code></pre></div>
-<p><img src="libro_files/figure-html/boxplot-reveals-outliers-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/boxplot-reveals-outliers-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Parece haver pelo menos um valor que não faz sentido, pois sabemos que uma altura de 180 pés é impossível. O gráfico da caixa detecta esse ponto como um erro externo.</p>
 </div>
 <div id="mediana" class="section level2">
@@ -525,7 +525,7 @@ dos dados cai nesse intervalo. Isso se traduz em cerca de 2 em um milhão de cha
 <div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" data-line-number="1">x &lt;-<span class="st"> </span>outlier_example[outlier_example <span class="op">&lt;</span><span class="st"> </span>max_height]</a>
 <a class="sourceLine" id="cb418-2" data-line-number="2"><span class="kw">qqnorm</span>(x)</a>
 <a class="sourceLine" id="cb418-3" data-line-number="3"><span class="kw">qqline</span>(x)</a></code></pre></div>
-<p><img src="libro_files/figure-html/outlier-qqnorm-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/outlier-qqnorm-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="desvio-absoluto-mediano" class="section level2">
 <h2><span class="header-section-number">11.5</span> Desvio absoluto mediano</h2>
@@ -589,7 +589,7 @@ d. Um diagrama de dispersão mostraria altos níveis de erro de medição.</p>
 <a class="sourceLine" id="cb427-8" data-line-number="8"><span class="co">#&gt; 1 Female    63.4  27.9   64.2  4.05</span></a>
 <a class="sourceLine" id="cb427-9" data-line-number="9"><span class="co">#&gt; 2 Male     103.  530.    70    4.45</span></a></code></pre></div>
 <p>Isso sugere que temos discrepâncias, o que é confirmado pela criação de um gráfico de caixa:</p>
-<p><img src="libro_files/figure-html/height-outlier-ggplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/height-outlier-ggplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Vemos alguns valores extremos. Para ver quais são esses valores, podemos analisar rapidamente os valores maiores usando a função <code>arrange</code>:</p>
 <div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1">reported_heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">arrange</span>(<span class="kw">desc</span>(height)) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">top_n</span>(<span class="dv">10</span>, height)</a>
 <a class="sourceLine" id="cb428-2" data-line-number="2"><span class="co">#&gt;             time_stamp    sex height original_heights</span></a>
@@ -660,7 +660,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslibro/edit/master/dataviz/robust-summaries.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/dataviz/robust-summaries.Rmd",
 "text": "Edit"
 },
 "history": {

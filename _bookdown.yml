@@ -1,4 +1,4 @@
-book_filename: "libro"
+book_filename: "livro"
 output_dir: "docs"
 delete_merged_file: true
 language:

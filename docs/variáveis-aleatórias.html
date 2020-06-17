@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 14 Variáveis aleatórias | Introducción a la Ciencia de Datos</title>
-  <meta name="description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <title>Capítulo 14 Variáveis aleatórias | Introdução à Ciência de Dados</title>
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 14 Variáveis aleatórias | Introducción a la Ciencia de Datos" />
+  <meta property="og:title" content="Capítulo 14 Variáveis aleatórias | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 14 Variáveis aleatórias | Introducción a la Ciencia de Datos" />
+  <meta name="twitter:title" content="Capítulo 14 Variáveis aleatórias | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la Ciencia de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução à Ciência de Dados</a>
           </h1>
         </div>
 
@@ -508,7 +508,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb498-1" data-line-number="1"><span class="kw">mean</span>(S<span class="op">&lt;</span><span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb498-2" data-line-number="2"><span class="co">#&gt; [1] 0.0456</span></a></code></pre></div>
 <p>Podemos visualizar a distribuição de <span class="math inline">\(S\)</span> criando um histograma mostrando a probabilidade <span class="math inline">\(F(b)-F(a)\)</span> em vários intervalos <span class="math inline">\((a,b]\)</span>:</p>
-<p><img src="libro_files/figure-html/normal-approximates-distribution-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/normal-approximates-distribution-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Vemos que a distribuição parece ser aproximadamente normal. Um gráfico QQ confirmará que a aproximação normal está próxima de uma aproximação perfeita para esta distribuição. De fato, se a distribuição é normal, tudo o que precisamos para definir a distribuição é a média e o desvio padrão. Como temos os valores originais dos quais a distribuição é criada, podemos calculá-los facilmente com <code>mean(S)</code> e <code>sd(S)</code>. A curva azul adicionada ao histograma acima é uma densidade normal com essa média e desvio padrão.</p>
 <p>Essa média e esse desvio padrão têm nomes especiais. Eles são conhecidos como <em>expected value_e_standard error</em> da variável aleatória <span class="math inline">\(S\)</span> e será discutido mais adiante na próxima seção.</p>
 <p>A teoria estatística fornece uma maneira de derivar a distribuição de variáveis aleatórias definidas como extrações aleatórias independentes de uma urna. Especificamente, em nosso exemplo anterior, podemos mostrar que <span class="math inline">\((S+n)/2\)</span> segue uma distribuição binomial. Portanto, não precisamos executar simulações de Monte Carlo para conhecer a distribuição de probabilidade de <span class="math inline">\(S\)</span>. Fizemos isso para fins ilustrativos.</p>
@@ -738,7 +738,7 @@ d. Não está mais perto. A diferença está dentro do erro de arredondamento.</
 <a class="sourceLine" id="cb515-3" data-line-number="3">p &lt;-<span class="st"> </span><span class="fl">0.02</span></a>
 <a class="sourceLine" id="cb515-4" data-line-number="4">defaults &lt;-<span class="st"> </span><span class="kw">sample</span>( <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), n, <span class="dt">prob=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">-</span>p, p), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb515-5" data-line-number="5"><span class="kw">sum</span>(defaults <span class="op">*</span><span class="st"> </span>loss_per_foreclosure)</a>
-<a class="sourceLine" id="cb515-6" data-line-number="6"><span class="co">#&gt; [1] -4400000</span></a></code></pre></div>
+<a class="sourceLine" id="cb515-6" data-line-number="6"><span class="co">#&gt; [1] -3800000</span></a></code></pre></div>
 <p>Observe que a perda total definida pela soma final é uma variável aleatória. Sempre que eles executam o código acima, eles recebem uma resposta diferente. Podemos facilmente construir uma simulação de Monte Carlo para ter uma idéia da distribuição dessa variável aleatória.</p>
 <div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" data-line-number="1">B &lt;-<span class="st"> </span><span class="dv">10000</span></a>
 <a class="sourceLine" id="cb516-2" data-line-number="2">losses &lt;-<span class="st"> </span><span class="kw">replicate</span>(B, {</a>
@@ -747,7 +747,7 @@ d. Não está mais perto. A diferença está dentro do erro de arredondamento.</
 <a class="sourceLine" id="cb516-5" data-line-number="5">})</a></code></pre></div>
 <!--
 Aqui está a distribuição dessa variável aleatória:
-<img src="libro_files/figure-html/losses-distribution-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="livro_files/figure-html/losses-distribution-1.png" width="70%" style="display: block; margin: auto;" />
 -->
 <p>Nós realmente não precisamos de uma simulação de Monte Carlo. Usando o que aprendemos, o CLT nos diz que, como nossas perdas são uma soma de empates independentes, sua distribuição é aproximadamente normal com o valor esperado e os erros padrão dados por:</p>
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" data-line-number="1">n<span class="op">*</span>(p<span class="op">*</span>loss_per_foreclosure <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span>p)<span class="op">*</span><span class="dv">0</span>)</a>
@@ -814,7 +814,7 @@ Agora preenchemos os espaços em branco com a fórmula atual para o valor espera
 <a class="sourceLine" id="cb523-5" data-line-number="5"><span class="kw">sum</span>(draws)</a>
 <a class="sourceLine" id="cb523-6" data-line-number="6">})</a>
 <a class="sourceLine" id="cb523-7" data-line-number="7"><span class="kw">mean</span>(profit)</a>
-<a class="sourceLine" id="cb523-8" data-line-number="8"><span class="co">#&gt; [1] 2127164</span></a>
+<a class="sourceLine" id="cb523-8" data-line-number="8"><span class="co">#&gt; [1] 2126479</span></a>
 <a class="sourceLine" id="cb523-9" data-line-number="9"><span class="kw">mean</span>(profit<span class="op">&lt;</span><span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb523-10" data-line-number="10"><span class="co">#&gt; [1] 0.0124</span></a></code></pre></div>
 </div>
@@ -862,7 +862,7 @@ temos uma probabilidade garantida inferior a 0,01. A implicação é que, desde 
 <a class="sourceLine" id="cb528-6" data-line-number="6"><span class="kw">sum</span>(draws)</a>
 <a class="sourceLine" id="cb528-7" data-line-number="7">})</a>
 <a class="sourceLine" id="cb528-8" data-line-number="8"><span class="kw">mean</span>(profit)</a>
-<a class="sourceLine" id="cb528-9" data-line-number="9"><span class="co">#&gt; [1] 14178662</span></a></code></pre></div>
+<a class="sourceLine" id="cb528-9" data-line-number="9"><span class="co">#&gt; [1] 14177753</span></a></code></pre></div>
 <p>Portanto, essa parece ser uma decisão óbvia. Como resultado, seu funcionário decide deixar o banco e abrir sua própria empresa de hipotecas subprime. Alguns meses depois, o banco de seu ex-funcionário declara falência. Um livro é escrito e, eventualmente, um filme é feito contando o erro cometido por seu funcionário e muitos outros. O que aconteceu?</p>
 <p>O esquema de seu ex-funcionário foi baseado principalmente nesta fórmula matemática:
 <span class="math display">\[
@@ -883,18 +883,18 @@ temos uma probabilidade garantida inferior a 0,01. A implicação é que, desde 
 <a class="sourceLine" id="cb529-8" data-line-number="8">})</a></code></pre></div>
 <p>Observe que o benefício esperado ainda é ótimo:</p>
 <div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb530-1" data-line-number="1"><span class="kw">mean</span>(profit)</a>
-<a class="sourceLine" id="cb530-2" data-line-number="2"><span class="co">#&gt; [1] 14190575</span></a></code></pre></div>
+<a class="sourceLine" id="cb530-2" data-line-number="2"><span class="co">#&gt; [1] 14137500</span></a></code></pre></div>
 <p>No entanto, a probabilidade de o banco ter lucros negativos dispara:</p>
 <div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" data-line-number="1"><span class="kw">mean</span>(profit<span class="op">&lt;</span><span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb531-2" data-line-number="2"><span class="co">#&gt; [1] 0.347</span></a></code></pre></div>
+<a class="sourceLine" id="cb531-2" data-line-number="2"><span class="co">#&gt; [1] 0.348</span></a></code></pre></div>
 <p>Ainda mais preocupante é que a probabilidade de perder mais de US $ 10 milhões é:</p>
 <div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb532-1" data-line-number="1"><span class="kw">mean</span>(profit <span class="op">&lt;</span><span class="st"> </span><span class="dv">-10000000</span>)</a>
-<a class="sourceLine" id="cb532-2" data-line-number="2"><span class="co">#&gt; [1] 0.239</span></a></code></pre></div>
+<a class="sourceLine" id="cb532-2" data-line-number="2"><span class="co">#&gt; [1] 0.24</span></a></code></pre></div>
 <p>Para entender como isso acontece, veja a distribuição:</p>
 <div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" data-line-number="1"><span class="kw">data.frame</span>(<span class="dt">profit_in_millions=</span>profit<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb533-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(profit_in_millions)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb533-3" data-line-number="3"><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">binwidth =</span> <span class="dv">5</span>)</a></code></pre></div>
-<p><img src="libro_files/figure-html/profit-distribution-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/profit-distribution-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A teoria quebra completamente e a variável aleatória tem muito mais variabilidade do que o esperado. O colapso financeiro de 2007 deveu-se, entre outras coisas, a “especialistas” financeiros que assumiram a independência quando não era esse o caso.</p>
 </div>
 </div>
@@ -1013,7 +1013,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslibro/edit/master/prob/random-variables-sampling-models-clt.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/prob/random-variables-sampling-models-clt.Rmd",
 "text": "Edit"
 },
 "history": {

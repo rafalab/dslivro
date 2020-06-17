@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 2 R básico | Introducción a la Ciencia de Datos</title>
-  <meta name="description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <title>Capítulo 2 R básico | Introdução à Ciência de Dados</title>
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 2 R básico | Introducción a la Ciencia de Datos" />
+  <meta property="og:title" content="Capítulo 2 R básico | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 2 R básico | Introducción a la Ciencia de Datos" />
+  <meta name="twitter:title" content="Capítulo 2 R básico | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
@@ -445,7 +445,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción a la Ciencia de Datos</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introdução à Ciência de Dados</a>
           </h1>
         </div>
 
@@ -459,17 +459,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 O R e o RStudio são gratuitos e estão disponíveis online.</p>
 <p>Estudo de caso: assassinatos por armas nos EUA EUA</p>
 <p>Imagine que você mora na Europa e recebe um emprego em uma empresa americana com muitos locais nos Estados Unidos. É um ótimo trabalho, mas manchetes como ** Taxa de homicídio por arma de fogo dos EUA. EUA mais alto do que em outros países desenvolvidos **<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> . Preocupa-se? Gráficos como o seguinte podem preocupá-lo ainda mais:</p>
-<p><img src="libro_files/figure-html/murder-rate-example-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/murder-rate-example-1-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <!--(Source:
 [Maayan Rosenzweigh/ ABC News] (https://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/), Dados de Estatísticas de Homicídios do UNODC) ->
 
 
 Ou pior ainda, esta versão do [everytown.org] (https://everytownresearch.org):
-<img src="libro_files/figure-html/murder-rate-example-2-1.png" width="70%" style="display: block; margin: auto;" />
+<img src="livro_files/figure-html/murder-rate-example-2-1.png" width="70%" style="display: block; margin: auto;" />
 
 <!--(Source [everytown.org](https://everytownresearch.org))-->
 <p>Porém, lembra-se que os Estados Unidos são um país grande e diversificado, com 50 estados muito diferentes, além do Distrito de Columbia (DC).</p>
-<p><img src="libro_files/figure-html/us-murders-by-state-map-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/us-murders-by-state-map-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A Califórnia, por exemplo, tem uma população maior que o Canadá e 20 estados dos EUA. EUA eles têm populações maiores que a Noruega. Em alguns aspectos, a variabilidade entre os estados dos EUA. EUA é semelhante à variabilidade entre os países da Europa. Além disso, embora não esteja incluído nas tabelas acima, as taxas de homicídio na Lituânia, Ucrânia e Rússia são superiores a quatro por 100.000. Portanto, as notícias pelas quais você está preocupado podem ser muito superficiais. Você tem opções de onde pode morar e deseja determinar a segurança de cada estado individual. Teremos algumas idéias examinando dados relacionados a homicídios por armas de fogo nos EUA. EUA em 2010 usando R.</p>
 <p>Antes de começarmos o nosso exemplo, precisamos discutir a logística e alguns dos componentes necessários para obter habilidades mais avançadas de R. Lembre-se de que a utilidade de alguns desses componentes nem sempre é imediatamente óbvia, mas mais adiante no livro, você apreciará dominam essas habilidades.</p>
 <div id="o-básico" class="section level2">
@@ -1314,7 +1314,7 @@ d + h
 <div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">x &lt;-<span class="st"> </span>murders<span class="op">$</span>population<span class="op">/</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span></a>
 <a class="sourceLine" id="cb121-2" data-line-number="2">y &lt;-<span class="st"> </span>murders<span class="op">$</span>total</a>
 <a class="sourceLine" id="cb121-3" data-line-number="3"><span class="kw">plot</span>(x, y)</a></code></pre></div>
-<p><img src="libro_files/figure-html/first-plot-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/first-plot-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Para criar um gráfico rápido que não acessa variáveis duas vezes, podemos usar a função <code>with</code>:</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="kw">with</span>(murders, <span class="kw">plot</span>(population, total))</a></code></pre></div>
 <p>A função <code>with</code> nos permite usar os nomes na coluna <code>murders</code> na função <code>plot</code>. Também funciona com qualquer <em>data frame</em> e qualquer função.</p>
@@ -1323,7 +1323,7 @@ d + h
 <h3><span class="header-section-number">2.14.2</span> <code>hist</code></h3>
 <div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">with</span>(murders, total<span class="op">/</span><span class="st"> </span>population <span class="op">*</span><span class="st"> </span><span class="dv">100000</span>)</a>
 <a class="sourceLine" id="cb123-2" data-line-number="2"><span class="kw">hist</span>(x)</a></code></pre></div>
-<p><img src="libro_files/figure-html/r-base-hist-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/r-base-hist-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Podemos ver que há uma grande variedade de valores, com a maioria entre 2 e 3 e um caso muito extremo com uma taxa de homicídios acima de 15:</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">murders<span class="op">$</span>state[<span class="kw">which.max</span>(x)]</a>
 <a class="sourceLine" id="cb124-2" data-line-number="2"><span class="co">#&gt; [1] &quot;District of Columbia&quot;</span></a></code></pre></div>
@@ -1333,7 +1333,7 @@ d + h
 <p>Os diagramas de caixa (<em>boxplots</em> em inglês) também serão descritos na parte “Visualização de dados” do livro. Eles fornecem um resumo mais conciso do que os histogramas, mas são mais fáceis de empilhar com outros gráficos de caixa. Por exemplo, aqui podemos usá-los para comparar diferentes regiões:</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">murders<span class="op">$</span>rate &lt;-<span class="st"> </span><span class="kw">with</span>(murders, total<span class="op">/</span><span class="st"> </span>population <span class="op">*</span><span class="st"> </span><span class="dv">100000</span>)</a>
 <a class="sourceLine" id="cb125-2" data-line-number="2"><span class="kw">boxplot</span>(rate<span class="op">~</span>region, <span class="dt">data =</span> murders)</a></code></pre></div>
-<p><img src="libro_files/figure-html/r-base-boxplot-1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/r-base-boxplot-1.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Podemos ver que o Sul tem taxas mais altas de assassinatos do que as outras três regiões.</p>
 </div>
 <div id="image" class="section level3">
@@ -1341,7 +1341,7 @@ d + h
 <p>A função <em>image</em> exibe os valores em uma matriz usando cores. Aqui está um exemplo rápido:</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">120</span>, <span class="dv">12</span>, <span class="dv">10</span>)</a>
 <a class="sourceLine" id="cb126-2" data-line-number="2"><span class="kw">image</span>(x)</a></code></pre></div>
-<p><img src="libro_files/figure-html/image-first-example-1.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/image-first-example-1.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="exercícios-6" class="section level2">
@@ -1404,7 +1404,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslibro/edit/master/R/R-basics.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/R/R-basics.Rmd",
 "text": "Edit"
 },
 "history": {
