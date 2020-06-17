@@ -1,6 +1,6 @@
 ---
-title: "Introducción a la Ciencia de Datos"
-subtitle: "Análisis de datos y algoritmos de predicción con R"
+title: "Introdução à Ciência de Dados"
+subtitle: "Análise de dados e algoritmos de previsão com R"
 author: "Rafael A. Irizarry"
 date: "`r Sys.Date()`"
 documentclass: krantz
@@ -13,7 +13,7 @@ lof: no
 graphics: yes
 urlcolor: blue
 geometry: "left=1.5in, right=1.5in, top=1.25in, bottom=1.25in"
-description: Este libro presenta conceptos y destrezas que les ayudarán abordar los retos de situaciones actuales del análisis de datos. Cubre conceptos de probabilidad, inferencia estadística, regresión lineal y machine learning. Además, les permitirá desarrollar destrezas como la programación R, el wrangling de datos con dplyr, la visualización de datos con ggplot2, la organización de archivos con Shell de UNIX/ Linux, el control de versiones con GitHub y la preparación de documentos reproducibles con R markdown.
+description: Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação.
 #documentclass: book
 #classoption: openany
 site: bookdown::bookdown_site
