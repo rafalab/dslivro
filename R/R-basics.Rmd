@@ -1,4 +1,4 @@
-# (PARTE) R {-}
+# (PART) R {-}
 
 # R básico {#r-basics}
 

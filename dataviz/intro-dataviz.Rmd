@@ -1,4 +1,4 @@
-# (PARTE) Exibição de dados {-}
+# (PART) Exibição de dados {-}
 
 ```{r, echo=FALSE}
 img_path <- "dataviz/img"
