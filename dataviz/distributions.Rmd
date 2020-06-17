@@ -72,7 +72,7 @@ stat_ecdf() +
 ylab("F(a)") + xlab("a")
 ```
 
-Semelhante ao que a tabela de frequência faz para dados categóricos, o CDF define a distribuição de dados numéricos. No gráfico, podemos ver que `r round (ecdf (heights $height[heights$ sex == "Masculino"]) (66) * 100) `% dos valores são menores que 65, pois $F(66)=$ `r ecdf (alturas $height[heights$ sexo == "Masculino"]) (66) `, o que ` r rodada (ecdf (alturas $height[heights$ sex == "Masculino"]) (72) * 100) `% dos valores são menores que 72, pois $F(72)=$ `r ecdf (alturas $height[heights$ sexo == "homem"]) (72) `
+Semelhante ao que a tabela de frequência faz para dados categóricos, o CDF define a distribuição de dados numéricos. No gráfico, podemos ver que `r round(ecdf(heights$height[heights$sex == "Male"])(66)*100)`% dos valores são menores que 65, pois $F(66)=$ `r ecdf(heights$height[heights$sex == "Male"]) (66)`, o que ` r round (ecdf(heights$height[heights$ sex == "Male"]) (72) * 100) `% dos valores são menores que 72, pois $F(72)=$ `r ecdf(heights$height[heights$sex == "Male"]) (72) `
 e assim. De fato, podemos relatar a proporção de valores entre duas alturas, digamos $a$ e $b$, ao computar $F(b) - F(a)$. Isso significa que, se enviarmos esse diagrama para o ET, ele terá todas as informações necessárias para reconstruir a lista completa. Parafraseando a expressão "uma imagem vale mais que mil palavras", neste caso, uma imagem é tão informativa quanto `r sum(heights$sex=="Male")` números.
 
 Uma observação final: como os CDFs podem ser matematicamente definidos, a palavra _empirical_ é adicionada para distinguir quando os dados são usados. Portanto, usamos o termo CDF empírico ou eCDF para abreviar.
@@ -202,8 +202,8 @@ geom_area(aes(x=height,y=density), data = filter(tmp, between(height, 65, 68)), 
 ```
 
 A proporção dessa área é de aproximadamente
-`r round (média (dplyr :: between (heights $height[heights$ sexo == "Masculino"], 65, 68)), 2) `,
-o que significa que aproximadamente `r noquote (paste0 (round (mean (dplyr :: between (heights) $height[heights$ sexo == "Macho"], 65, 68)), 2) * 100, &#39;%&#39;)) `das alturas dos machos estão entre 65 e 68 polegadas.
+`r round(mean(dplyr::between(heights$height[heights$sex == "Male"], 65, 68)), 2)`,
+o que significa que aproximadamente `r noquote(paste0(round(mean(dplyr::between(heights$height[heights$sexo == "Male"], 65, 68)), 2) * 100, '%'))`das alturas dos machos estão entre 65 e 68 polegadas.
 
 Ao entender isso, estamos prontos para usar a densidade suave como um resumo. Para esse conjunto de dados, nos sentimos confortáveis em assumir suavidade e, assim, compartilhar essa figura esteticamente agradável com o ET, que pode usá-lo para entender nossos dados de altura masculinos:
 
