@@ -1,0 +1,1376 @@
+# (PARTE) R {-}
+
+# R básico {#r-basics}
+
+```{r, echo=FALSE}
+img_path <- "R/img"
+```
+
+Neste livro, usaremos o ambiente _software_R para todas as nossas análises. Eles aprenderão técnicas de análise de dados e R simultaneamente. Portanto, para continuar, eles terão acesso ao R. Também recomendamos o uso de um _Integrated Development Environment_ (IDE), como o RStudio, para salvar seu trabalho. Lembre-se de que é comum que um curso ou oficina ofereça acesso a um ambiente R e um IDE por meio do navegador da web, como faz o RStudio cloud^[https://rstudio.cloud]. Se eles tiverem acesso a esse recurso, eles não precisarão instalar o R ou o RStudio. No entanto, se você quiser se tornar um analista de dados especializado, recomendamos instalar essas ferramentas no seu computador^[https://rafalab.github.io/dsbook/installing-r-rstudio.html].
+O R e o RStudio são gratuitos e estão disponíveis online.
+
+Estudo de caso: assassinatos por armas nos EUA EUA
+
+Imagine que você mora na Europa e recebe um emprego em uma empresa americana com muitos locais nos Estados Unidos. É um ótimo trabalho, mas manchetes como ** Taxa de homicídio por arma de fogo dos EUA. EUA mais alto do que em outros países desenvolvidos **^[http://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/] . Preocupa-se? Gráficos como o seguinte podem preocupá-lo ainda mais:
+
+
+```{r murder-rate-example-1, echo=FALSE, warning=FALSE, message=FALSE, out.width="70%"}
+##from http://abcnews.go.com/images/International/homocides_g8_countries_640x360_wmain.jpg
+##knitr::include_graphics(file.path(img_path,"homocides_g8_countries_640x360_wmain.jpg"))
+library(tidyverse)
+library(ggplot2)
+library(ggflags)
+library(countrycode)
+
+dat <- tibble(country = toupper(c("US", "Italy", "Canada", "UK", "Japan", "Germany", "France", "Russia")),
+count = c(3.2, 0.71, 0.5, 0.1, 0, 0.2, 0.1, 0),
+label = c(as.character(c(3.2, 0.71, 0.5, 0.1, 0, 0.2, 0.1)), "No Data"),
+code = c("us", "it", "ca", "gb", "jp", "de", "fr", "ru"))
+
+
+dat %>%
+mutate(country = reorder(country, -count)) %>%
+ggplot(aes(country, count, label = label)) +
+geom_bar(stat = "identity", fill = "darkred") +
+geom_text(nudge_y = 0.2, color = "darkred", size = 5) +
+geom_flag(y = -.5, aes(country = code), size = 12) +
+scale_y_continuous(breaks = c(0, 1, 2, 3, 4), limits = c(0,4)) +
+geom_text(aes(6.25, 3.8, label="Source UNODC Homicide Statistics")) +
+ggtitle(toupper("Homicide Per 100,000 in G-8 Countries")) +
+xlab("") +
+ylab("# of gun-related homicides\nper 100,000 people") +
+ggthemes::theme_economist() +
+theme(axis.text.x = element_text(size = 8, vjust = -12),
+axis.ticks.x=element_blank(),
+axis.line.x = element_blank(),
+plot.margin = unit(c(1,1,1,1), "cm"))
+```
+
+<!--(Source:
+[Maayan Rosenzweigh/ ABC News] (https://abcnews.go.com/blogs/headlines/2012/12/us-gun-ownership-homicide-rate-higher-than-other-developed-countries/), Dados de Estatísticas de Homicídios do UNODC) ->
+
+
+Ou pior ainda, esta versão do [everytown.org] (https://everytownresearch.org):
+```{r murder-rate-example-2, echo=FALSE, out.width="70%"}
+# from https://everytownresearch.org/wp-content/uploads/2016/07/GunTrends_murders_per_1000.png
+# knitr::include_graphics(file.path(img_path,"GunTrends_murders_per_1000.png"))
+
+dat <- tibble(country = toupper(c("United States", "Canada", "Portugal", "Ireland", "Italy", "Belgium", "Finland", "France", "Netherlands", "Denmark", "Sweden", "Slovakia", "Austria", "New Zealand", "Australia", "Spain", "Czech Republic", "Hungary", "Germany", "United Kingdom", "Norway", "Japan", "Republic of Korea")),
+count = c(3.61, 0.5, 0.48, 0.35, 0.35, 0.33, 0.26, 0.20, 0.20, 0.20, 0.19, 0.19, 0.18, 0.16, 0.16, 0.15, 0.12, 0.10, 0.06, 0.04, 0.04, 0.01, 0.01))
+
+dat %>%
+mutate(country = reorder(country, count)) %>%
+ggplot(aes(country, count, label = count)) +
+geom_bar(stat = "identity", fill = "darkred", width = 0.5) +
+geom_text(nudge_y = 0.2, size = 3) +
+xlab("") + ylab("") +
+ggtitle(toupper("Gun Homicides per 100,000 residents")) +
+theme_minimal() +
+theme(panel.grid.major =element_blank(), panel.grid.minor = element_blank(),
+axis.text.x = element_blank(),
+axis.ticks.length = unit(-0.4, "cm")) +
+coord_flip()
+```
+
+<!--(Source [everytown.org](https://everytownresearch.org))-->
+
+Porém, lembra-se que os Estados Unidos são um país grande e diversificado, com 50 estados muito diferentes, além do Distrito de Columbia (DC).
+
+```{r us-murders-by-state-map, message=FALSE, echo=FALSE}
+library(tidyverse)
+library(dslabs)
+
+fifty_states <- map_data("state")
+data(murders)
+murders %>% mutate(murder_rate = total/population*10^5,
+state = tolower(state),
+colors= factor(ceiling(pmin(murder_rate, 9)))) %>%
+ggplot(aes(map_id = state)) +
+geom_map(aes(fill = colors), color = "black", map = fifty_states) +
+expand_limits(x = fifty_states$long, y = fifty_states$lat) +
+coord_map() +
+scale_x_continuous(breaks = NULL) +
+scale_y_continuous(breaks = NULL) +
+labs(x = "", y = "") +
+theme(panel.background = element_blank()) +
+scale_fill_brewer(guide=FALSE) +
+theme_minimal()
+rm(fifty_states)
+```
+
+
+A Califórnia, por exemplo, tem uma população maior que o Canadá e 20 estados dos EUA. EUA eles têm populações maiores que a Noruega. Em alguns aspectos, a variabilidade entre os estados dos EUA. EUA é semelhante à variabilidade entre os países da Europa. Além disso, embora não esteja incluído nas tabelas acima, as taxas de homicídio na Lituânia, Ucrânia e Rússia são superiores a quatro por 100.000. Portanto, as notícias pelas quais você está preocupado podem ser muito superficiais. Você tem opções de onde pode morar e deseja determinar a segurança de cada estado individual. Teremos algumas idéias examinando dados relacionados a homicídios por armas de fogo nos EUA. EUA em 2010 usando R.
+
+Antes de começarmos o nosso exemplo, precisamos discutir a logística e alguns dos componentes necessários para obter habilidades mais avançadas de R. Lembre-se de que a utilidade de alguns desses componentes nem sempre é imediatamente óbvia, mas mais adiante no livro, você apreciará dominam essas habilidades.
+
+## O básico
+
+Antes de começarmos com o conjunto de dados motivadores, precisamos revisar o básico de R.
+
+Objetos ###
+
+Suponha que alguns alunos do ensino médio nos solicitem ajuda para resolver várias equações quadráticas da forma $ax^2+bx+c = 0$. A fórmula quadrática nos oferece as soluções:
+
+$$
+\frac{-b - \sqrt{b^2 - 4ac}}{2a}\,\, \mbox{ and } \frac{-b + \sqrt{b^2 - 4ac}}{2a}
+$$
+que, é claro, mudam dependendo dos valores de $a$, $b$ e $c$. Uma vantagem das linguagens de programação é poder definir variáveis e escrever expressões com elas, como é feito na matemática, para obter uma solução numérica. Escreveremos um código geral para a equação quadrática abaixo, mas se formos solicitados a resolver $x^2 + x -1 = 0$, então definimos:
+
+```{r}
+a <- 1
+b <- 1
+c <- -1
+```
+
+que armazena os valores para uso posterior. Nós usamos `<-` para atribuir valores a variáveis.
+
+Também podemos atribuir valores usando `=` ao invés de `<-`, mas recomendamos não usar `=` evitar confusão.
+
+Copie e cole o código acima no seu console para definir as três variáveis. Observe que R não imprime nada quando fazemos essa atribuição. Isso significa que os objetos foram definidos com sucesso. Se eles tivessem cometido um erro, uma mensagem de erro teria aparecido.
+
+Para ver o valor armazenado em uma variável, simplesmente pedimos que R avalie `a` e isso mostra o valor armazenado:
+
+```{r}
+a
+```
+
+Uma maneira mais explícita de pedir que R mostre o valor armazenado em `a` é usar `print` assim:
+
+```{r}
+print(a)
+```
+
+Usamos o termo _object_ para descrever coisas armazenadas em R. Variáveis são exemplos, mas objetos também podem ser entidades mais complicadas, como funções, descritas mais adiante.
+
+
+
+### O espaço de trabalho
+
+Conforme definimos objetos no console, estamos alterando o espaço de trabalho (_workspace_ em inglês). Você pode ver todas as variáveis salvas no seu espaço de trabalho digitando:
+
+```{r}
+ls()
+```
+
+No RStudio, a guia _Environment_ mostra os valores:
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"rstudio-environment.png"))
+```
+
+Devemos ver `a`, `b` e `c`. Se eles tentarem recuperar o valor de uma variável que não está em seus espaços de trabalho, eles receberão uma mensagem de erro. Por exemplo, se eles escrevem `x`, você verá o seguinte: `Error: object 'x' not found`.
+
+Agora, como esses valores são armazenados em variáveis, para resolver nossa equação, usamos a fórmula quadrática:
+
+```{r}
+(-b + sqrt(b^2 - 4*a*c) )/ ( 2*a )
+(-b - sqrt(b^2 - 4*a*c) )/ ( 2*a )
+```
+
+
+### Funções
+
+Uma vez definidas as variáveis, o processo de análise de dados geralmente pode ser descrito como uma série de funções aplicadas aos dados. R inclui várias funções predefinidas e a maioria das linhas de análise que construímos fazem uso extensivo delas.
+
+Nós já usamos as funções `install.packages`, `library` e `ls`. Também usamos a função `sqrt` para resolver a equação quadrática acima. Existem muitas funções predefinidas e ainda mais podem ser adicionadas através de pacotes. Eles não aparecem nos seus espaços de trabalho porque não foram definidos, mas estão disponíveis para uso imediato.
+
+Em geral, precisamos usar parênteses para avaliar uma função. Se eles escreverem `ls`, a função não é avaliada e, em vez disso, R mostra o código que a define. Se eles escreverem `ls()`, a função é avaliada e, como já mostrado, vemos objetos no espaço de trabalho.
+
+A diferença de `ls`, a maioria das funções requer um ou mais argumentos. Abaixo está um exemplo de como atribuímos um objeto ao argumento da função `log`. Lembre-se de que anteriormente definimos `a` como 1:
+
+```{r}
+log(8)
+log(a)
+```
+
+Eles podem descobrir o que a função espera e o que faz, revendo alguns manuais muito úteis incluídos no R. Eles podem obter ajuda para usar a função. `help` assim:
+
+```{r, eval=FALSE}
+help("log")
+```
+
+Para a maioria das funções, também podemos usar esta abreviação:
+
+```{r, eval=FALSE}
+?log
+```
+
+A página de ajuda mostrará quais argumentos a função espera. Por exemplo, `log` precisa de `x` e `base` para correr. No entanto, alguns argumentos são obrigatórios e outros são opcionais. Você pode determinar quais são opcionais anotando no documento de ajuda quais padrões são atribuídos com `=`. Definir isso é opcional. Por exemplo, a base da função `log` o padrão é `base = exp(1)` fazendo `log` o logaritmo natural padrão.
+
+Para dar uma rápida olhada nos argumentos sem abrir o sistema de ajuda, você pode escrever:
+
+```{r}
+args(log)
+```
+
+Eles podem alterar os valores padrão simplesmente atribuindo outro objeto:
+
+```{r}
+log(8, base = 2)
+```
+
+Lembre-se de que não especificamos o argumento `x` assim sendo:
+```{r}
+log(x = 8, base = 2)
+```
+
+O código acima funciona, mas também podemos economizar um pouco de digitação: se eles não usarem um nome de argumento, R assume que eles estão inserindo argumentos na ordem em que são exibidos na página de ajuda ou por `args`. Portanto, ao não usar os nomes, R assume que os argumentos são `x` seguido por `base`:
+
+```{r}
+log(8,2)
+```
+
+Se eles usarem os nomes dos argumentos, podemos incluí-los na ordem que desejamos:
+
+```{r}
+log(base = 2, x = 8)
+```
+
+Para especificar argumentos, devemos usar `=` e não `<-`.
+
+Existem algumas exceções à regra de que funções precisam que parênteses sejam avaliados. Entre estes, os mais utilizados são os operadores aritméticos e relacionais. Por exemplo:
+
+```{r}
+2^3
+```
+
+Você pode ver os operadores aritméticos digitando:
+
+```{r, eval = TRUE}
+help("+")
+```
+
+ou
+
+```{r, eval = TRUE}
+?"+"
+```
+
+e os operadores relacionais ao escrever:
+
+```{r, eval = TRUE}
+help(">")
+```
+
+ou
+
+```{r}
+?">"
+```
+
+### Outros objetos predefinidos
+
+Existem vários conjuntos de dados incluídos para os usuários praticarem e testarem as funções. Você pode ver todos os conjuntos de dados disponíveis digitando:
+
+```{r}
+data()
+```
+
+Isso mostra o nome do objeto para esses conjuntos de dados. Esses conjuntos de dados são objetos que podem ser usados simplesmente digitando o nome. Por exemplo, se eles escreverem:
+
+```{r, eval=FALSE}
+co2
+```
+R mostrará os dados da concentração atmosférica de CO2 de Mauna Loa.
+
+Outros objetos predefinidos são quantidades matemáticas, como a constante $\pi$ e $\infty$:
+
+```{r}
+pi
+Inf+1
+```
+
+### Nomes de variáveis
+
+Nós usamos as letras `a`, `b` e `c` como nomes de variáveis, mas estes podem ser quase qualquer coisa. Algumas regras básicas em R são que os nomes de variáveis devem começar com uma letra, não podem conter espaços e não devem ser variáveis predefinidas em R. Por exemplo, não nomeie uma de suas variáveis. `install.packages` escrevendo algo como:
+`install.packages <- 2`.
+
+Uma boa convenção a seguir é usar palavras significativas que descrevam o que é armazenado, use apenas letras minúsculas e sublinhados como substitutos de espaços. Para equações quadráticas, podemos usar algo como:
+
+```{r}
+solution_1 <- (-b + sqrt(b^2 - 4*a*c))/ (2*a)
+solution_2 <- (-b - sqrt(b^2 - 4*a*c))/ (2*a)
+```
+
+Para obter mais dicas, recomendamos estudar o guia de estilo de Hadley Wickham^[http://adv-r.had.co.nz/Style.html].
+
+### Como salvar seu espaço de trabalho
+
+Os valores permanecem no espaço de trabalho até você terminar suas sessões ou excluí-los com a função `rm`. Mas os espaços de trabalho também podem ser salvos para uso posterior. De fato, ao sair do R, o programa pergunta se eles desejam salvar seu espaço de trabalho. Se eles salvarem, na próxima vez que iniciarem o R, o programa restaurará a área de trabalho.
+
+Recomendamos não salvar a área de trabalho dessa maneira, porque, à medida que você começa a trabalhar em projetos diferentes, será mais difícil acompanhar o que está salvo. Em vez disso, recomendamos que você atribua à área de trabalho um nome específico. Eles podem fazer isso usando as funções `save` ou `save.image`. Para carregar, use a função `load`. Ao salvar um espaço de trabalho, recomendamos o sufixo `rda` ou `RData`. No RStudio, eles também podem fazer isso navegando para a guia _Session_e escolhendo_Save Workspace as_. Eles podem carregá-lo usando as opções _Load Workspace_ na mesma guia. Para saber mais, leia as páginas de ajuda (_help pages_ em inglês) em `save`, `save.image` e `load`.
+
+
+### _Motivando scripts_
+
+Para resolver outra equação como $3x^2 + 2x -1$, podemos copiar e colar o código acima, redefinir as variáveis e recalcular a solução:
+
+```{r, eval=FALSE}
+a <- 3
+b <- 2
+c <- -1
+(-b + sqrt(b^2 - 4*a*c))/ (2*a)
+(-b - sqrt(b^2 - 4*a*c))/ (2*a)
+```
+
+Ao criar e salvar um _script_ com o código acima, você não precisa mais redigitar tudo a cada vez, mas simplesmente alterar os nomes das variáveis. Tente escrever o script acima em um editor e observe como é fácil alterar variáveis e obter uma resposta.
+
+Como comentar seu código
+
+Se uma linha de código R começar com o símbolo `#`, não é avaliado. Podemos usar isso para escrever lembretes sobre por que escrevemos um código específico. Por exemplo, no _script_ acima, podemos adicionar:
+
+
+```{r, eval=FALSE}
+## Código para calcular la solución a la ecuación cuadrática de la forma ax^2 + bx + c
+## definir las variables
+a <- 3
+b <- 2
+c <- -1
+
+## ahora calcule la solución
+(-b + sqrt(b^2 - 4*a*c))/ (2*a)
+(-b - sqrt(b^2 - 4*a*c))/ (2*a)
+```
+
+
+## Exercícios
+
+1\. Qual é a soma dos 100 primeiros números inteiros positivos? A fórmula para a soma dos números inteiros $1$ para $n$ é $n(n+1)/2$. Definir $n=100$ e então use R para calcular a soma de $1$ para $100$ usando a fórmula. Qual é a soma?
+
+2\. Agora use a mesma fórmula para calcular a soma dos números inteiros de 1 a 1000.
+
+3\. Veja a saída de escrever o seguinte código em R:
+
+```{r, eval=FALSE}
+n <- 1000
+x <- seq(1, n)
+sum(x)
+```
+
+Com base no resultado, o que você acha que as funções fazem `seq` e `sum`? Você pode usar `help`.
+
+para. `sum` crie uma lista de números e `seq` adiciona-os.
+b. `seq` crie uma lista de números e `sum` adiciona-os.
+c. `seq` crie uma lista aleatória e `sum` calcula a soma de 1 a 1000.
+d. `sum` sempre retorna o mesmo número.
+
+4\. Em matemática e programação, dizemos que avaliamos uma função quando substituímos o argumento por um determinado número. Então, se escrevermos `sqrt(4)`, avaliamos a função `sqrt`. Em R, você pode avaliar uma função dentro de outra função. As avaliações acontecem de dentro para fora. Use uma linha de código para calcular o logaritmo, base 10, da raiz quadrada de 100.
+
+
+5\. Qual das seguintes opções sempre retornará o valor numérico armazenado em `x`? Você pode tentar os exemplos e usar o sistema de ajuda, se desejar.
+
+para. `log(10^x)`
+b. `log10(x^10)`
+c. `log(exp(x))`
+d. `exp(log(x, base = 2))`
+
+
+## Tipo de dados
+
+Variáveis em R podem ser de tipos diferentes. Por exemplo, precisamos distinguir números de seqüências de caracteres e tabelas de listas de números simples. A função `class` isso nos ajuda a determinar que tipo de objeto temos:
+
+```{r}
+a <- 2
+class(a)
+```
+
+Para trabalhar com eficiência no R, é importante aprender os diferentes tipos de variáveis e o que podemos fazer com elas.
+
+### _data frames_
+
+Até agora, as variáveis que definimos são apenas um número. Isso não é muito útil para armazenar dados. A maneira mais comum de armazenar um conjunto de dados no R é usar um _data frame_. Conceitualmente, podemos pensar em um _data frame_ como uma tabela com linhas que representam observações e com colunas que representam as diferentes variáveis coletadas para cada observação. _Frames de dados_ são particularmente úteis para conjuntos de dados porque podemos combinar diferentes tipos de dados em um único objeto.
+
+Uma grande proporção dos desafios da análise de dados começa com os dados armazenados em um _data frame_. Por exemplo, armazenamos os dados do nosso exemplo motivador em um _data frame_. Eles podem acessar esse conjunto de dados carregando o pacote __dslabs__ e, em seguida, usando a função `data` carregar o conjunto de dados `murders` :
+
+```{r}
+library(dslabs)
+data(murders)
+```
+
+Para verificar se este é um _data frame_, escrevemos:
+
+```{r}
+class(murders)
+```
+
+### Como examinar um objeto
+
+A função `str` é útil obter mais informações sobre a estrutura de um objeto:
+
+```{r, echo=FALSE}
+# change str to make sure it stays within margins
+str <- function(x) utils::str(x, strict.width = 'wrap')
+```
+
+```{r}
+str(murders)
+```
+
+```{r, echo=FALSE}
+# remove str we defiend
+rm(str)
+```
+
+Isso nos diz muito mais sobre o objeto. Vemos que a tabela possui 51 linhas (50 estados mais DC) e cinco variáveis. Podemos exibir as seis primeiras linhas usando a função `head`:
+
+```{r}
+head(murders)
+```
+
+Nesse conjunto de dados, cada estado é considerado uma observação e cinco variáveis são incluídas para cada estado.
+
+Antes de continuar com a resposta à nossa pergunta original sobre os diferentes estados, vamos revisar mais sobre os componentes deste objeto.
+
+### O operador de acesso: `$`
+
+Para nossa análise, precisaremos acessar as diferentes variáveis representadas pelas colunas incluídas neste _data frame_. Para fazer isso, usamos o operador de acesso `$` da seguinte maneira:
+
+```{r}
+murders$population
+```
+
+Mas como sabíamos usar `population`? Anteriormente, aplicando a função `str` para o objeto `murders` nós revelamos os nomes de cada uma das cinco variáveis armazenadas nesta tabela. Podemos acessar rapidamente nomes de variáveis usando:
+
+```{r}
+names(murders)
+```
+
+É importante saber que a ordem das entradas no `murders$population` ele preserva a ordem das linhas em nossa tabela de dados. Isso nos permitirá manipular uma variável com base nos resultados de outra. Por exemplo, podemos classificar os nomes dos estados de acordo com o número de assassinatos.
+
+**Dica**: R vem com uma funcionalidade de preenchimento automático muito boa, que evita o trabalho de digitar todos os nomes. Escreva `murders$p` e pressione a tecla _tab_ no teclado. Essa funcionalidade e muitos outros recursos úteis de preenchimento automático estão disponíveis no RStudio.
+
+Vetores: numérico, caractere e lógico
+
+O objeto `murders$population` não é um número, mas vários. Chamamos esse tipo de objeto de _vectors_. Um número único é tecnicamente um vetor de comprimento 1, mas em geral usamos o termo vetores para se referir a objetos com várias entradas. A função `length` informa quantas entradas há no vetor:
+
+```{r}
+pop <- murders$population
+length(pop)
+```
+
+Esse vetor específico é _numeric_, pois os tamanhos da população são números:
+
+```{r}
+class(pop)
+```
+Em um vetor numérico, cada entrada deve ser um número.
+
+Para armazenar uma cadeia de caracteres, os vetores também podem ser da classe _character_. Por exemplo, os nomes dos estados são caracteres:
+
+```{r}
+class(murders$state)
+```
+
+Assim como nos vetores numéricos, todas as entradas em um vetor de caracteres devem ter um caractere.
+
+Outro tipo importante de vetores são os vetores lógicos. Estes devem ser `TRUE` ou `FALSE`.
+
+```{r}
+z <- 3 == 2
+z
+class(z)
+```
+
+Aqui o `==` é um operador relacional que pergunta se 3 é igual a 2. Em R, use apenas um `=` atribuir uma variável, mas se eles usarem duas `==` então avalia se os objetos são os mesmos.
+
+Você pode ver isso escrevendo:
+
+```{r, eval=FALSE}
+?Comparison
+```
+
+Nas próximas seções, você verá como os operadores relacionais podem ser úteis.
+
+Discutimos as características mais importantes dos vetores após os exercícios a seguir.
+
+
+**Avançado**: matematicamente, os valores em `pop` eles são números inteiros e há uma classe inteira em R. No entanto, por padrão, os números recebem uma classe numérica mesmo quando são números inteiros redondos. Por exemplo, `class(1)` retorna numérico. Eles podem convertê-lo em um número inteiro de classe com a função `as.integer()` ou adicionando um `L` assim: `1L`. Considere a classe escrevendo: `class(1L)`
+
+
+Fatores ### {#factors}
+
+No conjunto de dados `murders`, você também pode esperar que a região seja um vetor de caracteres. No entanto, não é:
+
+```{r}
+class(murders$region)
+```
+
+É um _fator_. Fatores são úteis para armazenar dados categóricos. Podemos ver que existem apenas quatro regiões ao usar a função `levels`:
+
+
+```{r}
+levels(murders$region)
+```
+
+Em segundo plano, R armazena esses _níveis_ como números inteiros e mantém um mapa para acompanhar os rótulos. Isso é mais eficiente em termos de memória do que armazenar todos os caracteres.
+
+Observe que os níveis têm uma ordem diferente da ordem de aparência no fator. Em R, por padrão, os níveis são organizados em ordem alfabética. No entanto, geralmente queremos que os níveis sigam uma ordem diferente. Eles podem especificar uma ordem através do argumento `levels` quando eles criam o fator com a função `factor`. Por exemplo, no conjunto de dados de assassinatos, as regiões são ordenadas de leste a oeste. A função &#39;reordenar&#39; permite alterar a ordem dos níveis de um fator de acordo com um resumo calculado em um vetor numérico. Vamos demonstrar isso com um exemplo simples e ver os mais avançados na parte de visualização de dados do livro.
+
+Suponha que desejemos que os níveis da região sejam ordenados de acordo com o número total de assassinatos, e não por ordem alfabética. Se houver valores associados a cada _level_, podemos usar `reorder` e especifique um resumo dos dados para determinar o pedido. O código a seguir pega a soma do total de assassinatos em cada região e reordena o fator de acordo com essas somas.
+
+```{r}
+region <- murders$region
+value <- murders$total
+region <- reorder(region, value, FUN = sum)
+levels(region)
+```
+
+A nova ordem é consistente com o fato de que há menos assassinatos no Nordeste e mais no Sul.
+
+**Aviso**: os fatores podem causar confusão, pois às vezes eles se comportam como personagens e às vezes não. Como resultado, essas são uma fonte comum de erros.
+
+### Listas
+
+_Dados frames_são um caso especial de_lists_. Abordaremos as listas com mais detalhes posteriormente, mas sabemos que elas são úteis porque podem armazenar qualquer combinação de diferentes tipos de dados. Aqui, criamos uma lista para servir como exemplo:
+
+
+```{r, echo=FALSE}
+record <- list(name = "John Doe",
+student_id = 1234,
+grades = c(95, 82, 91, 97, 93),
+final_grade = "A")
+```
+
+```{r}
+record
+class(record)
+```
+
+Como em _data frames_, eles podem extrair os componentes de uma lista com o operador de acesso: `$`. De fato, _data frames_ são um tipo de lista.
+
+```{r}
+record$student_id
+```
+
+Também podemos usar colchetes duplos ( `[[`) assim:
+
+```{r}
+record[["student_id"]]
+```
+
+Eles devem se acostumar com o fato de que geralmente existem várias maneiras no R de fazer a mesma coisa, como acessar entradas.
+
+Você também pode encontrar listas sem nomes de variáveis:
+
+```{r, echo=FALSE}
+record2 <- list("John Doe",
+1234)
+```
+
+```{r}
+record2
+```
+
+Se uma lista não tiver nomes, eles não poderão extrair os elementos com `$`, mas eles podem usar o método de colchete. Em vez de fornecer o nome da variável, você pode fornecer o índice da lista da seguinte maneira:
+
+```{r}
+record2[[1]]
+```
+
+
+Não usaremos listas até mais tarde, mas você pode encontrar uma em suas próprias explorações de R. É por isso que mostramos alguns conceitos básicos aqui.
+
+
+### Arrays {#matrices}
+
+Matrizes são outro tipo comum de objeto em R. Matrizes são semelhantes a _data frames_, pois são bidimensionais: possuem linhas e colunas. No entanto, como vetores numéricos, caracteres e lógicos, as entradas nas matrizes devem ser do mesmo tipo. Por esse motivo, _data frames_ são muito mais úteis para armazenar dados, pois podemos conter caracteres, fatores e números.
+
+Entretanto, as matrizes têm uma grande vantagem sobre os _data frames_: podemos executar operações de álgebra matricial, uma poderosa técnica matemática. Não descrevemos essas operações neste livro, mas muito do que acontece em segundo plano quando você executa a análise de dados envolve matrizes. Abordamos matrizes em mais detalhes no Capítulo \@ref(matrix-algebra) mas também os discutimos brevemente aqui, como algumas das funções que aprenderemos matrizes de retorno.
+
+Podemos definir uma matriz usando a função `matrix`. Precisamos especificar o número de linhas e colunas:
+
+```{r}
+mat <- matrix(1:12, 4, 3)
+mat
+```
+
+Eles podem acessar entradas específicas em uma matriz usando colchetes ( `[`) Se você deseja a segunda linha, terceira coluna, use:
+
+```{r}
+mat[2, 3]
+```
+
+Se você deseja a segunda linha inteira, deixe o lugar da coluna vazio:
+
+```{r}
+mat[2, ]
+```
+
+Observe que isso retorna um vetor, não uma matriz.
+
+Da mesma forma, se você quiser a terceira coluna inteira, deixe o lugar da linha vazio:
+
+```{r}
+mat[, 3]
+```
+
+Este também é um vetor, não uma matriz.
+
+Eles podem acessar mais de uma coluna ou mais de uma linha, se desejarem. Isso lhe dará uma nova matriz.
+
+```{r}
+mat[, 2:3]
+```
+
+Eles podem criar subconjuntos com base em linhas e colunas:
+
+```{r}
+mat[1:2, 2:3]
+```
+
+Podemos converter as matrizes em _data frames_ usando a função `as.data.frame`:
+
+```{r}
+as.data.frame(mat)
+```
+
+Também podemos usar colchetes individuais ( `[`) para acessar as linhas e colunas de um _data frame_:
+
+```{r}
+data("murders")
+murders[25, 1]
+murders[2:3, ]
+```
+
+
+## Exercícios
+
+1\. Carregue o conjunto de dados de assassinatos nos EUA. EUA
+
+```{r}
+library(dslabs)
+data(murders)
+```
+
+Usar função `str` para examinar a estrutura do objeto `murders`. Qual das opções a seguir descreve melhor as variáveis representadas neste _data frame_?
+
+para. Os 51 estados.
+b. Taxas de assassinato para todos os 50 estados e DC.
+c. O nome do estado, a abreviação do nome do estado, região e população do estado e o número total de assassinatos em 2010 no estado.
+d. `str` não exibe informações relevantes.
+
+2\. Quais são os nomes das colunas usadas pelo _data frame_ para essas cinco variáveis?
+
+3\. Use o operador de acesso `$` extrair abreviações de estado e atribuí-las ao objeto `a`. Qual é a classe deste objeto?
+
+4\. Agora use os colchetes para extrair as abreviações de estado e atribuí-las ao objeto `b`. Use a função `identical` para determinar se `a` e `b` são iguais.
+
+5\. Vimos que a coluna `region` armazena um fator. Você pode verificar isso digitando:
+
+```{r, eval=FALSE}
+class(murders$region)
+```
+
+Com uma linha de código, use as funções `levels` e `length` para determinar o número de regiões definidas por este conjunto de dados.
+
+6\. A função `table` pega um vetor e retorna a frequência de cada elemento. Você pode ver rapidamente quantos estados existem em cada região aplicando esta função. Use esta função em uma linha de código para criar uma tabela de estados por região.
+
+## Vetores
+
+No R, os objetos mais básicos disponíveis para armazenar dados são _vectors_. Como vimos, conjuntos de dados complexos geralmente podem ser divididos em componentes que são vetores. Por exemplo, em um _data frame_, cada coluna é um vetor. Aqui nós aprendemos mais sobre esta importante classe.
+
+### Como criar vetores
+
+Podemos criar vetores usando a função `c`, o que significa _concatenate_. Nós usamos `c` concatenar entradas da seguinte maneira:
+
+```{r}
+codes <- c(380, 124, 818)
+codes
+```
+
+Também podemos criar vetores de caracteres. Usamos aspas para indicar que as entradas são caracteres e não nomes de variáveis.
+
+```{r}
+country <- c("italy", "canada", "egypt")
+```
+
+Em R, eles também podem usar aspas simples:
+
+```{r}
+country <- c('italy', 'canada', 'egypt')
+```
+
+Mas tome cuidado para não confundir as aspas simples &#39;com _back quote_ `.
+
+Até agora você deve saber que se você escrever:
+
+```{r, eval=FALSE}
+country <- c(italy, canada, egypt)
+```
+recebe um erro porque as variáveis `italy`, `canada` e `egypt` não estão definidos. Se não usarmos as aspas, R procurará variáveis com esses nomes e retornará um erro.
+
+### Nomes
+
+Às vezes, é útil nomear as entradas para um vetor. Por exemplo, ao definir um vetor de códigos de países, podemos usar os nomes para conectar os dois:
+
+```{r}
+codes <- c(italy = 380, canada = 124, egypt = 818)
+codes
+```
+
+O objeto `codes` ainda é um vetor numérico:
+```{r}
+class(codes)
+```
+mas com nomes:
+```{r}
+names(codes)
+```
+
+Se o uso de strings sem aspas parecer confuso, saiba que você também pode usar aspas:
+
+```{r}
+codes <- c("italy" = 380, "canada" = 124, "egypt" = 818)
+codes
+```
+
+Não há diferença entre esta chamada de função (_função chamada_ em inglês) e a anterior. Essa é uma das muitas maneiras pelas quais R é peculiar em comparação com outros idiomas.
+
+Também podemos atribuir nomes usando a função `names`:
+
+```{r}
+codes <- c(380, 124, 818)
+country <- c("italy","canada","egypt")
+names(codes) <- country
+codes
+```
+
+### Sequências
+
+Outra função útil para criar vetores gera sequências:
+
+```{r}
+seq(1, 10)
+```
+
+O primeiro argumento define o começo e o segundo define o fim que incluímos. O padrão é subir em incrementos de 1, mas um terceiro argumento nos permite determinar quanto saltar:
+
+```{r}
+seq(1, 10, 2)
+```
+
+Se queremos números inteiros consecutivos, podemos usar a seguinte abreviação:
+
+```{r}
+1:10
+```
+
+Quando usamos essas funções, R produz números inteiros, não números, porque geralmente são usados para indexar algo:
+
+```{r}
+class(1:10)
+```
+
+No entanto, se criarmos uma sequência que não inclua números inteiros, a classe mudará:
+
+```{r}
+class(seq(1, 10, 0.5))
+```
+
+### Como criar um subconjunto
+
+Usamos colchetes para acessar elementos específicos de um vetor. Para vetor `codes` como definido anteriormente, podemos acessar o segundo elemento usando:
+```{r}
+codes[2]
+```
+
+Eles podem obter mais de uma entrada usando um vetor de múltiplas entradas como índice:
+```{r}
+codes[c(1,3)]
+```
+
+As seqüências definidas acima são particularmente úteis se precisarmos acessar, digamos, os dois primeiros elementos:
+
+```{r}
+codes[1:2]
+```
+
+Se os elementos tiverem nomes, também podemos acessar as entradas usando esses nomes. Aqui estão dois exemplos:
+
+```{r}
+codes["canada"]
+codes[c("egypt","italy")]
+```
+
+## Conversão forçada
+
+Em geral, _forced_conversion_ é uma tentativa do R de ser flexível com os tipos de dados. Quando uma entrada não corresponde ao esperado, algumas das funções predefinidas de R tentam adivinhar o que se estava tentando fazer antes de retornar uma mensagem de erro. Isso também pode causar confusão. Não entendendo a conversão forçada, os programadores podem enlouquecer quando codificam em R, pois o R se comporta de maneira bem diferente da maioria das outras linguagens nesse sentido. Vamos aprender mais com alguns exemplos.
+
+Dissemos que os vetores devem ser todos do mesmo tipo. Portanto, se tentarmos combinar, por exemplo, números e caracteres, eles podem esperar um erro:
+
+```{r}
+x <- c(1, "canada", 3)
+```
+
+Mas isso não nos dá um, nem mesmo um aviso! O que aconteceu? Veja `x` e sua classe:
+
+```{r}
+x
+class(x)
+```
+
+R forçou uma conversão dos dados em caracteres. Como inserimos uma sequência de caracteres no vetor, R adivinhou que nossa intenção era que 1 e 3 fossem as cadeias de caracteres `"1"` e " `3` O fato de nem sequer emitir um aviso é um exemplo de como a conversão forçada pode causar muitos erros inadvertidos no R.
+
+R também oferece funções para mudar de um tipo para outro. Por exemplo, eles podem converter números em caracteres com:
+
+```{r}
+x <- 1:5
+y <- as.character(x)
+y
+```
+
+Eles podem reverter para o acima com `as.numeric`:
+
+```{r}
+as.numeric(y)
+```
+
+Essa função é muito útil, pois conjuntos de dados que incluem números, como cadeias de caracteres, são comuns.
+
+### _Não disponível_ (NA)
+
+Quando uma função tenta forçar uma conversão de um tipo para outro e encontra um caso impossível, geralmente nos dá um aviso e converte a entrada em um valor especial chamado `NA` o que significa _não disponível_ (_não disponível_ em inglês). Por exemplo:
+
+```{r}
+x <- c("1", "b", "3")
+as.numeric(x)
+```
+
+R não sabe o número que eles queriam quando escreveram `b` e não tente adivinhar.
+
+Como cientistas de dados, você encontrará os `NA` freqüentemente, como geralmente é usado para dados ausentes (_missing data_ in English), um problema comum em conjuntos de dados do mundo real.
+
+## Exercícios
+
+1\. Usar função `c` criar um vetor com as temperaturas médias altas em janeiro para Pequim, Lagos, Paris, Rio de Janeiro, San Juan e Toronto, com 35, 88, 42, 84, 81 e 30 graus Fahrenheit. Chame o objeto `temp`.
+
+2\. Agora crie um vetor com os nomes das cidades e chame o objeto `city`.
+
+
+3\. Use a função `names` e os objetos definidos nos exercícios anteriores para associar os dados de temperatura à cidade correspondente.
+
+
+4\. Use operadores `[` e `:` para acessar a temperatura das três primeiras cidades da lista.
+
+
+5\. Use o operador `[` para acessar a temperatura de Paris e San Juan.
+
+6\. Use o operador `:` para criar uma sequência de números $12,13,14,\dots,73$.
+
+7\. Crie um vetor contendo todos os números ímpares positivos menores que 100.
+
+8\. Crie um vetor de números que comece em 6, não ultrapasse 55 e adicione números em incrementos de 4/7: 6, 6 + 4/7, 6 + 8/7 e assim por diante. Quantos números a lista possui? Dica: use `seq` e `length`.
+
+9\. Qual é a classe do seguinte objeto? `a <- seq(1, 10, 0.5)`?
+
+
+10\. Qual é a classe do seguinte objeto? `a <- seq(1, 10)`?
+
+
+Onze\. A aula de `class(a<-1)` é numérico, não inteiro. R por padrão é numérico e para forçar um número inteiro, você deve adicionar a letra `L`. Confirme se a classe de `1L` é inteiro.
+
+
+12\. Defina o seguinte vetor:
+
+```{r}
+x <- c("1", "3", "5")
+```
+
+e forçá-lo a obter números inteiros.
+
+
+
+
+## _Ordenação_
+
+Agora que dominamos alguns conhecimentos básicos de R, vamos tentar obter algumas dicas sobre a segurança de diferentes estados no contexto de matança de armas.
+
+### `sort`
+
+Digamos que queremos classificar os estados do mais baixo para o mais alto, com base no assassinato de armas. A função `sort` classifica um vetor em ordem crescente. Portanto, podemos ver o maior número de assassinatos por arma, escrevendo:
+
+```{r}
+library(dslabs)
+data(murders)
+sort(murders$total)
+```
+
+No entanto, isso não nos fornece informações sobre quais estados têm o total de assassinatos. Por exemplo, não sabemos em que estado ele estava `r max(murders$total)`.
+
+### `order`
+
+A função `order` é mais apropriado para o que queremos fazer. `order` pega um vetor como entrada e retorna o vetor de índices que classificam o vetor de entrada. Isso pode ser um pouco confuso, então vamos estudar um exemplo simples. Podemos criar um vetor e ordená-lo (_sort_ em inglês):
+
+```{r}
+x <- c(31, 4, 15, 92, 65)
+sort(x)
+```
+
+Em vez de ordenar o vetor de entrada, a função `order` retorna o índice que classifica o vetor de entrada:
+
+```{r}
+index <- order(x)
+x[index]
+```
+
+Este é o mesmo resultado que retorna você `sort(x)`. Se olharmos para este índice, veremos por que ele funciona:
+```{r}
+x
+order(x)
+```
+
+A segunda entrada de `x` é o menor, então `order(x)` começa com `2`. O próximo menor é a terceira entrada, portanto, a segunda entrada é `3` e assim por diante.
+
+Como isso nos ajuda a classificar os estados por assassinato? Primeiro, lembre-se de que as entradas de vetor que você acessa com `$` eles seguem a mesma ordem que as linhas da tabela. Por exemplo, esses dois vetores que contêm os nomes dos estados e suas abreviações, respectivamente, seguem a mesma ordem:
+
+```{r}
+murders$state[1:6]
+murders$abb[1:6]
+```
+
+Isso significa que podemos classificar os nomes dos estados com base no total de assassinatos. Primeiro, obtemos o índice que ordena os vetores pelo número total de assassinatos e depois colocamos o vetor de nomes de estados em um índice:
+
+```{r}
+ind <- order(murders$total)
+murders$abb[ind]
+```
+
+De acordo com o exposto, a Califórnia teve o maior número de assassinatos.
+
+### `max` e `which.max`
+
+Se estivermos interessados apenas na entrada com o valor mais alto, podemos usar `max` para esse valor:
+
+```{r}
+max(murders$total)
+```
+
+e `which.max` para o índice de valor mais alto:
+
+```{r}
+i_max <- which.max(murders$total)
+murders$state[i_max]
+```
+
+No mínimo, podemos usar `min` e `which.min` do mesmo modo.
+
+Isso significa que a Califórnia é o estado mais perigoso? Em uma próxima seção, argumentamos que devemos considerar taxas e não totais. Antes de fazer isso, apresentamos uma última função relacionada à ordem: `rank`.
+
+### `rank`
+
+Embora não seja usado com tanta frequência `order` e `sort`, a função `rank` também está relacionado à ordem e pode ser útil.
+Para qualquer vetor, `rank` retorna um vetor com o intervalo da primeira entrada, segunda entrada etc. do vetor de entrada. Aqui está um exemplo simples:
+
+```{r}
+x <- c(31, 4, 15, 92, 65)
+rank(x)
+```
+
+Para resumir, vejamos os resultados das três funções que discutimos:
+
+```{r, echo=FALSE}
+tmp <- data.frame(original=x, sort=sort(x), order=order(x), rank=rank(x))
+if(knitr::is_html_output()){
+knitr::kable(tmp, "html") %>%
+kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
+} else{
+knitr::kable(tmp, "latex", booktabs = TRUE) %>%
+kableExtra::kable_styling(font_size = 8)
+}
+```
+
+
+### Cuidado com a reciclagem
+
+Outra fonte comum de erros inadvertidos no R é o uso de _recycling_. Vimos como os vetores são adicionados por elementos. Portanto, se os vetores não coincidirem em comprimento, é natural supor que recebemos um erro. Mas esse não é o caso. Veja o que acontece:
+
+```{r, warning=TRUE}
+x <- c(1,2,3)
+y <- c(10, 20, 30, 40, 50, 60, 70)
+x+y
+```
+Recebemos um aviso, mas não há erro. Para _output_, R reciclou os números em `x`. Veja o último dígito dos números na saída.
+
+
+## Exercícios
+
+Para esses exercícios, usaremos o conjunto de dados de assassinatos nos EUA. Certifique-se de carregá-lo antes de começar.
+
+```{r}
+library(dslabs)
+data("murders")
+```
+
+1\. Use o operador `$` para acessar dados de tamanho da população e armazená-los como objeto `pop`. Então use a função `sort` redefinir `pop` então está em ordem alfabética. Por fim, use o operador `[` para indicar o menor tamanho populacional.
+
+2\. Agora, em vez do menor tamanho populacional, encontre o índice da entrada com o menor tamanho populacional. Dica: use `order` ao invés de `sort`.
+
+3\. Podemos realizar a mesma operação que no exercício anterior usando a função `which.min`. Escreva uma linha de código que faça isso.
+
+4\. Agora sabemos o quão pequeno é o menor estado e qual linha o representa. Que estado é esse? Definir uma variável `states` para ser os nomes dos estados do _data frame_ `murders`. Digite o nome do estado com a menor população.
+
+5\. Você pode criar um _data frame_ usando a função `data.frame`. Aqui está um exemplo:
+
+
+```{r}
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro",
+"San Juan", "Toronto")
+city_temps <- data.frame(name = city, temperature = temp)
+```
+
+Use a função `rank` para determinar a faixa populacional de cada estado, do menos populoso ao mais populoso. Armazene esses intervalos em um objeto chamado `ranks`, crie um _data frame_ com o nome do estado e seu intervalo. Nomeie o _data frame_ `my_df`.
+
+6\. Repita o exercício anterior, mas desta vez solicite `my_df` para que os estados estejam na ordem de menos populosos para os mais populosos. Dica: crie um objeto `ind` que armazena os índices necessários para ordenar os valores da população. Em seguida, use o operador de suporte `[` para reordenar cada coluna no _data frame_.
+
+7\. O vetor `na_example` representa uma série de contagens. Você pode navegar rapidamente pelo objeto usando:
+
+```{r}
+data("na_example")
+str(na_example)
+```
+
+No entanto, quando calculamos a média com a função `mean`, temos um `NA`:
+
+```{r}
+mean(na_example)
+```
+
+A função `is.na` retorna um vetor lógico que nos diz quais entradas são `NA`. Atribua esse vetor lógico a um objeto chamado `ind` e determine quantas `NA` barbear `na_example`.
+
+
+8\. Agora calcule a média novamente, mas apenas para as entradas que não são `NA`. Dica: lembre-se do operador `!`.
+
+
+
+## Aritmética vetorial
+
+A Califórnia teve mais assassinatos, mas isso significa que é o estado mais perigoso? E se você tiver muito mais pessoas do que qualquer outro estado? Podemos confirmar rapidamente que a Califórnia tem a maior população:
+
+```{r}
+library(dslabs)
+data("murders")
+murders$state[which.max(murders$population)]
+```
+
+mais que `r floor(max(murders$population)/10^6)` milhões de habitantes. Portanto, é injusto comparar os totais se estivermos interessados em saber quão seguro é o estado. O que realmente devemos calcular são os assassinatos per capita. Os relatórios que descrevemos na seção motivadora usam assassinatos por 100.000 como unidade. Para calcular essa quantidade, usamos os poderosos recursos aritméticos vetoriais de R.
+
+### _Rescalar_ um vetor
+
+Em R, operações aritméticas em vetores ocorrem elemento a elemento. Como exemplo, suponha que tenhamos a altura em polegadas (_inches_ em inglês):
+
+```{r}
+inches <- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)
+```
+e queremos convertê-lo em centímetros. Observe o que acontece quando multiplicamos `inches` por 2.54:
+
+```{r}
+inches * 2.54
+```
+
+Acima, multiplicamos cada elemento por 2,54. Da mesma forma, se para cada entrada queremos calcular quantas polegadas mais altas, ou quantas menores, que 69 polegadas (a altura média para homens), podemos subtraí-la de cada entrada desta maneira:
+
+```{r}
+inches - 69
+```
+
+
+### Dois vetores
+
+Se tivermos dois vetores do mesmo comprimento e os adicionarmos em R, eles serão adicionados entrada por entrada da seguinte maneira:
+
+$$
+\begin{pmatrix}
+a\\
+b\\
+c\\
+d
+\end{pmatrix}
++
+\begin{pmatrix}
+e\\
+f\\
+g\\
+h
+\end{pmatrix}
+=
+\begin{pmatrix}
+a +e\\
+b + f\\
+c + g\\
+d + h
+\end{pmatrix}
+$$
+
+O mesmo se aplica a outras operações matemáticas, como `-`, `*` e `/`.
+
+Isso implica que, para calcular as taxas de homicídio (_murder rates_ em inglês), podemos simplesmente escrever:
+
+```{r}
+murder_rate <- murders$total/ murders$population * 100000
+```
+
+Ao fazer isso, percebemos que a Califórnia não está mais perto do topo da lista. De fato, podemos usar o que aprendemos para colocar os estados em ordem pela taxa de homicídios:
+
+```{r}
+murders$abb[order(murder_rate)]
+```
+
+
+## Exercícios
+
+1\. Criamos anteriormente este _data frame_:
+
+```{r}
+temp <- c(35, 88, 42, 84, 81, 30)
+city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro",
+"San Juan", "Toronto")
+city_temps <- data.frame(name = city, temperature = temp)
+```
+
+Recrie o _data frame_ usando o código acima, mas adicione uma linha que converta a temperatura de Fahrenheit em Celsius. A conversão é $C = \frac{5}{9} \times (F - 32)$.
+
+2\. Qual é a seguinte soma? $1+1/2^2 + 1/3^2 + \dots 1/100^2$? Dica: Graças a Euler, sabemos que você deve estar perto de $\pi^2/6$.
+
+3\. Calcule a taxa de homicídios por 100.000 para cada estado e armazene-a no objeto `murder_rate`. Em seguida, encontre a taxa média de homicídios nos EUA. EUA com função `mean`. Qual é a média?
+
+## Indexação
+
+O R fornece uma maneira poderosa e conveniente de indexar vetores. Podemos, por exemplo, criar um subconjunto de um vetor com base nas propriedades de outro vetor. Nesta seção, continuamos a trabalhar em nosso exemplo de assassinato nos EUA. EUA, que podemos carregar assim:
+
+```{r}
+library(dslabs)
+data("murders")
+```
+
+### Criar subconjuntos com lógicas
+
+Agora calculamos a taxa de homicídios usando:
+
+```{r}
+murder_rate <- murders$total/ murders$population * 100000
+```
+
+Imagine se mudar da Itália, onde, segundo uma reportagem, a taxa de homicídios é de apenas 0,71 por 100.000. Você prefere mudar para um estado com uma taxa de homicídios semelhante. Outro recurso poderoso do R é que podemos usar lógicas para indexar vetores. Se compararmos um vetor com um único número, R realiza o teste para cada entrada. Aqui está um exemplo relacionado à pergunta anterior:
+
+```{r}
+ind <- murder_rate < 0.71
+```
+
+Se, em vez disso, queremos saber se um valor é menor ou igual, podemos usar:
+
+```{r}
+ind <- murder_rate <= 0.71
+```
+
+Lembre-se de que recuperamos um vetor lógico com `TRUE` para cada entrada menor ou igual a 0,71. Para ver quais são esses estados, podemos tirar proveito do fato de que vetores podem ser indexados com lógicas.
+
+```{r}
+murders$state[ind]
+```
+
+Para contar quantos _TRUE_, a função `sum` retorna a soma das entradas de um vetor e força a conversão de vetores lógicos em números com `TRUE` codificado como 1 e `FALSE` como 0. Portanto, podemos contar os estados usando:
+
+```{r}
+sum(ind)
+```
+
+
+### Operadores lógicos
+
+Suponha que gostemos de montanhas e que desejemos mudar para um estado seguro na região oeste do país. Queremos que a taxa de homicídios seja no máximo 1. Nesse caso, queremos que duas coisas diferentes sejam verdadeiras. Aqui podemos usar o operador lógico _and_, que em R é representado por `&`. Esta operação resulta em `TRUE` somente quando ambas as lógicas são `TRUE`, isto é, certo. Para ver isso, considere este exemplo:
+
+```{r}
+TRUE & TRUE
+TRUE & FALSE
+FALSE & FALSE
+```
+
+Para o nosso exemplo, podemos formar duas lógicas:
+
+```{r}
+west <- murders$region == "West"
+safe <- murder_rate <= 1
+```
+
+e podemos usar o `&` para obter um vetor lógico que nos diz quais estados satisfazem ambas as condições:
+
+```{r}
+ind <- safe & west
+murders$state[ind]
+```
+
+### `which`
+
+Suponha que queremos ver a taxa de homicídios da Califórnia. Para esse tipo de operação, é conveniente converter vetores lógicos em índices em vez de manter vetores lógicos longos. A função `which` nos diz quais entradas para um vetor lógico são VERDADEIRAS. Então podemos escrever:
+
+```{r}
+ind <- which(murders$state == "California")
+murder_rate[ind]
+```
+
+
+### `match`
+
+Se, em vez de um único estado, queremos descobrir as taxas de assassinatos de vários estados, digamos Nova York, Flórida e Texas, podemos usar a função `match`. Essa função nos diz quais índices de um segundo vetor correspondem a cada uma das entradas de um primeiro vetor:
+
+```{r}
+ind <- match(c("New York", "Florida", "Texas"), murders$state)
+ind
+```
+
+Agora podemos ver as taxas de homicídio:
+
+```{r}
+murder_rate[ind]
+```
+
+### `%in%`
+
+
+Se, em vez de um índice, queremos que um lógico nos diga se cada elemento de um primeiro vetor está em um segundo vetor, podemos usar a função `%in%`. Vamos imaginar que você não tem certeza se Boston, Dakota e Washington são estados. Você pode descobrir assim:
+
+```{r}
+c("Boston", "Dakota", "Washington") %in% murders$state
+```
+
+Lembre-se de que usaremos `%in%` frequentemente ao longo do livro.
+
+**Avançado**: existe uma conexão entre `match` e `%in%` através `which`. Para ver isso, observe que as duas linhas a seguir produzem o mesmo índice (embora em ordem diferente):
+
+```{r}
+match(c("New York", "Florida", "Texas"), murders$state)
+which(murders$state%in%c("New York", "Florida", "Texas"))
+```
+
+## Exercícios
+
+Comece carregando o pacote e os dados.
+```{r}
+library(dslabs)
+data(murders)
+```
+
+1\. Calcule a taxa de homicídios por 100.000 para cada estado e armazene-a em um objeto chamado `murder_rate`. Em seguida, use operadores lógicos para criar um vetor lógico chamado `low` que nos diz quais entradas de `murder_rate` são menores que 1.
+
+2\. Agora use os resultados do exercício anterior e a função `which` para determinar os índices de `murder_rate` associado a valores menores que 1.
+
+3\. Use os resultados do exercício anterior para indicar os nomes dos estados com taxas de homicídio menores que 1.
+
+4\. Agora estenda o código nos Exercícios 2 e 3 para indicar os estados do nordeste com taxas de homicídios menores que 1. Dica: Use o vetor lógico predefinido `low` e o operador lógico `&`.
+
+5\. Em um exercício anterior, calculamos a taxa de homicídios de cada estado e a média desses números. Quantos estados estão abaixo da média?
+
+6\. Use a função _match_ para identificar estados com as abreviações AK, MI e IA. Dica: Comece definindo um índice das entradas em `murders$abb` que correspondem às três abreviações. Então use o operador `[` para extrair os estados.
+
+7\. Use o operador `%in%` para criar um vetor lógico que responda à pergunta: quais das seguintes são abreviações reais: MA, ME, MI, MO, MU?
+
+8\. Estenda o código usado no Exercício 7 para descobrir a única entrada que **não é** uma abreviação real. Dica: use o operador `!`, que converte `FALSE` para `TRUE` e vice-versa, e depois `which` para obter um índice.
+
+## Gráficos básicos
+
+No capítulo \@ref(ggplot2) descrevemos um pacote complementar que oferece uma abordagem poderosa para a produção de gráficos (_plots_ em inglês) em R. Em seguida, temos uma parte completa,
+&Quot;Visualização de dados", na qual oferecemos muitos exemplos. Aqui, descrevemos brevemente algumas das funções disponíveis em uma instalação básica do R.
+
+### `plot`
+
+A função `plot` pode ser usado para criar diagramas de dispersão (_scatterplots_ em inglês). Aqui está um gráfico do total de assassinatos versus população.
+
+```{r eval=FALSE}
+x <- murders$population/ 10^6
+y <- murders$total
+plot(x, y)
+```
+
+
+```{r first-plot, out.width="60%", echo=FALSE}
+rafalib::mypar()
+x <- murders$population/ 10^6
+y <- murders$total
+plot(x, y)
+```
+
+Para criar um gráfico rápido que não acessa variáveis duas vezes, podemos usar a função `with`:
+
+```{r, eval=FALSE}
+with(murders, plot(population, total))
+```
+
+A função `with` nos permite usar os nomes na coluna `murders` na função `plot`. Também funciona com qualquer _data frame_ e qualquer função.
+
+### `hist`
+
+
+```{r eval=FALSE}
+x <- with(murders, total/ population * 100000)
+hist(x)
+```
+
+```{r r-base-hist, out.width="60%",echo=FALSE}
+rafalib::mypar()
+x <- with(murders, total/ population * 100000)
+hist(x)
+```
+
+Podemos ver que há uma grande variedade de valores, com a maioria entre 2 e 3 e um caso muito extremo com uma taxa de homicídios acima de 15:
+
+```{r}
+murders$state[which.max(x)]
+```
+
+### `boxplot`
+
+Os diagramas de caixa (_boxplots_ em inglês) também serão descritos na parte "Visualização de dados" do livro. Eles fornecem um resumo mais conciso do que os histogramas, mas são mais fáceis de empilhar com outros gráficos de caixa. Por exemplo, aqui podemos usá-los para comparar diferentes regiões:
+
+```{r eval=FALSE}
+murders$rate <- with(murders, total/ population * 100000)
+boxplot(rate~region, data = murders)
+```
+
+```{r r-base-boxplot, out.width="60%", echo=FALSE}
+rafalib::mypar()
+murders$rate <- with(murders, total/ population * 100000)
+boxplot(rate~region, data = murders)
+```
+
+Podemos ver que o Sul tem taxas mais altas de assassinatos do que as outras três regiões.
+
+### `image`
+
+A função _image_ exibe os valores em uma matriz usando cores. Aqui está um exemplo rápido:
+
+```{r eval=FALSE}
+x <- matrix(1:120, 12, 10)
+image(x)
+```
+
+```{r image-first-example, fig.height=4, fig.width=4, echo=FALSE, out.width="50%"}
+rafalib::mypar()
+x <- matrix(1:120, 12, 10)
+image(x)
+```
+
+
+## Exercícios
+
+1\. Fizemos um gráfico do total de assassinatos versus população e notamos um forte relacionamento. Não é de surpreender que os estados com populações maiores tenham sofrido mais assassinatos.
+
+```{r, eval = FALSE}
+library(dslabs)
+data(murders)
+population_in_millions <- murders$population/10^6
+total_gun_murders <- murders$total
+plot(population_in_millions, total_gun_murders)
+```
+
+Lembre-se de que muitos estados têm populações inferiores a 5 milhões e estão agrupados. Podemos obter mais informações criando esse gráfico na escala logarítmica. Transformar variáveis usando transformação `log10` e depois crie um gráfico dos resultados.
+
+
+2\. Crie um histograma das populações do estado.
+
+
+3\. Gere boxplots de populações estaduais por região.
+
+
+
+

@@ -1,0 +1,619 @@
+## Probabilidade discreta
+
+Começamos explorando alguns princípios básicos relacionados aos dados categóricos. Essa parte da probabilidade é conhecida como a probabilidade discreta. Isso nos ajudará a entender a teoria das probabilidades que apresentaremos posteriormente para dados numéricos e contínuos, muito mais comuns em aplicativos de ciência de dados. Probabilidade discreta é mais útil em jogos de cartas e, portanto, nós as usamos como exemplos.
+
+### Frequência relativa
+
+Embora a palavra probabilidade seja usada na linguagem cotidiana, é difícil responder a perguntas sobre probabilidade, se não impossível, porque o conceito de "probabilidade" não está bem definido. Aqui discutimos uma definição matemática de _probability_ que nos permite dar respostas precisas a certas perguntas.
+
+Por exemplo, se eu tiver 2 bolinhas vermelhas e 3 bolinhas azuis dentro de uma urna^[https://en.wikipedia.org/wiki/Urn_problem] (muitos livros de probabilidade usam esse termo arcaico, também o fazemos) e escolha um aleatoriamente, qual é a probabilidade de escolher um vermelho? Nossa intuição nos diz que a resposta é 2/5 ou 40%. Uma definição precisa pode ser dada observando que existem cinco resultados possíveis, dos quais dois atendem à condição necessária para o evento "escolha um mármore vermelho". Dado que cada um dos cinco resultados tem a mesma probabilidade de ocorrência, concluímos que a probabilidade é de 0,4 para vermelho e 0,6 para azul.
+
+Uma maneira mais tangível de pensar sobre a probabilidade de um evento é a proporção de vezes que o evento ocorre quando repetimos o experimento um número infinito de vezes, independentemente e sob as mesmas condições.
+
+### Notação
+
+Usamos a notação $\mbox{Pr}(A)$ para denotar a probabilidade de evento acontecer $A$. Usamos o termo geral _event_ para nos referirmos a coisas que podem acontecer quando algo acontece por acaso. No exemplo anterior, o evento foi "escolha um mármore vermelho". Em uma pesquisa política na qual chamamos aleatoriamente 100 prováveis eleitores americanos, um exemplo de evento é "ligar para 48 democratas e 52 republicanos".
+
+Em aplicativos de ciência de dados, frequentemente trabalharemos com variáveis contínuas. Esses eventos costumam ser coisas como "essa pessoa tem mais de um metro e oitenta"? Nesse caso, escrevemos eventos de uma forma mais matemática: $X \geq 6$. Veremos mais desses exemplos abaixo. Aqui nos concentramos em dados categóricos.
+
+
+### Distribuições de probabilidade
+
+Se conhecermos a frequência relativa das diferentes categorias, definir uma distribuição para resultados categóricos é relativamente simples. Simplesmente atribuímos uma probabilidade a cada categoria. Nos casos que podem ser considerados bolinhas de gude em uma urna, para cada tipo de mármore, sua proporção define a distribuição.
+
+Se estivermos chamando aleatoriamente prováveis eleitores de uma população que é 44% democrata, 44% republicana, 10% indecisa e 2% Partido Verde, essas proporções definem a probabilidade de cada grupo. A distribuição de probabilidade é:
+
+
+| | | |
+|-------------------------|---|----|
+| Pr (escolha um republicano) | = | 0,44 |
+| Pr (escolha um democrata) | = | 0,44 |
+| Pr (escolha indecisa) | = | 0,10 |
+| Pr (escolha um verde) | = | 0,02 |
+
+Simulações de Monte Carlo para dados categóricos
+
+Os computadores oferecem uma maneira de realizar o experimento aleatório simples descrito acima: escolhendo um mármore aleatoriamente a partir de uma urna que contém três bolinhas azuis e duas vermelhas. Geradores de números aleatórios nos permitem imitar o processo de escolha aleatória.
+
+Um exemplo é a função `sample` em R. Demonstramos seu uso no código abaixo. Primeiro, usamos a função `rep` para gerar a urna:
+
+```{r}
+beads <- rep(c("red", "blue"), times = c(2,3))
+beads
+```
+
+e depois usamos `sample` escolher um mármore aleatoriamente:
+
+```{r}
+sample(beads, 1)
+```
+
+Essa linha de código produz um resultado aleatório. Queremos repetir esse experimento um número infinito de vezes, mas é impossível repeti-lo para sempre. No entanto, podemos repetir o experimento um número suficientemente grande de vezes para que os resultados sejam praticamente equivalentes a repeti-lo para sempre. **Este é um exemplo de simulação de _Monte Carlo_**.
+
+Muito do que estudam estatísticos matemáticos e teóricos, que não discutimos neste livro, refere-se a fornecer definições rigorosas de "virtualmente equivalente", além de estudar o quão perto um grande número de experimentos nos leva ao que acontece no limite. . Mais adiante nesta seção, oferecemos uma abordagem prática para determinar o que é "grande o suficiente".
+
+Para realizar nossa primeira simulação de Monte Carlo, usamos a função `replicate`, o que nos permite repetir a mesma tarefa várias vezes. Aqui, repetimos o evento aleatório $B =$ 10.000 vezes:
+
+```{r}
+B <- 10000
+events <- replicate(B, sample(beads, 1))
+```
+
+Agora podemos ver se nossa definição realmente concorda com essa abordagem de simulação de Monte Carlo. Podemos usar `table` para ver a distribuição:
+
+```{r}
+tab <- table(events)
+tab
+```
+
+e `prop.table` nos dá as proporções:
+
+```{r}
+prop.table(tab)
+```
+
+Os números acima são probabilidades estimadas fornecidas por uma simulação de Monte Carlo. A teoria estatística, que não discutimos aqui, nos diz que onde $B$ à medida que aumenta, as estimativas se aproximam de 3/5 = 0,6 e 2/5 = 0,4.
+
+Embora este seja um exemplo simples e pouco útil, usaremos simulações de Monte Carlo para estimar probabilidades nos casos em que é difícil calcular quantidades exatas. Antes de nos aprofundarmos em exemplos mais complexos, usaremos alguns simples para demonstrar as ferramentas de computação disponíveis em R.
+
+### Defina a semente aleatória
+
+Antes de continuar, explicaremos brevemente a seguinte linha de código importante:
+
+```{r}
+set.seed(1986)
+```
+
+Ao longo deste livro, usamos geradores de números aleatórios. Isso implica que muitos dos resultados que apresentamos podem mudar por acaso e uma versão congelada do livro pode mostrar um resultado diferente do que eles obtêm quando tentam codificar como observam no livro. Isso não é um problema, pois os resultados são aleatórios e podem mudar. No entanto, se você quiser garantir que os resultados sejam exatamente os mesmos sempre que executá-los, poderá definir a semente de geração de número aleatório R (_seed_) para um número específico. Definimos isso em 1986. Queremos evitar o uso da mesma semente todas as vezes. Uma maneira popular de escolher a semente é subtraindo o mês e o dia do ano. Por exemplo, para 20 de dezembro de 2018, lançamos a semente em 1986: $2018 - 12 - 20 = 1986$.
+
+Você pode obter mais informações sobre como corrigir a semente consultando a documentação:
+
+```{r,eval=FALSE}
+?set.seed
+```
+
+Nos exercícios, podemos pedir que você conserte a semente para garantir que seus resultados sejam exatamente o que esperamos.
+
+### Com e sem substituição
+
+A função `sample` ele tem um argumento que nos permite escolher mais de um item da urna. No entanto, por padrão, essa seleção ocorre _sem substituição_: após a seleção de uma bola de gude, ela não é colocada de volta na urna. Observe o que acontece quando pedimos para selecionar cinco bolas de gude aleatoriamente:
+
+```{r}
+sample(beads, 5)
+sample(beads, 5)
+sample(beads, 5)
+```
+
+Isso resulta em rearranjos que sempre têm três bolinhas azuis e duas vermelhas. Se pedirmos seis bolas de gude para serem selecionadas, obteremos um erro:
+
+```{r, eval=FALSE}
+sample(beads, 6)
+```
+
+`Error in sample.int(length(x), size, replace, prob) : cannot take a sample larger than the population when 'replace = FALSE'`
+
+No entanto, a função `sample` pode ser usado diretamente, sem o uso de `replicate`, para repetir o mesmo experimento, escolhendo 1 dos 5 mármores, continuamente, nas mesmas condições. Para fazer isso, amostramos _com substituição_: o mármore é devolvido à urna após a seleção.
+Nós podemos dizer `sample` eu fazer isso mudando o argumento `replace` que por padrão é `FALSE`, para `replace = TRUE`:
+
+```{r}
+events <- sample(beads, B, replace = TRUE)
+prop.table(table(events))
+```
+
+Não surpreende que obtenham resultados muito semelhantes aos obtidos anteriormente com `replicate`.
+
+## Independência
+
+Dizemos que dois eventos são independentes se o resultado de um não afeta o outro. O exemplo clássico é o lançamento de moedas. Toda vez que jogamos uma moeda, a probabilidade de ver caras é 1/2, independentemente dos resultados dos lançamentos anteriores. O mesmo acontece quando coletamos bolas de gude de uma urna de substituição. No exemplo acima, a probabilidade de vermelho é 0,40, independentemente das seleções anteriores.
+
+Muitos exemplos de eventos não independentes vêm de jogos de cartas. Quando negociamos a primeira carta, a probabilidade de obter um K é 1/13, pois há treze possibilidades: Duas, Três, $\dots$, Ten, J, Q, K e As. Mas se dermos um K como primeira carta e não a substituirmos no baralho, a probabilidade de uma segunda carta ser K é menor, porque só restam três Ks: a probabilidade é 3 de 51. Portanto, esses eventos **não são independentes**: o primeiro resultado afeta o seguinte.
+
+Para ver um caso extremo de eventos não independentes, considere nosso exemplo de escolha de cinco bolinhas aleatoriamente **sem** substituição:
+
+```{r, echo=FALSE}
+set.seed(1)
+```
+
+```{r}
+x <- sample(beads, 5)
+```
+
+Se eles tiverem que adivinhar a cor do primeiro mármore, irão prever o azul, pois o azul tem 60% de chance. Mas se mostrarmos o resultado dos últimos quatro resultados:
+
+```{r}
+x[2:5]
+```
+
+você ainda adivinharia o azul? Claro que não. Agora você sabe que a probabilidade de vermelho é 1, pois o único mármore restante é vermelho. Os eventos não são independentes, portanto as probabilidades mudam.
+
+## Probabilidades condicionais
+
+Quando os eventos não são independentes, as _probabilidades condicionais_ são úteis. Já vimos um exemplo de probabilidade condicional: calculamos a probabilidade de que uma segunda carta seja K desde que a primeira carta fosse K. Em probabilidade, usamos a seguinte notação:
+
+$$
+\mbox{Pr}(\mbox{Card 2 is a king} \mid \mbox{Card 1 is a king}) = 3/51
+$$
+
+Nós usamos o $\mid$ como uma abreviação de "dado isso" ou "condicional".
+
+Quando dois eventos, digamos $A$ e $B$, eles são independentes, temos:
+
+$$
+\mbox{Pr}(A \mid B) = \mbox{Pr}(A)
+$$
+
+Esta é a maneira matemática de dizer: o fato de que $B$ aconteceu não afeta a probabilidade de $A$ acontecer. De fato, isso pode ser considerado a definição matemática de independência.
+
+## Regras de adição e multiplicação
+
+Regra de multiplicação
+
+Se queremos saber a probabilidade de dois eventos ocorrerem, digamos $A$ e $B$, podemos usar a regra de multiplicação:
+
+$$
+\mbox{Pr}(A \mbox{ and } B) = \mbox{Pr}(A)\mbox{Pr}(B \mid A)
+$$
+Vamos usar o jogo de cartas do Blackjack como exemplo. No Blackjack, eles recebem duas cartas aleatoriamente. Depois de ver o que têm, podem pedir mais cartões. O objetivo é chegar mais perto dos 21 do que o revendedor, sem passar. Os _face cards_ valem 10 pontos e os ases valem 11 ou 1 (um escolhe).
+
+Portanto, no Blackjack, para calcular as probabilidades de conseguir um 21 recebendo um ás e depois uma carta de face, calculamos a probabilidade de a primeira carta ser um ás e multiplicamos pela probabilidade de tirar uma carta de cara ou 10, dado que o primeiro foi um ás: $1/13 \times 16/51 \approx 0.025$.
+
+A regra de multiplicação também se aplica a mais de dois eventos. Podemos usar a indução para incluir mais eventos:
+
+$$
+\mbox{Pr}(A \mbox{ and } B \mbox{ and } C) = \mbox{Pr}(A)\mbox{Pr}(B \mid A)\mbox{Pr}(C \mid A \mbox{ and } B)
+$$
+
+Regra de multiplicação sob independência
+
+Quando temos eventos independentes, a regra de multiplicação se torna mais simples:
+
+$$
+\mbox{Pr}(A \mbox{ and } B \mbox{ and } C) = \mbox{Pr}(A)\mbox{Pr}(B)\mbox{Pr}(C)
+$$
+
+Mas devemos ter muito cuidado antes de usar isso, pois assumir a independência quando ela realmente não existe pode resultar em cálculos de probabilidade muito diferentes e incorretos.
+
+Como exemplo, imagine um caso em que o suspeito seja descrito como tendo bigode e barba. O réu tem bigode e barba e a acusação traz um "especialista" que testemunha que 1/10 dos homens têm barba e 1/5 têm bigode, portanto, usando a regra da multiplicação, concluímos que apenas $1/10 \times 1/5$ ou 0,02 tem ambos.
+
+Mas para se multiplicar assim, precisamos assumir a independência! Digamos que a probabilidade condicional de um homem ter um bigode condicionado no qual ele tem barba é 0,95. Portanto, o cálculo correto da probabilidade resulta em um número muito maior: $1/10 \times 95/100 = 0.095$.
+
+A regra de multiplicação também nos fornece uma fórmula geral para calcular probabilidades condicionais:
+
+
+$$
+\mbox{Pr}(B \mid A) = \frac{\mbox{Pr}(A \mbox{ and } B)}{ \mbox{Pr}(A)}
+$$
+
+Para ilustrar como usamos essas fórmulas e conceitos na prática, usaremos vários exemplos relacionados a jogos de cartas.
+
+Regra de adição
+
+A regra de adição nos diz que:
+
+$$
+\mbox{Pr}(A \mbox{ or } B) = \mbox{Pr}(A) + \mbox{Pr}(B) - \mbox{Pr}(A \mbox{ and } B)
+$$
+
+Essa regra é intuitiva: pense em um diagrama de Venn. Se simplesmente adicionarmos as probabilidades, contaremos a interseção duas vezes, portanto, devemos subtrair uma instância.
+
+```{r venn-diagram-addition-rule, fig.height=7.5, fig.width=7.5, echo=FALSE, warning=FALSE, message=FALSE, out.width="35%"}
+library(VennDiagram)
+rafalib::mypar()
+grid.newpage()
+tmp <- draw.pairwise.venn(22, 20, 11, category = c("A", "B"),
+lty = rep("blank", 2),
+fill = c("light blue", "pink"),
+alpha = rep(0.5, 2),
+cat.dist = rep(0.025, 2), cex=0, cat.cex = rep(2.5,2))
+```
+
+## Combinações e permutações
+
+Em nosso primeiro exemplo, imaginamos uma urna com cinco bolinhas de gude. Lembre-se de que, para calcular a distribuição de probabilidade de um empate, simplesmente listamos todas as probabilidades. Havia cinco e, portanto, para cada evento, contamos quantas dessas probabilidades estavam associadas ao evento. A probabilidade de escolher um mármore azul é de 3/5, devido aos cinco resultados possíveis, três eram azuis.
+
+Para casos mais complicados, os cálculos não são tão simples. Por exemplo, qual é a probabilidade de que, se eu escolher cinco cartas sem substituição, receberei todas as cartas do mesmo naipe (_suit_ em inglês), conhecidas como "flush" no poker? Em um curso de probabilidade discreta, você aprende a teoria de como fazer esses cálculos. Aqui, focamos em como usar o código R para calcular as respostas.
+
+Primeiro, vamos construir um baralho de cartas. Para isso, usaremos as funções `expand.grid` e `paste`. Nós usamos `paste` para criar cadeias juntando cadeias menores. Para fazer isso, pegamos o número e o naipe de um cartão e criamos o nome do cartão assim:
+
+```{r}
+number <- "Three"
+suit <- "Hearts"
+paste(number, suit)
+```
+
+`paste` também funciona em pares de vetores que executam a operação elemento a elemento:
+
+```{r}
+paste(letters[1:5], as.character(1:5))
+```
+
+A função `expand.grid` nos fornece todas as combinações de duas entradas de vetor. Por exemplo, se eles têm calças azuis e pretas e camisas brancas, cinza e xadrez (_plaid_), todas as suas combinações são:
+
+```{r}
+expand.grid(pants = c("blue", "black"), shirt = c("white", "grey", "plaid"))
+```
+
+Aqui está como geramos um baralho de cartas:
+```{r}
+suits <- c("Diamonds", "Clubs", "Hearts", "Spades")
+numbers <- c("Ace", "Deuce", "Three", "Four", "Five", "Six", "Seven",
+"Eight", "Nine", "Ten", "Jack", "Queen", "King")
+deck <- expand.grid(number=numbers, suit=suits)
+deck <- paste(deck$number, deck$suit)
+```
+
+Com o baralho construído, podemos verificar se a probabilidade de um K ser a primeira carta é 1/13 calculando a proporção de possíveis resultados que satisfazem nossa condição:
+
+```{r}
+kings <- paste("King", suits)
+mean(deck %in% kings)
+```
+
+Agora, que tal a probabilidade condicional de que a segunda carta seja um K desde que a primeira carta fosse um K? Anteriormente, deduzimos que, se um K já estiver fora do baralho e restarem 51 cartas, a probabilidade será de 3/51. Vamos confirmar listando todos os resultados possíveis.
+
+Para fazer isso, podemos usar a função `permutations` do pacote __gtools__. Para qualquer lista de tamanho `n`, essa função calcula todas as diferentes combinações que podemos obter quando selecionamos `r` artigos. Aqui estão todas as maneiras pelas quais podemos escolher dois números de uma lista que consiste em `1,2,3`:
+
+```{r, message=FALSE, warning=FALSE}
+library(gtools)
+permutations(3, 2)
+```
+
+Observe que a ordem é importante aqui: 3.1 é diferente de 1.3. Além disso, observe que (1,1), (2,2) e (3,3) não aparecem porque, quando escolhemos um número, ele não pode aparecer novamente.
+
+Opcionalmente, podemos adicionar um vetor. Se desejar ver cinco números de telefone aleatórios (sete dígitos) de todos os números de telefone possíveis (sem repetição), você pode escrever:
+
+```{r}
+all_phone_numbers <- permutations(10, 7, v = 0:9)
+n <- nrow(all_phone_numbers)
+index <- sample(n, 5)
+all_phone_numbers[index,]
+```
+
+Em vez de usar os números de 1 a 10, o padrão, R usa o que fornecemos através `v`: os dígitos de 0 a 9.
+
+Para calcular todas as maneiras possíveis, podemos escolher duas cartas quando a ordem importa, escrevemos:
+```{r}
+hands <- permutations(52, 2, v = deck)
+```
+
+Esta é uma matriz com duas colunas e `r nrow(hands)` linhas. Com uma matriz, podemos obter a primeira e a segunda letras assim:
+
+```{r}
+first_card <- hands[,1]
+second_card <- hands[,2]
+```
+
+Agora, os casos para os quais a primeira letra é um K podem ser calculados assim:
+
+```{r}
+kings <- paste("King", suits)
+sum(first_card %in% kings)
+```
+
+Para obter a probabilidade condicional, calculamos qual fração deles tem um K como a segunda letra:
+
+```{r}
+sum(first_card%in%kings & second_card%in%kings)/ sum(first_card%in%kings)
+```
+
+que é exatamente 3/51, como já deduzimos. Observe que o código acima é equivalente a:
+
+```{r}
+mean(first_card%in%kings & second_card%in%kings)/ mean(first_card%in%kings)
+```
+
+o que você usa `mean` ao invés de `sum` e é uma versão R de:
+
+$$
+\frac{\mbox{Pr}(A \mbox{ and } B)}{ \mbox{Pr}(A)}
+$$
+
+
+E se a ordem não importar? Por exemplo, no Blackjack, se você receber um Ás e uma carta de face como primeira mão, ela será chamada _Natural 21_ e você ganhará automaticamente. Se quiséssemos calcular a probabilidade de isso acontecer, listaríamos as _combinações_, não as permutações, pois a ordem não importa.
+
+```{r}
+combinations(3,2)
+```
+
+Na segunda linha, o resultado não inclui (2.1) porque (1.2) já foi listado. O mesmo se aplica a (3.1) e (3.2).
+
+Portanto, para calcular a probabilidade de um _Natural 21_, podemos fazer o seguinte:
+
+```{r}
+aces <- paste("Ace", suits)
+
+facecard <- c("King", "Queen", "Jack", "Ten")
+facecard <- expand.grid(number = facecard, suit = suits)
+facecard <- paste(facecard$number, facecard$suit)
+
+hands <- combinations(52, 2, v = deck)
+mean(hands[,1] %in% aces & hands[,2] %in% facecard)
+```
+
+Na última linha, assumimos que o ás é a primeira carta que recebemos. Sabemos disso porque, sabendo como `combination` listar as probabilidades, entendemos que você listará esse caso primeiro. Mas, com certeza, poderíamos ter produzido a mesma resposta escrevendo o seguinte:
+
+```{r}
+mean((hands[,1] %in% aces & hands[,2] %in% facecard) |
+(hands[,2] %in% aces & hands[,1] %in% facecard))
+```
+
+
+Exemplo de Monte Carlo
+
+Ao invés de usar `combinations` para deduzir a probabilidade exata de um _Natural 21_, podemos usar uma simulação de Monte Carlo para estimar essa probabilidade. Nesse caso, escolhemos duas cartas repetidamente e observamos quantos 21s temos. Nós podemos usar a função `sample` escolher duas placas sem substituições:
+
+```{r}
+hand <- sample(deck, 2)
+hand
+```
+
+E depois verifique se uma carta é um Ás e a outra uma figura ou 10. A partir de agora, incluímos 10 quando dizemos _figure card_ou_figure_. Agora precisamos verificar as duas probabilidades:
+
+```{r}
+(hands[1] %in% aces & hands[2] %in% facecard) |
+(hands[2] %in% aces & hands[1] %in% facecard)
+```
+
+Se repetirmos isso 10.000 vezes, obteremos uma aproximação muito boa da probabilidade de um _Natural 21_.
+
+Vamos começar escrevendo uma função que escolhe uma mão e retorna VERDADEIRO se obtivermos 21. A função não precisa de argumentos porque usa objetos definidos no ambiente global.
+```{r}
+blackjack <- function(){
+hand <- sample(deck, 2)
+(hand[1] %in% aces & hand[2] %in% facecard) |
+(hand[2] %in% aces & hand[1] %in% facecard)
+}
+```
+
+Aqui temos que verificar as duas probabilidades: Ás primeiro ou Ás segundo, porque não estamos usando a função `combinations`. A função retorna `TRUE` se tivermos 21 e `FALSE` de outra maneira:
+
+```{r}
+blackjack()
+```
+
+Agora podemos jogar este jogo, digamos 10.000 vezes:
+
+```{r}
+B <- 10000
+results <- replicate(B, blackjack())
+mean(results)
+```
+
+## Exemplos
+
+Nesta seção, descrevemos dois exemplos populares de probabilidade discreta: o problema de Monty Hall e o problema do aniversário. Usamos R para ajudar a ilustrar conceitos matemáticos.
+
+Problema de Monty Hall
+
+Nos anos 1970, nos EUA, houve um programa de perguntas e respostas chamado "Let&#39;s Make a Deal" e Monty Hall foi o apresentador. Em algum momento do jogo, o competidor foi convidado a escolher uma das três portas. Atrás de uma porta havia um prêmio, enquanto atrás das outras portas eles tinham uma cabra que indicava que o competidor havia perdido. Depois que o competidor escolheu uma porta, e antes de revelar se a porta continha um prêmio, Monty Hall abriu uma das outras duas portas e mostrou ao competidor que não havia prêmio atrás daquela porta. Então ele perguntou ao competidor: "Você quer trocar de porta?" O que você faria?
+
+Podemos usar a probabilidade para mostrar que, se eles mantiverem a opção do portão original, suas chances de ganhar um prêmio permanecerão 1 em 3. No entanto, se mudarem para o outro portão, suas chances de ganhar o dobro para 2 em 3! ! Isso parece contraditório. Muitas pessoas pensam incorretamente que ambas as probabilidades são de 1 em 2, uma vez que se escolhe entre duas opções. Você pode ver uma explicação matemática detalhada na Khan Academy^[https://www.khanacademy.org/math/precalculus/prob-comb/dependent-events-precalc/v/monty-hall-problem] ou leia uma na Wikipedia^[ https://en.wikipedia.org/wiki/Monty_Hall_problem]. Em seguida, usamos uma simulação de Monte Carlo para ver qual é a melhor estratégia. Observe que este código é escrito com mais detalhes do que o necessário para fins pedagógicos.
+
+Vamos começar com a estratégia de não trocar de porta:
+
+```{r}
+B <- 10000
+monty_hall <- function(strategy){
+doors <- as.character(1:3)
+prize <- sample(c("car", "goat", "goat"))
+prize_door <- doors[prize == "car"]
+my_pick <- sample(doors, 1)
+show <- sample(doors[!doors %in% c(my_pick, prize_door)],1)
+stick <- my_pick
+stick == prize_door
+switch <- doors[!doors%in%c(my_pick, show)]
+choice <- ifelse(strategy == "stick", stick, switch)
+choice == prize_door
+}
+stick <- replicate(B, monty_hall("stick"))
+mean(stick)
+switch <- replicate(B, monty_hall("switch"))
+mean(switch)
+```
+
+Enquanto escrevemos o código, notamos que as linhas que começam com `my_pick` e `show` eles não afetam a última operação lógica quando mantemos nossa escolha original. A partir disso, devemos perceber que a probabilidade é de 1 em 3, a mesma com a qual começamos. Quando mudamos, a estimativa de Monte Carlo confirma o cálculo de 2/3. Isso nos ajuda a entender melhor o problema, mostrando que estamos removendo uma porta, `show`, que definitivamente não esconde um prêmio de nossas opções. Também vemos que, a menos que acertemos na primeira escolha, você ganha: 1 - 1/3 = 2/3.
+
+### Problema de aniversário
+
+Imagine que você está em uma sala de aula com 50 pessoas. Se assumirmos que este é um grupo de 50 pessoas selecionadas aleatoriamente, qual é a probabilidade de pelo menos duas pessoas terem o mesmo aniversário? Embora seja um pouco avançado, podemos deduzir isso matematicamente. Faremos isso mais tarde, mas aqui usamos uma simulação de Monte Carlo. Por simplicidade, assumimos que ninguém nasceu em 29 de fevereiro. Isso realmente não muda muito a resposta.
+
+Primeiro, lembre-se de que aniversários podem ser representados como números entre 1 e 365, para que você possa obter uma amostra de 50 aniversários como este:
+
+```{r,echo=FALSE}
+set.seed(1)
+```
+
+```{r}
+n <- 50
+bdays <- sample(1:365, n, replace = TRUE)
+```
+
+Para verificar se neste conjunto específico de 50 pessoas, temos pelo menos dois com o mesmo aniversário, podemos usar a função `duplicated`, que retorna `TRUE` sempre que um elemento de um vetor for duplicado. Aqui está um exemplo:
+
+```{r}
+duplicated(c(1,2,3,1,4,3,5))
+```
+
+Na segunda vez que 1 e 3 aparecem, obtemos um `TRUE`. Portanto, para verificar se dois aniversários são iguais, simplesmente usamos as funções `any` e `duplicated` assim:
+
+```{r}
+any(duplicated(bdays))
+```
+
+Nesse caso, vemos o que aconteceu. Pelo menos duas pessoas tiveram o mesmo aniversário.
+
+Para estimar a probabilidade de um aniversário compartilhado no grupo, repetimos esse experimento amostrando conjuntos de 50 aniversários repetidamente:
+
+```{r birthday-problem}
+B <- 10000
+same_birthday <- function(n){
+bdays <- sample(1:365, n, replace=TRUE)
+any(duplicated(bdays))
+}
+results <- replicate(B, same_birthday(50))
+mean(results)
+```
+
+Você esperava que a probabilidade fosse tão alta?
+
+As pessoas tendem a subestimar essas probabilidades. Para ter uma idéia de por que é tão alto, pense no que acontece quando o tamanho do grupo se aproxima dos 365. Com o 365, estamos fora de dias e a probabilidade é uma.
+
+Digamos que queremos usar esse conhecimento para apostar com os amigos se duas pessoas em um grupo têm o mesmo aniversário. Com um grupo de qual tamanho as probabilidades estão acima de 50%? Mais de 75%?
+
+Vamos começar criando uma tabela de pesquisa. Podemos criar rapidamente uma função para calcular isso para qualquer tamanho de grupo:
+
+```{r}
+compute_prob <- function(n, B=10000){
+results <- replicate(B, same_birthday(n))
+mean(results)
+}
+```
+
+
+Usando a função `sapply`, podemos executar operações elemento a elemento em qualquer função:
+
+```{r}
+n <- seq(1,60)
+prob <- sapply(n, compute_prob)
+```
+
+Agora podemos representar graficamente as probabilidades estimadas de duas pessoas que têm o mesmo aniversário em um grupo de tamanho $n$:
+
+```{r birthday-problem-mc-probabilities, warning=FALSE, message=FALSE}
+library(tidyverse)
+prob <- sapply(n, compute_prob)
+qplot(n, prob)
+```
+
+Agora vamos calcular as probabilidades exatas em vez de usar simulações de Monte Carlo. Não apenas obtemos a resposta exata usando a matemática, mas os cálculos são muito mais rápidos, pois não precisamos realizar experimentos.
+
+
+Para simplificar a matemática, em vez de calcular a probabilidade de ocorrência, calcularemos a probabilidade de não ocorrer. Para isso, usamos a regra de multiplicação.
+
+Vamos começar com a primeira pessoa. A probabilidade de que a Pessoa 1 tenha um aniversário único é 1. A probabilidade de que a Pessoa 2 tenha um aniversário único, considerando que a Pessoa 1 já foi atribuída por dia, é 364/365. Então, como as duas primeiras pessoas têm aniversários únicos, a pessoa 3 tem 363 dias para escolher. Continuamos assim e descobrimos que as chances de todas as 50 pessoas terem um aniversário único são:
+
+$$
+1 \times \frac{364}{365}\times\frac{363}{365} \dots \frac{365-n + 1}{365}
+$$
+
+Podemos escrever uma função que faça isso para qualquer número:
+
+```{r birthday-problem-exact-probabilities}
+exact_prob <- function(n){
+prob_unique <- seq(365,365-n+1)/365
+1 - prod( prob_unique)
+}
+eprob <- sapply(n, exact_prob)
+qplot(n, prob) + geom_line(aes(n, eprob), col = "red")
+```
+
+Este gráfico mostra que a simulação de Monte Carlo fornece uma estimativa muito boa da probabilidade exata. Se não fosse possível calcular as probabilidades exatas, ainda poderíamos estimar com precisão as probabilidades.
+
+
+Infinito na prática
+
+A teoria descrita aqui requer repetir experimentos repetidamente para sempre. Na prática, não podemos fazer isso. Nos exemplos acima, usamos $B=10,000$ experimentos em Monte Carlo, e isso nos deu estimativas precisas. Quanto maior esse número, mais precisa será a estimativa até que a aproximação seja tão boa que seus computadores não consigam perceber a diferença. Mas em cálculos mais complexos, 10.000 podem ser insuficientes. Além disso, para alguns cálculos, 10.000 experimentos podem não ser computacionalmente viáveis. Na prática, não saberemos qual é a resposta, portanto, não saberemos se nossa estimativa de Monte Carlo é precisa. Sabemos que quanto maior é $B$, melhor será a aproximação. Mas quão grande precisamos que seja? Essa é realmente uma pergunta desafiadora e, para respondê-la com frequência, é necessário treinamento avançado em estatística teórica.
+
+Uma abordagem prática que descreveremos aqui é verificar a estabilidade da estimativa. Aqui está um exemplo do problema de aniversário para um grupo de 25 pessoas.
+
+```{r monte-carlo-convergence}
+B <- 10^seq(1, 5, len = 100)
+compute_prob <- function(B, n=25){
+same_day <- replicate(B, same_birthday(n))
+mean(same_day)
+}
+prob <- sapply(B, compute_prob)
+qplot(log10(B), prob, geom = "line")
+```
+
+Neste gráfico, podemos ver que os valores começam a se estabilizar (ou seja, eles variam menos de 0,01) em torno de 1000. Observe que a probabilidade exata, que neste caso sabemos, é `r eprob[25]`.
+
+
+
+## Exercícios
+
+
+1\. Um mármore é escolhido aleatoriamente a partir de uma caixa contendo: 3 bolinhas de ciano, 5 bolinhas de magenta e 7 bolinhas de gude amarelas. Qual é a probabilidade de o mármore ser ciano?
+
+
+2\. Qual é a probabilidade de o mármore não ser ciano?
+
+
+3\. Em vez de escolher apenas uma bola de gude, escolha duas bolas de gude. Retire o primeiro mármore sem devolvê-lo à caixa. Esta é uma amostra **sem** substituição. Qual é a probabilidade de o primeiro mármore ser ciano e o segundo mármore não ser ciano?
+
+
+4\. Agora repita o experimento, mas desta vez, depois de tirar o primeiro mármore e anotar a cor, coloque-o novamente na caixa e agite a caixa. Esta é uma amostra **com** substituição. Qual é a probabilidade de o primeiro mármore ser ciano e o segundo mármore não ser ciano?
+
+
+5\. Dois eventos $A$ e $B$ são independentes se $\mbox{Pr}(A \mbox{ and } B) = \mbox{Pr}(A) P(B)$. Em que situação a seleção é independente?
+
+para. Não substitui o artigo selecionado.
+b. Substitua o item selecionado.
+c. Nenhum.
+d. Ambos.
+
+6\. Digamos que você removeu 5 bolinhas de gude da caixa, com reposição, e todas elas foram amarelas. Qual é a probabilidade de o próximo ser amarelo?
+
+7\. Se você rolar um dado de 6 lados seis vezes, qual é a probabilidade de não ver um 6?
+
+8\. Dois times de basquete, dizem os Celtics e os Cavs, estão jogando uma série de sete jogos. Os Cavs são um time melhor e têm 60% de chance de vencer cada jogo. Qual é a probabilidade de o Celtics vencer **pelo menos** um jogo?
+
+9\. Crie uma simulação de Monte Carlo para confirmar sua resposta ao problema anterior. Usar `B <- 10000` simulações. Dica: use o seguinte código para gerar os resultados dos quatro primeiros jogos:
+
+```{r, eval=FALSE}
+celtic_wins <- sample(c(0,1), 4, replace = TRUE, prob = c(0.6, 0.4))
+```
+O Celtics deve vencer um desses 4 jogos.
+
+10\. Dois times de basquete, dizem os Cavs e Warriors, estão jogando uma série de sete jogos do campeonato. O primeiro a vencer quatro jogos, portanto, vence a série. As equipes são igualmente boas, então cada uma tem uma chance de 50 a 50 de vencer cada jogo. Se os Cavs perderem o primeiro jogo, qual é a probabilidade de ganharem a série?
+
+Onze\. Confirme os resultados da pergunta anterior com uma simulação de Monte Carlo.
+
+12\. Duas equipes $A$ e $B$, eles estão jogando uma série de sete jogos. Equipamento $A$ é melhor que equipe $B$ e tem um $p>0.5$ probabilidade de ganhar cada jogo. Dado um valor $p$, a probabilidade de o time não favorito $B$ a série win pode ser calculada com a seguinte função com base em uma simulação de Monte Carlo:
+
+```{r, eval=FALSE}
+prob_win <- function(p){
+B <- 10000
+result <- replicate(B, {
+b_win <- sample(c(1,0), 7, replace = TRUE, prob = c(1-p, p))
+sum(b_win)>=4
+})
+mean(result)
+}
+```
+
+Usar função `sapply` para calcular a probabilidade, chame-o `Pr` ganhar por `p <- seq(0.5, 0.95, 0.025)`. Em seguida, faça um gráfico do resultado.
+
+13\. Repita o exercício anterior, mas agora mantenha a probabilidade fixa em `p <- 0.75` e calcule a probabilidade de diferentes números de jogos necessários para concluir a série: ganhe 1 jogo, ganhe 2 de 3 jogos, ganhe 3 de 5 jogos, ... Especificamente, `N <- seq(1, 25, 2)`. Dica: use esta função:
+
+```{r, eval = FALSE}
+prob_win <- function(N, p=0.75){
+B <- 10000
+result <- replicate(B, {
+b_win <- sample(c(1,0), N, replace = TRUE, prob = c(1-p, p))
+sum(b_win)>=(N+1)/2
+})
+mean(result)
+}
+```
+

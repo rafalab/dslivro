@@ -1,0 +1,170 @@
+# Instalação do R e RStudio {#installing-r-rstudio}
+
+```{r, include=FALSE}
+if(knitr::is_html_output()){
+knitr::opts_chunk$set(out.width = "500px",
+out.extra='style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;"')
+} else{
+knitr::opts_chunk$set(out.width = "4in")
+}
+```
+
+As instruções abaixo incluem capturas de tela do processo de instalação em que usamos o navegador Chrome, que, embora não seja necessário, pode ser baixado e instalado gratuitamente aqui: [https://www.google.com/chrome/font> ( https://www.google.com/chrome/).
+
+## Instalando o R
+
+
+```{r, echo=FALSE}
+img_path <- "productivity/img"
+screenshots <- list.files(file.path(img_path, "windows-screenshots"))
+screenshots <- file.path(img_path, "windows-screenshots", screenshots)
+mac_screenshots <- list.files(file.path(img_path, "mac-screenshots"))
+mac_screenshots <- file.path(img_path,"mac-screenshots", mac_screenshots)
+```
+
+O RStudio é um ambiente de área de trabalho interativo, mas não é R nem inclui R quando você baixa e instala. Portanto, para usar o RStudio, primeiro precisamos instalar o R.
+
+1. Você pode fazer o download do R a partir da Rede Integral de Arquivos R (CRAN)^[https://cran.r-project.org/]. Procure CRAN no seu navegador:
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[1])
+```
+
+2. Na página CRAN, selecione a versão do seu sistema operacional: Linux, Mac OS X ou Windows.
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[2])
+```
+
+Aqui, mostramos capturas de tela para Windows, mas o processo é semelhante para as outras plataformas. Quando eles diferem, também mostraremos capturas de tela para o Mac OS X.
+
+3. Uma vez na página de download do CRAN, você terá várias opções. Você deseja instalar o subdiretório _base_. Isso instala os pacotes básicos que você precisa para começar. Mais tarde, aprenderemos como instalar outros pacotes necessários a partir do R, em vez desta página da web.
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[3])
+```
+
+4. Clique no link da versão mais recente para iniciar o download.
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[4])
+```
+
+5. Se você estiver usando o Chrome, na parte inferior do seu navegador, você verá uma guia que mostra o andamento do download. Após o download do arquivo do instalador, você pode clicar nessa guia para iniciar o processo de instalação. Outros navegadores podem ser diferentes, então você terá que descobrir onde eles armazenam os arquivos baixados e clicar neles para iniciar o processo.
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[5])
+```
+
+Se você usa o Safari em um Mac, pode acessar o download através do botão de download.
+
+```{r, echo=FALSE}
+knitr::include_graphics(mac_screenshots[14])
+```
+
+6. Agora você pode clicar em opções diferentes para concluir a instalação. Recomendamos que você selecione todas as opções padrão.
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[6])
+```
+
+Selecione o valor padrão mesmo quando você receber um aviso ameaçador.
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[7])
+```
+
+Ao selecionar o idioma, lembre-se de que será mais fácil seguir este livro se você selecionar inglês.
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[8])
+```
+
+Continue selecionando todos os valores padrão:
+
+```{r, echo=FALSE, out.width = "45%", out.extra=""}
+knitr::include_graphics(screenshots[9:12])
+```
+
+```{r, echo=FALSE, out.width = "45%", out.extra=""}
+knitr::include_graphics(screenshots[13:15])
+```
+
+No Mac, parece diferente, mas também aceita os valores padrão:
+
+```{r, echo=FALSE, out.width = "45%", out.extra=""}
+knitr::include_graphics(mac_screenshots[15:18])
+```
+```{r, echo=FALSE, out.width = "45%", out.extra=""}
+knitr::include_graphics(mac_screenshots[19:23])
+```
+
+Parabéns! Você instalou R.
+
+
+## Instalação do RStudio
+
+1. Você pode começar pesquisando o RStudio no seu navegador:
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[18])
+```
+
+2. Você deve encontrar o site do RStudio como mostrado acima. Uma vez lá, clique em _Download RStudio_.
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[19])
+```
+
+3. Isso lhe dará várias opções. Pelo que fazemos neste livro, é mais do que suficiente usar a versão desktop gratuita:
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[20])
+```
+
+4. Depois de selecionar esta opção, você será direcionado para uma página que fornece as opções do sistema operacional. Clique no link que mostra seu sistema operacional.
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[21])
+```
+
+5. Após o download do arquivo de instalação, clique no arquivo baixado para iniciar o processo de instalação:
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[22])
+```
+
+6. Recomendamos clicar em Sim em todos os padrões.
+
+```{r, echo=FALSE, out.width = "45%", out.extra=""}
+knitr::include_graphics(screenshots[23:25])
+```
+```{r, echo=FALSE, out.width = "45%", out.extra=""}
+knitr::include_graphics(screenshots[26:28])
+```
+
+No Mac, há menos cliques. Basicamente, arraste e solte o ícone do RStudio no ícone da pasta Aplicativos aqui:
+
+```{r, echo=FALSE}
+knitr::include_graphics(mac_screenshots[30])
+```
+
+Parabéns! Você instalou o RStudio. Agora você pode iniciar como em qualquer outro programa no seu computador.
+No Windows, você pode abrir o RStudio no menu _Iniciar_. Se o RStudio não aparecer, você pode procurá-lo:
+
+```{r, echo=FALSE}
+knitr::include_graphics(screenshots[29])
+```
+
+No Mac, ele estará na pasta Aplicativos:
+
+```{r, echo=FALSE, out.width = "45%", out.extra=""}
+knitr::include_graphics(mac_screenshots[31:32])
+```
+
+**Dica do Mac Pro**: Para evitar o uso do mouse para abrir o RStudio, pressione comando + barra de espaço para abrir o _Spotlight Search_ e digite RStudio nessa barra de pesquisa e pressione enter.
+
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(out.width = NULL, out.extra = NULL)
+```

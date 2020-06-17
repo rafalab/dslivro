@@ -1,0 +1,102 @@
+## Estudo de caso: vacinas e doenças infecciosas {#vaccines}
+
+As vacinas ajudaram a salvar milhões de vidas. No século 19, antes da imunização em grupo por meio de programas de vacinação, as mortes por doenças infecciosas, como varíola e poliomielite, eram comuns. No entanto, hoje os programas de vacinação se tornaram um tanto controversos, apesar de todas as evidências científicas de sua importância.
+
+A controvérsia começou com um artigo^[http://www.thelancet.com/journals/lancet/article/PIIS0140-6736 (97) 11096-0/ abstract] publicado em 1988 e liderado por Andrew Wakefield, que alegava a existência de uma ligação entre a administração da vacina contra sarampo, caxumba e rubéola e autismo e doenças intestinais.
+Apesar do grande conjunto de evidências científicas que contradizem esse achado, os relatos dos tablóides e o alarmante daqueles que acreditam em teorias da conspiração levaram partes do público a acreditar que as vacinas eram prejudiciais. Como resultado, muitos pais deixaram de vacinar seus filhos. Essa prática perigosa pode ser potencialmente desastrosa, uma vez que os Centros de Controle de Doenças dos EUA, ou CDC, estimam que as vacinas impedirão mais de 21 milhões de hospitalizações e 732.000 mortes entre crianças nascidas nos Estados Unidos. últimos 20 anos (consulte "Benefícios da imunização durante a era do programa Vacinas para crianças - Estados Unidos, 1994-2013, MMWR"^[https://www.cdc.gov/mmwr/preview/mmwrhtml/mm6316a4.htm]).
+Desde então, "The Lancet" retirou o artigo e Andrew Wakefield foi finalmente "removido do prontuário médico em maio de 2010 com uma observação indicando a falsificação fraudulenta que ele incorreu e sua licença para praticar medicina no Reino Unido revogada. "
+(Fonte: Wikipedia^[https://es.wikipedia.org/wiki/Andrew_Wakefield]). No entanto, os equívocos permanecem, em parte por causa de ativistas autoproclamados que continuam divulgando informações erradas sobre vacinas.
+
+A comunicação eficaz de dados é um forte antídoto para desinformação e medo. Anteriormente, mostramos um exemplo de um artigo do Wall Street Journal^[http://graphics.wsj.com/infectious-diseases-and-vaccines/] que mostra dados relacionados ao impacto das vacinas na luta contra doenças infecciosas. Vamos reconstruir esse exemplo abaixo.
+
+Os dados usados para esses gráficos foram coletados, organizados e distribuídos pelo Tycho^Project [http://www.tycho.pitt.edu/] e incluem contagens semanais relatadas para sete doenças de 1928 a 2011 nos cinquenta estados dos EUA. Incluímos os totais anuais no pacote __dslabs__:
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+library(RColorBrewer)
+library(dslabs)
+data(us_contagious_diseases)
+names(us_contagious_diseases)
+```
+
+Criamos um objeto temporário `dat` ele armazena apenas os dados do sarampo, inclui a taxa por 100.000, classifica os estados de acordo com o valor médio da doença e elimina o Alasca e o Havaí desde que esses dois se tornaram estados no final da década de 1950. Observe que existem uma coluna `weeks_reporting` que nos diz quantas semanas do ano foram relatados dados. Temos que ajustar esse valor ao calcular a taxa:
+
+```{r}
+the_disease <- "Measles"
+dat <- us_contagious_diseases %>%
+filter(!state%in%c("Hawaii","Alaska") & disease == the_disease) %>%
+mutate(rate = count/ population * 10000 * 52/ weeks_reporting) %>%
+mutate(state = reorder(state, rate))
+```
+
+Agora podemos mapear facilmente as taxas de doenças por ano. Aqui estão os fatos sobre o sarampo na Califórnia:
+
+```{r california-measles-time-series}
+dat %>% filter(state == "California" & !is.na(rate)) %>%
+ggplot(aes(year, rate)) +
+geom_line() +
+ylab("Cases per 10,000") +
+geom_vline(xintercept=1963, col = "blue")
+```
+
+Adicionamos uma linha vertical em 1963, já que foi quando a vacina foi introduzida^[Control, Centers for Disease; Prevenção (2014). Informações de saúde do CDC para viagens internacionais em 2014 (o livro amarelo). p. 250. ISBN 9780199948505].
+
+Agora podemos exibir dados para todos os estados em um gráfico? Temos três variáveis para incluir: ano, status e taxa. Na figura do WSJ, eles usam o eixo x para o ano, o eixo y para o estado e o tom da cor para representar as taxas. No entanto, a escala de cores que eles usam, de amarelo a azul, de verde a laranja e vermelho, pode ser melhorada.
+
+Em nosso exemplo, queremos usar uma paleta seqüencial, pois não há um centro significativo, apenas taxas baixas e altas.
+
+Usamos geometria `geom_tile` tecer a região com cores que representam as taxas de doenças. Usamos uma transformação de raiz quadrada para impedir que contagens particularmente altas dominem o gráfico. Observe que os valores ausentes são mostrados em cinza. Além disso, observe que, assim que uma doença foi praticamente erradicada, alguns estados deixaram de relatar casos completamente. É por essa razão que vemos tanto cinza depois de 1980.
+
+```{r vaccines-plot, out.width="100%", fig.height=5}
+dat %>% ggplot(aes(year, state, fill = rate)) +
+geom_tile(color = "grey50") +
+scale_x_continuous(expand=c(0,0)) +
+scale_fill_gradientn(colors = brewer.pal(9, "Reds"), trans = "sqrt") +
+geom_vline(xintercept=1963, col = "blue") +
+theme_minimal() +
+theme(panel.grid = element_blank(),
+legend.position="bottom",
+text = element_text(size = 8)) +
+ggtitle(the_disease) +
+ylab("") + xlab("")
+```
+
+Este gráfico fornece evidências esmagadoras em favor da contribuição das vacinas. No entanto, uma limitação é que ela usa cores para representar quantidade, o que, como explicado acima, dificulta o conhecimento exato de quão altos os valores são. Posição e comprimento são melhores sinais. Se estamos dispostos a perder informações de status, podemos fazer uma versão do gráfico que mostra os valores com a posição. Também podemos mostrar a média dos EUA. EUA, que calculamos assim:
+
+```{r}
+avg <- us_contagious_diseases %>%
+filter(disease==the_disease) %>% group_by(year) %>%
+summarize(us_rate = sum(count, na.rm = TRUE)/
+sum(population, na.rm = TRUE) * 10000)
+```
+
+Agora, para fazer o gráfico, simplesmente usamos a geometria `geom_line`:
+```{r time-series-vaccines-plot}
+dat %>%
+filter(!is.na(rate)) %>%
+ggplot() +
+geom_line(aes(year, rate, group = state), color = "grey50",
+show.legend = FALSE, alpha = 0.2, size = 1) +
+geom_line(mapping = aes(year, us_rate), data = avg, size = 1) +
+scale_y_continuous(trans = "sqrt", breaks = c(5, 25, 125, 300)) +
+ggtitle("Cases per 10,000 by state") +
+xlab("") + ylab("") +
+geom_text(data = data.frame(x = 1955, y = 50),
+mapping = aes(x, y, label="US average"),
+color="black") +
+geom_vline(xintercept=1963, col = "blue")
+```
+
+Em teoria, poderíamos usar cores para representar estados, que são uma variável categórica, mas é difícil escolher 50 cores diferentes.
+
+## Exercícios
+
+
+1. Reproduza o mapa da matriz que fizemos anteriormente, mas para varíola. Para este gráfico, não inclua os anos em que nenhum caso foi relatado por 10 ou mais semanas.
+
+2. Agora reproduza o gráfico de séries temporais que criamos anteriormente, mas desta vez seguindo as instruções da pergunta anterior para a varíola.
+
+3. Para o estado da Califórnia, faça um gráfico de série temporal mostrando as taxas de todas as doenças. Inclua apenas anos com relatórios de 10 ou mais semanas. Use uma cor diferente para cada doença.
+
+4. Agora faça o mesmo para as taxas dos EUA. Dica: calcule a taxa dos EUA. EUA usando `summarize`: total dividido pela população total.
+

@@ -1,0 +1,249 @@
+## Probabilidade contínua
+
+Na seção \@ref(cdf-intro) explicamos por que, resumindo uma lista de valores numéricos, como alturas, não é útil construir uma distribuição que defina uma proporção para cada resultado possível. Por exemplo, suponha que medimos cada pessoa em uma grande população, digamos em tamanho $n$, com precisão extremamente alta. Como não há duas pessoas exatamente da mesma altura, devemos atribuir a proporção $1/n$ em cada valor observado e, como conseqüência, nenhum resumo útil é obtido. Da mesma forma, ao definir distribuições de probabilidade, não é útil atribuir uma probabilidade muito pequena para cada altura.
+
+Assim como quando as distribuições são usadas para resumir dados numéricos, é muito mais prático definir uma função que opera em intervalos, em vez de valores individuais. A maneira padrão de fazer isso é usar a _Cumulated Distribution Function_, ou CDF.
+
+Descrevemos a função de distribuição cumulativa empírica, ou eCDF, na Seção \@ref(cdf-intro) como um resumo básico de uma lista de valores numéricos. Como exemplo, definimos anteriormente a distribuição de altura para estudantes adultos do sexo masculino. Aqui nós definimos o vetor $x$ para conter essas alturas:
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(dslabs)
+data(heights)
+x <- heights %>% filter(sex=="Male") %>% pull(height)
+```
+
+Definimos a função de distribuição cumulativa empírica como:
+
+```{r}
+F <- function(a) mean(x<=a)
+```
+
+isso por qualquer valor `a`, fornece a proporção de valores na lista `x` que são menores ou iguais a `a`.
+
+Observe que ainda não discutimos a probabilidade no contexto das CDFs. Vamos fazer isso perguntando o seguinte: Se eu escolher um dos alunos do sexo masculino aleatoriamente, qual é a probabilidade de ele ser mais alto que 70,5 polegadas? Como cada aluno tem a mesma probabilidade de ser escolhido, a resposta é equivalente à proporção de alunos com mais de 70,5 polegadas. Usando o CDF, obtemos uma resposta escrevendo:
+
+```{r}
+1 - F(70)
+```
+
+Uma vez definido um CDF, podemos usá-lo para calcular a probabilidade de qualquer subconjunto. Por exemplo, a probabilidade de um aluno estar entre a altura `a` e altura `b` é:
+
+```{r, eval=FALSE}
+F(b)-F(a)
+```
+
+Como podemos calcular a probabilidade de qualquer evento possível dessa maneira, a função de probabilidade cumulativa define a distribuição de probabilidade para escolher uma altura aleatória do nosso vetor de altura. `x`.
+
+
+## Distribuições teóricas contínuas
+
+Na seção \@ref(normal-distribution) apresentamos a distribuição normal como uma aproximação útil para muitas distribuições naturais, incluindo a altura. A distribuição cumulativa para a distribuição normal é definida por uma fórmula matemática que pode ser obtida em R com a função `pnorm`. Dizemos que uma quantidade aleatória é normalmente distribuída com uma média `m` e desvio padrão `s` se sua distribuição de probabilidade for definida por:
+
+```{r, eval=FALSE}
+F(a) = pnorm(a, m, s)
+```
+
+Isso é útil porque, se estamos dispostos a usar a aproximação normal para, por exemplo, altura, não precisamos de todo o conjunto de dados para responder a perguntas como: qual é a probabilidade de um aluno selecionado aleatoriamente ter mais de 70 anos polegadas? Só precisamos da altura média e do desvio padrão:
+
+```{r}
+m <- mean(x)
+s <- sd(x)
+1 - pnorm(70.5, m, s)
+```
+
+### Distribuições teóricas como aproximações
+
+A distribuição normal é derivada matematicamente: não precisamos de dados para defini-la. Para os cientistas de dados, quase tudo o que fazemos na prática envolve dados. Os dados são sempre, do ponto de vista técnico, discretos. Por exemplo, podemos considerar nossos dados de altura categóricos com cada altura específica como uma única categoria. A distribuição de probabilidade é definida pela proporção de alunos que indicam cada altura. Aqui está um gráfico dessa distribuição de probabilidade:
+
+```{r plot-of-height-frequencies, echo=FALSE}
+rafalib::mypar()
+plot(prop.table(table(x)), xlab = "a = Height in inches", ylab = "Pr(X = a)")
+```
+
+Enquanto a maioria dos estudantes arredondava suas alturas para a polegada mais próxima, outros indicavam valores com mais precisão. Um aluno indicou que sua altura era de 69,6850393700787 polegadas, o que equivale a 177 centímetros. A probabilidade atribuída a esta altura é `r 1/length(x)` ou 1 em `r length(x)`. A probabilidade de 70 polegadas é muito maior em `r mean(x==70)` mas faz sentido pensar que a probabilidade de ter exatamente 70 polegadas é diferente de 69,6850393700787? Claramente, é muito mais útil para fins de análise de dados tratar esse resultado como uma variável numérica contínua, considerando que muito poucas pessoas, ou talvez não, tenham exatamente 70 polegadas e que a razão pela qual obtemos mais valores 70 é porque as pessoas arredondam para a polegada mais próxima.
+
+Com distribuições contínuas, a probabilidade de um valor singular não é definida. Por exemplo, não faz sentido perguntar qual é a probabilidade de um valor distribuído normalmente ser 70. Em vez disso, definimos probabilidades para intervalos. Portanto, poderíamos perguntar qual é a probabilidade de alguém medir entre 69,5 e 70,5.
+
+Em casos como altura, onde os dados são arredondados, a aproximação normal é particularmente útil se estivermos trabalhando com intervalos que incluem exatamente um número redondo. Por exemplo, a distribuição normal é útil para aproximar a proporção de alunos que relatam valores de intervalo, como os três seguintes:
+
+```{r}
+mean(x <= 68.5) - mean(x <= 67.5)
+mean(x <= 69.5) - mean(x <= 68.5)
+mean(x <= 70.5) - mean(x <= 69.5)
+```
+
+Observe como chegamos perto da abordagem normal:
+
+```{r}
+pnorm(68.5, m, s) - pnorm(67.5, m, s)
+pnorm(69.5, m, s) - pnorm(68.5, m, s)
+pnorm(70.5, m, s) - pnorm(69.5, m, s)
+```
+
+No entanto, a aproximação não é tão útil para outros intervalos. Por exemplo, observe como a aproximação se divide quando tentamos estimar:
+
+```{r}
+mean(x <= 70.9) - mean(x<=70.1)
+```
+
+com:
+
+```{r}
+pnorm(70.9, m, s) - pnorm(70.1, m, s)
+```
+
+Em geral, chamamos essa situação de "discriminação". Embora a distribuição real da altura seja contínua, as alturas relatadas tendem a ser mais comuns em valores discretos, neste caso, devido ao arredondamento. Desde que saibamos lidar com essa realidade, a abordagem normal pode ser uma ferramenta muito útil.
+
+### A densidade de probabilidade
+
+Para distribuições categóricas, podemos definir a probabilidade de uma categoria. Por exemplo, um dado, vamos chamá-lo $X$, pode ser 1,2,3,4,5 ou 6. A probabilidade de 4 é definida como:
+
+$$
+\mbox{Pr}(X=4) = 1/6
+$$
+
+O CDF pode então ser facilmente definido:
+$$
+F(4) = \mbox{Pr}(X\leq 4) = \mbox{Pr}(X = 4) + \mbox{Pr}(X = 3) + \mbox{Pr}(X = 2) + \mbox{Pr}(X = 1)
+$$
+
+Embora para distribuições contínuas a probabilidade de um único valor $\mbox{Pr}(X=x)$ não definido, existe uma definição teórica que tem uma interpretação semelhante. A densidade de probabilidade em $x$ é definido como a função $f(a)$ tal que:
+
+$$
+F(a) = \mbox{Pr}(X\leq a) = \int_{-\infty}^a f(x)\, dx
+$$
+
+Para quem conhece o cálculo, lembre-se de que a integral está relacionada a uma soma: é a soma das barras com larguras próximas a 0. Se você não conhece o cálculo, pode pensar em $f(x)$ como uma curva para a qual a área sob essa curva até o valor $a$ dá a eles a probabilidade $\mbox{Pr}(X\leq a)$.
+
+Por exemplo, para usar a aproximação normal para estimar a probabilidade de alguém ter mais de 76 polegadas, usamos:
+
+
+```{r}
+1 - pnorm(76, m, s)
+```
+
+que matematicamente é a área cinza abaixo:
+
+```{r intergrals, echo=FALSE}
+dat <- tibble(x = seq(-4, 4, length=100) * s + m,
+y = dnorm(x, m, s))
+
+dat_ribbon <- filter(dat, x >= 2 * s + m)
+
+ggplot(dat, aes(x, y)) +
+geom_line() +
+geom_ribbon(aes(ymin = 0, ymax = y), data = dat_ribbon)
+```
+
+A curva que você vê é a densidade de probabilidade para a distribuição normal. Em R, obtemos isso usando a função `dnorm`.
+
+Embora possa não ser imediatamente óbvio por que é útil conhecer as densidades de probabilidade, entender esse conceito será essencial para aqueles que desejam ajustar modelos a dados para os quais não há funções predefinidas disponíveis.
+
+Simulações de Monte Carlo para variáveis contínuas
+
+R fornece funções para gerar resultados normalmente distribuídos. Especificamente, a função `rnorm` são necessários três argumentos: tamanho, média (padrão 0) e desvio padrão (padrão 1) e produz números aleatórios. Aqui está um exemplo de como podemos gerar dados que se parecem com nossas alturas:
+
+```{r}
+n <- length(x)
+m <- mean(x)
+s <- sd(x)
+simulated_heights <- rnorm(n, m, s)
+```
+
+Não é de surpreender que a distribuição pareça normal:
+
+```{r simulated-heights, echo=FALSE}
+data.frame(simulated_heights = simulated_heights) %>%
+ggplot(aes(simulated_heights)) +
+geom_histogram(color="black", binwidth = 1)
+```
+
+Essa é uma das funções mais úteis em R, pois permite gerar dados que imitam eventos naturais e responder a perguntas relacionadas ao que poderia acontecer por acaso ao executar simulações de Monte Carlo.
+
+Se, por exemplo, escolhermos 800 homens aleatoriamente, qual é a distribuição da pessoa mais alta? Quão raro é um homem de sete pés e sete pés de rodapé em um grupo de 800 homens? A seguinte simulação de Monte Carlo nos ajuda a responder a essa pergunta:
+
+```{r}
+B <- 10000
+tallest <- replicate(B, {
+simulated_data <- rnorm(800, m, s)
+max(simulated_data)
+})
+```
+
+Ter um _pés de rodapé_ é bastante raro:
+
+```{r}
+mean(tallest >= 7*12)
+```
+
+Aqui vemos a distribuição resultante:
+
+```{r simulated-tallest-height, echo=FALSE}
+data.frame(tallest = tallest) %>% ggplot(aes(tallest)) +
+geom_histogram(color="black", binwidth = 1)
+```
+
+Observe que isso não parece normal.
+
+## Distribuições contínuas
+
+Apresentamos a distribuição normal na Seção \@ref(normal-distribution) e foi usado como um exemplo acima. A distribuição normal não é a única distribuição teórica útil. Outras distribuições contínuas que podemos encontrar são t de Student (_Estudante t_ em inglês), qui-quadrado, exponencial, gama, beta e beta-binomial. R fornece funções para calcular densidade, quantis, funções de distribuição cumulativa e gerar simulações de Monte Carlo. R usa uma convenção que nos ajuda a lembrar nomes: use letras `d`, `q`, `p` e `r` na frente de uma abreviação do nome da distribuição. Já vimos as funções `dnorm`, `pnorm` e `rnorm` para a distribuição normal. A função `qnorm` nos dá os quantis. Portanto, podemos traçar uma distribuição como esta:
+
+```{r normal-density, eval=FALSE}
+x <- seq(-4, 4, length.out = 100)
+qplot(x, f, geom = "line", data = data.frame(x, f = dnorm(x)))
+```
+
+Para a distribuição t do aluno, descrita mais adiante na Seção \@ref(t-dist), a abreviação `t` é usado para funções serem `dt` para densidade, `qt` para quantis, `pt` para a função de distribuição cumulativa e `rt` para a simulação de Monte Carlo.
+
+## Exercícios
+
+1\. Suponha que a distribuição das alturas femininas seja aproximada por uma distribuição normal com uma média de 64 polegadas e um desvio padrão de 3 polegadas. Se escolhermos uma mulher aleatoriamente, qual é a probabilidade de ela ter um metro ou menos?
+
+
+2\. Suponha que a distribuição das alturas femininas seja aproximada por uma distribuição normal com uma média de 64 polegadas e um desvio padrão de 3 polegadas. Se escolhermos uma mulher aleatoriamente, qual é a probabilidade de ela ter um metro e oitenta ou mais?
+
+
+3\. Suponha que a distribuição das alturas femininas seja aproximada por uma distribuição normal com uma média de 64 polegadas e um desvio padrão de 3 polegadas. Se escolhermos uma mulher aleatoriamente, qual é a probabilidade de ela ter entre 61 e 67 polegadas?
+
+
+4\. Repita o exercício anterior, mas converta tudo em centímetros. Ou seja, multiplique cada altura, incluindo o desvio padrão, por 2,54. Qual é a resposta agora?
+
+
+5\. Observe que a resposta à pergunta não muda quando as unidades mudam. Isso faz sentido, pois a resposta à pergunta não deve ser afetada pelas unidades que usamos. De fato, se você olhar de perto, verá que 61 e 64 estão a 1 SD da média. Encontre a probabilidade de uma variável aleatória aleatória e normalmente distribuída estar dentro de 1 DP da média.
+
+
+6\. Para ver a matemática que explica por que as respostas às perguntas 3, 4 e 5 são as mesmas, suponha que você tenha uma variável aleatória média $m$ e erro padrão $s$. Suponha que você queira saber a probabilidade de que $X$ é menor ou igual a $a$. Lembre-se de que, por definição $a$ é $(a - m)/s$ desvio padrão $s$ da média $m$. A probabilidade é:
+
+$$
+\mbox{Pr}(X \leq a)
+$$
+
+Agora subtraia $\mu$ em ambos os lados e depois divida os dois lados por $\sigma$:
+
+$$
+\mbox{Pr}\left(\frac{X-m}{s} \leq \frac{a-m}{s} \right)
+$$
+
+A quantidade à esquerda é uma variável aleatória normal padrão. Tem uma média de 0 e um erro padrão de 1. Vamos chamá-lo $Z$:
+
+
+
+$$
+\mbox{Pr}\left(Z \leq \frac{a-m}{s} \right)
+$$
+
+Portanto, independentemente das unidades, a probabilidade de $X\leq a$ é igual à probabilidade de uma variável normal padrão ser menor que $(a - m)/s$. Sim `mu` é a média e `sigma` o erro padrão, qual dos seguintes códigos R fornecerá a resposta correta em cada situação?
+
+para. `mean(X<=a)`
+b. `pnorm((a - m)/s)`
+c. `pnorm((a - m)/s, m, s)`
+d. `pnorm(a)`
+
+7\. Imagine que a distribuição de machos adultos seja aproximadamente normal, com um valor esperado de 69 e um desvio padrão de 3. Qual é a altura do macho no percentil 99? Dica: use `qnorm`.
+
+
+8\. A distribuição das pontuações de QI, ou QI, é aproximadamente distribuída normalmente. A média é 100 e o desvio padrão é 15. Suponha que você queira saber a distribuição dos QIs mais altos em todas as turmas de graduação de cada distrito escolar, cada uma com 10.000 pessoas. Execute uma simulação de Monte Carlo com `B=1000` gerando 10.000 pontos de QI e mantendo os QIs mais altos. Faça um histograma.
+
+

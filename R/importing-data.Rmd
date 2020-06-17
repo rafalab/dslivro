@@ -1,0 +1,364 @@
+# Importando dados {#importing-data}
+
+```{r, echo=FALSE}
+img_path <- "R/img"
+```
+
+Temos usado conjuntos de dados já armazenados como objetos R. Os cientistas de dados raramente têm a mesma sorte e geralmente precisam importar dados para o R de um arquivo, banco de dados ou outras fontes. Atualmente, uma das maneiras mais comuns de armazenar e compartilhar dados para análise é por meio de planilhas eletrônicas. Uma planilha armazena dados em linhas e colunas. Basicamente, é uma versão de arquivo de um _data frame_. Ao salvar essa tabela em um arquivo de computador, é necessário definir como uma nova linha ou coluna termina e quando a outra começa. Por sua vez, define as células nas quais os valores individuais são armazenados.
+
+Ao criar planilhas com arquivos de texto, como aqueles criados com um editor de texto simples, uma nova linha é definida com um retorno e as colunas são separadas com um caractere especial predefinido. Os caracteres mais comuns são vírgulas ( `,`), ponto e vírgula ( `;`), space () e o _tab_ (um número predeterminado de espaços ou `\t`) Aqui está um exemplo da aparência de um arquivo separado por vírgula se o abrirmos com um editor de texto básico:
+
+
+```{r, echo=FALSE}
+knitr::include_graphics(file.path(img_path,"csv-file.png"))
+```
+
+A primeira linha contém nomes de colunas em vez de dados. Nós nos referimos a isso como um _header_ (_header_ em inglês) e, quando lemos (_read-in_) dados de uma planilha, é importante saber se o arquivo tem um cabeçalho ou não. A maioria das funções de leitura assume que existe um cabeçalho. Para descobrir se o arquivo tem um cabeçalho, verifique o arquivo antes de tentar lê-lo. Isso pode ser feito com um editor de texto ou com o RStudio. No RStudio, podemos fazer isso abrindo o arquivo no editor ou navegando até o local do arquivo, clicando duas vezes no arquivo e pressionando _View File_.
+
+No entanto, nem todos os arquivos de planilha estão no formato de texto. O Planilhas Google (_ Planilhas Google em inglês), por exemplo, é acessado com um navegador. Outro exemplo é o formato proprietário usado pelo Microsoft Excel, que não pode ser exibido com um editor de texto. Apesar disso e devido à popularidade do Microsoft Excel _software_, esse formato é amplamente utilizado.
+
+Começamos este capítulo descrevendo as diferenças entre arquivos de texto (ASCII), Unicode e binários e como isso afeta a maneira como os importamos. Em seguida, explicamos os conceitos de caminhos de arquivos e diretórios de trabalho, essenciais para entender como importar dados de maneira eficaz. Então, apresentamos os pacotes __readr__e__readxl__ e as funções disponíveis para importar planilhas para o R. Por fim, oferecemos algumas recomendações sobre como armazenar e organizar dados em arquivos. Desafios mais complexos, no entanto, como extrair dados de páginas da Web ou documentos em PDF, serão discutidos na parte "_Wrangling_ data" do livro.
+
+
+## Caminhos e diretório de trabalho
+
+A primeira etapa na importação de dados de uma planilha é localizar o arquivo que contém os dados. Embora não o recomendamos, você pode usar uma abordagem semelhante à usada para abrir arquivos no Microsoft Excel, clicando no menu "Arquivo" no RStudio, clicando em "Importar conjunto de dados" e depois clicando em pastas até encontrar o arquivo. Queremos escrever código em vez de apontar e clicar. As chaves e os conceitos que precisamos aprender como fazer isso são descritos em detalhes na parte "Ferramentas de produtividade" do livro. Aqui, fornecemos uma visão geral do básico.
+
+O principal desafio desta primeira etapa é permitir que as funções R de importação saibam onde procurar o arquivo que contém os dados. A maneira mais fácil de fazer isso é ter uma cópia do arquivo na pasta em que as funções de importação pesquisam por padrão. Depois disso, basta fornecer o nome do arquivo para a função de importação.
+
+O pacote __dslabs__ inclui uma planilha contendo os dados dos assassinatos nos EUA. EUA A localização desse arquivo não é óbvia, mas as seguintes linhas de código copiam o arquivo para a pasta que R procura por padrão. Abaixo, explicamos como essas linhas funcionam.
+
+```{r, eval=FALSE}
+filename <- "murders.csv"
+dir <- system.file("extdata", package = "dslabs")
+fullpath <- file.path(dir, filename)
+file.copy(fullpath, "murders.csv")
+```
+
+Este código não lê os dados em R, apenas copia um arquivo. Mas uma vez que o arquivo é copiado, podemos importar os dados com apenas uma linha de código. Aqui usamos a função `read_csv` do pacote __readr__, que faz parte do __tidyverse__.
+
+```{r, eval=FALSE}
+library(tidyverse)
+dat <- read_csv(filename)
+```
+
+Os dados são importados e armazenados em `dat`. O restante desta seção define alguns conceitos importantes e fornece uma visão geral de como escrevemos código para que o R possa encontrar os arquivos que queremos importar. Capítulo \@ref(unix) oferece mais detalhes sobre este tópico.
+
+### O sistema de arquivos
+
+Eles podem pensar no sistema de arquivos do seu computador (_file system_) como uma série de pastas aninhadas, cada uma contendo outras pastas e arquivos. Os cientistas de dados se referem às pastas como _diretórios_e à pasta que contém todas as outras pastas como o_root directory_. O diretório em que estamos localizados é chamado de _working directory_. Portanto, o diretório de trabalho muda à medida que você percorre as pastas - considere-o como seu local atual.
+
+
+### Caminhos relativos e completos
+
+O _path_ (_path_ em inglês) de um arquivo é uma lista de nomes de diretórios que podem ser considerados instruções em quais pastas clicar e em que ordem para localizar o arquivo. Se essas instruções forem para encontrar o arquivo no diretório raiz, vamos nos referir a elas como o caminho completo (_full path_ em inglês). Se as instruções forem para encontrar o arquivo no diretório ativo, nós os referimos como um caminho relativo (_relative path_ em inglês). Seção \@ref(filesystem) oferece mais detalhes sobre este tópico.
+
+Para ver um exemplo de caminho completo em seus sistemas, digite o seguinte:
+
+```{r, eval = FALSE}
+system.file(package = "dslabs")
+```
+
+As cadeias separadas por barras são os nomes dos diretórios. A primeira barra representa o diretório raiz e sabemos que esse é um caminho completo porque começa com uma barra. Se o primeiro nome do diretório aparecer sem uma barra, R assume que o caminho é relativo. Nós podemos usar a função `list.files` para ver exemplos de rotas relativas:
+
+```{r}
+dir <- system.file(package = "dslabs")
+list.files(path = dir)
+```
+
+Esses caminhos relativos nos fornecem a localização dos arquivos ou diretórios se iniciarmos no diretório com o caminho completo. Por exemplo, o caminho completo para o diretório `help` no exemplo acima, é: `/Library/Frameworks/R.framework/Versions/3.5/Resources/library/dslabs/help`.
+
+**Nota**: eles provavelmente não farão muito uso do recurso `system.file` no seu trabalho diário de análise de dados. Nós o apresentamos nesta seção, pois facilita a troca de planilhas, incluindo-as no pacote __dslabs__. Raramente eles terão o luxo de incluir dados nos pacotes que já instalaram. No entanto, eles geralmente precisam navegar por caminhos completos e relativos e importar dados no formato de planilha.
+
+### O diretório de trabalho
+
+Recomendamos escrever apenas caminhos relativos no seu código, pois os caminhos completos são exclusivos para seus computadores e você deseja que seu código seja portátil. Eles podem obter o caminho completo do diretório de trabalho sem gravá-lo explicitamente usando a função `getwd`:
+
+```{r, eval=FALSE}
+wd <- getwd()
+```
+
+Se você precisar alterar seu diretório de trabalho, poderá usar a função `setwd` ou eles podem alterá-lo através do RStudio, clicando em "Sessão".
+
+### Como gerar nomes de caminhos
+
+Outro exemplo de como obter um caminho completo sem escrever explicitamente foi oferecido acima quando criamos o objeto `fullpath` desta maneira:
+
+```{r}
+filename <- "murders.csv"
+dir <- system.file("extdata", package = "dslabs")
+fullpath <- file.path(dir, filename)
+```
+
+A função `system.file` fornece o caminho completo da pasta que contém todos os arquivos e diretórios relevantes para o pacote especificado pelo argumento `package`. Ao procurar diretórios em `dir`, descobrimos que `extdata` contém o arquivo que queremos:
+
+```{r}
+dir <- system.file(package = "dslabs")
+filename %in% list.files(file.path(dir, "extdata"))
+```
+
+A função `system.file` nos permite fornecer um subdiretório como o primeiro argumento, para que possamos obter o caminho completo do diretório `extdata` assim:
+
+```{r}
+dir <- system.file("extdata", package = "dslabs")
+```
+
+A função `file.path` é usado para combinar os nomes dos diretórios para produzir o caminho completo do arquivo que queremos importar.
+
+```{r}
+fullpath <- file.path(dir, filename)
+```
+
+
+### Como copiar arquivos usando caminhos
+
+A última linha de código que usamos para copiar o arquivo em nosso diretório inicial usou a função `file.copy`. Isso requer dois argumentos: o nome do arquivo a ser copiado e o nome a ser usado no novo diretório.
+
+
+```{r}
+file.copy(fullpath, "murders.csv")
+```
+
+Se um arquivo for copiado com sucesso, a função `file.copy` trazer de volta `TRUE`. Lembre-se de que estamos dando o mesmo nome ao arquivo, `murders.csv`, mas poderíamos ter dado qualquer nome a ele. Lembre-se também de que, ao não iniciar a sequência com uma barra, R assume que este é um caminho relativo e copia o arquivo no diretório de trabalho.
+
+Eles devem poder visualizar o arquivo em seu diretório de trabalho usando:
+
+```{r, eval=FALSE}
+list.files()
+```
+
+## Os pacotes readr e readxl
+
+Nesta seção, apresentamos as principais funções de importação do _tidyverse_. Nós vamos usar o arquivo `murders.csv` do pacote __dslabs__ como um exemplo. Para simplificar a ilustração, copiaremos o arquivo para nosso diretório de trabalho usando o seguinte código:
+
+```{r, eval=FALSE}
+filename <- "murders.csv"
+dir <- system.file("extdata", package = "dslabs")
+fullpath <- file.path(dir, filename)
+file.copy(fullpath, "murders.csv")
+```
+
+
+### readr
+
+O pacote __readr__ inclui funções para ler dados armazenados em planilhas. __readr__faz parte do pacote__tidyverse__, ou você pode carregá-lo diretamente assim:
+
+```{r, warning=FALSE, message=FALSE}
+library(readr)
+```
+
+
+As seguintes funções estão disponíveis para leitura de planilhas:
+
+| Função | Formato | Sufixo típico |
+|-----------|--------------------------------------------------|----------------|
+| read_table | valores separados por espaços em branco | txt
+| read_csv | valores separados por vírgula | CSV
+| read_csv2 | valores separados por ponto e vírgula | CSV
+| read_tsv | valores separados delimitados por tabulação | tsv
+| read_delim | formato de arquivo de texto geral, você deve definir delimitador | txt
+
+
+
+Embora o sufixo geralmente nos diga que tipo de arquivo é, não há garantia de que eles sempre correspondam. Podemos abrir o arquivo para dar uma olhada ou usar a função `read_lines` para ver algumas linhas:
+
+```{r}
+read_lines("murders.csv", n_max = 3)
+```
+
+Isso também mostra que existe um cabeçalho. Agora estamos prontos para ler os dados em R. A partir do sufixo .csv e do arquivo, sabemos que precisamos usar `read_csv`:
+
+```{r, message}
+dat <- read_csv(filename)
+```
+Observe que recebemos uma mensagem informando que tipos de dados foram usados para cada coluna. Observe também que `dat` é um `tibble`, não apenas um _data frame_. Isto é porque `read_csv` é um leitor (_parser_ em inglês) de _tidyverse_. Podemos confirmar que os dados foram lidos da seguinte forma:
+
+```{r, eval=FALSE}
+View(dat)
+```
+Por fim, lembre-se de que também podemos usar o caminho completo para o arquivo:
+
+```{r, eval=FALSE}
+dat <- read_csv(fullpath)
+```
+
+### readxl
+
+Eles podem carregar o pacote __readxl__ usando:
+
+```{r, eval=FALSE}
+library(readxl)
+```
+
+O pacote oferece funções para a leitura dos formatos do Microsoft Excel:
+
+| Função | Formato | Sufixo típico |
+|-----------|--------------------------------------------------|----------------|
+| read_excel | detectar automaticamente o formato | xls, xlsx |
+| read_xls | formato original | xls
+| read_xlsx | novo formato | xlsx
+
+Os formatos do Microsoft Excel permitem que você tenha mais de uma planilha em um arquivo. Estes são conhecidos como _sheets_. As funções listadas acima leem a primeira folha por padrão, mas também podemos ler as outras. A função `excel_sheets` nos fornece os nomes de todas as planilhas em um arquivo excel. Esses nomes podem ser passados para o argumento `sheet` nas três funções anteriores para ler folhas diferentes da primeira.
+
+## Exercícios
+
+
+1\. Use a função `read_csv` para ler cada um dos arquivos que o código a seguir armazena no objeto `files`:
+
+```{r, eval=FALSE}
+path <- system.file("extdata", package = "dslabs")
+files <- list.files(path)
+files
+```
+
+
+2\. Observe que o último, o arquivo `olive`, nos dá um aviso. Isso ocorre porque a primeira linha do arquivo está ausente no cabeçalho da primeira coluna.
+
+Leia a página de ajuda para `read_csv` para aprender a ler o arquivo sem ler este cabeçalho. Se você omitir o cabeçalho, não deverá receber este aviso. Salve o resultado em um objeto chamado `dat`.
+
+
+3\. Um problema com a abordagem acima é que não sabemos o que as colunas representam. Escriba:
+
+```{r, eval=FALSE}
+names(dat)
+```
+
+para confirmar que os nomes não são informativos.
+
+Use a função `readLines` para ler apenas a primeira linha (mais tarde aprenderemos como extrair valores de _output_).
+
+
+## Como baixar arquivos
+
+Outro local comum onde os dados residem é na internet. Quando esses dados estão em arquivos, podemos baixá-los e importá-los, ou mesmo lê-los diretamente da web. Por exemplo, observamos que, como o pacote __dslabs__ está no GitHub, o arquivo que baixamos com o pacote tem uma URL:
+
+```{r, echo=FALSE}
+url <-
+"https://raw.githubusercontent.com/rafalab/dslabs/master/inst/extdata/murders.csv"
+```
+
+```{r, eval=FALSE}
+url <- "https://raw.githubusercontent.com/rafalab/dslabs/master/inst/
+extdata/murders.csv"
+```
+
+O arquivo `read_csv` você pode ler esses arquivos diretamente:
+
+```{r, message = FALSE}
+dat <- read_csv(url)
+```
+
+Se você deseja ter uma cópia local do arquivo, pode usar a função `download.file`:
+
+```{r}
+download.file(url, "murders.csv")
+```
+
+Isso fará o download do arquivo e o salvará no seu sistema com o nome `murders.csv`. Você pode usar qualquer nome aqui, não necessariamente `murders.csv`. Lembre-se de que ao usar `download.file` tenha cuidado, pois **substituirá os arquivos existentes sem aviso prévio**.
+
+Duas funções que às vezes são úteis ao baixar dados da Internet são `tempdir` e `tempfile`. O primeiro cria um diretório com um nome aleatório que provavelmente é único. Igualmente, `tempfile` crie uma cadeia de caracteres, não um arquivo, que provavelmente é um nome de arquivo exclusivo. Eles podem executar um comando, como o seguinte, que exclui o arquivo temporário depois que os dados são importados:
+
+```{r, eval=FALSE}
+tmp_filename <- tempfile()
+download.file(url, tmp_filename)
+dat <- read_csv(tmp_filename)
+file.remove(tmp_filename)
+```
+
+## Funções básicas de importação R
+
+A base R também fornece funções de importação. Eles têm nomes semelhantes aos do _tidyverse_, por exemplo `read.table`, `read.csv` e `read.delim`. No entanto, existem algumas diferenças importantes. Para mostrar isso, lemos os dados com uma função base R:
+
+```{r}
+dat2 <- read.csv(filename)
+```
+
+Uma diferença importante é que os personagens se tornam fatores:
+
+```{r}
+class(dat2$abb)
+class(dat2$region)
+```
+
+Isso pode ser evitado definindo o argumento `stringsAsFactors` como `FALSE`.
+
+```{r}
+dat <- read.csv("murders.csv", stringsAsFactors = FALSE)
+class(dat$state)
+```
+
+Em nossa experiência, isso pode ser confuso, pois uma variável que foi salva como caracteres no arquivo se torna fatores, independentemente do que a variável represente. De fato, é altamente recomendável definir sempre `stringsAsFactors=FALSE` para ser sua abordagem padrão ao usar leitores de base R. Eles podem converter facilmente as colunas desejadas em fatores após a importação de dados.
+
+### `scan`
+
+Ao ler planilhas, muitas coisas podem dar errado. O arquivo pode ter um cabeçalho de várias linhas, as células podem estar ausentes ou pode usar uma codificação inesperada^[https://en.wikipedia.org/wiki/Character_encoding]. Recomendamos que você leia esta postagem sobre problemas comuns: [https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about -unicode -and-character-sets-no-desculuses/] (https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about) -unicode-and-character-sets-no-desculpas/).
+
+Com a experiência, eles aprenderão a lidar com diferentes desafios. Além disso, ajudará você a ler atentamente os arquivos de ajuda para as funções discutidas aqui. Com `scan` eles podem ler todas as células em um arquivo, como vemos aqui:
+
+```{r}
+path <- system.file("extdata", package = "dslabs")
+filename <- "murders.csv"
+x <- scan(file.path(path, filename), sep=",", what = "c")
+x[1:10]
+```
+
+Observe que o _tidyverse_ inclui `read_lines`, uma função igualmente útil.
+
+## Arquivos de texto versus arquivos binários
+
+Na ciência de dados, os arquivos geralmente podem ser classificados em duas categorias: arquivos de texto (também conhecidos como arquivos ASCII) e arquivos binários. Eles já trabalharam com arquivos de texto. Todos os seus R _scripts_ são arquivos de texto, assim como os arquivos de remarcação R usados para criar este livro. As tabelas csv que você leu também são arquivos de texto. Uma grande vantagem desses arquivos é que podemos "olhá-los" com facilidade, sem precisar comprar nenhum tipo de software especial ou seguir instruções complicadas. Qualquer editor de texto pode ser usado para navegar em um arquivo de texto, incluindo editores disponíveis gratuitamente, como RStudio, Notepad, textEdit, vi, emacs, nano e pico. Para ver isso, tente abrir um arquivo csv com a ferramenta RStudio "Abrir arquivo". Eles devem poder ver o conteúdo diretamente no editor. No entanto, se tentarem abrir, digamos, um arquivo xls, jpg ou png do Excel, não poderão ver nada imediatamente útil. Estes são arquivos binários. Os arquivos do Excel são pastas compactadas com vários arquivos de texto. Mas a principal distinção aqui é que os arquivos de texto podem ser facilmente navegados.
+
+Embora o R inclua ferramentas para ler arquivos binários amplamente utilizados, como arquivos xls, geralmente é melhor encontrar conjuntos de dados armazenados em arquivos de texto. Da mesma forma, ao compartilhar dados, é melhor disponibilizá-los como arquivos de texto, desde que o armazenamento não seja um problema (os arquivos binários são muito mais eficientes na economia de espaço em disco). Em geral, os formatos de texto facilitam a troca de dados, pois não requerem _software_ comercial para trabalhar com os dados.
+
+Extrair dados de uma planilha armazenada como um arquivo de texto é talvez a maneira mais fácil de trazer dados de um arquivo para uma sessão R. Infelizmente, as planilhas nem sempre estão disponíveis e o fato de poderem visualizar arquivos de O texto não implica necessariamente que é fácil extrair dados dele. Na parte "_Wrangling_ data" do livro, aprendemos como extrair dados de arquivos de texto mais complexos, como arquivos html.
+
+## Unicode versus ASCII
+
+Uma armadilha na ciência de dados é assumir que um arquivo é um arquivo de texto ASCII, quando na verdade é outra coisa que pode se parecer muito com um arquivo de texto ASCII: um arquivo de texto Unicode.
+
+Para entender a diferença entre eles, lembre-se de que tudo no computador precisa se tornar 0s e 1s. ASCII é um _encoding_ que define uma correspondência entre caracteres e números. O ASCII usa 7 _bits_ (0s e 1s), o que resulta em $2^7 = 128$ elementos exclusivos, suficientes para codificar todos os caracteres em um teclado em inglês. No entanto, outros idiomas, como o espanhol, usam caracteres não incluídos nesta codificação. Por exemplo, os tildes não são codificados em ASCII. Por esse motivo, foi definida uma nova codificação que usa mais de 7 _bits_: Unicode. Ao usar o Unicode, você pode escolher entre UTF-8, UTF-16 e UTF-32 abreviado de 8, 16 e 32 bits, respectivamente. O RStudio usa a codificação UTF-8 por padrão.
+
+Embora não entremos em detalhes sobre como lidar com diferentes codificações aqui, é importante que você saiba que existem codificações diferentes para que você possa diagnosticar bem um problema, se o encontrar. Uma maneira de os problemas se manifestarem é quando personagens "de aparência estranha" surgem e você não esperava. Esta discussão do StackOverflow é um exemplo: [https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell>(https://stackoverflow.com/questions/18789330/r-on- Windows-personagem-codificação-inferno).
+
+## Como organizar dados com planilhas
+
+Embora este livro se concentre quase exclusivamente na análise de
+dados, o gerenciamento de dados também é uma parte importante do
+ciência de dados. Como explicamos na introdução, não cobrimos isso
+tema. No entanto, muitas vezes analistas de dados
+eles precisam coletar dados ou trabalhar com outras pessoas que coletam dados,
+portanto, a maneira mais conveniente de armazená-los é
+planilha. Embora o preenchimento manual de uma planilha seja um
+prática que não recomendamos e preferimos que o processo
+é automatizado o máximo possível, às vezes não há outra opção. Para o
+portanto, nesta seção, oferecemos recomendações sobre como organizar
+os dados em uma planilha. Embora existam pacotes R projetados para
+lendo planilhas do Microsoft Excel, geralmente queremos evitar
+este formato. Recomendamos o _Google Sheets_ como uma ferramenta para
+_software_ grátis. Baixa
+resumimos as recomendações feitas em uma publicação de Karl Broman
+e Kara Woo^[https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989].
+Leia o artigo completo para obter detalhes mais importantes.
+
+* __Seja consistente__ - Antes de começar a inserir dados, tenha um plano. Depois de ter, seja consistente e siga-o.
+* __Escolha bons nomes para as coisas__: os nomes que você escolher para objetos, arquivos e diretórios devem ser memoráveis, fáceis de soletrar e descritivos. Esse é um equilíbrio difícil de alcançar e requer tempo e reflexão. Uma regra importante a seguir é **não use espaços**, use sublinhados `_` ou hífens `-`. Além disso, evite símbolos; é melhor usar letras e números.
+* __Insira as datas como AAAA-MM-DD__ - Para evitar confusão, recomendamos o uso do padrão global ISO 8601.
+* __Evitar células vazias__ - Preencha todas as células e use código comum para a falta de dados.
+* __Coloque apenas uma coisa em cada célula__ - É melhor adicionar colunas para armazenar informações adicionais em vez de ter mais de uma informação em uma célula.
+* __Faça um retângulo__ - A planilha deve ser um retângulo.
+* __Criar um dicionário de dados__ - Se você precisar explicar as coisas, por exemplo, quais são as colunas ou os rótulos usados para variáveis categóricas, faça isso em um arquivo separado.
+* __Não faça cálculos em arquivos de dados brutos__ - o Excel permite que você faça cálculos. Não faça parte da sua planilha. O código para os cálculos deve estar em um _script_.
+* __Não use cores ou realces como dados__ - A maioria das funções de importação não pode importar essas informações. Em vez disso, codifique essas informações como uma variável.
+* __Faça backup de suas informações__: faça backup de seus dados com freqüência.
+* __Utilize a validação de dados para evitar erros__ - Aproveite as ferramentas do seu _spreadsheet_software_ para tornar o processo o mais livre possível de erros e lesões por esforço repetitivo.
+* __Salvar dados como arquivos de texto__ - Salve os arquivos para compartilhar em formato delimitado por vírgula ou _tabs_.
+
+## Exercícios
+
+1\. Escolha uma ação que você pode executar regularmente. Por exemplo, seu peso diário ou quanto tempo leva para percorrer 8 km. Mantenha uma planilha que inclua data, hora, medida e outras variáveis informativas que considere valiosas. Faça isso por 2 semanas. Então faça um gráfico.
+
+
+```{r, message=FALSE, echo=FALSE}
+tmp <- file.remove("murders.csv")
+```
+

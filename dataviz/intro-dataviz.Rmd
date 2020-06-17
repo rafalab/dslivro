@@ -1,0 +1,177 @@
+# (PARTE) Exibição de dados {-}
+
+```{r, echo=FALSE}
+img_path <- "dataviz/img"
+```
+
+
+# Introdução à visualização de dados
+
+Raramente é útil observar os números e as cadeias de caracteres que definem um conjunto de dados. Para confirmar isso, imprima e observe a tabela de dados de assassinato dos Estados Unidos:
+
+```{r, message=FALSE, warning=FALSE}
+library(dslabs)
+data(murders)
+head(murders)
+```
+
+O que eles aprendem ao ver esta tabela? Com que rapidez eles podem determinar quais estados têm as maiores populações? Quais estados têm o menor? Qual o tamanho de um estado típico? Existe uma relação entre o tamanho da população e o total de mortes? Como as taxas de homicídio variam entre as regiões do país? Para a maioria dos cérebros humanos, é bastante difícil extrair essas informações simplesmente observando os números. Em vez disso, as respostas para todas as perguntas acima estão prontamente disponíveis examinando este gráfico:
+
+```{r ggplot-example-plot-0, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(ggthemes)
+library(ggrepel)
+
+r <- murders %>%
+summarize(pop=sum(population), tot=sum(total)) %>%
+mutate(rate = tot/pop*10^6) %>% pull(rate)
+
+murders %>% ggplot(aes(x = population/10^6, y = total, label = abb)) +
+geom_abline(intercept = log10(r), lty=2, col="darkgrey") +
+geom_point(aes(color=region), size = 3) +
+geom_text_repel() +
+scale_x_log10() +
+scale_y_log10() +
+xlab("Populations in millions (log scale)") +
+ylab("Total number of murders (log scale)") +
+ggtitle("US Gun Murders in 2010") +
+scale_color_discrete(name="Region") +
+theme_economist()
+```
+
+
+
+Isso nos lembra o ditado "uma imagem vale mais que mil palavras". A visualização de dados oferece uma maneira poderosa de comunicar descobertas com base nos dados. Em alguns casos, a visualização é tão atraente que não requer análise de acompanhamento.
+
+A crescente disponibilidade de conjuntos de dados informativos e ferramentas de software levou a uma maior dependência da visualização de dados em muitos setores, universidades e governos. Um excelente exemplo são as organizações de notícias, que estão cada vez mais adotando _data journalism_e incluindo_infographics_ eficaz como parte de seus relatórios.
+
+Um exemplo particularmente eficaz é um artigo do Wall Street Journal^[http://graphics.wsj.com/infectious-diseases-and-vaccines/?mc_cid=711ddeb86e] mostrando dados relacionados ao impacto das vacinas na luta contra a doenças infecciosas. Um dos gráficos mostra casos de sarampo por estado dos EUA. EUA ao longo dos anos com uma linha vertical indicando quando a vacina foi introduzida.
+
+```{r wsj-vaccines-example, echo=FALSE, out.width="100%", fig.height=5}
+#knitr::include_graphics(file.path(img_path,"wsj-vaccines.png"))
+data(us_contagious_diseases)
+the_disease <- "Measles"
+dat <- us_contagious_diseases %>%
+filter(!state%in%c("Hawaii","Alaska") & disease == the_disease) %>%
+mutate(rate = count/ population * 10000 * 52/ weeks_reporting) %>%
+mutate(state = reorder(state, rate))
+
+jet.colors <-
+colorRampPalette(c("#F0FFFF", "cyan", "#007FFF", "yellow", "#FFBF00", "orange", "red", "#7F0000"), bias = 2.25)
+
+dat %>% ggplot(aes(year, state, fill = rate)) +
+geom_tile(color = "white", size=0.35) +
+scale_x_continuous(expand=c(0,0)) +
+scale_fill_gradientn(colors = jet.colors(16), na.value = 'white') +
+geom_vline(xintercept=1963, col = "black") +
+theme_minimal() +
+theme(panel.grid = element_blank()) +
+coord_cartesian(clip = 'off') +
+ggtitle(the_disease) +
+ylab("") +
+xlab("") +
+theme(legend.position = "bottom", text = element_text(size = 8)) +
+annotate(geom = "text", x = 1963, y = 50.5, label = "Vaccine introduced", size = 3, hjust=0)
+```
+
+<!--(Source: [Wall Street Journal](http://graphics.wsj.com/infectious-diseases-and-vaccines/))-->
+
+Outro exemplo notável vem de um gráfico do New York Times^[http://graphics8.nytimes.com/images/2011/02/19/nyregion/19schoolsch/19schoolsch-popup.gif] que resume os resultados dos testes do Regentes da cidade de Nova York. De acordo com o artigo^[https://www.nytimes.com/2011/02/19/nyregion/19schools.html], essas pontuações são coletadas por vários motivos, inclusive para determinar se um aluno está se formando no ensino médio. Na cidade de Nova York, é necessária uma pontuação mínima de 65 para passar. A distribuição dos resultados dos testes nos obriga a notar algo um pouco problemático:
+
+```{r regents-exams-example, echo=FALSE, warning=FALSE, out.width="80%", fig.height=2.5}
+#knitr::include_graphics(file.path(img_path,"nythist.png"))
+data("nyc_regents_scores")
+nyc_regents_scores$total <- rowSums(nyc_regents_scores[,-1], na.rm=TRUE)
+
+nyc_regents_scores %>%
+filter(!is.na(score)) %>%
+ggplot(aes(score, total)) +
+annotate("rect", xmin = 65, xmax = 99, ymin = 0, ymax = 35000, alpha = .5) +
+geom_bar(stat = "identity", color = "black", fill = "#C4843C") +
+annotate("text", x = 66, y = 28000, label = "MINIMUM\nREGENTS DIPLOMA\nSCORE IS 65", hjust = 0, size = 3) +
+annotate("text", x = 0, y = 12000, label = "2010 Regents scores on\nthe five most common tests", hjust = 0, size = 3) +
+scale_x_continuous(breaks = seq(5, 95, 5), limit = c(0,99)) +
+scale_y_continuous(position = "right") +
+ggtitle("Scraping by") +
+xlab("") + ylab("Number of tests") +
+theme_minimal() +
+theme(panel.grid.major.x = element_blank(),
+panel.grid.minor.x = element_blank(),
+axis.ticks.length = unit(-0.2, "cm"),
+plot.title = element_text(face = "bold"))
+```
+
+<!--(Source: [New York Times](http://graphics8.nytimes.com/images/2011/02/19/nyregion/19schoolsch/19schoolsch-popup.gif) via Amanda Cox)-->
+
+A pontuação mais comum no teste é a nota mínima para aprovação, com muito poucas notas logo abaixo do limite. Esse resultado inesperado é consistente com o aumento da pontuação dos alunos próximo da aprovação, mas sem a obtenção do mínimo de 65.
+
+Este é um exemplo de como a visualização de dados pode levar a descobertas que de outra forma seriam perdidas se simplesmente submetêssemos os dados a uma série de ferramentas ou procedimentos de análise de dados. A visualização de dados é a ferramenta mais eficaz do que chamamos de "análise exploratória de dados", ou EDA. John W. Tukey^[https://en.wikipedia.org/wiki/John_Tukey], considerado o pai da EDA, disse uma vez:
+
+>> "O maior valor de uma imagem é quando ela nos força a perceber o que nunca esperávamos ver".
+
+Muitas das ferramentas de análise de dados mais usadas foram inicialmente desenvolvidas graças à EDA. Esta é talvez a parte mais importante da análise de dados, mas é frequentemente ignorada.
+
+A visualização de dados agora é onipresente também em organizações filantrópicas e educacionais. Nas conferências "Novas idéias sobre a pobreza"^[https://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty?language=en] e "As melhores estatísticas que você nunca viu"^[https://www.ted. Hans Rosling nos obriga a perceber o inesperado com uma série de gráficos relacionados à saúde e à economia global. Em seus vídeos, Rosling usa gráficos animados para demonstrar como o mundo está mudando e como as antigas narrativas não são mais verdadeiras.
+
+
+```{r gampnider-example-plot, echo=FALSE, warning=FALSE}
+data(gapminder)
+
+west <- c("Western Europe","Northern Europe","Southern Europe",
+"Northern America","Australia and New Zealand")
+
+gapminder <- gapminder %>%
+mutate(group = case_when(
+region %in% west ~ "The West",
+region %in% c("Eastern Asia", "South-Eastern Asia") ~ "East Asia",
+region %in% c("Caribbean", "Central America", "South America") ~ "Latin America",
+continent == "Africa" & region != "Northern Africa" ~ "Sub-Saharan Africa",
+TRUE ~ "Others"))
+gapminder <- gapminder %>%
+mutate(group = factor(group, levels = rev(c("Others", "Latin America", "East Asia","Sub-Saharan Africa", "The West"))))
+
+years <- c(1962, 2013)
+p <- filter(gapminder, year%in%years & !is.na(group) &
+!is.na(fertility) & !is.na(life_expectancy)) %>%
+mutate(population_in_millions = population/10^6) %>%
+ggplot( aes(fertility, y=life_expectancy, col = group, size = population_in_millions)) +
+geom_point(alpha = 0.8) +
+guides(size=FALSE) +
+theme(plot.title = element_blank(), legend.title = element_blank()) +
+coord_cartesian(ylim = c(30, 85)) +
+xlab("Fertility rate (births per woman)") +
+ylab("Life Expectancy") +
+geom_text(aes(x=7, y=82, label=year), cex=12, color="grey") +
+facet_grid(. ~ year)
+
+p + theme(strip.background = element_blank(),
+strip.text.x = element_blank(),
+strip.text.y = element_blank(),
+legend.position = "top")
+```
+
+Também é importante lembrar que erros, preconceitos, erros sistemáticos e outros problemas inesperados geralmente levam a dados que devem ser cuidadosamente analisados. A falha em descobrir esses problemas pode levar a análises falhas e descobertas falsas. Como exemplo, considere que os instrumentos de medição às vezes falham e que a maioria dos procedimentos de análise de dados não foi projetada para detectá-los.
+No entanto, esses procedimentos ainda lhe darão uma resposta. O fato de ser difícil, ou mesmo impossível, perceber um erro apenas nos resultados relatados torna a visualização de dados particularmente importante.
+
+Nesta parte do livro, aprenderemos os conceitos básicos de visualização de dados e análise exploratória de dados usando três exemplos motivadores. Usaremos o pacote __ggplot2__ para codificar. Para aprender o básico, usaremos um exemplo um tanto artificial: as alturas relatadas pelos alunos. Em seguida, discutiremos dois exemplos mencionados acima: 1) saúde e economia globais e 2) tendências em doenças infecciosas nos Estados Unidos.
+
+Obviamente, a visualização de dados é muito mais do que o que abordamos aqui. Aqui estão algumas referências para quem deseja saber mais:
+
+* ER Tufte (1983) A exibição visual de informações quantitativas. Imprensa gráfica.
+* ER Tufte (1990) Envisioning information. Imprensa gráfica.
+* ER Tufte (1997) Explicações visuais. Imprensa gráfica.
+* WS Cleveland (1993) Visualização de dados. Hobart Press.
+* WS Cleveland (1994) Os elementos dos dados gráficos. CRC Pressione.
+* A Gelman, C Pasarica, R Dodhia (2002) Vamos praticar o que pregamos: Transformar tabelas em gráficos. The American Statistician 56: 121-130.
+NB Robbins (2004) Criando gráficos mais eficazes. Wiley.
+* A Cairo (2013) A arte funcional: Uma introdução à informação gráfica e visualização. Novos Cavaleiros.
+* N Yau (2013) Pontos de dados: Visualização que significa alguma coisa. Wiley.
+
+Por fim, não discutiremos gráficos interativos, um tópico muito avançado para este livro. Abaixo estão alguns recursos úteis para aqueles interessados em aprender mais sobre isso:
+
+- [https://shiny.rstudio.com] (https://shiny.rstudio.com/)
+- [https://d3js.org] (https://d3js.org/)
+
+
+
+

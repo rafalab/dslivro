@@ -1,0 +1,953 @@
+# Como visualizar distribuições de dados {#distributions}
+
+Os dados numéricos são frequentemente resumidos com o valor _average_. Por exemplo, a qualidade de uma escola secundária às vezes é resumida em um único número: a pontuação média em um teste padronizado. Ocasionalmente, um segundo número é incluído: o desvio padrão. Por exemplo, eles podem ler um relatório de que as pontuações foram 680 mais ou menos 50 (o desvio padrão). O relatório resumiu um vetor completo de pontuações com apenas dois números. Isso é apropriado? Existe alguma informação importante que não estamos considerando ao exibir este resumo em vez da lista completa?
+
+Nosso primeiro componente básico de visualização de dados está aprendendo a resumir listas de fatores ou vetores de números. Geralmente, a melhor maneira de compartilhar ou explorar este resumo é através da visualização de dados. O resumo estatístico mais básico de uma lista de objetos ou números é sua distribuição. Depois que um vetor é resumido como uma distribuição, existem várias técnicas de visualização de dados para transmitir efetivamente essas informações.
+
+Neste capítulo, discutiremos primeiro as propriedades de uma variedade de distribuições e como visualizá-las usando um exemplo motivador de altura dos alunos. Então na Seção \@ref(other-geometries), discutiremos as geometrias __ggplot2__ para essas visualizações.
+
+
+## Tipos de variáveis
+
+Trabalharemos com dois tipos de variáveis: categórica e numérica. Cada um pode ser dividido em dois outros grupos: as variáveis categóricas podem ser ordinais ou não, enquanto as numéricas podem ser discretas ou contínuas.
+
+Quando cada entrada em um vetor vem de um pequeno número de grupos, nos referimos aos dados como _dados categóricos_. Dois exemplos simples são sexo (masculino ou feminino) e regiões (nordeste, sul, norte central, oeste). Alguns dados categóricos podem ser solicitados, mesmo que não sejam números, por exemplo, quão picante é um alimento (pouco, médio, muito). Nos livros de estatística, os dados categóricos ordenados são chamados _ordinal_ data.
+
+Exemplos de dados numéricos são tamanho da população, taxas de homicídios e altura. Alguns dados numéricos podem ser tratados como ordenadas categóricas. Podemos dividir ainda mais os dados numéricos em contínuos e discretos. Variáveis contínuas são aquelas que podem assumir qualquer valor, como alturas, se forem medidas com precisão suficiente. Por exemplo, um par de botões de punho pode medir 68,12 e 68,11 polegadas, respectivamente. As contagens, como o tamanho da população, são discretas porque precisam ser números redondos.
+
+Observe que dados numéricos discretos podem ser considerados ordinais. Embora isso seja tecnicamente verdadeiro, geralmente reservamos o termo dados ordinais para variáveis que pertencem a um pequeno número de grupos diferentes, e cada grupo tem muitos membros. Por outro lado, quando temos muitos grupos com poucos casos em cada grupo, geralmente nos referimos a eles como variáveis numéricas discretas. Assim, por exemplo, o número de maços de cigarro que uma pessoa fuma por dia, arredondado para o maço mais próximo, seria considerado ordinal, enquanto o número real de cigarros seria considerado uma variável numérica. No entanto, existem exemplos que podem ser considerados numéricos e ordinais quando se trata de visualizar dados.
+
+## Estudo de caso: descrevendo a altura dos alunos
+
+Aqui, apresentamos um novo problema motivador. É artificial, mas nos ajudará a ilustrar os conceitos necessários para entender as distribuições.
+
+Imagine que precisamos descrever as alturas de nossos colegas de classe para ET, um alienígena que nunca viu seres humanos. Como primeiro passo, precisamos coletar dados. Para fazer isso, pedimos aos alunos que indiquem suas alturas em polegadas. Pedimos que você nos forneça informações sobre o seu sexo biológico, porque sabemos que existem duas distribuições diferentes por sexo. Coletamos os dados e salvamos no conjunto de dados `heights`:
+
+```{r load-heights, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(dslabs)
+data(heights)
+```
+
+Uma maneira de passar as alturas para o ET é simplesmente enviar a ele esta lista de `r prettyNum(nrow(heights), big.mark=",")` alturas. No entanto, existem maneiras muito mais eficazes de transmitir informações e, para isso, nos ajudarão a entender o conceito de distribuição. Para simplificar a explicação, primeiro nos concentramos nas alturas masculinas. Examinamos os dados de altura feminina na Seção \@ref(student-height-cont).
+
+## A função de distribuição
+
+Acontece que, em alguns casos, o desvio médio e padrão são praticamente tudo o que precisamos para entender os dados. Aprenderemos técnicas de visualização de dados que nos ajudarão a determinar quando esse resumo de dois números é apropriado. Essas mesmas técnicas servirão como uma alternativa para quando dois números não forem suficientes.
+
+O resumo estatístico mais básico de uma lista de objetos ou números é sua distribuição. A maneira mais simples de pensar em uma distribuição é como uma descrição compacta de uma lista com muitas entradas. Este conceito não deve ser novo para os leitores deste livro. Por exemplo, com dados categóricos, a distribuição simplesmente descreve a proporção de cada categoria exclusiva. O sexo representado no conjunto de dados de altura é:
+
+```{r echo = FALSE}
+prop.table(table(heights$sex))
+```
+
+Essa _frequency table_ de duas categorias é a forma mais simples de uma distribuição. Nós realmente não precisamos visualizá-lo, pois um número descreve tudo o que precisamos saber: `r round(mean(heights$sex=="Female")*100)`% são mulheres e o restante são homens. Quando há mais categorias, um gráfico de barras simples descreve a distribuição. Aqui está um exemplo com as regiões estaduais dos EUA. EUA:
+
+```{r state-region-distribution, echo=FALSE}
+murders %>% group_by(region) %>%
+summarize(n = n()) %>%
+mutate(Proportion = n/sum(n),
+region = reorder(region, Proportion)) %>%
+ggplot(aes(x=region, y=Proportion, fill=region)) +
+geom_bar(stat = "identity", show.legend = FALSE) +
+xlab("")
+```
+
+Este gráfico simplesmente mostra quatro números, um para cada categoria. Geralmente usamos gráficos de barras quando temos poucos números. Embora esse gráfico em particular não forneça muito mais informações do que uma tabela de frequência, ele é um excelente exemplo de como convertemos um vetor em um gráfico que resume sucintamente todas as informações no vetor. Quando os dados são numéricos, a tarefa de exibir distribuições é mais desafiadora.
+
+## Funções de distribuição cumulativa {#cdf-intro}
+
+Dados numéricos que não são categóricos também têm distribuições. Em geral, quando os dados não são categóricos, a indicação da frequência de cada entrada não é um resumo efetivo, pois a maioria das entradas é exclusiva. Em nosso estudo de caso, por exemplo, enquanto vários estudantes relataram uma altura de 68 polegadas, um estudante relatou uma altura de `68.503937007874` polegadas e outra uma altura `68.8976377952756` polegadas. Supomos que eles tenham convertido suas alturas em 174 e 175 centímetros, respectivamente.
+
+Os livros de estatística nos ensinam que uma maneira mais útil de definir uma distribuição numérica de dados é definir uma função que indica a proporção dos dados abaixo $a$ para todos os valores possíveis de $a$. Essa função é chamada de função de distribuição cumulativa, ou CDF, para abreviar. Nas estatísticas, a seguinte notação é usada:
+
+$$ F(a) = \mbox{Pr}(x \leq a) $$
+
+Aqui vemos um gráfico de $F$ para dados de altura masculina:
+
+```{r ecdf, echo=FALSE}
+ds_theme_set()
+heights %>% filter(sex=="Male") %>% ggplot(aes(height)) +
+stat_ecdf() +
+ylab("F(a)") + xlab("a")
+```
+
+Semelhante ao que a tabela de frequência faz para dados categóricos, o CDF define a distribuição de dados numéricos. No gráfico, podemos ver que `r round (ecdf (heights $height[heights$ sex == "Masculino"]) (66) * 100) `% dos valores são menores que 65, pois $F(66)=$ `r ecdf (alturas $height[heights$ sexo == "Masculino"]) (66) `, o que ` r rodada (ecdf (alturas $height[heights$ sex == "Masculino"]) (72) * 100) `% dos valores são menores que 72, pois $F(72)=$ `r ecdf (alturas $height[heights$ sexo == "homem"]) (72) `
+e assim. De fato, podemos relatar a proporção de valores entre duas alturas, digamos $a$ e $b$, ao computar $F(b) - F(a)$. Isso significa que, se enviarmos esse diagrama para o ET, ele terá todas as informações necessárias para reconstruir a lista completa. Parafraseando a expressão "uma imagem vale mais que mil palavras", neste caso, uma imagem é tão informativa quanto `r sum(heights$sex=="Male")` números.
+
+Uma observação final: como os CDFs podem ser matematicamente definidos, a palavra _empirical_ é adicionada para distinguir quando os dados são usados. Portanto, usamos o termo CDF empírico ou eCDF para abreviar.
+
+
+## Histogramas
+
+Embora o conceito de CDF seja amplamente discutido nos livros estatísticos, o gráfico não é muito popular na prática. O principal motivo é que ele não transmite facilmente características de interesse, como: Em que valor a distribuição se concentra? A distribuição é simétrica? Quais intervalos contêm 95% dos valores? Os histogramas são preferidos porque facilitam muito a resposta a essas perguntas. Os histogramas sacrificam apenas um pouco de informação para produzir gráficos muito mais fáceis de interpretar.
+
+A maneira mais fácil de criar um histograma é dividir o _span_dos nossos dados em_bins_não sobrepostos_ do mesmo tamanho. Então, para cada compartimento, contamos o número de valores que estão nesse intervalo. O histograma representa graficamente essas contagens como barras com a base da barra definida pelos intervalos. Aqui está o histograma para os dados de altura que dividem o intervalo de valores em intervalos de uma polegada: $[49.5, 50.5], [51.5,52.5],(53.5,54.5],...,(82.5,83.5]$
+
+```{r height-histogram, echo=FALSE}
+heights %>%
+filter(sex=="Male") %>%
+ggplot(aes(height)) +
+geom_histogram(binwidth = 1, color = "black")
+```
+
+Como você pode ver na figura acima, um histograma é semelhante a um gráfico de barras, mas difere no fato de o eixo x ser numérico, não categórico.
+
+Se enviarmos esse diagrama para o ET, ele aprenderá imediatamente alguns detalhes importantes sobre nossos dados. Primeiro, o intervalo de dados é de 50 a 84, com a maioria (acima de 95%) entre 63 e 75 polegadas. Além disso, as alturas são quase simétricas em torno de 69 polegadas. Finalmente, adicionando contagens, o ET pode obter uma aproximação muito boa da proporção dos dados em qualquer intervalo. Portanto, o histograma acima não é apenas fácil de interpretar, mas também oferece quase todas as informações contidas na lista bruta de `r sum(heights$sex=="Male")` alturas com aproximadamente 30 contagens, uma para cada compartimento.
+
+Que informação perdemos? Lembre-se de que todos os valores em cada intervalo são tratados da mesma maneira ao calcular as alturas dos compartimentos. Por exemplo, o histograma não distingue entre 64, 64,1 e 64,2 polegadas. Como essas diferenças são quase imperceptíveis aos olhos, as implicações práticas são desprezíveis e conseguimos resumir os dados em apenas 23 números.
+
+Discutimos como codificar histogramas na Seção \@ref(other-geometries).
+
+## Densidade suave
+
+Os gráficos de densidade suave são esteticamente mais atraentes que os histogramas. Abaixo, vemos um gráfico de densidade suave para nossos dados de altura:
+
+```{r example-of-smoothed-density, echo=FALSE}
+heights %>%
+filter(sex=="Male") %>%
+ggplot(aes(height)) +
+geom_density(alpha = .2, fill= "#00BFC4", color = 0) +
+geom_line(stat='density')
+```
+
+Neste gráfico, não temos mais arestas vivas nos limites do intervalo e muitos dos picos locais foram removidos. Além disso, a escala do eixo y mudou de contagens para _densidade_.
+
+Para entender densidades suaves, precisamos entender _estimations_, um tópico que não abordamos até mais tarde. No entanto, oferecemos uma explicação heurística para ajudá-lo a entender o básico, para que você possa usar esta útil ferramenta de visualização de dados.
+
+O principal novo conceito que você precisa entender é que assumimos que nossa lista de valores observados é um subconjunto de uma lista muito maior de valores não observados. No caso de alturas, você pode imaginar que nossa lista de `r sum(heights$sex=="Male")` os estudantes do sexo masculino vêm de uma lista hipotética que contém todas as alturas de todos os estudantes do mundo todo, todos medidos com grande precisão. Digamos que existem 1.000.000 dessas medidas. Essa lista de valores tem uma distribuição, como qualquer lista de valores, e essa distribuição considerável é realmente o que queremos transmitir ao ET, pois é muito mais geral. Infelizmente, não podemos ver essa lista enorme.
+
+No entanto, podemos fazer uma suposição que pode nos ajudar a aproximar isso. Se tivéssemos 1.000.000 valores, medidos com muita precisão, poderíamos fazer um histograma com compartimentos muito, muito pequenos. A suposição é que, se mostrarmos isso, a altura dos compartimentos consecutivos será semelhante. Aqui está o que entendemos por macio: não temos grandes saltos nas alturas de compartimentos consecutivos. Aqui está um histograma hipotético com compartimentos de tamanho 1:
+
+
+```{r simulated-data-histogram-1, echo=FALSE}
+set.seed(1988)
+x <- data.frame(height = c(rnorm(1000000,69,3), rnorm(1000000,65,3)))
+x %>% ggplot(aes(height)) + geom_histogram(binwidth = 1, color = "black")
+```
+
+Quanto menores os compartimentos, mais suave o histograma se torna. Aqui estão os histogramas com larguras de compartimento de 1, 0,5 e 0,1:
+
+```{r simulated-data-histogram-2, fig.width=9, fig.height=3, out.width = "100%",echo=FALSE, message=FALSE}
+p1 <- x %>% ggplot(aes(height)) + geom_histogram(binwidth = 1, color = "black") + ggtitle("binwidth=1")
+p2 <- x %>% ggplot(aes(height)) + geom_histogram(binwidth = 0.5, color="black") + ggtitle("binwidth=0.5")
+p3 <- x %>% ggplot(aes(height)) + geom_histogram(binwidth = 0.1) + ggtitle("binwidth=0.1")
+library(gridExtra)
+grid.arrange(p1, p2, p3, nrow = 1)
+```
+
+A densidade suave é basicamente a curva que atravessa a parte superior das barras do histograma quando os compartimentos são muito, muito pequenos. Para que a curva não dependa do tamanho hipotético da lista hipotética, calculamos a curva usando frequências em vez de contagens:
+
+```{r, simulated-density-1, echo=FALSE}
+x %>% ggplot(aes(height)) +
+geom_histogram(aes(y=..density..), binwidth = 0.1, color = I("black")) +
+geom_line(stat='density')
+```
+
+Agora de volta à realidade. Não temos milhões de medições. Em vez disso, temos `r sum(heights$sex=="Male")` e não podemos fazer um histograma com compartimentos muito pequenos.
+
+Portanto, fazemos um histograma, usando tamanhos de compartimento apropriados para nossos dados e frequências de computação em vez de contagens. Além disso, desenhamos uma curva suave que passa pela parte superior das barras do histograma. Os gráficos a seguir mostram as etapas que levam a uma densidade suave:
+
+```{r smooth-density-2, echo=FALSE, out.width = "100%"}
+hist1 <- heights %>%
+filter(sex=="Male") %>%
+ggplot(aes(height)) +
+geom_histogram(aes(y=..density..), binwidth = 1, color="black")
+hist2 <- hist1 +
+geom_line(stat='density')
+hist3 <- hist1 +
+geom_point(data = ggplot_build(hist2)$data[[1]], aes(x,y), col = "blue")
+hist4 <- ggplot() + geom_point(data = ggplot_build(hist2)$data[[1]], aes(x,y), col = "blue") +
+xlab("height") + ylab("density")
+hist5 <- hist4 + geom_line(data = ggplot_build(hist2)$data[[2]], aes(x,y))
+hist6 <- heights %>%
+filter(sex=="Male") %>%
+ggplot(aes(height)) +
+geom_density(alpha = 0.2, fill="#00BFC4", col = 0) +
+geom_line(stat='density') +
+scale_y_continuous(limits = layer_scales(hist2)$y$range$range)
+
+grid.arrange(hist1, hist3, hist4, hist5, hist2, hist6, nrow=2)
+```
+
+No entanto, lembre-se de que _soft_ (_smooth_ em inglês) é um termo relativo. De fato, podemos controlar a suavidade da curva alterando o número de pontos nos compartimentos. Essa opção é conhecida como _bandwidth_, _span_, _window size_ ou, em espanhol, _smoothing window_ ou _smoothing parameter_ e pode ser ajustada na função que calcula a curva de densidade suave. Aqui estão dois exemplos que usam diferentes níveis de suavidade no mesmo histograma:
+
+
+```{r densities-different-smoothness, echo = FALSE, out.width = "100%", fig.width = 6, fig.height = 3}
+p1 <- heights %>%
+filter(sex=="Male")%>% ggplot(aes(height)) +
+geom_histogram(aes(y=..density..), binwidth = 1, alpha = 0.5) +
+geom_line(stat='density', adjust = 0.5)
+
+p2 <- heights %>%
+filter(sex=="Male") %>% ggplot(aes(height)) +
+geom_histogram(aes(y=..density..), binwidth = 1, alpha = 0.5) +
+geom_line(stat='density', adjust = 2)
+
+grid.arrange(p1,p2, ncol=2)
+```
+Precisamos tomar essa decisão com cuidado, pois as visualizações resultantes podem alterar nossa interpretação dos dados. Devemos selecionar um grau de suavidade que possamos defender como representativo dos dados subjacentes. No caso da altura, realmente temos motivos para acreditar que a proporção de pessoas com alturas semelhantes deve ser a mesma. Por exemplo, a taxa de 72 polegadas deve ser mais semelhante à taxa de 71 do que a taxa de 78 ou 65. Isso implica que a curva deve ser razoavelmente suave; isto é, a curva deve se parecer mais com o exemplo à direita do que com a esquerda.
+
+Embora o histograma seja um resumo sem suposições, a densidade suavizada é baseada em algumas suposições.
+
+### Como interpretar o eixo y
+
+Observe que a interpretação do eixo y de um gráfico de densidade suave não é óbvia. Ele é dimensionado para que a área sob a curva de densidade seja igual a 1. Se você imaginar que formamos um compartimento com uma base de 1 unidade de comprimento, o valor do eixo y indica a proporção de valores nesse compartimento. No entanto, isso é válido apenas para compartimentos de tamanho 1. Para intervalos de outro tamanho, a melhor proporção de dados nesse intervalo é determinada calculando a proporção da área total contida nesse intervalo. Por exemplo, aqui vemos a proporção de valores entre 65 e 68:
+
+```{r area-under-curve, echo=FALSE}
+d <- with(heights, density(height[sex=="Male"]))
+tmp <- data.frame(height=d$x, density=d$y)
+tmp %>% ggplot(aes(height,density)) + geom_line() +
+geom_area(aes(x=height,y=density), data = filter(tmp, between(height, 65, 68)), alpha=0.2, fill="#00BFC4")
+```
+
+A proporção dessa área é de aproximadamente
+`r round (média (dplyr :: between (heights $height[heights$ sexo == "Masculino"], 65, 68)), 2) `,
+o que significa que aproximadamente `r noquote (paste0 (round (mean (dplyr :: between (heights) $height[heights$ sexo == "Macho"], 65, 68)), 2) * 100, &#39;%&#39;)) `das alturas dos machos estão entre 65 e 68 polegadas.
+
+Ao entender isso, estamos prontos para usar a densidade suave como um resumo. Para esse conjunto de dados, nos sentimos confortáveis em assumir suavidade e, assim, compartilhar essa figura esteticamente agradável com o ET, que pode usá-lo para entender nossos dados de altura masculinos:
+
+```{r example-of-smoothed-density-2, echo=FALSE}
+heights %>%
+filter(sex=="Male") %>%
+ggplot(aes(height)) +
+geom_density(alpha=.2, fill= "#00BFC4", color = 0) +
+geom_line(stat='density')
+```
+
+
+### Densidades permitem camadas
+
+Como nota final, observamos que uma vantagem das densidades suaves sobre os histogramas para fins de exibição é que as densidades facilitam a comparação de duas distribuições. Isso se deve em grande parte às bordas irregulares do histograma, que agregam confusão. Aqui está um exemplo comparando as alturas masculina e feminina:
+
+```{r two-densities-one-plot, echo=FALSE}
+heights %>%
+ggplot(aes(height, fill=sex)) +
+geom_density(alpha = 0.2, color = 0) +
+geom_line(stat='density')
+```
+
+Com o argumento correto, `ggplot` sombreia automaticamente a região de interseção com uma cor diferente. Mostraremos amostras de código __ggplot2__ para densidades na Seção \@ref(gapminder) bem como na Seção \@ref(other-geometries).
+
+
+## Exercícios
+
+
+1\. No conjunto de dados `murders`, a região é uma variável categórica e sua distribuição é a seguinte:
+
+```{r barplot-exercise, echo=FALSE}
+library(dslabs)
+ds_theme_set()
+data(murders)
+murders %>% group_by(region) %>%
+summarize(n = n()) %>%
+mutate(Proportion = n/sum(n),
+region = reorder(region, Proportion)) %>%
+ggplot(aes(x=region, y=Proportion, fill=region)) +
+geom_bar(stat = "identity", show.legend = FALSE) +
+xlab("")
+```
+
+Arredondando para os 5% mais próximos, qual a proporção de estados na região "Norte Central"?
+
+
+2\. Qual dos seguintes é verdadeiro?
+
+para. O gráfico acima é um histograma.
+b. O gráfico acima mostra apenas quatro números com um gráfico de barras.
+c. As categorias não são números, portanto, não faz sentido representar graficamente a distribuição.
+d. Cores, não a altura das barras, descrevem a distribuição.
+
+3\. O gráfico a seguir mostra o eCDF para a altura dos homens:
+
+
+```{r ecdf-exercise, echo=FALSE}
+heights %>% filter(sex == "Male") %>% ggplot(aes(height)) +
+stat_ecdf() +
+ylab("F(a)") + xlab("a")
+```
+
+De acordo com o gráfico, qual a porcentagem de homens com menos de 75 polegadas?
+
+para. 100%
+b. 95%
+c. 80%
+d. 72 polegadas
+
+
+4\. Para a polegada mais próxima, qual a altura `m` tem a propriedade de que metade dos estudantes do sexo masculino é mais alta que `m` e metade são menores?
+
+para. 61 polegadas
+b. 64 polegadas
+c. 69 polegadas
+d. 74 polegadas
+
+5\. Aqui está um eCDF das taxas de homicídio entre os estados:
+
+```{r ecdf-exercise-2, echo=FALSE}
+murders %>% mutate(murder_rate = total/population * 10^5) %>%
+ggplot(aes(murder_rate)) +
+stat_ecdf() +
+ylab("F(a)") + xlab("a")
+```
+
+Sabendo que existem 51 estados (contando DC) e com base neste gráfico, quantos estados têm taxas de homicídios superiores a 10 por 100.000 pessoas?
+
+para. 1
+b. 5
+c. 10
+d. cinquenta
+
+
+6\. De acordo com o eCDF anterior, qual das seguintes afirmações é verdadeira?
+
+
+para. Cerca de metade dos estados têm taxas de homicídio acima de 7 por 100.000 e a outra metade abaixo.
+b. A maioria dos estados tem taxas de homicídio inferiores a 2 por 100.000.
+c. Todos os estados têm taxas de homicídio superiores a 2 por 100.000.
+d. Com exceção de 4 estados, as taxas de homicídio são inferiores a 5 por 100.000.
+
+
+7\. Aqui está o histograma das alturas masculinas do nosso conjunto de dados `heights`:
+
+```{r height-histogram-exercise, echo=FALSE}
+heights %>%
+filter(sex == "Male") %>%
+ggplot(aes(height)) +
+geom_histogram(binwidth = 1, color = "black")
+```
+
+De acordo com este gráfico, quantos homens existem entre 63,5 e 65,5?
+
+para. 10
+b. 24
+c. 3. 4
+d. 100
+
+8\. Aproximadamente, o que **porcentagem** tem menos de 60 polegadas?
+
+para. 1%
+b. 10%
+c. 25%
+d. cinquenta%
+
+9\. Com base no gráfico de densidade abaixo, aproximadamente qual proporção de estados dos EUA? EUA Você tem populações com mais de 10 milhões de pessoas?
+
+```{r density-exercise, echo=FALSE}
+murders %>% ggplot(aes(x=population/10^6)) +
+geom_density(fill = "grey") +
+scale_x_log10() +
+xlab("Population in millions")
+```
+
+para. 0,02
+b. 0,15
+c. 0,50
+d. 0,55
+
+10\. Abaixo estão três gráficos de densidade. É possível que eles sejam do mesmo conjunto de dados?
+
+```{r density-exercise-2, echo=FALSE, warning=FALSE, message=FALSE}
+library(gridExtra)
+p1 <- murders %>% ggplot(aes(x=population/10^6)) +
+geom_density(fill = "grey", bw = 5) + xlab("Population in millions") + ggtitle("1")
+p2 <- murders %>% ggplot(aes(x=population/10^6)) +
+geom_density(fill = "grey", bw = .05) + scale_x_log10() + xlab("Population in millions") + ggtitle("2")
+p3 <- murders %>% ggplot(aes(x=population/10^6)) +
+geom_density(fill = "grey", bw = 1) + scale_x_log10() + xlab("Population in millions") + ggtitle("3")
+grid.arrange(p1,p2,p3,ncol=2)
+```
+
+Qual das seguintes afirmações é verdadeira?
+
+para. É impossível que eles sejam do mesmo conjunto de dados.
+b. Eles são do mesmo conjunto de dados, mas os gráficos são diferentes devido a erros de código.
+c. Eles são do mesmo conjunto de dados, mas o primeiro e o segundo gráficos suavizam e o terceiro gráfico suaviza demais.
+d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala logarítmica, o segundo suaviza menos e o terceiro ultrapassa o pico.
+
+## A distribuição normal {#normal-distribution}
+
+Histogramas e gráficos de densidade fornecem excelentes resumos de uma distribuição. Mas podemos resumir mais? Muitas vezes vemos o desvio médio e padrão usado como um resumo estatístico - um resumo de dois números! Para entender o que são esses resumos e por que são tão usados, precisamos entender a distribuição normal.
+
+A distribuição normal, também conhecida como curva de sino e distribuição gaussiana, é um dos conceitos matemáticos mais famosos da história. Uma razão para isso é que distribuições aproximadamente normais ocorrem em muitas situações, incluindo ganhos de jogo, alturas, pesos, pressão arterial, resultados de testes padronizados e erros de medição experimentais. Existem explicações para isso e as descreveremos posteriormente. Aqui, focamos em como a distribuição normal nos ajuda a resumir os dados.
+
+Em vez de usar dados, a distribuição normal é definida com uma fórmula matemática. Para qualquer intervalo $(a,b)$, a proporção de valores nesse intervalo pode ser calculada usando esta fórmula:
+
+$$\mbox{Pr}(a < x < b) = \int_a^b \frac{1}{\sqrt{2\pi}s} e^{-\frac{1}{2}\left( \frac{x-m}{s} \right)^2} \, dx$$
+
+
+Eles não precisam memorizar ou entender os detalhes da fórmula. No entanto, lembre-se de que ele é completamente definido por apenas dois parâmetros: $m$ e $s$. O restante dos símbolos da fórmula representa os extremos do intervalo que determinamos, $a$ e $b$ e as constantes matemáticas conhecidas $\pi$ e $e$. Esses dois parâmetros, $m$ e $s$, são conhecidos respectivamente como _average_ (ou _the mean_) e _the desvio padrão_, ou SD, da distribuição.
+
+A distribuição é simétrica, centrada na média, e a maioria dos valores (cerca de 95%) está dentro de 2 DP da média. É assim que a distribuição normal se parece quando a média é 0 e o SD é 1:
+
+```{r normal-distribution-density, echo=FALSE}
+mu <- 0; s <- 1
+norm_dist <- data.frame(x=seq(-4,4,len=50)*s+mu) %>% mutate(density=dnorm(x,mu,s))
+norm_dist %>% ggplot(aes(x,density)) + geom_line()
+```
+
+O fato de a distribuição ser definida por apenas dois parâmetros implica que, se a distribuição de um conjunto de dados puder ser aproximada por uma distribuição normal, todas as informações necessárias para descrever a distribuição poderão ser codificadas em apenas dois números: a média e a Desvio padrão. Agora vamos definir esses valores para uma lista arbitrária de números.
+
+Para uma lista de números contidos em um vetor `x`, a média é definida como:
+
+```{r, eval=TRUE}
+m <- sum(x)/ length(x)
+```
+
+e SD é definido como:
+```{r}
+s <- sqrt(sum((x-mu)^2)/ length(x))
+```
+que pode ser interpretado como a distância média entre os valores e sua média.
+
+Vamos calcular os valores para a altura dos machos que armazenaremos no objeto $x$:
+
+```{r}
+index <- heights$sex == "Male"
+x <- heights$height[index]
+```
+
+Funções predefinidas podem ser usadas `mean` e `sd` (observe que, por razões explicadas na Seção \@ref(data-driven-model), `sd` dividido por `length(x)-1` em vez de `length(x)`) :
+```{r}
+m <- mean(x)
+s <- sd(x)
+c(average = m, sd = s)
+```
+
+Aqui está um gráfico da densidade suave e da distribuição normal com média = `r round(m,1)` e SD = `r round(s,1)` desenhada como uma linha preta com a densidade suave de nossas alturas de alunos azuis:
+
+```{r data-and-normal-densities, echo=FALSE}
+norm_dist <- data.frame(x = seq(-4, 4, len=50)*s + m) %>%
+mutate(density = dnorm(x, m, s))
+
+heights %>% filter(sex == "Male") %>% ggplot(aes(height)) +
+geom_density(fill="#0099FF") +
+geom_line(aes(x, density), data = norm_dist, lwd=1.5)
+```
+
+A distribuição normal parece ser uma boa aproximação aqui. Veremos agora como essa aproximação funciona para prever a proporção de valores dentro dos intervalos.
+
+## Unidades padrão
+
+Para dados distribuídos aproximadamente normalmente, é aconselhável pensar em termos de _standard units_. A unidade padrão de um valor nos diz quantos desvios padrão se desviam da média. Especificamente, para um valor `x` de um vetor `X`, definimos o valor de `x` em unidades padrão como `z = (x - m)/s` com `m` e `s` a média e desvio padrão de `X`, respectivamente. Por que é conveniente fazer isso?
+
+Primeiro revise a fórmula da distribuição normal e observe que o que está sendo exposto é $-z^2/2$ com $z$ equivalente a $x$ em unidades padrão. O fato de que o máximo de $e^{-z^2/2}$ é quando $z=0$ explica por que a distribuição ocorre em média. Também explica a simetria, pois $- z^2/2$ é simétrico em torno de 0. Além disso, observe que, se convertermos dados normalmente distribuídos em unidades padrão, poderemos saber rapidamente se, por exemplo, uma pessoa é aproximadamente média ( $z=0$), entre os mais altos ( $z \approx 2$), entre os menores ( $z \approx -2$) ou uma ocorrência extremamente rara ( $z > 3$ ou $z < -3$) Lembre-se de que, independentemente das unidades originais, essas regras se aplicam a todos os dados que são aproximadamente normais.
+
+Em R, podemos obter unidades padrão usando a função `scale`:
+```{r}
+z <- scale(x)
+```
+
+Agora, para ver quantos homens estão dentro de 2 DP da média, simplesmente escrevemos:
+
+```{r}
+mean(abs(z) < 2)
+```
+
+A proporção é de aproximadamente 95%, que é o que a distribuição normal prevê! Para ter ainda mais confirmação de que a aproximação é precisa, podemos usar gráficos QQ (_quantile-quantile_ plots).
+
+
+## Gráficos QQ
+
+Uma maneira sistemática de avaliar quão bem a distribuição normal se ajusta aos dados é verificar se as proporções observadas e previstas correspondem. Em geral, este é o zoom do gráfico QQ.
+
+Primeiro, definimos os quantis teóricos para a distribuição normal. Nos livros de estatística, usamos o símbolo $\Phi(x)$ para definir a função que nos dá a probabilidade de que uma distribuição normal padrão seja menor que $x$. Por exemplo, $\Phi(-1.96) = 0.025$ e $\Phi(1.96) = 0.975$. Em R, podemos avaliar $\Phi$ usando a função `pnorm`:
+
+```{r}
+pnorm(-1.96)
+```
+
+
+A função inversa $\Phi^{-1}(x)$ nos fornece os quantis teóricos da distribuição normal. Por exemplo, $\Phi^{-1}(0.975) = 1.96$. Em R, podemos avaliar o inverso de $\Phi$ usando a função `qnorm`.
+
+```{r}
+qnorm(0.975)
+```
+
+Observe que esses cálculos são para a distribuição normal padrão padrão (média = 0, desvio padrão = 1), mas também podemos defini-los para qualquer distribuição normal. Podemos fazer isso usando os argumentos `mean` e `sd` nas funções `pnorm` e `qnorm`. Por exemplo, podemos usar `qnorm` para determinar quantis de uma distribuição com média específica e desvio padrão:
+
+```{r}
+qnorm(0.975, mean = 5, sd = 2)
+```
+
+Para a distribuição normal, todos os cálculos relacionados aos quantis são executados sem dados, daí o nome de _quiléticos teóricos_. Mas quantis podem ser definidos para qualquer distribuição, mesmo empírica. Então, se tivermos dados em um vetor $x$, podemos definir o quantil associado a qualquer proporção $p$ como ele $q$ para os quais a proporção de valores abaixo $q$ é $p$. Usando o código R, podemos definir `q` como o valor pelo qual `mean(x <= q) = p`. Note que nem tudo $p$ tem um $q$ para o qual a proporção é exatamente $p$. Existem várias maneiras de definir as melhores $q$ conforme discutido na página de ajuda da função NA.
+
+Como um exemplo rápido, para dados de altura masculina, vemos que:
+```{r}
+mean(x <= 69.5)
+```
+Portanto, cerca de 50% são menores ou iguais a 69 polegadas. Isso implica que se $p=0.50$, tão $q=69.5$.
+
+A idéia de um gráfico QQ é que, se seus dados forem bem aproximados pela distribuição normal, os quantis de seus dados deverão ser semelhantes aos quantis de uma distribuição normal. Para criar um gráfico QQ, fazemos o seguinte:
+
+1. Definimos um vetor de $m$ dimensões $p_1, p_2, \dots, p_m$.
+2. Definimos um vetor de quantis $q_1, \dots, q_m$ para as proporções $p_1, \dots, p_m$ usando seus dados. Nós nos referimos a eles como os _sample quantiles_.
+3. Definimos um vetor de quantis teóricos para as proporções $p_1, \dots, p_m$ para uma distribuição normal com a mesma média e desvio padrão dos dados.
+4. Plotamos os quantis da amostra versus os quantis teóricos.
+
+
+Vamos construir um diagrama QQ usando o código R. Comece definindo o vetor de proporções.
+```{r}
+p <- seq(0.05, 0.95, 0.05)
+```
+
+Para obter os quantis dos dados, podemos usar a função `quantile` assim:
+```{r}
+sample_quantiles <- quantile(x, p)
+```
+
+Para obter os quantis teóricos da distribuição normal com DP médio e correspondente, usamos a função `qnorm`:
+```{r}
+theoretical_quantiles <- qnorm(p, mean = mean(x), sd = sd(x))
+```
+
+Para ver se eles correspondem ou não, nós os plotamos um contra o outro e desenhamos a linha de identidade:
+
+```{r qqplot-original}
+qplot(theoretical_quantiles, sample_quantiles) + geom_abline()
+```
+
+Observe que esse código é muito mais fácil se usarmos unidades padrão:
+```{r qqplot-standardized, eval=FALSE}
+sample_quantiles <- quantile(z, p)
+theoretical_quantiles <- qnorm(p)
+qplot(theoretical_quantiles, sample_quantiles) + geom_abline()
+```
+
+O código acima está incluído para ajudar a descrever gráficos de QQ. No entanto, na prática, é mais fácil usar o código **ggplot2** descrito na Seção \@ref(other-geometries):
+
+```{r, eval=FALSE}
+heights %>% filter(sex == "Male") %>%
+ggplot(aes(sample = scale(height))) +
+geom_qq() +
+geom_abline()
+```
+
+Enquanto na ilustração anterior usamos 20 quantis, o valor padrão da função `geom_qq` é usar a mesma quantidade de quantis que dados.
+
+## Percentis
+
+Antes de continuar, vamos definir alguns termos que são comumente usados na análise exploratória de dados.
+
+_Percentiles_são casos especiais de_quantiles_ que são comumente usados. Percentis são os quantis obtidos na configuração do $p$ para $0.01, 0.02, ..., 0.99$. Chamamos, por exemplo, o caso de $p=0.25$ o quartil inferior, pois fornece um número para o qual 25% dos dados estão abaixo. O percentil mais famoso é 50, também conhecido como o _mediana_.
+
+Para a distribuição normal, o _median_ e a média são os mesmos, mas esse geralmente não é o caso.
+
+Outro caso especial que recebe um nome é o _quartiles_, obtido através da configuração $p=0.25,0.50$ e $0.75$.
+
+
+## Diagramas de caixas
+
+Para apresentar os gráficos de caixas (_boxplots_ em inglês), retornaremos aos dados de assassinatos nos EUA. EUA
+Suponha que queremos resumir a distribuição da taxa de homicídios. Usando a técnica de visualização de dados que aprendemos, podemos ver que a aproximação normal não se aplica aqui:
+
+```{r hist-qqplot-non-normal-data, out.width = "100%", fig.width = 6, fig.height = 3, echo=FALSE}
+data(murders)
+murders <- murders %>% mutate(rate = total/population*100000)
+library(gridExtra)
+p1 <- murders %>% ggplot(aes(x=rate)) + geom_histogram(binwidth = 1) + ggtitle("Histogram")
+p2 <- murders %>% ggplot(aes(sample=rate)) +
+geom_qq(dparams=summarize(murders, mean=mean(rate), sd=sd(rate))) +
+geom_abline() + ggtitle("QQ-plot")
+grid.arrange(p1, p2, ncol = 2)
+```
+
+Nesse caso, o histograma acima ou o gráfico de densidade suave serviria como um resumo relativamente sucinto.
+
+Agora, suponha que aqueles que estão acostumados a receber apenas dois números como resumos solicitem um resumo numérico mais compacto.
+
+Aqui Tukey ofereceu alguns conselhos. Primeiro, ele recomendou fornecer um resumo de cinco números compostos pelo intervalo, juntamente com os quartis (percentis 25, 50 e 75). Além disso, Tukey sugeriu ignorar os _outliers_ ao calcular o intervalo e, em vez disso, plotá-los como pontos independentes. Mais adiante, ofereceremos uma explicação detalhada dos outliers. Por fim, ele recomendou que representássemos graficamente esses números como uma "caixa" com "bigodes", assim:
+
+
+```{r first-boxplot, echo=FALSE}
+murders %>% ggplot(aes("",rate)) + geom_boxplot() +
+coord_cartesian(xlim = c(0, 2)) + xlab("")
+```
+
+com o gráfico definido pelos percentis 25% e 75% e os bigodes mostrando o intervalo. A distância entre esses dois é chamada de intervalo _interquartil_. Os dois pontos são discrepantes, conforme definido por Tukey. A mediana é mostrada com uma linha horizontal.
+
+A partir deste gráfico simples, agora conhecido como _box diagram_, sabemos que a mediana é de aproximadamente 2,5, que a distribuição não é simétrica e que o intervalo é de 0 a 5 para a grande maioria dos estados, com duas exceções.
+
+Discutimos como criar boxplots na Seção \@ref(other-geometries).
+
+## Estratificação {#stratification}
+
+Na análise dos dados, geralmente dividimos as observações em grupos com base nos valores de uma ou mais variáveis associadas a essas observações. Por exemplo, na próxima seção, dividimos os valores de altura em grupos de acordo com uma variável de gênero: mulheres e homens. Chamamos esse procedimento de _stratification_e nos referimos aos grupos resultantes como_strata_.
+
+A estratificação é comum na visualização de dados, porque geralmente estamos interessados em saber como a distribuição de variáveis difere entre diferentes subgrupos. Veremos vários exemplos ao longo desta parte do livro. Revisaremos o conceito de estratificação quando aprendermos a regressão no Capítulo \@ref(regression) e na parte de aprendizagem da máquina do livro.
+
+## Estudo de caso: descrição das alturas dos alunos (continuação) {#student-height-cont}
+
+Usando o histograma, gráficos de densidade e gráficos de QQ, ficamos convencidos de que os dados de altura masculina se aproximam muito de uma distribuição normal. Nesse caso, damos a ET um resumo muito sucinto: as alturas masculinas seguem uma distribuição normal com uma média de `r round(m, 1)` polegadas e um SD de `r round(s,1)` polegadas. Com essas informações, o ET terá uma boa idéia do que esperar quando conhecer nossos alunos do sexo masculino. No entanto, para fornecer uma imagem completa, também devemos fornecer um resumo das alturas das fêmeas.
+
+Aprendemos que os boxplots são úteis quando queremos comparar rapidamente duas ou mais distribuições. Aqui vemos as alturas para machos e fêmeas:
+
+```{r female-male-boxplots, echo=FALSE}
+heights %>% ggplot(aes(x=sex, y=height, fill=sex)) +
+geom_boxplot()
+```
+
+O diagrama mostra imediatamente que os homens são, em média, mais altos que as mulheres. Os desvios padrão parecem ser semelhantes. Mas a aproximação normal também funciona para os dados de altura feminina coletados pela pesquisa? Esperamos que eles sigam uma distribuição normal, assim como os meninos. No entanto, gráficos exploratórios revelam que a aproximação não é tão útil:
+
+
+```{r histogram-qqplot-female-heights, echo=FALSE, out.width="100%", fig.width = 6, fig.height = 3}
+p1 <- heights %>% filter(sex == "Female") %>%
+ggplot(aes(height)) +
+geom_density(fill="#F8766D")
+p2 <- heights %>% filter(sex == "Female") %>%
+ggplot(aes(sample=scale(height))) +
+geom_qq() + geom_abline() + ylab("Standard Units")
+grid.arrange(p1, p2, ncol=2)
+```
+
+Vemos algo que não vemos nos meninos: o gráfico de densidade tem uma segunda protuberância. Além disso, o gráfico QQ mostra que os pontos mais altos tendem a ser mais altos do que o esperado pela distribuição normal. Finalmente, também vemos cinco pontos no gráfico QQ que sugerem alturas inferiores às esperadas para uma distribuição normal. Ao reportar novamente ao ET, podemos precisar fornecer um histograma, em vez de apenas a média e o desvio padrão para as alturas das fêmeas.
+
+No entanto, relemos a citação de Tukey e percebemos que percebemos o que não esperávamos ver. Se olharmos para outras distribuições de altura feminina, descobrimos que elas são bem aproximadas com uma distribuição normal. Então, por que nossos alunos são diferentes? Nossa classe é um requisito para o time de basquete feminino? Existe uma pequena proporção de mulheres que dizem ser mais altas do que são? Outra explicação, talvez mais provável, é que, na forma em que os alunos entraram em suas alturas, `FEMALE` era o sexo padrão e alguns machos entraram em suas alturas, mas esqueceram de mudar a variável sexo. De qualquer forma, a visualização de dados ajudou a descobrir uma possível falha em nossos dados.
+
+Em relação aos cinco menores valores, observe que esses valores são:
+```{r}
+heights %>% filter(sex == "Female") %>%
+top_n(5, desc(height)) %>%
+pull(height)
+```
+
+Como essas são as alturas autorreferidas, uma possibilidade é que os alunos desejem entrar `5'1"`, `5'2"`, `5'3"` ou `5'5"`.
+
+
+## Exercícios
+
+1\. Defina variáveis que contêm as alturas de machos e fêmeas desta maneira:
+
+```{r, eval=FALSE}
+library(dslabs)
+data(heights)
+male <- heights$height[heights$sex == "Male"]
+female <- heights$height[heights$sex == "Female"]
+```
+
+Quantas medições temos para cada uma?
+
+
+2\. Suponha que não possamos fazer um gráfico e queremos comparar as distribuições lado a lado. Não podemos simplesmente listar todos os números. Em vez disso, veremos os percentis. Crie uma tabela de cinco linhas que mostre `female_percentiles` e `male_percentiles` com os percentis 10, 30, 50, ..., 90 para cada sexo. Em seguida, crie um _data frame_ com esses dois como colunas.
+
+
+3\. Estude os seguintes gráficos de caixa mostrando os tamanhos da população por país:
+
+```{r boxplot-exercise, echo=FALSE, message=FALSE}
+library(tidyverse)
+library(dslabs)
+ds_theme_set()
+data(gapminder)
+tab <- gapminder %>% filter(year == 2010) %>% group_by(continent) %>% select(continent, population)
+tab %>% ggplot(aes(x=continent, y=population/10^6)) +
+geom_boxplot() +
+scale_y_continuous(trans = "log10", breaks = c(1,10,100,1000)) + ylab("Population in millions")
+```
+
+Qual continente tem o país com o maior tamanho populacional?
+
+4\. Qual continente tem o maior tamanho médio de população?
+
+
+5\. Qual é o tamanho médio da população da África para o milhão mais próximo?
+
+
+6\. Qual a proporção de países na Europa com populações inferiores a 14 milhões?
+
+para. 0,99
+b. 0,75
+c. 0,50
+d. 0,25
+
+7\. Se usarmos uma transformação logarítmica, qual continente dos anteriores tem o maior intervalo interquartil?
+
+8\. Carregue o conjunto de dados de altura e crie um vetor `x` com apenas as alturas masculinas:
+
+```{r, eval=FALSE}
+library(dslabs)
+data(heights)
+x <- heights$height[heights$sex=="Male"]
+```
+
+Qual a proporção dos dados entre 69 e 72 polegadas (mais alto que 69, mas menor ou igual a 72)? Dica: use um operador lógico e `mean`.
+
+9\. Suponha que a única coisa que você saiba sobre os dados seja o desvio médio e padrão. Use a aproximação normal para estimar a proporção que você acabou de calcular. Dica: Comece calculando a média e o desvio padrão. Então use a função `pnorm` prever as proporções.
+
+10\. Observe que a aproximação calculada na pergunta nove está muito próxima do cálculo exato na primeira pergunta. Agora faça a mesma tarefa para mais discrepâncias. Compare o cálculo exato e a aproximação normal do intervalo (79,81) .Quantas vezes maior é a proporção real do que a aproximação?
+
+Onze\. Aproxima a distribuição de homens adultos no mundo como uma distribuição normal, com uma média de 69 polegadas e um desvio padrão de 3 polegadas. Usando essa aproximação, encontre a proporção de homens adultos com 7 pés de altura ou mais, conhecidos como "sete rodapés". Dica: use a função `pnorm`.
+
+12\. Existem cerca de um bilhão de homens entre 18 e 40 anos no mundo. Use sua resposta à pergunta anterior para estimar quantos desses homens (18 a 40 anos) têm sete pés de altura ou mais no mundo.
+
+13\. Existem cerca de 10 jogadores da National Basketball Association (NBA) com 7 pés de altura ou mais. Usando a resposta para as duas perguntas anteriores, qual a proporção de sete rodapés do mundo, com idades entre 18 e 40 anos, na NBA?
+
+14\. Repita os cálculos feitos na pergunta anterior para a altura do jogador de basquete Lebron James: 6 pés e 8 polegadas. Existem cerca de 150 jogadores que são pelo menos tão altos.
+
+Quinze\. Ao responder às perguntas acima, descobrimos que não é incomum que um jogador de sete pés se torne jogador da NBA. Então, o que seria uma crítica justa aos nossos cálculos?
+
+para. Prática e talento são o que fazem um ótimo jogador de basquete, não a altura.
+b. A abordagem normal não é apropriada para alturas.
+c. Conforme observado na Questão 10, a aproximação normal tende a subestimar valores discrepantes. Pode haver mais _sete rodapés_ do que previmos.
+d. Conforme observado na Questão 10, a aproximação normal tende a superestimar valores discrepantes. Pode haver menos _sete rodapés_ do que previmos.
+
+## Gegplot2 geometrias {#other-geometries}
+
+No capítulo \@ref(ggplot2) apresentamos o pacote __ggplot2__ para visualização de dados. Aqui, demonstramos como gerar gráficos relacionados a distribuições, especificamente os gráficos mostrados anteriormente neste capítulo.
+
+### Gráficos de barra
+
+Para gerar um diagrama de barras (_barplots_ em inglês), podemos usar a geometria `geom_bar`. Por padrão, R conta os casos em cada categoria e desenha uma barra. Aqui vemos o gráfico de barras para as regiões dos Estados Unidos.
+
+```{r barplot-geom}
+murders %>% ggplot(aes(region)) + geom_bar()
+```
+
+Muitas vezes, já temos uma tabela com uma distribuição que queremos apresentar como um gráfico de barras. Aqui está um exemplo dessa tabela:
+
+```{r}
+data(murders)
+tab <- murders %>%
+count(region) %>%
+mutate(proportion = n/sum(n))
+tab
+```
+
+Não queremos mais `geom_bar` contar, mas apenas representar graficamente uma barra na altura fornecida pela variável `proportion`. Para isso, precisamos fornecer `x` (as categorias) e `y` (os valores) e use a opção `stat="identity"`.
+
+```{r region-freq-barplot}
+tab %>% ggplot(aes(region, proportion)) + geom_bar(stat = "identity")
+```
+
+### Histogramas
+
+Para gerar histogramas, usamos `geom_histogram`. Ao revisar a página de ajuda para esta função, vemos que o único argumento necessário é `x`, a variável para a qual construiremos um histograma. Nós não usamos o `x` porque sabemos que é o primeiro argumento.
+O código fica assim:
+
+```{r, eval=FALSE}
+heights %>%
+filter(sex == "Female") %>%
+ggplot(aes(height)) +
+geom_histogram()
+```
+
+Se executarmos o código acima, ele nos dará uma mensagem:
+
+> `stat_bin()` usando `bins = 30`. Escolha um valor melhor com
+`binwidth`.
+
+Anteriormente, usamos um tamanho de compartimento de 1 polegada; portanto, o código fica assim:
+
+```{r, eval=FALSE}
+heights %>%
+filter(sex == "Female") %>%
+ggplot(aes(height)) +
+geom_histogram(binwidth = 1)
+```
+
+Finalmente, se por razões estéticas queremos adicionar cor, usamos os argumentos descritos na página de ajuda. Também adicionamos tags e um título:
+
+```{r height-histogram-geom}
+heights %>%
+filter(sex == "Female") %>%
+ggplot(aes(height)) +
+geom_histogram(binwidth = 1, fill = "blue", col = "black") +
+xlab("Male heights in inches") +
+ggtitle("Histogram")
+```
+
+### Gráficos de densidade
+
+Para criar uma densidade suave, usamos `geom_density`. Para criar um gráfico de densidade suave com os dados que visualizamos anteriormente como um histograma, podemos usar este código:
+
+```{r, eval=FALSE}
+heights %>%
+filter(sex == "Female") %>%
+ggplot(aes(height)) +
+geom_density()
+```
+
+Para preencher com cores, podemos usar o argumento `fill`.
+
+```{r ggplot-density}
+heights %>%
+filter(sex == "Female") %>%
+ggplot(aes(height)) +
+geom_density(fill="blue")
+```
+
+Para alterar a suavidade da densidade, usamos o argumento `adjust` multiplicar o valor padrão por esse `adjust`. Por exemplo, se queremos que o parâmetro de suavização seja duas vezes maior, usamos:
+
+```{r eval = FALSE}
+heights %>%
+filter(sex == "Female") +
+geom_density(fill="blue", adjust = 2)
+```
+
+### Diagramas de caixas
+
+A geometria para a criação de gráficos de caixas é `geom_boxplot`. Como já discutimos, os boxplots são úteis para comparar distribuições. Por exemplo, abaixo, vemos as alturas mostradas acima para as mulheres, mas aqui em comparação aos homens. Para essa geometria, precisamos dos argumentos `x` como categorias e argumentos `y` valores semelhantes:
+
+```{r female-male-boxplots-geom, echo=FALSE}
+heights %>% ggplot(aes(sex, height)) +
+geom_boxplot()
+```
+
+### Gráficos QQ
+
+Para gráficos QQ, usamos geometria `geom_qq`. Na página de ajuda, aprendemos que precisamos especificar o `sample` (aprenderemos sobre amostras em um capítulo posterior). Aqui está o gráfico QQ para alturas masculinas:
+
+```{r ggplot-qq}
+heights %>% filter(sex=="Male") %>%
+ggplot(aes(sample = height)) +
+geom_qq()
+```
+
+Por padrão, a variável de amostra é comparada a uma distribuição normal com uma média de 0 e um desvio padrão de 1. Para alterar isso, usamos o argumento `dparams` de acordo com a página de ajuda. Para adicionar uma linha de identidade, basta atribuir outra camada. Para linhas retas, usamos a função `geom_abline`. A linha padrão é a linha de identidade (inclinação = 1, interceptação = 0).
+
+```{r ggplot-qq-dparams, eval=FALSE}
+params <- heights %>% filter(sex=="Male") %>%
+summarize(mean = mean(height), sd = sd(height))
+
+heights %>% filter(sex=="Male") %>%
+ggplot(aes(sample = height)) +
+geom_qq(dparams = params) +
+geom_abline()
+```
+
+Outra opção aqui é dimensionar os dados primeiro e, em seguida, plotar o QQ em relação à distribuição normal padrão.
+
+```{r ggplot-qq-standard-units, eval=FALSE}
+heights %>%
+filter(sex=="Male") %>%
+ggplot(aes(sample = scale(height))) +
+geom_qq() +
+geom_abline()
+```
+
+### Imagens
+
+Não tivemos que usar imagens para os conceitos descritos neste capítulo, mas as usaremos na Seção \@ref(vaccines), por isso, apresentamos as duas geometrias usadas para criar imagens: __geom_tile__e__geom_raster__. Eles se comportam de maneira semelhante; Para ver como eles diferem, consulte a página de ajuda. Para criar uma imagem em __ggplot2__, precisamos de um _data frame_ com as coordenadas xey, além dos valores associados a cada uma delas. Aqui temos um _data frame_:
+
+```{r}
+x <- expand.grid(x = 1:12, y = 1:10) %>%
+mutate(z = 1:120)
+```
+
+Observe que esta é a versão _tidy_ de uma matriz, `matrix(1:120, 12, 10)`. Para representar graficamente a imagem, usamos o seguinte código:
+
+```{r, eval=FALSE}
+x %>% ggplot(aes(x, y, fill = z)) +
+geom_raster()
+```
+
+Com essas imagens, eles geralmente desejam alterar a escala de cores. Isso pode ser feito através da camada `scale_fill_gradientn`.
+
+```{r ggplot2-image-new-colors}
+x %>% ggplot(aes(x, y, fill = z)) +
+geom_raster() +
+scale_fill_gradientn(colors = terrain.colors(10))
+```
+
+
+
+### Gráficos rápidos
+
+Na seção \@ref(qplot) apresentamos `qplot` como uma função útil quando precisamos fazer um diagrama de dispersão rápido. Também podemos usar `qplot` para criar histogramas, diagramas de densidade, diagramas de caixa, gráficos de QQ e muito mais. Embora não forneça o nível de controle `ggplot`, `qplot` é definitivamente útil, pois permite criar um gráfico com um pequeno trecho de código.
+
+Suponha que tenhamos as alturas femininas em um objeto `x`:
+
+```{r}
+x <- heights %>%
+filter(sex=="Male") %>%
+pull(height)
+```
+
+Para fazer um histograma rápido, podemos usar:
+
+```{r qplot-example-1, warning=FALSE, message=FALSE, eval=FALSE}
+qplot(x)
+```
+
+A função supõe que queremos criar um histograma porque fornecemos apenas uma variável. Na seção \@ref(qplot) vimos que, se fornecermos duas variáveis para `qplot` , cria automaticamente um diagrama de dispersão.
+
+Para fazer um gráfico rápido de QQ, eles precisam usar o argumento `sample`. Lembre-se de que podemos adicionar camadas, como fazemos com `ggplot`.
+
+```{r qplot-example-2, eval=FALSE}
+qplot(sample = scale(x)) + geom_abline()
+```
+
+
+Se fornecermos um fator e um vetor numérico, obteremos um gráfico como o que vemos abaixo. Observe que no código estamos usando o argumento `data`. Como o _data frame_ não é o primeiro argumento em `qplot`, temos que usar o operador de ponto.
+
+```{r qplot-example-3, eval=FALSE}
+heights %>% qplot(sex, height, data = .)
+```
+
+Também podemos selecionar uma geometria específica usando o argumento `geom`. Portanto, para converter o diagrama acima em um diagrama de caixa, usamos o seguinte código:
+
+```{r qplot-example-4, eval=FALSE}
+heights %>% qplot(sex, height, data = ., geom = "boxplot")
+```
+
+Também podemos usar o argumento `geom` para gerar um gráfico de densidade em vez de um histograma:
+
+```{r qplot-example-5, eval=FALSE}
+qplot(x, geom = "density")
+```
+
+Embora não tanto quanto com `ggplot`, temos alguma flexibilidade para melhorar os resultados de `qplot`. Olhando a página de ajuda, vemos várias maneiras pelas quais podemos melhorar a aparência do histograma anterior. Por exemplo:
+
+```{r qplot-example-6}
+qplot(x, bins=15, color = I("black"), xlab = "Population")
+```
+
+**Nota técnica**: o motivo pelo qual usamos `I("black")` é porque nós queremos `qplot` tentar `"black"` como um personagem ao invés de um fator. Esse é o comportamento padrão dentro `aes`, que é chamado internamente aqui. Em geral, a função `I` usado em R para dizer "mantenha como está".
+
+
+
+
+## Exercícios
+
+
+1\. Agora vamos usar a função `geom_histogram` para fazer um histograma das alturas no conjunto de dados `height`. Lendo a documentação para esta função, vemos que ela requer apenas uma atribuição, os valores a serem usados para o histograma. Faça um histograma de todos os gráficos.
+
+Qual é a variável que contém as alturas?
+
+para. `sex`
+b. `heights`
+c. `height`
+d. `heights$height`
+
+2\. Agora crie um objeto ggplot usando o _pipe_ para atribuir os dados de altura a um objeto ggplot. Atribuir `height` para os valores de x através da função `aes`.
+
+3\. Agora estamos prontos para adicionar uma camada para fazer o histograma. Use o objeto criado no exercício anterior e a função `geom_histogram` para fazer o histograma.
+
+4\. Quando executamos o código no exercício anterior, recebemos o aviso:
+`stat_bin()` usando `bins = 30`. Escolha um valor melhor com `binwidth`.
+
+Use o argumento `binwidth` para alterar o histograma criado no exercício anterior para usar compartimentos de 1 polegada.
+
+5\. Em vez de um histograma, vamos fazer um gráfico de densidade suave. Nesse caso, não criaremos um objeto, mas criaremos e exibiremos o gráfico com uma linha de código. Altere a geometria no código usado acima para criar uma densidade suave em vez de um histograma.
+
+6\. Agora vamos fazer um gráfico de densidade para machos e fêmeas separadamente. Podemos fazer isso usando o argumento `group`. Atribuímos grupos por meio de mapeamento estético, pois cada ponto precisa de um grupo antes de fazer os cálculos necessários para estimar uma densidade.
+
+7\. Também podemos atribuir grupos através do argumento `color`. Isso tem o benefício adicional de usar cores para distinguir grupos. Mude o código acima para usar cores.
+
+8\. Além disso, podemos atribuir grupos através do argumento `fill`. Isso tem o benefício adicional de usar cores para distinguir grupos como:
+
+
+```{r, eval=FALSE}
+heights %>%
+ggplot(aes(height, fill = sex)) +
+geom_density()
+```
+
+No entanto, aqui a segunda densidade é plotada em cima da primeira. Podemos tornar as curvas mais visíveis usando _alpha blending_ para adicionar transparência. Defina o parâmetro alfa como 0,2 na função `geom_density` para fazer essa alteração.
+
+
+
+
+
+
+
+

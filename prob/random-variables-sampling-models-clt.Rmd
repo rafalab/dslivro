@@ -1,0 +1,478 @@
+# Variáveis aleatórias
+
+Na ciência de dados, geralmente trabalhamos com dados que são afetados de alguma forma por acaso. Alguns exemplos são dados provenientes de uma amostra aleatória, dados afetados por um erro de medição ou dados que medem um resultado de natureza aleatória. Ser capaz de quantificar a incerteza introduzida pela aleatoriedade é um dos trabalhos mais importantes dos analistas de dados. A inferência estatística oferece uma estrutura, bem como várias ferramentas práticas para isso. O primeiro passo é aprender a descrever matematicamente variáveis aleatórias.
+
+Neste capítulo, apresentamos variáveis aleatórias e suas propriedades começando com sua aplicação em jogos de azar. Em seguida, descrevemos alguns dos eventos que cercam a crise financeira de 2007-2008^[https://en.wikipedia.org/w/index.php?title=Financial_crisis_of_2007%E2%80%932008] usando a teoria da probabilidade. Essa crise financeira foi causada em parte pela subestimação do risco de certos valores mobiliários vendidos por instituições financeiras. Especificamente, os riscos de títulos lastreados em hipotecas (MBSs) e obrigações de dívida colateralizada (CDOs) foram amplamente subestimados. Esses ativos foram vendidos a preços que muitos proprietários esperavam que pagassem pontualmente, e a probabilidade de que isso não ocorresse foi calculada como baixa. Uma combinação de fatores resultou em muito mais inadimplências do que o esperado, levando a uma queda nos preços desses títulos. Como conseqüência, os bancos perderam tanto dinheiro que precisavam de resgates do governo para evitar o fechamento completo.
+
+## Variáveis aleatórias
+
+Variáveis aleatórias são os resultados numéricos de processos aleatórios. Podemos facilmente gerar variáveis aleatórias usando alguns dos exemplos acima. Por exemplo, defina `X` será 1 se a conta (_bead_ em inglês) for azul e 0 caso contrário:
+
+```{r,echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+dslabs::ds_theme_set()
+set.seed(1)
+```
+
+```{r}
+beads <- rep( c("red", "blue"), times = c(2,3))
+X <- ifelse(sample(beads, 1) == "blue", 1, 0)
+```
+
+Aqui `X` é uma variável aleatória: toda vez que selecionamos uma nova conta, o resultado muda aleatoriamente. Olhar para baixo:
+
+```{r}
+ifelse(sample(beads, 1) == "blue", 1, 0)
+ifelse(sample(beads, 1) == "blue", 1, 0)
+ifelse(sample(beads, 1) == "blue", 1, 0)
+```
+
+Às vezes é 1 e às vezes é 0.
+
+
+
+
+## Modelos de amostragem
+
+Muitos procedimentos de geração de dados, aqueles que produzem os dados que estudamos, podem ser modelados relativamente bem como escolhas de urnas. Por exemplo, podemos modelar o provável processo de votação dos eleitores, como obter 0s (republicanos) e 1s (democratas) de uma urna que contém os códigos 0 e 1 para todos os prováveis eleitores. Em estudos epidemiológicos, geralmente assumimos que os sujeitos de nosso estudo são uma amostra aleatória da população de interesse. Os dados relacionados a um resultado específico podem ser modelados como uma amostra aleatória de uma urna contendo o resultado para toda a população de interesse. Da mesma forma, na pesquisa experimental, geralmente assumimos que os organismos individuais que estamos estudando, por exemplo, vermes, moscas ou ratos, são uma amostra aleatória de uma população maior. Experimentos aleatórios também podem ser modelados, selecionando uma urna, dada a maneira como os indivíduos são designados para grupos: quando designados, o grupo é escolhido aleatoriamente. Os modelos de amostragem são, portanto, onipresentes na ciência de dados. Os jogos de cassino oferecem um grande número de exemplos de situações do mundo real nas quais modelos de amostragem são usados para responder a perguntas específicas. Portanto, começaremos com esses exemplos.
+
+Suponha que um cassino muito pequeno o contrate para ver se eles devem incluir roletas em seus jogos. Para simplificar o exemplo, assumiremos que 1.000 pessoas jogarão e que a única aposta que podem fazer na roleta é apostar em vermelho ou preto. O cassino quer que eles prevejam quanto dinheiro ganharão ou perderão. Eles querem uma gama de valores e, em particular, querem saber qual é a probabilidade de perder dinheiro. Se essa probabilidade for muito alta, eles não instalarão roletas.
+
+Nós vamos definir uma variável aleatória $S$ que representará o total de ganhos do cassino. Vamos começar construindo a urna. Uma roleta tem 18 bolsos vermelhos, 18 bolsos pretos e 2 verdes. Portanto, jogar uma cor em um jogo de roleta é equivalente a escolher na caixa a seguir:
+
+```{r}
+color <- rep(c("Black", "Red", "Green"), c(18, 18, 2))
+```
+
+Os 1.000 resultados de 1.000 pessoas jogando são empates independentes desta urna. Se aparecer vermelho, o jogador ganha e o cassino perde um dólar, então empatamos um - \$1. De otra manera, el casino gana un dólar y sacamos un \$ 1. Para construir nossa variável aleatória $S$, podemos usar este código:
+
+```{r}
+n <- 1000
+X <- sample(ifelse(color == "Red", -1, 1), n, replace = TRUE)
+X[1:10]
+```
+
+Como sabemos as proporções de 1s e -1s, podemos gerar as eleições com uma linha de código, sem definir `color`:
+
+```{r}
+X <- sample(c(-1,1), n, replace = TRUE, prob=c(9/19, 10/19))
+```
+
+Chamamos isso de **modelo de amostragem**, pois estamos modelando o comportamento aleatório da roleta com a amostragem das opções das urnas. Ganhos totais $S$ eles são simplesmente a soma desses 1.000 empates independentes:
+
+```{r}
+X <- sample(c(-1,1), n, replace = TRUE, prob=c(9/19, 10/19))
+S <- sum(X)
+S
+```
+
+
+## A distribuição de probabilidade de uma variável aleatória
+
+Se você executar o código acima, verá que $S$ muda sempre. Isto é porque $S$ é uma **variável aleatória**. A distribuição de probabilidade de uma variável aleatória nos diz a probabilidade de que o valor observado caia em um determinado intervalo. Por exemplo, se queremos saber a probabilidade de perdermos dinheiro, estamos perguntando a probabilidade de que $S$ estar no intervalo $S<0$.
+
+Lembre-se de que, se pudermos definir uma função de distribuição cumulativa $F(a) = \mbox{Pr}(S\leq a)$, então podemos responder a qualquer pergunta relacionada à probabilidade de eventos definida por nossa variável aleatória $S$, incluindo o evento $S<0$. A esta $F$ nós dizemos a você a função de distribuição da variável aleatória.
+
+Podemos estimar a função de distribuição para a variável aleatória $S$ usando uma simulação de Monte Carlo para gerar muitas realizações da variável aleatória. Com esse código, realizamos o experimento de ter 1.000 pessoas jogando roleta várias vezes, especificamente $B = 10,000$ vezes:
+
+```{r}
+n <- 1000
+B <- 10000
+roulette_winnings <- function(n){
+X <- sample(c(-1,1), n, replace = TRUE, prob=c(9/19, 10/19))
+sum(X)
+}
+S <- replicate(B, roulette_winnings(n))
+```
+
+Agora podemos perguntar o seguinte: em nossas simulações, com que frequência recebemos somas inferiores ou iguais a `a`?
+
+```{r, eval=FALSE}
+mean(S <= a)
+```
+
+Essa será uma aproximação muito boa de $F(a)$ e podemos facilmente responder à pergunta do cassino: qual a probabilidade de perdermos dinheiro? Podemos ver que a probabilidade é bastante baixa:
+
+
+```{r}
+mean(S<0)
+```
+
+
+Podemos visualizar a distribuição de $S$ criando um histograma mostrando a probabilidade $F(b)-F(a)$ em vários intervalos $(a,b]$:
+
+```{r normal-approximates-distribution, echo=FALSE}
+s <- seq(min(S), max(S), length = 100)
+normal_density <- data.frame(s = s, f=dnorm(s, mean(S), sd(S)))
+data.frame(S=S) %>% ggplot(aes(S, ..density..)) +
+geom_histogram(color = "black", binwidth = 10) +
+ylab("Probability") +
+geom_line(data = normal_density, mapping=aes(s,f), color="blue")
+```
+
+Vemos que a distribuição parece ser aproximadamente normal. Um gráfico QQ confirmará que a aproximação normal está próxima de uma aproximação perfeita para esta distribuição. De fato, se a distribuição é normal, tudo o que precisamos para definir a distribuição é a média e o desvio padrão. Como temos os valores originais dos quais a distribuição é criada, podemos calculá-los facilmente com `mean(S)` e `sd(S)`. A curva azul adicionada ao histograma acima é uma densidade normal com essa média e desvio padrão.
+
+Essa média e esse desvio padrão têm nomes especiais. Eles são conhecidos como _expected value_e_standard error_ da variável aleatória $S$ e será discutido mais adiante na próxima seção.
+
+A teoria estatística fornece uma maneira de derivar a distribuição de variáveis aleatórias definidas como extrações aleatórias independentes de uma urna. Especificamente, em nosso exemplo anterior, podemos mostrar que $(S+n)/2$ segue uma distribuição binomial. Portanto, não precisamos executar simulações de Monte Carlo para conhecer a distribuição de probabilidade de $S$. Fizemos isso para fins ilustrativos.
+
+Nós podemos usar as funções `dbinom` e `pbinom` para calcular exatamente as probabilidades. Por exemplo, para calcular $\mbox{Pr}(S < 0)$ nós notamos que:
+
+$$\mbox{Pr}(S < 0) = \mbox{Pr}((S+n)/2 < (0+n)/2)$$
+
+e podemos usar `pbinom` calcular: $$\mbox {Pr}(S \leq 0) $$
+
+```{r}
+n <- 1000
+pbinom(n/2, size = n, prob = 10/19)
+```
+
+Por se tratar de uma função de probabilidade discreta, obter $\mbox{Pr}(S < 0)$ ao invés de $\mbox{Pr}(S \leq 0)$, nós escrevemos:
+
+```{r}
+pbinom(n/2-1, size = n, prob = 10/19)
+```
+
+Para mais detalhes sobre a distribuição binomial, você pode consultar qualquer livro de probabilidades básico ou mesmo Wikipedia^[https://en.wikipedia.org/w/index.php?title=Binomial_distribution].
+
+Nós não cobrimos esses detalhes aqui. Em vez disso, discutiremos uma abordagem incrivelmente útil que nos fornece a teoria matemática que geralmente se aplica a somas e calcula as médias de qualquer caixa de votação: o Teorema do Limite Central, ou CLT.
+
+
+## Distribuições versus distribuições de probabilidade
+
+Antes de continuar, vamos fazer uma distinção e uma conexão importante entre a distribuição de uma lista de números e uma distribuição de probabilidade. No capítulo de visualização, descrevemos como qualquer lista de números $x_1,\dots,x_n$ tem uma distribuição. A definição é bastante simples. Nós definimos $F(a)$ como a função que nos diz que proporção da lista é menor ou igual a $a$. Como são resumos úteis quando a distribuição é aproximadamente normal, definimos a média e o desvio padrão. Eles são definidos com uma operação simples do vetor que contém a lista de números `x`:
+
+```{r, eval=FALSE}
+m <- sum(x)/length(x)
+s <- sqrt(sum((x - m)^2)/ length(x))
+```
+
+Uma variável aleatória $X$ tem uma função de distribuição. Para definir isso, não precisamos de uma lista de números. É um conceito teórico. Nesse caso, definimos a distribuição como o $F(a)$ respondendo à pergunta: qual é a probabilidade de $X$ é menor ou igual a $a$? Não há lista de números.
+
+No entanto, se $X$ é definido como uma seleção de uma urna com números, portanto, há uma lista: a lista de números dentro da urna. Nesse caso, a distribuição dessa lista é a distribuição de probabilidade de $X$ e a média e o desvio padrão dessa lista são o valor esperado e o erro padrão da variável aleatória.
+
+Outra maneira de pensar sobre isso que não envolve uma urna é executar uma simulação de Monte Carlo e gerar uma lista muito grande de resultados de $X$. Estes resultados são uma lista de números. A distribuição desta lista será uma aproximação muito boa da distribuição de probabilidade de $X$. Quanto maior a lista, melhor a aproximação. A média e o desvio padrão desta lista aproximam o valor esperado e o erro padrão da variável aleatória.
+
+Notação ## para variáveis aleatórias
+
+Nos livros estatísticos, as letras maiúsculas são usadas para denotar variáveis aleatórias e seguimos esta convenção aqui. Letras minúsculas são usadas para os valores observados. Você verá alguma notação que inclui ambos. Por exemplo, eles verão eventos definidos como $X \leq x$. Aqui $X$ é uma variável aleatória, portanto, é um evento aleatório e $x$ é um valor arbitrário e não aleatório. Por exemplo, $X$ poderia representar o número em um dado e $x$ representará um valor real que vemos: 1, 2, 3, 4, 5 ou 6. Portanto, neste caso, a probabilidade de $X=x$ é 1/6 independentemente do valor observado $x$. Essa notação é um pouco estranha porque, quando fazemos perguntas de probabilidade, $X$ não é uma quantidade observada, mas uma quantidade aleatória que veremos no futuro. Podemos descrever o que esperamos ver, quais valores são prováveis, mas não o que é. Mas assim que temos dados, vemos uma realização de $X$. Então, os cientistas de dados falam sobre o que poderia ter sido depois de ver o que realmente aconteceu.
+
+
+## O valor esperado e o erro padrão
+
+Nós descrevemos modelos de amostragem para sorteios. Agora, revisaremos a teoria matemática que nos permite aproximar as distribuições de probabilidade para a soma dos empates. Depois de fazer isso, podemos ajudar o cassino a prever quanto dinheiro eles ganharão. A mesma abordagem que usamos para a soma dos sorteios será útil para descrever a distribuição das médias e a proporção que precisaremos para entender como as pesquisas funcionam.
+
+O primeiro conceito importante a aprender é o valor esperado.
+Nos livros de estatística, é comum usar a letra $\mbox{E}$ assim:
+
+$$\mbox{E}[X]$$
+
+para denotar o valor esperado da variável aleatória $X$.
+
+Uma variável aleatória variará em torno do valor esperado de uma maneira que, se eles tiverem a média de muitos, muitos empates, a média dos empates se aproximará do valor esperado, aproximando-se cada vez mais à medida que os empates aumentam.
+
+A estatística teórica oferece técnicas que facilitam o cálculo dos valores esperados em diferentes circunstâncias. Por exemplo, uma fórmula útil nos diz que o valor esperado de uma variável aleatória definida por um empate é a média dos números na urna. Na urna que usamos para modelar apostas de roleta, temos $ 20 e $ 18 negativos. O valor esperado é então:
+
+$$
+\mbox{E}[X] = (20 + -18)/38
+$$
+
+que é como 5 centavos. É um pouco contraditório dizer que $X$ varia em torno de 0,05, quando os únicos valores necessários são 1 e -1. Uma maneira de entender o valor esperado nesse contexto é perceber que, se jogarmos o jogo repetidamente, o cassino ganha, em média, 5 centavos por jogo. Uma simulação de Monte Carlo confirma isso:
+
+```{r}
+B <- 10^6
+x <- sample(c(-1,1), B, replace = TRUE, prob=c(9/19, 10/19))
+mean(x)
+```
+
+Em geral, se a urna tem dois resultados possíveis, digamos $a$ e $b$ com proporções $p$ e $1-p$ respectivamente, a média é:
+
+$$\mbox{E}[X] = ap + b(1-p)$$
+
+Para ver isso, observe que, se houver $n$ contas nas urnas, então temos $np$ $a$ sy $n(1-p)$ $b$ s, e como a média é a soma, $n\times a \times p + n\times b \times (1-p)$, dividido pelo total $n$, obtemos que a média é $ap + b(1-p)$.
+
+Agora, a razão pela qual definimos o valor esperado é porque essa definição matemática é útil para aproximar as distribuições de probabilidade da soma, que é útil para descrever a distribuição de médias e proporções. O primeiro fato útil é que o valor esperado da soma dos draws é:
+
+$$
+\mbox{}\mbox{number of draws } \times \mbox{ average of the numbers in the urn}
+$$
+
+Portanto, se 1.000 pessoas jogam roleta, o cassino espera ganhar, em média, cerca de 1.000 $\times$ \$0.05 = \$ 50. Mas esse é um valor esperado. Quão diferente pode ser uma observação do valor esperado? O cassino realmente precisa saber disso. Qual é o intervalo de probabilidades? Se números negativos forem muito prováveis, eles não instalarão roletas. A teoria estatística mais uma vez responde a essa pergunta. O _padrão padrão_, ou SE, nos dá uma ideia do tamanho da variação em torno do valor esperado. Nos livros de estatística, é comum usar:
+
+$$\mbox{SE}[X]$$
+
+para denotar o erro padrão de uma variável aleatória.
+
+**Se nossos sorteios são independentes**, o _standard sum error_ é dado pela equação:
+
+$$
+\sqrt{\mbox{number of draws }} \times \mbox{ standard deviation of the numbers in the urn}
+$$
+
+Usando a definição de desvio padrão, podemos derivar, com um pouco de matemática, que se uma urna contiver dois valores $a$ e $b$ com proporções $p$ e $(1-p)$, respectivamente, o desvio padrão é:
+
+$$\mid b - a \mid \sqrt{p(1-p)}.$$
+
+Portanto, no nosso exemplo de roleta, o desvio padrão dos valores dentro da urna é: $\mid 1 - (-1) \mid \sqrt{10/19 \times 9/19}$ ou:
+
+
+```{r}
+2 * sqrt(90)/19
+```
+
+O erro padrão nos diz a diferença típica entre uma variável aleatória e sua expectativa. Como um empate é obviamente a soma de um único empate, podemos usar a fórmula acima para calcular que a variável aleatória definida por um empate tem um valor esperado de 0,05 e um erro padrão de cerca de 1. Isso faz sentido, pois obtemos 1 ou -1, com 1 ligeiramente favorecido sobre -1.
+
+Usando a fórmula acima, a soma de 1.000 pessoas jogando tem um erro padrão de aproximadamente \$ 32:
+
+```{r}
+n <- 1000
+sqrt(n) * 2 * sqrt(90)/19
+```
+
+Como resultado, quando 1.000 pessoas apostarem no vermelho, o cassino deverá ganhar \$50 con un error estándar de \$ 32. Parece uma aposta segura. Mas ainda não respondemos à pergunta: qual a probabilidade de perder dinheiro? Aqui a CLT nos ajudará.
+
+**Nota Avançada**: Antes de continuar, devemos observar que os cálculos exatos de probabilidade de vitória no cassino podem ser feitos com a distribuição binomial. No entanto, aqui nos concentramos no CLT, que geralmente pode ser aplicado a somas de variáveis aleatórias, algo que não pode ser feito com a distribuição binomial.
+
+### População SD versus amostra SD
+
+O desvio padrão, ou SD, de uma lista `x` (usamos as alturas abaixo como exemplo) é definida como a raiz quadrada da média das diferenças quadradas:
+
+```{r}
+library(dslabs)
+x <- heights$height
+m <- mean(x)
+s <- sqrt(mean((x-m)^2))
+```
+
+Usando notação matemática, escrevemos:
+
+$$
+\mu = \frac{1}{n} \sum_{i=1}^n x_i \\
+\sigma = \sqrt{\frac{1}{n} \sum_{i=1}^n (x_i - \mu)^2}
+$$
+
+No entanto, observe que a função `sd` retorna um resultado ligeiramente diferente:
+
+```{r}
+identical(s, sd(x))
+s-sd(x)
+```
+
+Isso ocorre porque a função `sd` em R não retorna o `sd` da lista, mas usa uma fórmula que estima desvios padrão da população usando uma amostra aleatória $X_1, \dots, X_N$ que, por razões não discutidas aqui, divide a soma dos quadrados por $N-1$.
+
+
+$$
+\bar{X} = \frac{1}{N} \sum_{i=1}^N X_i, \,\,\,\,
+s = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar{X})^2}
+$$
+
+Você pode ver que esse é o caso escrevendo:
+
+```{r}
+n <- length(x)
+s-sd(x)*sqrt((n-1)/ n)
+```
+
+Para toda a teoria discutida aqui, eles devem calcular o desvio padrão real, conforme definido:
+
+```{r, eval = FALSE}
+sqrt(mean((x-m)^2))
+```
+
+Portanto, tenha cuidado ao usar a função `sd` em R. No entanto, lembre-se de que, ao longo do livro, às vezes usamos a função `sd` quando realmente queremos o verdadeiro SD. Isso ocorre porque quando o tamanho da lista é grande, esses dois são praticamente equivalentes, pois $\sqrt{(N-1)/N} \approx 1$.
+
+## Teorema do limite central
+
+O Teorema do Limite Central, ou CLT, diz-nos que quando o número de empates, também chamado _tamanho da amostra_, é grande, a distribuição de probabilidade da soma dos empates independentes é aproximadamente normal. Como os modelos de amostragem são usados para muitos processos de geração de dados, o CLT é considerado uma das idéias matemáticas mais importantes da história.
+
+Anteriormente, discutimos que, se soubermos que a distribuição de uma lista de números se aproxima da distribuição normal, tudo o que precisamos para descrever a lista é a média e o desvio padrão. Também sabemos que o mesmo se aplica às distribuições de probabilidade. Se uma variável aleatória tem uma distribuição de probabilidade que se aproxima da distribuição normal, tudo o que precisamos para descrever a distribuição de probabilidade é a média e o desvio padrão, conhecido como valor esperado e erro padrão.
+
+Anteriormente, executamos esta simulação de Monte Carlo:
+
+```{r}
+n <- 1000
+B <- 10000
+roulette_winnings <- function(n){
+X <- sample(c(-1,1), n, replace = TRUE, prob=c(9/19, 10/19))
+sum(X)
+}
+S <- replicate(B, roulette_winnings(n))
+```
+
+A CLT nos diz que a soma $S$ é aproximado por uma distribuição normal. Usando as fórmulas acima, sabemos que o valor esperado e o erro padrão são:
+
+```{r}
+n * (20-18)/38
+sqrt(n) * 2 * sqrt(90)/19
+```
+
+Os valores teóricos anteriores coincidem com os obtidos com a simulação de Monte Carlo:
+
+```{r}
+mean(S)
+sd(S)
+```
+
+Usando o CLT, podemos pular a simulação de Monte Carlo e, em vez disso, calcular a probabilidade de o cassino perder dinheiro usando esta aproximação:
+
+```{r}
+mu <- n * (20-18)/38
+se <- sqrt(n) * 2 * sqrt(90)/19
+pnorm(0, mu, se)
+```
+
+o que também concorda muito bem com o resultado da simulação de Monte Carlo:
+
+```{r}
+mean(S < 0)
+```
+
+
+Qual é o tamanho do teorema do limite central?
+
+O CLT funciona quando o número de empates é grande. Mas ótimo é um termo relativo. Em muitas circunstâncias, apenas 30 empates são suficientes para que o CLT seja útil. Em alguns casos específicos, apenas 10 são suficientes. No entanto, estas não devem ser consideradas regras gerais. Por exemplo, quando a probabilidade de sucesso é muito pequena, precisamos de tamanhos de amostra muito maiores.
+
+Como ilustração, considere a loteria. Na loteria, a probabilidade de ganhar é menor que 1 em um milhão. Milhares de pessoas jogam, então o número de empates é muito grande. No entanto, o número de vencedores, a soma dos empates, varia de 0 a 4. A distribuição normal não é uma boa aproximação da soma, portanto o CLT não se aplica, mesmo quando o tamanho da amostra é muito grande. . Isso geralmente é verdade quando a probabilidade de sucesso é muito baixa. Nestes casos, a distribuição de Poisson é mais apropriada.
+
+Você pode examinar as propriedades da distribuição Poisson usando `dpois` e `ppois`. Eles podem gerar variáveis aleatórias seguindo esta distribuição com `rpois`. No entanto, não discutimos a teoria aqui. Para saber mais sobre a distribuição de Poisson, você pode consultar qualquer livro de probabilidade e até Wikipedia^[https://en.wikipedia.org/w/index.php?title=Poisson_distribution]
+
+
+## Propriedades estatísticas das médias
+
+Existem vários resultados matemáticos úteis que usamos anteriormente e que costumamos empregar ao trabalhar com dados. Listamos-os abaixo.
+
+1\. O valor esperado da soma das variáveis aleatórias é a soma do valor esperado de cada variável aleatória. Podemos escrever assim:
+
+$$
+\mbox{E}[X_1+X_2+\dots+X_n] = \mbox{E}[X_1] + \mbox{E}[X_2]+\dots+\mbox{E}[X_n]
+$$
+
+Se ele $X$ são empates independentes das urnas, portanto todos têm o mesmo valor esperado. Vamos chamá-lo $\mu$ e, por conseguinte:
+
+$$
+\mbox{E}[X_1+X_2+\dots+X_n]= n\mu
+$$
+
+que é outra maneira de escrever o resultado mostrado acima para a soma dos sorteios.
+
+2\. O valor esperado de uma constante não aleatória multiplicada por uma variável aleatória é a constante não aleatória multiplicada pelo valor esperado de uma variável aleatória. É mais fácil explicar com símbolos:
+
+$$
+\mbox{E}[aX] = a\times\mbox{E}[X]
+$$
+
+Para ver por que isso é intuitivo, considere alterar as unidades. Se mudarmos as unidades de uma variável aleatória, digamos de dólares para centavos, a expectativa deve mudar da mesma maneira. Uma conseqüência dos dois fatos anteriores é que o valor esperado da média de extrações independentes da mesma urna é o valor esperado da urna. $\mu$ de novo:
+
+$$
+\mbox{E}[(X_1+X_2+\dots+X_n)/ n]= \mbox{E}[X_1+X_2+\dots+X_n]/ n = n\mu/n = \mu
+$$
+
+
+3\. O quadrado do erro padrão da soma das variáveis aleatórias **independentes** é a soma do quadrado do erro padrão de cada variável aleatória. É mais fácil entender matematicamente:
+
+$$
+\mbox{SE}[X_1+X_2+\dots+X_n] = \sqrt{\mbox{SE}[X_1]^2 + \mbox{SE}[X_2]^2+\dots+\mbox{SE}[X_n]^2 }
+$$
+
+O quadrado do erro padrão é chamado _variance_ nos livros de estatística. Observe que essa propriedade em particular não é tão intuitiva quanto as duas anteriores e que explicações detalhadas podem ser encontradas nos livros de estatística.
+
+4\. O erro padrão de uma constante não aleatória multiplicada por uma variável aleatória é a constante não aleatória multiplicada pelo erro padrão da variável aleatória. O mesmo que para o valor esperado:
+$$
+\mbox{SE}[aX] = a \times \mbox{SE}[X]
+$$
+
+Para ver por que isso é intuitivo, pense novamente nas unidades.
+
+Uma consequência de 3 e 4 é que o erro padrão da média de empates independentes para a mesma urna é o desvio padrão da urna dividido pela raiz quadrada de $n$ (o número de empates), chame-o $\sigma$:
+
+$$
+\begin{aligned}
+\mbox{SE}[(X_1+X_2+\dots+X_n)/ n] &= \mbox{SE}[X_1+X_2+\dots+X_n]/n \\
+&= \sqrt{\mbox{SE}[X_1]^2+\mbox{SE}[X_2]^2+\dots+\mbox{SE}[X_n]^2}/n \\
+&= \sqrt{\sigma^2+\sigma^2+\dots+\sigma^2}/n\\
+&= \sqrt{n\sigma^2}/n\\
+&= \sigma/ \sqrt{n}
+\end{aligned}
+$$
+
+
+5\. Sim $X$ é uma variável aleatória distribuída normalmente, portanto, se $a$ e $b$ são constantes não aleatórias, $aX + b$ também é uma variável aleatória distribuída normalmente. Tudo o que estamos fazendo é alterar as unidades da variável aleatória multiplicando por $a$ e, em seguida, movendo o centro $b$.
+
+
+Lembre-se de que os estatísticos usam livros gregos $\mu$ e $\sigma$ para indicar o valor esperado e o erro padrão, respectivamente. Isto é porque $\mu$ é a letra grega para $m$, a primeira letra de _mean_, que é outro termo usado para o valor esperado. Da mesma forma, $\sigma$ é a letra grega para $s$, a primeira letra do erro padrão.
+
+## Lei dos grandes números
+
+Uma implicação importante do resultado final é que o erro padrão da média se torna cada vez menor conforme $n$ torna-se maior. Quando $n$ é muito grande, portanto o erro padrão é praticamente 0 e a média dos empates converge para a média das urnas. Isso é conhecido nos livros estatísticos como a lei dos grandes números ou a lei das médias.
+
+
+### Interpretação incorreta da lei das médias
+
+A lei das médias às vezes é mal interpretada. Por exemplo, se eles jogam uma moeda 5 vezes e ela joga cara a cada vez, alguém pode argumentar que o próximo sorteio é provavelmente coroa devido à lei das médias: em média, devemos ver 50 \% cara e 50 \% coroa. Um argumento semelhante seria dizer que "toca" o vermelho na roleta depois de ver que o preto aparece cinco vezes seguidas. Como esses eventos são independentes, a probabilidade de uma moeda rolar é de 50 \%, independentemente dos 5 resultados anteriores. Este também é o caso do resultado da roleta. A lei das médias se aplica somente quando o número de empates é muito grande e não em amostras pequenas. Após um milhão de lançamentos, você definitivamente verá cerca de 50 \% de cabeças, independentemente do resultado dos cinco primeiros lançamentos.
+
+Outro uso incorreto interessante da lei das médias está nos esportes, quando os apresentadores de televisão prevêem que um jogador está prestes a ter sucesso porque falhou várias vezes seguidas.
+
+
+
+## Exercícios
+
+
+1\. Na roleta americana, você também pode apostar no verde. Existem 18 vermelhos, 18 pretos e 2 verdes (0 e 00). Quais são as chances de um green sair?
+
+
+2\. O pagamento verde é \$17 dollars. Esto significa que si apuesta un dólar y cae en verde, obtiene \$ 17. Crie um modelo de amostragem usando uma amostra para simular a variável aleatória $X$ dos seus ganhos. Dica: Veja o exemplo abaixo para o código de apostas vermelho.
+
+```{r}
+x <- sample(c(1,-1), 1, prob = c(9/19, 10/19))
+```
+
+3\. Qual é o valor esperado de $X$?
+
+
+4\. Qual é o erro padrão de $X$?
+
+
+5\. Agora crie uma variável aleatória $S$ que é a soma dos seus ganhos depois de apostar verde 1.000 vezes. Dica: altere os argumentos `size` e `replace` na sua resposta à pergunta 2. Inicie seu código configurando a semente como 1 com `set.seed(1)`.
+
+6\. Qual é o valor esperado de $S$?
+
+
+7\. Qual é o erro padrão de $S$?
+
+
+8\. Qual é a probabilidade de você acabar ganhando dinheiro? Dica: use o CLT.
+
+
+9\. Crie uma simulação de Monte Carlo que gere 1.000 resultados a partir de $S$. Calcule a média e o desvio padrão da lista resultante para confirmar os resultados de 6 e 7. Inicie seu código configurando a semente como 1 com `set.seed(1)`.
+
+
+10\. Agora verifique sua resposta à pergunta 8 usando o resultado da simulação de Monte Carlo.
+
+Onze\. O resultado da simulação de Monte Carlo e a aproximação CLT estão próximos, mas não tão próximos. O que poderia explicar isso?
+
+para. 1.000 simulações não são suficientes. Se fizermos mais, eles coincidem.
+b. O CLT não funciona tão bem quando a probabilidade de sucesso é pequena. Nesse caso, era 1/19. Se aumentarmos o número de jogos de roleta, eles coincidirão melhor.
+c. A diferença está dentro do erro de arredondamento.
+d. O CLT funciona apenas para médias.
+
+
+12\. Agora crie uma variável aleatória $Y$ faça o seu pagamento médio por aposta depois de apostar 1.000 vezes no green.
+
+13\. Qual é o valor esperado de $Y$?
+
+14\. Qual é o erro padrão de $Y$?
+
+Quinze\. Qual é a probabilidade de que, quando você terminar de jogar, os ganhos por jogo sejam positivos? Dica: use o CLT.
+
+
+16\. Crie uma simulação de Monte Carlo que gere 2.500 resultados a partir de $Y$. Calcule a média e o desvio padrão da lista resultante para confirmar os resultados de 6 e 7. Inicie seu código configurando a semente como 1 com `set.seed(1)`.
+
+17\. Agora verifique sua resposta para 8 usando o resultado da simulação de Monte Carlo.
+
+18\. O resultado da simulação de Monte Carlo e a aproximação CLT estão agora muito mais próximos. O que poderia explicar isso?
+
+para. Agora estamos calculando médias em vez de somas.
+b. 2.500 simulações de Monte Carlo não são melhores que 1.000.
+c. O CLT funciona melhor quando o tamanho da amostra é maior. Aumentado de 1.000 para 2.500.
+d. Não está mais perto. A diferença está dentro do erro de arredondamento.
+

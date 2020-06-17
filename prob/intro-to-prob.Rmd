@@ -1,0 +1,8 @@
+# Probabilidade
+
+Nos jogos de azar, a probabilidade tem uma definição muito intuitiva. Por exemplo, sabemos o que significa quando dizemos que a probabilidade de um par de dados rolar sete é 1 em 6. No entanto, esse não é o caso em outros contextos. Hoje, a teoria das probabilidades é usada de maneira muito mais ampla com a palavra "probabilidade" e parte da linguagem cotidiana. Se digitarmos "Quais são as probabilidades de" no Google, a função de preenchimento automático nos fornecerá: "ter gêmeos", "ter gêmeos" e "ganhar na loteria". Um dos objetivos desta parte do livro é ajudá-lo a entender como a probabilidade é útil para entender e descrever eventos do mundo real quando realizamos análises de dados.
+
+Desde que saber calcular as probabilidades oferece uma vantagem no jogo, muitas pessoas inteligentes ao longo da história, incluindo matemáticos famosos como Cardano, Fermat e Pascal, gastaram tempo e energia pensando na matemática desses jogos. . Como resultado, nasceu a teoria das probabilidades. A probabilidade ainda é muito útil nos jogos de azar modernos. Por exemplo, no pôquer, podemos calcular a probabilidade de ganhar uma mão com base nas cartas da mesa. Além disso, os cassinos confiam na teoria das probabilidades para desenvolver jogos que quase sempre garantem ganhos.
+
+A teoria da probabilidade é útil em muitos outros contextos e, em particular, em áreas que de alguma forma dependem dos dados afetados pelo acaso. Todos os outros capítulos desta parte são baseados na teoria das probabilidades. Portanto, o conhecimento da probabilidade é indispensável para a ciência de dados.
+
