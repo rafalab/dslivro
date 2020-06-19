@@ -19,7 +19,7 @@ Ao longo do livro, utilizamos estudos de caso motivadores. Em cada estudo de cas
 | MNIST: Processamento de imagem com dígitos manuscritos | _Aprendizado de Máquina_ |
 | Sistemas de recomendação de filmes | _Aprendizado de Máquina_ |
 
-Quem achará este livro útil? {-}
+## Quem achará este livro útil? {-}
 
 O objetivo deste livro é servir como texto para um primeiro curso de ciência de dados. Nenhum conhecimento prévio de R é necessário, embora alguma experiência em programação possa ser útil. Os conceitos estatísticos usados para responder às perguntas dos estudos de caso são apresentados apenas brevemente e, portanto, recomendamos um livro de probabilidade e estatística para quem deseja entender completamente esses conceitos. Ao ler e entender todos os capítulos e concluir todos os exercícios, os alunos estarão bem posicionados para concluir tarefas básicas de análise de dados e aprender os conceitos e habilidades mais avançados necessários para se tornarem especialistas.
 
