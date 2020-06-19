@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 3 Conceitos básicos de programação | Introdução à Ciência de Dados</title>
+  <title>Introdução | Introdução à Ciência de Dados</title>
   <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 3 Conceitos básicos de programação | Introdução à Ciência de Dados" />
+  <meta property="og:title" content="Introdução | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 3 Conceitos básicos de programação | Introdução à Ciência de Dados" />
+  <meta name="twitter:title" content="Introdução | Introdução à Ciência de Dados" />
   
   <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="r-basics.html"/>
-<link rel="next" href="tidyverse.html"/>
+<link rel="prev" href="agradecimentos.html"/>
+<link rel="next" href="getting-started.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -503,345 +503,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conceitos-básicos-de-programação" class="section level1" number="3">
-<h1><span class="header-section-number">Capítulo 3</span> Conceitos básicos de programação</h1>
-<p>Ensinamos R porque facilita muito a análise de dados, o tema principal deste livro. Ao codificar em R, podemos executar com eficiência análise exploratória de dados, criar canais de análise de dados e preparar a visualização de dados para comunicar resultados. No entanto, R não é apenas um ambiente de análise de dados, mas uma linguagem de programação. Programadores avançados de R podem desenvolver pacotes complexos e até melhorar o R, embora não abordemos a programação avançada neste livro. No entanto, nesta seção, apresentamos três conceitos-chave de programação: expressões condicionais, for-loops e funções. Estes não são apenas os principais componentes da programação avançada, mas às vezes são úteis durante a análise de dados. Também observamos que existem várias funções amplamente usadas para programação em R, mas que não discutiremos neste livro. Esses incluem <code>split</code>, <code>cut</code>, <code>do.call</code> e <code>Reduce</code>, bem como o pacote <strong>data.table</strong>. Vale a pena aprender como usá-los, se você quiser se tornar programador especialista em R.</p>
-<div id="conditionals" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Expressões condicionais</h2>
-<p>Expressões condicionais são uma das características básicas da programação. Eles são usados para o que é chamado de <em>flow control</em>. A expressão condicional mais comum é a instrução <em>if-else</em>. Em R, podemos fazer muitas análises de dados sem condicionais. No entanto, eles aparecem ocasionalmente e você precisará deles assim que começar a escrever suas próprias funções e pacotes.</p>
-<p>Aqui está um exemplo muito simples que mostra a estrutura geral de uma instrução <em>if-else</em>. A idéia básica é imprimir o recíproco de <code>a</code> a menos que <code>a</code> deixe 0:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="conceitos-básicos-de-programação.html#cb128-1"></a>a &lt;-<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb128-2"><a href="conceitos-básicos-de-programação.html#cb128-2"></a></span>
-<span id="cb128-3"><a href="conceitos-básicos-de-programação.html#cb128-3"></a><span class="cf">if</span>(a<span class="op">!=</span><span class="dv">0</span>){</span>
-<span id="cb128-4"><a href="conceitos-básicos-de-programação.html#cb128-4"></a><span class="kw">print</span>(<span class="dv">1</span><span class="op">/</span>a)</span>
-<span id="cb128-5"><a href="conceitos-básicos-de-programação.html#cb128-5"></a>} <span class="cf">else</span>{</span>
-<span id="cb128-6"><a href="conceitos-básicos-de-programação.html#cb128-6"></a><span class="kw">print</span>(<span class="st">&quot;No reciprocal for 0.&quot;</span>)</span>
-<span id="cb128-7"><a href="conceitos-básicos-de-programação.html#cb128-7"></a>}</span>
-<span id="cb128-8"><a href="conceitos-básicos-de-programação.html#cb128-8"></a><span class="co">#&gt; [1] &quot;No reciprocal for 0.&quot;</span></span></code></pre></div>
-<p>Vejamos outro exemplo usando o conjunto de dados de assassinatos nos EUA. EUA:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="conceitos-básicos-de-programação.html#cb129-1"></a><span class="kw">library</span>(dslabs)</span>
-<span id="cb129-2"><a href="conceitos-básicos-de-programação.html#cb129-2"></a><span class="kw">data</span>(murders)</span>
-<span id="cb129-3"><a href="conceitos-básicos-de-programação.html#cb129-3"></a>murder_rate &lt;-<span class="st"> </span>murders<span class="op">$</span>total<span class="op">/</span><span class="st"> </span>murders<span class="op">$</span>population<span class="op">*</span><span class="dv">100000</span></span></code></pre></div>
-<p>Aqui está um exemplo muito simples que nos diz quais estados, se houver, têm uma taxa de homicídios inferior a 0,5 por 100.000. As declarações <code>if</code> eles nos protegem do caso em que nenhum estado satisfaz a condição.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="conceitos-básicos-de-programação.html#cb130-1"></a>ind &lt;-<span class="st"> </span><span class="kw">which.min</span>(murder_rate)</span>
-<span id="cb130-2"><a href="conceitos-básicos-de-programação.html#cb130-2"></a></span>
-<span id="cb130-3"><a href="conceitos-básicos-de-programação.html#cb130-3"></a><span class="cf">if</span>(murder_rate[ind] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.5</span>){</span>
-<span id="cb130-4"><a href="conceitos-básicos-de-programação.html#cb130-4"></a><span class="kw">print</span>(murders<span class="op">$</span>state[ind])</span>
-<span id="cb130-5"><a href="conceitos-básicos-de-programação.html#cb130-5"></a>} <span class="cf">else</span>{</span>
-<span id="cb130-6"><a href="conceitos-básicos-de-programação.html#cb130-6"></a><span class="kw">print</span>(<span class="st">&quot;No state has murder rate that low&quot;</span>)</span>
-<span id="cb130-7"><a href="conceitos-básicos-de-programação.html#cb130-7"></a>}</span>
-<span id="cb130-8"><a href="conceitos-básicos-de-programação.html#cb130-8"></a><span class="co">#&gt; [1] &quot;Vermont&quot;</span></span></code></pre></div>
-<p>Se tentarmos novamente com uma taxa de 0,25, obteremos uma resposta diferente:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="conceitos-básicos-de-programação.html#cb131-1"></a><span class="cf">if</span>(murder_rate[ind] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.25</span>){</span>
-<span id="cb131-2"><a href="conceitos-básicos-de-programação.html#cb131-2"></a><span class="kw">print</span>(murders<span class="op">$</span>state[ind])</span>
-<span id="cb131-3"><a href="conceitos-básicos-de-programação.html#cb131-3"></a>} <span class="cf">else</span>{</span>
-<span id="cb131-4"><a href="conceitos-básicos-de-programação.html#cb131-4"></a><span class="kw">print</span>(<span class="st">&quot;No state has a murder rate that low.&quot;</span>)</span>
-<span id="cb131-5"><a href="conceitos-básicos-de-programação.html#cb131-5"></a>}</span>
-<span id="cb131-6"><a href="conceitos-básicos-de-programação.html#cb131-6"></a><span class="co">#&gt; [1] &quot;No state has a murder rate that low.&quot;</span></span></code></pre></div>
-<p>Uma função relacionada que é muito útil é <code>ifelse</code>. Essa função usa três argumentos: um lógico e duas respostas possíveis. Se o lógico for <code>TRUE</code>, retorna o valor no segundo argumento e, se for <code>FALSE</code>, retorna o valor no terceiro argumento. Aqui está um exemplo:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="conceitos-básicos-de-programação.html#cb132-1"></a>a &lt;-<span class="st"> </span><span class="dv">0</span></span>
-<span id="cb132-2"><a href="conceitos-básicos-de-programação.html#cb132-2"></a><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>a, <span class="ot">NA</span>)</span>
-<span id="cb132-3"><a href="conceitos-básicos-de-programação.html#cb132-3"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
-<p>Essa função é particularmente útil porque é útil para vetores. Isso examina cada entrada do vetor lógico e retorna elementos do vetor fornecido no segundo argumento, se a entrada for <code>TRUE</code>, ou elementos do vetor fornecido no terceiro argumento, se a entrada for <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="conceitos-básicos-de-programação.html#cb133-1"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">-4</span>, <span class="dv">5</span>)</span>
-<span id="cb133-2"><a href="conceitos-básicos-de-programação.html#cb133-2"></a>result &lt;-<span class="st"> </span><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>a, <span class="ot">NA</span>)</span></code></pre></div>
-Esta tabela nos ajuda a ver o que aconteceu:
-<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<div id="introdução" class="section level1 unnumbered" number="">
+<h1>Introdução</h1>
+<p>A demanda por profissionais qualificados em ciência de dados na indústria, academia e governo está crescendo rapidamente. Este livro apresenta conceitos e habilidades que podem ajudá-lo a enfrentar os desafios da análise de dados em situações reais. O texto aborda os conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Isso também ajudará no desenvolvimento de habilidades como programação em R, preparação de dados (<em>data wrangling</em>), <strong>dplyr</strong>, visualização de dados com <strong>ggplot2</strong>, criação de algoritmos com <strong>caret</strong>, organização de arquivos em ambiente UNIX/Linux, controle de versão com Git e GitHub e preparação de documentos reprodutíveis com <strong>knitr</strong> e <strong>Rmarkdown</strong>. O livro está dividido em seis partes: <strong>R</strong>, <strong>Visualização de dados</strong>, <strong>Wrangling_of data</strong>, <strong>Estatísticas com R</strong>, <strong>Aprendizado de Máquina</strong> e <strong>Ferramentas de Produtividade</strong>. Cada parte possui vários capítulos que devem ser apresentados em uma única aula e inclui dezenas de exercícios distribuídos pelos capítulos.</p>
+<div id="estudos-de-caso" class="section level2 unnumbered" number="">
+<h2>Estudos de Caso</h2>
+<p>Ao longo do livro, utilizamos estudos de caso motivadores. Em cada estudo de caso, tentamos imitar realisticamente a experiência dos cientistas de dados. Para cada um dos conceitos que discutimos, começamos fazendo perguntas específicas, que, depois, respondemos através da análise de dados. Aprendemos conceitos como um meio de responder perguntas. Exemplos dos estudos de caso que incluímos neste livro são:</p>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="30%" />
+<col width="30%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:right;">
-a
-</th>
-<th style="text-align:left;">
-is_a_positive
-</th>
-<th style="text-align:right;">
-answer1
-</th>
-<th style="text-align:left;">
-answer2
-</th>
-<th style="text-align:right;">
-result
-</th>
+<tr class="header">
+<th>Estudo de caso</th>
+<th>Conceito</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
-Inf
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
+<tr class="odd">
+<td>Taxas estaduais de homicídio nos Estados Unidos</td>
+<td>Conceitos básicos de R</td>
+<td></td>
 </tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-1.00
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-1.0
-</td>
+<tr class="even">
+<td>Alturas dos estudantes</td>
+<td>Resumos estatísticos</td>
+<td></td>
 </tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-0.50
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-0.5
-</td>
+<tr class="odd">
+<td>Tendências em saúde e economia global</td>
+<td>Visualização de dados</td>
+<td></td>
 </tr>
-<tr>
-<td style="text-align:right;">
--4
-</td>
-<td style="text-align:left;">
-FALSE
-</td>
-<td style="text-align:right;">
--0.25
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-NA
-</td>
+<tr class="even">
+<td>O impacto das vacinas nas taxas de doenças infecciosas</td>
+<td>Visualização de dados</td>
+<td></td>
 </tr>
-<tr>
-<td style="text-align:right;">
-5
-</td>
-<td style="text-align:left;">
-TRUE
-</td>
-<td style="text-align:right;">
-0.20
-</td>
-<td style="text-align:left;">
-NA
-</td>
-<td style="text-align:right;">
-0.2
-</td>
+<tr class="odd">
+<td>A crise financeira de 2007-2008</td>
+<td>Probabilidade</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Previsão eleitoral</td>
+<td>Inferência estatística</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Alturas autorreferidas de estudantes</td>
+<td><em>Arranjo</em> de dados</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><em>Money Ball</em>: Construindo um time de beisebol</td>
+<td>Regressão linear</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MNIST: Processamento de imagem com dígitos manuscritos</td>
+<td><em>Aprendizado de Máquina</em></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Sistemas de recomendação de filmes</td>
+<td><em>Aprendizado de Máquina</em></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>Aqui está um exemplo de como essa função pode ser facilmente usada para substituir todos os valores ausentes em um vetor por zeros:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="conceitos-básicos-de-programação.html#cb134-1"></a><span class="kw">data</span>(na_example)</span>
-<span id="cb134-2"><a href="conceitos-básicos-de-programação.html#cb134-2"></a>no_nas &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(na_example), <span class="dv">0</span>, na_example)</span>
-<span id="cb134-3"><a href="conceitos-básicos-de-programação.html#cb134-3"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(no_nas))</span>
-<span id="cb134-4"><a href="conceitos-básicos-de-programação.html#cb134-4"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
-<p>Duas outras funções úteis são <code>any</code> e <code>all</code>. A função <code>any</code> pega um vetor de lógicas e retorna <code>TRUE</code> se alguma das entradas for <code>TRUE</code>. A função <code>all</code> pega um vetor de lógicas e retorna <code>TRUE</code> se todas as entradas forem <code>TRUE</code>. Aqui está um exemplo:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="conceitos-básicos-de-programação.html#cb135-1"></a>z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
-<span id="cb135-2"><a href="conceitos-básicos-de-programação.html#cb135-2"></a><span class="kw">any</span>(z)</span>
-<span id="cb135-3"><a href="conceitos-básicos-de-programação.html#cb135-3"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb135-4"><a href="conceitos-básicos-de-programação.html#cb135-4"></a><span class="kw">all</span>(z)</span>
-<span id="cb135-5"><a href="conceitos-básicos-de-programação.html#cb135-5"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>Quem achará este livro útil? {-}</p>
+<p>O objetivo deste livro é servir como texto para um primeiro curso de ciência de dados. Nenhum conhecimento prévio de R é necessário, embora alguma experiência em programação possa ser útil. Os conceitos estatísticos usados para responder às perguntas dos estudos de caso são apresentados apenas brevemente e, portanto, recomendamos um livro de probabilidade e estatística para quem deseja entender completamente esses conceitos. Ao ler e entender todos os capítulos e concluir todos os exercícios, os alunos estarão bem posicionados para concluir tarefas básicas de análise de dados e aprender os conceitos e habilidades mais avançados necessários para se tornarem especialistas.</p>
 </div>
-<div id="como-definir-funções" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Como definir funções</h2>
-<p>À medida que ganham mais experiência, eles precisam executar as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor <code>x</code> usando funções <code>sum</code> e <code>length</code>: <code>sum(x)/length(x)</code>. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função <code>mean</code> e está incluído na base R. No entanto, você encontrará situações em que a função ainda não existe, portanto, R permite que você escreva uma. Você pode definir uma versão simples de uma função que calcula a média da seguinte maneira:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="conceitos-básicos-de-programação.html#cb136-1"></a>avg &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb136-2"><a href="conceitos-básicos-de-programação.html#cb136-2"></a>s &lt;-<span class="st"> </span><span class="kw">sum</span>(x)</span>
-<span id="cb136-3"><a href="conceitos-básicos-de-programação.html#cb136-3"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
-<span id="cb136-4"><a href="conceitos-básicos-de-programação.html#cb136-4"></a>s<span class="op">/</span>n</span>
-<span id="cb136-5"><a href="conceitos-básicos-de-programação.html#cb136-5"></a>}</span></code></pre></div>
-<p>Agora <code>avg</code> é uma função que calcula a média:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="conceitos-básicos-de-programação.html#cb137-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span>
-<span id="cb137-2"><a href="conceitos-básicos-de-programação.html#cb137-2"></a><span class="kw">identical</span>(<span class="kw">mean</span>(x), <span class="kw">avg</span>(x))</span>
-<span id="cb137-3"><a href="conceitos-básicos-de-programação.html#cb137-3"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<p>Observe que as variáveis definidas em uma função não são salvas no espaço de trabalho. Então, enquanto usamos <code>s</code> e <code>n</code> quando chamamos (<em>call</em> em inglês) <code>avg</code>, os valores são criados e alterados apenas durante a chamada. Aqui podemos ver um exemplo ilustrativo:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="conceitos-básicos-de-programação.html#cb138-1"></a>s &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb138-2"><a href="conceitos-básicos-de-programação.html#cb138-2"></a><span class="kw">avg</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
-<span id="cb138-3"><a href="conceitos-básicos-de-programação.html#cb138-3"></a><span class="co">#&gt; [1] 5.5</span></span>
-<span id="cb138-4"><a href="conceitos-básicos-de-programação.html#cb138-4"></a>s</span>
-<span id="cb138-5"><a href="conceitos-básicos-de-programação.html#cb138-5"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
-<p>Note como <code>s</code> ainda é 3 depois que ligamos <code>avg</code>.</p>
-<p>Em geral, funções são objetos, portanto, atribuímos nomes de variáveis a eles com <code>&lt;-</code>. A função <code>function</code> diz a R que ele está prestes a definir uma função. A forma geral da definição de uma função é assim:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="conceitos-básicos-de-programação.html#cb139-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(VARIABLE_NAME){</span>
-<span id="cb139-2"><a href="conceitos-básicos-de-programação.html#cb139-2"></a>perform operations on VARIABLE_NAME and calculate VALUE</span>
-<span id="cb139-3"><a href="conceitos-básicos-de-programação.html#cb139-3"></a>VALUE</span>
-<span id="cb139-4"><a href="conceitos-básicos-de-programação.html#cb139-4"></a>}</span></code></pre></div>
-<p>As funções que eles definem podem ter vários argumentos, bem como valores padrão. Por exemplo, podemos definir uma função que calcula a média aritmética ou geométrica, dependendo de uma variável definida pelo usuário como esta:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="conceitos-básicos-de-programação.html#cb140-1"></a>avg &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">arithmetic =</span> <span class="ot">TRUE</span>){</span>
-<span id="cb140-2"><a href="conceitos-básicos-de-programação.html#cb140-2"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
-<span id="cb140-3"><a href="conceitos-básicos-de-programação.html#cb140-3"></a><span class="kw">ifelse</span>(arithmetic, <span class="kw">sum</span>(x)<span class="op">/</span>n, <span class="kw">prod</span>(x)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span>n))</span>
-<span id="cb140-4"><a href="conceitos-básicos-de-programação.html#cb140-4"></a>}</span></code></pre></div>
-<p>Aprenderemos mais sobre como criar funções através da experiência à medida que enfrentamos tarefas mais complexas.</p>
+<div id="o-que-este-livro-cobre" class="section level2 unnumbered" number="">
+<h2>O que este livro cobre?</h2>
+<p>Começamos com o <strong>R básico</strong> e o <strong>tidyverse</strong>. Você aprenderá R ao longo do livro, mas na primeira parte cobriremos os componentes básicos necessários para que você continue aprendendo.</p>
+<p>A crescente disponibilidade de conjuntos de dados informativos e ferramentas de software levaram a uma maior dependência da <strong>visualização de dados</strong> em muitos campos. Na segunda parte, demonstramos como usar o <strong>ggplot2</strong> para gerar gráficos e descrever princípios importantes da visualização de dados.</p>
+<p>Na terceira parte, demonstramos a importância da estatística na análise dos dados, respondendo a perguntas de estudos de caso usando <strong>probabilidade</strong>, <strong>inferência</strong> e <strong>regressão</strong> com R.</p>
+<p>A quarta parte usa vários exemplos para familiarizar o leitor com a <strong>preparação de dados</strong> (<em>data wrangling</em>). As habilidades específicas que estudamos incluem raspagem da Web, usando expressões regulares e mesclando e remodelando tabelas de dados. Fazemos isso usando as ferramentas <strong>tidyverse</strong>.</p>
+<p>Na quinta parte, apresentamos vários desafios que nos levam a introduzir o <strong>aprendizado de máquina</strong>. Aprenderemos a usar o pacote <strong>caret</strong> para criar algoritmos de previsão que incluem <em>K-vizinhos mais próximos</em> e <em>florestas aleatórias</em>.</p>
+<p>Na parte final, oferecemos uma breve introdução às <strong>ferramentas de produtividade</strong> que usamos diariamente em projetos de ciência de dados. Estes são RStudio, ambiente UNIX/Linux, Git e GitHub e <strong>knitr</strong> e RMarkdown.</p>
 </div>
-<div id="namespaces" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> <em>Namespaces</em></h2>
-<p>Quando eles começarem a se tornar usuários experientes do R, provavelmente precisarão carregar vários plug-ins de pacotes (<em>add-ons</em>) para algumas de suas varreduras. Assim que fazem isso, é provável que descubram que dois pacotes usam o mesmo nome para duas funções diferentes. E muitas vezes essas funções fazem coisas completamente diferentes. De fato, já vimos isso porque os pacotes base R __dplyr__e<strong>stats</strong> definem uma função <code>filter</code>. Existem outros cinco exemplos em <strong>dplyr</strong>. Sabemos disso porque, quando carregamos <strong>dplyr</strong> pela primeira vez, vemos a seguinte mensagem:</p>
-<pre><code>The following objects are masked from ‘package:stats’:
-
-filter, lag
-
-The following objects are masked from ‘package:base’:
-
-intersect, setdiff, setequal, union</code></pre>
-<p>Então, o que R faz quando escrevemos <code>filter</code>? Você usa a função __dplyr__ou a função<strong>stats</strong>? Do nosso trabalho anterior, sabemos que ele usa <strong>dplyr</strong>. Mas e se quisermos usar <strong>stats</strong>?</p>
-<p>Essas funções vivem em diferentes <em>namespaces</em>. R seguirá uma determinada ordem ao procurar uma função nesses <em>namespaces</em>. Você pode ver o pedido escrevendo:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="conceitos-básicos-de-programação.html#cb142-1"></a><span class="kw">search</span>()</span></code></pre></div>
-<p>A primeira entrada nesta lista é o ambiente global que inclui todos os objetos que eles definem.</p>
-<p>E daí se quisermos usar o <code>filter</code> <strong>stats</strong> em vez de <code>filter</code> __dplyr__mas<strong>dplyr</strong> aparece primeiro na lista de pesquisa? Eles podem forçar o uso de um <em>namespace</em> específico usando dois pontos duplos ( <code>::</code>) assim:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="conceitos-básicos-de-programação.html#cb143-1"></a>stats<span class="op">::</span>filter</span></code></pre></div>
-<p>Se queremos ter certeza absoluta de que usamos o <code>filter</code> <strong>dplyr</strong>, podemos usar:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="conceitos-básicos-de-programação.html#cb144-1"></a>dplyr<span class="op">::</span>filter</span></code></pre></div>
-<p>Lembre-se de que, se queremos usar uma função em um pacote sem carregar o pacote inteiro, também podemos usar dois pontos duplos.</p>
-<p>Para obter mais informações sobre esse tópico mais avançado, recomendamos o livro de pacotes R<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>.</p>
-</div>
-<div id="loops-para" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Loops para</h2>
-<p>A fórmula para a soma da série <span class="math inline">\(1+2+\dots+n\)</span> é <span class="math inline">\(n(n+1)/2\)</span>. E se não tivéssemos certeza de que essa era a função correta? Como poderíamos verificar? Usando o que aprendemos sobre funções, podemos criar um que calcule <span class="math inline">\(S_n\)</span>:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="conceitos-básicos-de-programação.html#cb145-1"></a>compute_s_n &lt;-<span class="st"> </span><span class="cf">function</span>(n){</span>
-<span id="cb145-2"><a href="conceitos-básicos-de-programação.html#cb145-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>n</span>
-<span id="cb145-3"><a href="conceitos-básicos-de-programação.html#cb145-3"></a><span class="kw">sum</span>(x)</span>
-<span id="cb145-4"><a href="conceitos-básicos-de-programação.html#cb145-4"></a>}</span></code></pre></div>
-<p>Como podemos calcular <span class="math inline">\(S_n\)</span> para vários valores de <span class="math inline">\(n\)</span>, digamos <span class="math inline">\(n=1,\dots,25\)</span>? Escrevemos 25 linhas de chamada de código <code>compute_s_n</code>? Não. É para isso que servem os loops de programação. Nesse caso, estamos realizando a mesma tarefa repetidamente, e a única coisa que está mudando é o valor de <span class="math inline">\(n\)</span>. Os loops for permitem definir o intervalo que nossa variável leva (no nosso exemplo <span class="math inline">\(n=1,\dots,10\)</span>), altere o valor e avalie a expressão enquanto você faz o loop _.</p>
-<p>Talvez o exemplo mais simples de um loop for seja esse código inútil:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="conceitos-básicos-de-programação.html#cb146-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</span>
-<span id="cb146-2"><a href="conceitos-básicos-de-programação.html#cb146-2"></a><span class="kw">print</span>(i)</span>
-<span id="cb146-3"><a href="conceitos-básicos-de-programação.html#cb146-3"></a>}</span>
-<span id="cb146-4"><a href="conceitos-básicos-de-programação.html#cb146-4"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb146-5"><a href="conceitos-básicos-de-programação.html#cb146-5"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb146-6"><a href="conceitos-básicos-de-programação.html#cb146-6"></a><span class="co">#&gt; [1] 3</span></span>
-<span id="cb146-7"><a href="conceitos-básicos-de-programação.html#cb146-7"></a><span class="co">#&gt; [1] 4</span></span>
-<span id="cb146-8"><a href="conceitos-básicos-de-programação.html#cb146-8"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
-<p>Aqui está o loop for que escreveríamos para o nosso exemplo <span class="math inline">\(S_n\)</span>:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="conceitos-básicos-de-programação.html#cb147-1"></a>m &lt;-<span class="st"> </span><span class="dv">25</span></span>
-<span id="cb147-2"><a href="conceitos-básicos-de-programação.html#cb147-2"></a>s_n &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">length =</span> m) <span class="co"># create an empty vector</span></span>
-<span id="cb147-3"><a href="conceitos-básicos-de-programação.html#cb147-3"></a><span class="cf">for</span>(n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</span>
-<span id="cb147-4"><a href="conceitos-básicos-de-programação.html#cb147-4"></a>s_n[n] &lt;-<span class="st"> </span><span class="kw">compute_s_n</span>(n)</span>
-<span id="cb147-5"><a href="conceitos-básicos-de-programação.html#cb147-5"></a>}</span></code></pre></div>
-<p>Em cada iteração <span class="math inline">\(n=1\)</span>, <span class="math inline">\(n=2\)</span>, etc …, calculamos <span class="math inline">\(S_n\)</span> e mantemos na entrada <span class="math inline">\(n\)</span> do <code>s_n</code>.</p>
-<p>Agora podemos criar um gráfico para procurar um padrão:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="conceitos-básicos-de-programação.html#cb148-1"></a>n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>m</span>
-<span id="cb148-2"><a href="conceitos-básicos-de-programação.html#cb148-2"></a><span class="kw">plot</span>(n, s_n)</span></code></pre></div>
-<p><img src="livro_files/figure-html/sum-of-consecutive-squares-1.png" width="50%" style="display: block; margin: auto;" /></p>
-<p>Se você percebeu que parece quadrático, está no caminho certo porque a fórmula é <span class="math inline">\(n(n+1)/2\)</span>.
-<!--
-que podemos confirmar com uma tabela:
-
-
-```r
-head(data.frame(s_n = s_n, formula = n*(n+1)/2))
-#>   s_n formula
-#> 1   1       1
-#> 2   3       3
-#> 3   6       6
-#> 4  10      10
-#> 5  15      15
-#> 6  21      21
-```
-
-Também podemos sobrepor os dois resultados usando a função `lines` para desenhar uma linha sobre os pontos plotados anteriormente:
-
-
-```r
-plot(n, s_n)
-lines(n, n*(n+1)/2)
-```
-
-<img src="livro_files/figure-html/s_n-v-n-1.png" width="70%" style="display: block; margin: auto;" />
-
---></p>
-</div>
-<div id="vectorization" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Vectorização e funcional</h2>
-<p>Embora os for-loops sejam um conceito importante para entender, eles não são muito usados em R. À medida que aprendem mais R, eles descobrirão que <em>vectoring</em> é preferível aos for-loops, pois resulta em um código mais curto e claro. . Já vimos exemplos na seção aritmética vetorial. Uma função <em>vectorized</em> é uma função que aplicará a mesma operação a cada um dos vetores.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="conceitos-básicos-de-programação.html#cb149-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb149-2"><a href="conceitos-básicos-de-programação.html#cb149-2"></a><span class="kw">sqrt</span>(x)</span>
-<span id="cb149-3"><a href="conceitos-básicos-de-programação.html#cb149-3"></a><span class="co">#&gt;  [1] 1.00 1.41 1.73 2.00 2.24 2.45 2.65 2.83 3.00 3.16</span></span>
-<span id="cb149-4"><a href="conceitos-básicos-de-programação.html#cb149-4"></a>y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb149-5"><a href="conceitos-básicos-de-programação.html#cb149-5"></a>x<span class="op">*</span>y</span>
-<span id="cb149-6"><a href="conceitos-básicos-de-programação.html#cb149-6"></a><span class="co">#&gt;  [1]   1   4   9  16  25  36  49  64  81 100</span></span></code></pre></div>
-<p>Para fazer esse cálculo, não precisamos de loops de for. No entanto, nem todas as funções funcionam dessa maneira. Por exemplo, a função que acabamos de escrever, <code>compute_s_n</code>, ele não funciona elemento a elemento, pois espera um escalar. Esse trecho de código não executa a função em todas as entradas de <code>n</code>:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="conceitos-básicos-de-programação.html#cb150-1"></a>n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span></span>
-<span id="cb150-2"><a href="conceitos-básicos-de-programação.html#cb150-2"></a><span class="kw">compute_s_n</span>(n)</span></code></pre></div>
-<p>As <em>functionals</em> são funções que nos ajudam a aplicar a mesma função a cada entrada em um vetor, matriz, <em>data frame</em> ou lista. Aqui abordamos o funcional que opera em vetores numéricos, lógicos e de caracteres: <code>sapply</code>.</p>
-<p>A função <code>sapply</code> nos permite executar operações baseadas em elementos (<em>element-wise</em> em inglês) em qualquer função. Aqui podemos ver como funciona:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="conceitos-básicos-de-programação.html#cb151-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
-<span id="cb151-2"><a href="conceitos-básicos-de-programação.html#cb151-2"></a><span class="kw">sapply</span>(x, sqrt)</span>
-<span id="cb151-3"><a href="conceitos-básicos-de-programação.html#cb151-3"></a><span class="co">#&gt;  [1] 1.00 1.41 1.73 2.00 2.24 2.45 2.65 2.83 3.00 3.16</span></span></code></pre></div>
-<p>Cada elemento de <code>x</code> é passado para a função <code>sqrt</code> e retorna o resultado. Esses resultados são concatenados. Nesse caso, o resultado é um vetor do mesmo comprimento que o original, <code>x</code>. Isso implica que o loop for acima pode ser escrito da seguinte maneira:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="conceitos-básicos-de-programação.html#cb152-1"></a>n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span></span>
-<span id="cb152-2"><a href="conceitos-básicos-de-programação.html#cb152-2"></a>s_n &lt;-<span class="st"> </span><span class="kw">sapply</span>(n, compute_s_n)</span></code></pre></div>
-<p>Outros funcionais são <code>apply</code>, <code>lapply</code>, <code>tapply</code>, <code>mapply</code>, <code>vapply</code> e <code>replicate</code>. Nós usamos principalmente <code>sapply</code>, <code>apply</code> e <code>replicate</code> neste livro, mas recomendamos que se conheçam, pois podem ser muito úteis.</p>
-</div>
-<div id="exercícios-7" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Exercícios</h2>
-<p>1. O que essa expressão condicional retornará?</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="conceitos-básicos-de-programação.html#cb153-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">4</span>)</span>
-<span id="cb153-2"><a href="conceitos-básicos-de-programação.html#cb153-2"></a></span>
-<span id="cb153-3"><a href="conceitos-básicos-de-programação.html#cb153-3"></a><span class="cf">if</span>(<span class="kw">all</span>(x<span class="op">&gt;</span><span class="dv">0</span>)){</span>
-<span id="cb153-4"><a href="conceitos-básicos-de-programação.html#cb153-4"></a><span class="kw">print</span>(<span class="st">&quot;All Postives&quot;</span>)</span>
-<span id="cb153-5"><a href="conceitos-básicos-de-programação.html#cb153-5"></a>} <span class="cf">else</span>{</span>
-<span id="cb153-6"><a href="conceitos-básicos-de-programação.html#cb153-6"></a><span class="kw">print</span>(<span class="st">&quot;Not all positives&quot;</span>)</span>
-<span id="cb153-7"><a href="conceitos-básicos-de-programação.html#cb153-7"></a>}</span></code></pre></div>
-<p>2. Qual das seguintes expressões é sempre <code>FALSE</code> quando pelo menos uma entrada de um vetor lógico <code>x</code> é verdade?</p>
-<p>para. <code>all(x)</code>
-b. <code>any(x)</code>
-c. <code>any(!x)</code>
-d. <code>all(!x)</code></p>
-<p>3. A função <code>nchar</code> informa quantos caracteres um vetor de caracteres possui. Escreva uma linha de código que atribua o objeto <code>new_names</code> a abreviação de estado quando o nome do estado tiver mais de 8 caracteres.</p>
-<p>4. Crie uma função <code>sum_n</code> que, por qualquer valor, digamos <span class="math inline">\(n\)</span>, calcule a soma dos números inteiros de 1 a n (inclusive). Use a função para determinar a soma dos números inteiros de 1 a 5.000.</p>
-<p>5. Crie uma função <code>altman_plot</code> que leva dois argumentos, <code>x</code> e <code>y</code> e faça um gráfico da diferença em relação à soma.</p>
-<p>6. Depois de executar o código a seguir, qual é o valor de <code>x</code>?</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="conceitos-básicos-de-programação.html#cb154-1"></a>x &lt;-<span class="st"> </span><span class="dv">3</span></span>
-<span id="cb154-2"><a href="conceitos-básicos-de-programação.html#cb154-2"></a>my_func &lt;-<span class="st"> </span><span class="cf">function</span>(y){</span>
-<span id="cb154-3"><a href="conceitos-básicos-de-programação.html#cb154-3"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb154-4"><a href="conceitos-básicos-de-programação.html#cb154-4"></a>y<span class="op">+</span><span class="dv">5</span></span>
-<span id="cb154-5"><a href="conceitos-básicos-de-programação.html#cb154-5"></a>}</span></code></pre></div>
-<p>7. Escreva uma função <code>compute_s_n</code> isso para qualquer <span class="math inline">\(n\)</span> calcular a soma <span class="math inline">\(S_n = 1^2 + 2^2 + 3^2 + \dots n^2\)</span>. Indique o valor da soma quando <span class="math inline">\(n=10\)</span>.</p>
-<p>8. Definir um vetor de número vazio <code>s_n</code> tamanho 25 usando <code>s_n &lt;- vector("numeric", 25)</code> e armazene os resultados de <span class="math inline">\(S_1, S_2, \dots S_{25}\)</span> usando um loop for.</p>
-<p>9. Repita o exercício 8, mas desta vez use <code>sapply</code>.</p>
-<p>10. Repita o exercício 8, mas desta vez use <code>map_dbl</code>.</p>
-<p>Onze. Gráfico <span class="math inline">\(S_n\)</span> versus <span class="math inline">\(n\)</span>. Use pontos definidos por <span class="math inline">\(n=1,\dots,25\)</span>.</p>
-<p>12. Confirme se a fórmula para esta soma é <span class="math inline">\(S_n= n(n+1)(2n+1)/6\)</span>.</p>
+<div id="o-que-este-livro-não-cobre" class="section level2 unnumbered" number="">
+<h2>O que este livro não cobre?</h2>
+<p>Este livro é focado nos aspectos da análise de dados que compõem a Ciência de Dados. Portanto, não discutimos aspectos relacionados ao gerenciamento ou engenharia de dados. Embora a programação em R seja uma parte essencial do livro, não ensinamos tópicos de computação mais avançados, como estruturas de dados, otimização e teoria de algoritmos. Da mesma forma, não discutimos tópicos como serviços da web, gráficos interativos, computação paralela e processamento de <em>streaming</em> de dados. Os conceitos estatísticos são apresentados principalmente como ferramentas para a solução de problemas e nenhuma descrição teórica detalhada é incluída neste livro.</p>
 
 </div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="16">
-<li id="fn16"><p><a href="http://r-pkgs.had.co.nz/namespace.html" class="uri">http://r-pkgs.had.co.nz/namespace.html</a><a href="conceitos-básicos-de-programação.html#fnref16" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="r-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="agradecimentos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="getting-started.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -872,7 +630,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslivro/edit/master/R/programming-basics.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/intro.Rmd",
 "text": "Edit"
 },
 "history": {
