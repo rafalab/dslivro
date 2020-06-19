@@ -1,4 +1,4 @@
-#Introdução {-}
+# Introdução {-}
 
 A demanda por profissionais qualificados em ciência de dados na indústria, academia e governo está crescendo rapidamente. Este livro apresenta conceitos e habilidades que podem ajudá-lo a enfrentar os desafios da análise de dados em situações reais. O texto aborda os conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Isso também os ajudará a desenvolver habilidades como programação R, _wrangling_ data, __dplyr__, visualização de dados com __ggplot2__, criação de algoritmo com __caret__, organização de arquivos com shell UNIX/ Linux, controle de versão com Git e GitHub e preparando documentos reproduzíveis com as marcações __knitr__ e R. O livro está dividido em seis partes: __R__, __Visualização de dados__, ___Wrangling_of data__, __Estatísticas com R__, ___Machine Learning___e__Productivity tools__. Cada parte possui vários capítulos que devem ser apresentados em uma única aula e inclui dezenas de exercícios distribuídos pelos capítulos.
 
