@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 5 Importando dados | Introdução à Ciência de Dados</title>
-  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 5 Importando dados | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Capítulo 5 Importando dados | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
 
 
-<meta name="date" content="2020-06-16" />
+<meta name="date" content="2020-06-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="tidyverse.html"/>
 <link rel="next" href="introdução-à-visualização-de-dados.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,29 +51,31 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -133,15 +136,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
-<li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html"><i class="fa fa-check"></i>Obrigado</a><ul>
+<li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html"><i class="fa fa-check"></i>Obrigado</a>
+<ul>
 <li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html#os-estudos-de-caso"><i class="fa fa-check"></i>Os estudos de caso</a></li>
 <li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html#o-que-este-livro-cobre"><i class="fa fa-check"></i>O que este livro cobre?</a></li>
 <li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html#o-que-este-livro-não-cobre"><i class="fa fa-check"></i>O que este livro não cobre?</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Começando com R e RStudio</a><ul>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Começando com R e RStudio</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#o-console-do-r"><i class="fa fa-check"></i><b>1.1</b> O console do R</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#scripts"><i class="fa fa-check"></i><b>1.2</b> <em>scripts</em></a></li>
-<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a><ul>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="getting-started.html"><a href="getting-started.html#painéis"><i class="fa fa-check"></i><b>1.3.1</b> Painéis</a></li>
 <li class="chapter" data-level="1.3.2" data-path="getting-started.html"><a href="getting-started.html#combinações-de-teclas"><i class="fa fa-check"></i><b>1.3.2</b> <em>Combinações de teclas</em></a></li>
 <li class="chapter" data-level="1.3.3" data-path="getting-started.html"><a href="getting-started.html#como-executar-comandos-enquanto-edita-scripts"><i class="fa fa-check"></i><b>1.3.3</b> Como executar comandos enquanto edita <em>scripts</em></a></li>
@@ -150,8 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#instalando-pacotes-r"><i class="fa fa-check"></i><b>1.4</b> Instalando pacotes R</a></li>
 </ul></li>
 <li class="part"><span><b>I R</b></span></li>
-<li class="chapter" data-level="2" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
-<li class="chapter" data-level="2.1" data-path="r-basics.html"><a href="r-basics.html#o-básico"><i class="fa fa-check"></i><b>2.1</b> O básico</a><ul>
+<li class="chapter" data-level="2" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>2</b> R básico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-basics.html"><a href="r-basics.html#o-básico"><i class="fa fa-check"></i><b>2.1</b> O básico</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="r-basics.html"><a href="r-basics.html#o-espaço-de-trabalho"><i class="fa fa-check"></i><b>2.1.1</b> O espaço de trabalho</a></li>
 <li class="chapter" data-level="2.1.2" data-path="r-basics.html"><a href="r-basics.html#funções"><i class="fa fa-check"></i><b>2.1.2</b> Funções</a></li>
 <li class="chapter" data-level="2.1.3" data-path="r-basics.html"><a href="r-basics.html#outros-objetos-predefinidos"><i class="fa fa-check"></i><b>2.1.3</b> Outros objetos predefinidos</a></li>
@@ -160,7 +168,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.6" data-path="r-basics.html"><a href="r-basics.html#motivando-scripts"><i class="fa fa-check"></i><b>2.1.6</b> <em>Motivando scripts</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="r-basics.html"><a href="r-basics.html#exercícios"><i class="fa fa-check"></i><b>2.2</b> Exercícios</a></li>
-<li class="chapter" data-level="2.3" data-path="r-basics.html"><a href="r-basics.html#tipo-de-dados"><i class="fa fa-check"></i><b>2.3</b> Tipo de dados</a><ul>
+<li class="chapter" data-level="2.3" data-path="r-basics.html"><a href="r-basics.html#tipo-de-dados"><i class="fa fa-check"></i><b>2.3</b> Tipo de dados</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="r-basics.html"><a href="r-basics.html#data-frames"><i class="fa fa-check"></i><b>2.3.1</b> <em>data frames</em></a></li>
 <li class="chapter" data-level="2.3.2" data-path="r-basics.html"><a href="r-basics.html#como-examinar-um-objeto"><i class="fa fa-check"></i><b>2.3.2</b> Como examinar um objeto</a></li>
 <li class="chapter" data-level="2.3.3" data-path="r-basics.html"><a href="r-basics.html#o-operador-de-acesso"><i class="fa fa-check"></i><b>2.3.3</b> O operador de acesso: <code>$</code></a></li>
@@ -168,17 +177,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.5" data-path="r-basics.html"><a href="r-basics.html#matrices"><i class="fa fa-check"></i><b>2.3.5</b> Arrays</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="r-basics.html"><a href="r-basics.html#exercícios-1"><i class="fa fa-check"></i><b>2.4</b> Exercícios</a></li>
-<li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#vetores"><i class="fa fa-check"></i><b>2.5</b> Vetores</a><ul>
+<li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#vetores"><i class="fa fa-check"></i><b>2.5</b> Vetores</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="r-basics.html"><a href="r-basics.html#como-criar-vetores"><i class="fa fa-check"></i><b>2.5.1</b> Como criar vetores</a></li>
 <li class="chapter" data-level="2.5.2" data-path="r-basics.html"><a href="r-basics.html#nomes"><i class="fa fa-check"></i><b>2.5.2</b> Nomes</a></li>
 <li class="chapter" data-level="2.5.3" data-path="r-basics.html"><a href="r-basics.html#sequências"><i class="fa fa-check"></i><b>2.5.3</b> Sequências</a></li>
 <li class="chapter" data-level="2.5.4" data-path="r-basics.html"><a href="r-basics.html#como-criar-um-subconjunto"><i class="fa fa-check"></i><b>2.5.4</b> Como criar um subconjunto</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="r-basics.html"><a href="r-basics.html#conversão-forçada"><i class="fa fa-check"></i><b>2.6</b> Conversão forçada</a><ul>
+<li class="chapter" data-level="2.6" data-path="r-basics.html"><a href="r-basics.html#conversão-forçada"><i class="fa fa-check"></i><b>2.6</b> Conversão forçada</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="r-basics.html"><a href="r-basics.html#não-disponível-na"><i class="fa fa-check"></i><b>2.6.1</b> <em>Não disponível</em> (NA)</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="r-basics.html"><a href="r-basics.html#exercícios-2"><i class="fa fa-check"></i><b>2.7</b> Exercícios</a></li>
-<li class="chapter" data-level="2.8" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.8</b> <em>Ordenação</em></a><ul>
+<li class="chapter" data-level="2.8" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.8</b> <em>Ordenação</em></a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="r-basics.html"><a href="r-basics.html#sort"><i class="fa fa-check"></i><b>2.8.1</b> <code>sort</code></a></li>
 <li class="chapter" data-level="2.8.2" data-path="r-basics.html"><a href="r-basics.html#order"><i class="fa fa-check"></i><b>2.8.2</b> <code>order</code></a></li>
 <li class="chapter" data-level="2.8.3" data-path="r-basics.html"><a href="r-basics.html#max-e-which.max"><i class="fa fa-check"></i><b>2.8.3</b> <code>max</code> e <code>which.max</code></a></li>
@@ -186,12 +198,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8.5" data-path="r-basics.html"><a href="r-basics.html#cuidado-com-a-reciclagem"><i class="fa fa-check"></i><b>2.8.5</b> Cuidado com a reciclagem</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="r-basics.html"><a href="r-basics.html#exercícios-3"><i class="fa fa-check"></i><b>2.9</b> Exercícios</a></li>
-<li class="chapter" data-level="2.10" data-path="r-basics.html"><a href="r-basics.html#aritmética-vetorial"><i class="fa fa-check"></i><b>2.10</b> Aritmética vetorial</a><ul>
+<li class="chapter" data-level="2.10" data-path="r-basics.html"><a href="r-basics.html#aritmética-vetorial"><i class="fa fa-check"></i><b>2.10</b> Aritmética vetorial</a>
+<ul>
 <li class="chapter" data-level="2.10.1" data-path="r-basics.html"><a href="r-basics.html#rescalar-um-vetor"><i class="fa fa-check"></i><b>2.10.1</b> <em>Rescalar</em> um vetor</a></li>
 <li class="chapter" data-level="2.10.2" data-path="r-basics.html"><a href="r-basics.html#dois-vetores"><i class="fa fa-check"></i><b>2.10.2</b> Dois vetores</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="r-basics.html"><a href="r-basics.html#exercícios-4"><i class="fa fa-check"></i><b>2.11</b> Exercícios</a></li>
-<li class="chapter" data-level="2.12" data-path="r-basics.html"><a href="r-basics.html#indexação"><i class="fa fa-check"></i><b>2.12</b> Indexação</a><ul>
+<li class="chapter" data-level="2.12" data-path="r-basics.html"><a href="r-basics.html#indexação"><i class="fa fa-check"></i><b>2.12</b> Indexação</a>
+<ul>
 <li class="chapter" data-level="2.12.1" data-path="r-basics.html"><a href="r-basics.html#criar-subconjuntos-com-lógicas"><i class="fa fa-check"></i><b>2.12.1</b> Criar subconjuntos com lógicas</a></li>
 <li class="chapter" data-level="2.12.2" data-path="r-basics.html"><a href="r-basics.html#operadores-lógicos"><i class="fa fa-check"></i><b>2.12.2</b> Operadores lógicos</a></li>
 <li class="chapter" data-level="2.12.3" data-path="r-basics.html"><a href="r-basics.html#which"><i class="fa fa-check"></i><b>2.12.3</b> <code>which</code></a></li>
@@ -199,7 +213,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.12.5" data-path="r-basics.html"><a href="r-basics.html#in"><i class="fa fa-check"></i><b>2.12.5</b> <code>%in%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="2.13" data-path="r-basics.html"><a href="r-basics.html#exercícios-5"><i class="fa fa-check"></i><b>2.13</b> Exercícios</a></li>
-<li class="chapter" data-level="2.14" data-path="r-basics.html"><a href="r-basics.html#gráficos-básicos"><i class="fa fa-check"></i><b>2.14</b> Gráficos básicos</a><ul>
+<li class="chapter" data-level="2.14" data-path="r-basics.html"><a href="r-basics.html#gráficos-básicos"><i class="fa fa-check"></i><b>2.14</b> Gráficos básicos</a>
+<ul>
 <li class="chapter" data-level="2.14.1" data-path="r-basics.html"><a href="r-basics.html#plot"><i class="fa fa-check"></i><b>2.14.1</b> <code>plot</code></a></li>
 <li class="chapter" data-level="2.14.2" data-path="r-basics.html"><a href="r-basics.html#hist"><i class="fa fa-check"></i><b>2.14.2</b> <code>hist</code></a></li>
 <li class="chapter" data-level="2.14.3" data-path="r-basics.html"><a href="r-basics.html#boxplot"><i class="fa fa-check"></i><b>2.14.3</b> <code>boxplot</code></a></li>
@@ -207,7 +222,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.15" data-path="r-basics.html"><a href="r-basics.html#exercícios-6"><i class="fa fa-check"></i><b>2.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html"><i class="fa fa-check"></i><b>3</b> Conceitos básicos de programação</a><ul>
+<li class="chapter" data-level="3" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html"><i class="fa fa-check"></i><b>3</b> Conceitos básicos de programação</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#conditionals"><i class="fa fa-check"></i><b>3.1</b> Expressões condicionais</a></li>
 <li class="chapter" data-level="3.2" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#como-definir-funções"><i class="fa fa-check"></i><b>3.2</b> Como definir funções</a></li>
 <li class="chapter" data-level="3.3" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#namespaces"><i class="fa fa-check"></i><b>3.3</b> <em>Namespaces</em></a></li>
@@ -215,10 +231,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#vectorization"><i class="fa fa-check"></i><b>3.5</b> Vectorização e funcional</a></li>
 <li class="chapter" data-level="3.6" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#exercícios-7"><i class="fa fa-check"></i><b>3.6</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> <em>tidyverse</em></a><ul>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> <em>tidyverse</em></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="tidyverse.html"><a href="tidyverse.html#tidy-data"><i class="fa fa-check"></i><b>4.1</b> Data <em>tidy</em></a></li>
 <li class="chapter" data-level="4.2" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-8"><i class="fa fa-check"></i><b>4.2</b> Exercícios</a></li>
-<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#como-manipular-data-frames"><i class="fa fa-check"></i><b>4.3</b> Como manipular <em>data frames</em></a><ul>
+<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#como-manipular-data-frames"><i class="fa fa-check"></i><b>4.3</b> Como manipular <em>data frames</em></a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="tidyverse.html"><a href="tidyverse.html#como-adicionar-uma-coluna-com-mutate"><i class="fa fa-check"></i><b>4.3.1</b> Como adicionar uma coluna com <code>mutate</code></a></li>
 <li class="chapter" data-level="4.3.2" data-path="tidyverse.html"><a href="tidyverse.html#como-criar-subconjuntos-com-filter"><i class="fa fa-check"></i><b>4.3.2</b> Como criar subconjuntos com <code>filter</code></a></li>
 <li class="chapter" data-level="4.3.3" data-path="tidyverse.html"><a href="tidyverse.html#como-selecionar-colunas-com-select"><i class="fa fa-check"></i><b>4.3.3</b> Como selecionar colunas com <code>select</code></a></li>
@@ -226,17 +244,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-9"><i class="fa fa-check"></i><b>4.4</b> Exercícios</a></li>
 <li class="chapter" data-level="4.5" data-path="tidyverse.html"><a href="tidyverse.html#o-cano_"><i class="fa fa-check"></i><b>4.5</b> O cano_: <code>%&gt;%</code></a></li>
 <li class="chapter" data-level="4.6" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-10"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
-<li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#como-resumir-dados"><i class="fa fa-check"></i><b>4.7</b> Como resumir dados</a><ul>
+<li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#como-resumir-dados"><i class="fa fa-check"></i><b>4.7</b> Como resumir dados</a>
+<ul>
 <li class="chapter" data-level="4.7.1" data-path="tidyverse.html"><a href="tidyverse.html#summarize"><i class="fa fa-check"></i><b>4.7.1</b> <code>summarize</code></a></li>
 <li class="chapter" data-level="4.7.2" data-path="tidyverse.html"><a href="tidyverse.html#pull"><i class="fa fa-check"></i><b>4.7.2</b> <code>pull</code></a></li>
 <li class="chapter" data-level="4.7.3" data-path="tidyverse.html"><a href="tidyverse.html#group-by"><i class="fa fa-check"></i><b>4.7.3</b> Como agrupar e resumir com <code>group_by</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="tidyverse.html"><a href="tidyverse.html#como-encomendar-os-data-frames"><i class="fa fa-check"></i><b>4.8</b> Como encomendar os <em>data frames</em></a><ul>
+<li class="chapter" data-level="4.8" data-path="tidyverse.html"><a href="tidyverse.html#como-encomendar-os-data-frames"><i class="fa fa-check"></i><b>4.8</b> Como encomendar os <em>data frames</em></a>
+<ul>
 <li class="chapter" data-level="4.8.1" data-path="tidyverse.html"><a href="tidyverse.html#como-encomendar-aninhado"><i class="fa fa-check"></i><b>4.8.1</b> Como encomendar aninhado</a></li>
 <li class="chapter" data-level="4.8.2" data-path="tidyverse.html"><a href="tidyverse.html#os-primeiros-n"><i class="fa fa-check"></i><b>4.8.2</b> Os primeiros <span class="math inline">\(n\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="4.9" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-11"><i class="fa fa-check"></i><b>4.9</b> Exercícios</a></li>
-<li class="chapter" data-level="4.10" data-path="tidyverse.html"><a href="tidyverse.html#tibbles"><i class="fa fa-check"></i><b>4.10</b> <em>Tibbles</em></a><ul>
+<li class="chapter" data-level="4.10" data-path="tidyverse.html"><a href="tidyverse.html#tibbles"><i class="fa fa-check"></i><b>4.10</b> <em>Tibbles</em></a>
+<ul>
 <li class="chapter" data-level="4.10.1" data-path="tidyverse.html"><a href="tidyverse.html#tibbles-parece-melhor"><i class="fa fa-check"></i><b>4.10.1</b> <em>Tibbles</em> parece melhor</a></li>
 <li class="chapter" data-level="4.10.2" data-path="tidyverse.html"><a href="tidyverse.html#tibbles_subconjuntos-são_tibbles"><i class="fa fa-check"></i><b>4.10.2</b> <em>Tibbles_subconjuntos são_tibbles</em></a></li>
 <li class="chapter" data-level="4.10.3" data-path="tidyverse.html"><a href="tidyverse.html#tibbles-pode-ter-entradas-complexas"><i class="fa fa-check"></i><b>4.10.3</b> <em>Tibbles</em> pode ter entradas complexas</a></li>
@@ -246,27 +267,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.11" data-path="tidyverse.html"><a href="tidyverse.html#o-operador-de-ponto"><i class="fa fa-check"></i><b>4.11</b> O operador de ponto</a></li>
 <li class="chapter" data-level="4.12" data-path="tidyverse.html"><a href="tidyverse.html#do"><i class="fa fa-check"></i><b>4.12</b> <code>do</code></a></li>
 <li class="chapter" data-level="4.13" data-path="tidyverse.html"><a href="tidyverse.html#o-pacote-purrr"><i class="fa fa-check"></i><b>4.13</b> O pacote <strong>purrr</strong></a></li>
-<li class="chapter" data-level="4.14" data-path="tidyverse.html"><a href="tidyverse.html#os-condicionais-tidyverse"><i class="fa fa-check"></i><b>4.14</b> Os condicionais <em>tidyverse</em></a><ul>
+<li class="chapter" data-level="4.14" data-path="tidyverse.html"><a href="tidyverse.html#os-condicionais-tidyverse"><i class="fa fa-check"></i><b>4.14</b> Os condicionais <em>tidyverse</em></a>
+<ul>
 <li class="chapter" data-level="4.14.1" data-path="tidyverse.html"><a href="tidyverse.html#case_when"><i class="fa fa-check"></i><b>4.14.1</b> <code>case_when</code></a></li>
 <li class="chapter" data-level="4.14.2" data-path="tidyverse.html"><a href="tidyverse.html#between"><i class="fa fa-check"></i><b>4.14.2</b> <code>between</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4.15" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-12"><i class="fa fa-check"></i><b>4.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>5</b> Importando dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="importing-data.html"><a href="importing-data.html#caminhos-e-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1</b> Caminhos e diretório de trabalho</a><ul>
+<li class="chapter" data-level="5" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>5</b> Importando dados</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="importing-data.html"><a href="importing-data.html#caminhos-e-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1</b> Caminhos e diretório de trabalho</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="importing-data.html"><a href="importing-data.html#o-sistema-de-arquivos"><i class="fa fa-check"></i><b>5.1.1</b> O sistema de arquivos</a></li>
 <li class="chapter" data-level="5.1.2" data-path="importing-data.html"><a href="importing-data.html#caminhos-relativos-e-completos"><i class="fa fa-check"></i><b>5.1.2</b> Caminhos relativos e completos</a></li>
 <li class="chapter" data-level="5.1.3" data-path="importing-data.html"><a href="importing-data.html#o-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1.3</b> O diretório de trabalho</a></li>
 <li class="chapter" data-level="5.1.4" data-path="importing-data.html"><a href="importing-data.html#como-gerar-nomes-de-caminhos"><i class="fa fa-check"></i><b>5.1.4</b> Como gerar nomes de caminhos</a></li>
 <li class="chapter" data-level="5.1.5" data-path="importing-data.html"><a href="importing-data.html#como-copiar-arquivos-usando-caminhos"><i class="fa fa-check"></i><b>5.1.5</b> Como copiar arquivos usando caminhos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="importing-data.html"><a href="importing-data.html#os-pacotes-readr-e-readxl"><i class="fa fa-check"></i><b>5.2</b> Os pacotes readr e readxl</a><ul>
+<li class="chapter" data-level="5.2" data-path="importing-data.html"><a href="importing-data.html#os-pacotes-readr-e-readxl"><i class="fa fa-check"></i><b>5.2</b> Os pacotes readr e readxl</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="importing-data.html"><a href="importing-data.html#readr"><i class="fa fa-check"></i><b>5.2.1</b> readr</a></li>
 <li class="chapter" data-level="5.2.2" data-path="importing-data.html"><a href="importing-data.html#readxl"><i class="fa fa-check"></i><b>5.2.2</b> readxl</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="importing-data.html"><a href="importing-data.html#exercícios-13"><i class="fa fa-check"></i><b>5.3</b> Exercícios</a></li>
 <li class="chapter" data-level="5.4" data-path="importing-data.html"><a href="importing-data.html#como-baixar-arquivos"><i class="fa fa-check"></i><b>5.4</b> Como baixar arquivos</a></li>
-<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação R</a><ul>
+<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação R</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="importing-data.html"><a href="importing-data.html#scan"><i class="fa fa-check"></i><b>5.5.1</b> <code>scan</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="importing-data.html"><a href="importing-data.html#arquivos-de-texto-versus-arquivos-binários"><i class="fa fa-check"></i><b>5.6</b> Arquivos de texto versus arquivos binários</a></li>
@@ -276,12 +302,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>II Exibição de dados</b></span></li>
 <li class="chapter" data-level="6" data-path="introdução-à-visualização-de-dados.html"><a href="introdução-à-visualização-de-dados.html"><i class="fa fa-check"></i><b>6</b> Introdução à visualização de dados</a></li>
-<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a><ul>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#os-componentes-de-um-gráfico"><i class="fa fa-check"></i><b>7.1</b> Os componentes de um gráfico</a></li>
 <li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-ggplot"><i class="fa fa-check"></i><b>7.2</b> objetos <code>ggplot</code></a></li>
 <li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrias"><i class="fa fa-check"></i><b>7.3</b> Geometrias</a></li>
 <li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#mapeamentos-estéticos"><i class="fa fa-check"></i><b>7.4</b> Mapeamentos estéticos</a></li>
-<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#camadas"><i class="fa fa-check"></i><b>7.5</b> Camadas</a><ul>
+<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#camadas"><i class="fa fa-check"></i><b>7.5</b> Camadas</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#como-testar-vários-argumentos"><i class="fa fa-check"></i><b>7.5.1</b> Como testar vários argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético-global-versus-local"><i class="fa fa-check"></i><b>7.6</b> Mapeamento estético global versus local</a></li>
@@ -295,13 +323,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.14" data-path="ggplot2.html"><a href="ggplot2.html#grades-de-gráfico"><i class="fa fa-check"></i><b>7.14</b> Grades de gráfico</a></li>
 <li class="chapter" data-level="7.15" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-15"><i class="fa fa-check"></i><b>7.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Como visualizar distribuições de dados</a><ul>
+<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Como visualizar distribuições de dados</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="distributions.html"><a href="distributions.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>8.1</b> Tipos de variáveis</a></li>
 <li class="chapter" data-level="8.2" data-path="distributions.html"><a href="distributions.html#estudo-de-caso-descrevendo-a-altura-dos-alunos"><i class="fa fa-check"></i><b>8.2</b> Estudo de caso: descrevendo a altura dos alunos</a></li>
 <li class="chapter" data-level="8.3" data-path="distributions.html"><a href="distributions.html#a-função-de-distribuição"><i class="fa fa-check"></i><b>8.3</b> A função de distribuição</a></li>
 <li class="chapter" data-level="8.4" data-path="distributions.html"><a href="distributions.html#cdf-intro"><i class="fa fa-check"></i><b>8.4</b> Funções de distribuição cumulativa</a></li>
 <li class="chapter" data-level="8.5" data-path="distributions.html"><a href="distributions.html#histogramas"><i class="fa fa-check"></i><b>8.5</b> Histogramas</a></li>
-<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#densidade-suave"><i class="fa fa-check"></i><b>8.6</b> Densidade suave</a><ul>
+<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#densidade-suave"><i class="fa fa-check"></i><b>8.6</b> Densidade suave</a>
+<ul>
 <li class="chapter" data-level="8.6.1" data-path="distributions.html"><a href="distributions.html#como-interpretar-o-eixo-y"><i class="fa fa-check"></i><b>8.6.1</b> Como interpretar o eixo y</a></li>
 <li class="chapter" data-level="8.6.2" data-path="distributions.html"><a href="distributions.html#densidades-permitem-camadas"><i class="fa fa-check"></i><b>8.6.2</b> Densidades permitem camadas</a></li>
 </ul></li>
@@ -314,7 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.13" data-path="distributions.html"><a href="distributions.html#stratification"><i class="fa fa-check"></i><b>8.13</b> Estratificação</a></li>
 <li class="chapter" data-level="8.14" data-path="distributions.html"><a href="distributions.html#student-height-cont"><i class="fa fa-check"></i><b>8.14</b> Estudo de caso: descrição das alturas dos alunos (continuação)</a></li>
 <li class="chapter" data-level="8.15" data-path="distributions.html"><a href="distributions.html#exercícios-17"><i class="fa fa-check"></i><b>8.15</b> Exercícios</a></li>
-<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Gegplot2 geometrias</a><ul>
+<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Gegplot2 geometrias</a>
+<ul>
 <li class="chapter" data-level="8.16.1" data-path="distributions.html"><a href="distributions.html#gráficos-de-barra"><i class="fa fa-check"></i><b>8.16.1</b> Gráficos de barra</a></li>
 <li class="chapter" data-level="8.16.2" data-path="distributions.html"><a href="distributions.html#histogramas-1"><i class="fa fa-check"></i><b>8.16.2</b> Histogramas</a></li>
 <li class="chapter" data-level="8.16.3" data-path="distributions.html"><a href="distributions.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>8.16.3</b> Gráficos de densidade</a></li>
@@ -325,40 +356,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.17" data-path="distributions.html"><a href="distributions.html#exercícios-18"><i class="fa fa-check"></i><b>8.17</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>9</b> Visualização de dados na prática</a><ul>
+<li class="chapter" data-level="9" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>9</b> Visualização de dados na prática</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="gapminder.html"><a href="gapminder.html#estudo-de-caso-novas-idéias-sobre-pobreza"><i class="fa fa-check"></i><b>9.1</b> Estudo de caso: novas idéias sobre pobreza</a></li>
 <li class="chapter" data-level="9.2" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-dispersão"><i class="fa fa-check"></i><b>9.2</b> Diagrama de dispersão</a></li>
-<li class="chapter" data-level="9.3" data-path="gapminder.html"><a href="gapminder.html#separe-em-facetas"><i class="fa fa-check"></i><b>9.3</b> Separe em facetas</a><ul>
+<li class="chapter" data-level="9.3" data-path="gapminder.html"><a href="gapminder.html#separe-em-facetas"><i class="fa fa-check"></i><b>9.3</b> Separe em facetas</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="gapminder.html"><a href="gapminder.html#facet_wrap"><i class="fa fa-check"></i><b>9.3.1</b> <code>facet_wrap</code></a></li>
 <li class="chapter" data-level="9.3.2" data-path="gapminder.html"><a href="gapminder.html#escalas-fixas-para-melhores-comparações"><i class="fa fa-check"></i><b>9.3.2</b> Escalas fixas para melhores comparações</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="gapminder.html"><a href="gapminder.html#gráficos-de-séries-temporais"><i class="fa fa-check"></i><b>9.4</b> Gráficos de séries temporais</a><ul>
+<li class="chapter" data-level="9.4" data-path="gapminder.html"><a href="gapminder.html#gráficos-de-séries-temporais"><i class="fa fa-check"></i><b>9.4</b> Gráficos de séries temporais</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="gapminder.html"><a href="gapminder.html#etiquetas-em-vez-de-legendas"><i class="fa fa-check"></i><b>9.4.1</b> Etiquetas em vez de legendas</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="gapminder.html"><a href="gapminder.html#transformações-de-dados"><i class="fa fa-check"></i><b>9.5</b> Transformações de dados</a><ul>
+<li class="chapter" data-level="9.5" data-path="gapminder.html"><a href="gapminder.html#transformações-de-dados"><i class="fa fa-check"></i><b>9.5</b> Transformações de dados</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="gapminder.html"><a href="gapminder.html#transformação-logarítmica"><i class="fa fa-check"></i><b>9.5.1</b> Transformação logarítmica</a></li>
 <li class="chapter" data-level="9.5.2" data-path="gapminder.html"><a href="gapminder.html#qual-base"><i class="fa fa-check"></i><b>9.5.2</b> Qual base?</a></li>
 <li class="chapter" data-level="9.5.3" data-path="gapminder.html"><a href="gapminder.html#transformar-valores-ou-escala"><i class="fa fa-check"></i><b>9.5.3</b> Transformar valores ou escala?</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="gapminder.html"><a href="gapminder.html#como-visualizar-distribuições-multimodais"><i class="fa fa-check"></i><b>9.6</b> Como visualizar distribuições multimodais</a></li>
-<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-várias-distribuições-com-gráficos-de-caixas-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar várias distribuições com gráficos de caixas e gráficos <em>ridge</em></a><ul>
+<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-várias-distribuições-com-gráficos-de-caixas-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar várias distribuições com gráficos de caixas e gráficos <em>ridge</em></a>
+<ul>
 <li class="chapter" data-level="9.7.1" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-caixa"><i class="fa fa-check"></i><b>9.7.1</b> Diagrama de caixa</a></li>
 <li class="chapter" data-level="9.7.2" data-path="gapminder.html"><a href="gapminder.html#exemplo-distribuições-de-renda-1970-versus-2010"><i class="fa fa-check"></i><b>9.7.2</b> Exemplo: distribuições de renda 1970 versus 2010</a></li>
 <li class="chapter" data-level="9.7.3" data-path="gapminder.html"><a href="gapminder.html#como-acessar-variáveis-calculadas"><i class="fa fa-check"></i><b>9.7.3</b> Como acessar variáveis calculadas</a></li>
 <li class="chapter" data-level="9.7.4" data-path="gapminder.html"><a href="gapminder.html#densidades-ponderadas"><i class="fa fa-check"></i><b>9.7.4</b> Densidades ponderadas</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="gapminder.html"><a href="gapminder.html#a-falácia-ecológica-e-a-importância-de-mostrar-os-dados"><i class="fa fa-check"></i><b>9.8</b> A falácia ecológica e a importância de mostrar os dados</a><ul>
+<li class="chapter" data-level="9.8" data-path="gapminder.html"><a href="gapminder.html#a-falácia-ecológica-e-a-importância-de-mostrar-os-dados"><i class="fa fa-check"></i><b>9.8</b> A falácia ecológica e a importância de mostrar os dados</a>
+<ul>
 <li class="chapter" data-level="9.8.1" data-path="gapminder.html"><a href="gapminder.html#logit"><i class="fa fa-check"></i><b>9.8.1</b> Transformação de logística</a></li>
 <li class="chapter" data-level="9.8.2" data-path="gapminder.html"><a href="gapminder.html#mostrar-os-dados"><i class="fa fa-check"></i><b>9.8.2</b> Mostrar os dados</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html"><i class="fa fa-check"></i><b>10</b> Princípios de visualização de dados</a><ul>
+<li class="chapter" data-level="10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html"><i class="fa fa-check"></i><b>10</b> Princípios de visualização de dados</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-codificar-dados-usando-pistas-visuais"><i class="fa fa-check"></i><b>10.1</b> Como codificar dados usando pistas visuais</a></li>
 <li class="chapter" data-level="10.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#saiba-quando-incluir-0"><i class="fa fa-check"></i><b>10.2</b> Saiba quando incluir 0</a></li>
 <li class="chapter" data-level="10.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#não-distorça-quantidades"><i class="fa fa-check"></i><b>10.3</b> Não distorça quantidades</a></li>
 <li class="chapter" data-level="10.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#classificar-categorias-por-valor-significativo"><i class="fa fa-check"></i><b>10.4</b> Classificar categorias por valor significativo</a></li>
 <li class="chapter" data-level="10.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#mostrar-os-dados-1"><i class="fa fa-check"></i><b>10.5</b> Mostrar os dados</a></li>
-<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-facilitar-comparações"><i class="fa fa-check"></i><b>10.6</b> Como facilitar comparações</a><ul>
+<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-facilitar-comparações"><i class="fa fa-check"></i><b>10.6</b> Como facilitar comparações</a>
+<ul>
 <li class="chapter" data-level="10.6.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-eixos-comuns"><i class="fa fa-check"></i><b>10.6.1</b> Use eixos comuns</a></li>
 <li class="chapter" data-level="10.6.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#alinhe-os-gráficos-verticalmente-para-ver-alterações-horizontais-e-horizontalmente-para-ver-alterações-verticais"><i class="fa fa-check"></i><b>10.6.2</b> Alinhe os gráficos verticalmente para ver alterações horizontais e horizontalmente para ver alterações verticais</a></li>
 <li class="chapter" data-level="10.6.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#considere-transformações"><i class="fa fa-check"></i><b>10.6.3</b> Considere transformações</a></li>
@@ -366,7 +405,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.6.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-cores"><i class="fa fa-check"></i><b>10.6.5</b> Use cores</a></li>
 </ul></li>
 <li class="chapter" data-level="10.7" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#pense-no-daltônico"><i class="fa fa-check"></i><b>10.7</b> Pense no daltônico</a></li>
-<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Gráficos para duas variáveis</a><ul>
+<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Gráficos para duas variáveis</a>
+<ul>
 <li class="chapter" data-level="10.8.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-de-inclinação"><i class="fa fa-check"></i><b>10.8.1</b> Gráficos de inclinação</a></li>
 <li class="chapter" data-level="10.8.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráfico-de-bland-altman"><i class="fa fa-check"></i><b>10.8.2</b> Gráfico de Bland-Altman</a></li>
 </ul></li>
@@ -378,7 +418,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.14" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#vaccines"><i class="fa fa-check"></i><b>10.14</b> Estudo de caso: vacinas e doenças infecciosas</a></li>
 <li class="chapter" data-level="10.15" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#exercícios-20"><i class="fa fa-check"></i><b>10.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="robust-summaries.html"><a href="robust-summaries.html"><i class="fa fa-check"></i><b>11</b> Resumos robustos</a><ul>
+<li class="chapter" data-level="11" data-path="robust-summaries.html"><a href="robust-summaries.html"><i class="fa fa-check"></i><b>11</b> Resumos robustos</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="robust-summaries.html"><a href="robust-summaries.html#valores-atípicos"><i class="fa fa-check"></i><b>11.1</b> Valores atípicos</a></li>
 <li class="chapter" data-level="11.2" data-path="robust-summaries.html"><a href="robust-summaries.html#mediana"><i class="fa fa-check"></i><b>11.2</b> Mediana</a></li>
 <li class="chapter" data-level="11.3" data-path="robust-summaries.html"><a href="robust-summaries.html#o-intervalo-interquartil-iqr"><i class="fa fa-check"></i><b>11.3</b> O intervalo interquartil (IQR)</a></li>
@@ -389,8 +430,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>III Estatísticas com R</b></span></li>
 <li class="chapter" data-level="12" data-path="introdução-às-estatísticas-com-r.html"><a href="introdução-às-estatísticas-com-r.html"><i class="fa fa-check"></i><b>12</b> Introdução às estatísticas com R</a></li>
-<li class="chapter" data-level="13" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>13</b> Probabilidade</a><ul>
-<li class="chapter" data-level="13.1" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-discreta"><i class="fa fa-check"></i><b>13.1</b> Probabilidade discreta</a><ul>
+<li class="chapter" data-level="13" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>13</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-discreta"><i class="fa fa-check"></i><b>13.1</b> Probabilidade discreta</a>
+<ul>
 <li class="chapter" data-level="13.1.1" data-path="probabilidade.html"><a href="probabilidade.html#frequência-relativa"><i class="fa fa-check"></i><b>13.1.1</b> Frequência relativa</a></li>
 <li class="chapter" data-level="13.1.2" data-path="probabilidade.html"><a href="probabilidade.html#notação"><i class="fa fa-check"></i><b>13.1.2</b> Notação</a></li>
 <li class="chapter" data-level="13.1.3" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>13.1.3</b> Distribuições de probabilidade</a></li>
@@ -401,33 +444,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="probabilidade.html"><a href="probabilidade.html#probabilidades-condicionais"><i class="fa fa-check"></i><b>13.3</b> Probabilidades condicionais</a></li>
 <li class="chapter" data-level="13.4" data-path="probabilidade.html"><a href="probabilidade.html#regras-de-adição-e-multiplicação"><i class="fa fa-check"></i><b>13.4</b> Regras de adição e multiplicação</a></li>
 <li class="chapter" data-level="13.5" data-path="probabilidade.html"><a href="probabilidade.html#combinações-e-permutações"><i class="fa fa-check"></i><b>13.5</b> Combinações e permutações</a></li>
-<li class="chapter" data-level="13.6" data-path="probabilidade.html"><a href="probabilidade.html#exemplos"><i class="fa fa-check"></i><b>13.6</b> Exemplos</a><ul>
+<li class="chapter" data-level="13.6" data-path="probabilidade.html"><a href="probabilidade.html#exemplos"><i class="fa fa-check"></i><b>13.6</b> Exemplos</a>
+<ul>
 <li class="chapter" data-level="13.6.1" data-path="probabilidade.html"><a href="probabilidade.html#problema-de-aniversário"><i class="fa fa-check"></i><b>13.6.1</b> Problema de aniversário</a></li>
 </ul></li>
 <li class="chapter" data-level="13.7" data-path="probabilidade.html"><a href="probabilidade.html#exercícios-22"><i class="fa fa-check"></i><b>13.7</b> Exercícios</a></li>
 <li class="chapter" data-level="13.8" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-contínua"><i class="fa fa-check"></i><b>13.8</b> Probabilidade contínua</a></li>
-<li class="chapter" data-level="13.9" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-teóricas-contínuas"><i class="fa fa-check"></i><b>13.9</b> Distribuições teóricas contínuas</a><ul>
+<li class="chapter" data-level="13.9" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-teóricas-contínuas"><i class="fa fa-check"></i><b>13.9</b> Distribuições teóricas contínuas</a>
+<ul>
 <li class="chapter" data-level="13.9.1" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-teóricas-como-aproximações"><i class="fa fa-check"></i><b>13.9.1</b> Distribuições teóricas como aproximações</a></li>
 <li class="chapter" data-level="13.9.2" data-path="probabilidade.html"><a href="probabilidade.html#a-densidade-de-probabilidade"><i class="fa fa-check"></i><b>13.9.2</b> A densidade de probabilidade</a></li>
 </ul></li>
 <li class="chapter" data-level="13.10" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-contínuas"><i class="fa fa-check"></i><b>13.10</b> Distribuições contínuas</a></li>
 <li class="chapter" data-level="13.11" data-path="probabilidade.html"><a href="probabilidade.html#exercícios-23"><i class="fa fa-check"></i><b>13.11</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html"><i class="fa fa-check"></i><b>14</b> Variáveis aleatórias</a><ul>
+<li class="chapter" data-level="14" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html"><i class="fa fa-check"></i><b>14</b> Variáveis aleatórias</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#variáveis-aleatórias-1"><i class="fa fa-check"></i><b>14.1</b> Variáveis aleatórias</a></li>
 <li class="chapter" data-level="14.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#modelos-de-amostragem"><i class="fa fa-check"></i><b>14.2</b> Modelos de amostragem</a></li>
 <li class="chapter" data-level="14.3" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#a-distribuição-de-probabilidade-de-uma-variável-aleatória"><i class="fa fa-check"></i><b>14.3</b> A distribuição de probabilidade de uma variável aleatória</a></li>
 <li class="chapter" data-level="14.4" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#distribuições-versus-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>14.4</b> Distribuições versus distribuições de probabilidade</a></li>
-<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.5</b> O valor esperado e o erro padrão</a><ul>
+<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.5</b> O valor esperado e o erro padrão</a>
+<ul>
 <li class="chapter" data-level="14.5.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#população-sd-versus-amostra-sd"><i class="fa fa-check"></i><b>14.5.1</b> População SD versus amostra SD</a></li>
 </ul></li>
 <li class="chapter" data-level="14.6" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#teorema-do-limite-central"><i class="fa fa-check"></i><b>14.6</b> Teorema do limite central</a></li>
 <li class="chapter" data-level="14.7" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#propriedades-estatísticas-das-médias"><i class="fa fa-check"></i><b>14.7</b> Propriedades estatísticas das médias</a></li>
-<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.8</b> Lei dos grandes números</a><ul>
+<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.8</b> Lei dos grandes números</a>
+<ul>
 <li class="chapter" data-level="14.8.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#interpretação-incorreta-da-lei-das-médias"><i class="fa fa-check"></i><b>14.8.1</b> Interpretação incorreta da lei das médias</a></li>
 </ul></li>
 <li class="chapter" data-level="14.9" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-24"><i class="fa fa-check"></i><b>14.9</b> Exercícios</a></li>
-<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-o-grande-short"><i class="fa fa-check"></i><b>14.10</b> Estudo de caso: o grande short</a><ul>
+<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-o-grande-short"><i class="fa fa-check"></i><b>14.10</b> Estudo de caso: o grande short</a>
+<ul>
 <li class="chapter" data-level="14.10.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#taxas-de-juros-explicadas-com-um-modelo-de-oportunidade"><i class="fa fa-check"></i><b>14.10.1</b> Taxas de juros explicadas com um modelo de oportunidade</a></li>
 <li class="chapter" data-level="14.10.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-grande-curto"><i class="fa fa-check"></i><b>14.10.2</b> O Grande Curto</a></li>
 </ul></li>
@@ -453,7 +502,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="importing-data" class="section level1">
+<div id="importing-data" class="section level1" number="5">
 <h1><span class="header-section-number">Capítulo 5</span> Importando dados</h1>
 <p>Temos usado conjuntos de dados já armazenados como objetos R. Os cientistas de dados raramente têm a mesma sorte e geralmente precisam importar dados para o R de um arquivo, banco de dados ou outras fontes. Atualmente, uma das maneiras mais comuns de armazenar e compartilhar dados para análise é por meio de planilhas eletrônicas. Uma planilha armazena dados em linhas e colunas. Basicamente, é uma versão de arquivo de um <em>data frame</em>. Ao salvar essa tabela em um arquivo de computador, é necessário definir como uma nova linha ou coluna termina e quando a outra começa. Por sua vez, define as células nas quais os valores individuais são armazenados.</p>
 <p>Ao criar planilhas com arquivos de texto, como aqueles criados com um editor de texto simples, uma nova linha é definida com um retorno e as colunas são separadas com um caractere especial predefinido. Os caracteres mais comuns são vírgulas ( <code>,</code>), ponto e vírgula ( <code>;</code>), space () e o <em>tab</em> (um número predeterminado de espaços ou <code>\t</code>) Aqui está um exemplo da aparência de um arquivo separado por vírgula se o abrirmos com um editor de texto básico:</p>
@@ -461,79 +510,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A primeira linha contém nomes de colunas em vez de dados. Nós nos referimos a isso como um <em>header</em> (<em>header</em> em inglês) e, quando lemos (<em>read-in</em>) dados de uma planilha, é importante saber se o arquivo tem um cabeçalho ou não. A maioria das funções de leitura assume que existe um cabeçalho. Para descobrir se o arquivo tem um cabeçalho, verifique o arquivo antes de tentar lê-lo. Isso pode ser feito com um editor de texto ou com o RStudio. No RStudio, podemos fazer isso abrindo o arquivo no editor ou navegando até o local do arquivo, clicando duas vezes no arquivo e pressionando <em>View File</em>.</p>
 <p>No entanto, nem todos os arquivos de planilha estão no formato de texto. O Planilhas Google (_ Planilhas Google em inglês), por exemplo, é acessado com um navegador. Outro exemplo é o formato proprietário usado pelo Microsoft Excel, que não pode ser exibido com um editor de texto. Apesar disso e devido à popularidade do Microsoft Excel <em>software</em>, esse formato é amplamente utilizado.</p>
 <p>Começamos este capítulo descrevendo as diferenças entre arquivos de texto (ASCII), Unicode e binários e como isso afeta a maneira como os importamos. Em seguida, explicamos os conceitos de caminhos de arquivos e diretórios de trabalho, essenciais para entender como importar dados de maneira eficaz. Então, apresentamos os pacotes __readr__e<strong>readxl</strong> e as funções disponíveis para importar planilhas para o R. Por fim, oferecemos algumas recomendações sobre como armazenar e organizar dados em arquivos. Desafios mais complexos, no entanto, como extrair dados de páginas da Web ou documentos em PDF, serão discutidos na parte “<em>Wrangling</em> data” do livro.</p>
-<div id="caminhos-e-diretório-de-trabalho" class="section level2">
+<div id="caminhos-e-diretório-de-trabalho" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Caminhos e diretório de trabalho</h2>
 <p>A primeira etapa na importação de dados de uma planilha é localizar o arquivo que contém os dados. Embora não o recomendamos, você pode usar uma abordagem semelhante à usada para abrir arquivos no Microsoft Excel, clicando no menu “Arquivo” no RStudio, clicando em “Importar conjunto de dados” e depois clicando em pastas até encontrar o arquivo. Queremos escrever código em vez de apontar e clicar. As chaves e os conceitos que precisamos aprender como fazer isso são descritos em detalhes na parte “Ferramentas de produtividade” do livro. Aqui, fornecemos uma visão geral do básico.</p>
 <p>O principal desafio desta primeira etapa é permitir que as funções R de importação saibam onde procurar o arquivo que contém os dados. A maneira mais fácil de fazer isso é ter uma cópia do arquivo na pasta em que as funções de importação pesquisam por padrão. Depois disso, basta fornecer o nome do arquivo para a função de importação.</p>
 <p>O pacote <strong>dslabs</strong> inclui uma planilha contendo os dados dos assassinatos nos EUA. EUA A localização desse arquivo não é óbvia, mas as seguintes linhas de código copiam o arquivo para a pasta que R procura por padrão. Abaixo, explicamos como essas linhas funcionam.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1">filename &lt;-<span class="st"> &quot;murders.csv&quot;</span></a>
-<a class="sourceLine" id="cb233-2" data-line-number="2">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</a>
-<a class="sourceLine" id="cb233-3" data-line-number="3">fullpath &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, filename)</a>
-<a class="sourceLine" id="cb233-4" data-line-number="4"><span class="kw">file.copy</span>(fullpath, <span class="st">&quot;murders.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="importing-data.html#cb233-1"></a>filename &lt;-<span class="st"> &quot;murders.csv&quot;</span></span>
+<span id="cb233-2"><a href="importing-data.html#cb233-2"></a>dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</span>
+<span id="cb233-3"><a href="importing-data.html#cb233-3"></a>fullpath &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, filename)</span>
+<span id="cb233-4"><a href="importing-data.html#cb233-4"></a><span class="kw">file.copy</span>(fullpath, <span class="st">&quot;murders.csv&quot;</span>)</span></code></pre></div>
 <p>Este código não lê os dados em R, apenas copia um arquivo. Mas uma vez que o arquivo é copiado, podemos importar os dados com apenas uma linha de código. Aqui usamos a função <code>read_csv</code> do pacote <strong>readr</strong>, que faz parte do <strong>tidyverse</strong>.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb234-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(filename)</a></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="importing-data.html#cb234-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb234-2"><a href="importing-data.html#cb234-2"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(filename)</span></code></pre></div>
 <p>Os dados são importados e armazenados em <code>dat</code>. O restante desta seção define alguns conceitos importantes e fornece uma visão geral de como escrevemos código para que o R possa encontrar os arquivos que queremos importar. Capítulo <a href="#unix"><strong>??</strong></a> oferece mais detalhes sobre este tópico.</p>
-<div id="o-sistema-de-arquivos" class="section level3">
+<div id="o-sistema-de-arquivos" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> O sistema de arquivos</h3>
 <p>Eles podem pensar no sistema de arquivos do seu computador (<em>file system</em>) como uma série de pastas aninhadas, cada uma contendo outras pastas e arquivos. Os cientistas de dados se referem às pastas como <em>diretórios_e à pasta que contém todas as outras pastas como o_root directory</em>. O diretório em que estamos localizados é chamado de <em>working directory</em>. Portanto, o diretório de trabalho muda à medida que você percorre as pastas - considere-o como seu local atual.</p>
 </div>
-<div id="caminhos-relativos-e-completos" class="section level3">
+<div id="caminhos-relativos-e-completos" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Caminhos relativos e completos</h3>
 <p>O <em>path</em> (<em>path</em> em inglês) de um arquivo é uma lista de nomes de diretórios que podem ser considerados instruções em quais pastas clicar e em que ordem para localizar o arquivo. Se essas instruções forem para encontrar o arquivo no diretório raiz, vamos nos referir a elas como o caminho completo (<em>full path</em> em inglês). Se as instruções forem para encontrar o arquivo no diretório ativo, nós os referimos como um caminho relativo (<em>relative path</em> em inglês). Seção <a href="#filesystem"><strong>??</strong></a> oferece mais detalhes sobre este tópico.</p>
 <p>Para ver um exemplo de caminho completo em seus sistemas, digite o seguinte:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1"><span class="kw">system.file</span>(<span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="importing-data.html#cb235-1"></a><span class="kw">system.file</span>(<span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</span></code></pre></div>
 <p>As cadeias separadas por barras são os nomes dos diretórios. A primeira barra representa o diretório raiz e sabemos que esse é um caminho completo porque começa com uma barra. Se o primeiro nome do diretório aparecer sem uma barra, R assume que o caminho é relativo. Nós podemos usar a função <code>list.files</code> para ver exemplos de rotas relativas:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</a>
-<a class="sourceLine" id="cb236-2" data-line-number="2"><span class="kw">list.files</span>(<span class="dt">path =</span> dir)</a>
-<a class="sourceLine" id="cb236-3" data-line-number="3"><span class="co">#&gt;  [1] &quot;data&quot;        &quot;DESCRIPTION&quot; &quot;extdata&quot;     &quot;help&quot;       </span></a>
-<a class="sourceLine" id="cb236-4" data-line-number="4"><span class="co">#&gt;  [5] &quot;html&quot;        &quot;INDEX&quot;       &quot;Meta&quot;        &quot;NAMESPACE&quot;  </span></a>
-<a class="sourceLine" id="cb236-5" data-line-number="5"><span class="co">#&gt;  [9] &quot;R&quot;           &quot;script&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="importing-data.html#cb236-1"></a>dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</span>
+<span id="cb236-2"><a href="importing-data.html#cb236-2"></a><span class="kw">list.files</span>(<span class="dt">path =</span> dir)</span>
+<span id="cb236-3"><a href="importing-data.html#cb236-3"></a><span class="co">#&gt;  [1] &quot;data&quot;        &quot;DESCRIPTION&quot; &quot;extdata&quot;     &quot;help&quot;       </span></span>
+<span id="cb236-4"><a href="importing-data.html#cb236-4"></a><span class="co">#&gt;  [5] &quot;html&quot;        &quot;INDEX&quot;       &quot;Meta&quot;        &quot;NAMESPACE&quot;  </span></span>
+<span id="cb236-5"><a href="importing-data.html#cb236-5"></a><span class="co">#&gt;  [9] &quot;R&quot;           &quot;script&quot;</span></span></code></pre></div>
 <p>Esses caminhos relativos nos fornecem a localização dos arquivos ou diretórios se iniciarmos no diretório com o caminho completo. Por exemplo, o caminho completo para o diretório <code>help</code> no exemplo acima, é: <code>/Library/Frameworks/R.framework/Versions/3.5/Resources/library/dslabs/help</code>.</p>
 <p><strong>Nota</strong>: eles provavelmente não farão muito uso do recurso <code>system.file</code> no seu trabalho diário de análise de dados. Nós o apresentamos nesta seção, pois facilita a troca de planilhas, incluindo-as no pacote <strong>dslabs</strong>. Raramente eles terão o luxo de incluir dados nos pacotes que já instalaram. No entanto, eles geralmente precisam navegar por caminhos completos e relativos e importar dados no formato de planilha.</p>
 </div>
-<div id="o-diretório-de-trabalho" class="section level3">
+<div id="o-diretório-de-trabalho" class="section level3" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> O diretório de trabalho</h3>
 <p>Recomendamos escrever apenas caminhos relativos no seu código, pois os caminhos completos são exclusivos para seus computadores e você deseja que seu código seja portátil. Eles podem obter o caminho completo do diretório de trabalho sem gravá-lo explicitamente usando a função <code>getwd</code>:</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1">wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="importing-data.html#cb237-1"></a>wd &lt;-<span class="st"> </span><span class="kw">getwd</span>()</span></code></pre></div>
 <p>Se você precisar alterar seu diretório de trabalho, poderá usar a função <code>setwd</code> ou eles podem alterá-lo através do RStudio, clicando em “Sessão”.</p>
 </div>
-<div id="como-gerar-nomes-de-caminhos" class="section level3">
+<div id="como-gerar-nomes-de-caminhos" class="section level3" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> Como gerar nomes de caminhos</h3>
 <p>Outro exemplo de como obter um caminho completo sem escrever explicitamente foi oferecido acima quando criamos o objeto <code>fullpath</code> desta maneira:</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1">filename &lt;-<span class="st"> &quot;murders.csv&quot;</span></a>
-<a class="sourceLine" id="cb238-2" data-line-number="2">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</a>
-<a class="sourceLine" id="cb238-3" data-line-number="3">fullpath &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, filename)</a></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="importing-data.html#cb238-1"></a>filename &lt;-<span class="st"> &quot;murders.csv&quot;</span></span>
+<span id="cb238-2"><a href="importing-data.html#cb238-2"></a>dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</span>
+<span id="cb238-3"><a href="importing-data.html#cb238-3"></a>fullpath &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, filename)</span></code></pre></div>
 <p>A função <code>system.file</code> fornece o caminho completo da pasta que contém todos os arquivos e diretórios relevantes para o pacote especificado pelo argumento <code>package</code>. Ao procurar diretórios em <code>dir</code>, descobrimos que <code>extdata</code> contém o arquivo que queremos:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</a>
-<a class="sourceLine" id="cb239-2" data-line-number="2">filename <span class="op">%in%</span><span class="st"> </span><span class="kw">list.files</span>(<span class="kw">file.path</span>(dir, <span class="st">&quot;extdata&quot;</span>))</a>
-<a class="sourceLine" id="cb239-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="importing-data.html#cb239-1"></a>dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</span>
+<span id="cb239-2"><a href="importing-data.html#cb239-2"></a>filename <span class="op">%in%</span><span class="st"> </span><span class="kw">list.files</span>(<span class="kw">file.path</span>(dir, <span class="st">&quot;extdata&quot;</span>))</span>
+<span id="cb239-3"><a href="importing-data.html#cb239-3"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>A função <code>system.file</code> nos permite fornecer um subdiretório como o primeiro argumento, para que possamos obter o caminho completo do diretório <code>extdata</code> assim:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="importing-data.html#cb240-1"></a>dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</span></code></pre></div>
 <p>A função <code>file.path</code> é usado para combinar os nomes dos diretórios para produzir o caminho completo do arquivo que queremos importar.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1">fullpath &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, filename)</a></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="importing-data.html#cb241-1"></a>fullpath &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, filename)</span></code></pre></div>
 </div>
-<div id="como-copiar-arquivos-usando-caminhos" class="section level3">
+<div id="como-copiar-arquivos-usando-caminhos" class="section level3" number="5.1.5">
 <h3><span class="header-section-number">5.1.5</span> Como copiar arquivos usando caminhos</h3>
 <p>A última linha de código que usamos para copiar o arquivo em nosso diretório inicial usou a função <code>file.copy</code>. Isso requer dois argumentos: o nome do arquivo a ser copiado e o nome a ser usado no novo diretório.</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1"><span class="kw">file.copy</span>(fullpath, <span class="st">&quot;murders.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb242-2" data-line-number="2"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="importing-data.html#cb242-1"></a><span class="kw">file.copy</span>(fullpath, <span class="st">&quot;murders.csv&quot;</span>)</span>
+<span id="cb242-2"><a href="importing-data.html#cb242-2"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Se um arquivo for copiado com sucesso, a função <code>file.copy</code> trazer de volta <code>TRUE</code>. Lembre-se de que estamos dando o mesmo nome ao arquivo, <code>murders.csv</code>, mas poderíamos ter dado qualquer nome a ele. Lembre-se também de que, ao não iniciar a sequência com uma barra, R assume que este é um caminho relativo e copia o arquivo no diretório de trabalho.</p>
 <p>Eles devem poder visualizar o arquivo em seu diretório de trabalho usando:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">list.files</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="importing-data.html#cb243-1"></a><span class="kw">list.files</span>()</span></code></pre></div>
 </div>
 </div>
-<div id="os-pacotes-readr-e-readxl" class="section level2">
+<div id="os-pacotes-readr-e-readxl" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Os pacotes readr e readxl</h2>
 <p>Nesta seção, apresentamos as principais funções de importação do <em>tidyverse</em>. Nós vamos usar o arquivo <code>murders.csv</code> do pacote <strong>dslabs</strong> como um exemplo. Para simplificar a ilustração, copiaremos o arquivo para nosso diretório de trabalho usando o seguinte código:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1">filename &lt;-<span class="st"> &quot;murders.csv&quot;</span></a>
-<a class="sourceLine" id="cb244-2" data-line-number="2">dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</a>
-<a class="sourceLine" id="cb244-3" data-line-number="3">fullpath &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, filename)</a>
-<a class="sourceLine" id="cb244-4" data-line-number="4"><span class="kw">file.copy</span>(fullpath, <span class="st">&quot;murders.csv&quot;</span>)</a></code></pre></div>
-<div id="readr" class="section level3">
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="importing-data.html#cb244-1"></a>filename &lt;-<span class="st"> &quot;murders.csv&quot;</span></span>
+<span id="cb244-2"><a href="importing-data.html#cb244-2"></a>dir &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</span>
+<span id="cb244-3"><a href="importing-data.html#cb244-3"></a>fullpath &lt;-<span class="st"> </span><span class="kw">file.path</span>(dir, filename)</span>
+<span id="cb244-4"><a href="importing-data.html#cb244-4"></a><span class="kw">file.copy</span>(fullpath, <span class="st">&quot;murders.csv&quot;</span>)</span></code></pre></div>
+<div id="readr" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> readr</h3>
 <p>O pacote <strong>readr</strong> inclui funções para ler dados armazenados em planilhas. __readr__faz parte do pacote<strong>tidyverse</strong>, ou você pode carregá-lo diretamente assim:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">library</span>(readr)</a></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="importing-data.html#cb245-1"></a><span class="kw">library</span>(readr)</span></code></pre></div>
 <p>As seguintes funções estão disponíveis para leitura de planilhas:</p>
 <table>
 <colgroup>
@@ -577,29 +626,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Embora o sufixo geralmente nos diga que tipo de arquivo é, não há garantia de que eles sempre correspondam. Podemos abrir o arquivo para dar uma olhada ou usar a função <code>read_lines</code> para ver algumas linhas:</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1"><span class="kw">read_lines</span>(<span class="st">&quot;murders.csv&quot;</span>, <span class="dt">n_max =</span> <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb246-2" data-line-number="2"><span class="co">#&gt; [1] &quot;state,abb,region,population,total&quot;</span></a>
-<a class="sourceLine" id="cb246-3" data-line-number="3"><span class="co">#&gt; [2] &quot;Alabama,AL,South,4779736,135&quot;     </span></a>
-<a class="sourceLine" id="cb246-4" data-line-number="4"><span class="co">#&gt; [3] &quot;Alaska,AK,West,710231,19&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="importing-data.html#cb246-1"></a><span class="kw">read_lines</span>(<span class="st">&quot;murders.csv&quot;</span>, <span class="dt">n_max =</span> <span class="dv">3</span>)</span>
+<span id="cb246-2"><a href="importing-data.html#cb246-2"></a><span class="co">#&gt; [1] &quot;state,abb,region,population,total&quot;</span></span>
+<span id="cb246-3"><a href="importing-data.html#cb246-3"></a><span class="co">#&gt; [2] &quot;Alabama,AL,South,4779736,135&quot;     </span></span>
+<span id="cb246-4"><a href="importing-data.html#cb246-4"></a><span class="co">#&gt; [3] &quot;Alaska,AK,West,710231,19&quot;</span></span></code></pre></div>
 <p>Isso também mostra que existe um cabeçalho. Agora estamos prontos para ler os dados em R. A partir do sufixo .csv e do arquivo, sabemos que precisamos usar <code>read_csv</code>:</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(filename)</a>
-<a class="sourceLine" id="cb247-2" data-line-number="2"><span class="co">#&gt; Parsed with column specification:</span></a>
-<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="co">#&gt; cols(</span></a>
-<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="co">#&gt;   state = col_character(),</span></a>
-<a class="sourceLine" id="cb247-5" data-line-number="5"><span class="co">#&gt;   abb = col_character(),</span></a>
-<a class="sourceLine" id="cb247-6" data-line-number="6"><span class="co">#&gt;   region = col_character(),</span></a>
-<a class="sourceLine" id="cb247-7" data-line-number="7"><span class="co">#&gt;   population = col_double(),</span></a>
-<a class="sourceLine" id="cb247-8" data-line-number="8"><span class="co">#&gt;   total = col_double()</span></a>
-<a class="sourceLine" id="cb247-9" data-line-number="9"><span class="co">#&gt; )</span></a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="importing-data.html#cb247-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(filename)</span>
+<span id="cb247-2"><a href="importing-data.html#cb247-2"></a><span class="co">#&gt; Parsed with column specification:</span></span>
+<span id="cb247-3"><a href="importing-data.html#cb247-3"></a><span class="co">#&gt; cols(</span></span>
+<span id="cb247-4"><a href="importing-data.html#cb247-4"></a><span class="co">#&gt;   state = col_character(),</span></span>
+<span id="cb247-5"><a href="importing-data.html#cb247-5"></a><span class="co">#&gt;   abb = col_character(),</span></span>
+<span id="cb247-6"><a href="importing-data.html#cb247-6"></a><span class="co">#&gt;   region = col_character(),</span></span>
+<span id="cb247-7"><a href="importing-data.html#cb247-7"></a><span class="co">#&gt;   population = col_double(),</span></span>
+<span id="cb247-8"><a href="importing-data.html#cb247-8"></a><span class="co">#&gt;   total = col_double()</span></span>
+<span id="cb247-9"><a href="importing-data.html#cb247-9"></a><span class="co">#&gt; )</span></span></code></pre></div>
 <p>Observe que recebemos uma mensagem informando que tipos de dados foram usados para cada coluna. Observe também que <code>dat</code> é um <code>tibble</code>, não apenas um <em>data frame</em>. Isto é porque <code>read_csv</code> é um leitor (<em>parser</em> em inglês) de <em>tidyverse</em>. Podemos confirmar que os dados foram lidos da seguinte forma:</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="kw">View</span>(dat)</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="importing-data.html#cb248-1"></a><span class="kw">View</span>(dat)</span></code></pre></div>
 <p>Por fim, lembre-se de que também podemos usar o caminho completo para o arquivo:</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpath)</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="importing-data.html#cb249-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(fullpath)</span></code></pre></div>
 </div>
-<div id="readxl" class="section level3">
+<div id="readxl" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> readxl</h3>
 <p>Eles podem carregar o pacote <strong>readxl</strong> usando:</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">library</span>(readxl)</a></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="importing-data.html#cb250-1"></a><span class="kw">library</span>(readxl)</span></code></pre></div>
 <p>O pacote oferece funções para a leitura dos formatos do Microsoft Excel:</p>
 <table>
 <thead>
@@ -630,75 +679,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Os formatos do Microsoft Excel permitem que você tenha mais de uma planilha em um arquivo. Estes são conhecidos como <em>sheets</em>. As funções listadas acima leem a primeira folha por padrão, mas também podemos ler as outras. A função <code>excel_sheets</code> nos fornece os nomes de todas as planilhas em um arquivo excel. Esses nomes podem ser passados para o argumento <code>sheet</code> nas três funções anteriores para ler folhas diferentes da primeira.</p>
 </div>
 </div>
-<div id="exercícios-13" class="section level2">
+<div id="exercícios-13" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Exercícios</h2>
 <p>1. Use a função <code>read_csv</code> para ler cada um dos arquivos que o código a seguir armazena no objeto <code>files</code>:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</a>
-<a class="sourceLine" id="cb251-2" data-line-number="2">files &lt;-<span class="st"> </span><span class="kw">list.files</span>(path)</a>
-<a class="sourceLine" id="cb251-3" data-line-number="3">files</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="importing-data.html#cb251-1"></a>path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</span>
+<span id="cb251-2"><a href="importing-data.html#cb251-2"></a>files &lt;-<span class="st"> </span><span class="kw">list.files</span>(path)</span>
+<span id="cb251-3"><a href="importing-data.html#cb251-3"></a>files</span></code></pre></div>
 <p>2. Observe que o último, o arquivo <code>olive</code>, nos dá um aviso. Isso ocorre porque a primeira linha do arquivo está ausente no cabeçalho da primeira coluna.</p>
 <p>Leia a página de ajuda para <code>read_csv</code> para aprender a ler o arquivo sem ler este cabeçalho. Se você omitir o cabeçalho, não deverá receber este aviso. Salve o resultado em um objeto chamado <code>dat</code>.</p>
 <p>3. Um problema com a abordagem acima é que não sabemos o que as colunas representam. Escriba:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">names</span>(dat)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="importing-data.html#cb252-1"></a><span class="kw">names</span>(dat)</span></code></pre></div>
 <p>para confirmar que os nomes não são informativos.</p>
 <p>Use a função <code>readLines</code> para ler apenas a primeira linha (mais tarde aprenderemos como extrair valores de <em>output</em>).</p>
 </div>
-<div id="como-baixar-arquivos" class="section level2">
+<div id="como-baixar-arquivos" class="section level2" number="5.4">
 <h2><span class="header-section-number">5.4</span> Como baixar arquivos</h2>
 <p>Outro local comum onde os dados residem é na internet. Quando esses dados estão em arquivos, podemos baixá-los e importá-los, ou mesmo lê-los diretamente da web. Por exemplo, observamos que, como o pacote <strong>dslabs</strong> está no GitHub, o arquivo que baixamos com o pacote tem uma URL:</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1">url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/rafalab/dslabs/master/inst/</span></a>
-<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="st">extdata/murders.csv&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="importing-data.html#cb253-1"></a>url &lt;-<span class="st"> &quot;https://raw.githubusercontent.com/rafalab/dslabs/master/inst/</span></span>
+<span id="cb253-2"><a href="importing-data.html#cb253-2"></a><span class="st">extdata/murders.csv&quot;</span></span></code></pre></div>
 <p>O arquivo <code>read_csv</code> você pode ler esses arquivos diretamente:</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(url)</a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="importing-data.html#cb254-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(url)</span></code></pre></div>
 <p>Se você deseja ter uma cópia local do arquivo, pode usar a função <code>download.file</code>:</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="kw">download.file</span>(url, <span class="st">&quot;murders.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="importing-data.html#cb255-1"></a><span class="kw">download.file</span>(url, <span class="st">&quot;murders.csv&quot;</span>)</span></code></pre></div>
 <p>Isso fará o download do arquivo e o salvará no seu sistema com o nome <code>murders.csv</code>. Você pode usar qualquer nome aqui, não necessariamente <code>murders.csv</code>. Lembre-se de que ao usar <code>download.file</code> tenha cuidado, pois <strong>substituirá os arquivos existentes sem aviso prévio</strong>.</p>
 <p>Duas funções que às vezes são úteis ao baixar dados da Internet são <code>tempdir</code> e <code>tempfile</code>. O primeiro cria um diretório com um nome aleatório que provavelmente é único. Igualmente, <code>tempfile</code> crie uma cadeia de caracteres, não um arquivo, que provavelmente é um nome de arquivo exclusivo. Eles podem executar um comando, como o seguinte, que exclui o arquivo temporário depois que os dados são importados:</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1">tmp_filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</a>
-<a class="sourceLine" id="cb256-2" data-line-number="2"><span class="kw">download.file</span>(url, tmp_filename)</a>
-<a class="sourceLine" id="cb256-3" data-line-number="3">dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(tmp_filename)</a>
-<a class="sourceLine" id="cb256-4" data-line-number="4"><span class="kw">file.remove</span>(tmp_filename)</a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="importing-data.html#cb256-1"></a>tmp_filename &lt;-<span class="st"> </span><span class="kw">tempfile</span>()</span>
+<span id="cb256-2"><a href="importing-data.html#cb256-2"></a><span class="kw">download.file</span>(url, tmp_filename)</span>
+<span id="cb256-3"><a href="importing-data.html#cb256-3"></a>dat &lt;-<span class="st"> </span><span class="kw">read_csv</span>(tmp_filename)</span>
+<span id="cb256-4"><a href="importing-data.html#cb256-4"></a><span class="kw">file.remove</span>(tmp_filename)</span></code></pre></div>
 </div>
-<div id="funções-básicas-de-importação-r" class="section level2">
+<div id="funções-básicas-de-importação-r" class="section level2" number="5.5">
 <h2><span class="header-section-number">5.5</span> Funções básicas de importação R</h2>
 <p>A base R também fornece funções de importação. Eles têm nomes semelhantes aos do <em>tidyverse</em>, por exemplo <code>read.table</code>, <code>read.csv</code> e <code>read.delim</code>. No entanto, existem algumas diferenças importantes. Para mostrar isso, lemos os dados com uma função base R:</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">dat2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(filename)</a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="importing-data.html#cb257-1"></a>dat2 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(filename)</span></code></pre></div>
 <p>Uma diferença importante é que os personagens se tornam fatores:</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw">class</span>(dat2<span class="op">$</span>abb)</a>
-<a class="sourceLine" id="cb258-2" data-line-number="2"><span class="co">#&gt; [1] &quot;factor&quot;</span></a>
-<a class="sourceLine" id="cb258-3" data-line-number="3"><span class="kw">class</span>(dat2<span class="op">$</span>region)</a>
-<a class="sourceLine" id="cb258-4" data-line-number="4"><span class="co">#&gt; [1] &quot;factor&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="importing-data.html#cb258-1"></a><span class="kw">class</span>(dat2<span class="op">$</span>abb)</span>
+<span id="cb258-2"><a href="importing-data.html#cb258-2"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span>
+<span id="cb258-3"><a href="importing-data.html#cb258-3"></a><span class="kw">class</span>(dat2<span class="op">$</span>region)</span>
+<span id="cb258-4"><a href="importing-data.html#cb258-4"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>Isso pode ser evitado definindo o argumento <code>stringsAsFactors</code> como <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;murders.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="kw">class</span>(dat<span class="op">$</span>state)</a>
-<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="co">#&gt; [1] &quot;character&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="importing-data.html#cb259-1"></a>dat &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;murders.csv&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb259-2"><a href="importing-data.html#cb259-2"></a><span class="kw">class</span>(dat<span class="op">$</span>state)</span>
+<span id="cb259-3"><a href="importing-data.html#cb259-3"></a><span class="co">#&gt; [1] &quot;character&quot;</span></span></code></pre></div>
 <p>Em nossa experiência, isso pode ser confuso, pois uma variável que foi salva como caracteres no arquivo se torna fatores, independentemente do que a variável represente. De fato, é altamente recomendável definir sempre <code>stringsAsFactors=FALSE</code> para ser sua abordagem padrão ao usar leitores de base R. Eles podem converter facilmente as colunas desejadas em fatores após a importação de dados.</p>
-<div id="scan" class="section level3">
+<div id="scan" class="section level3" number="5.5.1">
 <h3><span class="header-section-number">5.5.1</span> <code>scan</code></h3>
-<p>Ao ler planilhas, muitas coisas podem dar errado. O arquivo pode ter um cabeçalho de várias linhas, as células podem estar ausentes ou pode usar uma codificação inesperada<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>. Recomendamos que você leia esta postagem sobre problemas comuns: [<a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about" class="uri">https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about</a> -unicode -and-character-sets-no-desculuses/] (<a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about" class="uri">https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about</a>) -unicode-and-character-sets-no-desculpas/).</p>
+<p>Ao ler planilhas, muitas coisas podem dar errado. O arquivo pode ter um cabeçalho de várias linhas, as células podem estar ausentes ou pode usar uma codificação inesperada<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>. Recomendamos que você leia esta postagem sobre problemas comuns: [<a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about" class="uri">https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about</a> -unicode -and-character-sets-no-desculuses/] (<a href="https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about" class="uri">https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about</a>) -unicode-and-character-sets-no-desculpas/).</p>
 <p>Com a experiência, eles aprenderão a lidar com diferentes desafios. Além disso, ajudará você a ler atentamente os arquivos de ajuda para as funções discutidas aqui. Com <code>scan</code> eles podem ler todas as células em um arquivo, como vemos aqui:</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</a>
-<a class="sourceLine" id="cb260-2" data-line-number="2">filename &lt;-<span class="st"> &quot;murders.csv&quot;</span></a>
-<a class="sourceLine" id="cb260-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="kw">file.path</span>(path, filename), <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">what =</span> <span class="st">&quot;c&quot;</span>)</a>
-<a class="sourceLine" id="cb260-4" data-line-number="4">x[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</a>
-<a class="sourceLine" id="cb260-5" data-line-number="5"><span class="co">#&gt;  [1] &quot;state&quot;      &quot;abb&quot;        &quot;region&quot;     &quot;population&quot; &quot;total&quot;     </span></a>
-<a class="sourceLine" id="cb260-6" data-line-number="6"><span class="co">#&gt;  [6] &quot;Alabama&quot;    &quot;AL&quot;         &quot;South&quot;      &quot;4779736&quot;    &quot;135&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="importing-data.html#cb260-1"></a>path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;dslabs&quot;</span>)</span>
+<span id="cb260-2"><a href="importing-data.html#cb260-2"></a>filename &lt;-<span class="st"> &quot;murders.csv&quot;</span></span>
+<span id="cb260-3"><a href="importing-data.html#cb260-3"></a>x &lt;-<span class="st"> </span><span class="kw">scan</span>(<span class="kw">file.path</span>(path, filename), <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>, <span class="dt">what =</span> <span class="st">&quot;c&quot;</span>)</span>
+<span id="cb260-4"><a href="importing-data.html#cb260-4"></a>x[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]</span>
+<span id="cb260-5"><a href="importing-data.html#cb260-5"></a><span class="co">#&gt;  [1] &quot;state&quot;      &quot;abb&quot;        &quot;region&quot;     &quot;population&quot; &quot;total&quot;     </span></span>
+<span id="cb260-6"><a href="importing-data.html#cb260-6"></a><span class="co">#&gt;  [6] &quot;Alabama&quot;    &quot;AL&quot;         &quot;South&quot;      &quot;4779736&quot;    &quot;135&quot;</span></span></code></pre></div>
 <p>Observe que o <em>tidyverse</em> inclui <code>read_lines</code>, uma função igualmente útil.</p>
 </div>
 </div>
-<div id="arquivos-de-texto-versus-arquivos-binários" class="section level2">
+<div id="arquivos-de-texto-versus-arquivos-binários" class="section level2" number="5.6">
 <h2><span class="header-section-number">5.6</span> Arquivos de texto versus arquivos binários</h2>
 <p>Na ciência de dados, os arquivos geralmente podem ser classificados em duas categorias: arquivos de texto (também conhecidos como arquivos ASCII) e arquivos binários. Eles já trabalharam com arquivos de texto. Todos os seus R <em>scripts</em> são arquivos de texto, assim como os arquivos de remarcação R usados para criar este livro. As tabelas csv que você leu também são arquivos de texto. Uma grande vantagem desses arquivos é que podemos “olhá-los” com facilidade, sem precisar comprar nenhum tipo de software especial ou seguir instruções complicadas. Qualquer editor de texto pode ser usado para navegar em um arquivo de texto, incluindo editores disponíveis gratuitamente, como RStudio, Notepad, textEdit, vi, emacs, nano e pico. Para ver isso, tente abrir um arquivo csv com a ferramenta RStudio “Abrir arquivo”. Eles devem poder ver o conteúdo diretamente no editor. No entanto, se tentarem abrir, digamos, um arquivo xls, jpg ou png do Excel, não poderão ver nada imediatamente útil. Estes são arquivos binários. Os arquivos do Excel são pastas compactadas com vários arquivos de texto. Mas a principal distinção aqui é que os arquivos de texto podem ser facilmente navegados.</p>
 <p>Embora o R inclua ferramentas para ler arquivos binários amplamente utilizados, como arquivos xls, geralmente é melhor encontrar conjuntos de dados armazenados em arquivos de texto. Da mesma forma, ao compartilhar dados, é melhor disponibilizá-los como arquivos de texto, desde que o armazenamento não seja um problema (os arquivos binários são muito mais eficientes na economia de espaço em disco). Em geral, os formatos de texto facilitam a troca de dados, pois não requerem <em>software</em> comercial para trabalhar com os dados.</p>
 <p>Extrair dados de uma planilha armazenada como um arquivo de texto é talvez a maneira mais fácil de trazer dados de um arquivo para uma sessão R. Infelizmente, as planilhas nem sempre estão disponíveis e o fato de poderem visualizar arquivos de O texto não implica necessariamente que é fácil extrair dados dele. Na parte “<em>Wrangling</em> data” do livro, aprendemos como extrair dados de arquivos de texto mais complexos, como arquivos html.</p>
 </div>
-<div id="unicode-versus-ascii" class="section level2">
+<div id="unicode-versus-ascii" class="section level2" number="5.7">
 <h2><span class="header-section-number">5.7</span> Unicode versus ASCII</h2>
 <p>Uma armadilha na ciência de dados é assumir que um arquivo é um arquivo de texto ASCII, quando na verdade é outra coisa que pode se parecer muito com um arquivo de texto ASCII: um arquivo de texto Unicode.</p>
 <p>Para entender a diferença entre eles, lembre-se de que tudo no computador precisa se tornar 0s e 1s. ASCII é um <em>encoding</em> que define uma correspondência entre caracteres e números. O ASCII usa 7 <em>bits</em> (0s e 1s), o que resulta em <span class="math inline">\(2^7 = 128\)</span> elementos exclusivos, suficientes para codificar todos os caracteres em um teclado em inglês. No entanto, outros idiomas, como o espanhol, usam caracteres não incluídos nesta codificação. Por exemplo, os tildes não são codificados em ASCII. Por esse motivo, foi definida uma nova codificação que usa mais de 7 <em>bits</em>: Unicode. Ao usar o Unicode, você pode escolher entre UTF-8, UTF-16 e UTF-32 abreviado de 8, 16 e 32 bits, respectivamente. O RStudio usa a codificação UTF-8 por padrão.</p>
 <p>Embora não entremos em detalhes sobre como lidar com diferentes codificações aqui, é importante que você saiba que existem codificações diferentes para que você possa diagnosticar bem um problema, se o encontrar. Uma maneira de os problemas se manifestarem é quando personagens “de aparência estranha” surgem e você não esperava. Esta discussão do StackOverflow é um exemplo: [<a href="https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell" class="uri">https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell</a>&gt;(<a href="https://stackoverflow.com/questions/18789330/r-on-" class="uri">https://stackoverflow.com/questions/18789330/r-on-</a> Windows-personagem-codificação-inferno).</p>
 </div>
-<div id="como-organizar-dados-com-planilhas" class="section level2">
+<div id="como-organizar-dados-com-planilhas" class="section level2" number="5.8">
 <h2><span class="header-section-number">5.8</span> Como organizar dados com planilhas</h2>
 <p>Embora este livro se concentre quase exclusivamente na análise de
 dados, o gerenciamento de dados também é uma parte importante do
@@ -715,7 +764,7 @@ lendo planilhas do Microsoft Excel, geralmente queremos evitar
 este formato. Recomendamos o <em>Google Sheets</em> como uma ferramenta para
 <em>software</em> grátis. Baixa
 resumimos as recomendações feitas em uma publicação de Karl Broman
-e Kara Woo<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>.
+e Kara Woo<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a>.
 Leia o artigo completo para obter detalhes mais importantes.</p>
 <ul>
 <li><strong>Seja consistente</strong> - Antes de começar a inserir dados, tenha um plano. Depois de ter, seja consistente e siga-o.</li>
@@ -732,7 +781,7 @@ Leia o artigo completo para obter detalhes mais importantes.</p>
 <li><strong>Salvar dados como arquivos de texto</strong> - Salve os arquivos para compartilhar em formato delimitado por vírgula ou <em>tabs</em>.</li>
 </ul>
 </div>
-<div id="exercícios-14" class="section level2">
+<div id="exercícios-14" class="section level2" number="5.9">
 <h2><span class="header-section-number">5.9</span> Exercícios</h2>
 <p>1. Escolha uma ação que você pode executar regularmente. Por exemplo, seu peso diário ou quanto tempo leva para percorrer 8 km. Mantenha uma planilha que inclua data, hora, medida e outras variáveis informativas que considere valiosas. Faça isso por 2 semanas. Então faça um gráfico.</p>
 
@@ -743,9 +792,9 @@ Leia o artigo completo para obter detalhes mais importantes.</p>
 
 <div class="footnotes">
 <hr />
-<ol start="15">
-<li id="fn15"><p><a href="https://en.wikipedia.org/wiki/Character_encoding" class="uri">https://en.wikipedia.org/wiki/Character_encoding</a><a href="importing-data.html#fnref15" class="footnote-back">↩</a></p></li>
-<li id="fn16"><p><a href="https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989" class="uri">https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989</a><a href="importing-data.html#fnref16" class="footnote-back">↩</a></p></li>
+<ol start="17">
+<li id="fn17"><p><a href="https://en.wikipedia.org/wiki/Character_encoding" class="uri">https://en.wikipedia.org/wiki/Character_encoding</a><a href="importing-data.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p><a href="https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989" class="uri">https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989</a><a href="importing-data.html#fnref18" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

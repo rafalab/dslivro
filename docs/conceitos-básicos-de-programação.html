@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 3 Conceitos básicos de programação | Introdução à Ciência de Dados</title>
-  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 3 Conceitos básicos de programação | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Capítulo 3 Conceitos básicos de programação | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
 
 
-<meta name="date" content="2020-06-16" />
+<meta name="date" content="2020-06-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="r-basics.html"/>
 <link rel="next" href="tidyverse.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,29 +51,31 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -133,15 +136,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
-<li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html"><i class="fa fa-check"></i>Obrigado</a><ul>
+<li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html"><i class="fa fa-check"></i>Obrigado</a>
+<ul>
 <li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html#os-estudos-de-caso"><i class="fa fa-check"></i>Os estudos de caso</a></li>
 <li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html#o-que-este-livro-cobre"><i class="fa fa-check"></i>O que este livro cobre?</a></li>
 <li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html#o-que-este-livro-não-cobre"><i class="fa fa-check"></i>O que este livro não cobre?</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Começando com R e RStudio</a><ul>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Começando com R e RStudio</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#o-console-do-r"><i class="fa fa-check"></i><b>1.1</b> O console do R</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#scripts"><i class="fa fa-check"></i><b>1.2</b> <em>scripts</em></a></li>
-<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a><ul>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="getting-started.html"><a href="getting-started.html#painéis"><i class="fa fa-check"></i><b>1.3.1</b> Painéis</a></li>
 <li class="chapter" data-level="1.3.2" data-path="getting-started.html"><a href="getting-started.html#combinações-de-teclas"><i class="fa fa-check"></i><b>1.3.2</b> <em>Combinações de teclas</em></a></li>
 <li class="chapter" data-level="1.3.3" data-path="getting-started.html"><a href="getting-started.html#como-executar-comandos-enquanto-edita-scripts"><i class="fa fa-check"></i><b>1.3.3</b> Como executar comandos enquanto edita <em>scripts</em></a></li>
@@ -150,8 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#instalando-pacotes-r"><i class="fa fa-check"></i><b>1.4</b> Instalando pacotes R</a></li>
 </ul></li>
 <li class="part"><span><b>I R</b></span></li>
-<li class="chapter" data-level="2" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
-<li class="chapter" data-level="2.1" data-path="r-basics.html"><a href="r-basics.html#o-básico"><i class="fa fa-check"></i><b>2.1</b> O básico</a><ul>
+<li class="chapter" data-level="2" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>2</b> R básico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-basics.html"><a href="r-basics.html#o-básico"><i class="fa fa-check"></i><b>2.1</b> O básico</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="r-basics.html"><a href="r-basics.html#o-espaço-de-trabalho"><i class="fa fa-check"></i><b>2.1.1</b> O espaço de trabalho</a></li>
 <li class="chapter" data-level="2.1.2" data-path="r-basics.html"><a href="r-basics.html#funções"><i class="fa fa-check"></i><b>2.1.2</b> Funções</a></li>
 <li class="chapter" data-level="2.1.3" data-path="r-basics.html"><a href="r-basics.html#outros-objetos-predefinidos"><i class="fa fa-check"></i><b>2.1.3</b> Outros objetos predefinidos</a></li>
@@ -160,7 +168,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.6" data-path="r-basics.html"><a href="r-basics.html#motivando-scripts"><i class="fa fa-check"></i><b>2.1.6</b> <em>Motivando scripts</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="r-basics.html"><a href="r-basics.html#exercícios"><i class="fa fa-check"></i><b>2.2</b> Exercícios</a></li>
-<li class="chapter" data-level="2.3" data-path="r-basics.html"><a href="r-basics.html#tipo-de-dados"><i class="fa fa-check"></i><b>2.3</b> Tipo de dados</a><ul>
+<li class="chapter" data-level="2.3" data-path="r-basics.html"><a href="r-basics.html#tipo-de-dados"><i class="fa fa-check"></i><b>2.3</b> Tipo de dados</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="r-basics.html"><a href="r-basics.html#data-frames"><i class="fa fa-check"></i><b>2.3.1</b> <em>data frames</em></a></li>
 <li class="chapter" data-level="2.3.2" data-path="r-basics.html"><a href="r-basics.html#como-examinar-um-objeto"><i class="fa fa-check"></i><b>2.3.2</b> Como examinar um objeto</a></li>
 <li class="chapter" data-level="2.3.3" data-path="r-basics.html"><a href="r-basics.html#o-operador-de-acesso"><i class="fa fa-check"></i><b>2.3.3</b> O operador de acesso: <code>$</code></a></li>
@@ -168,17 +177,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.5" data-path="r-basics.html"><a href="r-basics.html#matrices"><i class="fa fa-check"></i><b>2.3.5</b> Arrays</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="r-basics.html"><a href="r-basics.html#exercícios-1"><i class="fa fa-check"></i><b>2.4</b> Exercícios</a></li>
-<li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#vetores"><i class="fa fa-check"></i><b>2.5</b> Vetores</a><ul>
+<li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#vetores"><i class="fa fa-check"></i><b>2.5</b> Vetores</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="r-basics.html"><a href="r-basics.html#como-criar-vetores"><i class="fa fa-check"></i><b>2.5.1</b> Como criar vetores</a></li>
 <li class="chapter" data-level="2.5.2" data-path="r-basics.html"><a href="r-basics.html#nomes"><i class="fa fa-check"></i><b>2.5.2</b> Nomes</a></li>
 <li class="chapter" data-level="2.5.3" data-path="r-basics.html"><a href="r-basics.html#sequências"><i class="fa fa-check"></i><b>2.5.3</b> Sequências</a></li>
 <li class="chapter" data-level="2.5.4" data-path="r-basics.html"><a href="r-basics.html#como-criar-um-subconjunto"><i class="fa fa-check"></i><b>2.5.4</b> Como criar um subconjunto</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="r-basics.html"><a href="r-basics.html#conversão-forçada"><i class="fa fa-check"></i><b>2.6</b> Conversão forçada</a><ul>
+<li class="chapter" data-level="2.6" data-path="r-basics.html"><a href="r-basics.html#conversão-forçada"><i class="fa fa-check"></i><b>2.6</b> Conversão forçada</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="r-basics.html"><a href="r-basics.html#não-disponível-na"><i class="fa fa-check"></i><b>2.6.1</b> <em>Não disponível</em> (NA)</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="r-basics.html"><a href="r-basics.html#exercícios-2"><i class="fa fa-check"></i><b>2.7</b> Exercícios</a></li>
-<li class="chapter" data-level="2.8" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.8</b> <em>Ordenação</em></a><ul>
+<li class="chapter" data-level="2.8" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.8</b> <em>Ordenação</em></a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="r-basics.html"><a href="r-basics.html#sort"><i class="fa fa-check"></i><b>2.8.1</b> <code>sort</code></a></li>
 <li class="chapter" data-level="2.8.2" data-path="r-basics.html"><a href="r-basics.html#order"><i class="fa fa-check"></i><b>2.8.2</b> <code>order</code></a></li>
 <li class="chapter" data-level="2.8.3" data-path="r-basics.html"><a href="r-basics.html#max-e-which.max"><i class="fa fa-check"></i><b>2.8.3</b> <code>max</code> e <code>which.max</code></a></li>
@@ -186,12 +198,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8.5" data-path="r-basics.html"><a href="r-basics.html#cuidado-com-a-reciclagem"><i class="fa fa-check"></i><b>2.8.5</b> Cuidado com a reciclagem</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="r-basics.html"><a href="r-basics.html#exercícios-3"><i class="fa fa-check"></i><b>2.9</b> Exercícios</a></li>
-<li class="chapter" data-level="2.10" data-path="r-basics.html"><a href="r-basics.html#aritmética-vetorial"><i class="fa fa-check"></i><b>2.10</b> Aritmética vetorial</a><ul>
+<li class="chapter" data-level="2.10" data-path="r-basics.html"><a href="r-basics.html#aritmética-vetorial"><i class="fa fa-check"></i><b>2.10</b> Aritmética vetorial</a>
+<ul>
 <li class="chapter" data-level="2.10.1" data-path="r-basics.html"><a href="r-basics.html#rescalar-um-vetor"><i class="fa fa-check"></i><b>2.10.1</b> <em>Rescalar</em> um vetor</a></li>
 <li class="chapter" data-level="2.10.2" data-path="r-basics.html"><a href="r-basics.html#dois-vetores"><i class="fa fa-check"></i><b>2.10.2</b> Dois vetores</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="r-basics.html"><a href="r-basics.html#exercícios-4"><i class="fa fa-check"></i><b>2.11</b> Exercícios</a></li>
-<li class="chapter" data-level="2.12" data-path="r-basics.html"><a href="r-basics.html#indexação"><i class="fa fa-check"></i><b>2.12</b> Indexação</a><ul>
+<li class="chapter" data-level="2.12" data-path="r-basics.html"><a href="r-basics.html#indexação"><i class="fa fa-check"></i><b>2.12</b> Indexação</a>
+<ul>
 <li class="chapter" data-level="2.12.1" data-path="r-basics.html"><a href="r-basics.html#criar-subconjuntos-com-lógicas"><i class="fa fa-check"></i><b>2.12.1</b> Criar subconjuntos com lógicas</a></li>
 <li class="chapter" data-level="2.12.2" data-path="r-basics.html"><a href="r-basics.html#operadores-lógicos"><i class="fa fa-check"></i><b>2.12.2</b> Operadores lógicos</a></li>
 <li class="chapter" data-level="2.12.3" data-path="r-basics.html"><a href="r-basics.html#which"><i class="fa fa-check"></i><b>2.12.3</b> <code>which</code></a></li>
@@ -199,7 +213,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.12.5" data-path="r-basics.html"><a href="r-basics.html#in"><i class="fa fa-check"></i><b>2.12.5</b> <code>%in%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="2.13" data-path="r-basics.html"><a href="r-basics.html#exercícios-5"><i class="fa fa-check"></i><b>2.13</b> Exercícios</a></li>
-<li class="chapter" data-level="2.14" data-path="r-basics.html"><a href="r-basics.html#gráficos-básicos"><i class="fa fa-check"></i><b>2.14</b> Gráficos básicos</a><ul>
+<li class="chapter" data-level="2.14" data-path="r-basics.html"><a href="r-basics.html#gráficos-básicos"><i class="fa fa-check"></i><b>2.14</b> Gráficos básicos</a>
+<ul>
 <li class="chapter" data-level="2.14.1" data-path="r-basics.html"><a href="r-basics.html#plot"><i class="fa fa-check"></i><b>2.14.1</b> <code>plot</code></a></li>
 <li class="chapter" data-level="2.14.2" data-path="r-basics.html"><a href="r-basics.html#hist"><i class="fa fa-check"></i><b>2.14.2</b> <code>hist</code></a></li>
 <li class="chapter" data-level="2.14.3" data-path="r-basics.html"><a href="r-basics.html#boxplot"><i class="fa fa-check"></i><b>2.14.3</b> <code>boxplot</code></a></li>
@@ -207,7 +222,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.15" data-path="r-basics.html"><a href="r-basics.html#exercícios-6"><i class="fa fa-check"></i><b>2.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html"><i class="fa fa-check"></i><b>3</b> Conceitos básicos de programação</a><ul>
+<li class="chapter" data-level="3" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html"><i class="fa fa-check"></i><b>3</b> Conceitos básicos de programação</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#conditionals"><i class="fa fa-check"></i><b>3.1</b> Expressões condicionais</a></li>
 <li class="chapter" data-level="3.2" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#como-definir-funções"><i class="fa fa-check"></i><b>3.2</b> Como definir funções</a></li>
 <li class="chapter" data-level="3.3" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#namespaces"><i class="fa fa-check"></i><b>3.3</b> <em>Namespaces</em></a></li>
@@ -215,10 +231,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#vectorization"><i class="fa fa-check"></i><b>3.5</b> Vectorização e funcional</a></li>
 <li class="chapter" data-level="3.6" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#exercícios-7"><i class="fa fa-check"></i><b>3.6</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> <em>tidyverse</em></a><ul>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> <em>tidyverse</em></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="tidyverse.html"><a href="tidyverse.html#tidy-data"><i class="fa fa-check"></i><b>4.1</b> Data <em>tidy</em></a></li>
 <li class="chapter" data-level="4.2" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-8"><i class="fa fa-check"></i><b>4.2</b> Exercícios</a></li>
-<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#como-manipular-data-frames"><i class="fa fa-check"></i><b>4.3</b> Como manipular <em>data frames</em></a><ul>
+<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#como-manipular-data-frames"><i class="fa fa-check"></i><b>4.3</b> Como manipular <em>data frames</em></a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="tidyverse.html"><a href="tidyverse.html#como-adicionar-uma-coluna-com-mutate"><i class="fa fa-check"></i><b>4.3.1</b> Como adicionar uma coluna com <code>mutate</code></a></li>
 <li class="chapter" data-level="4.3.2" data-path="tidyverse.html"><a href="tidyverse.html#como-criar-subconjuntos-com-filter"><i class="fa fa-check"></i><b>4.3.2</b> Como criar subconjuntos com <code>filter</code></a></li>
 <li class="chapter" data-level="4.3.3" data-path="tidyverse.html"><a href="tidyverse.html#como-selecionar-colunas-com-select"><i class="fa fa-check"></i><b>4.3.3</b> Como selecionar colunas com <code>select</code></a></li>
@@ -226,17 +244,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-9"><i class="fa fa-check"></i><b>4.4</b> Exercícios</a></li>
 <li class="chapter" data-level="4.5" data-path="tidyverse.html"><a href="tidyverse.html#o-cano_"><i class="fa fa-check"></i><b>4.5</b> O cano_: <code>%&gt;%</code></a></li>
 <li class="chapter" data-level="4.6" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-10"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
-<li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#como-resumir-dados"><i class="fa fa-check"></i><b>4.7</b> Como resumir dados</a><ul>
+<li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#como-resumir-dados"><i class="fa fa-check"></i><b>4.7</b> Como resumir dados</a>
+<ul>
 <li class="chapter" data-level="4.7.1" data-path="tidyverse.html"><a href="tidyverse.html#summarize"><i class="fa fa-check"></i><b>4.7.1</b> <code>summarize</code></a></li>
 <li class="chapter" data-level="4.7.2" data-path="tidyverse.html"><a href="tidyverse.html#pull"><i class="fa fa-check"></i><b>4.7.2</b> <code>pull</code></a></li>
 <li class="chapter" data-level="4.7.3" data-path="tidyverse.html"><a href="tidyverse.html#group-by"><i class="fa fa-check"></i><b>4.7.3</b> Como agrupar e resumir com <code>group_by</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="tidyverse.html"><a href="tidyverse.html#como-encomendar-os-data-frames"><i class="fa fa-check"></i><b>4.8</b> Como encomendar os <em>data frames</em></a><ul>
+<li class="chapter" data-level="4.8" data-path="tidyverse.html"><a href="tidyverse.html#como-encomendar-os-data-frames"><i class="fa fa-check"></i><b>4.8</b> Como encomendar os <em>data frames</em></a>
+<ul>
 <li class="chapter" data-level="4.8.1" data-path="tidyverse.html"><a href="tidyverse.html#como-encomendar-aninhado"><i class="fa fa-check"></i><b>4.8.1</b> Como encomendar aninhado</a></li>
 <li class="chapter" data-level="4.8.2" data-path="tidyverse.html"><a href="tidyverse.html#os-primeiros-n"><i class="fa fa-check"></i><b>4.8.2</b> Os primeiros <span class="math inline">\(n\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="4.9" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-11"><i class="fa fa-check"></i><b>4.9</b> Exercícios</a></li>
-<li class="chapter" data-level="4.10" data-path="tidyverse.html"><a href="tidyverse.html#tibbles"><i class="fa fa-check"></i><b>4.10</b> <em>Tibbles</em></a><ul>
+<li class="chapter" data-level="4.10" data-path="tidyverse.html"><a href="tidyverse.html#tibbles"><i class="fa fa-check"></i><b>4.10</b> <em>Tibbles</em></a>
+<ul>
 <li class="chapter" data-level="4.10.1" data-path="tidyverse.html"><a href="tidyverse.html#tibbles-parece-melhor"><i class="fa fa-check"></i><b>4.10.1</b> <em>Tibbles</em> parece melhor</a></li>
 <li class="chapter" data-level="4.10.2" data-path="tidyverse.html"><a href="tidyverse.html#tibbles_subconjuntos-são_tibbles"><i class="fa fa-check"></i><b>4.10.2</b> <em>Tibbles_subconjuntos são_tibbles</em></a></li>
 <li class="chapter" data-level="4.10.3" data-path="tidyverse.html"><a href="tidyverse.html#tibbles-pode-ter-entradas-complexas"><i class="fa fa-check"></i><b>4.10.3</b> <em>Tibbles</em> pode ter entradas complexas</a></li>
@@ -246,27 +267,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.11" data-path="tidyverse.html"><a href="tidyverse.html#o-operador-de-ponto"><i class="fa fa-check"></i><b>4.11</b> O operador de ponto</a></li>
 <li class="chapter" data-level="4.12" data-path="tidyverse.html"><a href="tidyverse.html#do"><i class="fa fa-check"></i><b>4.12</b> <code>do</code></a></li>
 <li class="chapter" data-level="4.13" data-path="tidyverse.html"><a href="tidyverse.html#o-pacote-purrr"><i class="fa fa-check"></i><b>4.13</b> O pacote <strong>purrr</strong></a></li>
-<li class="chapter" data-level="4.14" data-path="tidyverse.html"><a href="tidyverse.html#os-condicionais-tidyverse"><i class="fa fa-check"></i><b>4.14</b> Os condicionais <em>tidyverse</em></a><ul>
+<li class="chapter" data-level="4.14" data-path="tidyverse.html"><a href="tidyverse.html#os-condicionais-tidyverse"><i class="fa fa-check"></i><b>4.14</b> Os condicionais <em>tidyverse</em></a>
+<ul>
 <li class="chapter" data-level="4.14.1" data-path="tidyverse.html"><a href="tidyverse.html#case_when"><i class="fa fa-check"></i><b>4.14.1</b> <code>case_when</code></a></li>
 <li class="chapter" data-level="4.14.2" data-path="tidyverse.html"><a href="tidyverse.html#between"><i class="fa fa-check"></i><b>4.14.2</b> <code>between</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4.15" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-12"><i class="fa fa-check"></i><b>4.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>5</b> Importando dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="importing-data.html"><a href="importing-data.html#caminhos-e-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1</b> Caminhos e diretório de trabalho</a><ul>
+<li class="chapter" data-level="5" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>5</b> Importando dados</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="importing-data.html"><a href="importing-data.html#caminhos-e-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1</b> Caminhos e diretório de trabalho</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="importing-data.html"><a href="importing-data.html#o-sistema-de-arquivos"><i class="fa fa-check"></i><b>5.1.1</b> O sistema de arquivos</a></li>
 <li class="chapter" data-level="5.1.2" data-path="importing-data.html"><a href="importing-data.html#caminhos-relativos-e-completos"><i class="fa fa-check"></i><b>5.1.2</b> Caminhos relativos e completos</a></li>
 <li class="chapter" data-level="5.1.3" data-path="importing-data.html"><a href="importing-data.html#o-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1.3</b> O diretório de trabalho</a></li>
 <li class="chapter" data-level="5.1.4" data-path="importing-data.html"><a href="importing-data.html#como-gerar-nomes-de-caminhos"><i class="fa fa-check"></i><b>5.1.4</b> Como gerar nomes de caminhos</a></li>
 <li class="chapter" data-level="5.1.5" data-path="importing-data.html"><a href="importing-data.html#como-copiar-arquivos-usando-caminhos"><i class="fa fa-check"></i><b>5.1.5</b> Como copiar arquivos usando caminhos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="importing-data.html"><a href="importing-data.html#os-pacotes-readr-e-readxl"><i class="fa fa-check"></i><b>5.2</b> Os pacotes readr e readxl</a><ul>
+<li class="chapter" data-level="5.2" data-path="importing-data.html"><a href="importing-data.html#os-pacotes-readr-e-readxl"><i class="fa fa-check"></i><b>5.2</b> Os pacotes readr e readxl</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="importing-data.html"><a href="importing-data.html#readr"><i class="fa fa-check"></i><b>5.2.1</b> readr</a></li>
 <li class="chapter" data-level="5.2.2" data-path="importing-data.html"><a href="importing-data.html#readxl"><i class="fa fa-check"></i><b>5.2.2</b> readxl</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="importing-data.html"><a href="importing-data.html#exercícios-13"><i class="fa fa-check"></i><b>5.3</b> Exercícios</a></li>
 <li class="chapter" data-level="5.4" data-path="importing-data.html"><a href="importing-data.html#como-baixar-arquivos"><i class="fa fa-check"></i><b>5.4</b> Como baixar arquivos</a></li>
-<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação R</a><ul>
+<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação R</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="importing-data.html"><a href="importing-data.html#scan"><i class="fa fa-check"></i><b>5.5.1</b> <code>scan</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="importing-data.html"><a href="importing-data.html#arquivos-de-texto-versus-arquivos-binários"><i class="fa fa-check"></i><b>5.6</b> Arquivos de texto versus arquivos binários</a></li>
@@ -276,12 +302,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>II Exibição de dados</b></span></li>
 <li class="chapter" data-level="6" data-path="introdução-à-visualização-de-dados.html"><a href="introdução-à-visualização-de-dados.html"><i class="fa fa-check"></i><b>6</b> Introdução à visualização de dados</a></li>
-<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a><ul>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#os-componentes-de-um-gráfico"><i class="fa fa-check"></i><b>7.1</b> Os componentes de um gráfico</a></li>
 <li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-ggplot"><i class="fa fa-check"></i><b>7.2</b> objetos <code>ggplot</code></a></li>
 <li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrias"><i class="fa fa-check"></i><b>7.3</b> Geometrias</a></li>
 <li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#mapeamentos-estéticos"><i class="fa fa-check"></i><b>7.4</b> Mapeamentos estéticos</a></li>
-<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#camadas"><i class="fa fa-check"></i><b>7.5</b> Camadas</a><ul>
+<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#camadas"><i class="fa fa-check"></i><b>7.5</b> Camadas</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#como-testar-vários-argumentos"><i class="fa fa-check"></i><b>7.5.1</b> Como testar vários argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético-global-versus-local"><i class="fa fa-check"></i><b>7.6</b> Mapeamento estético global versus local</a></li>
@@ -295,13 +323,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.14" data-path="ggplot2.html"><a href="ggplot2.html#grades-de-gráfico"><i class="fa fa-check"></i><b>7.14</b> Grades de gráfico</a></li>
 <li class="chapter" data-level="7.15" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-15"><i class="fa fa-check"></i><b>7.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Como visualizar distribuições de dados</a><ul>
+<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Como visualizar distribuições de dados</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="distributions.html"><a href="distributions.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>8.1</b> Tipos de variáveis</a></li>
 <li class="chapter" data-level="8.2" data-path="distributions.html"><a href="distributions.html#estudo-de-caso-descrevendo-a-altura-dos-alunos"><i class="fa fa-check"></i><b>8.2</b> Estudo de caso: descrevendo a altura dos alunos</a></li>
 <li class="chapter" data-level="8.3" data-path="distributions.html"><a href="distributions.html#a-função-de-distribuição"><i class="fa fa-check"></i><b>8.3</b> A função de distribuição</a></li>
 <li class="chapter" data-level="8.4" data-path="distributions.html"><a href="distributions.html#cdf-intro"><i class="fa fa-check"></i><b>8.4</b> Funções de distribuição cumulativa</a></li>
 <li class="chapter" data-level="8.5" data-path="distributions.html"><a href="distributions.html#histogramas"><i class="fa fa-check"></i><b>8.5</b> Histogramas</a></li>
-<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#densidade-suave"><i class="fa fa-check"></i><b>8.6</b> Densidade suave</a><ul>
+<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#densidade-suave"><i class="fa fa-check"></i><b>8.6</b> Densidade suave</a>
+<ul>
 <li class="chapter" data-level="8.6.1" data-path="distributions.html"><a href="distributions.html#como-interpretar-o-eixo-y"><i class="fa fa-check"></i><b>8.6.1</b> Como interpretar o eixo y</a></li>
 <li class="chapter" data-level="8.6.2" data-path="distributions.html"><a href="distributions.html#densidades-permitem-camadas"><i class="fa fa-check"></i><b>8.6.2</b> Densidades permitem camadas</a></li>
 </ul></li>
@@ -314,7 +344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.13" data-path="distributions.html"><a href="distributions.html#stratification"><i class="fa fa-check"></i><b>8.13</b> Estratificação</a></li>
 <li class="chapter" data-level="8.14" data-path="distributions.html"><a href="distributions.html#student-height-cont"><i class="fa fa-check"></i><b>8.14</b> Estudo de caso: descrição das alturas dos alunos (continuação)</a></li>
 <li class="chapter" data-level="8.15" data-path="distributions.html"><a href="distributions.html#exercícios-17"><i class="fa fa-check"></i><b>8.15</b> Exercícios</a></li>
-<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Gegplot2 geometrias</a><ul>
+<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Gegplot2 geometrias</a>
+<ul>
 <li class="chapter" data-level="8.16.1" data-path="distributions.html"><a href="distributions.html#gráficos-de-barra"><i class="fa fa-check"></i><b>8.16.1</b> Gráficos de barra</a></li>
 <li class="chapter" data-level="8.16.2" data-path="distributions.html"><a href="distributions.html#histogramas-1"><i class="fa fa-check"></i><b>8.16.2</b> Histogramas</a></li>
 <li class="chapter" data-level="8.16.3" data-path="distributions.html"><a href="distributions.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>8.16.3</b> Gráficos de densidade</a></li>
@@ -325,40 +356,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.17" data-path="distributions.html"><a href="distributions.html#exercícios-18"><i class="fa fa-check"></i><b>8.17</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>9</b> Visualização de dados na prática</a><ul>
+<li class="chapter" data-level="9" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>9</b> Visualização de dados na prática</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="gapminder.html"><a href="gapminder.html#estudo-de-caso-novas-idéias-sobre-pobreza"><i class="fa fa-check"></i><b>9.1</b> Estudo de caso: novas idéias sobre pobreza</a></li>
 <li class="chapter" data-level="9.2" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-dispersão"><i class="fa fa-check"></i><b>9.2</b> Diagrama de dispersão</a></li>
-<li class="chapter" data-level="9.3" data-path="gapminder.html"><a href="gapminder.html#separe-em-facetas"><i class="fa fa-check"></i><b>9.3</b> Separe em facetas</a><ul>
+<li class="chapter" data-level="9.3" data-path="gapminder.html"><a href="gapminder.html#separe-em-facetas"><i class="fa fa-check"></i><b>9.3</b> Separe em facetas</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="gapminder.html"><a href="gapminder.html#facet_wrap"><i class="fa fa-check"></i><b>9.3.1</b> <code>facet_wrap</code></a></li>
 <li class="chapter" data-level="9.3.2" data-path="gapminder.html"><a href="gapminder.html#escalas-fixas-para-melhores-comparações"><i class="fa fa-check"></i><b>9.3.2</b> Escalas fixas para melhores comparações</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="gapminder.html"><a href="gapminder.html#gráficos-de-séries-temporais"><i class="fa fa-check"></i><b>9.4</b> Gráficos de séries temporais</a><ul>
+<li class="chapter" data-level="9.4" data-path="gapminder.html"><a href="gapminder.html#gráficos-de-séries-temporais"><i class="fa fa-check"></i><b>9.4</b> Gráficos de séries temporais</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="gapminder.html"><a href="gapminder.html#etiquetas-em-vez-de-legendas"><i class="fa fa-check"></i><b>9.4.1</b> Etiquetas em vez de legendas</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="gapminder.html"><a href="gapminder.html#transformações-de-dados"><i class="fa fa-check"></i><b>9.5</b> Transformações de dados</a><ul>
+<li class="chapter" data-level="9.5" data-path="gapminder.html"><a href="gapminder.html#transformações-de-dados"><i class="fa fa-check"></i><b>9.5</b> Transformações de dados</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="gapminder.html"><a href="gapminder.html#transformação-logarítmica"><i class="fa fa-check"></i><b>9.5.1</b> Transformação logarítmica</a></li>
 <li class="chapter" data-level="9.5.2" data-path="gapminder.html"><a href="gapminder.html#qual-base"><i class="fa fa-check"></i><b>9.5.2</b> Qual base?</a></li>
 <li class="chapter" data-level="9.5.3" data-path="gapminder.html"><a href="gapminder.html#transformar-valores-ou-escala"><i class="fa fa-check"></i><b>9.5.3</b> Transformar valores ou escala?</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="gapminder.html"><a href="gapminder.html#como-visualizar-distribuições-multimodais"><i class="fa fa-check"></i><b>9.6</b> Como visualizar distribuições multimodais</a></li>
-<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-várias-distribuições-com-gráficos-de-caixas-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar várias distribuições com gráficos de caixas e gráficos <em>ridge</em></a><ul>
+<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-várias-distribuições-com-gráficos-de-caixas-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar várias distribuições com gráficos de caixas e gráficos <em>ridge</em></a>
+<ul>
 <li class="chapter" data-level="9.7.1" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-caixa"><i class="fa fa-check"></i><b>9.7.1</b> Diagrama de caixa</a></li>
 <li class="chapter" data-level="9.7.2" data-path="gapminder.html"><a href="gapminder.html#exemplo-distribuições-de-renda-1970-versus-2010"><i class="fa fa-check"></i><b>9.7.2</b> Exemplo: distribuições de renda 1970 versus 2010</a></li>
 <li class="chapter" data-level="9.7.3" data-path="gapminder.html"><a href="gapminder.html#como-acessar-variáveis-calculadas"><i class="fa fa-check"></i><b>9.7.3</b> Como acessar variáveis calculadas</a></li>
 <li class="chapter" data-level="9.7.4" data-path="gapminder.html"><a href="gapminder.html#densidades-ponderadas"><i class="fa fa-check"></i><b>9.7.4</b> Densidades ponderadas</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="gapminder.html"><a href="gapminder.html#a-falácia-ecológica-e-a-importância-de-mostrar-os-dados"><i class="fa fa-check"></i><b>9.8</b> A falácia ecológica e a importância de mostrar os dados</a><ul>
+<li class="chapter" data-level="9.8" data-path="gapminder.html"><a href="gapminder.html#a-falácia-ecológica-e-a-importância-de-mostrar-os-dados"><i class="fa fa-check"></i><b>9.8</b> A falácia ecológica e a importância de mostrar os dados</a>
+<ul>
 <li class="chapter" data-level="9.8.1" data-path="gapminder.html"><a href="gapminder.html#logit"><i class="fa fa-check"></i><b>9.8.1</b> Transformação de logística</a></li>
 <li class="chapter" data-level="9.8.2" data-path="gapminder.html"><a href="gapminder.html#mostrar-os-dados"><i class="fa fa-check"></i><b>9.8.2</b> Mostrar os dados</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html"><i class="fa fa-check"></i><b>10</b> Princípios de visualização de dados</a><ul>
+<li class="chapter" data-level="10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html"><i class="fa fa-check"></i><b>10</b> Princípios de visualização de dados</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-codificar-dados-usando-pistas-visuais"><i class="fa fa-check"></i><b>10.1</b> Como codificar dados usando pistas visuais</a></li>
 <li class="chapter" data-level="10.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#saiba-quando-incluir-0"><i class="fa fa-check"></i><b>10.2</b> Saiba quando incluir 0</a></li>
 <li class="chapter" data-level="10.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#não-distorça-quantidades"><i class="fa fa-check"></i><b>10.3</b> Não distorça quantidades</a></li>
 <li class="chapter" data-level="10.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#classificar-categorias-por-valor-significativo"><i class="fa fa-check"></i><b>10.4</b> Classificar categorias por valor significativo</a></li>
 <li class="chapter" data-level="10.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#mostrar-os-dados-1"><i class="fa fa-check"></i><b>10.5</b> Mostrar os dados</a></li>
-<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-facilitar-comparações"><i class="fa fa-check"></i><b>10.6</b> Como facilitar comparações</a><ul>
+<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-facilitar-comparações"><i class="fa fa-check"></i><b>10.6</b> Como facilitar comparações</a>
+<ul>
 <li class="chapter" data-level="10.6.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-eixos-comuns"><i class="fa fa-check"></i><b>10.6.1</b> Use eixos comuns</a></li>
 <li class="chapter" data-level="10.6.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#alinhe-os-gráficos-verticalmente-para-ver-alterações-horizontais-e-horizontalmente-para-ver-alterações-verticais"><i class="fa fa-check"></i><b>10.6.2</b> Alinhe os gráficos verticalmente para ver alterações horizontais e horizontalmente para ver alterações verticais</a></li>
 <li class="chapter" data-level="10.6.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#considere-transformações"><i class="fa fa-check"></i><b>10.6.3</b> Considere transformações</a></li>
@@ -366,7 +405,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.6.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-cores"><i class="fa fa-check"></i><b>10.6.5</b> Use cores</a></li>
 </ul></li>
 <li class="chapter" data-level="10.7" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#pense-no-daltônico"><i class="fa fa-check"></i><b>10.7</b> Pense no daltônico</a></li>
-<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Gráficos para duas variáveis</a><ul>
+<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Gráficos para duas variáveis</a>
+<ul>
 <li class="chapter" data-level="10.8.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-de-inclinação"><i class="fa fa-check"></i><b>10.8.1</b> Gráficos de inclinação</a></li>
 <li class="chapter" data-level="10.8.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráfico-de-bland-altman"><i class="fa fa-check"></i><b>10.8.2</b> Gráfico de Bland-Altman</a></li>
 </ul></li>
@@ -378,7 +418,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.14" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#vaccines"><i class="fa fa-check"></i><b>10.14</b> Estudo de caso: vacinas e doenças infecciosas</a></li>
 <li class="chapter" data-level="10.15" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#exercícios-20"><i class="fa fa-check"></i><b>10.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="robust-summaries.html"><a href="robust-summaries.html"><i class="fa fa-check"></i><b>11</b> Resumos robustos</a><ul>
+<li class="chapter" data-level="11" data-path="robust-summaries.html"><a href="robust-summaries.html"><i class="fa fa-check"></i><b>11</b> Resumos robustos</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="robust-summaries.html"><a href="robust-summaries.html#valores-atípicos"><i class="fa fa-check"></i><b>11.1</b> Valores atípicos</a></li>
 <li class="chapter" data-level="11.2" data-path="robust-summaries.html"><a href="robust-summaries.html#mediana"><i class="fa fa-check"></i><b>11.2</b> Mediana</a></li>
 <li class="chapter" data-level="11.3" data-path="robust-summaries.html"><a href="robust-summaries.html#o-intervalo-interquartil-iqr"><i class="fa fa-check"></i><b>11.3</b> O intervalo interquartil (IQR)</a></li>
@@ -389,8 +430,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>III Estatísticas com R</b></span></li>
 <li class="chapter" data-level="12" data-path="introdução-às-estatísticas-com-r.html"><a href="introdução-às-estatísticas-com-r.html"><i class="fa fa-check"></i><b>12</b> Introdução às estatísticas com R</a></li>
-<li class="chapter" data-level="13" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>13</b> Probabilidade</a><ul>
-<li class="chapter" data-level="13.1" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-discreta"><i class="fa fa-check"></i><b>13.1</b> Probabilidade discreta</a><ul>
+<li class="chapter" data-level="13" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>13</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-discreta"><i class="fa fa-check"></i><b>13.1</b> Probabilidade discreta</a>
+<ul>
 <li class="chapter" data-level="13.1.1" data-path="probabilidade.html"><a href="probabilidade.html#frequência-relativa"><i class="fa fa-check"></i><b>13.1.1</b> Frequência relativa</a></li>
 <li class="chapter" data-level="13.1.2" data-path="probabilidade.html"><a href="probabilidade.html#notação"><i class="fa fa-check"></i><b>13.1.2</b> Notação</a></li>
 <li class="chapter" data-level="13.1.3" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>13.1.3</b> Distribuições de probabilidade</a></li>
@@ -401,33 +444,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="probabilidade.html"><a href="probabilidade.html#probabilidades-condicionais"><i class="fa fa-check"></i><b>13.3</b> Probabilidades condicionais</a></li>
 <li class="chapter" data-level="13.4" data-path="probabilidade.html"><a href="probabilidade.html#regras-de-adição-e-multiplicação"><i class="fa fa-check"></i><b>13.4</b> Regras de adição e multiplicação</a></li>
 <li class="chapter" data-level="13.5" data-path="probabilidade.html"><a href="probabilidade.html#combinações-e-permutações"><i class="fa fa-check"></i><b>13.5</b> Combinações e permutações</a></li>
-<li class="chapter" data-level="13.6" data-path="probabilidade.html"><a href="probabilidade.html#exemplos"><i class="fa fa-check"></i><b>13.6</b> Exemplos</a><ul>
+<li class="chapter" data-level="13.6" data-path="probabilidade.html"><a href="probabilidade.html#exemplos"><i class="fa fa-check"></i><b>13.6</b> Exemplos</a>
+<ul>
 <li class="chapter" data-level="13.6.1" data-path="probabilidade.html"><a href="probabilidade.html#problema-de-aniversário"><i class="fa fa-check"></i><b>13.6.1</b> Problema de aniversário</a></li>
 </ul></li>
 <li class="chapter" data-level="13.7" data-path="probabilidade.html"><a href="probabilidade.html#exercícios-22"><i class="fa fa-check"></i><b>13.7</b> Exercícios</a></li>
 <li class="chapter" data-level="13.8" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-contínua"><i class="fa fa-check"></i><b>13.8</b> Probabilidade contínua</a></li>
-<li class="chapter" data-level="13.9" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-teóricas-contínuas"><i class="fa fa-check"></i><b>13.9</b> Distribuições teóricas contínuas</a><ul>
+<li class="chapter" data-level="13.9" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-teóricas-contínuas"><i class="fa fa-check"></i><b>13.9</b> Distribuições teóricas contínuas</a>
+<ul>
 <li class="chapter" data-level="13.9.1" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-teóricas-como-aproximações"><i class="fa fa-check"></i><b>13.9.1</b> Distribuições teóricas como aproximações</a></li>
 <li class="chapter" data-level="13.9.2" data-path="probabilidade.html"><a href="probabilidade.html#a-densidade-de-probabilidade"><i class="fa fa-check"></i><b>13.9.2</b> A densidade de probabilidade</a></li>
 </ul></li>
 <li class="chapter" data-level="13.10" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-contínuas"><i class="fa fa-check"></i><b>13.10</b> Distribuições contínuas</a></li>
 <li class="chapter" data-level="13.11" data-path="probabilidade.html"><a href="probabilidade.html#exercícios-23"><i class="fa fa-check"></i><b>13.11</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html"><i class="fa fa-check"></i><b>14</b> Variáveis aleatórias</a><ul>
+<li class="chapter" data-level="14" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html"><i class="fa fa-check"></i><b>14</b> Variáveis aleatórias</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#variáveis-aleatórias-1"><i class="fa fa-check"></i><b>14.1</b> Variáveis aleatórias</a></li>
 <li class="chapter" data-level="14.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#modelos-de-amostragem"><i class="fa fa-check"></i><b>14.2</b> Modelos de amostragem</a></li>
 <li class="chapter" data-level="14.3" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#a-distribuição-de-probabilidade-de-uma-variável-aleatória"><i class="fa fa-check"></i><b>14.3</b> A distribuição de probabilidade de uma variável aleatória</a></li>
 <li class="chapter" data-level="14.4" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#distribuições-versus-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>14.4</b> Distribuições versus distribuições de probabilidade</a></li>
-<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.5</b> O valor esperado e o erro padrão</a><ul>
+<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.5</b> O valor esperado e o erro padrão</a>
+<ul>
 <li class="chapter" data-level="14.5.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#população-sd-versus-amostra-sd"><i class="fa fa-check"></i><b>14.5.1</b> População SD versus amostra SD</a></li>
 </ul></li>
 <li class="chapter" data-level="14.6" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#teorema-do-limite-central"><i class="fa fa-check"></i><b>14.6</b> Teorema do limite central</a></li>
 <li class="chapter" data-level="14.7" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#propriedades-estatísticas-das-médias"><i class="fa fa-check"></i><b>14.7</b> Propriedades estatísticas das médias</a></li>
-<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.8</b> Lei dos grandes números</a><ul>
+<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.8</b> Lei dos grandes números</a>
+<ul>
 <li class="chapter" data-level="14.8.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#interpretação-incorreta-da-lei-das-médias"><i class="fa fa-check"></i><b>14.8.1</b> Interpretação incorreta da lei das médias</a></li>
 </ul></li>
 <li class="chapter" data-level="14.9" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-24"><i class="fa fa-check"></i><b>14.9</b> Exercícios</a></li>
-<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-o-grande-short"><i class="fa fa-check"></i><b>14.10</b> Estudo de caso: o grande short</a><ul>
+<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-o-grande-short"><i class="fa fa-check"></i><b>14.10</b> Estudo de caso: o grande short</a>
+<ul>
 <li class="chapter" data-level="14.10.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#taxas-de-juros-explicadas-com-um-modelo-de-oportunidade"><i class="fa fa-check"></i><b>14.10.1</b> Taxas de juros explicadas com um modelo de oportunidade</a></li>
 <li class="chapter" data-level="14.10.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-grande-curto"><i class="fa fa-check"></i><b>14.10.2</b> O Grande Curto</a></li>
 </ul></li>
@@ -453,48 +502,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conceitos-básicos-de-programação" class="section level1">
+<div id="conceitos-básicos-de-programação" class="section level1" number="3">
 <h1><span class="header-section-number">Capítulo 3</span> Conceitos básicos de programação</h1>
 <p>Ensinamos R porque facilita muito a análise de dados, o tema principal deste livro. Ao codificar em R, podemos executar com eficiência análise exploratória de dados, criar canais de análise de dados e preparar a visualização de dados para comunicar resultados. No entanto, R não é apenas um ambiente de análise de dados, mas uma linguagem de programação. Programadores avançados de R podem desenvolver pacotes complexos e até melhorar o R, embora não abordemos a programação avançada neste livro. No entanto, nesta seção, apresentamos três conceitos-chave de programação: expressões condicionais, for-loops e funções. Estes não são apenas os principais componentes da programação avançada, mas às vezes são úteis durante a análise de dados. Também observamos que existem várias funções amplamente usadas para programação em R, mas que não discutiremos neste livro. Esses incluem <code>split</code>, <code>cut</code>, <code>do.call</code> e <code>Reduce</code>, bem como o pacote <strong>data.table</strong>. Vale a pena aprender como usá-los, se você quiser se tornar programador especialista em R.</p>
-<div id="conditionals" class="section level2">
+<div id="conditionals" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Expressões condicionais</h2>
 <p>Expressões condicionais são uma das características básicas da programação. Eles são usados para o que é chamado de <em>flow control</em>. A expressão condicional mais comum é a instrução <em>if-else</em>. Em R, podemos fazer muitas análises de dados sem condicionais. No entanto, eles aparecem ocasionalmente e você precisará deles assim que começar a escrever suas próprias funções e pacotes.</p>
 <p>Aqui está um exemplo muito simples que mostra a estrutura geral de uma instrução <em>if-else</em>. A idéia básica é imprimir o recíproco de <code>a</code> a menos que <code>a</code> deixe 0:</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb128-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="cf">if</span>(a<span class="op">!=</span><span class="dv">0</span>){</a>
-<a class="sourceLine" id="cb128-4" data-line-number="4"><span class="kw">print</span>(<span class="dv">1</span><span class="op">/</span>a)</a>
-<a class="sourceLine" id="cb128-5" data-line-number="5">} <span class="cf">else</span>{</a>
-<a class="sourceLine" id="cb128-6" data-line-number="6"><span class="kw">print</span>(<span class="st">&quot;No reciprocal for 0.&quot;</span>)</a>
-<a class="sourceLine" id="cb128-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb128-8" data-line-number="8"><span class="co">#&gt; [1] &quot;No reciprocal for 0.&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="conceitos-básicos-de-programação.html#cb128-1"></a>a &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb128-2"><a href="conceitos-básicos-de-programação.html#cb128-2"></a></span>
+<span id="cb128-3"><a href="conceitos-básicos-de-programação.html#cb128-3"></a><span class="cf">if</span>(a<span class="op">!=</span><span class="dv">0</span>){</span>
+<span id="cb128-4"><a href="conceitos-básicos-de-programação.html#cb128-4"></a><span class="kw">print</span>(<span class="dv">1</span><span class="op">/</span>a)</span>
+<span id="cb128-5"><a href="conceitos-básicos-de-programação.html#cb128-5"></a>} <span class="cf">else</span>{</span>
+<span id="cb128-6"><a href="conceitos-básicos-de-programação.html#cb128-6"></a><span class="kw">print</span>(<span class="st">&quot;No reciprocal for 0.&quot;</span>)</span>
+<span id="cb128-7"><a href="conceitos-básicos-de-programação.html#cb128-7"></a>}</span>
+<span id="cb128-8"><a href="conceitos-básicos-de-programação.html#cb128-8"></a><span class="co">#&gt; [1] &quot;No reciprocal for 0.&quot;</span></span></code></pre></div>
 <p>Vejamos outro exemplo usando o conjunto de dados de assassinatos nos EUA. EUA:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">library</span>(dslabs)</a>
-<a class="sourceLine" id="cb129-2" data-line-number="2"><span class="kw">data</span>(murders)</a>
-<a class="sourceLine" id="cb129-3" data-line-number="3">murder_rate &lt;-<span class="st"> </span>murders<span class="op">$</span>total<span class="op">/</span><span class="st"> </span>murders<span class="op">$</span>population<span class="op">*</span><span class="dv">100000</span></a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="conceitos-básicos-de-programação.html#cb129-1"></a><span class="kw">library</span>(dslabs)</span>
+<span id="cb129-2"><a href="conceitos-básicos-de-programação.html#cb129-2"></a><span class="kw">data</span>(murders)</span>
+<span id="cb129-3"><a href="conceitos-básicos-de-programação.html#cb129-3"></a>murder_rate &lt;-<span class="st"> </span>murders<span class="op">$</span>total<span class="op">/</span><span class="st"> </span>murders<span class="op">$</span>population<span class="op">*</span><span class="dv">100000</span></span></code></pre></div>
 <p>Aqui está um exemplo muito simples que nos diz quais estados, se houver, têm uma taxa de homicídios inferior a 0,5 por 100.000. As declarações <code>if</code> eles nos protegem do caso em que nenhum estado satisfaz a condição.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">ind &lt;-<span class="st"> </span><span class="kw">which.min</span>(murder_rate)</a>
-<a class="sourceLine" id="cb130-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb130-3" data-line-number="3"><span class="cf">if</span>(murder_rate[ind] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.5</span>){</a>
-<a class="sourceLine" id="cb130-4" data-line-number="4"><span class="kw">print</span>(murders<span class="op">$</span>state[ind])</a>
-<a class="sourceLine" id="cb130-5" data-line-number="5">} <span class="cf">else</span>{</a>
-<a class="sourceLine" id="cb130-6" data-line-number="6"><span class="kw">print</span>(<span class="st">&quot;No state has murder rate that low&quot;</span>)</a>
-<a class="sourceLine" id="cb130-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb130-8" data-line-number="8"><span class="co">#&gt; [1] &quot;Vermont&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="conceitos-básicos-de-programação.html#cb130-1"></a>ind &lt;-<span class="st"> </span><span class="kw">which.min</span>(murder_rate)</span>
+<span id="cb130-2"><a href="conceitos-básicos-de-programação.html#cb130-2"></a></span>
+<span id="cb130-3"><a href="conceitos-básicos-de-programação.html#cb130-3"></a><span class="cf">if</span>(murder_rate[ind] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.5</span>){</span>
+<span id="cb130-4"><a href="conceitos-básicos-de-programação.html#cb130-4"></a><span class="kw">print</span>(murders<span class="op">$</span>state[ind])</span>
+<span id="cb130-5"><a href="conceitos-básicos-de-programação.html#cb130-5"></a>} <span class="cf">else</span>{</span>
+<span id="cb130-6"><a href="conceitos-básicos-de-programação.html#cb130-6"></a><span class="kw">print</span>(<span class="st">&quot;No state has murder rate that low&quot;</span>)</span>
+<span id="cb130-7"><a href="conceitos-básicos-de-programação.html#cb130-7"></a>}</span>
+<span id="cb130-8"><a href="conceitos-básicos-de-programação.html#cb130-8"></a><span class="co">#&gt; [1] &quot;Vermont&quot;</span></span></code></pre></div>
 <p>Se tentarmos novamente com uma taxa de 0,25, obteremos uma resposta diferente:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="cf">if</span>(murder_rate[ind] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.25</span>){</a>
-<a class="sourceLine" id="cb131-2" data-line-number="2"><span class="kw">print</span>(murders<span class="op">$</span>state[ind])</a>
-<a class="sourceLine" id="cb131-3" data-line-number="3">} <span class="cf">else</span>{</a>
-<a class="sourceLine" id="cb131-4" data-line-number="4"><span class="kw">print</span>(<span class="st">&quot;No state has a murder rate that low.&quot;</span>)</a>
-<a class="sourceLine" id="cb131-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb131-6" data-line-number="6"><span class="co">#&gt; [1] &quot;No state has a murder rate that low.&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="conceitos-básicos-de-programação.html#cb131-1"></a><span class="cf">if</span>(murder_rate[ind] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.25</span>){</span>
+<span id="cb131-2"><a href="conceitos-básicos-de-programação.html#cb131-2"></a><span class="kw">print</span>(murders<span class="op">$</span>state[ind])</span>
+<span id="cb131-3"><a href="conceitos-básicos-de-programação.html#cb131-3"></a>} <span class="cf">else</span>{</span>
+<span id="cb131-4"><a href="conceitos-básicos-de-programação.html#cb131-4"></a><span class="kw">print</span>(<span class="st">&quot;No state has a murder rate that low.&quot;</span>)</span>
+<span id="cb131-5"><a href="conceitos-básicos-de-programação.html#cb131-5"></a>}</span>
+<span id="cb131-6"><a href="conceitos-básicos-de-programação.html#cb131-6"></a><span class="co">#&gt; [1] &quot;No state has a murder rate that low.&quot;</span></span></code></pre></div>
 <p>Uma função relacionada que é muito útil é <code>ifelse</code>. Essa função usa três argumentos: um lógico e duas respostas possíveis. Se o lógico for <code>TRUE</code>, retorna o valor no segundo argumento e, se for <code>FALSE</code>, retorna o valor no terceiro argumento. Aqui está um exemplo:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>a, <span class="ot">NA</span>)</a>
-<a class="sourceLine" id="cb132-3" data-line-number="3"><span class="co">#&gt; [1] NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="conceitos-básicos-de-programação.html#cb132-1"></a>a &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb132-2"><a href="conceitos-básicos-de-programação.html#cb132-2"></a><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>a, <span class="ot">NA</span>)</span>
+<span id="cb132-3"><a href="conceitos-básicos-de-programação.html#cb132-3"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
 <p>Essa função é particularmente útil porque é útil para vetores. Isso examina cada entrada do vetor lógico e retorna elementos do vetor fornecido no segundo argumento, se a entrada for <code>TRUE</code>, ou elementos do vetor fornecido no terceiro argumento, se a entrada for <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">-4</span>, <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb133-2" data-line-number="2">result &lt;-<span class="st"> </span><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>a, <span class="ot">NA</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="conceitos-básicos-de-programação.html#cb133-1"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">-4</span>, <span class="dv">5</span>)</span>
+<span id="cb133-2"><a href="conceitos-básicos-de-programação.html#cb133-2"></a>result &lt;-<span class="st"> </span><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>a, <span class="ot">NA</span>)</span></code></pre></div>
 Esta tabela nos ajuda a ver o que aconteceu:
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -605,49 +654,49 @@ NA
 </tbody>
 </table>
 <p>Aqui está um exemplo de como essa função pode ser facilmente usada para substituir todos os valores ausentes em um vetor por zeros:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">data</span>(na_example)</a>
-<a class="sourceLine" id="cb134-2" data-line-number="2">no_nas &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(na_example), <span class="dv">0</span>, na_example)</a>
-<a class="sourceLine" id="cb134-3" data-line-number="3"><span class="kw">sum</span>(<span class="kw">is.na</span>(no_nas))</a>
-<a class="sourceLine" id="cb134-4" data-line-number="4"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="conceitos-básicos-de-programação.html#cb134-1"></a><span class="kw">data</span>(na_example)</span>
+<span id="cb134-2"><a href="conceitos-básicos-de-programação.html#cb134-2"></a>no_nas &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(na_example), <span class="dv">0</span>, na_example)</span>
+<span id="cb134-3"><a href="conceitos-básicos-de-programação.html#cb134-3"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(no_nas))</span>
+<span id="cb134-4"><a href="conceitos-básicos-de-programação.html#cb134-4"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 <p>Duas outras funções úteis são <code>any</code> e <code>all</code>. A função <code>any</code> pega um vetor de lógicas e retorna <code>TRUE</code> se alguma das entradas for <code>TRUE</code>. A função <code>all</code> pega um vetor de lógicas e retorna <code>TRUE</code> se todas as entradas forem <code>TRUE</code>. Aqui está um exemplo:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="kw">any</span>(z)</a>
-<a class="sourceLine" id="cb135-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a>
-<a class="sourceLine" id="cb135-4" data-line-number="4"><span class="kw">all</span>(z)</a>
-<a class="sourceLine" id="cb135-5" data-line-number="5"><span class="co">#&gt; [1] FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="conceitos-básicos-de-programação.html#cb135-1"></a>z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
+<span id="cb135-2"><a href="conceitos-básicos-de-programação.html#cb135-2"></a><span class="kw">any</span>(z)</span>
+<span id="cb135-3"><a href="conceitos-básicos-de-programação.html#cb135-3"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb135-4"><a href="conceitos-básicos-de-programação.html#cb135-4"></a><span class="kw">all</span>(z)</span>
+<span id="cb135-5"><a href="conceitos-básicos-de-programação.html#cb135-5"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
 </div>
-<div id="como-definir-funções" class="section level2">
+<div id="como-definir-funções" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Como definir funções</h2>
 <p>À medida que ganham mais experiência, eles precisam executar as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor <code>x</code> usando funções <code>sum</code> e <code>length</code>: <code>sum(x)/length(x)</code>. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função <code>mean</code> e está incluído na base R. No entanto, você encontrará situações em que a função ainda não existe, portanto, R permite que você escreva uma. Você pode definir uma versão simples de uma função que calcula a média da seguinte maneira:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">avg &lt;-<span class="st"> </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb136-2" data-line-number="2">s &lt;-<span class="st"> </span><span class="kw">sum</span>(x)</a>
-<a class="sourceLine" id="cb136-3" data-line-number="3">n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb136-4" data-line-number="4">s<span class="op">/</span>n</a>
-<a class="sourceLine" id="cb136-5" data-line-number="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="conceitos-básicos-de-programação.html#cb136-1"></a>avg &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb136-2"><a href="conceitos-básicos-de-programação.html#cb136-2"></a>s &lt;-<span class="st"> </span><span class="kw">sum</span>(x)</span>
+<span id="cb136-3"><a href="conceitos-básicos-de-programação.html#cb136-3"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
+<span id="cb136-4"><a href="conceitos-básicos-de-programação.html#cb136-4"></a>s<span class="op">/</span>n</span>
+<span id="cb136-5"><a href="conceitos-básicos-de-programação.html#cb136-5"></a>}</span></code></pre></div>
 <p>Agora <code>avg</code> é uma função que calcula a média:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb137-2" data-line-number="2"><span class="kw">identical</span>(<span class="kw">mean</span>(x), <span class="kw">avg</span>(x))</a>
-<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="co">#&gt; [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="conceitos-básicos-de-programação.html#cb137-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span>
+<span id="cb137-2"><a href="conceitos-básicos-de-programação.html#cb137-2"></a><span class="kw">identical</span>(<span class="kw">mean</span>(x), <span class="kw">avg</span>(x))</span>
+<span id="cb137-3"><a href="conceitos-básicos-de-programação.html#cb137-3"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>Observe que as variáveis definidas em uma função não são salvas no espaço de trabalho. Então, enquanto usamos <code>s</code> e <code>n</code> quando chamamos (<em>call</em> em inglês) <code>avg</code>, os valores são criados e alterados apenas durante a chamada. Aqui podemos ver um exemplo ilustrativo:</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">s &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb138-2" data-line-number="2"><span class="kw">avg</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb138-3" data-line-number="3"><span class="co">#&gt; [1] 5.5</span></a>
-<a class="sourceLine" id="cb138-4" data-line-number="4">s</a>
-<a class="sourceLine" id="cb138-5" data-line-number="5"><span class="co">#&gt; [1] 3</span></a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="conceitos-básicos-de-programação.html#cb138-1"></a>s &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb138-2"><a href="conceitos-básicos-de-programação.html#cb138-2"></a><span class="kw">avg</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
+<span id="cb138-3"><a href="conceitos-básicos-de-programação.html#cb138-3"></a><span class="co">#&gt; [1] 5.5</span></span>
+<span id="cb138-4"><a href="conceitos-básicos-de-programação.html#cb138-4"></a>s</span>
+<span id="cb138-5"><a href="conceitos-básicos-de-programação.html#cb138-5"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
 <p>Note como <code>s</code> ainda é 3 depois que ligamos <code>avg</code>.</p>
 <p>Em geral, funções são objetos, portanto, atribuímos nomes de variáveis a eles com <code>&lt;-</code>. A função <code>function</code> diz a R que ele está prestes a definir uma função. A forma geral da definição de uma função é assim:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">my_function &lt;-<span class="st"> </span><span class="cf">function</span>(VARIABLE_NAME){</a>
-<a class="sourceLine" id="cb139-2" data-line-number="2">perform operations on VARIABLE_NAME and calculate VALUE</a>
-<a class="sourceLine" id="cb139-3" data-line-number="3">VALUE</a>
-<a class="sourceLine" id="cb139-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="conceitos-básicos-de-programação.html#cb139-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(VARIABLE_NAME){</span>
+<span id="cb139-2"><a href="conceitos-básicos-de-programação.html#cb139-2"></a>perform operations on VARIABLE_NAME and calculate VALUE</span>
+<span id="cb139-3"><a href="conceitos-básicos-de-programação.html#cb139-3"></a>VALUE</span>
+<span id="cb139-4"><a href="conceitos-básicos-de-programação.html#cb139-4"></a>}</span></code></pre></div>
 <p>As funções que eles definem podem ter vários argumentos, bem como valores padrão. Por exemplo, podemos definir uma função que calcula a média aritmética ou geométrica, dependendo de uma variável definida pelo usuário como esta:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">avg &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">arithmetic =</span> <span class="ot">TRUE</span>){</a>
-<a class="sourceLine" id="cb140-2" data-line-number="2">n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="kw">ifelse</span>(arithmetic, <span class="kw">sum</span>(x)<span class="op">/</span>n, <span class="kw">prod</span>(x)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span>n))</a>
-<a class="sourceLine" id="cb140-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="conceitos-básicos-de-programação.html#cb140-1"></a>avg &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">arithmetic =</span> <span class="ot">TRUE</span>){</span>
+<span id="cb140-2"><a href="conceitos-básicos-de-programação.html#cb140-2"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
+<span id="cb140-3"><a href="conceitos-básicos-de-programação.html#cb140-3"></a><span class="kw">ifelse</span>(arithmetic, <span class="kw">sum</span>(x)<span class="op">/</span>n, <span class="kw">prod</span>(x)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span>n))</span>
+<span id="cb140-4"><a href="conceitos-básicos-de-programação.html#cb140-4"></a>}</span></code></pre></div>
 <p>Aprenderemos mais sobre como criar funções através da experiência à medida que enfrentamos tarefas mais complexas.</p>
 </div>
-<div id="namespaces" class="section level2">
+<div id="namespaces" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> <em>Namespaces</em></h2>
 <p>Quando eles começarem a se tornar usuários experientes do R, provavelmente precisarão carregar vários plug-ins de pacotes (<em>add-ons</em>) para algumas de suas varreduras. Assim que fazem isso, é provável que descubram que dois pacotes usam o mesmo nome para duas funções diferentes. E muitas vezes essas funções fazem coisas completamente diferentes. De fato, já vimos isso porque os pacotes base R __dplyr__e<strong>stats</strong> definem uma função <code>filter</code>. Existem outros cinco exemplos em <strong>dplyr</strong>. Sabemos disso porque, quando carregamos <strong>dplyr</strong> pela primeira vez, vemos a seguinte mensagem:</p>
 <pre><code>The following objects are masked from ‘package:stats’:
@@ -659,42 +708,42 @@ The following objects are masked from ‘package:base’:
 intersect, setdiff, setequal, union</code></pre>
 <p>Então, o que R faz quando escrevemos <code>filter</code>? Você usa a função __dplyr__ou a função<strong>stats</strong>? Do nosso trabalho anterior, sabemos que ele usa <strong>dplyr</strong>. Mas e se quisermos usar <strong>stats</strong>?</p>
 <p>Essas funções vivem em diferentes <em>namespaces</em>. R seguirá uma determinada ordem ao procurar uma função nesses <em>namespaces</em>. Você pode ver o pedido escrevendo:</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">search</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="conceitos-básicos-de-programação.html#cb142-1"></a><span class="kw">search</span>()</span></code></pre></div>
 <p>A primeira entrada nesta lista é o ambiente global que inclui todos os objetos que eles definem.</p>
 <p>E daí se quisermos usar o <code>filter</code> <strong>stats</strong> em vez de <code>filter</code> __dplyr__mas<strong>dplyr</strong> aparece primeiro na lista de pesquisa? Eles podem forçar o uso de um <em>namespace</em> específico usando dois pontos duplos ( <code>::</code>) assim:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">stats<span class="op">::</span>filter</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="conceitos-básicos-de-programação.html#cb143-1"></a>stats<span class="op">::</span>filter</span></code></pre></div>
 <p>Se queremos ter certeza absoluta de que usamos o <code>filter</code> <strong>dplyr</strong>, podemos usar:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">dplyr<span class="op">::</span>filter</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="conceitos-básicos-de-programação.html#cb144-1"></a>dplyr<span class="op">::</span>filter</span></code></pre></div>
 <p>Lembre-se de que, se queremos usar uma função em um pacote sem carregar o pacote inteiro, também podemos usar dois pontos duplos.</p>
-<p>Para obter mais informações sobre esse tópico mais avançado, recomendamos o livro de pacotes R<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>.</p>
+<p>Para obter mais informações sobre esse tópico mais avançado, recomendamos o livro de pacotes R<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>.</p>
 </div>
-<div id="loops-para" class="section level2">
+<div id="loops-para" class="section level2" number="3.4">
 <h2><span class="header-section-number">3.4</span> Loops para</h2>
 <p>A fórmula para a soma da série <span class="math inline">\(1+2+\dots+n\)</span> é <span class="math inline">\(n(n+1)/2\)</span>. E se não tivéssemos certeza de que essa era a função correta? Como poderíamos verificar? Usando o que aprendemos sobre funções, podemos criar um que calcule <span class="math inline">\(S_n\)</span>:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">compute_s_n &lt;-<span class="st"> </span><span class="cf">function</span>(n){</a>
-<a class="sourceLine" id="cb145-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>n</a>
-<a class="sourceLine" id="cb145-3" data-line-number="3"><span class="kw">sum</span>(x)</a>
-<a class="sourceLine" id="cb145-4" data-line-number="4">}</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="conceitos-básicos-de-programação.html#cb145-1"></a>compute_s_n &lt;-<span class="st"> </span><span class="cf">function</span>(n){</span>
+<span id="cb145-2"><a href="conceitos-básicos-de-programação.html#cb145-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>n</span>
+<span id="cb145-3"><a href="conceitos-básicos-de-programação.html#cb145-3"></a><span class="kw">sum</span>(x)</span>
+<span id="cb145-4"><a href="conceitos-básicos-de-programação.html#cb145-4"></a>}</span></code></pre></div>
 <p>Como podemos calcular <span class="math inline">\(S_n\)</span> para vários valores de <span class="math inline">\(n\)</span>, digamos <span class="math inline">\(n=1,\dots,25\)</span>? Escrevemos 25 linhas de chamada de código <code>compute_s_n</code>? Não. É para isso que servem os loops de programação. Nesse caso, estamos realizando a mesma tarefa repetidamente, e a única coisa que está mudando é o valor de <span class="math inline">\(n\)</span>. Os loops for permitem definir o intervalo que nossa variável leva (no nosso exemplo <span class="math inline">\(n=1,\dots,10\)</span>), altere o valor e avalie a expressão enquanto você faz o loop _.</p>
 <p>Talvez o exemplo mais simples de um loop for seja esse código inútil:</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</a>
-<a class="sourceLine" id="cb146-2" data-line-number="2"><span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb146-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="co">#&gt; [1] 1</span></a>
-<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="co">#&gt; [1] 2</span></a>
-<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="co">#&gt; [1] 3</span></a>
-<a class="sourceLine" id="cb146-7" data-line-number="7"><span class="co">#&gt; [1] 4</span></a>
-<a class="sourceLine" id="cb146-8" data-line-number="8"><span class="co">#&gt; [1] 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="conceitos-básicos-de-programação.html#cb146-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>){</span>
+<span id="cb146-2"><a href="conceitos-básicos-de-programação.html#cb146-2"></a><span class="kw">print</span>(i)</span>
+<span id="cb146-3"><a href="conceitos-básicos-de-programação.html#cb146-3"></a>}</span>
+<span id="cb146-4"><a href="conceitos-básicos-de-programação.html#cb146-4"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb146-5"><a href="conceitos-básicos-de-programação.html#cb146-5"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb146-6"><a href="conceitos-básicos-de-programação.html#cb146-6"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb146-7"><a href="conceitos-básicos-de-programação.html#cb146-7"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb146-8"><a href="conceitos-básicos-de-programação.html#cb146-8"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
 <p>Aqui está o loop for que escreveríamos para o nosso exemplo <span class="math inline">\(S_n\)</span>:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="dv">25</span></a>
-<a class="sourceLine" id="cb147-2" data-line-number="2">s_n &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">length =</span> m) <span class="co"># create an empty vector</span></a>
-<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="cf">for</span>(n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</a>
-<a class="sourceLine" id="cb147-4" data-line-number="4">s_n[n] &lt;-<span class="st"> </span><span class="kw">compute_s_n</span>(n)</a>
-<a class="sourceLine" id="cb147-5" data-line-number="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="conceitos-básicos-de-programação.html#cb147-1"></a>m &lt;-<span class="st"> </span><span class="dv">25</span></span>
+<span id="cb147-2"><a href="conceitos-básicos-de-programação.html#cb147-2"></a>s_n &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">length =</span> m) <span class="co"># create an empty vector</span></span>
+<span id="cb147-3"><a href="conceitos-básicos-de-programação.html#cb147-3"></a><span class="cf">for</span>(n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</span>
+<span id="cb147-4"><a href="conceitos-básicos-de-programação.html#cb147-4"></a>s_n[n] &lt;-<span class="st"> </span><span class="kw">compute_s_n</span>(n)</span>
+<span id="cb147-5"><a href="conceitos-básicos-de-programação.html#cb147-5"></a>}</span></code></pre></div>
 <p>Em cada iteração <span class="math inline">\(n=1\)</span>, <span class="math inline">\(n=2\)</span>, etc …, calculamos <span class="math inline">\(S_n\)</span> e mantemos na entrada <span class="math inline">\(n\)</span> do <code>s_n</code>.</p>
 <p>Agora podemos criar um gráfico para procurar um padrão:</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>m</a>
-<a class="sourceLine" id="cb148-2" data-line-number="2"><span class="kw">plot</span>(n, s_n)</a></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="conceitos-básicos-de-programação.html#cb148-1"></a>n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span>m</span>
+<span id="cb148-2"><a href="conceitos-básicos-de-programação.html#cb148-2"></a><span class="kw">plot</span>(n, s_n)</span></code></pre></div>
 <p><img src="livro_files/figure-html/sum-of-consecutive-squares-1.png" width="50%" style="display: block; margin: auto;" /></p>
 <p>Se você percebeu que parece quadrático, está no caminho certo porque a fórmula é <span class="math inline">\(n(n+1)/2\)</span>.
 <!--
@@ -724,54 +773,54 @@ lines(n, n*(n+1)/2)
 
 --></p>
 </div>
-<div id="vectorization" class="section level2">
+<div id="vectorization" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> Vectorização e funcional</h2>
 <p>Embora os for-loops sejam um conceito importante para entender, eles não são muito usados em R. À medida que aprendem mais R, eles descobrirão que <em>vectoring</em> é preferível aos for-loops, pois resulta em um código mais curto e claro. . Já vimos exemplos na seção aritmética vetorial. Uma função <em>vectorized</em> é uma função que aplicará a mesma operação a cada um dos vetores.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb149-2" data-line-number="2"><span class="kw">sqrt</span>(x)</a>
-<a class="sourceLine" id="cb149-3" data-line-number="3"><span class="co">#&gt;  [1] 1.00 1.41 1.73 2.00 2.24 2.45 2.65 2.83 3.00 3.16</span></a>
-<a class="sourceLine" id="cb149-4" data-line-number="4">y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb149-5" data-line-number="5">x<span class="op">*</span>y</a>
-<a class="sourceLine" id="cb149-6" data-line-number="6"><span class="co">#&gt;  [1]   1   4   9  16  25  36  49  64  81 100</span></a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="conceitos-básicos-de-programação.html#cb149-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb149-2"><a href="conceitos-básicos-de-programação.html#cb149-2"></a><span class="kw">sqrt</span>(x)</span>
+<span id="cb149-3"><a href="conceitos-básicos-de-programação.html#cb149-3"></a><span class="co">#&gt;  [1] 1.00 1.41 1.73 2.00 2.24 2.45 2.65 2.83 3.00 3.16</span></span>
+<span id="cb149-4"><a href="conceitos-básicos-de-programação.html#cb149-4"></a>y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb149-5"><a href="conceitos-básicos-de-programação.html#cb149-5"></a>x<span class="op">*</span>y</span>
+<span id="cb149-6"><a href="conceitos-básicos-de-programação.html#cb149-6"></a><span class="co">#&gt;  [1]   1   4   9  16  25  36  49  64  81 100</span></span></code></pre></div>
 <p>Para fazer esse cálculo, não precisamos de loops de for. No entanto, nem todas as funções funcionam dessa maneira. Por exemplo, a função que acabamos de escrever, <code>compute_s_n</code>, ele não funciona elemento a elemento, pois espera um escalar. Esse trecho de código não executa a função em todas as entradas de <code>n</code>:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span></a>
-<a class="sourceLine" id="cb150-2" data-line-number="2"><span class="kw">compute_s_n</span>(n)</a></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="conceitos-básicos-de-programação.html#cb150-1"></a>n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span></span>
+<span id="cb150-2"><a href="conceitos-básicos-de-programação.html#cb150-2"></a><span class="kw">compute_s_n</span>(n)</span></code></pre></div>
 <p>As <em>functionals</em> são funções que nos ajudam a aplicar a mesma função a cada entrada em um vetor, matriz, <em>data frame</em> ou lista. Aqui abordamos o funcional que opera em vetores numéricos, lógicos e de caracteres: <code>sapply</code>.</p>
 <p>A função <code>sapply</code> nos permite executar operações baseadas em elementos (<em>element-wise</em> em inglês) em qualquer função. Aqui podemos ver como funciona:</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb151-2" data-line-number="2"><span class="kw">sapply</span>(x, sqrt)</a>
-<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="co">#&gt;  [1] 1.00 1.41 1.73 2.00 2.24 2.45 2.65 2.83 3.00 3.16</span></a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="conceitos-básicos-de-programação.html#cb151-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
+<span id="cb151-2"><a href="conceitos-básicos-de-programação.html#cb151-2"></a><span class="kw">sapply</span>(x, sqrt)</span>
+<span id="cb151-3"><a href="conceitos-básicos-de-programação.html#cb151-3"></a><span class="co">#&gt;  [1] 1.00 1.41 1.73 2.00 2.24 2.45 2.65 2.83 3.00 3.16</span></span></code></pre></div>
 <p>Cada elemento de <code>x</code> é passado para a função <code>sqrt</code> e retorna o resultado. Esses resultados são concatenados. Nesse caso, o resultado é um vetor do mesmo comprimento que o original, <code>x</code>. Isso implica que o loop for acima pode ser escrito da seguinte maneira:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span></a>
-<a class="sourceLine" id="cb152-2" data-line-number="2">s_n &lt;-<span class="st"> </span><span class="kw">sapply</span>(n, compute_s_n)</a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="conceitos-básicos-de-programação.html#cb152-1"></a>n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span></span>
+<span id="cb152-2"><a href="conceitos-básicos-de-programação.html#cb152-2"></a>s_n &lt;-<span class="st"> </span><span class="kw">sapply</span>(n, compute_s_n)</span></code></pre></div>
 <p>Outros funcionais são <code>apply</code>, <code>lapply</code>, <code>tapply</code>, <code>mapply</code>, <code>vapply</code> e <code>replicate</code>. Nós usamos principalmente <code>sapply</code>, <code>apply</code> e <code>replicate</code> neste livro, mas recomendamos que se conheçam, pois podem ser muito úteis.</p>
 </div>
-<div id="exercícios-7" class="section level2">
+<div id="exercícios-7" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Exercícios</h2>
 <p>1. O que essa expressão condicional retornará?</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">4</span>)</a>
-<a class="sourceLine" id="cb153-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb153-3" data-line-number="3"><span class="cf">if</span>(<span class="kw">all</span>(x<span class="op">&gt;</span><span class="dv">0</span>)){</a>
-<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="kw">print</span>(<span class="st">&quot;All Postives&quot;</span>)</a>
-<a class="sourceLine" id="cb153-5" data-line-number="5">} <span class="cf">else</span>{</a>
-<a class="sourceLine" id="cb153-6" data-line-number="6"><span class="kw">print</span>(<span class="st">&quot;Not all positives&quot;</span>)</a>
-<a class="sourceLine" id="cb153-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="conceitos-básicos-de-programação.html#cb153-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">4</span>)</span>
+<span id="cb153-2"><a href="conceitos-básicos-de-programação.html#cb153-2"></a></span>
+<span id="cb153-3"><a href="conceitos-básicos-de-programação.html#cb153-3"></a><span class="cf">if</span>(<span class="kw">all</span>(x<span class="op">&gt;</span><span class="dv">0</span>)){</span>
+<span id="cb153-4"><a href="conceitos-básicos-de-programação.html#cb153-4"></a><span class="kw">print</span>(<span class="st">&quot;All Postives&quot;</span>)</span>
+<span id="cb153-5"><a href="conceitos-básicos-de-programação.html#cb153-5"></a>} <span class="cf">else</span>{</span>
+<span id="cb153-6"><a href="conceitos-básicos-de-programação.html#cb153-6"></a><span class="kw">print</span>(<span class="st">&quot;Not all positives&quot;</span>)</span>
+<span id="cb153-7"><a href="conceitos-básicos-de-programação.html#cb153-7"></a>}</span></code></pre></div>
 <p>2. Qual das seguintes expressões é sempre <code>FALSE</code> quando pelo menos uma entrada de um vetor lógico <code>x</code> é verdade?</p>
 <p>para. <code>all(x)</code>
 b. <code>any(x)</code>
-c. <code>any(!x)</code>
-d. <code>all(!x)</code></p>
+c. <code>any(!x)</code>
+d. <code>all(!x)</code></p>
 <p>3. A função <code>nchar</code> informa quantos caracteres um vetor de caracteres possui. Escreva uma linha de código que atribua o objeto <code>new_names</code> a abreviação de estado quando o nome do estado tiver mais de 8 caracteres.</p>
 <p>4. Crie uma função <code>sum_n</code> que, por qualquer valor, digamos <span class="math inline">\(n\)</span>, calcule a soma dos números inteiros de 1 a n (inclusive). Use a função para determinar a soma dos números inteiros de 1 a 5.000.</p>
 <p>5. Crie uma função <code>altman_plot</code> que leva dois argumentos, <code>x</code> e <code>y</code> e faça um gráfico da diferença em relação à soma.</p>
 <p>6. Depois de executar o código a seguir, qual é o valor de <code>x</code>?</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb154-2" data-line-number="2">my_func &lt;-<span class="st"> </span><span class="cf">function</span>(y){</a>
-<a class="sourceLine" id="cb154-3" data-line-number="3">x &lt;-<span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb154-4" data-line-number="4">y<span class="op">+</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb154-5" data-line-number="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="conceitos-básicos-de-programação.html#cb154-1"></a>x &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb154-2"><a href="conceitos-básicos-de-programação.html#cb154-2"></a>my_func &lt;-<span class="st"> </span><span class="cf">function</span>(y){</span>
+<span id="cb154-3"><a href="conceitos-básicos-de-programação.html#cb154-3"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb154-4"><a href="conceitos-básicos-de-programação.html#cb154-4"></a>y<span class="op">+</span><span class="dv">5</span></span>
+<span id="cb154-5"><a href="conceitos-básicos-de-programação.html#cb154-5"></a>}</span></code></pre></div>
 <p>7. Escreva uma função <code>compute_s_n</code> isso para qualquer <span class="math inline">\(n\)</span> calcular a soma <span class="math inline">\(S_n = 1^2 + 2^2 + 3^2 + \dots n^2\)</span>. Indique o valor da soma quando <span class="math inline">\(n=10\)</span>.</p>
-<p>8. Definir um vetor de número vazio <code>s_n</code> tamanho 25 usando <code>s_n &lt;- vector(&quot;numeric&quot;, 25)</code> e armazene os resultados de <span class="math inline">\(S_1, S_2, \dots S_{25}\)</span> usando um loop for.</p>
+<p>8. Definir um vetor de número vazio <code>s_n</code> tamanho 25 usando <code>s_n &lt;- vector("numeric", 25)</code> e armazene os resultados de <span class="math inline">\(S_1, S_2, \dots S_{25}\)</span> usando um loop for.</p>
 <p>9. Repita o exercício 8, mas desta vez use <code>sapply</code>.</p>
 <p>10. Repita o exercício 8, mas desta vez use <code>map_dbl</code>.</p>
 <p>Onze. Gráfico <span class="math inline">\(S_n\)</span> versus <span class="math inline">\(n\)</span>. Use pontos definidos por <span class="math inline">\(n=1,\dots,25\)</span>.</p>
@@ -781,8 +830,8 @@ d. <code>all(!x)</code></p>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="14">
-<li id="fn14"><p><a href="http://r-pkgs.had.co.nz/namespace.html" class="uri">http://r-pkgs.had.co.nz/namespace.html</a><a href="conceitos-básicos-de-programação.html#fnref14" class="footnote-back">↩</a></p></li>
+<ol start="16">
+<li id="fn16"><p><a href="http://r-pkgs.had.co.nz/namespace.html" class="uri">http://r-pkgs.had.co.nz/namespace.html</a><a href="conceitos-básicos-de-programação.html#fnref16" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
