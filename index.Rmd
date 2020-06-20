@@ -13,7 +13,7 @@ lof: no
 graphics: yes
 urlcolor: blue
 geometry: "left=1.5in, right=1.5in, top=1.25in, bottom=1.25in"
-description: Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação.
+description: Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina, o que permitirá que você desenvolva habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX/Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R markdown.
 #documentclass: book
 #classoption: openany
 site: bookdown::bookdown_site
@@ -29,30 +29,27 @@ knitr::write_bib(c(
 
 # Prefácio {-}
 
-Este livro começou como as notas usadas para ensinar a classe de
-HarvardX [Data Science Series] (https://www.edx.org/professional-certificate/harvardx-data-science)^[https://www.edx.org/professional-certificate/harvardx-data-science].
+Este livro começou como anotações usadas nos cursos da 
+[Data Science Series](https://www.edx.org/professional-certificate/harvardx-data-science) da HarvardX^[https://www.edx.org/professional-certificate/harvardx-data-science].
 
-O código Rmarkdown usado para gerar o livro está disponível em [GitHub] (https://github.com/rafalab/dsbook)^[https://github.com/rafalab/dsbook]. Observe que o tema gráfico usado para gráficos em todo o livro pode ser recriado usando a função `ds_theme_set()` do pacote __dslabs__.
+Os códigos em Rmarkdown usados para gerar o livro estão disponíveis no [GitHub](https://github.com/rafalab/dsbook)^[https://github.com/rafalab/dsbook]. Observe que o tema usado para plotagem de gráficos em todo o livro pode ser recriado usando a função `ds_theme_set()` do pacote __dslabs__.
 
 Um PDF da versão em inglês deste livro está disponível em [Leanpub] (https://leanpub.com/datasciencebook)^[https://leanpub.com/datasciencebook].
 
 Uma cópia impressa da versão em inglês deste livro está disponível em [CRC Press] (https://www.crcpress.com/Introduction-to-Data-Science-Data-Analysis-and-Prediction-Algorithms-with/Irizarry/ p/ book/ 9780367357986)^[https://www.crcpress.com/Introduction-to-Data-Science-Data-Analysis-and-Prediction-Algorithms-with/Irizarry/p/book/9780367357986].
 
-Este trabalho foi publicado sob a licença Creative Commons Atribuição-Uso Não-Comercial-Compartilhamento pela mesma Licença 4.0 International [CC BY-NC-SA 4.0] (https://creativecommons.org/licenses/by-nc-sa/4.0).
+Este trabalho foi publicado sob a licença Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
 
-Fazemos anúncios relacionados ao livro no Twitter. Para obter as informações mais recentes, siga [\@rafalab] (https://twitter.com/rafalab).
+Você pode obter mais informações relacionadas ao livro no Twitter. Para atualizações, siga [\@rafalab](https://twitter.com/rafalab).
 
 # Obrigado {-}
 
-Este livro é dedicado a todos os envolvidos na construção e manutenção de pacotes R e R que usamos no texto. Um agradecimento especial aos desenvolvedores e mantenedores da base R, ao pacote _tidyverse_e__caret__.
+Este livro é dedicado a todos os envolvidos na construção e manutenção do R, além dos pacotes que usamos no texto. Um agradecimento especial aos desenvolvedores e mantenedores da base R, e dos pacotes tidyverse e caret.
 
-Um agradecimento especial ao meu guru _tidyverse_ David Robinson e Amy Gill por dezenas de comentários, alterações e sugestões. Além disso, muito obrigado a Stephanie Hicks, que serviu duas vezes como co-instrutora em minhas aulas de ciência de dados, e a Yihui Xie, que pacientemente tolerou minhas múltiplas perguntas sobre livros. Agradeço também a Karl Broman, de quem pedi idéias emprestadas para as seções de visualização de dados e ferramentas de produtividade, e a Hector Corrada-Bravo, por seus conselhos sobre como melhor ensinar o aprendizado de máquinas. Agradeço a Peter Aldhous, de quem pedi idéias emprestadas para a seção sobre princípios de visualização de dados, e Jenny Bryan por escrever _Happy Git_e_GitHub pelo usoR_, que influenciou nossos capítulos do Git. Agradecemos a Alyssa Frazee por ajudar a criar o problema de lição de casa que se tornou o capítulo sobre sistemas de referência e a Amanda Cox por fornecer os dados do exame New York Regents. Além disso, muito obrigado a Jeff Leek, Roger Peng e Brian Caffo, cuja turma inspirou a forma como este livro é dividido, e Garrett Grolemund e Hadley Wickham por abrirem o código de reserva para seu livro R for Data Science. Finalmente, obrigado a Alex Nones por corrigir o manuscrito durante suas várias etapas.
+Um agradecimento especial aos meus gurus do __tidyverse__ David Robinson e Amy Gill pelas dezenas de comentários, alterações e sugestões. Além disso, agradeço a Stephanie Hicks, que serviu duas vezes como co-instrutora em minhas aulas de ciência de dados, e a Yihui Xie, que pacientemente tolerou minhas múltiplas perguntas sobre o bookdown. Agradeço também a Karl Broman, a quem pedi ideias emprestadas para as seções de visualização de dados e ferramentas de produtividade, e a Hector Corrada-Bravo, por seus conselhos sobre como melhor ensinar aprendizado de máquinas. Agradeço a Peter Aldhous, a quem pedi ideias emprestadas para a seção sobre princípios de visualização de dados, e Jenny Bryan por escrever _Happy Git_ e _GitHub for useR_, que influenciou nossos capítulos sobre Git. Agradeço a Alyssa Frazee por ajudar a criar o problema do exercício que se tornou o capítulo sobre Sistemas de Recomendação, e a Amanda Cox por fornecer dados de exames do _New York Regents_. Além disso, muito obrigado a Jeff Leek, Roger Peng e Brian Caffo, cuja turma inspirou a forma como este livro é dividido, e Garrett Grolemund e Hadley Wickham por tornar aberto o código Bookdown do livro _R for Data Science_. Finalmente, obrigado a Alex Nones por corrigir o manuscrito durante suas várias etapas.
 
-Este livro foi concebido durante o ensino de vários cursos de estatística aplicada, iniciados há mais de quinze anos. Professores assistentes que trabalharam comigo ao longo dos anos fizeram importantes contribuições indiretas para este livro. A versão mais recente deste curso é uma série HarvardX coordenada por Heather Sternshein e Zofia Gajdos. Agradecemos suas contribuições. Também agradecemos a todos os alunos cujas perguntas e comentários nos ajudaram a melhorar o livro. Os cursos foram parcialmente financiados pelo subsídio NIH R25GM114818. Agradecemos aos Institutos Nacionais de Saúde por seu apoio.
+Este livro foi concebido durante o ensino de vários cursos de estatística aplicada, iniciados há mais de quinze anos. Professores assistentes que trabalharam comigo ao longo dos anos fizeram importantes contribuições indiretas para este livro. A versão mais recente deste curso é uma série da HarvardX coordenada por Heather Sternshein e Zofia Gajdos. Agradeço suas contribuições. Também agradeço a todos os alunos cujas perguntas e comentários nos ajudaram a melhorar o livro. Os cursos foram parcialmente financiados pelo NIH: código de concessão R25GM114818. Agradecemos aos _National Institutes of Health_ por seu apoio.
 
 Um agradecimento especial a todos aqueles que editaram o livro através de _pull request_do GitHub_ ou fizeram sugestões criando um _issue_ ou enviando um email: `nickyfoto` (Huang Qiang) `desautm` (Marc-André Désautels), `michaschwab` (Michail Schwab) `alvarolarreategui` (Alvaro Larreategui), `jakevc` (Jake VanCampen), `omerta` (Guillermo Lengemann), `espinielli` (Enrico Spinielli), `asimumba`(Aaron Simumba) `braunschweig` (Maldewar), `gwierzchowski` (Grzegorz Wierzchowski), `technocrat` (Richard Careaga) `atzakas`, `defeit` (David Emerson Feit), `shiraamitchell` (Shira Mitchell) `Nathalie-S`, `andreashandel` (Andreas Handel) `berkowitze` (Elias Berkowitz) `Dean-Webb` (Dean Webber), `mohayusuf`, `jimrothstein`, `mPloenzke` (Matthew Ploenzke), `NicholasDowand` (Nicholas Dow) `kant` (Darío Hereñú), `debbieyuster` (Debbie Yuster), `tuanchauict` (Tuan Chau), `phzeller`, David D. Kane, El Mustapha El Abbassi e Vadim Zipunnikov.
 
 O livro foi traduzido para o português por . Agradecemos a todos que contribuíram para esta tradução. Ilia Ushkin e Dustin Tingley geraram um primeiro rascunho usando um programa de tradução automática. 
-
-
-
