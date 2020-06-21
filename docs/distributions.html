@@ -5,26 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 8 Como visualizar distribuições de dados | Introdução à Ciência de Dados</title>
-  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 8 Como visualizar distribuições de dados | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
+  <meta property="og:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Capítulo 8 Como visualizar distribuições de dados | Introdução à Ciência de Dados" />
   
-  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios das situações atuais de análise de dados. Abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que eles desenvolvam habilidades como programação R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos com UNIX / Linux Shell, controle de versão com GitHub e preparação de documentos reproduzíveis com R remarcação." />
+  <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   
 
 <meta name="author" content="Rafael A. Irizarry" />
 
 
-<meta name="date" content="2020-06-16" />
+<meta name="date" content="2020-06-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="ggplot2.html"/>
 <link rel="next" href="gapminder.html"/>
+<script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,29 +51,31 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -81,9 +84,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -129,19 +132,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Introducción a la Ciencia de Datos</a></li>
+<li><a href="./">Introdução à Ciência de Dados</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Prefácio</a></li>
-<li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html"><i class="fa fa-check"></i>Obrigado</a><ul>
-<li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html#os-estudos-de-caso"><i class="fa fa-check"></i>Os estudos de caso</a></li>
-<li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html#o-que-este-livro-cobre"><i class="fa fa-check"></i>O que este livro cobre?</a></li>
-<li class="chapter" data-level="" data-path="obrigado.html"><a href="obrigado.html#o-que-este-livro-não-cobre"><i class="fa fa-check"></i>O que este livro não cobre?</a></li>
+<li class="chapter" data-level="" data-path="agradecimentos.html"><a href="agradecimentos.html"><i class="fa fa-check"></i>Agradecimentos</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i>Introdução</a>
+<ul>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#estudos-de-caso"><i class="fa fa-check"></i>Estudos de Caso</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#quem-achará-este-livro-útil"><i class="fa fa-check"></i>Quem achará este livro útil?</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#o-que-este-livro-cobre"><i class="fa fa-check"></i>O que este livro cobre?</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#o-que-este-livro-não-cobre"><i class="fa fa-check"></i>O que este livro não cobre?</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Começando com R e RStudio</a><ul>
+<li class="chapter" data-level="1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>1</b> Começando com R e RStudio</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="getting-started.html"><a href="getting-started.html#o-console-do-r"><i class="fa fa-check"></i><b>1.1</b> O console do R</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started.html"><a href="getting-started.html#scripts"><i class="fa fa-check"></i><b>1.2</b> <em>scripts</em></a></li>
-<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a><ul>
+<li class="chapter" data-level="1.3" data-path="getting-started.html"><a href="getting-started.html#rstudio"><i class="fa fa-check"></i><b>1.3</b> RStudio</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="getting-started.html"><a href="getting-started.html#painéis"><i class="fa fa-check"></i><b>1.3.1</b> Painéis</a></li>
 <li class="chapter" data-level="1.3.2" data-path="getting-started.html"><a href="getting-started.html#combinações-de-teclas"><i class="fa fa-check"></i><b>1.3.2</b> <em>Combinações de teclas</em></a></li>
 <li class="chapter" data-level="1.3.3" data-path="getting-started.html"><a href="getting-started.html#como-executar-comandos-enquanto-edita-scripts"><i class="fa fa-check"></i><b>1.3.3</b> Como executar comandos enquanto edita <em>scripts</em></a></li>
@@ -150,8 +158,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="getting-started.html"><a href="getting-started.html#instalando-pacotes-r"><i class="fa fa-check"></i><b>1.4</b> Instalando pacotes R</a></li>
 </ul></li>
 <li class="part"><span><b>I R</b></span></li>
-<li class="chapter" data-level="2" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>2</b> R básico</a><ul>
-<li class="chapter" data-level="2.1" data-path="r-basics.html"><a href="r-basics.html#o-básico"><i class="fa fa-check"></i><b>2.1</b> O básico</a><ul>
+<li class="chapter" data-level="2" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>2</b> R básico</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="r-basics.html"><a href="r-basics.html#o-básico"><i class="fa fa-check"></i><b>2.1</b> O básico</a>
+<ul>
 <li class="chapter" data-level="2.1.1" data-path="r-basics.html"><a href="r-basics.html#o-espaço-de-trabalho"><i class="fa fa-check"></i><b>2.1.1</b> O espaço de trabalho</a></li>
 <li class="chapter" data-level="2.1.2" data-path="r-basics.html"><a href="r-basics.html#funções"><i class="fa fa-check"></i><b>2.1.2</b> Funções</a></li>
 <li class="chapter" data-level="2.1.3" data-path="r-basics.html"><a href="r-basics.html#outros-objetos-predefinidos"><i class="fa fa-check"></i><b>2.1.3</b> Outros objetos predefinidos</a></li>
@@ -160,7 +170,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.1.6" data-path="r-basics.html"><a href="r-basics.html#motivando-scripts"><i class="fa fa-check"></i><b>2.1.6</b> <em>Motivando scripts</em></a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="r-basics.html"><a href="r-basics.html#exercícios"><i class="fa fa-check"></i><b>2.2</b> Exercícios</a></li>
-<li class="chapter" data-level="2.3" data-path="r-basics.html"><a href="r-basics.html#tipo-de-dados"><i class="fa fa-check"></i><b>2.3</b> Tipo de dados</a><ul>
+<li class="chapter" data-level="2.3" data-path="r-basics.html"><a href="r-basics.html#tipo-de-dados"><i class="fa fa-check"></i><b>2.3</b> Tipo de dados</a>
+<ul>
 <li class="chapter" data-level="2.3.1" data-path="r-basics.html"><a href="r-basics.html#data-frames"><i class="fa fa-check"></i><b>2.3.1</b> <em>data frames</em></a></li>
 <li class="chapter" data-level="2.3.2" data-path="r-basics.html"><a href="r-basics.html#como-examinar-um-objeto"><i class="fa fa-check"></i><b>2.3.2</b> Como examinar um objeto</a></li>
 <li class="chapter" data-level="2.3.3" data-path="r-basics.html"><a href="r-basics.html#o-operador-de-acesso"><i class="fa fa-check"></i><b>2.3.3</b> O operador de acesso: <code>$</code></a></li>
@@ -168,17 +179,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.5" data-path="r-basics.html"><a href="r-basics.html#matrices"><i class="fa fa-check"></i><b>2.3.5</b> Arrays</a></li>
 </ul></li>
 <li class="chapter" data-level="2.4" data-path="r-basics.html"><a href="r-basics.html#exercícios-1"><i class="fa fa-check"></i><b>2.4</b> Exercícios</a></li>
-<li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#vetores"><i class="fa fa-check"></i><b>2.5</b> Vetores</a><ul>
+<li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#vetores"><i class="fa fa-check"></i><b>2.5</b> Vetores</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="r-basics.html"><a href="r-basics.html#como-criar-vetores"><i class="fa fa-check"></i><b>2.5.1</b> Como criar vetores</a></li>
 <li class="chapter" data-level="2.5.2" data-path="r-basics.html"><a href="r-basics.html#nomes"><i class="fa fa-check"></i><b>2.5.2</b> Nomes</a></li>
 <li class="chapter" data-level="2.5.3" data-path="r-basics.html"><a href="r-basics.html#sequências"><i class="fa fa-check"></i><b>2.5.3</b> Sequências</a></li>
 <li class="chapter" data-level="2.5.4" data-path="r-basics.html"><a href="r-basics.html#como-criar-um-subconjunto"><i class="fa fa-check"></i><b>2.5.4</b> Como criar um subconjunto</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="r-basics.html"><a href="r-basics.html#conversão-forçada"><i class="fa fa-check"></i><b>2.6</b> Conversão forçada</a><ul>
+<li class="chapter" data-level="2.6" data-path="r-basics.html"><a href="r-basics.html#conversão-forçada"><i class="fa fa-check"></i><b>2.6</b> Conversão forçada</a>
+<ul>
 <li class="chapter" data-level="2.6.1" data-path="r-basics.html"><a href="r-basics.html#não-disponível-na"><i class="fa fa-check"></i><b>2.6.1</b> <em>Não disponível</em> (NA)</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="r-basics.html"><a href="r-basics.html#exercícios-2"><i class="fa fa-check"></i><b>2.7</b> Exercícios</a></li>
-<li class="chapter" data-level="2.8" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.8</b> <em>Ordenação</em></a><ul>
+<li class="chapter" data-level="2.8" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.8</b> <em>Ordenação</em></a>
+<ul>
 <li class="chapter" data-level="2.8.1" data-path="r-basics.html"><a href="r-basics.html#sort"><i class="fa fa-check"></i><b>2.8.1</b> <code>sort</code></a></li>
 <li class="chapter" data-level="2.8.2" data-path="r-basics.html"><a href="r-basics.html#order"><i class="fa fa-check"></i><b>2.8.2</b> <code>order</code></a></li>
 <li class="chapter" data-level="2.8.3" data-path="r-basics.html"><a href="r-basics.html#max-e-which.max"><i class="fa fa-check"></i><b>2.8.3</b> <code>max</code> e <code>which.max</code></a></li>
@@ -186,12 +200,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8.5" data-path="r-basics.html"><a href="r-basics.html#cuidado-com-a-reciclagem"><i class="fa fa-check"></i><b>2.8.5</b> Cuidado com a reciclagem</a></li>
 </ul></li>
 <li class="chapter" data-level="2.9" data-path="r-basics.html"><a href="r-basics.html#exercícios-3"><i class="fa fa-check"></i><b>2.9</b> Exercícios</a></li>
-<li class="chapter" data-level="2.10" data-path="r-basics.html"><a href="r-basics.html#aritmética-vetorial"><i class="fa fa-check"></i><b>2.10</b> Aritmética vetorial</a><ul>
+<li class="chapter" data-level="2.10" data-path="r-basics.html"><a href="r-basics.html#aritmética-vetorial"><i class="fa fa-check"></i><b>2.10</b> Aritmética vetorial</a>
+<ul>
 <li class="chapter" data-level="2.10.1" data-path="r-basics.html"><a href="r-basics.html#rescalar-um-vetor"><i class="fa fa-check"></i><b>2.10.1</b> <em>Rescalar</em> um vetor</a></li>
 <li class="chapter" data-level="2.10.2" data-path="r-basics.html"><a href="r-basics.html#dois-vetores"><i class="fa fa-check"></i><b>2.10.2</b> Dois vetores</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="r-basics.html"><a href="r-basics.html#exercícios-4"><i class="fa fa-check"></i><b>2.11</b> Exercícios</a></li>
-<li class="chapter" data-level="2.12" data-path="r-basics.html"><a href="r-basics.html#indexação"><i class="fa fa-check"></i><b>2.12</b> Indexação</a><ul>
+<li class="chapter" data-level="2.12" data-path="r-basics.html"><a href="r-basics.html#indexação"><i class="fa fa-check"></i><b>2.12</b> Indexação</a>
+<ul>
 <li class="chapter" data-level="2.12.1" data-path="r-basics.html"><a href="r-basics.html#criar-subconjuntos-com-lógicas"><i class="fa fa-check"></i><b>2.12.1</b> Criar subconjuntos com lógicas</a></li>
 <li class="chapter" data-level="2.12.2" data-path="r-basics.html"><a href="r-basics.html#operadores-lógicos"><i class="fa fa-check"></i><b>2.12.2</b> Operadores lógicos</a></li>
 <li class="chapter" data-level="2.12.3" data-path="r-basics.html"><a href="r-basics.html#which"><i class="fa fa-check"></i><b>2.12.3</b> <code>which</code></a></li>
@@ -199,7 +215,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.12.5" data-path="r-basics.html"><a href="r-basics.html#in"><i class="fa fa-check"></i><b>2.12.5</b> <code>%in%</code></a></li>
 </ul></li>
 <li class="chapter" data-level="2.13" data-path="r-basics.html"><a href="r-basics.html#exercícios-5"><i class="fa fa-check"></i><b>2.13</b> Exercícios</a></li>
-<li class="chapter" data-level="2.14" data-path="r-basics.html"><a href="r-basics.html#gráficos-básicos"><i class="fa fa-check"></i><b>2.14</b> Gráficos básicos</a><ul>
+<li class="chapter" data-level="2.14" data-path="r-basics.html"><a href="r-basics.html#gráficos-básicos"><i class="fa fa-check"></i><b>2.14</b> Gráficos básicos</a>
+<ul>
 <li class="chapter" data-level="2.14.1" data-path="r-basics.html"><a href="r-basics.html#plot"><i class="fa fa-check"></i><b>2.14.1</b> <code>plot</code></a></li>
 <li class="chapter" data-level="2.14.2" data-path="r-basics.html"><a href="r-basics.html#hist"><i class="fa fa-check"></i><b>2.14.2</b> <code>hist</code></a></li>
 <li class="chapter" data-level="2.14.3" data-path="r-basics.html"><a href="r-basics.html#boxplot"><i class="fa fa-check"></i><b>2.14.3</b> <code>boxplot</code></a></li>
@@ -207,7 +224,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.15" data-path="r-basics.html"><a href="r-basics.html#exercícios-6"><i class="fa fa-check"></i><b>2.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html"><i class="fa fa-check"></i><b>3</b> Conceitos básicos de programação</a><ul>
+<li class="chapter" data-level="3" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html"><i class="fa fa-check"></i><b>3</b> Conceitos básicos de programação</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#conditionals"><i class="fa fa-check"></i><b>3.1</b> Expressões condicionais</a></li>
 <li class="chapter" data-level="3.2" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#como-definir-funções"><i class="fa fa-check"></i><b>3.2</b> Como definir funções</a></li>
 <li class="chapter" data-level="3.3" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#namespaces"><i class="fa fa-check"></i><b>3.3</b> <em>Namespaces</em></a></li>
@@ -215,10 +233,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#vectorization"><i class="fa fa-check"></i><b>3.5</b> Vectorização e funcional</a></li>
 <li class="chapter" data-level="3.6" data-path="conceitos-básicos-de-programação.html"><a href="conceitos-básicos-de-programação.html#exercícios-7"><i class="fa fa-check"></i><b>3.6</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> <em>tidyverse</em></a><ul>
+<li class="chapter" data-level="4" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>4</b> <em>tidyverse</em></a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="tidyverse.html"><a href="tidyverse.html#tidy-data"><i class="fa fa-check"></i><b>4.1</b> Data <em>tidy</em></a></li>
 <li class="chapter" data-level="4.2" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-8"><i class="fa fa-check"></i><b>4.2</b> Exercícios</a></li>
-<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#como-manipular-data-frames"><i class="fa fa-check"></i><b>4.3</b> Como manipular <em>data frames</em></a><ul>
+<li class="chapter" data-level="4.3" data-path="tidyverse.html"><a href="tidyverse.html#como-manipular-data-frames"><i class="fa fa-check"></i><b>4.3</b> Como manipular <em>data frames</em></a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="tidyverse.html"><a href="tidyverse.html#como-adicionar-uma-coluna-com-mutate"><i class="fa fa-check"></i><b>4.3.1</b> Como adicionar uma coluna com <code>mutate</code></a></li>
 <li class="chapter" data-level="4.3.2" data-path="tidyverse.html"><a href="tidyverse.html#como-criar-subconjuntos-com-filter"><i class="fa fa-check"></i><b>4.3.2</b> Como criar subconjuntos com <code>filter</code></a></li>
 <li class="chapter" data-level="4.3.3" data-path="tidyverse.html"><a href="tidyverse.html#como-selecionar-colunas-com-select"><i class="fa fa-check"></i><b>4.3.3</b> Como selecionar colunas com <code>select</code></a></li>
@@ -226,17 +246,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-9"><i class="fa fa-check"></i><b>4.4</b> Exercícios</a></li>
 <li class="chapter" data-level="4.5" data-path="tidyverse.html"><a href="tidyverse.html#o-cano_"><i class="fa fa-check"></i><b>4.5</b> O cano_: <code>%&gt;%</code></a></li>
 <li class="chapter" data-level="4.6" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-10"><i class="fa fa-check"></i><b>4.6</b> Exercícios</a></li>
-<li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#como-resumir-dados"><i class="fa fa-check"></i><b>4.7</b> Como resumir dados</a><ul>
+<li class="chapter" data-level="4.7" data-path="tidyverse.html"><a href="tidyverse.html#como-resumir-dados"><i class="fa fa-check"></i><b>4.7</b> Como resumir dados</a>
+<ul>
 <li class="chapter" data-level="4.7.1" data-path="tidyverse.html"><a href="tidyverse.html#summarize"><i class="fa fa-check"></i><b>4.7.1</b> <code>summarize</code></a></li>
 <li class="chapter" data-level="4.7.2" data-path="tidyverse.html"><a href="tidyverse.html#pull"><i class="fa fa-check"></i><b>4.7.2</b> <code>pull</code></a></li>
 <li class="chapter" data-level="4.7.3" data-path="tidyverse.html"><a href="tidyverse.html#group-by"><i class="fa fa-check"></i><b>4.7.3</b> Como agrupar e resumir com <code>group_by</code></a></li>
 </ul></li>
-<li class="chapter" data-level="4.8" data-path="tidyverse.html"><a href="tidyverse.html#como-encomendar-os-data-frames"><i class="fa fa-check"></i><b>4.8</b> Como encomendar os <em>data frames</em></a><ul>
+<li class="chapter" data-level="4.8" data-path="tidyverse.html"><a href="tidyverse.html#como-encomendar-os-data-frames"><i class="fa fa-check"></i><b>4.8</b> Como encomendar os <em>data frames</em></a>
+<ul>
 <li class="chapter" data-level="4.8.1" data-path="tidyverse.html"><a href="tidyverse.html#como-encomendar-aninhado"><i class="fa fa-check"></i><b>4.8.1</b> Como encomendar aninhado</a></li>
 <li class="chapter" data-level="4.8.2" data-path="tidyverse.html"><a href="tidyverse.html#os-primeiros-n"><i class="fa fa-check"></i><b>4.8.2</b> Os primeiros <span class="math inline">\(n\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="4.9" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-11"><i class="fa fa-check"></i><b>4.9</b> Exercícios</a></li>
-<li class="chapter" data-level="4.10" data-path="tidyverse.html"><a href="tidyverse.html#tibbles"><i class="fa fa-check"></i><b>4.10</b> <em>Tibbles</em></a><ul>
+<li class="chapter" data-level="4.10" data-path="tidyverse.html"><a href="tidyverse.html#tibbles"><i class="fa fa-check"></i><b>4.10</b> <em>Tibbles</em></a>
+<ul>
 <li class="chapter" data-level="4.10.1" data-path="tidyverse.html"><a href="tidyverse.html#tibbles-parece-melhor"><i class="fa fa-check"></i><b>4.10.1</b> <em>Tibbles</em> parece melhor</a></li>
 <li class="chapter" data-level="4.10.2" data-path="tidyverse.html"><a href="tidyverse.html#tibbles_subconjuntos-são_tibbles"><i class="fa fa-check"></i><b>4.10.2</b> <em>Tibbles_subconjuntos são_tibbles</em></a></li>
 <li class="chapter" data-level="4.10.3" data-path="tidyverse.html"><a href="tidyverse.html#tibbles-pode-ter-entradas-complexas"><i class="fa fa-check"></i><b>4.10.3</b> <em>Tibbles</em> pode ter entradas complexas</a></li>
@@ -246,27 +269,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.11" data-path="tidyverse.html"><a href="tidyverse.html#o-operador-de-ponto"><i class="fa fa-check"></i><b>4.11</b> O operador de ponto</a></li>
 <li class="chapter" data-level="4.12" data-path="tidyverse.html"><a href="tidyverse.html#do"><i class="fa fa-check"></i><b>4.12</b> <code>do</code></a></li>
 <li class="chapter" data-level="4.13" data-path="tidyverse.html"><a href="tidyverse.html#o-pacote-purrr"><i class="fa fa-check"></i><b>4.13</b> O pacote <strong>purrr</strong></a></li>
-<li class="chapter" data-level="4.14" data-path="tidyverse.html"><a href="tidyverse.html#os-condicionais-tidyverse"><i class="fa fa-check"></i><b>4.14</b> Os condicionais <em>tidyverse</em></a><ul>
+<li class="chapter" data-level="4.14" data-path="tidyverse.html"><a href="tidyverse.html#os-condicionais-tidyverse"><i class="fa fa-check"></i><b>4.14</b> Os condicionais <em>tidyverse</em></a>
+<ul>
 <li class="chapter" data-level="4.14.1" data-path="tidyverse.html"><a href="tidyverse.html#case_when"><i class="fa fa-check"></i><b>4.14.1</b> <code>case_when</code></a></li>
 <li class="chapter" data-level="4.14.2" data-path="tidyverse.html"><a href="tidyverse.html#between"><i class="fa fa-check"></i><b>4.14.2</b> <code>between</code></a></li>
 </ul></li>
 <li class="chapter" data-level="4.15" data-path="tidyverse.html"><a href="tidyverse.html#exercícios-12"><i class="fa fa-check"></i><b>4.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>5</b> Importando dados</a><ul>
-<li class="chapter" data-level="5.1" data-path="importing-data.html"><a href="importing-data.html#caminhos-e-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1</b> Caminhos e diretório de trabalho</a><ul>
+<li class="chapter" data-level="5" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>5</b> Importando dados</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="importing-data.html"><a href="importing-data.html#caminhos-e-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1</b> Caminhos e diretório de trabalho</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="importing-data.html"><a href="importing-data.html#o-sistema-de-arquivos"><i class="fa fa-check"></i><b>5.1.1</b> O sistema de arquivos</a></li>
 <li class="chapter" data-level="5.1.2" data-path="importing-data.html"><a href="importing-data.html#caminhos-relativos-e-completos"><i class="fa fa-check"></i><b>5.1.2</b> Caminhos relativos e completos</a></li>
 <li class="chapter" data-level="5.1.3" data-path="importing-data.html"><a href="importing-data.html#o-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1.3</b> O diretório de trabalho</a></li>
 <li class="chapter" data-level="5.1.4" data-path="importing-data.html"><a href="importing-data.html#como-gerar-nomes-de-caminhos"><i class="fa fa-check"></i><b>5.1.4</b> Como gerar nomes de caminhos</a></li>
 <li class="chapter" data-level="5.1.5" data-path="importing-data.html"><a href="importing-data.html#como-copiar-arquivos-usando-caminhos"><i class="fa fa-check"></i><b>5.1.5</b> Como copiar arquivos usando caminhos</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="importing-data.html"><a href="importing-data.html#os-pacotes-readr-e-readxl"><i class="fa fa-check"></i><b>5.2</b> Os pacotes readr e readxl</a><ul>
+<li class="chapter" data-level="5.2" data-path="importing-data.html"><a href="importing-data.html#os-pacotes-readr-e-readxl"><i class="fa fa-check"></i><b>5.2</b> Os pacotes readr e readxl</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="importing-data.html"><a href="importing-data.html#readr"><i class="fa fa-check"></i><b>5.2.1</b> readr</a></li>
 <li class="chapter" data-level="5.2.2" data-path="importing-data.html"><a href="importing-data.html#readxl"><i class="fa fa-check"></i><b>5.2.2</b> readxl</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="importing-data.html"><a href="importing-data.html#exercícios-13"><i class="fa fa-check"></i><b>5.3</b> Exercícios</a></li>
 <li class="chapter" data-level="5.4" data-path="importing-data.html"><a href="importing-data.html#como-baixar-arquivos"><i class="fa fa-check"></i><b>5.4</b> Como baixar arquivos</a></li>
-<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação R</a><ul>
+<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação R</a>
+<ul>
 <li class="chapter" data-level="5.5.1" data-path="importing-data.html"><a href="importing-data.html#scan"><i class="fa fa-check"></i><b>5.5.1</b> <code>scan</code></a></li>
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="importing-data.html"><a href="importing-data.html#arquivos-de-texto-versus-arquivos-binários"><i class="fa fa-check"></i><b>5.6</b> Arquivos de texto versus arquivos binários</a></li>
@@ -276,12 +304,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>II Exibição de dados</b></span></li>
 <li class="chapter" data-level="6" data-path="introdução-à-visualização-de-dados.html"><a href="introdução-à-visualização-de-dados.html"><i class="fa fa-check"></i><b>6</b> Introdução à visualização de dados</a></li>
-<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a><ul>
+<li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#os-componentes-de-um-gráfico"><i class="fa fa-check"></i><b>7.1</b> Os componentes de um gráfico</a></li>
 <li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-ggplot"><i class="fa fa-check"></i><b>7.2</b> objetos <code>ggplot</code></a></li>
 <li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrias"><i class="fa fa-check"></i><b>7.3</b> Geometrias</a></li>
 <li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#mapeamentos-estéticos"><i class="fa fa-check"></i><b>7.4</b> Mapeamentos estéticos</a></li>
-<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#camadas"><i class="fa fa-check"></i><b>7.5</b> Camadas</a><ul>
+<li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#camadas"><i class="fa fa-check"></i><b>7.5</b> Camadas</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#como-testar-vários-argumentos"><i class="fa fa-check"></i><b>7.5.1</b> Como testar vários argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético-global-versus-local"><i class="fa fa-check"></i><b>7.6</b> Mapeamento estético global versus local</a></li>
@@ -295,13 +325,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.14" data-path="ggplot2.html"><a href="ggplot2.html#grades-de-gráfico"><i class="fa fa-check"></i><b>7.14</b> Grades de gráfico</a></li>
 <li class="chapter" data-level="7.15" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-15"><i class="fa fa-check"></i><b>7.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Como visualizar distribuições de dados</a><ul>
+<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Como visualizar distribuições de dados</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="distributions.html"><a href="distributions.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>8.1</b> Tipos de variáveis</a></li>
 <li class="chapter" data-level="8.2" data-path="distributions.html"><a href="distributions.html#estudo-de-caso-descrevendo-a-altura-dos-alunos"><i class="fa fa-check"></i><b>8.2</b> Estudo de caso: descrevendo a altura dos alunos</a></li>
 <li class="chapter" data-level="8.3" data-path="distributions.html"><a href="distributions.html#a-função-de-distribuição"><i class="fa fa-check"></i><b>8.3</b> A função de distribuição</a></li>
 <li class="chapter" data-level="8.4" data-path="distributions.html"><a href="distributions.html#cdf-intro"><i class="fa fa-check"></i><b>8.4</b> Funções de distribuição cumulativa</a></li>
 <li class="chapter" data-level="8.5" data-path="distributions.html"><a href="distributions.html#histogramas"><i class="fa fa-check"></i><b>8.5</b> Histogramas</a></li>
-<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#densidade-suave"><i class="fa fa-check"></i><b>8.6</b> Densidade suave</a><ul>
+<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#densidade-suave"><i class="fa fa-check"></i><b>8.6</b> Densidade suave</a>
+<ul>
 <li class="chapter" data-level="8.6.1" data-path="distributions.html"><a href="distributions.html#como-interpretar-o-eixo-y"><i class="fa fa-check"></i><b>8.6.1</b> Como interpretar o eixo y</a></li>
 <li class="chapter" data-level="8.6.2" data-path="distributions.html"><a href="distributions.html#densidades-permitem-camadas"><i class="fa fa-check"></i><b>8.6.2</b> Densidades permitem camadas</a></li>
 </ul></li>
@@ -314,7 +346,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.13" data-path="distributions.html"><a href="distributions.html#stratification"><i class="fa fa-check"></i><b>8.13</b> Estratificação</a></li>
 <li class="chapter" data-level="8.14" data-path="distributions.html"><a href="distributions.html#student-height-cont"><i class="fa fa-check"></i><b>8.14</b> Estudo de caso: descrição das alturas dos alunos (continuação)</a></li>
 <li class="chapter" data-level="8.15" data-path="distributions.html"><a href="distributions.html#exercícios-17"><i class="fa fa-check"></i><b>8.15</b> Exercícios</a></li>
-<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Gegplot2 geometrias</a><ul>
+<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Gegplot2 geometrias</a>
+<ul>
 <li class="chapter" data-level="8.16.1" data-path="distributions.html"><a href="distributions.html#gráficos-de-barra"><i class="fa fa-check"></i><b>8.16.1</b> Gráficos de barra</a></li>
 <li class="chapter" data-level="8.16.2" data-path="distributions.html"><a href="distributions.html#histogramas-1"><i class="fa fa-check"></i><b>8.16.2</b> Histogramas</a></li>
 <li class="chapter" data-level="8.16.3" data-path="distributions.html"><a href="distributions.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>8.16.3</b> Gráficos de densidade</a></li>
@@ -325,40 +358,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="8.17" data-path="distributions.html"><a href="distributions.html#exercícios-18"><i class="fa fa-check"></i><b>8.17</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>9</b> Visualização de dados na prática</a><ul>
+<li class="chapter" data-level="9" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>9</b> Visualização de dados na prática</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="gapminder.html"><a href="gapminder.html#estudo-de-caso-novas-idéias-sobre-pobreza"><i class="fa fa-check"></i><b>9.1</b> Estudo de caso: novas idéias sobre pobreza</a></li>
 <li class="chapter" data-level="9.2" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-dispersão"><i class="fa fa-check"></i><b>9.2</b> Diagrama de dispersão</a></li>
-<li class="chapter" data-level="9.3" data-path="gapminder.html"><a href="gapminder.html#separe-em-facetas"><i class="fa fa-check"></i><b>9.3</b> Separe em facetas</a><ul>
+<li class="chapter" data-level="9.3" data-path="gapminder.html"><a href="gapminder.html#separe-em-facetas"><i class="fa fa-check"></i><b>9.3</b> Separe em facetas</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="gapminder.html"><a href="gapminder.html#facet_wrap"><i class="fa fa-check"></i><b>9.3.1</b> <code>facet_wrap</code></a></li>
 <li class="chapter" data-level="9.3.2" data-path="gapminder.html"><a href="gapminder.html#escalas-fixas-para-melhores-comparações"><i class="fa fa-check"></i><b>9.3.2</b> Escalas fixas para melhores comparações</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="gapminder.html"><a href="gapminder.html#gráficos-de-séries-temporais"><i class="fa fa-check"></i><b>9.4</b> Gráficos de séries temporais</a><ul>
+<li class="chapter" data-level="9.4" data-path="gapminder.html"><a href="gapminder.html#gráficos-de-séries-temporais"><i class="fa fa-check"></i><b>9.4</b> Gráficos de séries temporais</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="gapminder.html"><a href="gapminder.html#etiquetas-em-vez-de-legendas"><i class="fa fa-check"></i><b>9.4.1</b> Etiquetas em vez de legendas</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="gapminder.html"><a href="gapminder.html#transformações-de-dados"><i class="fa fa-check"></i><b>9.5</b> Transformações de dados</a><ul>
+<li class="chapter" data-level="9.5" data-path="gapminder.html"><a href="gapminder.html#transformações-de-dados"><i class="fa fa-check"></i><b>9.5</b> Transformações de dados</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="gapminder.html"><a href="gapminder.html#transformação-logarítmica"><i class="fa fa-check"></i><b>9.5.1</b> Transformação logarítmica</a></li>
 <li class="chapter" data-level="9.5.2" data-path="gapminder.html"><a href="gapminder.html#qual-base"><i class="fa fa-check"></i><b>9.5.2</b> Qual base?</a></li>
 <li class="chapter" data-level="9.5.3" data-path="gapminder.html"><a href="gapminder.html#transformar-valores-ou-escala"><i class="fa fa-check"></i><b>9.5.3</b> Transformar valores ou escala?</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="gapminder.html"><a href="gapminder.html#como-visualizar-distribuições-multimodais"><i class="fa fa-check"></i><b>9.6</b> Como visualizar distribuições multimodais</a></li>
-<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-várias-distribuições-com-gráficos-de-caixas-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar várias distribuições com gráficos de caixas e gráficos <em>ridge</em></a><ul>
+<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-várias-distribuições-com-gráficos-de-caixas-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar várias distribuições com gráficos de caixas e gráficos <em>ridge</em></a>
+<ul>
 <li class="chapter" data-level="9.7.1" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-caixa"><i class="fa fa-check"></i><b>9.7.1</b> Diagrama de caixa</a></li>
 <li class="chapter" data-level="9.7.2" data-path="gapminder.html"><a href="gapminder.html#exemplo-distribuições-de-renda-1970-versus-2010"><i class="fa fa-check"></i><b>9.7.2</b> Exemplo: distribuições de renda 1970 versus 2010</a></li>
 <li class="chapter" data-level="9.7.3" data-path="gapminder.html"><a href="gapminder.html#como-acessar-variáveis-calculadas"><i class="fa fa-check"></i><b>9.7.3</b> Como acessar variáveis calculadas</a></li>
 <li class="chapter" data-level="9.7.4" data-path="gapminder.html"><a href="gapminder.html#densidades-ponderadas"><i class="fa fa-check"></i><b>9.7.4</b> Densidades ponderadas</a></li>
 </ul></li>
-<li class="chapter" data-level="9.8" data-path="gapminder.html"><a href="gapminder.html#a-falácia-ecológica-e-a-importância-de-mostrar-os-dados"><i class="fa fa-check"></i><b>9.8</b> A falácia ecológica e a importância de mostrar os dados</a><ul>
+<li class="chapter" data-level="9.8" data-path="gapminder.html"><a href="gapminder.html#a-falácia-ecológica-e-a-importância-de-mostrar-os-dados"><i class="fa fa-check"></i><b>9.8</b> A falácia ecológica e a importância de mostrar os dados</a>
+<ul>
 <li class="chapter" data-level="9.8.1" data-path="gapminder.html"><a href="gapminder.html#logit"><i class="fa fa-check"></i><b>9.8.1</b> Transformação de logística</a></li>
 <li class="chapter" data-level="9.8.2" data-path="gapminder.html"><a href="gapminder.html#mostrar-os-dados"><i class="fa fa-check"></i><b>9.8.2</b> Mostrar os dados</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html"><i class="fa fa-check"></i><b>10</b> Princípios de visualização de dados</a><ul>
+<li class="chapter" data-level="10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html"><i class="fa fa-check"></i><b>10</b> Princípios de visualização de dados</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-codificar-dados-usando-pistas-visuais"><i class="fa fa-check"></i><b>10.1</b> Como codificar dados usando pistas visuais</a></li>
 <li class="chapter" data-level="10.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#saiba-quando-incluir-0"><i class="fa fa-check"></i><b>10.2</b> Saiba quando incluir 0</a></li>
 <li class="chapter" data-level="10.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#não-distorça-quantidades"><i class="fa fa-check"></i><b>10.3</b> Não distorça quantidades</a></li>
 <li class="chapter" data-level="10.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#classificar-categorias-por-valor-significativo"><i class="fa fa-check"></i><b>10.4</b> Classificar categorias por valor significativo</a></li>
 <li class="chapter" data-level="10.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#mostrar-os-dados-1"><i class="fa fa-check"></i><b>10.5</b> Mostrar os dados</a></li>
-<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-facilitar-comparações"><i class="fa fa-check"></i><b>10.6</b> Como facilitar comparações</a><ul>
+<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-facilitar-comparações"><i class="fa fa-check"></i><b>10.6</b> Como facilitar comparações</a>
+<ul>
 <li class="chapter" data-level="10.6.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-eixos-comuns"><i class="fa fa-check"></i><b>10.6.1</b> Use eixos comuns</a></li>
 <li class="chapter" data-level="10.6.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#alinhe-os-gráficos-verticalmente-para-ver-alterações-horizontais-e-horizontalmente-para-ver-alterações-verticais"><i class="fa fa-check"></i><b>10.6.2</b> Alinhe os gráficos verticalmente para ver alterações horizontais e horizontalmente para ver alterações verticais</a></li>
 <li class="chapter" data-level="10.6.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#considere-transformações"><i class="fa fa-check"></i><b>10.6.3</b> Considere transformações</a></li>
@@ -366,7 +407,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.6.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-cores"><i class="fa fa-check"></i><b>10.6.5</b> Use cores</a></li>
 </ul></li>
 <li class="chapter" data-level="10.7" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#pense-no-daltônico"><i class="fa fa-check"></i><b>10.7</b> Pense no daltônico</a></li>
-<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Gráficos para duas variáveis</a><ul>
+<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Gráficos para duas variáveis</a>
+<ul>
 <li class="chapter" data-level="10.8.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-de-inclinação"><i class="fa fa-check"></i><b>10.8.1</b> Gráficos de inclinação</a></li>
 <li class="chapter" data-level="10.8.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráfico-de-bland-altman"><i class="fa fa-check"></i><b>10.8.2</b> Gráfico de Bland-Altman</a></li>
 </ul></li>
@@ -378,7 +420,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.14" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#vaccines"><i class="fa fa-check"></i><b>10.14</b> Estudo de caso: vacinas e doenças infecciosas</a></li>
 <li class="chapter" data-level="10.15" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#exercícios-20"><i class="fa fa-check"></i><b>10.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="robust-summaries.html"><a href="robust-summaries.html"><i class="fa fa-check"></i><b>11</b> Resumos robustos</a><ul>
+<li class="chapter" data-level="11" data-path="robust-summaries.html"><a href="robust-summaries.html"><i class="fa fa-check"></i><b>11</b> Resumos robustos</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="robust-summaries.html"><a href="robust-summaries.html#valores-atípicos"><i class="fa fa-check"></i><b>11.1</b> Valores atípicos</a></li>
 <li class="chapter" data-level="11.2" data-path="robust-summaries.html"><a href="robust-summaries.html#mediana"><i class="fa fa-check"></i><b>11.2</b> Mediana</a></li>
 <li class="chapter" data-level="11.3" data-path="robust-summaries.html"><a href="robust-summaries.html#o-intervalo-interquartil-iqr"><i class="fa fa-check"></i><b>11.3</b> O intervalo interquartil (IQR)</a></li>
@@ -389,8 +432,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>III Estatísticas com R</b></span></li>
 <li class="chapter" data-level="12" data-path="introdução-às-estatísticas-com-r.html"><a href="introdução-às-estatísticas-com-r.html"><i class="fa fa-check"></i><b>12</b> Introdução às estatísticas com R</a></li>
-<li class="chapter" data-level="13" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>13</b> Probabilidade</a><ul>
-<li class="chapter" data-level="13.1" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-discreta"><i class="fa fa-check"></i><b>13.1</b> Probabilidade discreta</a><ul>
+<li class="chapter" data-level="13" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>13</b> Probabilidade</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-discreta"><i class="fa fa-check"></i><b>13.1</b> Probabilidade discreta</a>
+<ul>
 <li class="chapter" data-level="13.1.1" data-path="probabilidade.html"><a href="probabilidade.html#frequência-relativa"><i class="fa fa-check"></i><b>13.1.1</b> Frequência relativa</a></li>
 <li class="chapter" data-level="13.1.2" data-path="probabilidade.html"><a href="probabilidade.html#notação"><i class="fa fa-check"></i><b>13.1.2</b> Notação</a></li>
 <li class="chapter" data-level="13.1.3" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-de-probabilidade"><i class="fa fa-check"></i><b>13.1.3</b> Distribuições de probabilidade</a></li>
@@ -401,40 +446,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.3" data-path="probabilidade.html"><a href="probabilidade.html#probabilidades-condicionais"><i class="fa fa-check"></i><b>13.3</b> Probabilidades condicionais</a></li>
 <li class="chapter" data-level="13.4" data-path="probabilidade.html"><a href="probabilidade.html#regras-de-adição-e-multiplicação"><i class="fa fa-check"></i><b>13.4</b> Regras de adição e multiplicação</a></li>
 <li class="chapter" data-level="13.5" data-path="probabilidade.html"><a href="probabilidade.html#combinações-e-permutações"><i class="fa fa-check"></i><b>13.5</b> Combinações e permutações</a></li>
-<li class="chapter" data-level="13.6" data-path="probabilidade.html"><a href="probabilidade.html#exemplos"><i class="fa fa-check"></i><b>13.6</b> Exemplos</a><ul>
+<li class="chapter" data-level="13.6" data-path="probabilidade.html"><a href="probabilidade.html#exemplos"><i class="fa fa-check"></i><b>13.6</b> Exemplos</a>
+<ul>
 <li class="chapter" data-level="13.6.1" data-path="probabilidade.html"><a href="probabilidade.html#problema-de-aniversário"><i class="fa fa-check"></i><b>13.6.1</b> Problema de aniversário</a></li>
 </ul></li>
 <li class="chapter" data-level="13.7" data-path="probabilidade.html"><a href="probabilidade.html#exercícios-22"><i class="fa fa-check"></i><b>13.7</b> Exercícios</a></li>
 <li class="chapter" data-level="13.8" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-contínua"><i class="fa fa-check"></i><b>13.8</b> Probabilidade contínua</a></li>
-<li class="chapter" data-level="13.9" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-teóricas-contínuas"><i class="fa fa-check"></i><b>13.9</b> Distribuições teóricas contínuas</a><ul>
+<li class="chapter" data-level="13.9" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-teóricas-contínuas"><i class="fa fa-check"></i><b>13.9</b> Distribuições teóricas contínuas</a>
+<ul>
 <li class="chapter" data-level="13.9.1" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-teóricas-como-aproximações"><i class="fa fa-check"></i><b>13.9.1</b> Distribuições teóricas como aproximações</a></li>
 <li class="chapter" data-level="13.9.2" data-path="probabilidade.html"><a href="probabilidade.html#a-densidade-de-probabilidade"><i class="fa fa-check"></i><b>13.9.2</b> A densidade de probabilidade</a></li>
 </ul></li>
 <li class="chapter" data-level="13.10" data-path="probabilidade.html"><a href="probabilidade.html#distribuições-contínuas"><i class="fa fa-check"></i><b>13.10</b> Distribuições contínuas</a></li>
 <li class="chapter" data-level="13.11" data-path="probabilidade.html"><a href="probabilidade.html#exercícios-23"><i class="fa fa-check"></i><b>13.11</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html"><i class="fa fa-check"></i><b>14</b> Variáveis aleatórias</a><ul>
+<li class="chapter" data-level="14" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html"><i class="fa fa-check"></i><b>14</b> Variáveis aleatórias</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#variáveis-aleatórias-1"><i class="fa fa-check"></i><b>14.1</b> Variáveis aleatórias</a></li>
 <li class="chapter" data-level="14.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#modelos-de-amostragem"><i class="fa fa-check"></i><b>14.2</b> Modelos de amostragem</a></li>
 <li class="chapter" data-level="14.3" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#a-distribuição-de-probabilidade-de-uma-variável-aleatória"><i class="fa fa-check"></i><b>14.3</b> A distribuição de probabilidade de uma variável aleatória</a></li>
 <li class="chapter" data-level="14.4" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#distribuições-versus-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>14.4</b> Distribuições versus distribuições de probabilidade</a></li>
-<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.5</b> O valor esperado e o erro padrão</a><ul>
+<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.5</b> O valor esperado e o erro padrão</a>
+<ul>
 <li class="chapter" data-level="14.5.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#população-sd-versus-amostra-sd"><i class="fa fa-check"></i><b>14.5.1</b> População SD versus amostra SD</a></li>
 </ul></li>
 <li class="chapter" data-level="14.6" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#teorema-do-limite-central"><i class="fa fa-check"></i><b>14.6</b> Teorema do limite central</a></li>
 <li class="chapter" data-level="14.7" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#propriedades-estatísticas-das-médias"><i class="fa fa-check"></i><b>14.7</b> Propriedades estatísticas das médias</a></li>
-<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.8</b> Lei dos grandes números</a><ul>
+<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.8</b> Lei dos grandes números</a>
+<ul>
 <li class="chapter" data-level="14.8.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#interpretação-incorreta-da-lei-das-médias"><i class="fa fa-check"></i><b>14.8.1</b> Interpretação incorreta da lei das médias</a></li>
 </ul></li>
 <li class="chapter" data-level="14.9" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-24"><i class="fa fa-check"></i><b>14.9</b> Exercícios</a></li>
-<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-o-grande-short"><i class="fa fa-check"></i><b>14.10</b> Estudo de caso: o grande short</a><ul>
+<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-o-grande-short"><i class="fa fa-check"></i><b>14.10</b> Estudo de caso: o grande short</a>
+<ul>
 <li class="chapter" data-level="14.10.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#taxas-de-juros-explicadas-com-um-modelo-de-oportunidade"><i class="fa fa-check"></i><b>14.10.1</b> Taxas de juros explicadas com um modelo de oportunidade</a></li>
 <li class="chapter" data-level="14.10.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-grande-curto"><i class="fa fa-check"></i><b>14.10.2</b> O Grande Curto</a></li>
 </ul></li>
 <li class="chapter" data-level="14.11" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-25"><i class="fa fa-check"></i><b>14.11</b> Exercícios</a></li>
 </ul></li>
 <li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
 
 </ul>
 
@@ -453,28 +504,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="distributions" class="section level1">
+<div id="distributions" class="section level1" number="8">
 <h1><span class="header-section-number">Capítulo 8</span> Como visualizar distribuições de dados</h1>
 <p>Os dados numéricos são frequentemente resumidos com o valor <em>average</em>. Por exemplo, a qualidade de uma escola secundária às vezes é resumida em um único número: a pontuação média em um teste padronizado. Ocasionalmente, um segundo número é incluído: o desvio padrão. Por exemplo, eles podem ler um relatório de que as pontuações foram 680 mais ou menos 50 (o desvio padrão). O relatório resumiu um vetor completo de pontuações com apenas dois números. Isso é apropriado? Existe alguma informação importante que não estamos considerando ao exibir este resumo em vez da lista completa?</p>
 <p>Nosso primeiro componente básico de visualização de dados está aprendendo a resumir listas de fatores ou vetores de números. Geralmente, a melhor maneira de compartilhar ou explorar este resumo é através da visualização de dados. O resumo estatístico mais básico de uma lista de objetos ou números é sua distribuição. Depois que um vetor é resumido como uma distribuição, existem várias técnicas de visualização de dados para transmitir efetivamente essas informações.</p>
 <p>Neste capítulo, discutiremos primeiro as propriedades de uma variedade de distribuições e como visualizá-las usando um exemplo motivador de altura dos alunos. Então na Seção <a href="distributions.html#other-geometries">8.16</a>, discutiremos as geometrias <strong>ggplot2</strong> para essas visualizações.</p>
-<div id="tipos-de-variáveis" class="section level2">
+<div id="tipos-de-variáveis" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Tipos de variáveis</h2>
 <p>Trabalharemos com dois tipos de variáveis: categórica e numérica. Cada um pode ser dividido em dois outros grupos: as variáveis categóricas podem ser ordinais ou não, enquanto as numéricas podem ser discretas ou contínuas.</p>
 <p>Quando cada entrada em um vetor vem de um pequeno número de grupos, nos referimos aos dados como <em>dados categóricos</em>. Dois exemplos simples são sexo (masculino ou feminino) e regiões (nordeste, sul, norte central, oeste). Alguns dados categóricos podem ser solicitados, mesmo que não sejam números, por exemplo, quão picante é um alimento (pouco, médio, muito). Nos livros de estatística, os dados categóricos ordenados são chamados <em>ordinal</em> data.</p>
 <p>Exemplos de dados numéricos são tamanho da população, taxas de homicídios e altura. Alguns dados numéricos podem ser tratados como ordenadas categóricas. Podemos dividir ainda mais os dados numéricos em contínuos e discretos. Variáveis contínuas são aquelas que podem assumir qualquer valor, como alturas, se forem medidas com precisão suficiente. Por exemplo, um par de botões de punho pode medir 68,12 e 68,11 polegadas, respectivamente. As contagens, como o tamanho da população, são discretas porque precisam ser números redondos.</p>
 <p>Observe que dados numéricos discretos podem ser considerados ordinais. Embora isso seja tecnicamente verdadeiro, geralmente reservamos o termo dados ordinais para variáveis que pertencem a um pequeno número de grupos diferentes, e cada grupo tem muitos membros. Por outro lado, quando temos muitos grupos com poucos casos em cada grupo, geralmente nos referimos a eles como variáveis numéricas discretas. Assim, por exemplo, o número de maços de cigarro que uma pessoa fuma por dia, arredondado para o maço mais próximo, seria considerado ordinal, enquanto o número real de cigarros seria considerado uma variável numérica. No entanto, existem exemplos que podem ser considerados numéricos e ordinais quando se trata de visualizar dados.</p>
 </div>
-<div id="estudo-de-caso-descrevendo-a-altura-dos-alunos" class="section level2">
+<div id="estudo-de-caso-descrevendo-a-altura-dos-alunos" class="section level2" number="8.2">
 <h2><span class="header-section-number">8.2</span> Estudo de caso: descrevendo a altura dos alunos</h2>
 <p>Aqui, apresentamos um novo problema motivador. É artificial, mas nos ajudará a ilustrar os conceitos necessários para entender as distribuições.</p>
 <p>Imagine que precisamos descrever as alturas de nossos colegas de classe para ET, um alienígena que nunca viu seres humanos. Como primeiro passo, precisamos coletar dados. Para fazer isso, pedimos aos alunos que indiquem suas alturas em polegadas. Pedimos que você nos forneça informações sobre o seu sexo biológico, porque sabemos que existem duas distribuições diferentes por sexo. Coletamos os dados e salvamos no conjunto de dados <code>heights</code>:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb305-2" data-line-number="2"><span class="kw">library</span>(dslabs)</a>
-<a class="sourceLine" id="cb305-3" data-line-number="3"><span class="kw">data</span>(heights)</a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="distributions.html#cb305-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb305-2"><a href="distributions.html#cb305-2"></a><span class="kw">library</span>(dslabs)</span>
+<span id="cb305-3"><a href="distributions.html#cb305-3"></a><span class="kw">data</span>(heights)</span></code></pre></div>
 <p>Uma maneira de passar as alturas para o ET é simplesmente enviar a ele esta lista de 1,050 alturas. No entanto, existem maneiras muito mais eficazes de transmitir informações e, para isso, nos ajudarão a entender o conceito de distribuição. Para simplificar a explicação, primeiro nos concentramos nas alturas masculinas. Examinamos os dados de altura feminina na Seção <a href="distributions.html#student-height-cont">8.14</a>.</p>
 </div>
-<div id="a-função-de-distribuição" class="section level2">
+<div id="a-função-de-distribuição" class="section level2" number="8.3">
 <h2><span class="header-section-number">8.3</span> A função de distribuição</h2>
 <p>Acontece que, em alguns casos, o desvio médio e padrão são praticamente tudo o que precisamos para entender os dados. Aprenderemos técnicas de visualização de dados que nos ajudarão a determinar quando esse resumo de dois números é apropriado. Essas mesmas técnicas servirão como uma alternativa para quando dois números não forem suficientes.</p>
 <p>O resumo estatístico mais básico de uma lista de objetos ou números é sua distribuição. A maneira mais simples de pensar em uma distribuição é como uma descrição compacta de uma lista com muitas entradas. Este conceito não deve ser novo para os leitores deste livro. Por exemplo, com dados categóricos, a distribuição simplesmente descreve a proporção de cada categoria exclusiva. O sexo representado no conjunto de dados de altura é:</p>
@@ -485,18 +536,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="livro_files/figure-html/state-region-distribution-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Este gráfico simplesmente mostra quatro números, um para cada categoria. Geralmente usamos gráficos de barras quando temos poucos números. Embora esse gráfico em particular não forneça muito mais informações do que uma tabela de frequência, ele é um excelente exemplo de como convertemos um vetor em um gráfico que resume sucintamente todas as informações no vetor. Quando os dados são numéricos, a tarefa de exibir distribuições é mais desafiadora.</p>
 </div>
-<div id="cdf-intro" class="section level2">
+<div id="cdf-intro" class="section level2" number="8.4">
 <h2><span class="header-section-number">8.4</span> Funções de distribuição cumulativa</h2>
 <p>Dados numéricos que não são categóricos também têm distribuições. Em geral, quando os dados não são categóricos, a indicação da frequência de cada entrada não é um resumo efetivo, pois a maioria das entradas é exclusiva. Em nosso estudo de caso, por exemplo, enquanto vários estudantes relataram uma altura de 68 polegadas, um estudante relatou uma altura de <code>68.503937007874</code> polegadas e outra uma altura <code>68.8976377952756</code> polegadas. Supomos que eles tenham convertido suas alturas em 174 e 175 centímetros, respectivamente.</p>
 <p>Os livros de estatística nos ensinam que uma maneira mais útil de definir uma distribuição numérica de dados é definir uma função que indica a proporção dos dados abaixo <span class="math inline">\(a\)</span> para todos os valores possíveis de <span class="math inline">\(a\)</span>. Essa função é chamada de função de distribuição cumulativa, ou CDF, para abreviar. Nas estatísticas, a seguinte notação é usada:</p>
 <p><span class="math display">\[ F(a) = \mbox{Pr}(x \leq a) \]</span></p>
 <p>Aqui vemos um gráfico de <span class="math inline">\(F\)</span> para dados de altura masculina:</p>
 <p><img src="livro_files/figure-html/ecdf-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Semelhante ao que a tabela de frequência faz para dados categóricos, o CDF define a distribuição de dados numéricos. No gráfico, podemos ver que 16% dos valores são menores que 65, pois <span class="math inline">\(F(66)=\)</span> 0.164, o que <code>r round (ecdf(heights$height[heights$ sex == &quot;Male&quot;]) (72) * 100)</code>% dos valores são menores que 72, pois <span class="math inline">\(F(72)=\)</span> 0.841
+<p>Semelhante ao que a tabela de frequência faz para dados categóricos, o CDF define a distribuição de dados numéricos. No gráfico, podemos ver que 16% dos valores são menores que 65, pois <span class="math inline">\(F(66)=\)</span> 0.164, o que <code>r round (ecdf(heights$height[heights$ sex == "Male"]) (72) * 100)</code>% dos valores são menores que 72, pois <span class="math inline">\(F(72)=\)</span> 0.841
 e assim. De fato, podemos relatar a proporção de valores entre duas alturas, digamos <span class="math inline">\(a\)</span> e <span class="math inline">\(b\)</span>, ao computar <span class="math inline">\(F(b) - F(a)\)</span>. Isso significa que, se enviarmos esse diagrama para o ET, ele terá todas as informações necessárias para reconstruir a lista completa. Parafraseando a expressão “uma imagem vale mais que mil palavras”, neste caso, uma imagem é tão informativa quanto 812 números.</p>
 <p>Uma observação final: como os CDFs podem ser matematicamente definidos, a palavra <em>empirical</em> é adicionada para distinguir quando os dados são usados. Portanto, usamos o termo CDF empírico ou eCDF para abreviar.</p>
 </div>
-<div id="histogramas" class="section level2">
+<div id="histogramas" class="section level2" number="8.5">
 <h2><span class="header-section-number">8.5</span> Histogramas</h2>
 <p>Embora o conceito de CDF seja amplamente discutido nos livros estatísticos, o gráfico não é muito popular na prática. O principal motivo é que ele não transmite facilmente características de interesse, como: Em que valor a distribuição se concentra? A distribuição é simétrica? Quais intervalos contêm 95% dos valores? Os histogramas são preferidos porque facilitam muito a resposta a essas perguntas. Os histogramas sacrificam apenas um pouco de informação para produzir gráficos muito mais fáceis de interpretar.</p>
 <p>A maneira mais fácil de criar um histograma é dividir o <em>span_dos nossos dados em_bins_não sobrepostos</em> do mesmo tamanho. Então, para cada compartimento, contamos o número de valores que estão nesse intervalo. O histograma representa graficamente essas contagens como barras com a base da barra definida pelos intervalos. Aqui está o histograma para os dados de altura que dividem o intervalo de valores em intervalos de uma polegada: <span class="math inline">\([49.5, 50.5], [51.5,52.5],(53.5,54.5],...,(82.5,83.5]\)</span></p>
@@ -506,7 +557,7 @@ e assim. De fato, podemos relatar a proporção de valores entre duas alturas, d
 <p>Que informação perdemos? Lembre-se de que todos os valores em cada intervalo são tratados da mesma maneira ao calcular as alturas dos compartimentos. Por exemplo, o histograma não distingue entre 64, 64,1 e 64,2 polegadas. Como essas diferenças são quase imperceptíveis aos olhos, as implicações práticas são desprezíveis e conseguimos resumir os dados em apenas 23 números.</p>
 <p>Discutimos como codificar histogramas na Seção <a href="distributions.html#other-geometries">8.16</a>.</p>
 </div>
-<div id="densidade-suave" class="section level2">
+<div id="densidade-suave" class="section level2" number="8.6">
 <h2><span class="header-section-number">8.6</span> Densidade suave</h2>
 <p>Os gráficos de densidade suave são esteticamente mais atraentes que os histogramas. Abaixo, vemos um gráfico de densidade suave para nossos dados de altura:</p>
 <p><img src="livro_files/figure-html/example-of-smoothed-density-1.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -526,7 +577,7 @@ e assim. De fato, podemos relatar a proporção de valores entre duas alturas, d
 <p><img src="livro_files/figure-html/densities-different-smoothness-1.png" width="100%" style="display: block; margin: auto;" />
 Precisamos tomar essa decisão com cuidado, pois as visualizações resultantes podem alterar nossa interpretação dos dados. Devemos selecionar um grau de suavidade que possamos defender como representativo dos dados subjacentes. No caso da altura, realmente temos motivos para acreditar que a proporção de pessoas com alturas semelhantes deve ser a mesma. Por exemplo, a taxa de 72 polegadas deve ser mais semelhante à taxa de 71 do que a taxa de 78 ou 65. Isso implica que a curva deve ser razoavelmente suave; isto é, a curva deve se parecer mais com o exemplo à direita do que com a esquerda.</p>
 <p>Embora o histograma seja um resumo sem suposições, a densidade suavizada é baseada em algumas suposições.</p>
-<div id="como-interpretar-o-eixo-y" class="section level3">
+<div id="como-interpretar-o-eixo-y" class="section level3" number="8.6.1">
 <h3><span class="header-section-number">8.6.1</span> Como interpretar o eixo y</h3>
 <p>Observe que a interpretação do eixo y de um gráfico de densidade suave não é óbvia. Ele é dimensionado para que a área sob a curva de densidade seja igual a 1. Se você imaginar que formamos um compartimento com uma base de 1 unidade de comprimento, o valor do eixo y indica a proporção de valores nesse compartimento. No entanto, isso é válido apenas para compartimentos de tamanho 1. Para intervalos de outro tamanho, a melhor proporção de dados nesse intervalo é determinada calculando a proporção da área total contida nesse intervalo. Por exemplo, aqui vemos a proporção de valores entre 65 e 68:</p>
 <p><img src="livro_files/figure-html/area-under-curve-1.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -536,14 +587,14 @@ o que significa que aproximadamente NaN%das alturas dos machos estão entre 65 e
 <p>Ao entender isso, estamos prontos para usar a densidade suave como um resumo. Para esse conjunto de dados, nos sentimos confortáveis em assumir suavidade e, assim, compartilhar essa figura esteticamente agradável com o ET, que pode usá-lo para entender nossos dados de altura masculinos:</p>
 <p><img src="livro_files/figure-html/example-of-smoothed-density-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="densidades-permitem-camadas" class="section level3">
+<div id="densidades-permitem-camadas" class="section level3" number="8.6.2">
 <h3><span class="header-section-number">8.6.2</span> Densidades permitem camadas</h3>
 <p>Como nota final, observamos que uma vantagem das densidades suaves sobre os histogramas para fins de exibição é que as densidades facilitam a comparação de duas distribuições. Isso se deve em grande parte às bordas irregulares do histograma, que agregam confusão. Aqui está um exemplo comparando as alturas masculina e feminina:</p>
 <p><img src="livro_files/figure-html/two-densities-one-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Com o argumento correto, <code>ggplot</code> sombreia automaticamente a região de interseção com uma cor diferente. Mostraremos amostras de código <strong>ggplot2</strong> para densidades na Seção <a href="gapminder.html#gapminder">9</a> bem como na Seção <a href="distributions.html#other-geometries">8.16</a>.</p>
 </div>
 </div>
-<div id="exercícios-16" class="section level2">
+<div id="exercícios-16" class="section level2" number="8.7">
 <h2><span class="header-section-number">8.7</span> Exercícios</h2>
 <p>1. No conjunto de dados <code>murders</code>, a região é uma variável categórica e sua distribuição é a seguinte:</p>
 <p><img src="livro_files/figure-html/barplot-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -551,59 +602,59 @@ o que significa que aproximadamente NaN%das alturas dos machos estão entre 65 e
 <p>2. Qual dos seguintes é verdadeiro?</p>
 <p>para. O gráfico acima é um histograma.
 b. O gráfico acima mostra apenas quatro números com um gráfico de barras.
-c. As categorias não são números, portanto, não faz sentido representar graficamente a distribuição.
-d. Cores, não a altura das barras, descrevem a distribuição.</p>
+c. As categorias não são números, portanto, não faz sentido representar graficamente a distribuição.
+d. Cores, não a altura das barras, descrevem a distribuição.</p>
 <p>3. O gráfico a seguir mostra o eCDF para a altura dos homens:</p>
 <p><img src="livro_files/figure-html/ecdf-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>De acordo com o gráfico, qual a porcentagem de homens com menos de 75 polegadas?</p>
 <p>para. 100%
 b. 95%
-c. 80%
-d. 72 polegadas</p>
+c. 80%
+d. 72 polegadas</p>
 <p>4. Para a polegada mais próxima, qual a altura <code>m</code> tem a propriedade de que metade dos estudantes do sexo masculino é mais alta que <code>m</code> e metade são menores?</p>
 <p>para. 61 polegadas
 b. 64 polegadas
-c. 69 polegadas
-d. 74 polegadas</p>
+c. 69 polegadas
+d. 74 polegadas</p>
 <p>5. Aqui está um eCDF das taxas de homicídio entre os estados:</p>
 <p><img src="livro_files/figure-html/ecdf-exercise-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Sabendo que existem 51 estados (contando DC) e com base neste gráfico, quantos estados têm taxas de homicídios superiores a 10 por 100.000 pessoas?</p>
 <p>para. 1
 b. 5
-c. 10
-d. cinquenta</p>
+c. 10
+d. cinquenta</p>
 <p>6. De acordo com o eCDF anterior, qual das seguintes afirmações é verdadeira?</p>
 <p>para. Cerca de metade dos estados têm taxas de homicídio acima de 7 por 100.000 e a outra metade abaixo.
 b. A maioria dos estados tem taxas de homicídio inferiores a 2 por 100.000.
-c. Todos os estados têm taxas de homicídio superiores a 2 por 100.000.
-d. Com exceção de 4 estados, as taxas de homicídio são inferiores a 5 por 100.000.</p>
+c. Todos os estados têm taxas de homicídio superiores a 2 por 100.000.
+d. Com exceção de 4 estados, as taxas de homicídio são inferiores a 5 por 100.000.</p>
 <p>7. Aqui está o histograma das alturas masculinas do nosso conjunto de dados <code>heights</code>:</p>
 <p><img src="livro_files/figure-html/height-histogram-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>De acordo com este gráfico, quantos homens existem entre 63,5 e 65,5?</p>
 <p>para. 10
 b. 24
-c. 3. 4
-d. 100</p>
+c. 3. 4
+d. 100</p>
 <p>8. Aproximadamente, o que <strong>porcentagem</strong> tem menos de 60 polegadas?</p>
 <p>para. 1%
 b. 10%
-c. 25%
-d. cinquenta%</p>
+c. 25%
+d. cinquenta%</p>
 <p>9. Com base no gráfico de densidade abaixo, aproximadamente qual proporção de estados dos EUA? EUA Você tem populações com mais de 10 milhões de pessoas?</p>
 <p><img src="livro_files/figure-html/density-exercise-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>para. 0,02
 b. 0,15
-c. 0,50
-d. 0,55</p>
+c. 0,50
+d. 0,55</p>
 <p>10. Abaixo estão três gráficos de densidade. É possível que eles sejam do mesmo conjunto de dados?</p>
 <p><img src="livro_files/figure-html/density-exercise-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Qual das seguintes afirmações é verdadeira?</p>
 <p>para. É impossível que eles sejam do mesmo conjunto de dados.
 b. Eles são do mesmo conjunto de dados, mas os gráficos são diferentes devido a erros de código.
-c. Eles são do mesmo conjunto de dados, mas o primeiro e o segundo gráficos suavizam e o terceiro gráfico suaviza demais.
-d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala logarítmica, o segundo suaviza menos e o terceiro ultrapassa o pico.</p>
+c. Eles são do mesmo conjunto de dados, mas o primeiro e o segundo gráficos suavizam e o terceiro gráfico suaviza demais.
+d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala logarítmica, o segundo suaviza menos e o terceiro ultrapassa o pico.</p>
 </div>
-<div id="normal-distribution" class="section level2">
+<div id="normal-distribution" class="section level2" number="8.8">
 <h2><span class="header-section-number">8.8</span> A distribuição normal</h2>
 <p>Histogramas e gráficos de densidade fornecem excelentes resumos de uma distribuição. Mas podemos resumir mais? Muitas vezes vemos o desvio médio e padrão usado como um resumo estatístico - um resumo de dois números! Para entender o que são esses resumos e por que são tão usados, precisamos entender a distribuição normal.</p>
 <p>A distribuição normal, também conhecida como curva de sino e distribuição gaussiana, é um dos conceitos matemáticos mais famosos da história. Uma razão para isso é que distribuições aproximadamente normais ocorrem em muitas situações, incluindo ganhos de jogo, alturas, pesos, pressão arterial, resultados de testes padronizados e erros de medição experimentais. Existem explicações para isso e as descreveremos posteriormente. Aqui, focamos em como a distribuição normal nos ajuda a resumir os dados.</p>
@@ -614,50 +665,50 @@ d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala log
 <p><img src="livro_files/figure-html/normal-distribution-density-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>O fato de a distribuição ser definida por apenas dois parâmetros implica que, se a distribuição de um conjunto de dados puder ser aproximada por uma distribuição normal, todas as informações necessárias para descrever a distribuição poderão ser codificadas em apenas dois números: a média e a Desvio padrão. Agora vamos definir esses valores para uma lista arbitrária de números.</p>
 <p>Para uma lista de números contidos em um vetor <code>x</code>, a média é definida como:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">sum</span>(x)<span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="distributions.html#cb307-1"></a>m &lt;-<span class="st"> </span><span class="kw">sum</span>(x)<span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</span></code></pre></div>
 <p>e SD é definido como:</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1">s &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>((x<span class="op">-</span>mu)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x))</a></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="distributions.html#cb308-1"></a>s &lt;-<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>((x<span class="op">-</span>mu)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x))</span></code></pre></div>
 <p>que pode ser interpretado como a distância média entre os valores e sua média.</p>
 <p>Vamos calcular os valores para a altura dos machos que armazenaremos no objeto <span class="math inline">\(x\)</span>:</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1">index &lt;-<span class="st"> </span>heights<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span></a>
-<a class="sourceLine" id="cb309-2" data-line-number="2">x &lt;-<span class="st"> </span>heights<span class="op">$</span>height[index]</a></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="distributions.html#cb309-1"></a>index &lt;-<span class="st"> </span>heights<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span></span>
+<span id="cb309-2"><a href="distributions.html#cb309-2"></a>x &lt;-<span class="st"> </span>heights<span class="op">$</span>height[index]</span></code></pre></div>
 <p>Funções predefinidas podem ser usadas <code>mean</code> e <code>sd</code> (observe que, por razões explicadas na Seção <a href="#data-driven-model"><strong>??</strong></a>, <code>sd</code> dividido por <code>length(x)-1</code> em vez de <code>length(x)</code>) :</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1">m &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
-<a class="sourceLine" id="cb310-2" data-line-number="2">s &lt;-<span class="st"> </span><span class="kw">sd</span>(x)</a>
-<a class="sourceLine" id="cb310-3" data-line-number="3"><span class="kw">c</span>(<span class="dt">average =</span> m, <span class="dt">sd =</span> s)</a>
-<a class="sourceLine" id="cb310-4" data-line-number="4"><span class="co">#&gt; average      sd </span></a>
-<a class="sourceLine" id="cb310-5" data-line-number="5"><span class="co">#&gt;   69.31    3.61</span></a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="distributions.html#cb310-1"></a>m &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</span>
+<span id="cb310-2"><a href="distributions.html#cb310-2"></a>s &lt;-<span class="st"> </span><span class="kw">sd</span>(x)</span>
+<span id="cb310-3"><a href="distributions.html#cb310-3"></a><span class="kw">c</span>(<span class="dt">average =</span> m, <span class="dt">sd =</span> s)</span>
+<span id="cb310-4"><a href="distributions.html#cb310-4"></a><span class="co">#&gt; average      sd </span></span>
+<span id="cb310-5"><a href="distributions.html#cb310-5"></a><span class="co">#&gt;   69.31    3.61</span></span></code></pre></div>
 <p>Aqui está um gráfico da densidade suave e da distribuição normal com média = 69.3 e SD = 3.6 desenhada como uma linha preta com a densidade suave de nossas alturas de alunos azuis:</p>
 <p><img src="livro_files/figure-html/data-and-normal-densities-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A distribuição normal parece ser uma boa aproximação aqui. Veremos agora como essa aproximação funciona para prever a proporção de valores dentro dos intervalos.</p>
 </div>
-<div id="unidades-padrão" class="section level2">
+<div id="unidades-padrão" class="section level2" number="8.9">
 <h2><span class="header-section-number">8.9</span> Unidades padrão</h2>
 <p>Para dados distribuídos aproximadamente normalmente, é aconselhável pensar em termos de <em>standard units</em>. A unidade padrão de um valor nos diz quantos desvios padrão se desviam da média. Especificamente, para um valor <code>x</code> de um vetor <code>X</code>, definimos o valor de <code>x</code> em unidades padrão como <code>z = (x - m)/s</code> com <code>m</code> e <code>s</code> a média e desvio padrão de <code>X</code>, respectivamente. Por que é conveniente fazer isso?</p>
 <p>Primeiro revise a fórmula da distribuição normal e observe que o que está sendo exposto é <span class="math inline">\(-z^2/2\)</span> com <span class="math inline">\(z\)</span> equivalente a <span class="math inline">\(x\)</span> em unidades padrão. O fato de que o máximo de <span class="math inline">\(e^{-z^2/2}\)</span> é quando <span class="math inline">\(z=0\)</span> explica por que a distribuição ocorre em média. Também explica a simetria, pois <span class="math inline">\(- z^2/2\)</span> é simétrico em torno de 0. Além disso, observe que, se convertermos dados normalmente distribuídos em unidades padrão, poderemos saber rapidamente se, por exemplo, uma pessoa é aproximadamente média ( <span class="math inline">\(z=0\)</span>), entre os mais altos ( <span class="math inline">\(z \approx 2\)</span>), entre os menores ( <span class="math inline">\(z \approx -2\)</span>) ou uma ocorrência extremamente rara ( <span class="math inline">\(z &gt; 3\)</span> ou <span class="math inline">\(z &lt; -3\)</span>) Lembre-se de que, independentemente das unidades originais, essas regras se aplicam a todos os dados que são aproximadamente normais.</p>
 <p>Em R, podemos obter unidades padrão usando a função <code>scale</code>:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1">z &lt;-<span class="st"> </span><span class="kw">scale</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="distributions.html#cb311-1"></a>z &lt;-<span class="st"> </span><span class="kw">scale</span>(x)</span></code></pre></div>
 <p>Agora, para ver quantos homens estão dentro de 2 DP da média, simplesmente escrevemos:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">mean</span>(<span class="kw">abs</span>(z) <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb312-2" data-line-number="2"><span class="co">#&gt; [1] 0.95</span></a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="distributions.html#cb312-1"></a><span class="kw">mean</span>(<span class="kw">abs</span>(z) <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span>)</span>
+<span id="cb312-2"><a href="distributions.html#cb312-2"></a><span class="co">#&gt; [1] 0.95</span></span></code></pre></div>
 <p>A proporção é de aproximadamente 95%, que é o que a distribuição normal prevê! Para ter ainda mais confirmação de que a aproximação é precisa, podemos usar gráficos QQ (<em>quantile-quantile</em> plots).</p>
 </div>
-<div id="gráficos-qq" class="section level2">
+<div id="gráficos-qq" class="section level2" number="8.10">
 <h2><span class="header-section-number">8.10</span> Gráficos QQ</h2>
 <p>Uma maneira sistemática de avaliar quão bem a distribuição normal se ajusta aos dados é verificar se as proporções observadas e previstas correspondem. Em geral, este é o zoom do gráfico QQ.</p>
 <p>Primeiro, definimos os quantis teóricos para a distribuição normal. Nos livros de estatística, usamos o símbolo <span class="math inline">\(\Phi(x)\)</span> para definir a função que nos dá a probabilidade de que uma distribuição normal padrão seja menor que <span class="math inline">\(x\)</span>. Por exemplo, <span class="math inline">\(\Phi(-1.96) = 0.025\)</span> e <span class="math inline">\(\Phi(1.96) = 0.975\)</span>. Em R, podemos avaliar <span class="math inline">\(\Phi\)</span> usando a função <code>pnorm</code>:</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="kw">pnorm</span>(<span class="op">-</span><span class="fl">1.96</span>)</a>
-<a class="sourceLine" id="cb313-2" data-line-number="2"><span class="co">#&gt; [1] 0.025</span></a></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="distributions.html#cb313-1"></a><span class="kw">pnorm</span>(<span class="op">-</span><span class="fl">1.96</span>)</span>
+<span id="cb313-2"><a href="distributions.html#cb313-2"></a><span class="co">#&gt; [1] 0.025</span></span></code></pre></div>
 <p>A função inversa <span class="math inline">\(\Phi^{-1}(x)\)</span> nos fornece os quantis teóricos da distribuição normal. Por exemplo, <span class="math inline">\(\Phi^{-1}(0.975) = 1.96\)</span>. Em R, podemos avaliar o inverso de <span class="math inline">\(\Phi\)</span> usando a função <code>qnorm</code>.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1"><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</a>
-<a class="sourceLine" id="cb314-2" data-line-number="2"><span class="co">#&gt; [1] 1.96</span></a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="distributions.html#cb314-1"></a><span class="kw">qnorm</span>(<span class="fl">0.975</span>)</span>
+<span id="cb314-2"><a href="distributions.html#cb314-2"></a><span class="co">#&gt; [1] 1.96</span></span></code></pre></div>
 <p>Observe que esses cálculos são para a distribuição normal padrão padrão (média = 0, desvio padrão = 1), mas também podemos defini-los para qualquer distribuição normal. Podemos fazer isso usando os argumentos <code>mean</code> e <code>sd</code> nas funções <code>pnorm</code> e <code>qnorm</code>. Por exemplo, podemos usar <code>qnorm</code> para determinar quantis de uma distribuição com média específica e desvio padrão:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1"><span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb315-2" data-line-number="2"><span class="co">#&gt; [1] 8.92</span></a></code></pre></div>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="distributions.html#cb315-1"></a><span class="kw">qnorm</span>(<span class="fl">0.975</span>, <span class="dt">mean =</span> <span class="dv">5</span>, <span class="dt">sd =</span> <span class="dv">2</span>)</span>
+<span id="cb315-2"><a href="distributions.html#cb315-2"></a><span class="co">#&gt; [1] 8.92</span></span></code></pre></div>
 <p>Para a distribuição normal, todos os cálculos relacionados aos quantis são executados sem dados, daí o nome de <em>quiléticos teóricos</em>. Mas quantis podem ser definidos para qualquer distribuição, mesmo empírica. Então, se tivermos dados em um vetor <span class="math inline">\(x\)</span>, podemos definir o quantil associado a qualquer proporção <span class="math inline">\(p\)</span> como ele <span class="math inline">\(q\)</span> para os quais a proporção de valores abaixo <span class="math inline">\(q\)</span> é <span class="math inline">\(p\)</span>. Usando o código R, podemos definir <code>q</code> como o valor pelo qual <code>mean(x &lt;= q) = p</code>. Note que nem tudo <span class="math inline">\(p\)</span> tem um <span class="math inline">\(q\)</span> para o qual a proporção é exatamente <span class="math inline">\(p\)</span>. Existem várias maneiras de definir as melhores <span class="math inline">\(q\)</span> conforme discutido na página de ajuda da função NA.</p>
 <p>Como um exemplo rápido, para dados de altura masculina, vemos que:</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="kw">mean</span>(x <span class="op">&lt;=</span><span class="st"> </span><span class="fl">69.5</span>)</a>
-<a class="sourceLine" id="cb316-2" data-line-number="2"><span class="co">#&gt; [1] 0.515</span></a></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="distributions.html#cb316-1"></a><span class="kw">mean</span>(x <span class="op">&lt;=</span><span class="st"> </span><span class="fl">69.5</span>)</span>
+<span id="cb316-2"><a href="distributions.html#cb316-2"></a><span class="co">#&gt; [1] 0.515</span></span></code></pre></div>
 <p>Portanto, cerca de 50% são menores ou iguais a 69 polegadas. Isso implica que se <span class="math inline">\(p=0.50\)</span>, tão <span class="math inline">\(q=69.5\)</span>.</p>
 <p>A idéia de um gráfico QQ é que, se seus dados forem bem aproximados pela distribuição normal, os quantis de seus dados deverão ser semelhantes aos quantis de uma distribuição normal. Para criar um gráfico QQ, fazemos o seguinte:</p>
 <ol style="list-style-type: decimal">
@@ -667,33 +718,33 @@ d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala log
 <li>Plotamos os quantis da amostra versus os quantis teóricos.</li>
 </ol>
 <p>Vamos construir um diagrama QQ usando o código R. Comece definindo o vetor de proporções.</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1">p &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.05</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="distributions.html#cb317-1"></a>p &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="fl">0.05</span>)</span></code></pre></div>
 <p>Para obter os quantis dos dados, podemos usar a função <code>quantile</code> assim:</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1">sample_quantiles &lt;-<span class="st"> </span><span class="kw">quantile</span>(x, p)</a></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="distributions.html#cb318-1"></a>sample_quantiles &lt;-<span class="st"> </span><span class="kw">quantile</span>(x, p)</span></code></pre></div>
 <p>Para obter os quantis teóricos da distribuição normal com DP médio e correspondente, usamos a função <code>qnorm</code>:</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">theoretical_quantiles &lt;-<span class="st"> </span><span class="kw">qnorm</span>(p, <span class="dt">mean =</span> <span class="kw">mean</span>(x), <span class="dt">sd =</span> <span class="kw">sd</span>(x))</a></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="distributions.html#cb319-1"></a>theoretical_quantiles &lt;-<span class="st"> </span><span class="kw">qnorm</span>(p, <span class="dt">mean =</span> <span class="kw">mean</span>(x), <span class="dt">sd =</span> <span class="kw">sd</span>(x))</span></code></pre></div>
 <p>Para ver se eles correspondem ou não, nós os plotamos um contra o outro e desenhamos a linha de identidade:</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1"><span class="kw">qplot</span>(theoretical_quantiles, sample_quantiles) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="distributions.html#cb320-1"></a><span class="kw">qplot</span>(theoretical_quantiles, sample_quantiles) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>()</span></code></pre></div>
 <p><img src="livro_files/figure-html/qqplot-original-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Observe que esse código é muito mais fácil se usarmos unidades padrão:</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1">sample_quantiles &lt;-<span class="st"> </span><span class="kw">quantile</span>(z, p)</a>
-<a class="sourceLine" id="cb321-2" data-line-number="2">theoretical_quantiles &lt;-<span class="st"> </span><span class="kw">qnorm</span>(p)</a>
-<a class="sourceLine" id="cb321-3" data-line-number="3"><span class="kw">qplot</span>(theoretical_quantiles, sample_quantiles) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="distributions.html#cb321-1"></a>sample_quantiles &lt;-<span class="st"> </span><span class="kw">quantile</span>(z, p)</span>
+<span id="cb321-2"><a href="distributions.html#cb321-2"></a>theoretical_quantiles &lt;-<span class="st"> </span><span class="kw">qnorm</span>(p)</span>
+<span id="cb321-3"><a href="distributions.html#cb321-3"></a><span class="kw">qplot</span>(theoretical_quantiles, sample_quantiles) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>()</span></code></pre></div>
 <p>O código acima está incluído para ajudar a descrever gráficos de QQ. No entanto, na prática, é mais fácil usar o código <strong>ggplot2</strong> descrito na Seção <a href="distributions.html#other-geometries">8.16</a>:</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1">heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb322-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> <span class="kw">scale</span>(height))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb322-3" data-line-number="3"><span class="kw">geom_qq</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb322-4" data-line-number="4"><span class="kw">geom_abline</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="distributions.html#cb322-1"></a>heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb322-2"><a href="distributions.html#cb322-2"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> <span class="kw">scale</span>(height))) <span class="op">+</span></span>
+<span id="cb322-3"><a href="distributions.html#cb322-3"></a><span class="kw">geom_qq</span>() <span class="op">+</span></span>
+<span id="cb322-4"><a href="distributions.html#cb322-4"></a><span class="kw">geom_abline</span>()</span></code></pre></div>
 <p>Enquanto na ilustração anterior usamos 20 quantis, o valor padrão da função <code>geom_qq</code> é usar a mesma quantidade de quantis que dados.</p>
 </div>
-<div id="percentis" class="section level2">
+<div id="percentis" class="section level2" number="8.11">
 <h2><span class="header-section-number">8.11</span> Percentis</h2>
 <p>Antes de continuar, vamos definir alguns termos que são comumente usados na análise exploratória de dados.</p>
 <p><em>Percentiles_são casos especiais de_quantiles</em> que são comumente usados. Percentis são os quantis obtidos na configuração do <span class="math inline">\(p\)</span> para <span class="math inline">\(0.01, 0.02, ..., 0.99\)</span>. Chamamos, por exemplo, o caso de <span class="math inline">\(p=0.25\)</span> o quartil inferior, pois fornece um número para o qual 25% dos dados estão abaixo. O percentil mais famoso é 50, também conhecido como o <em>mediana</em>.</p>
 <p>Para a distribuição normal, o <em>median</em> e a média são os mesmos, mas esse geralmente não é o caso.</p>
 <p>Outro caso especial que recebe um nome é o <em>quartiles</em>, obtido através da configuração <span class="math inline">\(p=0.25,0.50\)</span> e <span class="math inline">\(0.75\)</span>.</p>
 </div>
-<div id="diagramas-de-caixas" class="section level2">
+<div id="diagramas-de-caixas" class="section level2" number="8.12">
 <h2><span class="header-section-number">8.12</span> Diagramas de caixas</h2>
 <p>Para apresentar os gráficos de caixas (<em>boxplots</em> em inglês), retornaremos aos dados de assassinatos nos EUA. EUA
 Suponha que queremos resumir a distribuição da taxa de homicídios. Usando a técnica de visualização de dados que aprendemos, podemos ver que a aproximação normal não se aplica aqui:</p>
@@ -706,12 +757,12 @@ Suponha que queremos resumir a distribuição da taxa de homicídios. Usando a t
 <p>A partir deste gráfico simples, agora conhecido como <em>box diagram</em>, sabemos que a mediana é de aproximadamente 2,5, que a distribuição não é simétrica e que o intervalo é de 0 a 5 para a grande maioria dos estados, com duas exceções.</p>
 <p>Discutimos como criar boxplots na Seção <a href="distributions.html#other-geometries">8.16</a>.</p>
 </div>
-<div id="stratification" class="section level2">
+<div id="stratification" class="section level2" number="8.13">
 <h2><span class="header-section-number">8.13</span> Estratificação</h2>
 <p>Na análise dos dados, geralmente dividimos as observações em grupos com base nos valores de uma ou mais variáveis associadas a essas observações. Por exemplo, na próxima seção, dividimos os valores de altura em grupos de acordo com uma variável de gênero: mulheres e homens. Chamamos esse procedimento de <em>stratification_e nos referimos aos grupos resultantes como_strata</em>.</p>
 <p>A estratificação é comum na visualização de dados, porque geralmente estamos interessados em saber como a distribuição de variáveis difere entre diferentes subgrupos. Veremos vários exemplos ao longo desta parte do livro. Revisaremos o conceito de estratificação quando aprendermos a regressão no Capítulo <a href="#regression"><strong>??</strong></a> e na parte de aprendizagem da máquina do livro.</p>
 </div>
-<div id="student-height-cont" class="section level2">
+<div id="student-height-cont" class="section level2" number="8.14">
 <h2><span class="header-section-number">8.14</span> Estudo de caso: descrição das alturas dos alunos (continuação)</h2>
 <p>Usando o histograma, gráficos de densidade e gráficos de QQ, ficamos convencidos de que os dados de altura masculina se aproximam muito de uma distribuição normal. Nesse caso, damos a ET um resumo muito sucinto: as alturas masculinas seguem uma distribuição normal com uma média de 69.3 polegadas e um SD de 3.6 polegadas. Com essas informações, o ET terá uma boa idéia do que esperar quando conhecer nossos alunos do sexo masculino. No entanto, para fornecer uma imagem completa, também devemos fornecer um resumo das alturas das fêmeas.</p>
 <p>Aprendemos que os boxplots são úteis quando queremos comparar rapidamente duas ou mais distribuições. Aqui vemos as alturas para machos e fêmeas:</p>
@@ -721,19 +772,19 @@ Suponha que queremos resumir a distribuição da taxa de homicídios. Usando a t
 <p>Vemos algo que não vemos nos meninos: o gráfico de densidade tem uma segunda protuberância. Além disso, o gráfico QQ mostra que os pontos mais altos tendem a ser mais altos do que o esperado pela distribuição normal. Finalmente, também vemos cinco pontos no gráfico QQ que sugerem alturas inferiores às esperadas para uma distribuição normal. Ao reportar novamente ao ET, podemos precisar fornecer um histograma, em vez de apenas a média e o desvio padrão para as alturas das fêmeas.</p>
 <p>No entanto, relemos a citação de Tukey e percebemos que percebemos o que não esperávamos ver. Se olharmos para outras distribuições de altura feminina, descobrimos que elas são bem aproximadas com uma distribuição normal. Então, por que nossos alunos são diferentes? Nossa classe é um requisito para o time de basquete feminino? Existe uma pequena proporção de mulheres que dizem ser mais altas do que são? Outra explicação, talvez mais provável, é que, na forma em que os alunos entraram em suas alturas, <code>FEMALE</code> era o sexo padrão e alguns machos entraram em suas alturas, mas esqueceram de mudar a variável sexo. De qualquer forma, a visualização de dados ajudou a descobrir uma possível falha em nossos dados.</p>
 <p>Em relação aos cinco menores valores, observe que esses valores são:</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1">heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb323-2" data-line-number="2"><span class="kw">top_n</span>(<span class="dv">5</span>, <span class="kw">desc</span>(height)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb323-3" data-line-number="3"><span class="kw">pull</span>(height)</a>
-<a class="sourceLine" id="cb323-4" data-line-number="4"><span class="co">#&gt; [1] 51 53 55 52 52</span></a></code></pre></div>
-<p>Como essas são as alturas autorreferidas, uma possibilidade é que os alunos desejem entrar <code>5'1&quot;</code>, <code>5'2&quot;</code>, <code>5'3&quot;</code> ou <code>5'5&quot;</code>.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="distributions.html#cb323-1"></a>heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb323-2"><a href="distributions.html#cb323-2"></a><span class="kw">top_n</span>(<span class="dv">5</span>, <span class="kw">desc</span>(height)) <span class="op">%&gt;%</span></span>
+<span id="cb323-3"><a href="distributions.html#cb323-3"></a><span class="kw">pull</span>(height)</span>
+<span id="cb323-4"><a href="distributions.html#cb323-4"></a><span class="co">#&gt; [1] 51 53 55 52 52</span></span></code></pre></div>
+<p>Como essas são as alturas autorreferidas, uma possibilidade é que os alunos desejem entrar <code>5'1"</code>, <code>5'2"</code>, <code>5'3"</code> ou <code>5'5"</code>.</p>
 </div>
-<div id="exercícios-17" class="section level2">
+<div id="exercícios-17" class="section level2" number="8.15">
 <h2><span class="header-section-number">8.15</span> Exercícios</h2>
 <p>1. Defina variáveis que contêm as alturas de machos e fêmeas desta maneira:</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb324-1" data-line-number="1"><span class="kw">library</span>(dslabs)</a>
-<a class="sourceLine" id="cb324-2" data-line-number="2"><span class="kw">data</span>(heights)</a>
-<a class="sourceLine" id="cb324-3" data-line-number="3">male &lt;-<span class="st"> </span>heights<span class="op">$</span>height[heights<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>]</a>
-<a class="sourceLine" id="cb324-4" data-line-number="4">female &lt;-<span class="st"> </span>heights<span class="op">$</span>height[heights<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="distributions.html#cb324-1"></a><span class="kw">library</span>(dslabs)</span>
+<span id="cb324-2"><a href="distributions.html#cb324-2"></a><span class="kw">data</span>(heights)</span>
+<span id="cb324-3"><a href="distributions.html#cb324-3"></a>male &lt;-<span class="st"> </span>heights<span class="op">$</span>height[heights<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>]</span>
+<span id="cb324-4"><a href="distributions.html#cb324-4"></a>female &lt;-<span class="st"> </span>heights<span class="op">$</span>height[heights<span class="op">$</span>sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>]</span></code></pre></div>
 <p>Quantas medições temos para cada uma?</p>
 <p>2. Suponha que não possamos fazer um gráfico e queremos comparar as distribuições lado a lado. Não podemos simplesmente listar todos os números. Em vez disso, veremos os percentis. Crie uma tabela de cinco linhas que mostre <code>female_percentiles</code> e <code>male_percentiles</code> com os percentis 10, 30, 50, …, 90 para cada sexo. Em seguida, crie um <em>data frame</em> com esses dois como colunas.</p>
 <p>3. Estude os seguintes gráficos de caixa mostrando os tamanhos da população por país:</p>
@@ -744,13 +795,13 @@ Suponha que queremos resumir a distribuição da taxa de homicídios. Usando a t
 <p>6. Qual a proporção de países na Europa com populações inferiores a 14 milhões?</p>
 <p>para. 0,99
 b. 0,75
-c. 0,50
-d. 0,25</p>
+c. 0,50
+d. 0,25</p>
 <p>7. Se usarmos uma transformação logarítmica, qual continente dos anteriores tem o maior intervalo interquartil?</p>
 <p>8. Carregue o conjunto de dados de altura e crie um vetor <code>x</code> com apenas as alturas masculinas:</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1"><span class="kw">library</span>(dslabs)</a>
-<a class="sourceLine" id="cb325-2" data-line-number="2"><span class="kw">data</span>(heights)</a>
-<a class="sourceLine" id="cb325-3" data-line-number="3">x &lt;-<span class="st"> </span>heights<span class="op">$</span>height[heights<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="distributions.html#cb325-1"></a><span class="kw">library</span>(dslabs)</span>
+<span id="cb325-2"><a href="distributions.html#cb325-2"></a><span class="kw">data</span>(heights)</span>
+<span id="cb325-3"><a href="distributions.html#cb325-3"></a>x &lt;-<span class="st"> </span>heights<span class="op">$</span>height[heights<span class="op">$</span>sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>]</span></code></pre></div>
 <p>Qual a proporção dos dados entre 69 e 72 polegadas (mais alto que 69, mas menor ou igual a 72)? Dica: use um operador lógico e <code>mean</code>.</p>
 <p>9. Suponha que a única coisa que você saiba sobre os dados seja o desvio médio e padrão. Use a aproximação normal para estimar a proporção que você acabou de calcular. Dica: Comece calculando a média e o desvio padrão. Então use a função <code>pnorm</code> prever as proporções.</p>
 <p>10. Observe que a aproximação calculada na pergunta nove está muito próxima do cálculo exato na primeira pergunta. Agora faça a mesma tarefa para mais discrepâncias. Compare o cálculo exato e a aproximação normal do intervalo (79,81) .Quantas vezes maior é a proporção real do que a aproximação?</p>
@@ -761,152 +812,152 @@ d. 0,25</p>
 <p>Quinze. Ao responder às perguntas acima, descobrimos que não é incomum que um jogador de sete pés se torne jogador da NBA. Então, o que seria uma crítica justa aos nossos cálculos?</p>
 <p>para. Prática e talento são o que fazem um ótimo jogador de basquete, não a altura.
 b. A abordagem normal não é apropriada para alturas.
-c. Conforme observado na Questão 10, a aproximação normal tende a subestimar valores discrepantes. Pode haver mais <em>sete rodapés</em> do que previmos.
-d. Conforme observado na Questão 10, a aproximação normal tende a superestimar valores discrepantes. Pode haver menos <em>sete rodapés</em> do que previmos.</p>
+c. Conforme observado na Questão 10, a aproximação normal tende a subestimar valores discrepantes. Pode haver mais <em>sete rodapés</em> do que previmos.
+d. Conforme observado na Questão 10, a aproximação normal tende a superestimar valores discrepantes. Pode haver menos <em>sete rodapés</em> do que previmos.</p>
 </div>
-<div id="other-geometries" class="section level2">
+<div id="other-geometries" class="section level2" number="8.16">
 <h2><span class="header-section-number">8.16</span> Gegplot2 geometrias</h2>
 <p>No capítulo <a href="ggplot2.html#ggplot2">7</a> apresentamos o pacote <strong>ggplot2</strong> para visualização de dados. Aqui, demonstramos como gerar gráficos relacionados a distribuições, especificamente os gráficos mostrados anteriormente neste capítulo.</p>
-<div id="gráficos-de-barra" class="section level3">
+<div id="gráficos-de-barra" class="section level3" number="8.16.1">
 <h3><span class="header-section-number">8.16.1</span> Gráficos de barra</h3>
 <p>Para gerar um diagrama de barras (<em>barplots</em> em inglês), podemos usar a geometria <code>geom_bar</code>. Por padrão, R conta os casos em cada categoria e desenha uma barra. Aqui vemos o gráfico de barras para as regiões dos Estados Unidos.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" data-line-number="1">murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(region)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="distributions.html#cb326-1"></a>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(region)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>()</span></code></pre></div>
 <p><img src="livro_files/figure-html/barplot-geom-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Muitas vezes, já temos uma tabela com uma distribuição que queremos apresentar como um gráfico de barras. Aqui está um exemplo dessa tabela:</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1"><span class="kw">data</span>(murders)</a>
-<a class="sourceLine" id="cb327-2" data-line-number="2">tab &lt;-<span class="st"> </span>murders <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb327-3" data-line-number="3"><span class="kw">count</span>(region) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb327-4" data-line-number="4"><span class="kw">mutate</span>(<span class="dt">proportion =</span> n<span class="op">/</span><span class="kw">sum</span>(n))</a>
-<a class="sourceLine" id="cb327-5" data-line-number="5">tab</a>
-<a class="sourceLine" id="cb327-6" data-line-number="6"><span class="co">#&gt; # A tibble: 4 x 3</span></a>
-<a class="sourceLine" id="cb327-7" data-line-number="7"><span class="co">#&gt;   region            n proportion</span></a>
-<a class="sourceLine" id="cb327-8" data-line-number="8"><span class="co">#&gt;   &lt;fct&gt;         &lt;int&gt;      &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb327-9" data-line-number="9"><span class="co">#&gt; 1 Northeast         9      0.176</span></a>
-<a class="sourceLine" id="cb327-10" data-line-number="10"><span class="co">#&gt; 2 South            17      0.333</span></a>
-<a class="sourceLine" id="cb327-11" data-line-number="11"><span class="co">#&gt; 3 North Central    12      0.235</span></a>
-<a class="sourceLine" id="cb327-12" data-line-number="12"><span class="co">#&gt; 4 West             13      0.255</span></a></code></pre></div>
-<p>Não queremos mais <code>geom_bar</code> contar, mas apenas representar graficamente uma barra na altura fornecida pela variável <code>proportion</code>. Para isso, precisamos fornecer <code>x</code> (as categorias) e <code>y</code> (os valores) e use a opção <code>stat=&quot;identity&quot;</code>.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb328-1" data-line-number="1">tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(region, proportion)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="distributions.html#cb327-1"></a><span class="kw">data</span>(murders)</span>
+<span id="cb327-2"><a href="distributions.html#cb327-2"></a>tab &lt;-<span class="st"> </span>murders <span class="op">%&gt;%</span></span>
+<span id="cb327-3"><a href="distributions.html#cb327-3"></a><span class="kw">count</span>(region) <span class="op">%&gt;%</span></span>
+<span id="cb327-4"><a href="distributions.html#cb327-4"></a><span class="kw">mutate</span>(<span class="dt">proportion =</span> n<span class="op">/</span><span class="kw">sum</span>(n))</span>
+<span id="cb327-5"><a href="distributions.html#cb327-5"></a>tab</span>
+<span id="cb327-6"><a href="distributions.html#cb327-6"></a><span class="co">#&gt; # A tibble: 4 x 3</span></span>
+<span id="cb327-7"><a href="distributions.html#cb327-7"></a><span class="co">#&gt;   region            n proportion</span></span>
+<span id="cb327-8"><a href="distributions.html#cb327-8"></a><span class="co">#&gt;   &lt;fct&gt;         &lt;int&gt;      &lt;dbl&gt;</span></span>
+<span id="cb327-9"><a href="distributions.html#cb327-9"></a><span class="co">#&gt; 1 Northeast         9      0.176</span></span>
+<span id="cb327-10"><a href="distributions.html#cb327-10"></a><span class="co">#&gt; 2 South            17      0.333</span></span>
+<span id="cb327-11"><a href="distributions.html#cb327-11"></a><span class="co">#&gt; 3 North Central    12      0.235</span></span>
+<span id="cb327-12"><a href="distributions.html#cb327-12"></a><span class="co">#&gt; 4 West             13      0.255</span></span></code></pre></div>
+<p>Não queremos mais <code>geom_bar</code> contar, mas apenas representar graficamente uma barra na altura fornecida pela variável <code>proportion</code>. Para isso, precisamos fornecer <code>x</code> (as categorias) e <code>y</code> (os valores) e use a opção <code>stat="identity"</code>.</p>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="distributions.html#cb328-1"></a>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(region, proportion)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/region-freq-barplot-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="histogramas-1" class="section level3">
+<div id="histogramas-1" class="section level3" number="8.16.2">
 <h3><span class="header-section-number">8.16.2</span> Histogramas</h3>
 <p>Para gerar histogramas, usamos <code>geom_histogram</code>. Ao revisar a página de ajuda para esta função, vemos que o único argumento necessário é <code>x</code>, a variável para a qual construiremos um histograma. Nós não usamos o <code>x</code> porque sabemos que é o primeiro argumento.
 O código fica assim:</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb329-2" data-line-number="2"><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb329-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb329-4" data-line-number="4"><span class="kw">geom_histogram</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="distributions.html#cb329-1"></a>heights <span class="op">%&gt;%</span></span>
+<span id="cb329-2"><a href="distributions.html#cb329-2"></a><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb329-3"><a href="distributions.html#cb329-3"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></span>
+<span id="cb329-4"><a href="distributions.html#cb329-4"></a><span class="kw">geom_histogram</span>()</span></code></pre></div>
 <p>Se executarmos o código acima, ele nos dará uma mensagem:</p>
 <blockquote>
 <p><code>stat_bin()</code> usando <code>bins = 30</code>. Escolha um valor melhor com
 <code>binwidth</code>.</p>
 </blockquote>
 <p>Anteriormente, usamos um tamanho de compartimento de 1 polegada; portanto, o código fica assim:</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb330-2" data-line-number="2"><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb330-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb330-4" data-line-number="4"><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="distributions.html#cb330-1"></a>heights <span class="op">%&gt;%</span></span>
+<span id="cb330-2"><a href="distributions.html#cb330-2"></a><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb330-3"><a href="distributions.html#cb330-3"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></span>
+<span id="cb330-4"><a href="distributions.html#cb330-4"></a><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Finalmente, se por razões estéticas queremos adicionar cor, usamos os argumentos descritos na página de ajuda. Também adicionamos tags e um título:</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb331-2" data-line-number="2"><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb331-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb331-4" data-line-number="4"><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb331-5" data-line-number="5"><span class="kw">xlab</span>(<span class="st">&quot;Male heights in inches&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb331-6" data-line-number="6"><span class="kw">ggtitle</span>(<span class="st">&quot;Histogram&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="distributions.html#cb331-1"></a>heights <span class="op">%&gt;%</span></span>
+<span id="cb331-2"><a href="distributions.html#cb331-2"></a><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb331-3"><a href="distributions.html#cb331-3"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></span>
+<span id="cb331-4"><a href="distributions.html#cb331-4"></a><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>, <span class="dt">fill =</span> <span class="st">&quot;blue&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb331-5"><a href="distributions.html#cb331-5"></a><span class="kw">xlab</span>(<span class="st">&quot;Male heights in inches&quot;</span>) <span class="op">+</span></span>
+<span id="cb331-6"><a href="distributions.html#cb331-6"></a><span class="kw">ggtitle</span>(<span class="st">&quot;Histogram&quot;</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/height-histogram-geom-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="gráficos-de-densidade" class="section level3">
+<div id="gráficos-de-densidade" class="section level3" number="8.16.3">
 <h3><span class="header-section-number">8.16.3</span> Gráficos de densidade</h3>
 <p>Para criar uma densidade suave, usamos <code>geom_density</code>. Para criar um gráfico de densidade suave com os dados que visualizamos anteriormente como um histograma, podemos usar este código:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb332-2" data-line-number="2"><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb332-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb332-4" data-line-number="4"><span class="kw">geom_density</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="distributions.html#cb332-1"></a>heights <span class="op">%&gt;%</span></span>
+<span id="cb332-2"><a href="distributions.html#cb332-2"></a><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb332-3"><a href="distributions.html#cb332-3"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></span>
+<span id="cb332-4"><a href="distributions.html#cb332-4"></a><span class="kw">geom_density</span>()</span></code></pre></div>
 <p>Para preencher com cores, podemos usar o argumento <code>fill</code>.</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb333-2" data-line-number="2"><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb333-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb333-4" data-line-number="4"><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="distributions.html#cb333-1"></a>heights <span class="op">%&gt;%</span></span>
+<span id="cb333-2"><a href="distributions.html#cb333-2"></a><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb333-3"><a href="distributions.html#cb333-3"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(height)) <span class="op">+</span></span>
+<span id="cb333-4"><a href="distributions.html#cb333-4"></a><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-density-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Para alterar a suavidade da densidade, usamos o argumento <code>adjust</code> multiplicar o valor padrão por esse <code>adjust</code>. Por exemplo, se queremos que o parâmetro de suavização seja duas vezes maior, usamos:</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb334-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb334-2" data-line-number="2"><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb334-3" data-line-number="3"><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">adjust =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="distributions.html#cb334-1"></a>heights <span class="op">%&gt;%</span></span>
+<span id="cb334-2"><a href="distributions.html#cb334-2"></a><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Female&quot;</span>) <span class="op">+</span></span>
+<span id="cb334-3"><a href="distributions.html#cb334-3"></a><span class="kw">geom_density</span>(<span class="dt">fill=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">adjust =</span> <span class="dv">2</span>)</span></code></pre></div>
 </div>
-<div id="diagramas-de-caixas-1" class="section level3">
+<div id="diagramas-de-caixas-1" class="section level3" number="8.16.4">
 <h3><span class="header-section-number">8.16.4</span> Diagramas de caixas</h3>
 <p>A geometria para a criação de gráficos de caixas é <code>geom_boxplot</code>. Como já discutimos, os boxplots são úteis para comparar distribuições. Por exemplo, abaixo, vemos as alturas mostradas acima para as mulheres, mas aqui em comparação aos homens. Para essa geometria, precisamos dos argumentos <code>x</code> como categorias e argumentos <code>y</code> valores semelhantes:</p>
 <p><img src="livro_files/figure-html/female-male-boxplots-geom-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="gráficos-qq-1" class="section level3">
+<div id="gráficos-qq-1" class="section level3" number="8.16.5">
 <h3><span class="header-section-number">8.16.5</span> Gráficos QQ</h3>
 <p>Para gráficos QQ, usamos geometria <code>geom_qq</code>. Na página de ajuda, aprendemos que precisamos especificar o <code>sample</code> (aprenderemos sobre amostras em um capítulo posterior). Aqui está o gráfico QQ para alturas masculinas:</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1">heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb335-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> height)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb335-3" data-line-number="3"><span class="kw">geom_qq</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="distributions.html#cb335-1"></a>heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb335-2"><a href="distributions.html#cb335-2"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> height)) <span class="op">+</span></span>
+<span id="cb335-3"><a href="distributions.html#cb335-3"></a><span class="kw">geom_qq</span>()</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-qq-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Por padrão, a variável de amostra é comparada a uma distribuição normal com uma média de 0 e um desvio padrão de 1. Para alterar isso, usamos o argumento <code>dparams</code> de acordo com a página de ajuda. Para adicionar uma linha de identidade, basta atribuir outra camada. Para linhas retas, usamos a função <code>geom_abline</code>. A linha padrão é a linha de identidade (inclinação = 1, interceptação = 0).</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" data-line-number="1">params &lt;-<span class="st"> </span>heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb336-2" data-line-number="2"><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(height), <span class="dt">sd =</span> <span class="kw">sd</span>(height))</a>
-<a class="sourceLine" id="cb336-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb336-4" data-line-number="4">heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb336-5" data-line-number="5"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> height)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb336-6" data-line-number="6"><span class="kw">geom_qq</span>(<span class="dt">dparams =</span> params) <span class="op">+</span></a>
-<a class="sourceLine" id="cb336-7" data-line-number="7"><span class="kw">geom_abline</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="distributions.html#cb336-1"></a>params &lt;-<span class="st"> </span>heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb336-2"><a href="distributions.html#cb336-2"></a><span class="kw">summarize</span>(<span class="dt">mean =</span> <span class="kw">mean</span>(height), <span class="dt">sd =</span> <span class="kw">sd</span>(height))</span>
+<span id="cb336-3"><a href="distributions.html#cb336-3"></a></span>
+<span id="cb336-4"><a href="distributions.html#cb336-4"></a>heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb336-5"><a href="distributions.html#cb336-5"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> height)) <span class="op">+</span></span>
+<span id="cb336-6"><a href="distributions.html#cb336-6"></a><span class="kw">geom_qq</span>(<span class="dt">dparams =</span> params) <span class="op">+</span></span>
+<span id="cb336-7"><a href="distributions.html#cb336-7"></a><span class="kw">geom_abline</span>()</span></code></pre></div>
 <p>Outra opção aqui é dimensionar os dados primeiro e, em seguida, plotar o QQ em relação à distribuição normal padrão.</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb337-2" data-line-number="2"><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb337-3" data-line-number="3"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> <span class="kw">scale</span>(height))) <span class="op">+</span></a>
-<a class="sourceLine" id="cb337-4" data-line-number="4"><span class="kw">geom_qq</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb337-5" data-line-number="5"><span class="kw">geom_abline</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="distributions.html#cb337-1"></a>heights <span class="op">%&gt;%</span></span>
+<span id="cb337-2"><a href="distributions.html#cb337-2"></a><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb337-3"><a href="distributions.html#cb337-3"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">sample =</span> <span class="kw">scale</span>(height))) <span class="op">+</span></span>
+<span id="cb337-4"><a href="distributions.html#cb337-4"></a><span class="kw">geom_qq</span>() <span class="op">+</span></span>
+<span id="cb337-5"><a href="distributions.html#cb337-5"></a><span class="kw">geom_abline</span>()</span></code></pre></div>
 </div>
-<div id="imagens" class="section level3">
+<div id="imagens" class="section level3" number="8.16.6">
 <h3><span class="header-section-number">8.16.6</span> Imagens</h3>
 <p>Não tivemos que usar imagens para os conceitos descritos neste capítulo, mas as usaremos na Seção <a href="princípios-de-visualização-de-dados.html#vaccines">10.14</a>, por isso, apresentamos as duas geometrias usadas para criar imagens: __geom_tile__e<strong>geom_raster</strong>. Eles se comportam de maneira semelhante; Para ver como eles diferem, consulte a página de ajuda. Para criar uma imagem em <strong>ggplot2</strong>, precisamos de um <em>data frame</em> com as coordenadas xey, além dos valores associados a cada uma delas. Aqui temos um <em>data frame</em>:</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">y =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb338-2" data-line-number="2"><span class="kw">mutate</span>(<span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">120</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="distributions.html#cb338-1"></a>x &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">12</span>, <span class="dt">y =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>) <span class="op">%&gt;%</span></span>
+<span id="cb338-2"><a href="distributions.html#cb338-2"></a><span class="kw">mutate</span>(<span class="dt">z =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">120</span>)</span></code></pre></div>
 <p>Observe que esta é a versão <em>tidy</em> de uma matriz, <code>matrix(1:120, 12, 10)</code>. Para representar graficamente a imagem, usamos o seguinte código:</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1">x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y, <span class="dt">fill =</span> z)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb339-2" data-line-number="2"><span class="kw">geom_raster</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="distributions.html#cb339-1"></a>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y, <span class="dt">fill =</span> z)) <span class="op">+</span></span>
+<span id="cb339-2"><a href="distributions.html#cb339-2"></a><span class="kw">geom_raster</span>()</span></code></pre></div>
 <p>Com essas imagens, eles geralmente desejam alterar a escala de cores. Isso pode ser feito através da camada <code>scale_fill_gradientn</code>.</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb340-1" data-line-number="1">x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y, <span class="dt">fill =</span> z)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb340-2" data-line-number="2"><span class="kw">geom_raster</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb340-3" data-line-number="3"><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">terrain.colors</span>(<span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="distributions.html#cb340-1"></a>x <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y, <span class="dt">fill =</span> z)) <span class="op">+</span></span>
+<span id="cb340-2"><a href="distributions.html#cb340-2"></a><span class="kw">geom_raster</span>() <span class="op">+</span></span>
+<span id="cb340-3"><a href="distributions.html#cb340-3"></a><span class="kw">scale_fill_gradientn</span>(<span class="dt">colors =</span> <span class="kw">terrain.colors</span>(<span class="dv">10</span>))</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot2-image-new-colors-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="gráficos-rápidos" class="section level3">
+<div id="gráficos-rápidos" class="section level3" number="8.16.7">
 <h3><span class="header-section-number">8.16.7</span> Gráficos rápidos</h3>
 <p>Na seção <a href="ggplot2.html#qplot">7.13</a> apresentamos <code>qplot</code> como uma função útil quando precisamos fazer um diagrama de dispersão rápido. Também podemos usar <code>qplot</code> para criar histogramas, diagramas de densidade, diagramas de caixa, gráficos de QQ e muito mais. Embora não forneça o nível de controle <code>ggplot</code>, <code>qplot</code> é definitivamente útil, pois permite criar um gráfico com um pequeno trecho de código.</p>
 <p>Suponha que tenhamos as alturas femininas em um objeto <code>x</code>:</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" data-line-number="1">x &lt;-<span class="st"> </span>heights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb341-2" data-line-number="2"><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb341-3" data-line-number="3"><span class="kw">pull</span>(height)</a></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="distributions.html#cb341-1"></a>x &lt;-<span class="st"> </span>heights <span class="op">%&gt;%</span></span>
+<span id="cb341-2"><a href="distributions.html#cb341-2"></a><span class="kw">filter</span>(sex<span class="op">==</span><span class="st">&quot;Male&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb341-3"><a href="distributions.html#cb341-3"></a><span class="kw">pull</span>(height)</span></code></pre></div>
 <p>Para fazer um histograma rápido, podemos usar:</p>
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb342-1" data-line-number="1"><span class="kw">qplot</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="distributions.html#cb342-1"></a><span class="kw">qplot</span>(x)</span></code></pre></div>
 <p>A função supõe que queremos criar um histograma porque fornecemos apenas uma variável. Na seção <a href="ggplot2.html#qplot">7.13</a> vimos que, se fornecermos duas variáveis para <code>qplot</code> , cria automaticamente um diagrama de dispersão.</p>
 <p>Para fazer um gráfico rápido de QQ, eles precisam usar o argumento <code>sample</code>. Lembre-se de que podemos adicionar camadas, como fazemos com <code>ggplot</code>.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">sample =</span> <span class="kw">scale</span>(x)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="distributions.html#cb343-1"></a><span class="kw">qplot</span>(<span class="dt">sample =</span> <span class="kw">scale</span>(x)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>()</span></code></pre></div>
 <p>Se fornecermos um fator e um vetor numérico, obteremos um gráfico como o que vemos abaixo. Observe que no código estamos usando o argumento <code>data</code>. Como o <em>data frame</em> não é o primeiro argumento em <code>qplot</code>, temos que usar o operador de ponto.</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb344-1" data-line-number="1">heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">qplot</span>(sex, height, <span class="dt">data =</span> .)</a></code></pre></div>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="distributions.html#cb344-1"></a>heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">qplot</span>(sex, height, <span class="dt">data =</span> .)</span></code></pre></div>
 <p>Também podemos selecionar uma geometria específica usando o argumento <code>geom</code>. Portanto, para converter o diagrama acima em um diagrama de caixa, usamos o seguinte código:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" data-line-number="1">heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">qplot</span>(sex, height, <span class="dt">data =</span> ., <span class="dt">geom =</span> <span class="st">&quot;boxplot&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="distributions.html#cb345-1"></a>heights <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">qplot</span>(sex, height, <span class="dt">data =</span> ., <span class="dt">geom =</span> <span class="st">&quot;boxplot&quot;</span>)</span></code></pre></div>
 <p>Também podemos usar o argumento <code>geom</code> para gerar um gráfico de densidade em vez de um histograma:</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1"><span class="kw">qplot</span>(x, <span class="dt">geom =</span> <span class="st">&quot;density&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="distributions.html#cb346-1"></a><span class="kw">qplot</span>(x, <span class="dt">geom =</span> <span class="st">&quot;density&quot;</span>)</span></code></pre></div>
 <p>Embora não tanto quanto com <code>ggplot</code>, temos alguma flexibilidade para melhorar os resultados de <code>qplot</code>. Olhando a página de ajuda, vemos várias maneiras pelas quais podemos melhorar a aparência do histograma anterior. Por exemplo:</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="kw">qplot</span>(x, <span class="dt">bins=</span><span class="dv">15</span>, <span class="dt">color =</span> <span class="kw">I</span>(<span class="st">&quot;black&quot;</span>), <span class="dt">xlab =</span> <span class="st">&quot;Population&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="distributions.html#cb347-1"></a><span class="kw">qplot</span>(x, <span class="dt">bins=</span><span class="dv">15</span>, <span class="dt">color =</span> <span class="kw">I</span>(<span class="st">&quot;black&quot;</span>), <span class="dt">xlab =</span> <span class="st">&quot;Population&quot;</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/qplot-example-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p><strong>Nota técnica</strong>: o motivo pelo qual usamos <code>I(&quot;black&quot;)</code> é porque nós queremos <code>qplot</code> tentar <code>&quot;black&quot;</code> como um personagem ao invés de um fator. Esse é o comportamento padrão dentro <code>aes</code>, que é chamado internamente aqui. Em geral, a função <code>I</code> usado em R para dizer “mantenha como está”.</p>
+<p><strong>Nota técnica</strong>: o motivo pelo qual usamos <code>I("black")</code> é porque nós queremos <code>qplot</code> tentar <code>"black"</code> como um personagem ao invés de um fator. Esse é o comportamento padrão dentro <code>aes</code>, que é chamado internamente aqui. Em geral, a função <code>I</code> usado em R para dizer “mantenha como está”.</p>
 </div>
 </div>
-<div id="exercícios-18" class="section level2">
+<div id="exercícios-18" class="section level2" number="8.17">
 <h2><span class="header-section-number">8.17</span> Exercícios</h2>
 <p>1. Agora vamos usar a função <code>geom_histogram</code> para fazer um histograma das alturas no conjunto de dados <code>height</code>. Lendo a documentação para esta função, vemos que ela requer apenas uma atribuição, os valores a serem usados para o histograma. Faça um histograma de todos os gráficos.</p>
 <p>Qual é a variável que contém as alturas?</p>
 <p>para. <code>sex</code>
 b. <code>heights</code>
-c. <code>height</code>
-d. <code>heights$height</code></p>
+c. <code>height</code>
+d. <code>heights$height</code></p>
 <p>2. Agora crie um objeto ggplot usando o <em>pipe</em> para atribuir os dados de altura a um objeto ggplot. Atribuir <code>height</code> para os valores de x através da função <code>aes</code>.</p>
 <p>3. Agora estamos prontos para adicionar uma camada para fazer o histograma. Use o objeto criado no exercício anterior e a função <code>geom_histogram</code> para fazer o histograma.</p>
 <p>4. Quando executamos o código no exercício anterior, recebemos o aviso:
@@ -916,9 +967,9 @@ d. <code>heights$height</code></p>
 <p>6. Agora vamos fazer um gráfico de densidade para machos e fêmeas separadamente. Podemos fazer isso usando o argumento <code>group</code>. Atribuímos grupos por meio de mapeamento estético, pois cada ponto precisa de um grupo antes de fazer os cálculos necessários para estimar uma densidade.</p>
 <p>7. Também podemos atribuir grupos através do argumento <code>color</code>. Isso tem o benefício adicional de usar cores para distinguir grupos. Mude o código acima para usar cores.</p>
 <p>8. Além disso, podemos atribuir grupos através do argumento <code>fill</code>. Isso tem o benefício adicional de usar cores para distinguir grupos como:</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" data-line-number="1">heights <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb348-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(height, <span class="dt">fill =</span> sex)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb348-3" data-line-number="3"><span class="kw">geom_density</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="distributions.html#cb348-1"></a>heights <span class="op">%&gt;%</span></span>
+<span id="cb348-2"><a href="distributions.html#cb348-2"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(height, <span class="dt">fill =</span> sex)) <span class="op">+</span></span>
+<span id="cb348-3"><a href="distributions.html#cb348-3"></a><span class="kw">geom_density</span>()</span></code></pre></div>
 <p>No entanto, aqui a segunda densidade é plotada em cima da primeira. Podemos tornar as curvas mais visíveis usando <em>alpha blending</em> para adicionar transparência. Defina o parâmetro alfa como 0,2 na função <code>geom_density</code> para fazer essa alteração.</p>
 
 </div>

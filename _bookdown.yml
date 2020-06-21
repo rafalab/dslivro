@@ -4,7 +4,7 @@ delete_merged_file: true
 language:
   label:
     fig: "FIGURA "
-    tab: "TABLA "
+    tab: "TABELA "
   ui:
     edit: "Edit"
     chapter_name: "Capítulo "

@@ -6,4 +6,4 @@ Fazemos anúncios relacionados ao livro no Twitter. Para obter as informações 
 
 O arquivo `install-libraries.Rmd`, contribuído por` Emmanuel-R8`, instala os pacotes necessários para executar esse código no seu computador.
 
-Este trabalho foi publicado sob a licença Creative Commons Reconocimiento-NoComercial-CompartirIgual 4.0 Internacional [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
+Este trabalho foi publicado sob a licença Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).

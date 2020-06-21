@@ -18,9 +18,9 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./">Introducción a la Ciencia de Datos</a></li>
+        <li><a href="./">Introdução à Ciência de Dados</a></li>
       after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
     edit:
       link: https://github.com/rafalab/dslivro/edit/master/%s
       text: "Edit"

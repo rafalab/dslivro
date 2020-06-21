@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 6 Introdução à visualização de dados | Introdução à Ciência de Dados</title>
+  <title>Introdução | Introdução à Ciência de Dados</title>
   <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 6 Introdução à visualização de dados | Introdução à Ciência de Dados" />
+  <meta property="og:title" content="Introdução | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 6 Introdução à visualização de dados | Introdução à Ciência de Dados" />
+  <meta name="twitter:title" content="Introdução | Introdução à Ciência de Dados" />
   
   <meta name="twitter:description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="importing-data.html"/>
-<link rel="next" href="ggplot2.html"/>
+<link rel="prev" href="agradecimentos.html"/>
+<link rel="next" href="getting-started.html"/>
 <script src="libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -504,78 +504,105 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introdução-à-visualização-de-dados" class="section level1" number="6">
-<h1><span class="header-section-number">Capítulo 6</span> Introdução à visualização de dados</h1>
-<p>Raramente é útil observar os números e as cadeias de caracteres que definem um conjunto de dados. Para confirmar isso, imprima e observe a tabela de dados de assassinato dos Estados Unidos:</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="introdução-à-visualização-de-dados.html#cb261-1"></a><span class="kw">library</span>(dslabs)</span>
-<span id="cb261-2"><a href="introdução-à-visualização-de-dados.html#cb261-2"></a><span class="kw">data</span>(murders)</span>
-<span id="cb261-3"><a href="introdução-à-visualização-de-dados.html#cb261-3"></a><span class="kw">head</span>(murders)</span>
-<span id="cb261-4"><a href="introdução-à-visualização-de-dados.html#cb261-4"></a><span class="co">#&gt;        state abb region population total</span></span>
-<span id="cb261-5"><a href="introdução-à-visualização-de-dados.html#cb261-5"></a><span class="co">#&gt; 1    Alabama  AL  South    4779736   135</span></span>
-<span id="cb261-6"><a href="introdução-à-visualização-de-dados.html#cb261-6"></a><span class="co">#&gt; 2     Alaska  AK   West     710231    19</span></span>
-<span id="cb261-7"><a href="introdução-à-visualização-de-dados.html#cb261-7"></a><span class="co">#&gt; 3    Arizona  AZ   West    6392017   232</span></span>
-<span id="cb261-8"><a href="introdução-à-visualização-de-dados.html#cb261-8"></a><span class="co">#&gt; 4   Arkansas  AR  South    2915918    93</span></span>
-<span id="cb261-9"><a href="introdução-à-visualização-de-dados.html#cb261-9"></a><span class="co">#&gt; 5 California  CA   West   37253956  1257</span></span>
-<span id="cb261-10"><a href="introdução-à-visualização-de-dados.html#cb261-10"></a><span class="co">#&gt; 6   Colorado  CO   West    5029196    65</span></span></code></pre></div>
-<p>O que eles aprendem ao ver esta tabela? Com que rapidez eles podem determinar quais estados têm as maiores populações? Quais estados têm o menor? Qual o tamanho de um estado típico? Existe uma relação entre o tamanho da população e o total de mortes? Como as taxas de homicídio variam entre as regiões do país? Para a maioria dos cérebros humanos, é bastante difícil extrair essas informações simplesmente observando os números. Em vez disso, as respostas para todas as perguntas acima estão prontamente disponíveis examinando este gráfico:</p>
-<p><img src="livro_files/figure-html/ggplot-example-plot-0-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Isso nos lembra o ditado “uma imagem vale mais que mil palavras”. A visualização de dados oferece uma maneira poderosa de comunicar descobertas com base nos dados. Em alguns casos, a visualização é tão atraente que não requer análise de acompanhamento.</p>
-<p>A crescente disponibilidade de conjuntos de dados informativos e ferramentas de software levou a uma maior dependência da visualização de dados em muitos setores, universidades e governos. Um excelente exemplo são as organizações de notícias, que estão cada vez mais adotando <em>data journalism_e incluindo_infographics</em> eficaz como parte de seus relatórios.</p>
-<p>Um exemplo particularmente eficaz é um artigo do Wall Street Journal<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> mostrando dados relacionados ao impacto das vacinas na luta contra a doenças infecciosas. Um dos gráficos mostra casos de sarampo por estado dos EUA. EUA ao longo dos anos com uma linha vertical indicando quando a vacina foi introduzida.</p>
-<p><img src="livro_files/figure-html/wsj-vaccines-example-1.png" width="100%" style="display: block; margin: auto;" /></p>
-<!--(Source: [Wall Street Journal](http://graphics.wsj.com/infectious-diseases-and-vaccines/))-->
-<p>Outro exemplo notável vem de um gráfico do New York Times<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> que resume os resultados dos testes do Regentes da cidade de Nova York. De acordo com o artigo<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a>, essas pontuações são coletadas por vários motivos, inclusive para determinar se um aluno está se formando no ensino médio. Na cidade de Nova York, é necessária uma pontuação mínima de 65 para passar. A distribuição dos resultados dos testes nos obriga a notar algo um pouco problemático:</p>
-<p><img src="livro_files/figure-html/regents-exams-example-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<!--(Source: [New York Times](http://graphics8.nytimes.com/images/2011/02/19/nyregion/19schoolsch/19schoolsch-popup.gif) via Amanda Cox)-->
-<p>A pontuação mais comum no teste é a nota mínima para aprovação, com muito poucas notas logo abaixo do limite. Esse resultado inesperado é consistente com o aumento da pontuação dos alunos próximo da aprovação, mas sem a obtenção do mínimo de 65.</p>
-<p>Este é um exemplo de como a visualização de dados pode levar a descobertas que de outra forma seriam perdidas se simplesmente submetêssemos os dados a uma série de ferramentas ou procedimentos de análise de dados. A visualização de dados é a ferramenta mais eficaz do que chamamos de “análise exploratória de dados”, ou EDA. John W. Tukey<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>, considerado o pai da EDA, disse uma vez:</p>
-<blockquote>
-<blockquote>
-<p>“O maior valor de uma imagem é quando ela nos força a perceber o que nunca esperávamos ver”.</p>
-</blockquote>
-</blockquote>
-<p>Muitas das ferramentas de análise de dados mais usadas foram inicialmente desenvolvidas graças à EDA. Esta é talvez a parte mais importante da análise de dados, mas é frequentemente ignorada.</p>
-<p>A visualização de dados agora é onipresente também em organizações filantrópicas e educacionais. Nas conferências “Novas idéias sobre a pobreza”<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> e “As melhores estatísticas que você nunca viu”^[<a href="https://www.ted" class="uri">https://www.ted</a>. Hans Rosling nos obriga a perceber o inesperado com uma série de gráficos relacionados à saúde e à economia global. Em seus vídeos, Rosling usa gráficos animados para demonstrar como o mundo está mudando e como as antigas narrativas não são mais verdadeiras.</p>
-<p><img src="livro_files/figure-html/gampnider-example-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Também é importante lembrar que erros, preconceitos, erros sistemáticos e outros problemas inesperados geralmente levam a dados que devem ser cuidadosamente analisados. A falha em descobrir esses problemas pode levar a análises falhas e descobertas falsas. Como exemplo, considere que os instrumentos de medição às vezes falham e que a maioria dos procedimentos de análise de dados não foi projetada para detectá-los.
-No entanto, esses procedimentos ainda lhe darão uma resposta. O fato de ser difícil, ou mesmo impossível, perceber um erro apenas nos resultados relatados torna a visualização de dados particularmente importante.</p>
-<p>Nesta parte do livro, aprenderemos os conceitos básicos de visualização de dados e análise exploratória de dados usando três exemplos motivadores. Usaremos o pacote <strong>ggplot2</strong> para codificar. Para aprender o básico, usaremos um exemplo um tanto artificial: as alturas relatadas pelos alunos. Em seguida, discutiremos dois exemplos mencionados acima: 1) saúde e economia globais e 2) tendências em doenças infecciosas nos Estados Unidos.</p>
-<p>Obviamente, a visualização de dados é muito mais do que o que abordamos aqui. Aqui estão algumas referências para quem deseja saber mais:</p>
-<ul>
-<li>ER Tufte (1983) A exibição visual de informações quantitativas. Imprensa gráfica.</li>
-<li>ER Tufte (1990) Envisioning information. Imprensa gráfica.</li>
-<li>ER Tufte (1997) Explicações visuais. Imprensa gráfica.</li>
-<li>WS Cleveland (1993) Visualização de dados. Hobart Press.</li>
-<li>WS Cleveland (1994) Os elementos dos dados gráficos. CRC Pressione.</li>
-<li>A Gelman, C Pasarica, R Dodhia (2002) Vamos praticar o que pregamos: Transformar tabelas em gráficos. The American Statistician 56: 121-130.
-NB Robbins (2004) Criando gráficos mais eficazes. Wiley.</li>
-<li>A Cairo (2013) A arte funcional: Uma introdução à informação gráfica e visualização. Novos Cavaleiros.</li>
-<li>N Yau (2013) Pontos de dados: Visualização que significa alguma coisa. Wiley.</li>
-</ul>
-<p>Por fim, não discutiremos gráficos interativos, um tópico muito avançado para este livro. Abaixo estão alguns recursos úteis para aqueles interessados em aprender mais sobre isso:</p>
-<ul>
-<li>[<a href="https://shiny.rstudio.com" class="uri">https://shiny.rstudio.com</a>] (<a href="https://shiny.rstudio.com/" class="uri">https://shiny.rstudio.com/</a>)</li>
-<li>[<a href="https://d3js.org" class="uri">https://d3js.org</a>] (<a href="https://d3js.org/" class="uri">https://d3js.org/</a>)</li>
-</ul>
+<div id="introdução" class="section level1 unnumbered" number="">
+<h1>Introdução</h1>
+<p>A demanda por profissionais qualificados em ciência de dados na indústria, academia e governo está crescendo rapidamente. Este livro apresenta conceitos e habilidades que podem ajudá-lo a enfrentar os desafios da análise de dados em situações reais. O texto aborda os conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Isso também ajudará no desenvolvimento de habilidades como programação em R, preparação de dados (<em>data wrangling</em>), <strong>dplyr</strong>, visualização de dados com <strong>ggplot2</strong>, criação de algoritmos com <strong>caret</strong>, organização de arquivos em ambiente UNIX/Linux, controle de versão com Git e GitHub e preparação de documentos reprodutíveis com <strong>knitr</strong> e <strong>Rmarkdown</strong>. O livro está dividido em seis partes: <strong>R</strong>, <strong>Visualização de dados</strong>, <strong>Wrangling_of data</strong>, <strong>Estatísticas com R</strong>, <strong>Aprendizado de Máquina</strong> e <strong>Ferramentas de Produtividade</strong>. Cada parte possui vários capítulos que devem ser apresentados em uma única aula e inclui dezenas de exercícios distribuídos pelos capítulos.</p>
+<div id="estudos-de-caso" class="section level2 unnumbered" number="">
+<h2>Estudos de Caso</h2>
+<p>Ao longo do livro, utilizamos estudos de caso motivadores. Em cada estudo de caso, tentamos imitar realisticamente a experiência dos cientistas de dados. Para cada um dos conceitos que discutimos, começamos fazendo perguntas específicas, que, depois, respondemos através da análise de dados. Aprendemos conceitos como um meio de responder perguntas. Exemplos dos estudos de caso que incluímos neste livro são:</p>
+<table>
+<colgroup>
+<col width="40%" />
+<col width="30%" />
+<col width="30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Estudo de caso</th>
+<th>Conceito</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Taxas estaduais de homicídio nos Estados Unidos</td>
+<td>Conceitos básicos de R</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Alturas dos estudantes</td>
+<td>Resumos estatísticos</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Tendências em saúde e economia global</td>
+<td>Visualização de dados</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>O impacto das vacinas nas taxas de doenças infecciosas</td>
+<td>Visualização de dados</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>A crise financeira de 2007-2008</td>
+<td>Probabilidade</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Previsão eleitoral</td>
+<td>Inferência estatística</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Alturas autorreferidas de estudantes</td>
+<td><em>Arranjo</em> de dados</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><em>Money Ball</em>: Construindo um time de beisebol</td>
+<td>Regressão linear</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>MNIST: Processamento de imagem com dígitos manuscritos</td>
+<td><em>Aprendizado de Máquina</em></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Sistemas de recomendação de filmes</td>
+<td><em>Aprendizado de Máquina</em></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="quem-achará-este-livro-útil" class="section level2 unnumbered" number="">
+<h2>Quem achará este livro útil?</h2>
+<p>O objetivo deste livro é servir como texto para um primeiro curso de ciência de dados. Nenhum conhecimento prévio de R é necessário, embora alguma experiência em programação possa ser útil. Os conceitos estatísticos usados para responder às perguntas dos estudos de caso são apresentados apenas brevemente e, portanto, recomendamos um livro de probabilidade e estatística para quem deseja entender completamente esses conceitos. Ao ler e entender todos os capítulos e concluir todos os exercícios, os alunos estarão bem posicionados para concluir tarefas básicas de análise de dados e aprender os conceitos e habilidades mais avançados necessários para se tornarem especialistas.</p>
+</div>
+<div id="o-que-este-livro-cobre" class="section level2 unnumbered" number="">
+<h2>O que este livro cobre?</h2>
+<p>Começamos com o <strong>R básico</strong> e o <strong>tidyverse</strong>. Você aprenderá R ao longo do livro, mas na primeira parte cobriremos os componentes básicos necessários para que você continue aprendendo.</p>
+<p>A crescente disponibilidade de conjuntos de dados informativos e ferramentas de software levaram a uma maior dependência da <strong>visualização de dados</strong> em muitos campos. Na segunda parte, demonstramos como usar o <strong>ggplot2</strong> para gerar gráficos e descrever princípios importantes da visualização de dados.</p>
+<p>Na terceira parte, demonstramos a importância da estatística na análise dos dados, respondendo a perguntas de estudos de caso usando <strong>probabilidade</strong>, <strong>inferência</strong> e <strong>regressão</strong> com R.</p>
+<p>A quarta parte usa vários exemplos para familiarizar o leitor com a <strong>preparação de dados</strong> (<em>data wrangling</em>). As habilidades específicas que estudamos incluem raspagem da Web, usando expressões regulares e mesclando e remodelando tabelas de dados. Fazemos isso usando as ferramentas <strong>tidyverse</strong>.</p>
+<p>Na quinta parte, apresentamos vários desafios que nos levam a introduzir o <strong>aprendizado de máquina</strong>. Aprenderemos a usar o pacote <strong>caret</strong> para criar algoritmos de previsão que incluem <em>K-vizinhos mais próximos</em> e <em>florestas aleatórias</em>.</p>
+<p>Na parte final, oferecemos uma breve introdução às <strong>ferramentas de produtividade</strong> que usamos diariamente em projetos de ciência de dados. Estes são RStudio, ambiente UNIX/Linux, Git e GitHub e <strong>knitr</strong> e RMarkdown.</p>
+</div>
+<div id="o-que-este-livro-não-cobre" class="section level2 unnumbered" number="">
+<h2>O que este livro não cobre?</h2>
+<p>Este livro é focado nos aspectos da análise de dados que compõem a Ciência de Dados. Portanto, não discutimos aspectos relacionados ao gerenciamento ou engenharia de dados. Embora a programação em R seja uma parte essencial do livro, não ensinamos tópicos de computação mais avançados, como estruturas de dados, otimização e teoria de algoritmos. Da mesma forma, não discutimos tópicos como serviços da web, gráficos interativos, computação paralela e processamento de <em>streaming</em> de dados. Os conceitos estatísticos são apresentados principalmente como ferramentas para a solução de problemas e nenhuma descrição teórica detalhada é incluída neste livro.</p>
 
 </div>
-<div class="footnotes">
-<hr />
-<ol start="19">
-<li id="fn19"><p><a href="http://graphics.wsj.com/infectious-diseases-and-vaccines/?mc_cid=711ddeb86e" class="uri">http://graphics.wsj.com/infectious-diseases-and-vaccines/?mc_cid=711ddeb86e</a><a href="introdução-à-visualização-de-dados.html#fnref19" class="footnote-back">↩︎</a></p></li>
-<li id="fn20"><p><a href="http://graphics8.nytimes.com/images/2011/02/19/nyregion/19schoolsch/19schoolsch-popup.gif" class="uri">http://graphics8.nytimes.com/images/2011/02/19/nyregion/19schoolsch/19schoolsch-popup.gif</a><a href="introdução-à-visualização-de-dados.html#fnref20" class="footnote-back">↩︎</a></p></li>
-<li id="fn21"><p><a href="https://www.nytimes.com/2011/02/19/nyregion/19schools.html" class="uri">https://www.nytimes.com/2011/02/19/nyregion/19schools.html</a><a href="introdução-à-visualização-de-dados.html#fnref21" class="footnote-back">↩︎</a></p></li>
-<li id="fn22"><p><a href="https://en.wikipedia.org/wiki/John_Tukey" class="uri">https://en.wikipedia.org/wiki/John_Tukey</a><a href="introdução-à-visualização-de-dados.html#fnref22" class="footnote-back">↩︎</a></p></li>
-<li id="fn23"><p><a href="https://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty?language=en" class="uri">https://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty?language=en</a><a href="introdução-à-visualização-de-dados.html#fnref23" class="footnote-back">↩︎</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="importing-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="agradecimentos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="getting-started.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -606,7 +633,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rafalab/dslivro/edit/master/dataviz/intro-dataviz.Rmd",
+"link": "https://github.com/rafalab/dslivro/edit/master/intro.Rmd",
 "text": "Edit"
 },
 "history": {

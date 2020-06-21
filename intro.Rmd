@@ -1,45 +1,42 @@
-#Introdução {-}
+# Introdução {-}
 
-A demanda por profissionais qualificados em ciência de dados na indústria, academia e governo está crescendo rapidamente. Este livro apresenta conceitos e habilidades que podem ajudá-lo a enfrentar os desafios da análise de dados em situações reais. O texto aborda os conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Isso também os ajudará a desenvolver habilidades como programação R, _wrangling_ data, __dplyr__, visualização de dados com __ggplot2__, criação de algoritmo com __caret__, organização de arquivos com shell UNIX/ Linux, controle de versão com Git e GitHub e preparando documentos reproduzíveis com as marcações __knitr__ e R. O livro está dividido em seis partes: __R__, __Visualização de dados__, ___Wrangling_of data__, __Estatísticas com R__, ___Machine Learning___e__Productivity tools__. Cada parte possui vários capítulos que devem ser apresentados em uma única aula e inclui dezenas de exercícios distribuídos pelos capítulos.
+A demanda por profissionais qualificados em ciência de dados na indústria, academia e governo está crescendo rapidamente. Este livro apresenta conceitos e habilidades que podem ajudá-lo a enfrentar os desafios da análise de dados em situações reais. O texto aborda os conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Isso também ajudará no desenvolvimento de habilidades como programação em R, preparação de dados (_data wrangling_), __dplyr__, visualização de dados com __ggplot2__, criação de algoritmos com __caret__, organização de arquivos em ambiente UNIX/Linux, controle de versão com Git e GitHub e preparação de documentos reprodutíveis com __knitr__ e __Rmarkdown__. O livro está dividido em seis partes: __R__, __Visualização de dados__, __Wrangling_of data__, __Estatísticas com R__, __Aprendizado de Máquina__ e __Ferramentas de Produtividade__. Cada parte possui vários capítulos que devem ser apresentados em uma única aula e inclui dezenas de exercícios distribuídos pelos capítulos.
 
-## Os estudos de caso {-}
+## Estudos de Caso {-}
 
-Ao longo do livro, usamos estudos de caso motivadores. Em cada estudo de caso, tentamos imitar realisticamente a experiência dos cientistas de dados. Para cada um dos conceitos que discutimos, começamos fazendo perguntas específicas que depois respondemos através da análise de dados. Aprendemos conceitos como um meio de responder perguntas. Exemplos dos estudos de caso que incluímos neste livro são:
+Ao longo do livro, utilizamos estudos de caso motivadores. Em cada estudo de caso, tentamos imitar realisticamente a experiência dos cientistas de dados. Para cada um dos conceitos que discutimos, começamos fazendo perguntas específicas, que, depois, respondemos através da análise de dados. Aprendemos conceitos como um meio de responder perguntas. Exemplos dos estudos de caso que incluímos neste livro são:
 
 | Estudo de caso | Conceito |
 | ---- | ---| --- |
-| Taxas de homicídio nos Estados Unidos por estado | Conceitos básicos de R |
+| Taxas estaduais de homicídio nos Estados Unidos | Conceitos básicos de R |
 | Alturas dos estudantes | Resumos estatísticos
 | Tendências em saúde e economia global | Visualização de dados |
 | O impacto das vacinas nas taxas de doenças infecciosas | Visualização de dados |
 | A crise financeira de 2007-2008 | Probabilidade |
-| Previsão de eleições | Inferência estatística |
-| Alturas de estudantes autorreferidas | _Arranjo_ de dados |
+| Previsão eleitoral | Inferência estatística |
+| Alturas autorreferidas de estudantes | _Arranjo_ de dados |
 | _Money Ball_: Construindo um time de beisebol | Regressão linear |
-| MNIST: Processamento de imagem com dígitos manuscritos | _Máquina de Aprendizagem_ |
-| Sistemas de recomendação de filmes | _Máquina de Aprendizagem_ |
+| MNIST: Processamento de imagem com dígitos manuscritos | _Aprendizado de Máquina_ |
+| Sistemas de recomendação de filmes | _Aprendizado de Máquina_ |
 
-Quem acha este livro útil? {-}
+## Quem achará este livro útil? {-}
 
-O objetivo deste livro é servir como texto para um primeiro curso de ciência de dados. Nenhum conhecimento prévio de R é necessário, embora alguma experiência em programação possa ser útil. Os conceitos estatísticos usados para responder às perguntas do estudo de caso são apresentados apenas brevemente e, portanto, recomendamos um livro de probabilidade e estatística para quem deseja entender completamente esses conceitos. Ao ler e entender todos os capítulos e concluir todos os exercícios, os alunos estarão bem posicionados para concluir tarefas básicas de análise de dados e aprender os conceitos e habilidades mais avançados necessários para se tornarem especialistas.
+O objetivo deste livro é servir como texto para um primeiro curso de ciência de dados. Nenhum conhecimento prévio de R é necessário, embora alguma experiência em programação possa ser útil. Os conceitos estatísticos usados para responder às perguntas dos estudos de caso são apresentados apenas brevemente e, portanto, recomendamos um livro de probabilidade e estatística para quem deseja entender completamente esses conceitos. Ao ler e entender todos os capítulos e concluir todos os exercícios, os alunos estarão bem posicionados para concluir tarefas básicas de análise de dados e aprender os conceitos e habilidades mais avançados necessários para se tornarem especialistas.
 
 ## O que este livro cobre? {-}
 
-Começamos analisando o **R básico** e o __tidyverse__. Eles aprenderão R ao longo do livro, mas na primeira parte nos dedicamos a revisar os componentes básicos necessários para continuar aprendendo.
+Começamos com o **R básico** e o __tidyverse__. Você aprenderá R ao longo do livro, mas na primeira parte cobriremos os componentes básicos necessários para que você continue aprendendo.
 
-A crescente disponibilidade de conjuntos de dados informativos e ferramentas de software levou a uma maior dependência da **visualização de dados** em muitos campos. Na segunda parte, demonstramos como usar o __ggplot2__ para gerar gráficos e descrever princípios importantes da visualização de dados.
+A crescente disponibilidade de conjuntos de dados informativos e ferramentas de software levaram a uma maior dependência da **visualização de dados** em muitos campos. Na segunda parte, demonstramos como usar o __ggplot2__ para gerar gráficos e descrever princípios importantes da visualização de dados.
 
 Na terceira parte, demonstramos a importância da estatística na análise dos dados, respondendo a perguntas de estudos de caso usando **probabilidade**, **inferência** e **regressão** com R.
 
-A quarta parte usa vários exemplos para familiarizar os leitores com os **_wrangling_ data**. As habilidades específicas que estudamos incluem raspagem da Web, usando expressões regulares e mesclando e remodelando tabelas de dados. Fazemos isso usando as ferramentas __tidyverse__.
+A quarta parte usa vários exemplos para familiarizar o leitor com a **preparação de dados** (_data wrangling_). As habilidades específicas que estudamos incluem raspagem da Web, usando expressões regulares e mesclando e remodelando tabelas de dados. Fazemos isso usando as ferramentas __tidyverse__.
 
-Na quinta parte, apresentamos vários desafios que nos levam a introduzir o **_machine learning_**. Aprendemos a usar o pacote __caret__para criar algoritmos de previsão que incluem_K-vizinhos mais próximos_e_ florestas aleatórias_.
+Na quinta parte, apresentamos vários desafios que nos levam a introduzir o **aprendizado de máquina**. Aprenderemos a usar o pacote __caret__ para criar algoritmos de previsão que incluem _K-vizinhos mais próximos_ e _florestas aleatórias_.
 
-Na parte final, oferecemos uma breve introdução às **ferramentas de produtividade** que usamos diariamente em projetos de ciência de dados. Estes são RStudio, shell UNIX/ Linux, Git e GitHub e __knitr__ e R Markdown.
+Na parte final, oferecemos uma breve introdução às **ferramentas de produtividade** que usamos diariamente em projetos de ciência de dados. Estes são RStudio, ambiente UNIX/Linux, Git e GitHub e __knitr__ e RMarkdown.
 
 ## O que este livro não cobre? {-}
 
-Este livro enfoca os aspectos da análise de dados da ciência de dados. Portanto, não discutimos aspectos relacionados ao gerenciamento de dados (_data management_ em inglês) ou engenharia. Embora a programação em R seja uma parte essencial do livro, não ensinamos tópicos de computação mais avançados, como estruturas de dados, otimização e teoria de algoritmos. Da mesma forma, não discutimos tópicos como serviços da web, gráficos interativos, computação paralela e processamento de streaming de dados. Os conceitos estatísticos são apresentados principalmente como ferramentas para a solução de problemas e nenhuma descrição teórica detalhada é incluída neste livro.
-
-
-
+Este livro é focado nos aspectos da análise de dados que compõem a Ciência de Dados. Portanto, não discutimos aspectos relacionados ao gerenciamento ou engenharia de dados. Embora a programação em R seja uma parte essencial do livro, não ensinamos tópicos de computação mais avançados, como estruturas de dados, otimização e teoria de algoritmos. Da mesma forma, não discutimos tópicos como serviços da web, gráficos interativos, computação paralela e processamento de _streaming_ de dados. Os conceitos estatísticos são apresentados principalmente como ferramentas para a solução de problemas e nenhuma descrição teórica detalhada é incluída neste livro.
