@@ -526,11 +526,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Como um exemplo rápido, tente usar o console para calcular uma gorjeta de 15% em uma refeição que custa $19,71:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started.html#cb1-1"></a><span class="fl">0.15</span> <span class="op">*</span><span class="st"> </span><span class="fl">19.71</span></span>
 <span id="cb1-2"><a href="getting-started.html#cb1-2"></a><span class="co">#&gt; [1] 2.96</span></span></code></pre></div>
-<p>** Nota: neste livro, as caixas cinza são usadas para mostrar o código R escrito no console R. O símbolo <code>#&gt;</code> é usado para denotar a saída do console R. **</p>
+<p><strong>Nota: neste livro, as caixas cinza são usadas para mostrar o código R escrito no console R. O símbolo <code>#&gt;</code> é usado para denotar a saída do console R.</strong></p>
 </div>
 <div id="scripts" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> <em>Scripts</em></h2>
-<p>Uma das grandes vantagens de R sobre <em>softwares</em> de interface gráfica é que você pode salvar seu trabalho como <em>scripts</em>, que podem ser editados e salvos com um editor de texto. O material deste livro foi desenvolvido usando o <em>Integrated Development Environment</em> (IDE) do RStudio<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>. O RStudio inclui um editor com muitos recursos específicos de R, um console para executar seu código e outros painéis úteis, incluindo um para exibir figuras.</p>
+<p>Uma das grandes vantagens do R, quando comparado a <em>softwares</em> de interface gráfica do tipo <em>point and click</em>, é que você pode salvar seu trabalho como <em>scripts</em>, que podem ser editados e salvos com um editor de texto. O material deste livro foi desenvolvido usando o <em>Integrated Development Environment</em> (IDE) do RStudio<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>. O RStudio inclui um editor com muitos recursos específicos de R, um console para executar seu código e outros painéis úteis, incluindo um para exibir figuras.</p>
 <p><img src="R/img/rstudio.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>A maioria dos consoles R disponíveis na Web também inclui um painel para editar <em>scripts</em>, mas nem todos permitem salvar <em>scripts</em> para uso posterior.</p>
 <p>Todos os <em>scripts</em> R usados para gerar este livro podem ser encontrados no GitHub<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>.</p>
@@ -540,7 +540,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>O RStudio será nossa plataforma de desenvolvimento para projetos de ciência de dados. Ele não apenas nos fornece um editor para criar e editar nossos <em>scripts</em>, como também oferece muitas outras ferramentas úteis. Nesta seção, abordaremos alguns dos princípios básicos do RStudio.</p>
 <div id="painéis" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Painéis</h3>
-<p>Quando iniciarem o RStudio pela primeira vez, verão três painéis. O painel esquerdo mostra o console R. À direita, o painel superior inclui guias como <em>Environment</em> (ambiente) e <em>History</em> (histórico), enquanto o painel inferior mostra cinco guias: <em>Files</em> (arquivos), <em>Plots</em> (gráficos plotados), <em>Packages</em> (pacotes), <em>Help</em> (ajuda) e_Viewer_ (visualizados; essas guias podem ser diferentes nas novas versões do RStudio). Você pode clicar em cada guia para percorrer as diferentes opções.</p>
+<p>Quando iniciar o RStudio pela primeira vez, você verá três painéis. O painel esquerdo mostra o console do R. À direita, o painel superior inclui guias como <em>Environment</em> (ambiente) e <em>History</em> (histórico), enquanto o painel inferior mostra cinco guias: <em>Files</em> (arquivos), <em>Plots</em> (gráficos), <em>Packages</em> (pacotes), <em>Help</em> (ajuda) e <em>Viewer</em> (visualizador). Essas guias podem ser diferentes nas novas versões do RStudio. Você pode clicar em cada guia para percorrer as diferentes opções.</p>
 <p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Para iniciar um novo <em>script</em>, clique em <em>File</em>, depois em <em>New File</em> e, em seguida, em <em>R Script</em>.</p>
 <p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -550,7 +550,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="combinações-de-teclas-atalhos" class="section level3" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Combinações de teclas (atalhos)</h3>
 <p>Muitas das tarefas que realizamos com o <em>mouse</em> podem ser realizadas com uma combinação de teclas (<em>key bindings</em> em inglês). Por exemplo, acabamos de mostrar como usar o <em>mouse</em> para iniciar um novo <em>script</em>, mas você também pode usar a seguinte combinação de teclas: Ctrl + Shift + N no Windows e Command + Shift + N no Mac.</p>
-<p>Embora muitas vezes demonstremos como usar o mouse neste tutorial, <strong>recomendamos vivamente que você memorize combinações de teclas para as operações que use com mais frequência</strong>. O RStudio inclui uma folha de dicas (<em>cheatsheets</em> em inglês) com os comandos mais usados. Você pode obtê-lo diretamente do RStudio assim:</p>
+<p>Embora muitas vezes demonstremos como usar o mouse neste tutorial, <strong>recomendamos fortemente que você memorize combinações de teclas para as operações que use com mais frequência</strong>. O RStudio inclui uma folha de dicas (<em>cheatsheets</em>, em inglês) com os comandos mais usados. Você pode obtê-lo diretamente do RStudio assim:</p>
 <p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png" width="70%" style="display: block; margin: auto;" /></p>
 <!-- and it looks like this:
 
@@ -560,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="como-executar-comandos-enquanto-edita-scripts" class="section level3" number="1.4.3">
 <h3><span class="header-section-number">1.4.3</span> Como executar comandos enquanto edita <em>scripts</em></h3>
-<p>Existem muitos editores projetados especificamente para codificação. Isso é útil porque a cor e o recuo são adicionados automaticamente para tornar o código mais legível. O RStudio é um desses editores e foi desenvolvido especificamente para R. Uma das principais vantagens do RStudio sobre outros editores é que podemos testar facilmente nosso código enquanto editamos nossos <em>scripts</em>. Aqui está um exemplo.</p>
+<p>Existem muitos editores projetados especificamente para programar. Isso é útil porque a cor e o recuo são adicionados automaticamente para tornar o código mais legível. O RStudio é um desses editores e foi desenvolvido especificamente para R. Uma das principais vantagens do RStudio sobre outros editores é que podemos testar facilmente nosso código enquanto editamos nossos <em>scripts</em>. Aqui está um exemplo.</p>
 <p>Vamos começar abrindo um novo <em>script</em> como fizemos antes. Então, vamos nomear o <em>script</em>. Podemos fazer isso através do editor salvando o novo <em>script</em> atual ainda sem nome. Para começar, clique no ícone Salvar ou use a combinação de teclas Ctrl + S no Windows e Command + S no Mac.
 <!--
 <img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_26_37.png" width="70%" style="display: block; margin: auto;" />
@@ -569,8 +569,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Agora estamos prontos para começar a editar nosso primeiro <em>script</em>. As primeiras linhas de código em um <em>script</em> R são dedicadas ao carregamento dos pacotes que iremos usar. Outro recurso útil do RStudio é que, uma vez que digitamos <code>library()</code>, o RStudio começa a auto-completar o que estamos escrevendo com as bibliotecas que instalamos. Veja o que acontece quando escrevemos <code>library(ti)</code>:</p>
 <p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Outra característica que você deve ter notado é que, quando digita <code>library(</code>, o segundo parêntese é adicionado automaticamente. Isso ajudará a evitar um dos erros de codificação mais comuns: esquecer de fechar um parêntese.</p>
-<p>Agora podemos continuar escrevendo código. Como exemplo, criaremos um gráfico mostrando totais de assassinatos versus tamanho da população por estado nos EUA. Uma vez que você termine de escrever o código necessário para construir esse gráfico, você pode testá-lo <em>executando</em> o código. Para fazer isso, clique no botão <em>Run</em> no canto superior direito do painel de edição. Você também pode usar a combinação de teclas: Ctrl + Shift + Enter no Windows ou Command + Shift + Return no Mac.</p>
+<p>Outra característica que você deve ter notado é que, quando digita <code>library(</code>, o segundo parêntese é adicionado automaticamente. Isso ajudará a evitar um dos erros de programação mais comuns: esquecer de fechar um parêntese.</p>
+<p>Agora podemos continuar escrevendo código. Como exemplo, criaremos um gráfico mostrando totais de assassinatos <em>versus</em> tamanho da população por estado nos EUA. Uma vez que você termine de escrever o código necessário para construir esse gráfico, você pode testá-lo executando-o. Para fazer isso, clique no botão <em>Run</em> no canto superior direito do painel de edição. Você também pode usar a combinação de teclas: Ctrl + Shift + Enter no Windows ou Command + Shift + Return no Mac.</p>
 <!--
 <img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_44_07.png" width="70%" style="display: block; margin: auto;" />
 -->
@@ -581,7 +581,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="como-alterar-opções-globais" class="section level3" number="1.4.4">
 <h3><span class="header-section-number">1.4.4</span> Como alterar opções globais</h3>
 <p>Você pode mudar bastante a aparência e a funcionalidade do RStudio.</p>
-<p>Para alterar as opções globais, clique em <em>Tools</em> (ferramentas) e, em seguida, em <em>Global Options…</em>.
+<p>Para alterar as opções globais, clique em <em>Tools</em> (ferramentas) e, em seguida, em <em>Global Options…</em>.</p>
 <!--
 <img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_46_54.png" width="70%" style="display: block; margin: auto;" />
 
@@ -598,18 +598,18 @@ Pessoalmente, gosto da opção _Cobalt_, que faz com que seu editor fique assim:
 <img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_24.png" width="70%" style="display: block; margin: auto;" />
 
 Como um segundo exemplo,
---></p>
-<p>Como exemplo, mostramos como fazer uma mudança que <strong>recomendamos altamente</strong>: altere a opção <em>Save workspace to .RData on exit</em> (salvar espaço de trabalho para .RData na saída) para <em>Never</em> (nunca) e desmarque a opção <em>Restore .RData into workspace at start</em> (restaurar .RData no espaço de trabalho ao iniciar). Por padrão, quando alguém sai do R, o programa salva todos os objetos que ele criou em um arquivo chamado .RData. Isso ocorre para que, ao reiniciar a sessão no mesmo arquivo, o programa carregue esses objetos. No entanto, descobrimos que isso causa confusão, principalmente quando compartilhamos código com colegas e assumimos que eles têm esse arquivo .RData. Para alterar essas opções, faça com que suas configurações na aba <em>General</em> fiquem assim:</p>
+-->
+<p>Como exemplo, mostramos como fazer uma mudança que <strong>recomendamos bastante</strong>: altere a opção <em>Save workspace to .RData on exit</em> (salvar espaço de trabalho para .RData na saída) para <em>Never</em> (nunca) e desmarque a opção <em>Restore .RData into workspace at start</em> (restaurar o arquivo <code>.RData</code> no espaço de trabalho ao iniciar). Por padrão, quando alguém sai do R, o programa salva todos os objetos que ele criou em um arquivo chamado .RData. Isso ocorre para que, ao reiniciar a sessão no mesmo arquivo, o programa carregue esses objetos. No entanto, descobrimos que isso causa confusão, principalmente quando compartilhamos código com colegas e assumimos que eles têm esse arquivo .RData. Para alterar essas opções, faça com que suas configurações na aba <em>General</em> fiquem assim:</p>
 <p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="instalando-pacotes-r" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Instalando pacotes R</h2>
-<p>As funcionalidades fornecidas por uma recém instalada versão do R são apenas uma pequena fração de tudo que é possível. De fato, nos referimos ao que você obtém após sua primeira instalação como <em>base R</em>. Funcionalidades adicionais podem ser adicionadas a partir de plugins (<em>add-ons</em> em inglês) disponibilizados por desenvolvedores. Atualmente, existem centenas de plugins disponíveis no CRAN e muitos outros compartilhados em outros repositórios como o GitHub. No entanto, como nem todo mundo precisa de todas as funções disponíveis, o R disponibiliza diferentes componentes através de pacotes (<em>packages</em> em inglês). R facilita a instalação de pacotes dentro do próprio R. Por exemplo, para instalar o pacote <strong>dslabs</strong>, que usamos para compartilhar os conjuntos de dados e códigos relacionados a este livro, você deve escrever:</p>
+<p>As funcionalidades fornecidas por uma versão do R recém-instalada são apenas uma pequena parte de tudo que é possível. De fato, nos referimos ao que você obtém após sua primeira instalação como <em>base R</em>. Funcionalidades adicionais podem ser adicionadas a partir de plugins (<em>add-ons</em>, em inglês) disponibilizados por desenvolvedores. Atualmente, existem centenas de plugins disponíveis no CRAN e muitos outros compartilhados em outros repositórios como o GitHub. No entanto, como nem todo mundo precisa de todas as funções disponíveis, o R disponibiliza diferentes componentes através de pacotes (<em>packages</em>, em inglês). O R facilita a instalação de pacotes dentro do próprio R. Por exemplo, para instalar o pacote <strong>dslabs</strong>, que usamos para compartilhar os conjuntos de dados e códigos relacionados a este livro, você deve escrever:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="getting-started.html#cb2-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;dslabs&quot;</span>)</span></code></pre></div>
-<p>No RStudio, você pode navegar para a guia _Tools_e selecionar <em>install packages</em> (instalar pacotes). Em seguida, podemos carregar o pacote em nossas sessões R usando a função <code>library</code>:</p>
+<p>No RStudio, você pode navegar para a guia <em>Tools</em> e selecionar <em>install packages</em> (instalar pacotes). Em seguida, podemos carregar o pacote em nossas sessões R usando a função <code>library</code>:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="getting-started.html#cb3-1"></a><span class="kw">library</span>(dslabs)</span></code></pre></div>
-<p>Ao ler este livro, você verá que carregamos pacotes sem instalá-los. Isso ocorre porque, quando um pacote é instalado, ele permanece instalado e só precisa ser carregado com <code>library</code>. O pacote permanece carregado até terminarmos a sessão R. Se você tentar carregar um pacote e obter uma mensagem de erro, provavelmente significa que ele não está instalado e você deve instalá-lo primeiro.</p>
+<p>Ao ler este livro, você verá que carregamos pacotes sem instalá-los. Isso ocorre porque, quando um pacote é instalado, ele permanece instalado e só precisa ser carregado com <code>library</code>. O pacote permanece carregado até terminarmos a sessão R. Se você tentar carregar um pacote e obtiver uma mensagem de erro, provavelmente significa que ele não está instalado e você deve instalá-lo primeiro.</p>
 <p>Podemos instalar mais de um pacote por vez, fornecendo uma lista de nomes para esta função:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="getting-started.html#cb4-1"></a><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;dslabs&quot;</span>))</span></code></pre></div>
 <!--
@@ -629,7 +629,7 @@ Depois de selecionar seu pacote, recomendamos que você selecione todos os valor
 <p>Observe que a instalação de <strong>tidyverse</strong> realmente instala vários pacotes. Isso geralmente ocorre quando um pacote possui <em>dependências</em> ou usa funções de outros pacotes. Quando você carrega um pacote usando <code>library</code>, você também carrega suas dependências.</p>
 <p>Após a instalação dos pacotes, você pode carregá-los no R e não precisa instalá-los novamente, a menos que instale uma nova versão do R. Lembre-se de que os pacotes estão instalados no R e não no RStudio.</p>
 <p>É útil manter uma lista de todos os pacotes necessários para o trabalho em um <em>script</em> porque, se você necessitar realizar uma nova instalação do R, você poderá reinstalar todos os pacotes simplesmente executando um <em>script</em>.</p>
-<p>Você pode ver todos os pacotes que instalou usando a seguinte função:</p>
+<p>Você pode ver todos os pacotes que já instalou usando a seguinte função:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="getting-started.html#cb5-1"></a><span class="kw">installed.packages</span>()</span></code></pre></div>
 
 </div>
