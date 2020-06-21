@@ -29,8 +29,7 @@ knitr::write_bib(c(
 
 # Prefácio {-}
 
-Este livro começou como anotações usadas nos cursos da 
-[Data Science Series](https://www.edx.org/professional-certificate/harvardx-data-science) da HarvardX^[https://www.edx.org/professional-certificate/harvardx-data-science].
+Este livro começou como as notas de aulas empregadas para ministrar o curso na HarvardX [Data Science Series](https://www.edx.org/professional-certificate/harvardx-data-science)^[https://www.edx.org/professional-certificate/harvardx-data-science].
 
 Os códigos em Rmarkdown usados para gerar o livro estão disponíveis no [GitHub](https://github.com/rafalab/dsbook)^[https://github.com/rafalab/dsbook]. Observe que o tema usado para plotagem de gráficos em todo o livro pode ser recriado usando a função `ds_theme_set()` do pacote __dslabs__.
 
@@ -51,7 +50,6 @@ Um agradecimento especial ao meu guru em _tidyverse_ David Robinson e, também, 
 Este livro foi concebido durante o ensino de vários cursos de estatística aplicada, iniciados há mais de quinze anos. Os monitores que trabalharam comigo ao longo dos anos fizeram importantes contribuições indiretas para este livro. A versão mais recente deste curso é uma série HarvardX coordenada por Heather Sternshein e Zofia Gajdos, a quem agradecemos por suas contribuições. Também agradecemos a todos os alunos cujas perguntas e comentários nos ajudaram a melhorar o livro. Os cursos foram parcialmente financiados pelo subsídio NIH R25GM114818. Agradecemos aos Institutos Nacionais de Saúde (_National Institutes of Health_) por seu apoio.
 
 Um agradecimento especial a todos aqueles que editaram o livro através de _pull requests_ no GitHub ou fizeram sugestões criando um _issue_ ou enviando um email: `nickyfoto` (Huang Qiang) `desautm` (Marc-André Désautels), `michaschwab` (Michail Schwab) `alvarolarreategui` (Alvaro Larreategui), `jakevc` (Jake VanCampen), `omerta` (Guillermo Lengemann), `espinielli` (Enrico Spinielli), `asimumba`(Aaron Simumba) `braunschweig` (Maldewar), `gwierzchowski` (Grzegorz Wierzchowski), `technocrat` (Richard Careaga) `atzakas`, `defeit` (David Emerson Feit), `shiraamitchell` (Shira Mitchell) `Nathalie-S`, `andreashandel` (Andreas Handel) `berkowitze` (Elias Berkowitz) `Dean-Webb` (Dean Webber), `mohayusuf`, `jimrothstein`, `mPloenzke` (Matthew Ploenzke), `NicholasDowand` (Nicholas Dow) `kant` (Darío Hereñú), `debbieyuster` (Debbie Yuster), `tuanchauict` (Tuan Chau), `phzeller`, David D. Kane, El Mustapha El Abbassi e Vadim Zipunnikov.
-
 
 Este livro foi traduzido para o português por Benilton S Carvalho, Diego Mariano, Guilherme Ludwig, Larissa Ávila, Pedro Baldoni, Samara F Kiihl e Tatiana Benaglia. Agradecemos a todos que contribuíram para esta tradução.
 
