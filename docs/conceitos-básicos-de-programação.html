@@ -24,7 +24,7 @@
 <meta name="author" content="Rafael A. Irizarry" />
 
 
-<meta name="date" content="2020-06-20" />
+<meta name="date" content="2020-06-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -507,44 +507,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="conceitos-básicos-de-programação" class="section level1" number="3">
 <h1><span class="header-section-number">Capítulo 3</span> Conceitos básicos de programação</h1>
-<p>Ensinamos R porque facilita muito a análise de dados, o tema principal deste livro. Ao codificar em R, podemos executar com eficiência análise exploratória de dados, criar canais de análise de dados e preparar a visualização de dados para comunicar resultados. No entanto, R não é apenas um ambiente de análise de dados, mas uma linguagem de programação. Programadores avançados de R podem desenvolver pacotes complexos e até melhorar o R, embora não abordemos a programação avançada neste livro. No entanto, nesta seção, apresentamos três conceitos-chave de programação: expressões condicionais, for-loops e funções. Estes não são apenas os principais componentes da programação avançada, mas às vezes são úteis durante a análise de dados. Também observamos que existem várias funções amplamente usadas para programação em R, mas que não discutiremos neste livro. Esses incluem <code>split</code>, <code>cut</code>, <code>do.call</code> e <code>Reduce</code>, bem como o pacote <strong>data.table</strong>. Vale a pena aprender como usá-los, se você quiser se tornar programador especialista em R.</p>
+<p>Ensinamos R porque facilita muito a análise de dados, o tema principal deste livro. Ao programar em R, podemos executar com eficiência análise exploratória de dados, criar fluxos de análise de dados e preparar a visualização de dados para comunicar resultados. No entanto, R não é apenas um ambiente de análise de dados, mas uma linguagem de programação. Programadores avançados de R podem desenvolver pacotes complexos e até melhorar o R, embora não abordemos a programação avançada neste livro. No entanto, nesta seção, apresentamos três conceitos-chave de programação: expressões condicionais, execução em laço do tipo <code>for</code> e funções. Estes não são apenas os principais componentes da programação avançada, mas, às vezes, são úteis durante a análise de dados. Também observamos que existem várias funções amplamente usadas para programação em R, mas que não discutiremos neste livro. Elas incluem <code>split</code>, <code>cut</code>, <code>do.call</code> e <code>Reduce</code>, bem como o pacote <strong>data.table</strong>. Vale a pena aprender como usá-las, se você quiser se tornar programador especialista em R.</p>
 <div id="conditionals" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Expressões condicionais</h2>
-<p>Expressões condicionais são uma das características básicas da programação. Eles são usados para o que é chamado de <em>flow control</em>. A expressão condicional mais comum é a instrução <em>if-else</em>. Em R, podemos fazer muitas análises de dados sem condicionais. No entanto, eles aparecem ocasionalmente e você precisará deles assim que começar a escrever suas próprias funções e pacotes.</p>
-<p>Aqui está um exemplo muito simples que mostra a estrutura geral de uma instrução <em>if-else</em>. A idéia básica é imprimir o recíproco de <code>a</code> a menos que <code>a</code> deixe 0:</p>
+<p>Expressões condicionais são uma das características básicas da programação. Eles são usados para o que é chamado de controle de fluxo. A expressão condicional mais comum é a instrução <em>if-else</em>. Em R, podemos fazer muitas análises de dados sem condicionais. No entanto, eles aparecem ocasionalmente e você precisará deles assim que começar a escrever suas próprias funções e pacotes.</p>
+<p>Aqui está um exemplo muito simples que mostra a estrutura geral de uma instrução <em>if-else</em>. A idéia básica é retornar o inverso de <code>a</code>, a menos que <code>a</code> seja 0:</p>
 <div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="conceitos-básicos-de-programação.html#cb128-1"></a>a &lt;-<span class="st"> </span><span class="dv">0</span></span>
 <span id="cb128-2"><a href="conceitos-básicos-de-programação.html#cb128-2"></a></span>
 <span id="cb128-3"><a href="conceitos-básicos-de-programação.html#cb128-3"></a><span class="cf">if</span>(a<span class="op">!=</span><span class="dv">0</span>){</span>
-<span id="cb128-4"><a href="conceitos-básicos-de-programação.html#cb128-4"></a><span class="kw">print</span>(<span class="dv">1</span><span class="op">/</span>a)</span>
+<span id="cb128-4"><a href="conceitos-básicos-de-programação.html#cb128-4"></a>  <span class="kw">print</span>(<span class="dv">1</span><span class="op">/</span>a)</span>
 <span id="cb128-5"><a href="conceitos-básicos-de-programação.html#cb128-5"></a>} <span class="cf">else</span>{</span>
-<span id="cb128-6"><a href="conceitos-básicos-de-programação.html#cb128-6"></a><span class="kw">print</span>(<span class="st">&quot;No reciprocal for 0.&quot;</span>)</span>
+<span id="cb128-6"><a href="conceitos-básicos-de-programação.html#cb128-6"></a>  <span class="kw">print</span>(<span class="st">&quot;Não há inverso de 0.&quot;</span>)</span>
 <span id="cb128-7"><a href="conceitos-básicos-de-programação.html#cb128-7"></a>}</span>
-<span id="cb128-8"><a href="conceitos-básicos-de-programação.html#cb128-8"></a><span class="co">#&gt; [1] &quot;No reciprocal for 0.&quot;</span></span></code></pre></div>
-<p>Vejamos outro exemplo usando o conjunto de dados de assassinatos nos EUA. EUA:</p>
+<span id="cb128-8"><a href="conceitos-básicos-de-programação.html#cb128-8"></a><span class="co">#&gt; [1] &quot;Não há inverso de 0.&quot;</span></span></code></pre></div>
+<p>Vejamos outro exemplo usando o conjunto de dados de assassinatos nos EUA:</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="conceitos-básicos-de-programação.html#cb129-1"></a><span class="kw">library</span>(dslabs)</span>
 <span id="cb129-2"><a href="conceitos-básicos-de-programação.html#cb129-2"></a><span class="kw">data</span>(murders)</span>
 <span id="cb129-3"><a href="conceitos-básicos-de-programação.html#cb129-3"></a>murder_rate &lt;-<span class="st"> </span>murders<span class="op">$</span>total<span class="op">/</span><span class="st"> </span>murders<span class="op">$</span>population<span class="op">*</span><span class="dv">100000</span></span></code></pre></div>
-<p>Aqui está um exemplo muito simples que nos diz quais estados, se houver, têm uma taxa de homicídios inferior a 0,5 por 100.000. As declarações <code>if</code> eles nos protegem do caso em que nenhum estado satisfaz a condição.</p>
+<p>Aqui está um exemplo muito simples que nos diz quais estados, se houver, têm uma taxa de homicídios inferior a 0,5 por 100.000 habitantes. As declarações <code>if</code> protegem-nos de situaçõesm em que nenhum estado satisfaz a condição.</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="conceitos-básicos-de-programação.html#cb130-1"></a>ind &lt;-<span class="st"> </span><span class="kw">which.min</span>(murder_rate)</span>
 <span id="cb130-2"><a href="conceitos-básicos-de-programação.html#cb130-2"></a></span>
 <span id="cb130-3"><a href="conceitos-básicos-de-programação.html#cb130-3"></a><span class="cf">if</span>(murder_rate[ind] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.5</span>){</span>
-<span id="cb130-4"><a href="conceitos-básicos-de-programação.html#cb130-4"></a><span class="kw">print</span>(murders<span class="op">$</span>state[ind])</span>
+<span id="cb130-4"><a href="conceitos-básicos-de-programação.html#cb130-4"></a>  <span class="kw">print</span>(murders<span class="op">$</span>state[ind])</span>
 <span id="cb130-5"><a href="conceitos-básicos-de-programação.html#cb130-5"></a>} <span class="cf">else</span>{</span>
-<span id="cb130-6"><a href="conceitos-básicos-de-programação.html#cb130-6"></a><span class="kw">print</span>(<span class="st">&quot;No state has murder rate that low&quot;</span>)</span>
+<span id="cb130-6"><a href="conceitos-básicos-de-programação.html#cb130-6"></a>  <span class="kw">print</span>(<span class="st">&quot;Nenhum estado tem taxa de homicídios abaixo deste nível&quot;</span>)</span>
 <span id="cb130-7"><a href="conceitos-básicos-de-programação.html#cb130-7"></a>}</span>
 <span id="cb130-8"><a href="conceitos-básicos-de-programação.html#cb130-8"></a><span class="co">#&gt; [1] &quot;Vermont&quot;</span></span></code></pre></div>
 <p>Se tentarmos novamente com uma taxa de 0,25, obteremos uma resposta diferente:</p>
 <div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="conceitos-básicos-de-programação.html#cb131-1"></a><span class="cf">if</span>(murder_rate[ind] <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.25</span>){</span>
-<span id="cb131-2"><a href="conceitos-básicos-de-programação.html#cb131-2"></a><span class="kw">print</span>(murders<span class="op">$</span>state[ind])</span>
+<span id="cb131-2"><a href="conceitos-básicos-de-programação.html#cb131-2"></a>  <span class="kw">print</span>(murders<span class="op">$</span>state[ind])</span>
 <span id="cb131-3"><a href="conceitos-básicos-de-programação.html#cb131-3"></a>} <span class="cf">else</span>{</span>
-<span id="cb131-4"><a href="conceitos-básicos-de-programação.html#cb131-4"></a><span class="kw">print</span>(<span class="st">&quot;No state has a murder rate that low.&quot;</span>)</span>
+<span id="cb131-4"><a href="conceitos-básicos-de-programação.html#cb131-4"></a>  <span class="kw">print</span>(<span class="st">&quot;Nenhum estado tem taxa de homicídios abaixo deste nível&quot;</span>)</span>
 <span id="cb131-5"><a href="conceitos-básicos-de-programação.html#cb131-5"></a>}</span>
-<span id="cb131-6"><a href="conceitos-básicos-de-programação.html#cb131-6"></a><span class="co">#&gt; [1] &quot;No state has a murder rate that low.&quot;</span></span></code></pre></div>
+<span id="cb131-6"><a href="conceitos-básicos-de-programação.html#cb131-6"></a><span class="co">#&gt; [1] &quot;Nenhum estado tem taxa de homicídios abaixo deste nível&quot;</span></span></code></pre></div>
 <p>Uma função relacionada que é muito útil é <code>ifelse</code>. Essa função usa três argumentos: um lógico e duas respostas possíveis. Se o lógico for <code>TRUE</code>, retorna o valor no segundo argumento e, se for <code>FALSE</code>, retorna o valor no terceiro argumento. Aqui está um exemplo:</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="conceitos-básicos-de-programação.html#cb132-1"></a>a &lt;-<span class="st"> </span><span class="dv">0</span></span>
 <span id="cb132-2"><a href="conceitos-básicos-de-programação.html#cb132-2"></a><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>a, <span class="ot">NA</span>)</span>
 <span id="cb132-3"><a href="conceitos-básicos-de-programação.html#cb132-3"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
-<p>Essa função é particularmente útil porque é útil para vetores. Isso examina cada entrada do vetor lógico e retorna elementos do vetor fornecido no segundo argumento, se a entrada for <code>TRUE</code>, ou elementos do vetor fornecido no terceiro argumento, se a entrada for <code>FALSE</code>.</p>
+<p>Essa função é particularmente útil porque é otimizada para vetores. Ela examina cada entrada do vetor lógico e retorna elementos do vetor fornecido no segundo argumento, se a entrada for <code>TRUE</code>, ou elementos do vetor fornecido no terceiro argumento, se a entrada for <code>FALSE</code>.</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="conceitos-básicos-de-programação.html#cb133-1"></a>a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">-4</span>, <span class="dv">5</span>)</span>
 <span id="cb133-2"><a href="conceitos-básicos-de-programação.html#cb133-2"></a>result &lt;-<span class="st"> </span><span class="kw">ifelse</span>(a <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>, <span class="dv">1</span><span class="op">/</span>a, <span class="ot">NA</span>)</span></code></pre></div>
 Esta tabela nos ajuda a ver o que aconteceu:
@@ -661,7 +661,7 @@ NA
 <span id="cb134-2"><a href="conceitos-básicos-de-programação.html#cb134-2"></a>no_nas &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">is.na</span>(na_example), <span class="dv">0</span>, na_example)</span>
 <span id="cb134-3"><a href="conceitos-básicos-de-programação.html#cb134-3"></a><span class="kw">sum</span>(<span class="kw">is.na</span>(no_nas))</span>
 <span id="cb134-4"><a href="conceitos-básicos-de-programação.html#cb134-4"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
-<p>Duas outras funções úteis são <code>any</code> e <code>all</code>. A função <code>any</code> pega um vetor de lógicas e retorna <code>TRUE</code> se alguma das entradas for <code>TRUE</code>. A função <code>all</code> pega um vetor de lógicas e retorna <code>TRUE</code> se todas as entradas forem <code>TRUE</code>. Aqui está um exemplo:</p>
+<p>Duas outras funções úteis são <code>any</code> e <code>all</code>. A função <code>any</code> pega um vetor com valores lógicos e retorna <code>TRUE</code> se alguma das entradas for <code>TRUE</code>. A função <code>all</code> pega um vetor de lógicas e retorna <code>TRUE</code> se todas as entradas forem <code>TRUE</code>. Aqui está um exemplo:</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="conceitos-básicos-de-programação.html#cb135-1"></a>z &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
 <span id="cb135-2"><a href="conceitos-básicos-de-programação.html#cb135-2"></a><span class="kw">any</span>(z)</span>
 <span id="cb135-3"><a href="conceitos-básicos-de-programação.html#cb135-3"></a><span class="co">#&gt; [1] TRUE</span></span>
@@ -670,34 +670,34 @@ NA
 </div>
 <div id="como-definir-funções" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Como definir funções</h2>
-<p>À medida que ganham mais experiência, eles precisam executar as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor <code>x</code> usando funções <code>sum</code> e <code>length</code>: <code>sum(x)/length(x)</code>. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função <code>mean</code> e está incluído na base R. No entanto, você encontrará situações em que a função ainda não existe, portanto, R permite que você escreva uma. Você pode definir uma versão simples de uma função que calcula a média da seguinte maneira:</p>
+<p>À medida que ganha mais experiência, você observará que realizará as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor <code>x</code> usando funções <code>sum</code> e <code>length</code>: <code>sum(x)/length(x)</code>. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função <code>mean</code>, que está incluída na pacote <strong>base</strong> do R. No entanto, você encontrará situações em que a função ainda não existe e R permite que você escreva uma. Uma versão simplificada de uma função que calcula a média pode ser implementada da seguinte maneira:</p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="conceitos-básicos-de-programação.html#cb136-1"></a>avg &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
-<span id="cb136-2"><a href="conceitos-básicos-de-programação.html#cb136-2"></a>s &lt;-<span class="st"> </span><span class="kw">sum</span>(x)</span>
-<span id="cb136-3"><a href="conceitos-básicos-de-programação.html#cb136-3"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
-<span id="cb136-4"><a href="conceitos-básicos-de-programação.html#cb136-4"></a>s<span class="op">/</span>n</span>
+<span id="cb136-2"><a href="conceitos-básicos-de-programação.html#cb136-2"></a>  s &lt;-<span class="st"> </span><span class="kw">sum</span>(x)</span>
+<span id="cb136-3"><a href="conceitos-básicos-de-programação.html#cb136-3"></a>  n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
+<span id="cb136-4"><a href="conceitos-básicos-de-programação.html#cb136-4"></a>  s<span class="op">/</span>n</span>
 <span id="cb136-5"><a href="conceitos-básicos-de-programação.html#cb136-5"></a>}</span></code></pre></div>
 <p>Agora <code>avg</code> é uma função que calcula a média:</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="conceitos-básicos-de-programação.html#cb137-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">100</span></span>
 <span id="cb137-2"><a href="conceitos-básicos-de-programação.html#cb137-2"></a><span class="kw">identical</span>(<span class="kw">mean</span>(x), <span class="kw">avg</span>(x))</span>
 <span id="cb137-3"><a href="conceitos-básicos-de-programação.html#cb137-3"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
-<p>Observe que as variáveis definidas em uma função não são salvas no espaço de trabalho. Então, enquanto usamos <code>s</code> e <code>n</code> quando chamamos (<em>call</em> em inglês) <code>avg</code>, os valores são criados e alterados apenas durante a chamada. Aqui podemos ver um exemplo ilustrativo:</p>
+<p>Observe que as variáveis definidas em uma função não são gravadas no espaço de trabalho. Então, enquanto usamos <code>s</code> e <code>n</code> quando chamamos (<em>call</em> em inglês) <code>avg</code>, os valores são criados e alterados apenas durante a chamada. Aqui podemos ver um exemplo ilustrativo:</p>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="conceitos-básicos-de-programação.html#cb138-1"></a>s &lt;-<span class="st"> </span><span class="dv">3</span></span>
 <span id="cb138-2"><a href="conceitos-básicos-de-programação.html#cb138-2"></a><span class="kw">avg</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
 <span id="cb138-3"><a href="conceitos-básicos-de-programação.html#cb138-3"></a><span class="co">#&gt; [1] 5.5</span></span>
 <span id="cb138-4"><a href="conceitos-básicos-de-programação.html#cb138-4"></a>s</span>
 <span id="cb138-5"><a href="conceitos-básicos-de-programação.html#cb138-5"></a><span class="co">#&gt; [1] 3</span></span></code></pre></div>
-<p>Note como <code>s</code> ainda é 3 depois que ligamos <code>avg</code>.</p>
+<p>Note como <code>s</code> ainda é 3 depois que executa-se <code>avg</code>.</p>
 <p>Em geral, funções são objetos, portanto, atribuímos nomes de variáveis a eles com <code>&lt;-</code>. A função <code>function</code> diz a R que ele está prestes a definir uma função. A forma geral da definição de uma função é assim:</p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="conceitos-básicos-de-programação.html#cb139-1"></a>my_function &lt;-<span class="st"> </span><span class="cf">function</span>(VARIABLE_NAME){</span>
 <span id="cb139-2"><a href="conceitos-básicos-de-programação.html#cb139-2"></a>perform operations on VARIABLE_NAME and calculate VALUE</span>
 <span id="cb139-3"><a href="conceitos-básicos-de-programação.html#cb139-3"></a>VALUE</span>
 <span id="cb139-4"><a href="conceitos-básicos-de-programação.html#cb139-4"></a>}</span></code></pre></div>
-<p>As funções que eles definem podem ter vários argumentos, bem como valores padrão. Por exemplo, podemos definir uma função que calcula a média aritmética ou geométrica, dependendo de uma variável definida pelo usuário como esta:</p>
+<p>As funções que você define podem ter vários argumentos, bem como valores padrão. Por exemplo, podemos definir uma função que calcula a média aritmética ou geométrica, dependendo de uma variável definida pelo usuário como esta:</p>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="conceitos-básicos-de-programação.html#cb140-1"></a>avg &lt;-<span class="st"> </span><span class="cf">function</span>(x, <span class="dt">arithmetic =</span> <span class="ot">TRUE</span>){</span>
 <span id="cb140-2"><a href="conceitos-básicos-de-programação.html#cb140-2"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(x)</span>
 <span id="cb140-3"><a href="conceitos-básicos-de-programação.html#cb140-3"></a><span class="kw">ifelse</span>(arithmetic, <span class="kw">sum</span>(x)<span class="op">/</span>n, <span class="kw">prod</span>(x)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span>n))</span>
 <span id="cb140-4"><a href="conceitos-básicos-de-programação.html#cb140-4"></a>}</span></code></pre></div>
-<p>Aprenderemos mais sobre como criar funções através da experiência à medida que enfrentamos tarefas mais complexas.</p>
+<p>Aprenderemos mais sobre como criar funções através da experiência à medida em que avançamos para tarefas mais complexas.</p>
 </div>
 <div id="namespaces" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> <em>Namespaces</em></h2>
@@ -826,7 +826,7 @@ d. <code>all(!x)</code></p>
 <p>8. Definir um vetor de número vazio <code>s_n</code> tamanho 25 usando <code>s_n &lt;- vector("numeric", 25)</code> e armazene os resultados de <span class="math inline">\(S_1, S_2, \dots S_{25}\)</span> usando um loop for.</p>
 <p>9. Repita o exercício 8, mas desta vez use <code>sapply</code>.</p>
 <p>10. Repita o exercício 8, mas desta vez use <code>map_dbl</code>.</p>
-<p>Onze. Gráfico <span class="math inline">\(S_n\)</span> versus <span class="math inline">\(n\)</span>. Use pontos definidos por <span class="math inline">\(n=1,\dots,25\)</span>.</p>
+<p>11. Gráfico <span class="math inline">\(S_n\)</span> versus <span class="math inline">\(n\)</span>. Use pontos definidos por <span class="math inline">\(n=1,\dots,25\)</span>.</p>
 <p>12. Confirme se a fórmula para esta soma é <span class="math inline">\(S_n= n(n+1)(2n+1)/6\)</span>.</p>
 
 </div>

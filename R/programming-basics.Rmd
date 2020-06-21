@@ -1,26 +1,24 @@
 # Conceitos básicos de programação
 
-
-Ensinamos R porque facilita muito a análise de dados, o tema principal deste livro. Ao codificar em R, podemos executar com eficiência análise exploratória de dados, criar canais de análise de dados e preparar a visualização de dados para comunicar resultados. No entanto, R não é apenas um ambiente de análise de dados, mas uma linguagem de programação. Programadores avançados de R podem desenvolver pacotes complexos e até melhorar o R, embora não abordemos a programação avançada neste livro. No entanto, nesta seção, apresentamos três conceitos-chave de programação: expressões condicionais, for-loops e funções. Estes não são apenas os principais componentes da programação avançada, mas às vezes são úteis durante a análise de dados. Também observamos que existem várias funções amplamente usadas para programação em R, mas que não discutiremos neste livro. Esses incluem `split`, `cut`, `do.call` e `Reduce`, bem como o pacote __data.table__. Vale a pena aprender como usá-los, se você quiser se tornar programador especialista em R.
+Ensinamos R porque facilita muito a análise de dados, o tema principal deste livro. Ao programar em R, podemos executar com eficiência análise exploratória de dados, criar fluxos de análise de dados e preparar a visualização de dados para comunicar resultados. No entanto, R não é apenas um ambiente de análise de dados, mas uma linguagem de programação. Programadores avançados de R podem desenvolver pacotes complexos e até melhorar o R, embora não abordemos a programação avançada neste livro. No entanto, nesta seção, apresentamos três conceitos-chave de programação: expressões condicionais, execução em laço do tipo `for` e funções. Estes não são apenas os principais componentes da programação avançada, mas, às vezes, são úteis durante a análise de dados. Também observamos que existem várias funções amplamente usadas para programação em R, mas que não discutiremos neste livro. Elas incluem `split`, `cut`, `do.call` e `Reduce`, bem como o pacote __data.table__. Vale a pena aprender como usá-las, se você quiser se tornar programador especialista em R.
 
 ## Expressões condicionais {#conditionals}
 
-Expressões condicionais são uma das características básicas da programação. Eles são usados para o que é chamado de _flow control_. A expressão condicional mais comum é a instrução _if-else_. Em R, podemos fazer muitas análises de dados sem condicionais. No entanto, eles aparecem ocasionalmente e você precisará deles assim que começar a escrever suas próprias funções e pacotes.
+Expressões condicionais são uma das características básicas da programação. Eles são usados para o que é chamado de controle de fluxo. A expressão condicional mais comum é a instrução _if-else_. Em R, podemos fazer muitas análises de dados sem condicionais. No entanto, eles aparecem ocasionalmente e você precisará deles assim que começar a escrever suas próprias funções e pacotes.
 
-Aqui está um exemplo muito simples que mostra a estrutura geral de uma instrução _if-else_. A idéia básica é imprimir o recíproco de `a` a menos que `a` deixe 0:
+Aqui está um exemplo muito simples que mostra a estrutura geral de uma instrução _if-else_. A idéia básica é retornar o inverso de `a`, a menos que `a` seja 0:
 
 ```{r}
 a <- 0
 
 if(a!=0){
-print(1/a)
+  print(1/a)
 } else{
-print("No reciprocal for 0.")
+  print("Não há inverso de 0.")
 }
 ```
 
-
-Vejamos outro exemplo usando o conjunto de dados de assassinatos nos EUA. EUA:
+Vejamos outro exemplo usando o conjunto de dados de assassinatos nos EUA:
 
 ```{r}
 library(dslabs)
@@ -28,16 +26,15 @@ data(murders)
 murder_rate <- murders$total/ murders$population*100000
 ```
 
-
-Aqui está um exemplo muito simples que nos diz quais estados, se houver, têm uma taxa de homicídios inferior a 0,5 por 100.000. As declarações `if` eles nos protegem do caso em que nenhum estado satisfaz a condição.
+Aqui está um exemplo muito simples que nos diz quais estados, se houver, têm uma taxa de homicídios inferior a 0,5 por 100.000 habitantes. As declarações `if` protegem-nos de situaçõesm em que nenhum estado satisfaz a condição.
 
 ```{r}
 ind <- which.min(murder_rate)
 
 if(murder_rate[ind] < 0.5){
-print(murders$state[ind])
+  print(murders$state[ind])
 } else{
-print("No state has murder rate that low")
+  print("Nenhum estado tem taxa de homicídios abaixo deste nível")
 }
 ```
 
@@ -45,9 +42,9 @@ Se tentarmos novamente com uma taxa de 0,25, obteremos uma resposta diferente:
 
 ```{r}
 if(murder_rate[ind] < 0.25){
-print(murders$state[ind])
+  print(murders$state[ind])
 } else{
-print("No state has a murder rate that low.")
+  print("Nenhum estado tem taxa de homicídios abaixo deste nível")
 }
 ```
 
@@ -59,7 +56,7 @@ a <- 0
 ifelse(a > 0, 1/a, NA)
 ```
 
-Essa função é particularmente útil porque é útil para vetores. Isso examina cada entrada do vetor lógico e retorna elementos do vetor fornecido no segundo argumento, se a entrada for `TRUE`, ou elementos do vetor fornecido no terceiro argumento, se a entrada for `FALSE`.
+Essa função é particularmente útil porque é otimizada para vetores. Ela examina cada entrada do vetor lógico e retorna elementos do vetor fornecido no segundo argumento, se a entrada for `TRUE`, ou elementos do vetor fornecido no terceiro argumento, se a entrada for `FALSE`.
 
 ```{r}
 a <- c(0, 1, 2, -4, 5)
@@ -70,11 +67,11 @@ Esta tabela nos ajuda a ver o que aconteceu:
 ```{r, echo=FALSE}
 tmp <- data.frame(a = a, is_a_positive = a > 0, answer1 = 1/a, answer2 = NA, result = result)
 if(knitr::is_html_output()){
-knitr::kable(tmp, "html") %>%
-kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
+  knitr::kable(tmp, "html") %>%
+    kableExtra::kable_styling(bootstrap_options = "striped", full_width = FALSE)
 } else{
-knitr::kable(tmp, "latex", booktabs = TRUE) %>%
-kableExtra::kable_styling(font_size = 8)
+  knitr::kable(tmp, "latex", booktabs = TRUE) %>%
+    kableExtra::kable_styling(font_size = 8)
 }
 ```
 
@@ -86,7 +83,7 @@ no_nas <- ifelse(is.na(na_example), 0, na_example)
 sum(is.na(no_nas))
 ```
 
-Duas outras funções úteis são `any` e `all`. A função `any` pega um vetor de lógicas e retorna `TRUE` se alguma das entradas for `TRUE`. A função `all` pega um vetor de lógicas e retorna `TRUE` se todas as entradas forem `TRUE`. Aqui está um exemplo:
+Duas outras funções úteis são `any` e `all`. A função `any` pega um vetor com valores lógicos e retorna `TRUE` se alguma das entradas for `TRUE`. A função `all` pega um vetor de lógicas e retorna `TRUE` se todas as entradas forem `TRUE`. Aqui está um exemplo:
 
 ```{r}
 z <- c(TRUE, TRUE, FALSE)
@@ -96,13 +93,13 @@ all(z)
 
 ## Como definir funções
 
-À medida que ganham mais experiência, eles precisam executar as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor `x` usando funções `sum` e `length`: `sum(x)/length(x)`. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função `mean` e está incluído na base R. No entanto, você encontrará situações em que a função ainda não existe, portanto, R permite que você escreva uma. Você pode definir uma versão simples de uma função que calcula a média da seguinte maneira:
+À medida que ganha mais experiência, você observará que realizará as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor `x` usando funções `sum` e `length`: `sum(x)/length(x)`. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função `mean`, que está incluída na pacote __base__ do R. No entanto, você encontrará situações em que a função ainda não existe e R permite que você escreva uma. Uma versão simplificada de uma função que calcula a média pode ser implementada da seguinte maneira:
 
 ```{r}
 avg <- function(x){
-s <- sum(x)
-n <- length(x)
-s/n
+  s <- sum(x)
+  n <- length(x)
+  s/n
 }
 ```
 
@@ -113,7 +110,7 @@ x <- 1:100
 identical(mean(x), avg(x))
 ```
 
-Observe que as variáveis definidas em uma função não são salvas no espaço de trabalho. Então, enquanto usamos `s` e `n` quando chamamos (_call_ em inglês) `avg`, os valores são criados e alterados apenas durante a chamada. Aqui podemos ver um exemplo ilustrativo:
+Observe que as variáveis definidas em uma função não são gravadas no espaço de trabalho. Então, enquanto usamos `s` e `n` quando chamamos (_call_ em inglês) `avg`, os valores são criados e alterados apenas durante a chamada. Aqui podemos ver um exemplo ilustrativo:
 
 ```{r}
 s <- 3
@@ -121,8 +118,7 @@ avg(1:10)
 s
 ```
 
-Note como `s` ainda é `r s` depois que ligamos `avg`.
-
+Note como `s` ainda é `r s` depois que executa-se `avg`.
 
 Em geral, funções são objetos, portanto, atribuímos nomes de variáveis a eles com `<-`. A função `function` diz a R que ele está prestes a definir uma função. A forma geral da definição de uma função é assim:
 
@@ -133,7 +129,7 @@ VALUE
 }
 ```
 
-As funções que eles definem podem ter vários argumentos, bem como valores padrão. Por exemplo, podemos definir uma função que calcula a média aritmética ou geométrica, dependendo de uma variável definida pelo usuário como esta:
+As funções que você define podem ter vários argumentos, bem como valores padrão. Por exemplo, podemos definir uma função que calcula a média aritmética ou geométrica, dependendo de uma variável definida pelo usuário como esta:
 
 ```{r}
 avg <- function(x, arithmetic = TRUE){
@@ -142,7 +138,7 @@ ifelse(arithmetic, sum(x)/n, prod(x)^(1/n))
 }
 ```
 
-Aprenderemos mais sobre como criar funções através da experiência à medida que enfrentamos tarefas mais complexas.
+Aprenderemos mais sobre como criar funções através da experiência à medida em que avançamos para tarefas mais complexas.
 
 ## _Namespaces_
 
@@ -329,22 +325,6 @@ y+5
 
 10\. Repita o exercício 8, mas desta vez use `map_dbl`.
 
-Onze\. Gráfico $S_n$ versus $n$. Use pontos definidos por $n=1,\dots,25$.
+11\. Gráfico $S_n$ versus $n$. Use pontos definidos por $n=1,\dots,25$.
 
 12\. Confirme se a fórmula para esta soma é $S_n= n(n+1)(2n+1)/6$.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
