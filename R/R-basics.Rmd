@@ -99,7 +99,7 @@ rm(fifty_states)
 ```
 
 
-A Califórnia, por exemplo, tem uma população maior que o Canadá. 20 estados dos EUA têm populações maiores que a Noruega. Em alguns aspectos, a variabilidade entre os estados dos EUA é semelhante à variabilidade entre países da Europa. Além disso, embora não esteja incluído nas tabelas acima, as taxas de homicídio na Lituânia, Ucrânia e Rússia são superiores a quatro por 100.000. Então, talvez as notícias que o preocupam sejam superficiais demais. Você tem opções de onde pode morar e quer determinar a segurança de cada estado em particular. Podemos ter uma percepão geral ao examinar dados relacionados a homicídios por armas de fogo nos EUA no ano de 2010 usando R.
+A Califórnia, por exemplo, tem uma população maior que o Canadá. Além disso, 20 estados dos EUA têm populações maiores que a Noruega. Em alguns aspectos, a variabilidade entre os estados dos EUA é semelhante à variabilidade entre países da Europa. Além disso, embora não esteja incluído nas tabelas acima, as taxas de homicídio na Lituânia, Ucrânia e Rússia são superiores a quatro por 100.000. Então, talvez as notícias que o preocupam sejam superficiais demais. Você tem opções de onde pode morar e quer determinar a segurança de cada estado em particular. Podemos ter uma percepão geral ao examinar dados relacionados a homicídios por armas de fogo nos EUA no ano de 2010 usando R.
 
 Antes de começarmos o nosso exemplo, precisamos discutir a logística e alguns dos componentes necessários para obter habilidades mais avançadas de R. Esteja ciente de que a utilidade de alguns desses componentes nem sempre será imediatamente óbvia, entretanto, mais adiante neste livro, você apreciará dominar essas habilidades.
 
@@ -107,14 +107,14 @@ Antes de começarmos o nosso exemplo, precisamos discutir a logística e alguns 
 
 Antes de começarmos com o conjunto de dados motivadores, precisamos revisar o básico de R.
 
-Objetos ###
+### Objetos
 
 Suponha que alguns alunos do ensino médio nos solicitem ajuda para resolver várias equações quadráticas da forma $ax^2+bx+c = 0$. A fórmula quadrática nos oferece as soluções:
 
 $$
-\frac{-b - \sqrt{b^2 - 4ac}}{2a}\,\, \mbox{ and } \frac{-b + \sqrt{b^2 - 4ac}}{2a}
+\frac{-b - \sqrt{b^2 - 4ac}}{2a}\,\, \mbox{ e } \frac{-b + \sqrt{b^2 - 4ac}}{2a}
 $$
-que, é claro, mudam dependendo dos valores de $a$, $b$ e $c$. Uma vantagem das linguagens de programação é poder definir variáveis e escrever expressões com elas, como é feito na matemática, para obter uma solução numérica. Escreveremos um código geral para a equação quadrática abaixo, mas se formos solicitados a resolver $x^2 + x -1 = 0$, então definimos:
+que, é claro, mudam dependendo dos valores de $a$, $b$ e $c$. Uma vantagem das linguagens de programação é que podemos definir variáveis e escrever expressões com elas, semelhante à maneira como fazemos isso na matemática, mas obter uma solução numérica. Escreveremos um código geral para a equação quadrática abaixo, mas se formos solicitados a resolver $x^2 + x -1 = 0$, então definimos:
 
 ```{r}
 a <- 1
@@ -124,9 +124,9 @@ c <- -1
 
 que armazena os valores para uso posterior. Nós usamos `<-` para atribuir valores a variáveis.
 
-Também podemos atribuir valores usando `=` ao invés de `<-`, mas recomendamos não usar `=` evitar confusão.
+Também podemos atribuir valores usando `=` ao invés de `<-`, mas recomendamos não usar `=` para evitar confusão.
 
-Copie e cole o código acima no seu console para definir as três variáveis. Observe que R não imprime nada quando fazemos essa atribuição. Isso significa que os objetos foram definidos com sucesso. Se eles tivessem cometido um erro, uma mensagem de erro teria aparecido.
+Copie e cole o código acima no seu console para definir as três variáveis. Observe que R não imprime nada quando fazemos essa atribuição. Isso significa que os objetos foram definidos com sucesso. Caso tivesse cometido algum erro, você teria recebido uma mensagem de erro.
 
 Para ver o valor armazenado em uma variável, simplesmente pedimos que R avalie `a` e isso mostra o valor armazenado:
 
@@ -134,19 +134,19 @@ Para ver o valor armazenado em uma variável, simplesmente pedimos que R avalie 
 a
 ```
 
-Uma maneira mais explícita de pedir que R mostre o valor armazenado em `a` é usar `print` assim:
+Uma maneira mais explícita de pedir ao R para mostrar o valor armazenado em `a` é usar `print` desta forma:
 
 ```{r}
 print(a)
 ```
 
-Usamos o termo _object_ para descrever coisas armazenadas em R. Variáveis são exemplos, mas objetos também podem ser entidades mais complicadas, como funções, descritas mais adiante.
+Usamos o termo _object_ (objeto) para descrever coisas armazenadas em R. Variáveis são exemplos, mas objetos também podem ser entidades mais complicadas, tais como funções, que serão descritas mais adiante.
 
 
 
-### O espaço de trabalho
+### O espaço de trabalho (_workspace_)
 
-Conforme definimos objetos no console, estamos alterando o espaço de trabalho (_workspace_ em inglês). Você pode ver todas as variáveis salvas no seu espaço de trabalho digitando:
+Conforme definimos os objetos no console, estamos fazendo alterações no espaço de trabalho (_workspace_ em inglês). Você pode ver todas as variáveis salvas no seu espaço de trabalho digitando:
 
 ```{r}
 ls()
@@ -158,7 +158,7 @@ No RStudio, a guia _Environment_ mostra os valores:
 knitr::include_graphics(file.path(img_path,"rstudio-environment.png"))
 ```
 
-Devemos ver `a`, `b` e `c`. Se eles tentarem recuperar o valor de uma variável que não está em seus espaços de trabalho, eles receberão uma mensagem de erro. Por exemplo, se eles escrevem `x`, você verá o seguinte: `Error: object 'x' not found`.
+Devemos ver `a`, `b` e `c`. Se tentar recuperar o valor de uma variável que não está em seu espaço de trabalho, você receberá uma mensagem de erro. Por exemplo, se você escrever `x`, verá a seguinte mensagem: `Error: object 'x' not found` (Erro: objeto 'x' não encontrado).
 
 Agora, como esses valores são armazenados em variáveis, para resolver nossa equação, usamos a fórmula quadrática:
 
@@ -170,20 +170,20 @@ Agora, como esses valores são armazenados em variáveis, para resolver nossa eq
 
 ### Funções
 
-Uma vez definidas as variáveis, o processo de análise de dados geralmente pode ser descrito como uma série de funções aplicadas aos dados. R inclui várias funções predefinidas e a maioria das linhas de análise que construímos fazem uso extensivo delas.
+Uma vez definidas as variáveis, o processo de análise de dados geralmente pode ser descrito como uma série de _funções_ aplicadas aos dados. R inclui diversas funções predefinidas e a maioria dos conjuntos de análise que construímos fazem uso extensivo delas.
 
-Nós já usamos as funções `install.packages`, `library` e `ls`. Também usamos a função `sqrt` para resolver a equação quadrática acima. Existem muitas funções predefinidas e ainda mais podem ser adicionadas através de pacotes. Eles não aparecem nos seus espaços de trabalho porque não foram definidos, mas estão disponíveis para uso imediato.
+Nós já usamos as funções `install.packages`, `library` e `ls`. Também usamos a função `sqrt` para resolver a equação quadrática acima. Existem muitas funções predefinidas e ainda mais podem ser adicionadas através de pacotes. Essas funções não aparecem no espaço de trabalho porque não foi você quem as definiu, mas elas estão disponíveis para uso imediato.
 
-Em geral, precisamos usar parênteses para avaliar uma função. Se eles escreverem `ls`, a função não é avaliada e, em vez disso, R mostra o código que a define. Se eles escreverem `ls()`, a função é avaliada e, como já mostrado, vemos objetos no espaço de trabalho.
+Em geral, precisamos usar parênteses para avaliar uma função. Se você escrever `ls`, a função não é avaliada e, em vez disso, R mostra o código que a define. Se você escrever `ls()`, a função é avaliada e, como já mostrado, listamos os objetos no espaço de trabalho.
 
-A diferença de `ls`, a maioria das funções requer um ou mais argumentos. Abaixo está um exemplo de como atribuímos um objeto ao argumento da função `log`. Lembre-se de que anteriormente definimos `a` como 1:
+Diferente de `ls`, a maioria das funções requer um ou mais _argumentos_. Abaixo está um exemplo de como atribuímos um objeto como argumento da função `log`. Lembre-se de que anteriormente definimos `a` como 1:
 
 ```{r}
 log(8)
 log(a)
 ```
 
-Eles podem descobrir o que a função espera e o que faz, revendo alguns manuais muito úteis incluídos no R. Eles podem obter ajuda para usar a função. `help` assim:
+Você pode descobrir o que a função espera e o que faz, revendo os muito úteis manuais incluídos no R. Você pode obter ajuda usando a função `help` assim:
 
 ```{r, eval=FALSE}
 help("log")
@@ -195,32 +195,32 @@ Para a maioria das funções, também podemos usar esta abreviação:
 ?log
 ```
 
-A página de ajuda mostrará quais argumentos a função espera. Por exemplo, `log` precisa de `x` e `base` para correr. No entanto, alguns argumentos são obrigatórios e outros são opcionais. Você pode determinar quais são opcionais anotando no documento de ajuda quais padrões são atribuídos com `=`. Definir isso é opcional. Por exemplo, a base da função `log` o padrão é `base = exp(1)` fazendo `log` o logaritmo natural padrão.
+A página de ajuda mostrará quais argumentos a função está esperando. Por exemplo, `log` precisa de um valor `x` e uma `base` para executar. Entretanto, alguns argumentos são obrigatórios e outros são opcionais. Você pode determinar quais argumentos são opcionais observando no documento de ajuda quais padrões são atribuídos com `=`. Definir tais argumentos é opcional. Por exemplo, a base da função `log` por padrão é `base = exp(1)` fazendo `log` o logaritmo natural padrão.
 
-Para dar uma rápida olhada nos argumentos sem abrir o sistema de ajuda, você pode escrever:
+Para dar uma olhada rápida nos argumentos sem abrir o sistema de ajuda, você pode escrever:
 
 ```{r}
 args(log)
 ```
 
-Eles podem alterar os valores padrão simplesmente atribuindo outro objeto:
+Você pode alterar os valores padrão simplesmente atribuindo outro objeto:
 
 ```{r}
 log(8, base = 2)
 ```
 
-Lembre-se de que não especificamos o argumento `x` assim sendo:
+Lembre-se de que não é necessário atribuir o argumento `x` desta forma:
 ```{r}
 log(x = 8, base = 2)
 ```
 
-O código acima funciona, mas também podemos economizar um pouco de digitação: se eles não usarem um nome de argumento, R assume que eles estão inserindo argumentos na ordem em que são exibidos na página de ajuda ou por `args`. Portanto, ao não usar os nomes, R assume que os argumentos são `x` seguido por `base`:
+O código acima funciona, mas também podemos economizar um pouco de digitação: se o nome do argumento não for especificado, R assume que você está inserindo argumentos na ordem em que são exibidos na página de ajuda ou nos `args`. Portanto, ao não usar os nomes, R assume que os argumentos são `x` seguido pela `base`:
 
 ```{r}
 log(8,2)
 ```
 
-Se eles usarem os nomes dos argumentos, podemos incluí-los na ordem que desejamos:
+Se os nomes dos argumentos forem usados, então podemos incluí-los em qualquer ordem:
 
 ```{r}
 log(base = 2, x = 8)
@@ -228,7 +228,7 @@ log(base = 2, x = 8)
 
 Para especificar argumentos, devemos usar `=` e não `<-`.
 
-Existem algumas exceções à regra de que funções precisam que parênteses sejam avaliados. Entre estes, os mais utilizados são os operadores aritméticos e relacionais. Por exemplo:
+Existem algumas exceções à regra de que funções precisam que parênteses para serem avaliadas. Entre essas exceções, os mais utilizados são os operadores aritméticos e relacionais. Por exemplo:
 
 ```{r}
 2^3
