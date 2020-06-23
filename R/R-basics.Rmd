@@ -144,9 +144,9 @@ Usamos o termo _object_ (objeto) para descrever coisas armazenadas em R. Variáv
 
 
 
-### O espaço de trabalho (_workspace_)
+### A área de trabalho (_workspace_)
 
-Conforme definimos os objetos no console, estamos fazendo alterações no espaço de trabalho (_workspace_ em inglês). Você pode ver todas as variáveis salvas no seu espaço de trabalho digitando:
+Conforme definimos os objetos no console, estamos fazendo alterações na área de trabalho (_workspace_ em inglês ou ainda espaço de trabalho). Você pode ver todas as variáveis salvas no sua área de trabalho digitando:
 
 ```{r}
 ls()
@@ -158,7 +158,7 @@ No RStudio, a guia _Environment_ mostra os valores:
 knitr::include_graphics(file.path(img_path,"rstudio-environment.png"))
 ```
 
-Devemos ver `a`, `b` e `c`. Se tentar recuperar o valor de uma variável que não está em seu espaço de trabalho, você receberá uma mensagem de erro. Por exemplo, se você escrever `x`, verá a seguinte mensagem: `Error: object 'x' not found` (Erro: objeto 'x' não encontrado).
+Devemos ver `a`, `b` e `c`. Se tentar recuperar o valor de uma variável que não está em sua área de trabalho, você receberá uma mensagem de erro. Por exemplo, se você escrever `x`, verá a seguinte mensagem: `Error: object 'x' not found` (Erro: objeto 'x' não encontrado).
 
 Agora, como esses valores são armazenados em variáveis, para resolver nossa equação, usamos a fórmula quadrática:
 
@@ -172,9 +172,9 @@ Agora, como esses valores são armazenados em variáveis, para resolver nossa eq
 
 Uma vez definidas as variáveis, o processo de análise de dados geralmente pode ser descrito como uma série de _funções_ aplicadas aos dados. R inclui diversas funções predefinidas e a maioria dos conjuntos de análise que construímos fazem uso extensivo delas.
 
-Nós já usamos as funções `install.packages`, `library` e `ls`. Também usamos a função `sqrt` para resolver a equação quadrática acima. Existem muitas funções predefinidas e ainda mais podem ser adicionadas através de pacotes. Essas funções não aparecem no espaço de trabalho porque não foi você quem as definiu, mas elas estão disponíveis para uso imediato.
+Nós já usamos as funções `install.packages`, `library` e `ls`. Também usamos a função `sqrt` para resolver a equação quadrática acima. Existem muitas funções predefinidas e ainda mais podem ser adicionadas através de pacotes. Essas funções não aparecem na área de trabalho porque não foi você quem as definiu, mas elas estão disponíveis para uso imediato.
 
-Em geral, precisamos usar parênteses para avaliar uma função. Se você escrever `ls`, a função não é avaliada e, em vez disso, R mostra o código que a define. Se você escrever `ls()`, a função é avaliada e, como já mostrado, listamos os objetos no espaço de trabalho.
+Em geral, precisamos usar parênteses para avaliar uma função. Se você escrever `ls`, a função não é avaliada e, em vez disso, R mostra o código que a define. Se você escrever `ls()`, a função é avaliada e, como já mostrado, listamos os objetos na área de trabalho.
 
 Diferente de `ls`, a maioria das funções requer um ou mais _argumentos_. Abaixo está um exemplo de como atribuímos um objeto como argumento da função `log`. Lembre-se de que anteriormente definimos `a` como 1:
 
@@ -258,22 +258,22 @@ ou
 ?">"
 ```
 
-### Outros objetos predefinidos
+### Outros objetos pré-construídos
 
-Existem vários conjuntos de dados incluídos para os usuários praticarem e testarem as funções. Você pode ver todos os conjuntos de dados disponíveis digitando:
+Existem diversos conjuntos de dados (_datasets_) incluídos para os usuários praticarem e testarem funções. Você pode ver todos os _datasets_ disponíveis digitando:
 
 ```{r}
 data()
 ```
 
-Isso mostra o nome do objeto para esses conjuntos de dados. Esses conjuntos de dados são objetos que podem ser usados simplesmente digitando o nome. Por exemplo, se eles escreverem:
+Isso mostra o nome do objeto para esses _datasets_. Esses conjuntos de dados são objetos que podem ser usados simplesmente digitando seu nome. Por exemplo, se você digitar:
 
 ```{r, eval=FALSE}
 co2
 ```
 R mostrará os dados da concentração atmosférica de CO2 de Mauna Loa.
 
-Outros objetos predefinidos são quantidades matemáticas, como a constante $\pi$ e $\infty$:
+Outros objetos pré-construídos (_prebuilt_) são as grandezas matemáticas, como a constante $\pi$ e $\infty$:
 
 ```{r}
 pi
@@ -282,26 +282,25 @@ Inf+1
 
 ### Nomes de variáveis
 
-Nós usamos as letras `a`, `b` e `c` como nomes de variáveis, mas estes podem ser quase qualquer coisa. Algumas regras básicas em R são que os nomes de variáveis devem começar com uma letra, não podem conter espaços e não devem ser variáveis predefinidas em R. Por exemplo, não nomeie uma de suas variáveis. `install.packages` escrevendo algo como:
-`install.packages <- 2`.
+Anteriormente, usamos as letras `a`, `b` e `c` como nomes de variáveis, mas nomes de variáveis podem ser quase qualquer coisa. Algumas regras básicas em R definem apenas que os nomes de variáveis devem começar com uma letra, não podem conter espaços e não devem ser variáveis predefinidas em R. Por exemplo, não nomeie uma de suas variáveis `install.packages` escrevendo algo como: `install.packages <- 2`.
 
 Uma boa convenção a seguir é usar palavras significativas que descrevam o que é armazenado, use apenas letras minúsculas e sublinhados como substitutos de espaços. Para equações quadráticas, podemos usar algo como:
 
 ```{r}
-solution_1 <- (-b + sqrt(b^2 - 4*a*c))/ (2*a)
-solution_2 <- (-b - sqrt(b^2 - 4*a*c))/ (2*a)
+solucao_1 <- (-b + sqrt(b^2 - 4*a*c))/ (2*a)
+solucao_2 <- (-b - sqrt(b^2 - 4*a*c))/ (2*a)
 ```
 
 Para obter mais dicas, recomendamos estudar o guia de estilo de Hadley Wickham^[http://adv-r.had.co.nz/Style.html].
 
-### Como salvar seu espaço de trabalho
+### Como salvar sua área de trabalho
 
-Os valores permanecem no espaço de trabalho até você terminar suas sessões ou excluí-los com a função `rm`. Mas os espaços de trabalho também podem ser salvos para uso posterior. De fato, ao sair do R, o programa pergunta se eles desejam salvar seu espaço de trabalho. Se eles salvarem, na próxima vez que iniciarem o R, o programa restaurará a área de trabalho.
+Valores permanecem na área de trabalho até você encerrar a sessão ou excluí-los com a função `rm`. Mas as áreas de trabalho também podem ser salvas para uso posterior. De fato, ao sair do R, o programa pergunta se você deseja salvar seu _workspace_. Se você salvá-lo, na próxima vez que iniciar o R, o programa restaurará a área de trabalho.
 
-Recomendamos não salvar a área de trabalho dessa maneira, porque, à medida que você começa a trabalhar em projetos diferentes, será mais difícil acompanhar o que está salvo. Em vez disso, recomendamos que você atribua à área de trabalho um nome específico. Eles podem fazer isso usando as funções `save` ou `save.image`. Para carregar, use a função `load`. Ao salvar um espaço de trabalho, recomendamos o sufixo `rda` ou `RData`. No RStudio, eles também podem fazer isso navegando para a guia _Session_e escolhendo_Save Workspace as_. Eles podem carregá-lo usando as opções _Load Workspace_ na mesma guia. Para saber mais, leia as páginas de ajuda (_help pages_ em inglês) em `save`, `save.image` e `load`.
+Não recomendamos salvar a área de trabalho dessa maneira, porque, à medida que você começa a trabalhar em projetos diferentes, se tornará mais difícil acompanhar o que está salvo. Em vez disso, recomendamos que você atribua à área de trabalho um nome específico. Você pode fazer isso usando as funções `save` ou `save.image`. Para carregar, use a função `load`. Ao salvar um _workspace_, recomendamos os sufixos `rda` ou `RData`. No RStudio, você também pode fazer isso navegando até a guia _Session_ e escolhendo a opção _Save Workspace as_ (salvar área de trabalho como). Você pode carregá-los mais tarde usando as opções _Load Workspace_ na mesma guia. Para saber mais, leia as páginas de ajuda de `save`, `save.image` e `load`.
 
 
-### _Motivando scripts_
+### Fundamentando o uso de _scripts_
 
 Para resolver outra equação como $3x^2 + 2x -1$, podemos copiar e colar o código acima, redefinir as variáveis e recalcular a solução:
 
@@ -313,21 +312,21 @@ c <- -1
 (-b - sqrt(b^2 - 4*a*c))/ (2*a)
 ```
 
-Ao criar e salvar um _script_ com o código acima, você não precisa mais redigitar tudo a cada vez, mas simplesmente alterar os nomes das variáveis. Tente escrever o script acima em um editor e observe como é fácil alterar variáveis e obter uma resposta.
+Ao criar e salvar um _script_ com o código acima, não precisaríamos redigitar tudo novamente e, em vez disso, simplesmente alterar os nomes das variáveis. Tente escrever o script acima em um editor e observe como é fácil alterar variáveis e obter uma resposta.
 
-Como comentar seu código
+### Como comentar seu código
 
-Se uma linha de código R começar com o símbolo `#`, não é avaliado. Podemos usar isso para escrever lembretes sobre por que escrevemos um código específico. Por exemplo, no _script_ acima, podemos adicionar:
+Se uma linha de código R começar com o símbolo `#`, ela não é avaliada. Podemos usar isso para escrever lembretes sobre por que escrevemos um código específico. Por exemplo, no _script_ acima, poderíamos adicionar:
 
 
 ```{r, eval=FALSE}
-## Código para calcular la solución a la ecuación cuadrática de la forma ax^2 + bx + c
-## definir las variables
+## Código para calcular a solução de uma equação quadrática de forma ax^2 + bx + c
+## define as variáveis
 a <- 3
 b <- 2
 c <- -1
 
-## ahora calcule la solución
+## agora, calcule a solução
 (-b + sqrt(b^2 - 4*a*c))/ (2*a)
 (-b - sqrt(b^2 - 4*a*c))/ (2*a)
 ```
