@@ -174,7 +174,7 @@ Uma vez definidas as variáveis, o processo de análise de dados geralmente pode
 
 Nós já usamos as funções `install.packages`, `library` e `ls`. Também usamos a função `sqrt` para resolver a equação quadrática acima. Existem muitas funções predefinidas e ainda mais podem ser adicionadas através de pacotes. Essas funções não aparecem na área de trabalho porque não foi você quem as definiu, mas elas estão disponíveis para uso imediato.
 
-Em geral, precisamos usar parênteses para avaliar uma função. Se você escrever `ls`, a função não é avaliada e, em vez disso, R mostra o código que a define. Se você escrever `ls()`, a função é avaliada e, como já mostrado, listamos os objetos na área de trabalho.
+Em geral, precisamos usar parênteses para chamar uma função. Se você escrever `ls`, a função não é avaliada e, em vez disso, R mostra o código que a define. Se você escrever `ls()`, a função é avaliada e, como já mostrado, listamos os objetos na área de trabalho.
 
 Diferente de `ls`, a maioria das funções requer um ou mais _argumentos_. Abaixo está um exemplo de como atribuímos um objeto como argumento da função `log`. Lembre-se de que anteriormente definimos `a` como 1:
 
@@ -334,11 +334,11 @@ c <- -1
 
 ## Exercícios
 
-1\. Qual é a soma dos 100 primeiros números inteiros positivos? A fórmula para a soma dos números inteiros $1$ para $n$ é $n(n+1)/2$. Definir $n=100$ e então use R para calcular a soma de $1$ para $100$ usando a fórmula. Qual é a soma?
+1\. Qual é a soma dos 100 primeiros números inteiros positivos? A fórmula para a soma dos números inteiros de $1$ a $n$ é $n(n+1)/2$. Defina $n=100$ e então use R para calcular a soma de $1$ a $100$ usando a fórmula. Qual é a soma?
 
 2\. Agora use a mesma fórmula para calcular a soma dos números inteiros de 1 a 1000.
 
-3\. Veja a saída de escrever o seguinte código em R:
+3\. Observe o resultado ao digitar o seguinte código em R:
 
 ```{r, eval=FALSE}
 n <- 1000
@@ -346,19 +346,19 @@ x <- seq(1, n)
 sum(x)
 ```
 
-Com base no resultado, o que você acha que as funções fazem `seq` e `sum`? Você pode usar `help`.
+Com base no resultado, o que você acha que as funções fazem `seq` e `sum`? Você pode usar a função `help`.
 
-para. `sum` crie uma lista de números e `seq` adiciona-os.
-b. `seq` crie uma lista de números e `sum` adiciona-os.
-c. `seq` crie uma lista aleatória e `sum` calcula a soma de 1 a 1000.
+a. `sum` cria uma lista de números e `seq` os soma.
+b. `seq` cria uma lista de números e `sum` os soma.
+c. `seq` cria uma lista aleatória e `sum` calcula a soma de 1 a 1000.
 d. `sum` sempre retorna o mesmo número.
 
-4\. Em matemática e programação, dizemos que avaliamos uma função quando substituímos o argumento por um determinado número. Então, se escrevermos `sqrt(4)`, avaliamos a função `sqrt`. Em R, você pode avaliar uma função dentro de outra função. As avaliações acontecem de dentro para fora. Use uma linha de código para calcular o logaritmo, base 10, da raiz quadrada de 100.
+4\. Em matemática e programação, dizemos que executamos uma função quando substituímos o argumento por um determinado número. Então, se digitarmos `sqrt(4)`, executamos a função `sqrt`. Em R, você pode executar uma função dentro de outra função. As execuções acontecem de dentro para fora. Escreva uma linha de código para calcular o logaritmo, base 10, da raiz quadrada de 100.
 
 
-5\. Qual das seguintes opções sempre retornará o valor numérico armazenado em `x`? Você pode tentar os exemplos e usar o sistema de ajuda, se desejar.
+5\. Qual das seguintes opções sempre retornará o valor numérico armazenado em `x`? Você pode testar os exemplos abaixo ou usar o sistema de ajuda, se desejar.
 
-para. `log(10^x)`
+a. `log(10^x)`
 b. `log10(x^10)`
 c. `log(exp(x))`
 d. `exp(log(x, base = 2))`
@@ -366,7 +366,7 @@ d. `exp(log(x, base = 2))`
 
 ## Tipo de dados
 
-Variáveis em R podem ser de tipos diferentes. Por exemplo, precisamos distinguir números de seqüências de caracteres e tabelas de listas de números simples. A função `class` isso nos ajuda a determinar que tipo de objeto temos:
+Variáveis em R podem ser de tipos diferentes. Por exemplo, precisamos distinguir números de sequências de caracteres, e tabelas de simples listas de números. A função `class` nos ajuda a determinar que tipo de objeto temos:
 
 ```{r}
 a <- 2
@@ -375,26 +375,26 @@ class(a)
 
 Para trabalhar com eficiência no R, é importante aprender os diferentes tipos de variáveis e o que podemos fazer com elas.
 
-### _data frames_
+### _Data frames_
 
-Até agora, as variáveis que definimos são apenas um número. Isso não é muito útil para armazenar dados. A maneira mais comum de armazenar um conjunto de dados no R é usar um _data frame_. Conceitualmente, podemos pensar em um _data frame_ como uma tabela com linhas que representam observações e com colunas que representam as diferentes variáveis coletadas para cada observação. _Frames de dados_ são particularmente úteis para conjuntos de dados porque podemos combinar diferentes tipos de dados em um único objeto.
+Até agora, as variáveis que definimos são apenas numéricas. Isso não é muito útil para armazenar dados. A maneira mais comum de armazenar um conjunto de dados em R é usar um _data frame_. Conceitualmente, podemos pensar em um _data frame_ como uma tabela com linhas que representam observações e com colunas que representam as diferentes variáveis coletadas para cada observação. _Data frames_ são particularmente úteis para _datasets_ pois permitem combinar diferentes tipos de dados em um único objeto.
 
-Uma grande proporção dos desafios da análise de dados começa com os dados armazenados em um _data frame_. Por exemplo, armazenamos os dados do nosso exemplo motivador em um _data frame_. Eles podem acessar esse conjunto de dados carregando o pacote __dslabs__ e, em seguida, usando a função `data` carregar o conjunto de dados `murders` :
+Uma grande proporção dos desafios da análise de dados começa com os dados armazenados em um _data frame_. Por exemplo, armazenamos os dados do nosso exemplo motivador em um _data frame_. Você pode acessar esse _dataset_ carregando a biblioteca __dslabs__ e, em seguida, usando a função `data` carregar o _dataset_ `murders` :
 
 ```{r}
 library(dslabs)
 data(murders)
 ```
 
-Para verificar se este é um _data frame_, escrevemos:
+Para verificar se esse objeto é de fato um _data frame_, digitamos:
 
 ```{r}
 class(murders)
 ```
 
-### Como examinar um objeto
+### Examinando um objeto
 
-A função `str` é útil obter mais informações sobre a estrutura de um objeto:
+A função `str` é útil para obter mais informações sobre a estrutura de um objeto:
 
 ```{r, echo=FALSE}
 # change str to make sure it stays within margins
@@ -416,9 +416,9 @@ Isso nos diz muito mais sobre o objeto. Vemos que a tabela possui 51 linhas (50 
 head(murders)
 ```
 
-Nesse conjunto de dados, cada estado é considerado uma observação e cinco variáveis são incluídas para cada estado.
+Nesse conjunto de dados, cada estado é considerado uma observação e cinco variáveis são reportadas para cada estado.
 
-Antes de continuar com a resposta à nossa pergunta original sobre os diferentes estados, vamos revisar mais sobre os componentes deste objeto.
+Antes de irmos além em responder à nossa pergunta original sobre os diferentes estados, vamos revisar um pouco mais sobre os componentes deste objeto.
 
 ### O operador de acesso: `$`
 
@@ -428,33 +428,33 @@ Para nossa análise, precisaremos acessar as diferentes variáveis representadas
 murders$population
 ```
 
-Mas como sabíamos usar `population`? Anteriormente, aplicando a função `str` para o objeto `murders` nós revelamos os nomes de cada uma das cinco variáveis armazenadas nesta tabela. Podemos acessar rapidamente nomes de variáveis usando:
+Mas como sabíamos que havia uma coluna denominada `population`? Anteriormente, ao aplicar a função `str` ao objeto `murders`, descobrimos os nomes de cada uma das cinco variáveis armazenadas nesta tabela. Podemos acessar rapidamente nomes de variáveis usando:
 
 ```{r}
 names(murders)
 ```
 
-É importante saber que a ordem das entradas no `murders$population` ele preserva a ordem das linhas em nossa tabela de dados. Isso nos permitirá manipular uma variável com base nos resultados de outra. Por exemplo, podemos classificar os nomes dos estados de acordo com o número de assassinatos.
+É importante saber que a ordem das entradas em `murders$population` preserva a ordem das linhas em nossa tabela de dados. Isso nos permitirá manipular uma variável com base nos resultados de outra. Por exemplo, podemos classificar os nomes dos estados de acordo com o número de assassinatos.
 
 **Dica**: R vem com uma funcionalidade de preenchimento automático muito boa, que evita o trabalho de digitar todos os nomes. Escreva `murders$p` e pressione a tecla _tab_ no teclado. Essa funcionalidade e muitos outros recursos úteis de preenchimento automático estão disponíveis no RStudio.
 
-Vetores: numérico, caractere e lógico
+### Vetores: numéricos, caracteres e lógicos
 
-O objeto `murders$population` não é um número, mas vários. Chamamos esse tipo de objeto de _vectors_. Um número único é tecnicamente um vetor de comprimento 1, mas em geral usamos o termo vetores para se referir a objetos com várias entradas. A função `length` informa quantas entradas há no vetor:
+O objeto `murders$population` não é um número, mas vários. Chamamos esse tipo de objeto de _vectors_ (vetores). Um número único é tecnicamente um vetor de comprimento 1, mas em geral usamos o termo vetores para se referir a objetos com várias entradas. A função `length` informa quantas entradas existem no vetor:
 
 ```{r}
 pop <- murders$population
 length(pop)
 ```
 
-Esse vetor específico é _numeric_, pois os tamanhos da população são números:
+Esse vetor específico é denominado numérico (_numeric_), pois os tamanhos da população são números:
 
 ```{r}
 class(pop)
 ```
 Em um vetor numérico, cada entrada deve ser um número.
 
-Para armazenar uma cadeia de caracteres, os vetores também podem ser da classe _character_. Por exemplo, os nomes dos estados são caracteres:
+Para armazenar uma cadeia de caracteres (_strings_), os vetores também podem ser da classe _character_. Por exemplo, os nomes dos estados são caracteres:
 
 ```{r}
 class(murders$state)
@@ -462,7 +462,7 @@ class(murders$state)
 
 Assim como nos vetores numéricos, todas as entradas em um vetor de caracteres devem ter um caractere.
 
-Outro tipo importante de vetores são os vetores lógicos. Estes devem ser `TRUE` ou `FALSE`.
+Outro tipo importante de vetores são os vetores lógicos (_logical_). Estes devem ser `TRUE` (verdadeiro) ou `FALSE` (falso).
 
 ```{r}
 z <- 3 == 2
@@ -470,9 +470,9 @@ z
 class(z)
 ```
 
-Aqui o `==` é um operador relacional que pergunta se 3 é igual a 2. Em R, use apenas um `=` atribuir uma variável, mas se eles usarem duas `==` então avalia se os objetos são os mesmos.
+Aqui o `==` é um operador relacional que pergunta se 3 é igual a 2. Em R, use apenas um `=` atribuir uma variável, mas se usar duas `==` então você estará avaliando se os objetos são iguais.
 
-Você pode ver isso escrevendo:
+Você pode ver outros operadores relacionais escrevendo:
 
 ```{r, eval=FALSE}
 ?Comparison
@@ -480,15 +480,15 @@ Você pode ver isso escrevendo:
 
 Nas próximas seções, você verá como os operadores relacionais podem ser úteis.
 
-Discutimos as características mais importantes dos vetores após os exercícios a seguir.
+Discutiremos as características mais importantes dos vetores após os exercícios a seguir.
 
 
-**Avançado**: matematicamente, os valores em `pop` eles são números inteiros e há uma classe inteira em R. No entanto, por padrão, os números recebem uma classe numérica mesmo quando são números inteiros redondos. Por exemplo, `class(1)` retorna numérico. Eles podem convertê-lo em um número inteiro de classe com a função `as.integer()` ou adicionando um `L` assim: `1L`. Considere a classe escrevendo: `class(1L)`
+**Avançado**: matematicamente, os valores em `pop` são números inteiros e há uma classe para números inteiros (_integer_) em R. No entanto, por padrão, os números recebem a classe numérica (_numeric_) mesmo quando são números inteiros redondos. Por exemplo, `class(1)` retorna _numeric_. Você pode convertê-lo para classe _integer_ com a função `as.integer()` ou adicionando um `L` assim: `1L`. Observe a classe escrevendo: `class(1L)`
 
 
-Fatores ### {#factors}
+### Fatores (_factors_)
 
-No conjunto de dados `murders`, você também pode esperar que a região seja um vetor de caracteres. No entanto, não é:
+No _dataset_ `murders`, nós poderíamos esperar que a região também fosse um vetor de caracteres. Entretanto, não é:
 
 ```{r}
 class(murders$region)
