@@ -1,10 +1,10 @@
 # Conceitos básicos de programação
 
-Ensinamos R porque facilita muito a análise de dados, o tema principal deste livro. Ao programar em R, podemos executar com eficiência análise exploratória de dados, criar fluxos de análise de dados e preparar a visualização de dados para comunicar resultados. No entanto, R não é apenas um ambiente de análise de dados, mas uma linguagem de programação. Programadores avançados de R podem desenvolver pacotes complexos e até melhorar o R, embora não abordemos a programação avançada neste livro. No entanto, nesta seção, apresentamos três conceitos-chave de programação: expressões condicionais, execução em laço do tipo `for` e funções. Estes não são apenas os principais componentes da programação avançada, mas, às vezes, são úteis durante a análise de dados. Também observamos que existem várias funções amplamente usadas para programação em R, mas que não discutiremos neste livro. Elas incluem `split`, `cut`, `do.call` e `Reduce`, bem como o pacote __data.table__. Vale a pena aprender como usá-las, se você quiser se tornar programador especialista em R.
+Ensinamos R pelo fato de ele facilitar significativamente a análise de dados, o tema principal deste livro. Ao programar em R, podemos executar eficientemente a análise exploratória de dados, criar fluxos de análise de dados e preparar a visualização de dados para comunicar resultados. No entanto, R não é apenas um ambiente de análise de dados, mas uma linguagem de programação. Programadores avançados de R podem desenvolver pacotes complexos e até melhorar o R, embora não abordemos estes tópicos neste livro. No entanto, nesta seção, apresentamos três conceitos-chave de programação: expressões condicionais, execução em laço do tipo `for` e funções. Estes não são apenas os principais componentes da programação avançada, mas, às vezes, são úteis durante a análise de dados. Também observamos que existem várias funções amplamente usadas para programação em R, mas que não discutiremos neste livro. Elas incluem `split`, `cut`, `do.call` e `Reduce`, bem como o pacote __data.table__. Vale a pena aprender como usá-las, se você quiser se tornar um programador especialista em R.
 
 ## Expressões condicionais {#conditionals}
 
-Expressões condicionais são uma das características básicas da programação. Eles são usados para o que é chamado de controle de fluxo. A expressão condicional mais comum é a instrução _if-else_. Em R, podemos fazer muitas análises de dados sem condicionais. No entanto, eles aparecem ocasionalmente e você precisará deles assim que começar a escrever suas próprias funções e pacotes.
+Expressões condicionais são uma das características básicas da programação. Elas são usados para o que é chamado de controle de fluxo. A expressão condicional mais comum é a instrução _if-else_. Em R, podemos fazer muitas análises de dados sem expressões condicionais. No entanto, eles aparecem ocasionalmente e você precisará delas assim que começar a escrever suas próprias funções e pacotes.
 
 Aqui está um exemplo muito simples que mostra a estrutura geral de uma instrução _if-else_. A idéia básica é retornar o inverso de `a`, a menos que `a` seja 0:
 
@@ -26,7 +26,7 @@ data(murders)
 murder_rate <- murders$total/ murders$population*100000
 ```
 
-Aqui está um exemplo muito simples que nos diz quais estados, se houver, têm uma taxa de homicídios inferior a 0,5 por 100.000 habitantes. As declarações `if` protegem-nos de situaçõesm em que nenhum estado satisfaz a condição.
+Aqui está um exemplo muito simples que nos diz quais estados, se houver, têm uma taxa de homicídios inferior a 0,5 por 100.000 habitantes. As declarações `if` protegem-nos de situações em que nenhum estado satisfaz a condição.
 
 ```{r}
 ind <- which.min(murder_rate)
@@ -48,8 +48,7 @@ if(murder_rate[ind] < 0.25){
 }
 ```
 
-
-Uma função relacionada que é muito útil é `ifelse`. Essa função usa três argumentos: um lógico e duas respostas possíveis. Se o lógico for `TRUE`, retorna o valor no segundo argumento e, se for `FALSE`, retorna o valor no terceiro argumento. Aqui está um exemplo:
+Uma função relacionada que é muito útil é `ifelse`. Ela usa três argumentos: um lógico e duas respostas possíveis. Se o lógico for `TRUE`, retorna o valor no segundo argumento e, se for `FALSE`, retorna o valor no terceiro argumento. Aqui está um exemplo:
 
 ```{r}
 a <- 0
@@ -93,7 +92,7 @@ all(z)
 
 ## Como definir funções
 
-À medida que ganha mais experiência, você observará que realizará as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor `x` usando funções `sum` e `length`: `sum(x)/length(x)`. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função `mean`, que está incluída na pacote __base__ do R. No entanto, você encontrará situações em que a função ainda não existe e R permite que você escreva uma. Uma versão simplificada de uma função que calcula a média pode ser implementada da seguinte maneira:
+À medida que ganha mais experiência, você observará que realizará as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor `x` usando funções `sum` e `length`: `sum(x)/length(x)`. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função `mean`, que está incluída na pacote __base__ do R. No entanto, você encontrará situações em que a função ainda não existe e o R permite que você escreva uma. Uma versão simplificada de uma função que calcula a média pode ser implementada da seguinte maneira:
 
 ```{r}
 avg <- function(x){
@@ -120,7 +119,7 @@ s
 
 Note como `s` ainda é `r s` depois que executa-se `avg`.
 
-Em geral, funções são objetos, portanto, atribuímos nomes de variáveis a eles com `<-`. A função `function` diz a R que ele está prestes a definir uma função. A forma geral da definição de uma função é assim:
+Em geral, funções são objetos, portanto, atribuímos nomes de variáveis a eles com `<-`. A função `function` diz ao R que ele está prestes a definir uma função. A forma geral da definição de uma função é assim:
 
 ```{r, eval=FALSE}
 my_function <- function(VARIABLE_NAME){
@@ -138,11 +137,11 @@ ifelse(arithmetic, sum(x)/n, prod(x)^(1/n))
 }
 ```
 
-Aprenderemos mais sobre como criar funções através da experiência à medida em que avançamos para tarefas mais complexas.
+Aprenderemos mais sobre como criar funções através da experiência, à medida em que avançamos para tarefas mais complexas.
 
 ## _Namespaces_
 
-Quando eles começarem a se tornar usuários experientes do R, provavelmente precisarão carregar vários plug-ins de pacotes (_add-ons_) para algumas de suas varreduras. Assim que fazem isso, é provável que descubram que dois pacotes usam o mesmo nome para duas funções diferentes. E muitas vezes essas funções fazem coisas completamente diferentes. De fato, já vimos isso porque os pacotes base R __dplyr__e__stats__ definem uma função `filter`. Existem outros cinco exemplos em __dplyr__. Sabemos disso porque, quando carregamos __dplyr__ pela primeira vez, vemos a seguinte mensagem:
+À medida em que você se torna mais experiente em R, é mais provável que você precise carregar vários pacotes para algumas de suas análises. Quando começar a fazer isso, você observará que é possível que dois pacotes diferentes utilizem o mesmo nome para duas funções distintas. E muitas vezes essas funções fazem coisas completamente diferentes. Na verdade, você já encontrou este problema, visto que ambos os pacotes __stats__ e __dplyr__ definem uma função `filter`. Existem outros cinco exemplos em __dplyr__. Sabemos disso porque, quando carregamos __dplyr__ pela primeira vez, vemos a seguinte mensagem:
 
 ```
 The following objects are masked from ‘package:stats’:
@@ -154,53 +153,53 @@ The following objects are masked from ‘package:base’:
 intersect, setdiff, setequal, union
 ```
 
-Então, o que R faz quando escrevemos `filter`? Você usa a função __dplyr__ou a função__stats__? Do nosso trabalho anterior, sabemos que ele usa __dplyr__. Mas e se quisermos usar __stats__?
+Então, o que R faz quando digitamos `filter`? Ele usa a função definida no __dplyr__ ou a do __stats__? Por nossa experiência anterior, sabemos que ele usa __dplyr__. Mas e se quisermos usar a do __stats__?
 
-Essas funções vivem em diferentes _namespaces_. R seguirá uma determinada ordem ao procurar uma função nesses _namespaces_. Você pode ver o pedido escrevendo:
+Essas funções vivem em diferentes _namespaces_. O R seguirá uma determinada ordem ao procurar uma função nesses _namespaces_. Você pode ver a ordem digitando:
 
 ```{r, eval=FALSE}
 search()
 ```
 
-A primeira entrada nesta lista é o ambiente global que inclui todos os objetos que eles definem.
+A primeira entrada nesta lista é o ambiente global que inclui todos os objetos que você define.
 
-E daí se quisermos usar o `filter` __stats__ em vez de `filter` __dplyr__mas__dplyr__ aparece primeiro na lista de pesquisa? Eles podem forçar o uso de um _namespace_ específico usando dois pontos duplos ( `::`) assim:
+E se quisermos usar o `filter` definido no pacote __stats__ ao invés daquela definida no __dplyr__, mesmo com o __dplyr__ aparecendo primeiro na lista de pesquisa? Você pode forçar o uso de um _namespace_ específico usando dois pontos duplos ( `::`), assim:
 
 ```{r, eval=FALSE}
 stats::filter
 ```
 
-Se queremos ter certeza absoluta de que usamos o `filter` __dplyr__, podemos usar:
+Se quisermos ter certeza absoluta de que utilizaremos o `filter` do __dplyr__, podemos usar:
 
 ```{r, eval=FALSE}
 dplyr::filter
 ```
 
-Lembre-se de que, se queremos usar uma função em um pacote sem carregar o pacote inteiro, também podemos usar dois pontos duplos.
+Lembre-se de que, se quisermos usar uma função de um pacote sem carregá-lo inteiramente, também podemos usar dois pontos duplos.
 
-Para obter mais informações sobre esse tópico mais avançado, recomendamos o livro de pacotes R^[http://r-pkgs.had.co.nz/namespace.html].
+Para obter mais informações sobre esse tópico mais avançado, recomendamos o livro _R packages_^[http://r-pkgs.had.co.nz/namespace.html].
 
-## Loops para
+## Laços do tipo for
 
-A fórmula para a soma da série $1+2+\dots+n$ é $n(n+1)/2$. E se não tivéssemos certeza de que essa era a função correta? Como poderíamos verificar? Usando o que aprendemos sobre funções, podemos criar um que calcule $S_n$:
+A fórmula para a soma da série $1+2+\dots+n$ é $n(n+1)/2$. E se não tivéssemos certeza de que essa era a função correta? Como poderíamos verificar? Usando o que aprendemos sobre funções, podemos criar uma que calcule $S_n$:
 
 ```{r}
 compute_s_n <- function(n){
-x <- 1:n
-sum(x)
+  x <- 1:n
+  sum(x)
 }
 ```
 
-Como podemos calcular $S_n$ para vários valores de $n$, digamos $n=1,\dots,25$? Escrevemos 25 linhas de chamada de código `compute_s_n`? Não. É para isso que servem os loops de programação. Nesse caso, estamos realizando a mesma tarefa repetidamente, e a única coisa que está mudando é o valor de $n$. Os loops for permitem definir o intervalo que nossa variável leva (no nosso exemplo $n=1,\dots,10$), altere o valor e avalie a expressão enquanto você faz o loop _.
+Como podemos calcular $S_n$ para vários valores de $n$, digamos $n=1,\dots,25$? Escrevemos 25 linhas de código executando `compute_s_n`? Não. É para isso que serve a execução em laço (_loop_). Nesse caso, a mesma tarefa é realizada repetidamente, e a única coisa muda é o valor de $n$. Os laços do tipo _for_ permitem-nos definir o intervalo de mudança da nossa variável (no nosso exemplo $n=1,\dots,10$), alterar o valor e reavaliar a expressão.
 
 Talvez o exemplo mais simples de um loop for seja esse código inútil:
 ```{r}
 for(i in 1:5){
-print(i)
+  print(i)
 }
 ```
 
-Aqui está o loop for que escreveríamos para o nosso exemplo $S_n$:
+Aqui está o laço do tipo _for_ para o nosso exemplo $S_n$:
 
 ```{r}
 m <- 25
@@ -209,6 +208,7 @@ for(n in 1:m){
 s_n[n] <- compute_s_n(n)
 }
 ```
+
 Em cada iteração $n=1$, $n=2$, etc ..., calculamos $S_n$ e mantemos na entrada $n$ do `s_n`.
 
 Agora podemos criar um gráfico para procurar um padrão:
@@ -223,7 +223,6 @@ rafalib::mypar()
 n <- 1:m
 plot(n, s_n)
 ```
-
 
 Se você percebeu que parece quadrático, está no caminho certo porque a fórmula é $n(n+1)/2$.
 <!--
@@ -242,9 +241,9 @@ lines(n, n*(n+1)/2)
 
 -->
 
-## Vectorização e funcional {#vectorization}
+## Vectorização e funcionais {#vectorization}
 
-Embora os for-loops sejam um conceito importante para entender, eles não são muito usados em R. À medida que aprendem mais R, eles descobrirão que _vectoring_ é preferível aos for-loops, pois resulta em um código mais curto e claro. . Já vimos exemplos na seção aritmética vetorial. Uma função _vectorized_ é uma função que aplicará a mesma operação a cada um dos vetores.
+Embora os laços do tipo _for_ sejam um conceito importante para entender, eles não são muito usados em R. À medida em que você aprende mais R, descobre que vetorização é preferível aos laços/loops, pois resulta em um código mais curto e claro. Já vimos exemplos na seção de aritmética vetorial. Uma função vetorizada é uma função que aplicará a mesma operação a cada um dos seus elementos.
 
 ```{r}
 x <- 1:10
