@@ -364,7 +364,7 @@ c. `log(exp(x))`
 d. `exp(log(x, base = 2))`
 
 
-## Tipo de dados
+## Tipos de dados
 
 Variáveis em R podem ser de tipos diferentes. Por exemplo, precisamos distinguir números de sequências de caracteres, e tabelas de simples listas de números. A função `class` nos ajuda a determinar que tipo de objeto temos:
 
@@ -501,11 +501,11 @@ class(murders$region)
 levels(murders$region)
 ```
 
-Em segundo plano, R armazena esses _níveis_ como números inteiros e mantém um mapa para acompanhar os rótulos. Isso é mais eficiente em termos de memória do que armazenar todos os caracteres.
+Em segundo plano, R armazena esses _levels_ (níveis) como números inteiros (_integers_) e mantém um mapa para acompanhar os rótulos. Isso é mais eficiente quando se considera o uso de memória do que armazenar todos os caracteres.
 
-Observe que os níveis têm uma ordem diferente da ordem de aparência no fator. Em R, por padrão, os níveis são organizados em ordem alfabética. No entanto, geralmente queremos que os níveis sigam uma ordem diferente. Eles podem especificar uma ordem através do argumento `levels` quando eles criam o fator com a função `factor`. Por exemplo, no conjunto de dados de assassinatos, as regiões são ordenadas de leste a oeste. A função &#39;reordenar&#39; permite alterar a ordem dos níveis de um fator de acordo com um resumo calculado em um vetor numérico. Vamos demonstrar isso com um exemplo simples e ver os mais avançados na parte de visualização de dados do livro.
+Observe que os níveis têm uma ordem que é diferente da ordem de aparecimento em um objeto _factor_. Em R, por padrão, os níveis são organizados em ordem alfabética. No entanto, geralmente queremos que os níveis sigam uma ordem diferente. Você pode especificar a ordem através do argumento `levels` quando criar o fator com a função `factor`. Por exemplo, no conjunto de dados de assassinatos, as regiões são ordenadas de leste a oeste. A função `reorder` permite alterar a ordem dos níveis de uma variável _factor_ baseado em um resumo calculado em um vetor numérico. Agora, demonstraremos isso usando um simples exemplo. Veremos exemplos mais avançados na seção de Visualização de Dados do livro.
 
-Suponha que desejemos que os níveis da região sejam ordenados de acordo com o número total de assassinatos, e não por ordem alfabética. Se houver valores associados a cada _level_, podemos usar `reorder` e especifique um resumo dos dados para determinar o pedido. O código a seguir pega a soma do total de assassinatos em cada região e reordena o fator de acordo com essas somas.
+Vamos supor que desejemos que os níveis da região sejam ordenados de acordo com o número total de assassinatos, e não por ordem alfabética. Se houver valores associados a cada nível, podemos usar `reorder` e especificar um resumo dos dados para determinar a ordem. O código a seguir pega a soma do total de assassinatos em cada região e reordena o fator de acordo com essas somas.
 
 ```{r}
 region <- murders$region
@@ -514,17 +514,17 @@ region <- reorder(region, value, FUN = sum)
 levels(region)
 ```
 
-A nova ordem é consistente com o fato de que há menos assassinatos no Nordeste e mais no Sul.
+A nova ordem é consistente com o fato de que há menos assassinatos no nordeste e mais no sul.
 
-**Aviso**: os fatores podem causar confusão, pois às vezes eles se comportam como personagens e às vezes não. Como resultado, essas são uma fonte comum de erros.
+**Aviso**: os fatores podem causar confusão, pois às vezes eles se comportam como caracteres e às vezes não. Como resultado, esse tipo de dados são uma fonte comum de erros.
 
 ### Listas
 
-_Dados frames_são um caso especial de_lists_. Abordaremos as listas com mais detalhes posteriormente, mas sabemos que elas são úteis porque podem armazenar qualquer combinação de diferentes tipos de dados. Aqui, criamos uma lista para servir como exemplo:
+_Data frames_ são um caso especial de listas (do inglês _lists_). Abordaremos as listas com mais detalhes posteriormente, mas saiba que elas são úteis porque podem armazenar qualquer combinação de diferentes tipos de dados. Abaixo, apresentamos um exemplo de uma lista que criamos para você:
 
 
 ```{r, echo=FALSE}
-record <- list(name = "John Doe",
+record <- list(name = "João das Couves",
 student_id = 1234,
 grades = c(95, 82, 91, 97, 93),
 final_grade = "A")
@@ -535,7 +535,7 @@ record
 class(record)
 ```
 
-Como em _data frames_, eles podem extrair os componentes de uma lista com o operador de acesso: `$`. De fato, _data frames_ são um tipo de lista.
+Assim como em _data frames_, você pode extrair os componentes de uma lista com o operador de acesso: `$`. De fato, _data frames_ são um tipo de lista.
 
 ```{r}
 record$student_id
@@ -547,12 +547,12 @@ Também podemos usar colchetes duplos ( `[[`) assim:
 record[["student_id"]]
 ```
 
-Eles devem se acostumar com o fato de que geralmente existem várias maneiras no R de fazer a mesma coisa, como acessar entradas.
+Você deve se acostumar com o fato de que geralmente existem várias maneiras em R de fazer a mesma coisa, como acessar entradas.
 
 Você também pode encontrar listas sem nomes de variáveis:
 
 ```{r, echo=FALSE}
-record2 <- list("John Doe",
+record2 <- list("João das Couves",
 1234)
 ```
 
@@ -560,7 +560,7 @@ record2 <- list("John Doe",
 record2
 ```
 
-Se uma lista não tiver nomes, eles não poderão extrair os elementos com `$`, mas eles podem usar o método de colchete. Em vez de fornecer o nome da variável, você pode fornecer o índice da lista da seguinte maneira:
+Se uma lista não tiver nomes, você não pode extrair os elementos com `$`, mas você pode ainda usar o método de colchete. Em vez de fornecer o nome da variável, você pode fornecer o índice da lista da seguinte maneira:
 
 ```{r}
 record2[[1]]
@@ -570,7 +570,7 @@ record2[[1]]
 Não usaremos listas até mais tarde, mas você pode encontrar uma em suas próprias explorações de R. É por isso que mostramos alguns conceitos básicos aqui.
 
 
-### Arrays {#matrices}
+### Matrizes
 
 Matrizes são outro tipo comum de objeto em R. Matrizes são semelhantes a _data frames_, pois são bidimensionais: possuem linhas e colunas. No entanto, como vetores numéricos, caracteres e lógicos, as entradas nas matrizes devem ser do mesmo tipo. Por esse motivo, _data frames_ são muito mais úteis para armazenar dados, pois podemos conter caracteres, fatores e números.
 
