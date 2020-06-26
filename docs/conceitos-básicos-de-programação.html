@@ -746,7 +746,7 @@ intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="conceitos-básicos-de-programação.html#cb147-1"></a>m &lt;-<span class="st"> </span><span class="dv">25</span></span>
 <span id="cb147-2"><a href="conceitos-básicos-de-programação.html#cb147-2"></a>s_n &lt;-<span class="st"> </span><span class="kw">vector</span>(<span class="dt">length =</span> m) <span class="co"># create an empty vector</span></span>
 <span id="cb147-3"><a href="conceitos-básicos-de-programação.html#cb147-3"></a><span class="cf">for</span>(n <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</span>
-<span id="cb147-4"><a href="conceitos-básicos-de-programação.html#cb147-4"></a>s_n[n] &lt;-<span class="st"> </span><span class="kw">compute_s_n</span>(n)</span>
+<span id="cb147-4"><a href="conceitos-básicos-de-programação.html#cb147-4"></a>  s_n[n] &lt;-<span class="st"> </span><span class="kw">compute_s_n</span>(n)</span>
 <span id="cb147-5"><a href="conceitos-básicos-de-programação.html#cb147-5"></a>}</span></code></pre></div>
 <p>Em cada iteração <span class="math inline">\(n=1\)</span>, <span class="math inline">\(n=2\)</span>, etc …, calculamos <span class="math inline">\(S_n\)</span> e mantemos na entrada <span class="math inline">\(n\)</span> do <code>s_n</code>.</p>
 <p>Agora podemos criar um gráfico para procurar um padrão:</p>
@@ -790,18 +790,18 @@ lines(n, n*(n+1)/2)
 <span id="cb149-4"><a href="conceitos-básicos-de-programação.html#cb149-4"></a>y &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
 <span id="cb149-5"><a href="conceitos-básicos-de-programação.html#cb149-5"></a>x<span class="op">*</span>y</span>
 <span id="cb149-6"><a href="conceitos-básicos-de-programação.html#cb149-6"></a><span class="co">#&gt;  [1]   1   4   9  16  25  36  49  64  81 100</span></span></code></pre></div>
-<p>Para fazer esse cálculo, não precisamos de loops de for. No entanto, nem todas as funções funcionam dessa maneira. Por exemplo, a função que acabamos de escrever, <code>compute_s_n</code>, ele não funciona elemento a elemento, pois espera um escalar. Esse trecho de código não executa a função em todas as entradas de <code>n</code>:</p>
+<p>Para fazer esse cálculo, não precisamos de loops de for. No entanto, nem todas as funções funcionam dessa maneira. Por exemplo, a função que acabamos de escrever, <code>compute_s_n</code>, não é vetorizada, pois espera um escalar. Por exemplo, o código abaixo não executa a função para todas as entradas de <code>n</code>:</p>
 <div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="conceitos-básicos-de-programação.html#cb150-1"></a>n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span></span>
 <span id="cb150-2"><a href="conceitos-básicos-de-programação.html#cb150-2"></a><span class="kw">compute_s_n</span>(n)</span></code></pre></div>
-<p>As <em>functionals</em> são funções que nos ajudam a aplicar a mesma função a cada entrada em um vetor, matriz, <em>data frame</em> ou lista. Aqui abordamos o funcional que opera em vetores numéricos, lógicos e de caracteres: <code>sapply</code>.</p>
-<p>A função <code>sapply</code> nos permite executar operações baseadas em elementos (<em>element-wise</em> em inglês) em qualquer função. Aqui podemos ver como funciona:</p>
+<p>Os funcionais são funções que nos ajudam a aplicar a mesma função a cada entrada em um vetor, matriz, <em>data.frame</em> ou lista. Aqui, abordamos o funcional que opera em vetores numéricos, lógicos e de caracteres: <code>sapply</code>.</p>
+<p>A função <code>sapply</code> nos permite executar operações na base de elemento a elemento (<em>element-wise</em>, em inglês) em qualquer função. Aqui podemos ver como funciona:</p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="conceitos-básicos-de-programação.html#cb151-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></span>
 <span id="cb151-2"><a href="conceitos-básicos-de-programação.html#cb151-2"></a><span class="kw">sapply</span>(x, sqrt)</span>
 <span id="cb151-3"><a href="conceitos-básicos-de-programação.html#cb151-3"></a><span class="co">#&gt;  [1] 1.00 1.41 1.73 2.00 2.24 2.45 2.65 2.83 3.00 3.16</span></span></code></pre></div>
-<p>Cada elemento de <code>x</code> é passado para a função <code>sqrt</code> e retorna o resultado. Esses resultados são concatenados. Nesse caso, o resultado é um vetor do mesmo comprimento que o original, <code>x</code>. Isso implica que o loop for acima pode ser escrito da seguinte maneira:</p>
+<p>Cada elemento de <code>x</code> é passado para a função <code>sqrt</code> e retorna o resultado. Esses resultados são concatenados. Nesse caso, o resultado é um vetor do mesmo comprimento que o original, <code>x</code>. Isso implica que o loop <em>for</em> acima pode ser escrito da seguinte maneira:</p>
 <div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="conceitos-básicos-de-programação.html#cb152-1"></a>n &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">25</span></span>
 <span id="cb152-2"><a href="conceitos-básicos-de-programação.html#cb152-2"></a>s_n &lt;-<span class="st"> </span><span class="kw">sapply</span>(n, compute_s_n)</span></code></pre></div>
-<p>Outros funcionais são <code>apply</code>, <code>lapply</code>, <code>tapply</code>, <code>mapply</code>, <code>vapply</code> e <code>replicate</code>. Nós usamos principalmente <code>sapply</code>, <code>apply</code> e <code>replicate</code> neste livro, mas recomendamos que se conheçam, pois podem ser muito úteis.</p>
+<p>Outros funcionais são <code>apply</code>, <code>lapply</code>, <code>tapply</code>, <code>mapply</code>, <code>vapply</code> e <code>replicate</code>. Utilizamos principalmente <code>sapply</code>, <code>apply</code> e <code>replicate</code> neste livro, mas recomendamos os demais sejam estudados, pois podem ser muito úteis.</p>
 </div>
 <div id="exercícios-7" class="section level2" number="3.6">
 <h2><span class="header-section-number">3.6</span> Exercícios</h2>
@@ -809,30 +809,32 @@ lines(n, n*(n+1)/2)
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="conceitos-básicos-de-programação.html#cb153-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">4</span>)</span>
 <span id="cb153-2"><a href="conceitos-básicos-de-programação.html#cb153-2"></a></span>
 <span id="cb153-3"><a href="conceitos-básicos-de-programação.html#cb153-3"></a><span class="cf">if</span>(<span class="kw">all</span>(x<span class="op">&gt;</span><span class="dv">0</span>)){</span>
-<span id="cb153-4"><a href="conceitos-básicos-de-programação.html#cb153-4"></a><span class="kw">print</span>(<span class="st">&quot;All Postives&quot;</span>)</span>
+<span id="cb153-4"><a href="conceitos-básicos-de-programação.html#cb153-4"></a>  <span class="kw">print</span>(<span class="st">&quot;All Postives&quot;</span>)</span>
 <span id="cb153-5"><a href="conceitos-básicos-de-programação.html#cb153-5"></a>} <span class="cf">else</span>{</span>
-<span id="cb153-6"><a href="conceitos-básicos-de-programação.html#cb153-6"></a><span class="kw">print</span>(<span class="st">&quot;Not all positives&quot;</span>)</span>
+<span id="cb153-6"><a href="conceitos-básicos-de-programação.html#cb153-6"></a>  <span class="kw">print</span>(<span class="st">&quot;Not all positives&quot;</span>)</span>
 <span id="cb153-7"><a href="conceitos-básicos-de-programação.html#cb153-7"></a>}</span></code></pre></div>
-<p>2. Qual das seguintes expressões é sempre <code>FALSE</code> quando pelo menos uma entrada de um vetor lógico <code>x</code> é verdade?</p>
-<p>para. <code>all(x)</code>
-b. <code>any(x)</code>
-c. <code>any(!x)</code>
-d. <code>all(!x)</code></p>
+<p>2. Qual das seguintes expressões é sempre <code>FALSE</code> quando pelo menos uma entrada de um vetor lógico <code>x</code> é <code>TRUE</code>?</p>
+<ol style="list-style-type: lower-alpha">
+<li><code>all(x)</code></li>
+<li><code>any(x)</code></li>
+<li><code>any(!x)</code></li>
+<li><code>all(!x)</code></li>
+</ol>
 <p>3. A função <code>nchar</code> informa quantos caracteres um vetor de caracteres possui. Escreva uma linha de código que atribua o objeto <code>new_names</code> a abreviação de estado quando o nome do estado tiver mais de 8 caracteres.</p>
 <p>4. Crie uma função <code>sum_n</code> que, por qualquer valor, digamos <span class="math inline">\(n\)</span>, calcule a soma dos números inteiros de 1 a n (inclusive). Use a função para determinar a soma dos números inteiros de 1 a 5.000.</p>
-<p>5. Crie uma função <code>altman_plot</code> que leva dois argumentos, <code>x</code> e <code>y</code> e faça um gráfico da diferença em relação à soma.</p>
+<p>5. Crie uma função <code>altman_plot</code> que possua dois argumentos, <code>x</code> e <code>y</code>, e faça um gráfico da diferença em relação à soma.</p>
 <p>6. Depois de executar o código a seguir, qual é o valor de <code>x</code>?</p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="conceitos-básicos-de-programação.html#cb154-1"></a>x &lt;-<span class="st"> </span><span class="dv">3</span></span>
 <span id="cb154-2"><a href="conceitos-básicos-de-programação.html#cb154-2"></a>my_func &lt;-<span class="st"> </span><span class="cf">function</span>(y){</span>
-<span id="cb154-3"><a href="conceitos-básicos-de-programação.html#cb154-3"></a>x &lt;-<span class="st"> </span><span class="dv">5</span></span>
-<span id="cb154-4"><a href="conceitos-básicos-de-programação.html#cb154-4"></a>y<span class="op">+</span><span class="dv">5</span></span>
+<span id="cb154-3"><a href="conceitos-básicos-de-programação.html#cb154-3"></a>  x &lt;-<span class="st"> </span><span class="dv">5</span></span>
+<span id="cb154-4"><a href="conceitos-básicos-de-programação.html#cb154-4"></a>  y <span class="op">+</span><span class="st"> </span><span class="dv">5</span></span>
 <span id="cb154-5"><a href="conceitos-básicos-de-programação.html#cb154-5"></a>}</span></code></pre></div>
-<p>7. Escreva uma função <code>compute_s_n</code> isso para qualquer <span class="math inline">\(n\)</span> calcular a soma <span class="math inline">\(S_n = 1^2 + 2^2 + 3^2 + \dots n^2\)</span>. Indique o valor da soma quando <span class="math inline">\(n=10\)</span>.</p>
-<p>8. Definir um vetor de número vazio <code>s_n</code> tamanho 25 usando <code>s_n &lt;- vector("numeric", 25)</code> e armazene os resultados de <span class="math inline">\(S_1, S_2, \dots S_{25}\)</span> usando um loop for.</p>
-<p>9. Repita o exercício 8, mas desta vez use <code>sapply</code>.</p>
-<p>10. Repita o exercício 8, mas desta vez use <code>map_dbl</code>.</p>
-<p>11. Gráfico <span class="math inline">\(S_n\)</span> versus <span class="math inline">\(n\)</span>. Use pontos definidos por <span class="math inline">\(n=1,\dots,25\)</span>.</p>
-<p>12. Confirme se a fórmula para esta soma é <span class="math inline">\(S_n= n(n+1)(2n+1)/6\)</span>.</p>
+<p>7. Escreva uma função <code>compute_s_n</code> que, para qualquer <span class="math inline">\(n\)</span>, calcule a soma <span class="math inline">\(S_n = 1^2 + 2^2 + 3^2 + \dots n^2\)</span>. Qual é o valor da soma quando <span class="math inline">\(n = 10\)</span>?</p>
+<p>8. Definir um vetor numérico vazio, <code>s_n</code>, de tamanho 25, usando <code>s_n &lt;- vector("numeric", 25)</code> e armazene os resultados de <span class="math inline">\(S_1, S_2, \dots S_{25}\)</span>, usando um laço do tipo <em>for</em>.</p>
+<p>9. Repita o Exercício 8, mas, desta vez, use <code>sapply</code>.</p>
+<p>10. Repita o Exercício 8, mas, desta vez, use <code>map_dbl</code>.</p>
+<p>11. Apresente um gráfico de <span class="math inline">\(S_n\)</span> <em>versus</em> <span class="math inline">\(n\)</span>, para <span class="math inline">\(n=1,\dots,25\)</span>.</p>
+<p>12. Confirme que a fórmula para esta soma é <span class="math inline">\(S_n= n(n+1)(2n+1)/6\)</span>.</p>
 
 </div>
 </div>

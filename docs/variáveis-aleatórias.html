@@ -795,7 +795,7 @@ d. Não está mais perto. A diferença está dentro do erro de arredondamento.<
 <span id="cb517-3"><a href="variáveis-aleatórias.html#cb517-3"></a>p &lt;-<span class="st"> </span><span class="fl">0.02</span></span>
 <span id="cb517-4"><a href="variáveis-aleatórias.html#cb517-4"></a>defaults &lt;-<span class="st"> </span><span class="kw">sample</span>( <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), n, <span class="dt">prob=</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">-</span>p, p), <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb517-5"><a href="variáveis-aleatórias.html#cb517-5"></a><span class="kw">sum</span>(defaults <span class="op">*</span><span class="st"> </span>loss_per_foreclosure)</span>
-<span id="cb517-6"><a href="variáveis-aleatórias.html#cb517-6"></a><span class="co">#&gt; [1] -3600000</span></span></code></pre></div>
+<span id="cb517-6"><a href="variáveis-aleatórias.html#cb517-6"></a><span class="co">#&gt; [1] -5e+06</span></span></code></pre></div>
 <p>Observe que a perda total definida pela soma final é uma variável aleatória. Sempre que eles executam o código acima, eles recebem uma resposta diferente. Podemos facilmente construir uma simulação de Monte Carlo para ter uma idéia da distribuição dessa variável aleatória.</p>
 <div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="variáveis-aleatórias.html#cb518-1"></a>B &lt;-<span class="st"> </span><span class="dv">10000</span></span>
 <span id="cb518-2"><a href="variáveis-aleatórias.html#cb518-2"></a>losses &lt;-<span class="st"> </span><span class="kw">replicate</span>(B, {</span>

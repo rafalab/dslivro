@@ -566,7 +566,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb432-3"><a href="probabilidade.html#cb432-3"></a><span class="co">#&gt; [1] &quot;red&quot;  &quot;red&quot;  &quot;blue&quot; &quot;blue&quot; &quot;blue&quot;</span></span></code></pre></div>
 <p>e depois usamos <code>sample</code> escolher um mármore aleatoriamente:</p>
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="probabilidade.html#cb433-1"></a><span class="kw">sample</span>(beads, <span class="dv">1</span>)</span>
-<span id="cb433-2"><a href="probabilidade.html#cb433-2"></a><span class="co">#&gt; [1] &quot;blue&quot;</span></span></code></pre></div>
+<span id="cb433-2"><a href="probabilidade.html#cb433-2"></a><span class="co">#&gt; [1] &quot;red&quot;</span></span></code></pre></div>
 <p>Essa linha de código produz um resultado aleatório. Queremos repetir esse experimento um número infinito de vezes, mas é impossível repeti-lo para sempre. No entanto, podemos repetir o experimento um número suficientemente grande de vezes para que os resultados sejam praticamente equivalentes a repeti-lo para sempre. <strong>Este é um exemplo de simulação de <em>Monte Carlo</em></strong>.</p>
 <p>Muito do que estudam estatísticos matemáticos e teóricos, que não discutimos neste livro, refere-se a fornecer definições rigorosas de “virtualmente equivalente”, além de estudar o quão perto um grande número de experimentos nos leva ao que acontece no limite. . Mais adiante nesta seção, oferecemos uma abordagem prática para determinar o que é “grande o suficiente”.</p>
 <p>Para realizar nossa primeira simulação de Monte Carlo, usamos a função <code>replicate</code>, o que nos permite repetir a mesma tarefa várias vezes. Aqui, repetimos o evento aleatório <span class="math inline">\(B =\)</span> 10.000 vezes:</p>
@@ -577,12 +577,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb435-2"><a href="probabilidade.html#cb435-2"></a>tab</span>
 <span id="cb435-3"><a href="probabilidade.html#cb435-3"></a><span class="co">#&gt; events</span></span>
 <span id="cb435-4"><a href="probabilidade.html#cb435-4"></a><span class="co">#&gt; blue  red </span></span>
-<span id="cb435-5"><a href="probabilidade.html#cb435-5"></a><span class="co">#&gt; 6027 3973</span></span></code></pre></div>
+<span id="cb435-5"><a href="probabilidade.html#cb435-5"></a><span class="co">#&gt; 5972 4028</span></span></code></pre></div>
 <p>e <code>prop.table</code> nos dá as proporções:</p>
 <div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="probabilidade.html#cb436-1"></a><span class="kw">prop.table</span>(tab)</span>
 <span id="cb436-2"><a href="probabilidade.html#cb436-2"></a><span class="co">#&gt; events</span></span>
 <span id="cb436-3"><a href="probabilidade.html#cb436-3"></a><span class="co">#&gt;  blue   red </span></span>
-<span id="cb436-4"><a href="probabilidade.html#cb436-4"></a><span class="co">#&gt; 0.603 0.397</span></span></code></pre></div>
+<span id="cb436-4"><a href="probabilidade.html#cb436-4"></a><span class="co">#&gt; 0.597 0.403</span></span></code></pre></div>
 <p>Os números acima são probabilidades estimadas fornecidas por uma simulação de Monte Carlo. A teoria estatística, que não discutimos aqui, nos diz que onde <span class="math inline">\(B\)</span> à medida que aumenta, as estimativas se aproximam de 3/5 = 0,6 e 2/5 = 0,4.</p>
 <p>Embora este seja um exemplo simples e pouco útil, usaremos simulações de Monte Carlo para estimar probabilidades nos casos em que é difícil calcular quantidades exatas. Antes de nos aprofundarmos em exemplos mais complexos, usaremos alguns simples para demonstrar as ferramentas de computação disponíveis em R.</p>
 </div>

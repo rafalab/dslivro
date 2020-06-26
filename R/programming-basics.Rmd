@@ -205,7 +205,7 @@ Aqui está o laço do tipo _for_ para o nosso exemplo $S_n$:
 m <- 25
 s_n <- vector(length = m) # create an empty vector
 for(n in 1:m){
-s_n[n] <- compute_s_n(n)
+  s_n[n] <- compute_s_n(n)
 }
 ```
 
@@ -252,30 +252,30 @@ y <- 1:10
 x*y
 ```
 
-Para fazer esse cálculo, não precisamos de loops de for. No entanto, nem todas as funções funcionam dessa maneira. Por exemplo, a função que acabamos de escrever, `compute_s_n`, ele não funciona elemento a elemento, pois espera um escalar. Esse trecho de código não executa a função em todas as entradas de `n`:
+Para fazer esse cálculo, não precisamos de loops de for. No entanto, nem todas as funções funcionam dessa maneira. Por exemplo, a função que acabamos de escrever, `compute_s_n`, não é vetorizada, pois espera um escalar. Por exemplo, o código abaixo não executa a função para todas as entradas de `n`:
 
 ```{r, eval=FALSE}
 n <- 1:25
 compute_s_n(n)
 ```
 
-As _functionals_ são funções que nos ajudam a aplicar a mesma função a cada entrada em um vetor, matriz, _data frame_ ou lista. Aqui abordamos o funcional que opera em vetores numéricos, lógicos e de caracteres: `sapply`.
+Os funcionais são funções que nos ajudam a aplicar a mesma função a cada entrada em um vetor, matriz, _data.frame_ ou lista. Aqui, abordamos o funcional que opera em vetores numéricos, lógicos e de caracteres: `sapply`.
 
-A função `sapply` nos permite executar operações baseadas em elementos (_element-wise_ em inglês) em qualquer função. Aqui podemos ver como funciona:
+A função `sapply` nos permite executar operações na base de elemento a elemento (_element-wise_, em inglês) em qualquer função. Aqui podemos ver como funciona:
 
 ```{r}
 x <- 1:10
 sapply(x, sqrt)
 ```
 
-Cada elemento de `x` é passado para a função `sqrt` e retorna o resultado. Esses resultados são concatenados. Nesse caso, o resultado é um vetor do mesmo comprimento que o original, `x`. Isso implica que o loop for acima pode ser escrito da seguinte maneira:
+Cada elemento de `x` é passado para a função `sqrt` e retorna o resultado. Esses resultados são concatenados. Nesse caso, o resultado é um vetor do mesmo comprimento que o original, `x`. Isso implica que o loop _for_ acima pode ser escrito da seguinte maneira:
 
 ```{r s_n-v-n-sapply, eval=FALSE}
 n <- 1:25
 s_n <- sapply(n, compute_s_n)
 ```
 
-Outros funcionais são `apply`, `lapply`, `tapply`, `mapply`, `vapply` e `replicate`. Nós usamos principalmente `sapply`, `apply` e `replicate` neste livro, mas recomendamos que se conheçam, pois podem ser muito úteis.
+Outros funcionais são `apply`, `lapply`, `tapply`, `mapply`, `vapply` e `replicate`. Utilizamos principalmente `sapply`, `apply` e `replicate` neste livro, mas recomendamos os demais sejam estudados, pois podem ser muito úteis.
 
 ## Exercícios
 
@@ -285,45 +285,44 @@ Outros funcionais são `apply`, `lapply`, `tapply`, `mapply`, `vapply` e `replic
 x <- c(1,2,-3,4)
 
 if(all(x>0)){
-print("All Postives")
+  print("All Postives")
 } else{
-print("Not all positives")
+  print("Not all positives")
 }
 ```
 
 
-2\. Qual das seguintes expressões é sempre `FALSE` quando pelo menos uma entrada de um vetor lógico `x` é verdade?
+2\. Qual das seguintes expressões é sempre `FALSE` quando pelo menos uma entrada de um vetor lógico `x` é `TRUE`?
 
-para. `all(x)`
+a. `all(x)`
 b. `any(x)`
 c. `any(!x)`
 d. `all(!x)`
 
 3\. A função `nchar` informa quantos caracteres um vetor de caracteres possui. Escreva uma linha de código que atribua o objeto `new_names` a abreviação de estado quando o nome do estado tiver mais de 8 caracteres.
 
-
 4\. Crie uma função `sum_n` que, por qualquer valor, digamos $n$, calcule a soma dos números inteiros de 1 a n (inclusive). Use a função para determinar a soma dos números inteiros de 1 a 5.000.
 
-5\. Crie uma função `altman_plot` que leva dois argumentos, `x` e `y` e faça um gráfico da diferença em relação à soma.
+5\. Crie uma função `altman_plot` que possua dois argumentos, `x` e `y`, e faça um gráfico da diferença em relação à soma.
 
 6\. Depois de executar o código a seguir, qual é o valor de `x`?
 
 ```{r, eval=FALSE}
 x <- 3
 my_func <- function(y){
-x <- 5
-y+5
+  x <- 5
+  y + 5
 }
 ```
 
-7\. Escreva uma função `compute_s_n` isso para qualquer $n$ calcular a soma $S_n = 1^2 + 2^2 + 3^2 + \dots n^2$. Indique o valor da soma quando $n=10$.
+7\. Escreva uma função `compute_s_n` que, para qualquer $n$, calcule a soma $S_n = 1^2 + 2^2 + 3^2 + \dots n^2$. Qual é o valor da soma quando $n = 10$?
 
-8\. Definir um vetor de número vazio `s_n` tamanho 25 usando `s_n <- vector("numeric", 25)` e armazene os resultados de $S_1, S_2, \dots S_{25}$ usando um loop for.
+8\. Definir um vetor numérico vazio, `s_n`, de tamanho 25, usando `s_n <- vector("numeric", 25)` e armazene os resultados de $S_1, S_2, \dots S_{25}$, usando um laço do tipo _for_.
 
-9\. Repita o exercício 8, mas desta vez use `sapply`.
+9\. Repita o Exercício 8, mas, desta vez, use `sapply`.
 
-10\. Repita o exercício 8, mas desta vez use `map_dbl`.
+10\. Repita o Exercício 8, mas, desta vez, use `map_dbl`.
 
-11\. Gráfico $S_n$ versus $n$. Use pontos definidos por $n=1,\dots,25$.
+11\. Apresente um gráfico de $S_n$ _versus_ $n$, para $n=1,\dots,25$.
 
-12\. Confirme se a fórmula para esta soma é $S_n= n(n+1)(2n+1)/6$.
+12\. Confirme que a fórmula para esta soma é $S_n= n(n+1)(2n+1)/6$.

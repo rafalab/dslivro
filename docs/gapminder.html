@@ -852,7 +852,7 @@ Um efeito colateral útil do uso do argumento <code>color</code> para atribuir c
 <span id="cb370-4"><a href="gapminder.html#cb370-4"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(dollars_per_day, region)) <span class="op">+</span></span>
 <span id="cb370-5"><a href="gapminder.html#cb370-5"></a><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb370-6"><a href="gapminder.html#cb370-6"></a><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log2&quot;</span>)</span></code></pre></div>
-<p><img src="livro_files/figure-html/unnamed-chunk-374-1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="livro_files/figure-html/unnamed-chunk-368-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Já podemos ver que existe de fato uma dicotomia “oeste versus o resto”: existem dois grupos claros, com o rico grupo constituído pela América do Norte, Europa do Norte e Ocidental, Nova Zelândia e Austrália. Definimos grupos com base nesta observação:</p>
 <div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="gapminder.html#cb371-1"></a>gapminder &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span></span>
 <span id="cb371-2"><a href="gapminder.html#cb371-2"></a><span class="kw">mutate</span>(<span class="dt">group =</span> <span class="kw">case_when</span>(</span>
