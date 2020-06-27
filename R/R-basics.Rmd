@@ -572,9 +572,9 @@ Não usaremos listas até mais tarde, mas você pode encontrar uma em suas próp
 
 ### Matrizes
 
-Matrizes são outro tipo comum de objeto em R. Matrizes são semelhantes a _data frames_, pois são bidimensionais: possuem linhas e colunas. No entanto, como vetores numéricos, caracteres e lógicos, as entradas nas matrizes devem ser do mesmo tipo. Por esse motivo, _data frames_ são muito mais úteis para armazenar dados, pois podemos conter caracteres, fatores e números.
+Matrizes são outro tipo comum de objeto em R. Matrizes são semelhantes a _data frames_, pois são bidimensionais: possuem linhas e colunas. No entanto, como vetores numéricos, caracteres e lógicos, as entradas nas matrizes devem ser do mesmo tipo. Por esse motivo, _data frames_ são muito mais úteis para armazenar dados, pois permitem armazenar caracteres, fatores e números.
 
-Entretanto, as matrizes têm uma grande vantagem sobre os _data frames_: podemos executar operações de álgebra matricial, uma poderosa técnica matemática. Não descrevemos essas operações neste livro, mas muito do que acontece em segundo plano quando você executa a análise de dados envolve matrizes. Abordamos matrizes em mais detalhes no Capítulo \@ref(matrix-algebra) mas também os discutimos brevemente aqui, como algumas das funções que aprenderemos matrizes de retorno.
+Entretanto, as matrizes têm uma grande vantagem sobre os _data frames_: podemos executar operações de álgebra matricial, uma poderosa técnica matemática. Não descrevemos essas operações neste livro, mas muito do que acontece em segundo plano quando você executa uma análise de dados envolve matrizes. Abordamos matrizes em mais detalhes nos próximos capítulos. Entretanto, as discutiremos brevemente aqui, uma vez que algumas das funções que aprenderemos retornam matrizes.
 
 Podemos definir uma matriz usando a função `matrix`. Precisamos especificar o número de linhas e colunas:
 
@@ -583,21 +583,21 @@ mat <- matrix(1:12, 4, 3)
 mat
 ```
 
-Eles podem acessar entradas específicas em uma matriz usando colchetes ( `[`) Se você deseja a segunda linha, terceira coluna, use:
+Você pode acessar entradas específicas em uma matriz usando colchetes (`[`). Por exemplo, se você deseja o valor armazenado na segunda linha, terceira coluna, use:
 
 ```{r}
 mat[2, 3]
 ```
 
-Se você deseja a segunda linha inteira, deixe o lugar da coluna vazio:
+Se você deseja todos os itens da segunda linha, deixe o valor da coluna vazio:
 
 ```{r}
 mat[2, ]
 ```
 
-Observe que isso retorna um vetor, não uma matriz.
+Observe que isso retorna um vetor e não uma matriz.
 
-Da mesma forma, se você quiser a terceira coluna inteira, deixe o lugar da linha vazio:
+Da mesma forma, se você quiser a terceira coluna inteira, deixe o valor da linha vazio:
 
 ```{r}
 mat[, 3]
@@ -605,13 +605,13 @@ mat[, 3]
 
 Este também é um vetor, não uma matriz.
 
-Eles podem acessar mais de uma coluna ou mais de uma linha, se desejarem. Isso lhe dará uma nova matriz.
+Você pode acessar mais de uma coluna ou mais de uma linha se desejar. Isso lhe dará uma nova matriz.
 
 ```{r}
 mat[, 2:3]
 ```
 
-Eles podem criar subconjuntos com base em linhas e colunas:
+Você pode criar subconjuntos de linhas e colunas:
 
 ```{r}
 mat[1:2, 2:3]
@@ -623,7 +623,7 @@ Podemos converter as matrizes em _data frames_ usando a função `as.data.frame`
 as.data.frame(mat)
 ```
 
-Também podemos usar colchetes individuais ( `[`) para acessar as linhas e colunas de um _data frame_:
+Também podemos usar colchetes individuais (`[`) para acessar as linhas e colunas de um _data frame_:
 
 ```{r}
 data("murders")
@@ -634,25 +634,25 @@ murders[2:3, ]
 
 ## Exercícios
 
-1\. Carregue o conjunto de dados de assassinatos nos EUA. EUA
+1\. Carregue o conjunto de dados de assassinatos nos EUA. 
 
 ```{r}
 library(dslabs)
 data(murders)
 ```
 
-Usar função `str` para examinar a estrutura do objeto `murders`. Qual das opções a seguir descreve melhor as variáveis representadas neste _data frame_?
+Use a função `str` para examinar a estrutura do objeto `murders`. Qual das opções a seguir descreve melhor as variáveis representadas nesse _data frame_?
 
-para. Os 51 estados.
+a. Os 51 estados.
 b. Taxas de assassinato para todos os 50 estados e DC.
 c. O nome do estado, a abreviação do nome do estado, região e população do estado e o número total de assassinatos em 2010 no estado.
 d. `str` não exibe informações relevantes.
 
 2\. Quais são os nomes das colunas usadas pelo _data frame_ para essas cinco variáveis?
 
-3\. Use o operador de acesso `$` extrair abreviações de estado e atribuí-las ao objeto `a`. Qual é a classe deste objeto?
+3\. Use o operador de acesso `$` para extrair as abreviações dos estados e atribuí-las ao objeto `a`. Qual é a classe desse objeto?
 
-4\. Agora use os colchetes para extrair as abreviações de estado e atribuí-las ao objeto `b`. Use a função `identical` para determinar se `a` e `b` são iguais.
+4\. Agora use os colchetes para extrair as abreviações dos estados e atribuí-las ao objeto `b`. Use a função `identical` para determinar se `a` e `b` são iguais.
 
 5\. Vimos que a coluna `region` armazena um fator. Você pode verificar isso digitando:
 
@@ -660,17 +660,17 @@ d. `str` não exibe informações relevantes.
 class(murders$region)
 ```
 
-Com uma linha de código, use as funções `levels` e `length` para determinar o número de regiões definidas por este conjunto de dados.
+Com uma linha de código, use as funções `levels` e `length` para determinar o número de regiões definidas por esse conjunto de dados.
 
-6\. A função `table` pega um vetor e retorna a frequência de cada elemento. Você pode ver rapidamente quantos estados existem em cada região aplicando esta função. Use esta função em uma linha de código para criar uma tabela de estados por região.
+6\. A função `table` pega um vetor e retorna a frequência de cada elemento. Você pode ver rapidamente quantos estados existem em cada região aplicando esta função. Use essa função em uma linha de código para criar uma tabela de estados por região.
 
 ## Vetores
 
-No R, os objetos mais básicos disponíveis para armazenar dados são _vectors_. Como vimos, conjuntos de dados complexos geralmente podem ser divididos em componentes que são vetores. Por exemplo, em um _data frame_, cada coluna é um vetor. Aqui nós aprendemos mais sobre esta importante classe.
+Em R, os objetos mais básicos disponíveis para armazenar dados são os _vectors_ (vetores). Como vimos, conjuntos de dados complexos geralmente podem ser divididos em componentes que são vetores. Por exemplo, em um _data frame_, cada coluna é um vetor. Aqui nós aprendemos mais sobre essa importante classe.
 
-### Como criar vetores
+### Criando vetores
 
-Podemos criar vetores usando a função `c`, o que significa _concatenate_. Nós usamos `c` concatenar entradas da seguinte maneira:
+Podemos criar vetores usando a função `c`, que significa _concatenate_ (concatenar). Nós usamos `c` para concatenar entradas da seguinte maneira:
 
 ```{r}
 codes <- c(380, 124, 818)
@@ -683,31 +683,31 @@ Também podemos criar vetores de caracteres. Usamos aspas para indicar que as en
 country <- c("italy", "canada", "egypt")
 ```
 
-Em R, eles também podem usar aspas simples:
+Em R, também pode-se usar apóstrofos:
 
 ```{r}
 country <- c('italy', 'canada', 'egypt')
 ```
 
-Mas tome cuidado para não confundir as aspas simples &#39;com _back quote_ `.
+Mas tome cuidado para não confundir o apóstrofo (_single quote_) &#39; com o acento grave (_back quote_) `.
 
 Até agora você deve saber que se você escrever:
 
 ```{r, eval=FALSE}
 country <- c(italy, canada, egypt)
 ```
-recebe um erro porque as variáveis `italy`, `canada` e `egypt` não estão definidos. Se não usarmos as aspas, R procurará variáveis com esses nomes e retornará um erro.
+você receberá um erro porque as variáveis `italy`, `canada` e `egypt` não estão definidos. Se não usarmos as aspas, R procurará variáveis com esses nomes e retornará um erro.
 
 ### Nomes
 
-Às vezes, é útil nomear as entradas para um vetor. Por exemplo, ao definir um vetor de códigos de países, podemos usar os nomes para conectar os dois:
+Às vezes, é útil nomear as entradas de um vetor. Por exemplo, ao definir um vetor de códigos de países, podemos usar os nomes para conectar os dois:
 
 ```{r}
 codes <- c(italy = 380, canada = 124, egypt = 818)
 codes
 ```
 
-O objeto `codes` ainda é um vetor numérico:
+O objeto `codes` continua sendo um vetor numérico:
 ```{r}
 class(codes)
 ```
@@ -716,14 +716,14 @@ mas com nomes:
 names(codes)
 ```
 
-Se o uso de strings sem aspas parecer confuso, saiba que você também pode usar aspas:
+Se o uso de _strings_ sem aspas parecer confuso, saiba que você também pode usar aspas:
 
 ```{r}
 codes <- c("italy" = 380, "canada" = 124, "egypt" = 818)
 codes
 ```
 
-Não há diferença entre esta chamada de função (_função chamada_ em inglês) e a anterior. Essa é uma das muitas maneiras pelas quais R é peculiar em comparação com outros idiomas.
+Não há diferença entre essa chamada de função (_function call_ em inglês) e a anterior. Essa é uma das muitas maneiras pelas quais R é peculiar em comparação com outras linguagens.
 
 Também podemos atribuir nomes usando a função `names`:
 
@@ -736,39 +736,39 @@ codes
 
 ### Sequências
 
-Outra função útil para criar vetores gera sequências:
+Outra função útil para criar vetores gerando sequências:
 
 ```{r}
 seq(1, 10)
 ```
 
-O primeiro argumento define o começo e o segundo define o fim que incluímos. O padrão é subir em incrementos de 1, mas um terceiro argumento nos permite determinar quanto saltar:
+O primeiro argumento define o começo e o segundo define o fim da sequência que será incluída. O padrão é aumentar a sequência por incrementos de 1. Entretanto, um terceiro argumento nos permite determinar quanto incrementar:
 
 ```{r}
 seq(1, 10, 2)
 ```
 
-Se queremos números inteiros consecutivos, podemos usar a seguinte abreviação:
+Se quisérmos números inteiros consecutivos, podemos usar a seguinte abreviação:
 
 ```{r}
 1:10
 ```
 
-Quando usamos essas funções, R produz números inteiros, não números, porque geralmente são usados para indexar algo:
+Quando usamos essas funções, R produz números do tipo _integer_, e não do tipo _numeric_, uma vez que são tipicamente usados para indexar algo:
 
 ```{r}
 class(1:10)
 ```
 
-No entanto, se criarmos uma sequência que não inclua números inteiros, a classe mudará:
+No entanto, se criarmos uma sequência que inclua números não-inteiros, a classe mudará:
 
 ```{r}
 class(seq(1, 10, 0.5))
 ```
 
-### Como criar um subconjunto
+### Criando subconjuntos
 
-Usamos colchetes para acessar elementos específicos de um vetor. Para vetor `codes` como definido anteriormente, podemos acessar o segundo elemento usando:
+Usamos colchetes para acessar elementos específicos de um vetor. Para o vetor `codes` que definimos anteriormente, podemos acessar o segundo elemento usando:
 ```{r}
 codes[2]
 ```
