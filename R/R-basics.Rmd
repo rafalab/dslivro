@@ -773,12 +773,12 @@ Usamos colchetes para acessar elementos específicos de um vetor. Para o vetor `
 codes[2]
 ```
 
-Eles podem obter mais de uma entrada usando um vetor de múltiplas entradas como índice:
+Você pode obter mais de uma entrada usando um vetor de múltiplas entradas como índice:
 ```{r}
 codes[c(1,3)]
 ```
 
-As seqüências definidas acima são particularmente úteis se precisarmos acessar, digamos, os dois primeiros elementos:
+As sequências definidas acima são particularmente úteis se precisarmos acessar, digamos, os dois primeiros elementos:
 
 ```{r}
 codes[1:2]
@@ -793,24 +793,24 @@ codes[c("egypt","italy")]
 
 ## Conversão forçada
 
-Em geral, _forced_conversion_ é uma tentativa do R de ser flexível com os tipos de dados. Quando uma entrada não corresponde ao esperado, algumas das funções predefinidas de R tentam adivinhar o que se estava tentando fazer antes de retornar uma mensagem de erro. Isso também pode causar confusão. Não entendendo a conversão forçada, os programadores podem enlouquecer quando codificam em R, pois o R se comporta de maneira bem diferente da maioria das outras linguagens nesse sentido. Vamos aprender mais com alguns exemplos.
+Em geral, uma conversao forçada (também denominada coerção ou no original _coercion_) é uma tentativa do R de ser flexível com os tipos de dados. Quando uma entrada não corresponde ao esperado, algumas das funções predefinidas do R tentam adivinhar o que se estava tentando fazer antes de retornar uma mensagem de erro. Isso também pode causar confusão. Não entendendo a conversão forçada, os programadores podem enlouquecer quando codificam em R, pois o R se comporta de maneira bem diferente da maioria das outras linguagens nesse sentido. Vamos aprender mais com alguns exemplos.
 
-Dissemos que os vetores devem ser todos do mesmo tipo. Portanto, se tentarmos combinar, por exemplo, números e caracteres, eles podem esperar um erro:
+Dissemos que os vetores devem ser todos do mesmo tipo. Portanto, se tentarmos combinar, por exemplo, números e caracteres, você pode esperar um erro:
 
 ```{r}
 x <- c(1, "canada", 3)
 ```
 
-Mas isso não nos dá um, nem mesmo um aviso! O que aconteceu? Veja `x` e sua classe:
+Mas o código acima não retorna um erro. Nem mesmo um aviso! O que aconteceu? Observe `x` e sua classe:
 
 ```{r}
 x
 class(x)
 ```
 
-R forçou uma conversão dos dados em caracteres. Como inserimos uma sequência de caracteres no vetor, R adivinhou que nossa intenção era que 1 e 3 fossem as cadeias de caracteres `"1"` e " `3` O fato de nem sequer emitir um aviso é um exemplo de como a conversão forçada pode causar muitos erros inadvertidos no R.
+R forçou uma conversão dos dados em caracteres. Como inserimos uma sequência de caracteres no vetor, R adivinhou que nossa intenção era que 1 e 3 fossem as _strings_ `"1"` e `"3"`. O fato de nem sequer emitir um aviso é um exemplo de como a conversão forçada pode causar muitos erros que não serão percebidos no R.
 
-R também oferece funções para mudar de um tipo para outro. Por exemplo, eles podem converter números em caracteres com:
+R também oferece funções para mudar de um tipo para outro. Por exemplo, pode-se converter números em caracteres com:
 
 ```{r}
 x <- 1:5
@@ -818,32 +818,32 @@ y <- as.character(x)
 y
 ```
 
-Eles podem reverter para o acima com `as.numeric`:
+Pode-se reverter isso com `as.numeric`:
 
 ```{r}
 as.numeric(y)
 ```
 
-Essa função é muito útil, pois conjuntos de dados que incluem números, como cadeias de caracteres, são comuns.
+Essa função é realmente bastate útil, uma vez que _datasets_ que incluem tanto valores numéricos, quanto cadeias de caracteres, são comuns.
 
-### _Não disponível_ (NA)
+### Valores NA
 
-Quando uma função tenta forçar uma conversão de um tipo para outro e encontra um caso impossível, geralmente nos dá um aviso e converte a entrada em um valor especial chamado `NA` o que significa _não disponível_ (_não disponível_ em inglês). Por exemplo:
+Quando uma função tenta forçar uma conversão de um tipo para outro e encontra um caso impossível, R geralmente nos dá um aviso e converte a entrada em um valor especial chamado `NA` o que significa "não disponível" (_Not Available_ em inglês). Por exemplo:
 
 ```{r}
 x <- c("1", "b", "3")
 as.numeric(x)
 ```
 
-R não sabe o número que eles queriam quando escreveram `b` e não tente adivinhar.
+R não tem qualquer palpite sobre o número que você queria quando escreveu `b`, por isso ele nem tenta adivinhar.
 
-Como cientistas de dados, você encontrará os `NA` freqüentemente, como geralmente é usado para dados ausentes (_missing data_ in English), um problema comum em conjuntos de dados do mundo real.
+Como cientista de dados, você encontrará `NA`s frequentemente, uma vez que tais valores, geralmente, são usados para representar dados ausentes, um problema comum em _datasets_ do mundo real.
 
 ## Exercícios
 
-1\. Usar função `c` criar um vetor com as temperaturas médias altas em janeiro para Pequim, Lagos, Paris, Rio de Janeiro, San Juan e Toronto, com 35, 88, 42, 84, 81 e 30 graus Fahrenheit. Chame o objeto `temp`.
+1\. Use a função `c` para criar um vetor com as temperaturas médias altas em janeiro para Pequim, Lagos, Paris, Rio de Janeiro, San Juan e Toronto, com 35, 88, 42, 84, 81 e 30 graus Fahrenheit. Chame o objeto de `temp`.
 
-2\. Agora crie um vetor com os nomes das cidades e chame o objeto `city`.
+2\. Agora crie um vetor com os nomes das cidades e chame o objeto de `city`.
 
 
 3\. Use a função `names` e os objetos definidos nos exercícios anteriores para associar os dados de temperatura à cidade correspondente.
@@ -858,15 +858,15 @@ Como cientistas de dados, você encontrará os `NA` freqüentemente, como geralm
 
 7\. Crie um vetor contendo todos os números ímpares positivos menores que 100.
 
-8\. Crie um vetor de números que comece em 6, não ultrapasse 55 e adicione números em incrementos de 4/7: 6, 6 + 4/7, 6 + 8/7 e assim por diante. Quantos números a lista possui? Dica: use `seq` e `length`.
+8\. Crie um vetor de números que comece em 6, não ultrapasse 55 e adicione números em incrementos de 4/7: 6, 6 + 4/7, 6 + 8/7, e assim por diante. Quantos números a lista possui? Dica: use `seq` e `length`.
 
-9\. Qual é a classe do seguinte objeto? `a <- seq(1, 10, 0.5)`?
-
-
-10\. Qual é a classe do seguinte objeto? `a <- seq(1, 10)`?
+9\. Qual é a classe do seguinte objeto: `a <- seq(1, 10, 0.5)`?
 
 
-Onze\. A aula de `class(a<-1)` é numérico, não inteiro. R por padrão é numérico e para forçar um número inteiro, você deve adicionar a letra `L`. Confirme se a classe de `1L` é inteiro.
+10\. Qual é a classe do seguinte objeto: `a <- seq(1, 10)`?
+
+
+11\. A classe de `class(a<-1)` é _numeric_, e não _integer_. R por padrão usa o tipo _numeric_. Para forçar o uso do tipo _integer_, você deve adicionar a letra `L`. Confirme se a classe de `1L` é _integer_.
 
 
 12\. Defina o seguinte vetor:
@@ -875,18 +875,18 @@ Onze\. A aula de `class(a<-1)` é numérico, não inteiro. R por padrão é num�
 x <- c("1", "3", "5")
 ```
 
-e forçá-lo a obter números inteiros.
+a seguir, converta esse vetor para o tipo _integer_.
 
 
 
 
-## _Ordenação_
+## Ordenação
 
-Agora que dominamos alguns conhecimentos básicos de R, vamos tentar obter algumas dicas sobre a segurança de diferentes estados no contexto de matança de armas.
+Agora que dominamos alguns conhecimentos básicos de R, vamos tentar obter alguns _insights_ sobre segurança em diferentes estados no contexto de assassinatos por armas de fogo.
 
 ### `sort`
 
-Digamos que queremos classificar os estados do mais baixo para o mais alto, com base no assassinato de armas. A função `sort` classifica um vetor em ordem crescente. Portanto, podemos ver o maior número de assassinatos por arma, escrevendo:
+Digamos que desejemos classificar os estados, do menor para o maior, com base no índice de assassinatos por armas. A função `sort` classifica um vetor em ordem crescente. Portanto, podemos ver o maior número de assassinatos por arma, escrevendo:
 
 ```{r}
 library(dslabs)
@@ -894,11 +894,11 @@ data(murders)
 sort(murders$total)
 ```
 
-No entanto, isso não nos fornece informações sobre quais estados têm o total de assassinatos. Por exemplo, não sabemos em que estado ele estava `r max(murders$total)`.
+Entretanto, isso não nos fornece informações vinculando quais estados têm quais índices de assassinatos. Por exemplo, não sabemos em que estado apresentou `r max(murders$total)` assassinatos.
 
 ### `order`
 
-A função `order` é mais apropriado para o que queremos fazer. `order` pega um vetor como entrada e retorna o vetor de índices que classificam o vetor de entrada. Isso pode ser um pouco confuso, então vamos estudar um exemplo simples. Podemos criar um vetor e ordená-lo (_sort_ em inglês):
+A função `order` é mais apropriada para o que queremos fazer. `order` recebe um vetor como entrada e retorna um vetor de índices que classifica o vetor de entrada. Isso pode parecer um pouco confuso, então vamos analisar um exemplo simples. Podemos criar um vetor e ordená-lo:
 
 ```{r}
 x <- c(31, 4, 15, 92, 65)
@@ -912,33 +912,33 @@ index <- order(x)
 x[index]
 ```
 
-Este é o mesmo resultado que retorna você `sort(x)`. Se olharmos para este índice, veremos por que ele funciona:
+Este é o mesmo resultado retornado por `sort(x)`. Se olharmos para os índices, veremos porque isso funciona:
 ```{r}
 x
 order(x)
 ```
 
-A segunda entrada de `x` é o menor, então `order(x)` começa com `2`. O próximo menor é a terceira entrada, portanto, a segunda entrada é `3` e assim por diante.
+A segunda entrada de `x` é o menor valor, logo `order(x)` começa com o índice `2`. O próximo menor valor é a terceira entrada, portanto, o segundo índice é `3`, e assim por diante.
 
-Como isso nos ajuda a classificar os estados por assassinato? Primeiro, lembre-se de que as entradas de vetor que você acessa com `$` eles seguem a mesma ordem que as linhas da tabela. Por exemplo, esses dois vetores que contêm os nomes dos estados e suas abreviações, respectivamente, seguem a mesma ordem:
+Como isso nos ajuda a classificar os estados por assassinato? Primeiro, lembre-se de que as entradas de vetores que você acessa com `$` seguem a mesma ordem que as linhas da tabela. Por exemplo, estes dois vetores que contêm os nomes dos estados e suas abreviações, respectivamente, seguem a mesma ordem:
 
 ```{r}
 murders$state[1:6]
 murders$abb[1:6]
 ```
 
-Isso significa que podemos classificar os nomes dos estados com base no total de assassinatos. Primeiro, obtemos o índice que ordena os vetores pelo número total de assassinatos e depois colocamos o vetor de nomes de estados em um índice:
+Isso significa que podemos classificar os nomes dos estados com base no total de assassinatos. Primeiro, obtemos o índice que ordena os vetores pelo número total de assassinatos. A seguir, indexamos o vetor de nomes de estados:
 
 ```{r}
 ind <- order(murders$total)
 murders$abb[ind]
 ```
 
-De acordo com o exposto, a Califórnia teve o maior número de assassinatos.
+De acordo com o código acima, a Califórnia teve o maior número de assassinatos.
 
 ### `max` e `which.max`
 
-Se estivermos interessados apenas na entrada com o valor mais alto, podemos usar `max` para esse valor:
+Se estivermos interessados apenas na entrada com o valor mais alto, podemos usar `max` para obter esse valor:
 
 ```{r}
 max(murders$total)
@@ -951,9 +951,9 @@ i_max <- which.max(murders$total)
 murders$state[i_max]
 ```
 
-No mínimo, podemos usar `min` e `which.min` do mesmo modo.
+Para determinar o menor valor, podemos usar `min` e `which.min` do mesmo modo.
 
-Isso significa que a Califórnia é o estado mais perigoso? Em uma próxima seção, argumentamos que devemos considerar taxas e não totais. Antes de fazer isso, apresentamos uma última função relacionada à ordem: `rank`.
+Isso significa que a Califórnia é o estado mais perigoso? Em uma próxima seção, argumentamos que devemos considerar proporções e não totais. Antes de fazer isso, apresentaremos uma última função relacionada à ordem: `rank`.
 
 ### `rank`
 
@@ -1369,7 +1369,4 @@ Lembre-se de que muitos estados têm populações inferiores a 5 milhões e est�
 
 
 3\. Gere boxplots de populações estaduais por região.
-
-
-
 
