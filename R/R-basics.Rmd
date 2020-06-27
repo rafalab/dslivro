@@ -1268,12 +1268,12 @@ data(murders)
 
 ## Gráficos básicos
 
-No capítulo \@ref(ggplot2) descrevemos um pacote complementar que oferece uma abordagem poderosa para a produção de gráficos (_plots_ em inglês) em R. Em seguida, temos uma parte completa,
+No capítulo \@ref(ggplot2) descrevemos um pacote complementar que oferece uma abordagem poderosa para a produção de gráficos (_plots_ em inglês) em R. Em seguida, temos uma parte completa sobre 
 &Quot;Visualização de dados", na qual oferecemos muitos exemplos. Aqui, descrevemos brevemente algumas das funções disponíveis em uma instalação básica do R.
 
 ### `plot`
 
-A função `plot` pode ser usado para criar diagramas de dispersão (_scatterplots_ em inglês). Aqui está um gráfico do total de assassinatos versus população.
+A função `plot` pode ser usada para criar diagramas de dispersão (_scatterplots_ em inglês). Aqui está um gráfico do total de assassinatos versus população.
 
 ```{r eval=FALSE}
 x <- murders$population/ 10^6
@@ -1295,9 +1295,11 @@ Para criar um gráfico rápido que não acessa variáveis duas vezes, podemos us
 with(murders, plot(population, total))
 ```
 
-A função `with` nos permite usar os nomes na coluna `murders` na função `plot`. Também funciona com qualquer _data frame_ e qualquer função.
+A função `with` nos permite usar os nomes das colunas de `murders` na função `plot`. Também funciona com qualquer _data frame_ e qualquer função.
 
 ### `hist`
+
+Vamos descrever os histogramas relacionados à distribuição na seção de "Visualização de dados" deste livro. Aqui, observaremos simplesmente que os histogramas são um resumo gráfico poderoso de uma lista de números que fornece uma visão geral dos tipos de valores que você possui. Podemos fazer um histograma de nossas taxas de assassinatos simplesmente digitando:
 
 
 ```{r eval=FALSE}
@@ -1311,7 +1313,7 @@ x <- with(murders, total/ population * 100000)
 hist(x)
 ```
 
-Podemos ver que há uma grande variedade de valores, com a maioria entre 2 e 3 e um caso muito extremo com uma taxa de homicídios acima de 15:
+Podemos ver que há uma grande variedade de valores, com a maioria entre 2 e 3, e um caso muito extremo com uma taxa de homicídios acima de 15:
 
 ```{r}
 murders$state[which.max(x)]
@@ -1319,7 +1321,7 @@ murders$state[which.max(x)]
 
 ### `boxplot`
 
-Os diagramas de caixa (_boxplots_ em inglês) também serão descritos na parte "Visualização de dados" do livro. Eles fornecem um resumo mais conciso do que os histogramas, mas são mais fáceis de empilhar com outros gráficos de caixa. Por exemplo, aqui podemos usá-los para comparar diferentes regiões:
+Os diagramas de caixa (_boxplots_ em inglês) também serão descritos na parte "Visualização de dados" do livro. Eles fornecem um resumo mais conciso do que os histogramas, mas são mais fáceis de comparar com outros _boxplots_. Por exemplo, aqui podemos usá-los para comparar diferentes regiões:
 
 ```{r eval=FALSE}
 murders$rate <- with(murders, total/ population * 100000)
@@ -1352,7 +1354,7 @@ image(x)
 
 ## Exercícios
 
-1\. Fizemos um gráfico do total de assassinatos versus população e notamos um forte relacionamento. Não é de surpreender que os estados com populações maiores tenham sofrido mais assassinatos.
+1\. Fizemos um gráfico do total de assassinatos versus população e notamos um forte relacionamento. Não é de se surpreender que os estados com populações maiores tenham mais assassinatos.
 
 ```{r, eval = FALSE}
 library(dslabs)
@@ -1362,11 +1364,11 @@ total_gun_murders <- murders$total
 plot(population_in_millions, total_gun_murders)
 ```
 
-Lembre-se de que muitos estados têm populações inferiores a 5 milhões e estão agrupados. Podemos obter mais informações criando esse gráfico na escala logarítmica. Transformar variáveis usando transformação `log10` e depois crie um gráfico dos resultados.
+Lembre-se de que muitos estados têm populações inferiores a 5 milhões e estão agrupados. Podemos obter mais informações criando esse gráfico na escala logarítmica. Transforme as variáveis usando transformação `log10` e depois crie um gráfico com os resultados.
 
 
-2\. Crie um histograma das populações do estado.
+2\. Crie um histograma das populações dos estados.
 
 
-3\. Gere boxplots de populações estaduais por região.
+3\. Gere _boxplots_ das populações estaduais por região.
 
