@@ -1038,13 +1038,13 @@ mean(na_example)
 A função `is.na` retorna um vetor lógico que nos diz quais entradas são `NA`. Atribua esse vetor lógico a um objeto chamado `ind` e determine quantas entradas `NA` existem em `na_example`.
 
 
-8\. Agora calcule a média novamente, mas apenas para as entradas que não são `NA`. Dica: lembre-se do operador `!`.
+8\. Agora calcule a média novamente apenas para as entradas que não são `NA`. Dica: lembre-se do operador `!`.
 
 
 
 ## Aritmética vetorial
 
-A Califórnia teve mais assassinatos, mas isso significa que é o estado mais perigoso? E se você tiver muito mais pessoas do que qualquer outro estado? Podemos confirmar rapidamente que a Califórnia tem a maior população:
+A Califórnia teve mais assassinatos, mas isso significa que é o estado mais perigoso? E se ela apenas possuir muito mais pessoas do que qualquer outro estado? Podemos confirmar rapidamente que a Califórnia tem a maior população:
 
 ```{r}
 library(dslabs)
@@ -1052,22 +1052,22 @@ data("murders")
 murders$state[which.max(murders$population)]
 ```
 
-mais que `r floor(max(murders$population)/10^6)` milhões de habitantes. Portanto, é injusto comparar os totais se estivermos interessados em saber quão seguro é o estado. O que realmente devemos calcular são os assassinatos per capita. Os relatórios que descrevemos na seção motivadora usam assassinatos por 100.000 como unidade. Para calcular essa quantidade, usamos os poderosos recursos aritméticos vetoriais de R.
+com mais do que `r floor(max(murders$population)/10^6)` milhões de habitantes. Portanto, é injusto comparar os totais se estivermos interessados em saber quão seguro é o estado. O que realmente devemos calcular são os assassinatos per capita. Os relatórios que descrevemos na seção motivadora usam assassinatos por 100.000 habitantes como unidade. Para calcular essa quantidade, usamos os poderosos recursos aritméticos vetoriais de R.
 
-### _Rescalar_ um vetor
+### Reescalonando um vetor
 
-Em R, operações aritméticas em vetores ocorrem elemento a elemento. Como exemplo, suponha que tenhamos a altura em polegadas (_inches_ em inglês):
+Em R, operações aritméticas em vetores ocorrem elemento a elemento. Como exemplo, suponha que tenhamos as seguintes alturas em polegadas (1 polegada é equivalente a 2,54 centímetros):
 
 ```{r}
 inches <- c(69, 62, 66, 70, 70, 73, 67, 73, 67, 70)
 ```
-e queremos convertê-lo em centímetros. Observe o que acontece quando multiplicamos `inches` por 2.54:
+e queremos convertê-las em centímetros. Observe o que acontece quando multiplicamos `inches` por 2.54:
 
 ```{r}
 inches * 2.54
 ```
 
-Acima, multiplicamos cada elemento por 2,54. Da mesma forma, se para cada entrada queremos calcular quantas polegadas mais altas, ou quantas menores, que 69 polegadas (a altura média para homens), podemos subtraí-la de cada entrada desta maneira:
+Acima, multiplicamos cada elemento por 2,54. Da mesma forma, se para cada entrada queremos calcular o quanto cada uma é maior ou menor que 69 polegadas (a altura média para homens), podemos subtraí-las de cada entrada desta maneira:
 
 ```{r}
 inches - 69
@@ -1076,7 +1076,7 @@ inches - 69
 
 ### Dois vetores
 
-Se tivermos dois vetores do mesmo comprimento e os adicionarmos em R, eles serão adicionados entrada por entrada da seguinte maneira:
+Se tivermos dois vetores de mesmo comprimento e os somá-los usando R, eles serão somados entrada por entrada da seguinte maneira:
 
 $$
 \begin{pmatrix}
@@ -1106,10 +1106,10 @@ O mesmo se aplica a outras operações matemáticas, como `-`, `*` e `/`.
 Isso implica que, para calcular as taxas de homicídio (_murder rates_ em inglês), podemos simplesmente escrever:
 
 ```{r}
-murder_rate <- murders$total/ murders$population * 100000
+murder_rate <- murders$total / murders$population * 100000
 ```
 
-Ao fazer isso, percebemos que a Califórnia não está mais perto do topo da lista. De fato, podemos usar o que aprendemos para colocar os estados em ordem pela taxa de homicídios:
+Ao fazer isso, percebemos que a Califórnia não está mais perto do topo da lista. De fato, podemos usar o que aprendemos para colocar os estados em ordem com base na taxa de homicídios:
 
 ```{r}
 murders$abb[order(murder_rate)]
@@ -1129,28 +1129,28 @@ city_temps <- data.frame(name = city, temperature = temp)
 
 Recrie o _data frame_ usando o código acima, mas adicione uma linha que converta a temperatura de Fahrenheit em Celsius. A conversão é $C = \frac{5}{9} \times (F - 32)$.
 
-2\. Qual é a seguinte soma? $1+1/2^2 + 1/3^2 + \dots 1/100^2$? Dica: Graças a Euler, sabemos que você deve estar perto de $\pi^2/6$.
+2\. Qual é o resultado da seguinte soma? $1+1/2^2 + 1/3^2 + \dots 1/100^2$? Dica: Graças a Euler, sabemos que o resultado deve ser próximo de $\pi^2/6$.
 
-3\. Calcule a taxa de homicídios por 100.000 para cada estado e armazene-a no objeto `murder_rate`. Em seguida, encontre a taxa média de homicídios nos EUA. EUA com função `mean`. Qual é a média?
+3\. Calcule a taxa de homicídios por 100.000 habitantes para cada estado e armazene-a no objeto `murder_rate`. Em seguida, encontre a taxa média de homicídios nos EUA com função `mean`. Qual é a média?
 
 ## Indexação
 
-O R fornece uma maneira poderosa e conveniente de indexar vetores. Podemos, por exemplo, criar um subconjunto de um vetor com base nas propriedades de outro vetor. Nesta seção, continuamos a trabalhar em nosso exemplo de assassinato nos EUA. EUA, que podemos carregar assim:
+R fornece uma maneira poderosa e conveniente para indexar vetores. Podemos, por exemplo, criar um subconjunto de um vetor com base nas propriedades de outro vetor. Nesta seção, continuaremos a trabalhar em nosso exemplo de assassinato nos EUA, que podemos carregar assim:
 
 ```{r}
 library(dslabs)
 data("murders")
 ```
 
-### Criar subconjuntos com lógicas
+### Criando subconjuntos com objetos do tipo lógico
 
 Agora calculamos a taxa de homicídios usando:
 
 ```{r}
-murder_rate <- murders$total/ murders$population * 100000
+murder_rate <- murders$total / murders$population * 100000
 ```
 
-Imagine se mudar da Itália, onde, segundo uma reportagem, a taxa de homicídios é de apenas 0,71 por 100.000. Você prefere mudar para um estado com uma taxa de homicídios semelhante. Outro recurso poderoso do R é que podemos usar lógicas para indexar vetores. Se compararmos um vetor com um único número, R realiza o teste para cada entrada. Aqui está um exemplo relacionado à pergunta anterior:
+Imagine se mudar da Itália onde, segundo uma reportagem do canal de notícias ABC News, a taxa de homicídios é de apenas 0,71 por 100.000. Você prefereria se mudar para um estado com uma taxa de homicídios semelhante. Outro recurso poderoso do R é que podemos usar operadores lógicos para indexar vetores. Se compararmos um vetor com um único número, R realiza o teste para cada entrada. Aqui está um exemplo relacionado à questão anterior:
 
 ```{r}
 ind <- murder_rate < 0.71
@@ -1162,13 +1162,13 @@ Se, em vez disso, queremos saber se um valor é menor ou igual, podemos usar:
 ind <- murder_rate <= 0.71
 ```
 
-Lembre-se de que recuperamos um vetor lógico com `TRUE` para cada entrada menor ou igual a 0,71. Para ver quais são esses estados, podemos tirar proveito do fato de que vetores podem ser indexados com lógicas.
+Note que que recuperamos um vetor lógico com `TRUE` para cada entrada menor ou igual a 0,71. Para ver quais são esses estados, podemos tirar proveito do fato de que vetores podem ser indexados com objetos do tipo lógico.
 
 ```{r}
 murders$state[ind]
 ```
 
-Para contar quantos _TRUE_, a função `sum` retorna a soma das entradas de um vetor e força a conversão de vetores lógicos em números com `TRUE` codificado como 1 e `FALSE` como 0. Portanto, podemos contar os estados usando:
+Para contar quantas entradas são verdadeiras (_TRUE_), a função `sum` retorna a soma das entradas de um vetor e força a conversão de vetores lógicos em números com `TRUE` codificado como 1 e `FALSE` como 0. Portanto, podemos contar os estados usando:
 
 ```{r}
 sum(ind)
@@ -1177,7 +1177,7 @@ sum(ind)
 
 ### Operadores lógicos
 
-Suponha que gostemos de montanhas e que desejemos mudar para um estado seguro na região oeste do país. Queremos que a taxa de homicídios seja no máximo 1. Nesse caso, queremos que duas coisas diferentes sejam verdadeiras. Aqui podemos usar o operador lógico _and_, que em R é representado por `&`. Esta operação resulta em `TRUE` somente quando ambas as lógicas são `TRUE`, isto é, certo. Para ver isso, considere este exemplo:
+Suponha que gostemos de montanhas e que desejemos mudar para um estado seguro na região oeste do país. Queremos que a taxa de homicídios seja no máximo 1. Nesse caso, queremos que duas coisas diferentes sejam verdadeiras. Aqui podemos usar o operador lógico _and_, que em R é representado por `&`. Esta operação resulta em `TRUE` somente quando ambas as lógicas são `TRUE`, isto é, verdadeiras. Para ver isso, considere este exemplo:
 
 ```{r}
 TRUE & TRUE
@@ -1185,7 +1185,7 @@ TRUE & FALSE
 FALSE & FALSE
 ```
 
-Para o nosso exemplo, podemos formar duas lógicas:
+Para o nosso exemplo, podemos formar duas condições lógicas:
 
 ```{r}
 west <- murders$region == "West"
@@ -1201,7 +1201,7 @@ murders$state[ind]
 
 ### `which`
 
-Suponha que queremos ver a taxa de homicídios da Califórnia. Para esse tipo de operação, é conveniente converter vetores lógicos em índices em vez de manter vetores lógicos longos. A função `which` nos diz quais entradas para um vetor lógico são VERDADEIRAS. Então podemos escrever:
+Suponha que queremos ver a taxa de homicídios da Califórnia. Para esse tipo de operação, é conveniente converter vetores lógicos em índices em vez de manter vetores lógicos longos. A função `which` nos diz quais entradas de um vetor lógico são verdadeiras. Então podemos escrever:
 
 ```{r}
 ind <- which(murders$state == "California")
@@ -1211,7 +1211,7 @@ murder_rate[ind]
 
 ### `match`
 
-Se, em vez de um único estado, queremos descobrir as taxas de assassinatos de vários estados, digamos Nova York, Flórida e Texas, podemos usar a função `match`. Essa função nos diz quais índices de um segundo vetor correspondem a cada uma das entradas de um primeiro vetor:
+Se, em vez de um único estado, desejamos descobrir as taxas de assassinatos de vários estados, digamos Nova York, Flórida e Texas, podemos usar a função `match`. Essa função nos diz quais índices de um segundo vetor correspondem a cada uma das entradas de um primeiro vetor:
 
 ```{r}
 ind <- match(c("New York", "Florida", "Texas"), murders$state)
@@ -1227,7 +1227,7 @@ murder_rate[ind]
 ### `%in%`
 
 
-Se, em vez de um índice, queremos que um lógico nos diga se cada elemento de um primeiro vetor está em um segundo vetor, podemos usar a função `%in%`. Vamos imaginar que você não tem certeza se Boston, Dakota e Washington são estados. Você pode descobrir assim:
+Se, em vez de um índice, desejamos que uma expressão lógica nos diga se cada elemento de um primeiro vetor está em um segundo vetor, podemos usar a função `%in%`. Vamos imaginar que você não tem certeza se Boston, Dakota e Washington são estados. Você pode descobrir assim:
 
 ```{r}
 c("Boston", "Dakota", "Washington") %in% murders$state
@@ -1235,7 +1235,7 @@ c("Boston", "Dakota", "Washington") %in% murders$state
 
 Lembre-se de que usaremos `%in%` frequentemente ao longo do livro.
 
-**Avançado**: existe uma conexão entre `match` e `%in%` através `which`. Para ver isso, observe que as duas linhas a seguir produzem o mesmo índice (embora em ordem diferente):
+**Avançado**: existe uma conexão entre `match` e `%in%` através de `which`. Para ver isso, observe que as duas linhas a seguir produzem o mesmo índice (embora em ordem diferente):
 
 ```{r}
 match(c("New York", "Florida", "Texas"), murders$state)
@@ -1244,25 +1244,25 @@ which(murders$state%in%c("New York", "Florida", "Texas"))
 
 ## Exercícios
 
-Comece carregando o pacote e os dados.
+Comece carregando a biblioteca e os dados.
 ```{r}
 library(dslabs)
 data(murders)
 ```
 
-1\. Calcule a taxa de homicídios por 100.000 para cada estado e armazene-a em um objeto chamado `murder_rate`. Em seguida, use operadores lógicos para criar um vetor lógico chamado `low` que nos diz quais entradas de `murder_rate` são menores que 1.
+1\. Calcule a taxa de homicídios por 100.000 habitantes para cada estado e armazene-a em um objeto chamado `murder_rate`. Em seguida, use operadores lógicos para criar um vetor lógico chamado `low` que nos diz quais entradas de `murder_rate` são menores que 1.
 
-2\. Agora use os resultados do exercício anterior e a função `which` para determinar os índices de `murder_rate` associado a valores menores que 1.
+2\. Agora use os resultados do exercício anterior e a função `which` para determinar os índices de `murder_rate` associados a valores menores que 1.
 
 3\. Use os resultados do exercício anterior para indicar os nomes dos estados com taxas de homicídio menores que 1.
 
-4\. Agora estenda o código nos Exercícios 2 e 3 para indicar os estados do nordeste com taxas de homicídios menores que 1. Dica: Use o vetor lógico predefinido `low` e o operador lógico `&`.
+4\. Agora estenda o código dos Exercícios 2 e 3 para indicar os estados do nordeste com taxas de homicídios menores que 1. Dica: Use o vetor lógico predefinido `low` e o operador lógico `&`.
 
 5\. Em um exercício anterior, calculamos a taxa de homicídios de cada estado e a média desses números. Quantos estados estão abaixo da média?
 
 6\. Use a função _match_ para identificar estados com as abreviações AK, MI e IA. Dica: Comece definindo um índice das entradas em `murders$abb` que correspondem às três abreviações. Então use o operador `[` para extrair os estados.
 
-7\. Use o operador `%in%` para criar um vetor lógico que responda à pergunta: quais das seguintes são abreviações reais: MA, ME, MI, MO, MU?
+7\. Use o operador `%in%` para criar um vetor lógico que responda à pergunta: quais das seguintes abreviações são reais: MA, ME, MI, MO, MU?
 
 8\. Estenda o código usado no Exercício 7 para descobrir a única entrada que **não é** uma abreviação real. Dica: use o operador `!`, que converte `FALSE` para `TRUE` e vice-versa, e depois `which` para obter um índice.
 
