@@ -957,15 +957,15 @@ Isso significa que a Califórnia é o estado mais perigoso? Em uma próxima seç
 
 ### `rank`
 
-Embora não seja usado com tanta frequência `order` e `sort`, a função `rank` também está relacionado à ordem e pode ser útil.
-Para qualquer vetor, `rank` retorna um vetor com o intervalo da primeira entrada, segunda entrada etc. do vetor de entrada. Aqui está um exemplo simples:
+Embora não seja usada com tanta frequência quanto `order` e `sort`, a função `rank` também pode ser utilizada para classificação e pode ser bastante útil.
+Para qualquer vetor, `rank` retorna um outro vetor com a posição de classificação dos itens do vetor de entrada quando ordenados. Aqui está um exemplo simples:
 
 ```{r}
 x <- c(31, 4, 15, 92, 65)
 rank(x)
 ```
 
-Para resumir, vejamos os resultados das três funções que discutimos:
+Para resumir, vejamos os resultados das três funções que apresentamos:
 
 ```{r, echo=FALSE}
 tmp <- data.frame(original=x, sort=sort(x), order=order(x), rank=rank(x))
@@ -981,19 +981,19 @@ kableExtra::kable_styling(font_size = 8)
 
 ### Cuidado com a reciclagem
 
-Outra fonte comum de erros inadvertidos no R é o uso de _recycling_. Vimos como os vetores são adicionados por elementos. Portanto, se os vetores não coincidirem em comprimento, é natural supor que recebemos um erro. Mas esse não é o caso. Veja o que acontece:
+Outra fonte comum de erros que podem passar despercebidos no R é o uso de reciclagem (_recycling_ no inglês). Vimos que os vetores são adicionados elemento a elemento. Portanto, se os vetores não coincidirem em comprimento, é natural supor que receberemos um erro. Mas esse não é o caso. Veja o que acontece:
 
 ```{r, warning=TRUE}
-x <- c(1,2,3)
+x <- c(1, 2, 3)
 y <- c(10, 20, 30, 40, 50, 60, 70)
 x+y
 ```
-Recebemos um aviso, mas não há erro. Para _output_, R reciclou os números em `x`. Veja o último dígito dos números na saída.
+Recebemos um aviso, mas não há erro. Para o resultado, R reciclou os números em `x`. Veja o último dígito dos números na saída (ou seja, nessa soma a reciclagem faz `x` ser equivalente a `c(1, 2, 3, 1, 2, 3, 1)`).
 
 
 ## Exercícios
 
-Para esses exercícios, usaremos o conjunto de dados de assassinatos nos EUA. Certifique-se de carregá-lo antes de começar.
+Para os exercícios a seguir, usaremos o _dataset_ de assassinatos nos EUA. Certifique-se de carregá-lo antes de começar.
 
 ```{r}
 library(dslabs)
