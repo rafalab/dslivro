@@ -74,7 +74,7 @@ coord_flip()
 
 <!--(Source [everytown.org](https://everytownresearch.org))-->
 
-Mas então você se lembra que os Estados Unidos são um país grande e diversificado, com 50 estados muito diferentes, além do Distrito de Columbia (DC).
+Mas então você se lembra que os Estados Unidos são um país grande e diversificado, com 50 estados muito distintos, além do Distrito de Columbia ou simplesmente DC (equivalente a um distrito federal).
 
 ```{r us-murders-by-state-map, message=FALSE, echo=FALSE}
 library(tidyverse)
@@ -174,7 +174,7 @@ Uma vez definidas as variáveis, o processo de análise de dados geralmente pode
 
 Nós já usamos as funções `install.packages`, `library` e `ls`. Também usamos a função `sqrt` para resolver a equação quadrática acima. Existem muitas funções predefinidas e ainda mais podem ser adicionadas através de pacotes. Essas funções não aparecem na área de trabalho porque não foi você quem as definiu, mas elas estão disponíveis para uso imediato.
 
-Em geral, precisamos usar parênteses para chamar uma função. Se você escrever `ls`, a função não é avaliada e, em vez disso, R mostra o código que a define. Se você escrever `ls()`, a função é avaliada e, como já mostrado, listamos os objetos na área de trabalho.
+Em geral, precisamos usar parênteses para chamar uma função. Se você escrever `ls`, a função não é executada e, em vez disso, R mostra o código que a define. Se você escrever `ls()`, a função é executada e, como já mostrado, listamos os objetos na área de trabalho.
 
 Diferente de `ls`, a maioria das funções requer um ou mais _argumentos_. Abaixo está um exemplo de como atribuímos um objeto como argumento da função `log`. Lembre-se de que anteriormente definimos `a` como 1:
 
@@ -228,7 +228,7 @@ log(base = 2, x = 8)
 
 Para especificar argumentos, devemos usar `=` e não `<-`.
 
-Existem algumas exceções à regra de que funções precisam que parênteses para serem avaliadas. Entre essas exceções, os mais utilizados são os operadores aritméticos e relacionais. Por exemplo:
+Existem algumas exceções à regra de que funções precisam que parênteses para serem executadas. Entre essas exceções, os mais utilizados são os operadores aritméticos e relacionais. Por exemplo:
 
 ```{r}
 2^3
@@ -273,7 +273,7 @@ co2
 ```
 R mostrará os dados da concentração atmosférica de CO2 de Mauna Loa.
 
-Outros objetos pré-construídos (_prebuilt_) são as grandezas matemáticas, como a constante $\pi$ e $\infty$:
+Outros objetos pré-construídos (_prebuilt_) são as constantes matemáticas, como a constante $\pi$ e $\infty$:
 
 ```{r}
 pi
@@ -316,7 +316,7 @@ Ao criar e salvar um _script_ com o código acima, não precisaríamos redigitar
 
 ### Como comentar seu código
 
-Se uma linha de código R começar com o símbolo `#`, ela não é avaliada. Podemos usar isso para escrever lembretes sobre por que escrevemos um código específico. Por exemplo, no _script_ acima, poderíamos adicionar:
+Se uma linha de código R começar com o símbolo `#`, ela não é executada. Podemos usar isso para escrever lembretes sobre por que escrevemos um código específico. Por exemplo, no _script_ acima, poderíamos adicionar:
 
 
 ```{r, eval=FALSE}
@@ -505,7 +505,7 @@ Em segundo plano, R armazena esses _levels_ (níveis) como números inteiros (_i
 
 Observe que os níveis têm uma ordem que é diferente da ordem de aparecimento em um objeto _factor_. Em R, por padrão, os níveis são organizados em ordem alfabética. No entanto, geralmente queremos que os níveis sigam uma ordem diferente. Você pode especificar a ordem através do argumento `levels` quando criar o fator com a função `factor`. Por exemplo, no conjunto de dados de assassinatos, as regiões são ordenadas de leste a oeste. A função `reorder` permite alterar a ordem dos níveis de uma variável _factor_ baseado em um resumo calculado em um vetor numérico. Agora, demonstraremos isso usando um simples exemplo. Veremos exemplos mais avançados na seção de Visualização de Dados do livro.
 
-Vamos supor que desejemos que os níveis da região sejam ordenados de acordo com o número total de assassinatos, e não por ordem alfabética. Se houver valores associados a cada nível, podemos usar `reorder` e especificar um resumo dos dados para determinar a ordem. O código a seguir pega a soma do total de assassinatos em cada região e reordena o fator de acordo com essas somas.
+Vamos supor que desejemos que os níveis da região sejam ordenados de acordo com o número total de assassinatos, e não por ordem alfabética. Se houver valores associados a cada nível, podemos usar `reorder` para determinar a ordem. O código a seguir pega a soma do total de assassinatos em cada região e reordena o fator de acordo com essas somas.
 
 ```{r}
 region <- murders$region
