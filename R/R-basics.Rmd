@@ -1000,13 +1000,13 @@ library(dslabs)
 data("murders")
 ```
 
-1\. Use o operador `$` para acessar dados de tamanho da população e armazená-los como objeto `pop`. Então use a função `sort` redefinir `pop` então está em ordem alfabética. Por fim, use o operador `[` para indicar o menor tamanho populacional.
+1\. Use o operador `$` para acessar os dados de tamanho da população e armazená-los em um objeto denominado `pop`. Então use a função `sort` ordenar `pop`. Por fim, use o operador `[` para indicar o menor tamanho populacional.
 
-2\. Agora, em vez do menor tamanho populacional, encontre o índice da entrada com o menor tamanho populacional. Dica: use `order` ao invés de `sort`.
+2\. Agora, em vez de determinar o valor do menor tamanho populacional, encontre o índice da entrada com o menor tamanho populacional. Dica: use `order` ao invés de `sort`.
 
 3\. Podemos realizar a mesma operação que no exercício anterior usando a função `which.min`. Escreva uma linha de código que faça isso.
 
-4\. Agora sabemos o quão pequeno é o menor estado e qual linha o representa. Que estado é esse? Definir uma variável `states` para ser os nomes dos estados do _data frame_ `murders`. Digite o nome do estado com a menor população.
+4\. Agora sabemos o quão pequeno é o menor estado e qual linha o representa. Que estado é esse? Defina uma variável denominada `states` para receber os nomes dos estados do _data frame_ `murders`. Digite o nome do estado com a menor população.
 
 5\. Você pode criar um _data frame_ usando a função `data.frame`. Aqui está um exemplo:
 
@@ -1018,9 +1018,9 @@ city <- c("Beijing", "Lagos", "Paris", "Rio de Janeiro",
 city_temps <- data.frame(name = city, temperature = temp)
 ```
 
-Use a função `rank` para determinar a faixa populacional de cada estado, do menos populoso ao mais populoso. Armazene esses intervalos em um objeto chamado `ranks`, crie um _data frame_ com o nome do estado e seu intervalo. Nomeie o _data frame_ `my_df`.
+Use a função `rank` para determinar a faixa populacional de cada estado, do menos populoso ao mais populoso. Armazene esses intervalos em um objeto chamado `ranks`, e crie um _data frame_ com o nome do estado e sua posição no _rank_. Nomeie o _data frame_ como `my_df`.
 
-6\. Repita o exercício anterior, mas desta vez solicite `my_df` para que os estados estejam na ordem de menos populosos para os mais populosos. Dica: crie um objeto `ind` que armazena os índices necessários para ordenar os valores da população. Em seguida, use o operador de suporte `[` para reordenar cada coluna no _data frame_.
+6\. Repita o exercício anterior, mas desta vez ordene `my_df` para que os estados estejam na ordem de menos populosos para os mais populosos. Dica: crie um objeto `ind` que armazena os índices necessários para ordenar os valores da população. Em seguida, use o operador de suporte `[` para reordenar cada coluna no _data frame_.
 
 7\. O vetor `na_example` representa uma série de contagens. Você pode navegar rapidamente pelo objeto usando:
 
@@ -1029,13 +1029,13 @@ data("na_example")
 str(na_example)
 ```
 
-No entanto, quando calculamos a média com a função `mean`, temos um `NA`:
+No entanto, quando calculamos a média com a função `mean`, obtemos um `NA`:
 
 ```{r}
 mean(na_example)
 ```
 
-A função `is.na` retorna um vetor lógico que nos diz quais entradas são `NA`. Atribua esse vetor lógico a um objeto chamado `ind` e determine quantas `NA` barbear `na_example`.
+A função `is.na` retorna um vetor lógico que nos diz quais entradas são `NA`. Atribua esse vetor lógico a um objeto chamado `ind` e determine quantas entradas `NA` existem em `na_example`.
 
 
 8\. Agora calcule a média novamente, mas apenas para as entradas que não são `NA`. Dica: lembre-se do operador `!`.
