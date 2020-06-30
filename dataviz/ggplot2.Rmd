@@ -4,7 +4,7 @@
 img_path <- "R/img"
 ```
 
-A visualização exploratória de dados é talvez a maior vantagem do R. Com R, pode-se passar rapidamente da ideia aos dados plotando gráficos com um equilíbrio único de flexibilidade e facilidade. Por exemplo, usar o Excel pode ser mais fácil do que o R para alguns gráficos, mas não é nem de longe tão flexível. D3.js pode ser mais flexível e poderoso que o R, mas leva muito mais tempo para gerar um gráfico.
+A visualização exploratória de dados é talvez a maior vantagem do R. Com R pode-se rapidamente converter uma ideia em um gráfico, manipulando os dados com um balanço único entre flexibilidade e facilidade. Por exemplo, usar o Excel pode ser mais fácil do que o R para alguns gráficos, mas não é nem de longe tão flexível. D3.js pode ser mais flexível e poderoso que o R, mas leva muito mais tempo para gerar um gráfico.
 
 Ao longo deste livro, criaremos gráficos usando o pacote __ggplot2__^[https://ggplot2.tidyverse.org/].
 
