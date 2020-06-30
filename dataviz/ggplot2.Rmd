@@ -4,18 +4,18 @@
 img_path <- "R/img"
 ```
 
-A visualização de dados exploratórios é talvez a maior vantagem de R. É possível passar rapidamente da ideia para os dados para representar graficamente com um equilíbrio único de flexibilidade e facilidade. Por exemplo, o Excel pode ser mais fácil que o R para alguns gráficos, mas não é tão flexível. O D3.js pode ser mais flexível e poderoso que o R, mas leva muito mais tempo para gerar um gráfico.
+A visualização exploratória de dados é talvez a maior vantagem do R. Com R, pode-se passar rapidamente da ideia aos dados plotando gráficos com um equilíbrio único de flexibilidade e facilidade. Por exemplo, usar o Excel pode ser mais fácil do que o R para alguns gráficos, mas não é nem de longe tão flexível. D3.js pode ser mais flexível e poderoso que o R, mas leva muito mais tempo para gerar um gráfico.
 
-Ao longo do livro, criaremos gráficos usando o pacote __ggplot2__^[https://ggplot2.tidyverse.org/].
+Ao longo deste livro, criaremos gráficos usando o pacote __ggplot2__^[https://ggplot2.tidyverse.org/].
 
 ```{r, message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
 ```
 
-Existem muitas opções gráficas disponíveis em R. De fato, os recursos gráficos que vêm com uma instalação básica do R já são bastante poderosos. Também existem outros pacotes para criar gráficos como __grid__e__lattice__. Neste livro, decidimos usar __ggplot2__ porque ele divide gráficos em componentes de uma maneira que permite aos iniciantes criar gráficos relativamente complexos e esteticamente agradáveis usando sintaxe intuitiva e relativamente fácil de lembrar.
+Muitos muitos outros métodos para criar gráficas estão disponíveis no R. De fato, os recursos gráficos que vêm com uma instalação básica do R já são bastante poderosos. Também existem outros pacotes para criar gráficos como o __grid__ e o __lattice__. Neste livro, decidimos usar o __ggplot2__ porque ele divide gráficos em componentes que permitem a iniciantes criar gráficos relativamente complexos e esteticamente agradáveis usando sintaxe intuitiva e relativamente fácil de lembrar.
 
-Um dos motivos pelo qual __ggplot2__ é geralmente mais intuitivo para iniciantes é porque ele usa uma gramática gráfica^[http://www.springer.com/us/book/9780387245447], o _gg_do__ggplot2__. Isso é análogo a como a aprendizagem de gramática pode ajudar um aluno a criar centenas de frases diferentes, aprendendo apenas um pequeno número de verbos, substantivos e adjetivos, em vez de memorizar cada frase específica. Da mesma forma, aprendendo uma pequena quantidade dos componentes básicos do __ggplot2__ e sua gramática, você poderá criar centenas de gráficos diferentes.
+Um dos motivos pelo qual __ggplot2__ é considerado mais intuitivo para iniciantes é o fato dele usar uma gramática gráfica^[http://www.springer.com/us/book/9780387245447], o _gg_ em __ggplot2__. Isso é análogo à forma como a aprender gramática pode ajudar um iniciante a criar centenas de diferentes frases apenas aprendendo um punhado de verbos, substantivos e adjetivos, em vez de memorizar cada frase específica. Da mesma forma, aprendendo uma pequena quantidade dos componentes básicos do __ggplot2__ e sua gramática, você poderá criar centenas de gráficos diferentes.
 
 Outro motivo pelo qual __ggplot2__ é fácil para iniciantes é que seu comportamento padrão foi cuidadosamente escolhido para satisfazer a grande maioria dos casos e também é visualmente agradável. Como resultado, é possível criar gráficos informativos e elegantes com código relativamente simples e legível.
 
