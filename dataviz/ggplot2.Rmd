@@ -17,15 +17,15 @@ Muitos muitos outros métodos para criar gráficas estão disponíveis no R. De 
 
 Um dos motivos pelo qual __ggplot2__ é considerado mais intuitivo para iniciantes é o fato dele usar uma gramática gráfica^[http://www.springer.com/us/book/9780387245447], o _gg_ em __ggplot2__. Isso é análogo à forma como a aprender gramática pode ajudar um iniciante a criar centenas de diferentes frases apenas aprendendo um punhado de verbos, substantivos e adjetivos, em vez de memorizar cada frase específica. Da mesma forma, aprendendo uma pequena quantidade dos componentes básicos do __ggplot2__ e sua gramática, você poderá criar centenas de gráficos diferentes.
 
-Outro motivo pelo qual __ggplot2__ é fácil para iniciantes é que seu comportamento padrão foi cuidadosamente escolhido para satisfazer a grande maioria dos casos e também é visualmente agradável. Como resultado, é possível criar gráficos informativos e elegantes com código relativamente simples e legível.
+Outra razão pela qual __ggplot2__ é fácil para iniciantes é que seu comportamento padrão foi cuidadosamente escolhido para satisfazer a grande maioria dos casos e também é visualmente agradável. Como resultado, é possível criar gráficos informativos e elegantes com código relativamente simples e legível.
 
-Uma limitação de __ggplot2__é que ele foi projetado para funcionar exclusivamente com tabelas de dados no formato_tidy_ (onde linhas são observações e colunas são variáveis). No entanto, uma porcentagem substancial dos conjuntos de dados com os quais os iniciantes trabalham estão neste formato ou podem ser convertidos para ele. Uma vantagem dessa abordagem é que, desde que nossos dados sejam arrumados, __ggplot2__ simplifica o aprendizado de código e gramática de gráficos para uma variedade de gráficos.
+Uma limitação do __ggplot2__ é que ele foi projetado para funcionar exclusivamente com tabelas de dados no formato _tidy_ (onde linhas são observações e colunas são variáveis). No entanto, uma porcentagem substancial dos _datasets_ com os quais os iniciantes trabalham estão nesse formato ou podem ser convertidos para ele. Uma vantagem dessa abordagem é que, desde que nossos dados estejam "arrumados" (_tidy_ em inglês), __ggplot2__ simplifica o aprendizado de código e gramática de plotagem para uma variedade de gráficos.
 
-Para usar __ggplot2__, eles terão que aprender várias funções e argumentos. Como é difícil memorizar, recomendamos que você tenha a folha de referência do ggplot2 à mão. Você pode obter uma cópia aqui: [https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf................(https://www.rstudio.com/wp-content/uploads/ 2015/03/ ggplot2-cheatsheet.pdf) ou simplesmente faça uma pesquisa na Internet por "ggplot2 cheat sheet".
+Para usar __ggplot2__, você terá que aprender uma série de funções e argumentos. Como é difícil memorizar, recomendamos que você tenha a folha de referência do ggplot2 à mão. Você pode obter uma cópia aqui: [https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf](https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf) ou simplesmente faça uma pesquisa na Internet por "_ggplot2 cheat sheet_".
 
 ## Os componentes de um gráfico
 
-Construiremos um gráfico que resume o conjunto de dados de assassinatos por armas nos Estados Unidos da seguinte forma:
+Construiremos um gráfico que resume o _dataset_ de assassinatos por armas nos Estados Unidos da seguinte forma:
 
 ```{r ggplot-example-plot, echo=FALSE}
 library(dslabs)
@@ -43,16 +43,16 @@ geom_point(aes(color=region), size = 3) +
 geom_text_repel() +
 scale_x_log10() +
 scale_y_log10() +
-xlab("Populations in millions (log scale)") +
-ylab("Total number of murders (log scale)") +
-ggtitle("US Gun Murders in 2010") +
+xlab("Populações em milhões (escala logarítmica)") +
+ylab("Número total de assassinatos (escala logarítmica)") +
+ggtitle("Assassinatos por armas de fogo nos EUA em 2010") +
 scale_color_discrete(name="Region") +
 theme_economist()
 ```
 
-Podemos ver claramente quanto os estados variam de acordo com o tamanho da população e o número total de assassinatos. Não é de surpreender que também exista uma relação clara entre o total de assassinatos e o tamanho da população. Um estado que cai na linha tracejada cinza tem a mesma taxa de homicídios que a média dos EUA. As quatro regiões geográficas são indicadas com cores, o que mostra como a maioria dos estados do sul tem taxas de homicídio acima da média.
+Podemos ver claramente o quanto os estados variam de acordo com o tamanho da população e o número total de assassinatos. Não é de surpreender que também exista uma relação clara entre o total de assassinatos e o tamanho da população. Estados plotados sobre a linha cinza tracejada têm a mesma taxa de homicídios que a média dos EUA. As quatro regiões geográficas são indicadas com cores, o que mostra como a maioria dos estados do sul tem taxas de homicídio acima da média.
 
-Essa visualização de dados mostra praticamente todas as informações na tabela de dados. O código necessário para criar o gráfico é relativamente simples. Vamos aprender a criá-lo parte por parte.
+Essa visualização de dados mostra praticamente todas as informações na tabela de dados. Além disso, o código necessário para criar esse gráfico é relativamente simples. Vamos aprender a criá-lo parte por parte.
 
 O primeiro passo para aprender __ggplot2__ é ser capaz de separar um gráfico em componentes. Começaremos examinando o gráfico acima e introduzindo algumas das terminologias de __ggplot2__. Os três principais componentes a serem considerados são:
 
