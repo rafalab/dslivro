@@ -112,11 +112,11 @@ p
 
 ## Geometrias
 
-No `ggplot2` criamos gráficos adicionando _layers_ (_layers_ em inglês). As camadas podem definir geometrias, calcular estatísticas de resumo, definir quais escalas (_scales_ em inglês) usar ou até alterar estilos. Para adicionar camadas, usamos o símbolo `+`. Em geral, uma linha de código ficará assim:
+No `ggplot2` criamos gráficos adicionando _camadas_ (_layers_ em inglês). As camadas podem definir geometrias, calcular estatísticas resumidas, definir quais escalas usar ou, até mesmo, alterar estilos. Para adicionar camadas, usamos o símbolo `+`. Em geral, uma linha de código ficará assim:
 
->> DADOS%>% `ggplot()` + CAMADA 1 + CAMADA 2 + ... + CAMADA N
+>> DADOS %>% `ggplot()` + CAMADA 1 + CAMADA 2 + ... + CAMADA N
 
-Geralmente, a primeira camada que adicionamos define a geometria. Queremos fazer um diagrama de dispersão. Que geometria devemos usar?
+Geralmente, a primeira camada que adicionamos define a geometria. Por exemplo, se queremos fazer um diagrama de dispersão, qual geometria devemos usar?
 
 Observando rapidamente a folha de referência, vemos que a função usada para criar gráficos com essa geometria é `geom_point`.
 
@@ -127,14 +127,14 @@ knitr::include_graphics(c(file.path(img_path,"ggplot2-cheatsheeta.png"),
 file.path(img_path,"ggplot2-cheatsheetb.png")))
 ```
 
-(Imagem cortesia de RStudio^[https://github.com/rstudio/cheatsheets]. Licença CC-BY-4.0^[https://github.com/rstudio/cheatsheets/blob/master/LICENSE].)
+(Imagem cedida pelo RStudio^[https://github.com/rstudio/cheatsheets]. Licença CC-BY-4.0^[https://github.com/rstudio/cheatsheets/blob/master/LICENSE].)
 
 <!--(Source: [RStudio](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf))-->
 
 
-Os nomes das funções de geometria seguem o padrão: `geom_X` onde X é o nome da geometria. Alguns exemplos incluem `geom_point`, `geom_bar` e `geom_histogram`.
+Os nomes das funções de geometrias seguem o padrão: `geom_X`, onde X é o nome da geometria. Alguns exemplos incluem `geom_point`, `geom_bar` e `geom_histogram`.
 
-Para que `geom_point` funciona bem, precisamos fornecer dados e uma correspondência. Nós já conectamos o objeto `p` com tabela de dados `murders` e se adicionarmos a camada `geom_point`, isso por padrão usa os dados do assassinato. Para descobrir quais correspondências são esperadas, leia a seção __Estética__ da página de ajuda de `geom_point`:
+Para que `geom_point` funcione bem, precisamos fornecer dados e uma correspondência. Nós já conectamos o objeto `p` com tabela de dados `murders`. Se adicionarmos a camada `geom_point`, o padrão é usar os dados que foram conectados. Para descobrir quais correspondências são esperadas, leia a seção __Estética__ da página de ajuda de `geom_point`:
 
 ```
 > Aesthetics
