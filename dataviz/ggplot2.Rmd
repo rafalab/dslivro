@@ -137,13 +137,13 @@ Os nomes das funções de geometrias seguem o padrão: `geom_X`, onde X é o nom
 Para que `geom_point` funcione bem, precisamos fornecer dados e uma correspondência. Nós já conectamos o objeto `p` com tabela de dados `murders`. Se adicionarmos a camada `geom_point`, o padrão é usar os dados que foram conectados. Para descobrir quais correspondências são esperadas, leia a seção __Estética__ da página de ajuda de `geom_point`:
 
 ```
-> Aesthetics
+> Estética
 >
-> geom_point understands the following aesthetics (required aesthetics are in bold):
+> _geom_point_ entende a seguinte estética (estéticas obrigatórias estão em negrito):
 >
-> x
+> __x__
 >
-> y
+> __y__
 >
 > alpha
 >
