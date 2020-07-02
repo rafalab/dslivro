@@ -50,59 +50,60 @@ scale_color_discrete(name="Region") +
 theme_economist()
 ```
 
-Podemos ver claramente o quanto os estados variam de acordo com o tamanho da população e o número total de assassinatos. Não é de surpreender que também exista uma relação clara entre o total de assassinatos e o tamanho da população. Estados plotados sobre a linha cinza tracejada têm a mesma taxa de homicídios que a média dos EUA. As quatro regiões geográficas são indicadas com cores, o que mostra como a maioria dos estados do sul tem taxas de homicídio acima da média.
+Podemos ver claramente o quanto os estados variam de acordo com o tamanho da população e o número total de assassinatos. Não é de surpreender que também exista uma relação clara entre o total de assassinatos e o tamanho da população. Estados plotados sobre a linha cinza tracejada têm a mesma taxa de homicídios que a média dos EUA. As quatro regiões geográficas são indicadas pelas cores (_Northeast_: nordeste; _South_: sul; _North Central_: central norte; _West_: oeste), o que mostra como a maioria dos estados do sul tem taxas de homicídio acima da média.
 
 Essa visualização de dados mostra praticamente todas as informações na tabela de dados. Além disso, o código necessário para criar esse gráfico é relativamente simples. Vamos aprender a criá-lo parte por parte.
 
-O primeiro passo para aprender __ggplot2__ é ser capaz de separar um gráfico em componentes. Começaremos examinando o gráfico acima e introduzindo algumas das terminologias de __ggplot2__. Os três principais componentes a serem considerados são:
+O primeiro passo para aprender __ggplot2__ é ser capaz de separar um gráfico em componentes. Começaremos examinando o gráfico acima e introduzindo algumas das terminologias do __ggplot2__. Os três principais componentes a serem considerados são:
 
-* __Data__: O conjunto de dados dos canhões de armas dos EUA está sendo resumido. Nós nos referimos a isso como o componente __data__.
-* __Geometria__: O gráfico acima é um diagrama de dispersão. Isso é chamado de componente __geometry__. Outras geometrias possíveis são diagrama de barras, histograma, densidades suaves, gráfico QQ e diagrama de caixa.
-* __Mapeamento estético__: o gráfico usa várias dicas visuais para representar as informações fornecidas pelo conjunto de dados. Os dois sinais mais importantes neste gráfico são as posições dos pontos no eixo xe no eixo y, representando o tamanho da população e o número total de assassinatos, respectivamente. Cada ponto representa uma observação diferente e mapeamos os dados dessas observações e as pistas visuais nas escalas x e y. A cor é outra dica visual que atribuímos à região. Nós nos referimos a isso como o componente __mapeamento estético__. Como definimos o mapeamento depende de qual __geometria__ estamos usando.
+* __Dados__: A tabela de dados de assassinatos nos EUA está sendo resumida. Nós nos referimos a isso como o componente de __dados__ (_data_).
+* __Geometria__: O gráfico acima é um diagrama de dispersão. Isso é chamado de componente de __geometria__ (_geometry_). Outras geometrias possíveis são gráfico de barras (_barplot_), histograma, densidades suaves (_smooth densities_), gráfico Q-Q (_qqplot_) e diagrama de caixa (_boxplot_).
+* __Mapeamento estético__: o gráfico usa vários sinais visuais para representar as informações fornecidas pelo _dataset_. Os dois sinais mais importantes neste gráfico são as posições dos pontos nos eixos x e y, representando o tamanho da população e o número total de assassinatos, respectivamente. Cada ponto representa uma observação diferente. Assim, mapeamos os dados dessas observações para tais sinais visuais, como por exemplo, as escalas x e y. A cor é outro sinal visual que mapeamos para a região. Nós nos referimos a isso como o componente __mapeamento estético__ (em inglês _Aesthetic mapping_). A definição do mapeamento depende de qual __geometria__ estamos usando.
 
 Também observamos que:
 
-* Os pontos são rotulados com abreviações de estado.
-* O intervalo do eixo xe o eixo y parecem ser definidos pelo intervalo dos dados. Ambos estão em escalas logarítmicas.
-* Existem rótulos, um título, uma lenda e usamos o estilo da revista "The Economist".
+* Os pontos são rotulados com as abreviações dos estado.
+* Os intervalos dos eixos x e y parecem ser definidos pelo intervalo dos dados. Ambos estão em escalas logarítmicas.
+* Existem rótulos, um título, uma lenda e usamos o estilo da revista "_The Economist_".
 
-Agora vamos construir o gráfico parte por parte. Vamos começar carregando o conjunto de dados:
+Agora, vamos construir o gráfico parte por parte. 
+Vamos começar carregando o _dataset_:
 
 ```{r}
 library(dslabs)
 data(murders)
 ```
 
-## objetos `ggplot`
+## Objetos `ggplot`
 
 
 ```{r, echo=FALSE}
 theme_set(theme_grey()) ## to immitate what happens with seeting theme
 ```
 
-A primeira etapa na criação de um gráfico __ggplot2__ é definir um objeto `ggplot`. Fazemos isso com a função `ggplot`, que inicializa o gráfico. Se lermos a página de ajuda para esta função, veremos que o primeiro argumento é usado para especificar quais dados estão associados a este objeto:
+A primeira etapa na criação de um gráfico __ggplot2__ é definir um objeto `ggplot`. Fazemos isso com a função `ggplot`, que inicializa o gráfico. Se lermos a página de ajuda dessa função, veremos que o primeiro argumento é usado para especificar quais dados estão associados a este objeto:
 
 
 ```{r ggplot-example-1, eval=FALSE}
 ggplot(data = murders)
 ```
 
-Também podemos _pipe_ os dados como o primeiro argumento. Portanto, essa linha de código é equivalente à anterior:
+Também podemos usar o operador _pipe_ para inserir os dados como o primeiro argumento. Portanto, linha de código abaixo é equivalente à anterior:
 
 ```{r ggplot-example-2}
 murders %>% ggplot()
 ```
 
-O código cria um gráfico, neste caso, um quadro em branco, pois a geometria não foi definida. A única opção de estilo que vemos é um fundo cinza.
+O código acima renderiza um quadro vazio, pois nenhuma geometria foi definida. A única opção de estilo que vemos é um fundo cinza.
 
-O que aconteceu é que o objeto foi criado e, por não ter sido designado, foi automaticamente avaliado. Mas podemos atribuir nosso gráfico a um objeto, por exemplo:
+O que aconteceu é que o objeto foi criado, mas por não ter sido atribuído a nenhuma variável, ele foi automaticamente executado. Podemos atribuir nosso gráfico a um objeto, por exemplo, desta forma:
 
 ```{r}
 p <- ggplot(data = murders)
 class(p)
 ```
 
-Para representar o gráfico associado a este objeto, simplesmente imprimimos o objeto `p`. Cada uma das duas linhas de código a seguir produz o mesmo gráfico que vemos acima:
+Para renderizar o gráfico associado a esse objeto, podemos simplesmente imprimir o objeto `p`. Cada uma das duas linhas de código a seguir produz o mesmo gráfico que vemos acima:
 
 ```{r, eval=FALSE}
 print(p)
