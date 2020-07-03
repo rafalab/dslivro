@@ -134,10 +134,10 @@ file.path(img_path,"ggplot2-cheatsheetb.png")))
 
 Os nomes das funções de geometrias seguem o padrão: `geom_X`, onde X é o nome da geometria. Alguns exemplos incluem `geom_point`, `geom_bar` e `geom_histogram`.
 
-Para que `geom_point` funcione bem, precisamos fornecer dados e uma correspondência. Nós já conectamos o objeto `p` com tabela de dados `murders`. Se adicionarmos a camada `geom_point`, o padrão é usar os dados que foram conectados. Para descobrir quais correspondências são esperadas, leia a seção __Estética__ da página de ajuda de `geom_point`:
+Para que `geom_point` funcione bem, precisamos fornecer dados e uma correspondência. Nós já conectamos o objeto `p` com tabela de dados `murders`. Se adicionarmos a camada `geom_point`, o padrão é usar os dados que foram conectados. Para descobrir quais correspondências são esperadas, leia a seção __Aesthetics__ (estética) da página de ajuda de `geom_point`:
 
 ```
-> Estética
+> Aesthetics (Estética)
 >
 > _geom_point_ entende a seguinte estética (estéticas obrigatórias estão em negrito):
 >
@@ -154,14 +154,14 @@ e, como esperado, vemos que pelo menos dois argumentos são necessários `x` e `
 
 ## Mapeamentos estéticos
 
-Os __mapeamentos estéticos_ descrevem como as propriedades dos dados estão conectadas às características do gráfico, como a distância ao longo de um eixo, o tamanho ou a cor. A função `aes` conecta os dados com o que vemos no gráfico, definindo atribuições estéticas e essa será uma das funções que mais serão usadas na representação gráfica. O resultado da função `aes` é frequentemente usado como argumento para uma função de geometria. Este exemplo produz um gráfico de dispersão do total de assassinatos versus população em milhões:
+Os __mapeamentos estéticos_ descrevem como as propriedades dos dados estão conectadas às características do gráfico, como a distância ao longo de um eixo, o tamanho ou a cor. A função `aes` conecta os dados com o que vemos no gráfico, definindo atribuições estéticas. Essa será uma das funções que mais serão usadas na representação gráfica. O resultado da função `aes` é frequentemente usado como argumento para uma função de geometria. Este exemplo produz um gráfico de dispersão do total de assassinatos versus população em milhões:
 
 ```{r, eval = FALSE}
 murders %>% ggplot() +
 geom_point(aes(x = population/10^6, y = total))
 ```
 
-Nós podemos remover o `x = ` e `y =` se quiséssemos, pois esse é o primeiro e o segundo argumento esperado, como visto na página de ajuda.
+Podemos remover o `x = ` e `y =` se quiséssemos, uma vez que esses são os dois argumentos esperados, respectivamente, como visto na página de ajuda.
 
 Em vez de definir nosso gráfico do zero, também podemos adicionar uma camada ao objeto `p` que foi definido anteriormente como `p <- ggplot(data = murders)`:
 
@@ -170,14 +170,14 @@ p + geom_point(aes(population/10^6, total))
 ```
 
 
-A escala e os rótulos são definidos por padrão ao adicionar essa camada. Como as funções __dplyr__, `aes` ele também usa os nomes de variáveis do componente do objeto: podemos usar `population` e `total` sem ter que chamá-los como `assassinatos $population` and `murders$ total NA a é NA população NA total NA aes`, eles receberão um erro.
+A escala e os rótulos são definidos por padrão ao adicionar essa camada. Assim como as funções __dplyr__, `aes` também usa os nomes de variáveis obtidos do componente do objeto: podemos usar `population` e `total` sem ter que chamá-los como `assassinatos$population` ou `murders$total`. O comportamento de reconhecer as variáveis de componentes de dados é bastante específico da função `aes`. Na maioria das funções, se você tentar acessar os valores de `population` ou `total` fora de `aes`, receberá uma mensagem de erro.
 
 
 ## Camadas
 
-Uma segunda camada no gráfico que queremos criar envolve adicionar um rótulo a cada ponto para identificar o estado. As funções `geom_label` e `geom_text` nos permite adicionar texto ao gráfico com ou sem um retângulo atrás do texto, respectivamente.
+Podemos criar uma segunda camada no gráfico para adicionar um rótulo a cada ponto para identificar o estado. As funções `geom_label` e `geom_text` nos permite adicionar texto ao gráfico com ou sem um retângulo atrás do texto, respectivamente.
 
-Como cada ponto (cada estado neste caso) possui um rótulo, precisamos de um mapeamento estético para fazer a conexão entre os pontos e os rótulos. Lendo a página de ajuda, aprendemos que o mapeamento entre o ponto e o rótulo é fornecido através do argumento `label` do `aes`. Portanto, o código fica assim:
+Como cada ponto (cada estado neste caso) possui um rótulo, precisamos de um mapeamento estético para fazer a conexão entre pontos e rótulos. Lendo a página de ajuda, aprendemos que o mapeamento entre o ponto e o rótulo é fornecido através do argumento `label` da função `aes`. Portanto, o código fica assim:
 
 
 ```{r ggplot-example-4}
@@ -193,25 +193,26 @@ Como exemplo do comportamento único de `aes` mencionado acima, observe que esta
 p_test <- p + geom_text(aes(population/10^6, total, label = abb))
 ```
 
-ok enquanto esta chamada:
+funciona corretamente, enquanto esta chamada:
 
 ```{r, eval=FALSE}
 p_test <- p + geom_text(aes(population/10^6, total), label = abb)
 ```
 
-lhe dará um erro desde `abb` não foi encontrado porque está fora de funcionamento `aes`. A capa `geom_text` não sei onde encontrar `abb` porque é um nome de coluna e não uma variável global.
+dará um erro, uma vez que `abb` não foi encontrado por está fora da função `aes`. A camada `geom_text` não sabe onde encontrar `abb` porque é um nome de coluna e não uma variável global.
 
-### Como testar vários argumentos
+### Trabalhando com argumentos
 
+Cada função de geometria possui diversos outros argumentos além de `aes` e `dados`. Esses argumentos tendem a ser específicos para cada função. Por exemplo, no gráfico que desejamos fazer, os pontos são maiores que o tamanho padrão. No arquivo de ajuda, vemos que o argumento `size` (tamanho na tradução) é uma estética e podemos alterá-lo assim:
 
 ```{r ggplot-example-5}
 p + geom_point(aes(population/10^6, total), size = 3) +
 geom_text(aes(population/10^6, total, label = abb))
 ```
 
-`size` **no** é um mapeamento: enquanto os mapeamentos usam dados de observações específicas e precisam estar dentro `aes()`, as operações que queremos afetar todos os pontos da mesma maneira não precisam ser incluídas dentro `aes`.
+`size` **não** é um mapeamento: enquanto os mapeamentos usam dados de observações específicas e precisam estar dentro da função `aes()`, as operações que afetam todos os pontos da mesma maneira não precisam ser incluídas dentro `aes`.
 
-Agora, como os pontos são maiores, é difícil ver os rótulos. Se lermos a página de ajuda para `geom_text`, vemos que o argumento `nudge_x` mova o texto levemente para a direita ou esquerda:
+Agora, como os pontos ficaram maiores, se tornou difícil ver os rótulos. Se lermos a página de ajuda para `geom_text`, vemos que o argumento `nudge_x` move o texto levemente para a direita ou para a esquerda:
 
 ```{r ggplot-example-6}
 p + geom_point(aes(population/10^6, total), size = 3) +
