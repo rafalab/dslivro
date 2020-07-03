@@ -223,7 +223,7 @@ Isso é preferível, pois facilita a leitura do texto. Na seção \@ref(add-on-p
 
 ## Mapeamento estético global versus local
 
-Na linha de código anterior, definimos o mapeamento `aes(population/10^6, total)` duas vezes, uma vez em cada geometria. Podemos evitar isso usando um mapeamento estético _global_ quando definimos o quadro em branco que o objeto nos fornece `ggplot`. Lembre-se de que a função `ggplot` ele contém um argumento que nos permite definir mapeamentos estéticos:
+Na linha de código anterior, definimos o mapeamento `aes(population/10^6, total)` duas vezes, uma vez em cada geometria. Podemos evitar isso usando um mapeamento estético _global_ no momento em que definimos o objeto `ggplot` em branco. Lembre-se de que a função `ggplot`  contém um argumento que nos permite definir mapeamentos estéticos:
 
 ```{r}
 args(ggplot)
@@ -235,23 +235,23 @@ Se definirmos um mapeamento em `ggplot`, todas as geometrias adicionadas como ca
 p <- murders %>% ggplot(aes(population/10^6, total, label = abb))
 ```
 
-e então podemos escrever o código a seguir para produzir o gráfico acima:
+e então podemos simplesmente escrever o código a seguir para produzir o gráfico anterior:
 
 ```{r ggplot-example-7, eval=FALSE}
 p + geom_point(size = 3) +
 geom_text(nudge_x = 1.5)
 ```
 
-Mantemos os argumentos `size` e `nudge_x` no `geom_point` e `geom_text`, respectivamente, porque queremos aumentar apenas o tamanho dos pontos e ajustar a posição (_nudge_ em inglês) dos rótulos. Se colocarmos esses argumentos em `aes`, eles serão aplicados aos dois gráficos. Observe também que a função `geom_point` não precisa de discussão `label` e, portanto, ignora essa estética.
+Mantemos os argumentos `size` e `nudge_x` em `geom_point` e `geom_text`, respectivamente, porque queremos aumentar apenas o tamanho dos pontos e ajustar a posição (_nudge_ em inglês) dos rótulos. Se colocarmos esses argumentos em `aes`, eles serão aplicados aos dois gráficos. Observe também que a função `geom_point` não precisa do argumento `label` e, portanto, ignora essa estética.
 
-Se necessário, podemos substituir o mapeamento global definindo um novo mapeamento dentro de cada camada. Essas definições _local_substituem o_global_. Aqui está um exemplo:
+Se necessário, podemos substituir o mapeamento global definindo um novo mapeamento dentro de cada camada. Essas definições a nível _local_ substituem as definições de nível _global_. Aqui está um exemplo:
 
 ```{r ggplot-example-8}
 p + geom_point(size = 3) +
-geom_text(aes(x = 10, y = 800, label = "Hello there!"))
+geom_text(aes(x = 10, y = 800, label = "Olá!"))
 ```
 
-Claramente, a segunda chamada para `geom_text` não use `population` e `total`.
+Claramente, a segunda chamada para `geom_text` não usa `population` e `total`.
 
 
 ## Escalas
@@ -266,7 +266,7 @@ scale_x_continuous(trans = "log10") +
 scale_y_continuous(trans = "log10")
 ```
 
-Como agora estamos na escala logarítmica, o ajuste na posição deve ser menor.
+Como agora estamos usando a escala logarítmica, o ajuste na posição (_nudge_) deve ser menor.
 
 Essa transformação específica é tão comum que __ggplot2__ oferece duas funções especializadas `scale_x_log10` e `scale_y_log10`, que podemos usar para reescrever o código assim:
 
@@ -278,23 +278,23 @@ scale_y_log10()
 ```
 
 
-## Tags e títulos
+## Rótulos e títulos
 
-Da mesma forma, a folha de referência revela que, para alterar os rótulos e adicionar um título, usamos as seguintes funções:
+Da mesma forma, a folha de referência nos mostra que para alterar os rótulos e adicionar um título usamos as seguintes funções:
 
 ```{r ggplot-example-10}
 p + geom_point(size = 3) +
 geom_text(nudge_x = 0.05) +
 scale_x_log10() +
 scale_y_log10() +
-xlab("Populations in millions (log scale)") +
-ylab("Total number of murders (log scale)") +
-ggtitle("US Gun Murders in 2010")
+xlab("População em milhões (escala logarítmica)") +
+ylab("Total de assassinatos (escala logarítmica)") +
+ggtitle("Assassinatos por armas nos EUA em 2010")
 ```
 
-Estamos quase terminando! A única coisa que precisamos é adicionar cor, legenda e alterações opcionais ao estilo.
+Estamos quase terminando! O que precisamos fazer agora é adicionar cor, legenda e realizar algumas alterações opcionais no estilo.
 
-## Categorias como cores
+## Usando categorias como cores
 
 Podemos mudar a cor dos pontos usando o argumento `col` na função `geom_point`. Para facilitar a demonstração de novos recursos, redefiniremos `p` para ser tudo, exceto a camada de pontos:
 
@@ -303,28 +303,28 @@ p <- murders %>% ggplot(aes(population/10^6, total, label = abb)) +
 geom_text(nudge_x = 0.05) +
 scale_x_log10() +
 scale_y_log10() +
-xlab("Populations in millions (log scale)") +
-ylab("Total number of murders (log scale)") +
-ggtitle("US Gun Murders in 2010")
+xlab("População em milhões (escala logarítmica)") +
+ylab("Total de assassinatos (escala logarítmica)") +
+ggtitle("Assassinatos por armas nos EUA em 2010")
 ```
 
-e depois testaremos o que acontece quando adicionamos chamadas diferentes a `geom_point`. Por exemplo, podemos deixar todos os pontos em azul adicionando o argumento `color`:
+a seguir, teste para ver o que acontece quando adicionamos chamadas diferentes a `geom_point`. Por exemplo, podemos deixar todos os pontos em azul adicionando o argumento `color`:
 
 ```{r ggplot-example-11}
 p + geom_point(size = 3, color ="blue")
 ```
 
-No entanto, não queremos isso. Queremos atribuir cores de acordo com a região geográfica. Um bom comportamento padrão para __ggplot2__ é que, se atribuirmos uma variável categórica à cor, ela atribuirá automaticamente uma cor diferente a cada categoria, além de uma legenda.
+Isso, é claro, não é o que queremos. Queremos atribuir cores de acordo com a região geográfica. Um bom comportamento padrão para __ggplot2__ é que, se atribuirmos uma variável categórica à cor, ela atribuirá automaticamente uma cor diferente a cada categoria, além de adicionar uma legenda.
 
-Como a escolha da cor é determinada por uma característica de cada observação, esse é um mapeamento estético. Para atribuir uma cor a cada ponto, precisamos usar `aes`. Usamos o seguinte código:
+Como a escolha da cor é determinada por uma característica de cada observação, isso é considerado um mapeamento estético. Logo, para atribuir uma cor a cada ponto, precisamos usar `aes`. Usamos o seguinte código:
 
 ```{r ggplot-example-12}
 p + geom_point(aes(col=region), size = 3)
 ```
 
-Os mapeamentos `x` e `y` são herdados daqueles já definidos em `p` então nós não os redefinimos. Nós também nos mudamos `aes` para o primeiro argumento, pois é aí que os mapeamentos são esperados nesta chamada.
+Os mapeamentos `x` e `y` são herdados daqueles já definidos em `p`, portanto não é necessário rededfini-los. Nós também mudamos `aes` para o primeiro argumento, pois é aí que os mapeamentos são esperados nesta chamada de função.
 
-Aqui está outro comportamento padrão útil: __ggplot2__ adiciona automaticamente uma legenda que atribui a cor à região. Para evitar adicionar essa legenda, definimos o argumento `geom_point` como `show.legend = FALSE`.
+Aqui está outro comportamento padrão útil: __ggplot2__ adiciona automaticamente uma legenda que atribui a cor à região. Para evitar adicionar essa legenda, configuramos `geom_point` com o argumento `show.legend = FALSE`.
 
 ## Anotação, formas e ajustes
 
