@@ -326,11 +326,11 @@ Os mapeamentos `x` e `y` são herdados daqueles já definidos em `p`, portanto n
 
 Aqui está outro comportamento padrão útil: __ggplot2__ adiciona automaticamente uma legenda que atribui a cor à região. Para evitar adicionar essa legenda, configuramos `geom_point` com o argumento `show.legend = FALSE`.
 
-## Anotação, formas e ajustes
+## Anotações, formas e ajustes
 
 Muitas vezes, queremos adicionar formas ou anotações às figuras que não são derivadas diretamente do mapeamento estético; alguns exemplos incluem etiquetas, caixas, áreas sombreadas e linhas.
 
-Aqui, queremos adicionar uma linha que represente a taxa média de homicídios em todo o país. Depois de determinar a taxa por milhão a ser $r$, esta linha é definida pela fórmula: $y = r x$ com $y$ e $x$ nossos eixos: total de assassinatos e população em milhões, respectivamente. Na escala logarítmica, essa linha se torna: $\log(y) = \log(r) + \log(x)$. Então, no nosso gráfico, é uma linha com a inclinação 1 e intercepta $\log(r)$. Para calcular esse valor, usamos nosso conhecimento de __dplyr__:
+Aqui, queremos adicionar uma linha que represente a taxa média de homicídios em todo o país. Após determinar a taxa por milhão e armazená-la na variável $r$, a linha será definida pela fórmula: $y = r x$, sendo $y$ e $x$ nossos eixos: total de assassinatos e população em milhões, respectivamente. Na escala logarítmica, essa linha se torna: $\log(y) = \log(r) + \log(x)$. Então, no nosso gráfico é uma linha com a inclinação 1 e intercepta $\log(r)$. Para calcular esse valor, usamos nosso conhecimento de __dplyr__:
 
 ```{r}
 r <- murders %>%
@@ -338,16 +338,16 @@ summarize(rate = sum(total)/ sum(population) * 10^6) %>%
 pull(rate)
 ```
 
-Para adicionar uma linha, usamos a função `geom_abline`. __ggplot2__ usa `ab` no nome para nos lembrar de que estamos fornecendo a interceptação ( `a`) e o brinco ( `b`) A linha padrão possui a inclinação 1 e intercepta 0, portanto, apenas precisamos definir a interceptação:
+Para adicionar uma linha, usamos a função `geom_abline`. __ggplot2__ usa `ab` no nome para nos lembrar de que estamos fornecendo a interceptação (`a`) e a inclinação (`b`). A linha padrão possui a inclinação 1 e intercepta 0, portanto, apenas precisamos definir a interceptação:
 
 ```{r ggplot-example-13}
 p + geom_point(aes(col=region), size = 3) +
 geom_abline(intercept = log10(r))
 ```
 
-Aqui `geom_abline` não usa nenhuma informação do objeto de dados.
+Aqui, `geom_abline` não usa nenhuma informação do objeto de dados.
 
-Podemos alterar o tipo de linha e a cor das linhas usando argumentos. Além disso, primeiro o desenhamos para que não cubra nossos pontos.
+Podemos alterar o tipo de linha e a cor das linhas usando argumentos. Além disso, devemos desenhar a linha primeiro para que não cubra nossos pontos.
 
 ```{r}
 p <- p + geom_abline(intercept = log10(r), lty = 2, color = "darkgrey") +
@@ -357,7 +357,7 @@ Observe que redefinimos `p` e vamos usar esse novo `p` abaixo e na próxima seç
 
 Os gráficos padrão criados por __ggplot2__ já são muito úteis. No entanto, geralmente precisamos fazer pequenos ajustes no comportamento padrão. Embora nem sempre seja óbvio como fazer isso, mesmo com a folha de referência, __ggplot2__ é muito flexível.
 
-Por exemplo, podemos fazer alterações na legenda através da função `scale_color_discrete`. Em nosso gráfico original, a palavra _region_ está em maiúscula e podemos alterá-la assim:
+Por exemplo, podemos fazer alterações na legenda através da função `scale_color_discrete`. Em nosso gráfico original, a palavra _region_ está iniciada com letra maiúscula. Podemos alterá-la assim:
 
 ```{r}
 p <- p + scale_color_discrete(name = "Region")
@@ -365,24 +365,24 @@ p <- p + scale_color_discrete(name = "Region")
 
 ## Pacotes complementares {#add-on-packages}
 
-O poder do __ggplot2__ aumentou ainda mais devido à disponibilidade de pacotes adicionais. As alterações restantes necessárias para dar os retoques finais em nosso gráfico exigem os pacotes __ggthemes__e__ggrepel__.
+O poder do __ggplot2__ é aumentado ainda mais devido à disponibilidade de pacotes complementares (do inglês _add-on packages_). As alterações restantes necessárias para dar os retoques finais em nosso gráfico requerem os pacotes __ggthemes__ e __ggrepel__.
 
-O estilo de um gráfico __ggplot2__ pode ser alterado usando as funções de `theme`. Vários temas (_themes_ em inglês) estão incluídos como parte do pacote __ggplot2__. De fato, para a maioria dos gráficos deste livro, usamos uma função do pacote __dslabs__ que define automaticamente um tema padrão:
+O estilo de um gráfico __ggplot2__ pode ser alterado usando as funções `theme`. Diversos temas estão incluídos como parte do pacote __ggplot2__. De fato, para a maioria dos gráficos deste livro, usamos uma função do pacote __dslabs__ que define automaticamente um tema padrão:
 
 ```{r, eval}
 ds_theme_set()
 ```
 
-O pacote __ggthemes__ adiciona muitos outros temas, incluindo o tema `theme_economist` que nós escolhemos. Após a instalação do pacote, eles podem alterar o estilo adicionando uma camada como a seguinte:
+O pacote __ggthemes__ permite adicionar muitos outros temas, incluindo o tema `theme_economist` que nós escolhemos. Após a instalação do pacote, você pode alterar o estilo adicionando uma camada da seguinte forma:
 
 ```{r, eval = FALSE}
 library(ggthemes)
 p + theme_economist()
 ```
 
-Você pode ver como são os outros temas simplesmente alterando a função. Por exemplo, eles podem testar o tema `theme_fivethirtyeight()` em vez do anterior.
+Você pode ver como são os outros temas simplesmente alterando a função. Por exemplo, você pode testar o tema `theme_fivethirtyeight()` no lugar do anterior.
 
-A diferença final tem a ver com a posição dos rótulos. No nosso gráfico, alguns dos rótulos se sobrepõem. O pacote de plug-ins __ggrepel__ inclui uma geometria que adiciona rótulos, garantindo que eles não se sobreponham. Para usá-lo, simplesmente mudamos `geom_text` para `geom_text_repel`.
+A diferença final tem a ver com a posição dos rótulos. No nosso gráfico, alguns dos rótulos se sobrepõem. O pacote de plug-ins __ggrepel__ inclui uma geometria que adiciona rótulos garantindo que eles não se sobreponham. Para usá-lo, simplesmente mudamos `geom_text` para `geom_text_repel`.
 
 ## Como combinar tudo
 
@@ -403,9 +403,9 @@ geom_point(aes(col=region), size = 3) +
 geom_text_repel() +
 scale_x_log10() +
 scale_y_log10() +
-xlab("Populations in millions (log scale)") +
-ylab("Total number of murders (log scale)") +
-ggtitle("US Gun Murders in 2010") +
+xlab("População em milhões (escala logarítmica)") +
+ylab("Total de assassinatos (escala logarítmica)") +
+ggtitle("Assassinatos por armas nos EUA em 2010") +
 scale_color_discrete(name = "Region") +
 theme_economist()
 ```
@@ -417,7 +417,7 @@ ds_theme_set()
 
 ## Gráficos rápidos com `qplot` {#qplot}
 
-Nós aprendemos as poderosas técnicas ggplot para gerar visualizações. No entanto, há casos em que precisamos apenas de um gráfico rápido de, por exemplo, um histograma dos valores em um vetor, um gráfico de dispersão dos valores em dois vetores ou um gráfico de caixa usando vetores categóricos e numéricos. Já demonstramos como gerar esses gráficos com `hist`, `plot` e `boxplot`. No entanto, se queremos ser consistentes com o estilo ggplot, podemos usar a função `qplot`.
+Nós aprendemos poderosas técnicas para gerar visualizações com ggplot. No entanto, há casos em que precisamos apenas de um gráfico rápido, como por exemplo, um histograma dos valores em um vetor, um gráfico de dispersão dos valores em dois vetores ou um _boxplot_ usando vetores categóricos e numéricos. Já demonstramos como gerar esses gráficos com `hist`, `plot` e `boxplot`. Entretanto, se queremos ser consistentes com o estilo ggplot, podemos usar a função `qplot`.
 
 Se tivermos valores em dois vetores como:
 
@@ -443,7 +443,7 @@ qplot(x, y)
 
 Vamos aprender mais sobre `qplot` na seção \@ref(other-geometries)
 
-## Grades de gráfico
+## Grade de gráficos
 
 Muitas vezes, temos que colocar gráficos próximos um do outro. O pacote __gridExtra__ nos permite fazer isso:
 
@@ -457,7 +457,7 @@ grid.arrange(p1, p2, ncol = 2)
 
 ## Exercícios
 
-Comece carregando os pacotes __dplyr__e__ggplot2__, bem como os dados `murders` e `heights`.
+Comece carregando os pacotes __dplyr__ e __ggplot2__, bem como os dados `murders` e `heights`.
 
 ```{r}
 library(dplyr)
@@ -473,13 +473,13 @@ data(murders)
 p <- ggplot(data = murders)
 ```
 
-Quão `data` é o primeiro argumento, não precisamos explicá-lo:
+Como `data` é o primeiro argumento, não precisamos declará-lo:
 
 ```{r, eval = FALSE}
 p <- ggplot(murders)
 ```
 
-e também podemos usar o _pipe_:
+ou também podemos usar o _pipe_:
 
 ```{r, eval = FALSE}
 p <- murders %>% ggplot()
@@ -488,29 +488,28 @@ p <- murders %>% ggplot()
 Qual é a classe do objeto `p`?
 
 
-2\. Lembre-se de que para imprimir um objeto, você pode usar o comando `print` ou apenas escreva o objeto. Imprimir o objeto `p` definido no exercício um e descreva o que você vê.
+2\. Lembre-se de que para imprimir um objeto, você pode usar o comando `print` ou apenas escrever o nome objeto. Imprima o objeto `p` definido no exercício 1 e descreva o que você vê.
 
-para. Nada acontece.
-b. Um gráfico de quadro branco em branco.
+a. Nada acontece.
+b. Um gráfico em branco.
 c. Um diagrama de dispersão.
 d. Um histograma.
 
 
-3\. Usando o _pipe_ `%>%` criar um objeto `p` mas desta vez associado ao conjunto de dados `heights` em vez do conjunto de dados `murders`.
+3\. Usando o _pipe_ `%>%`, crie um objeto `p` desta vez associado ao conjunto de dados `heights` em vez do conjunto de dados `murders`.
 
 
+4\. Qual é a classe do objeto `p` que você acabou de criar?
 
-4\. Qual é a classe do objeto `p` o que você acabou de criar?
 
+5\. Agora vamos adicionar uma camada e os mapeamentos estéticos correspondentes. Para os dados de assassinatos, plote o total de assassinatos versus o tamanho da população. Explore o conjunto de dados `murders` para lembrar quais são os nomes dessas duas variáveis e escolha a resposta correta. __Dica__: use `?murders`.
 
-5\. Agora vamos adicionar uma camada e os mapeamentos estéticos correspondentes. Para os dados de assassinatos, plotamos o total de assassinatos versus o tamanho da população. Explore o conjunto de dados `murders` para lembrar quais são os nomes dessas duas variáveis e escolher a resposta correta. __Hint__: Look `?murders`.
-
-para. `state` e `abb`
+a. `state` e `abb`
 b. `total_murders` e `population_size`
 c. `total` e `population`
 d. `murders` e `size`
 
-6\. Para criar o gráfico de dispersão, adicionamos uma camada com `geom_point`. O mapeamento estético requer que definamos as variáveis do eixo xe do eixo y, respectivamente. Portanto, o código fica assim:
+6\. Para criar um gráfico de dispersão, adicionamos uma camada com `geom_point`. O mapeamento estético requer que definamos as variáveis dos eixos x e y, respectivamente. Portanto, o código fica assim:
 
 ```{r, eval=FALSE}
 murders %>% ggplot(aes(x = , y = )) +
@@ -520,51 +519,51 @@ geom_point()
 exceto que temos que definir as duas variáveis `x` e `y`. Preencha o espaço com os nomes corretos das variáveis.
 
 
-7\. Lembre-se de que, se não usarmos nomes de argumentos, podemos obter o mesmo gráfico se inserirmos os nomes das variáveis na ordem correta, assim:
+7\. Note que, se não usarmos nomes de argumentos, podemos obter o mesmo gráfico se inserirmos os nomes das variáveis na ordem correta, assim:
 
 ```{r, eval=FALSE}
 murders %>% ggplot(aes(population, total)) +
 geom_point()
 ```
 
-Refaça o gráfico, mas agora com total no eixo x e população no eixo y.
+Refaça o gráfico, mas agora com total de assassnatos no eixo x e o tamanho da população no eixo y.
 
 
-8\. Se, em vez de pontos, queremos adicionar texto, podemos usar as geometrias `geom_text()` ou `geom_label()`. O código a seguir:
+8\. Se, em vez de pontos quisérmos adicionar textos, podemos usar as geometrias `geom_text()` ou `geom_label()`. O código a seguir:
 
 ```{r, eval=FALSE}
 murders %>% ggplot(aes(population, total)) + geom_label()
 ```
 
-nos dará a mensagem de erro: `Error: geom_label requires the following missing aesthetics: label`
+nos dará a mensagem de erro: `Error: geom_label requires the following missing aesthetics: label` (ou na tradução `Erro: geom_label requer a seguinte estética ausente: label`)
 
 Por que isso acontece?
 
-para. Precisamos mapear um caractere para cada ponto através do argumento label em `aes`.
-b. Precisamos deixar `geom_label` saber qual caractere usar no gráfico.
-c. A geometria `geom_label` não requer valores do eixo xe do eixo y.
+a. Precisamos mapear caracteres para cada ponto através do argumento _label_ em `aes`.
+b. Precisamos deixar `geom_label` saber quais caracteres usar no gráfico.
+c. A geometria `geom_label` não requer valores dos eixos x e y.
 d. `geom_label` não é um comando de __ggplot2__.
 
 
-9\. Reescreva o código acima para usar a abreviação como o rótulo via `aes`.
+9\. Reescreva o código acima para usar a abreviação como o rótulo através da função `aes`.
 
 
-10\. Mude a cor dos rótulos para azul. Como se faz?
+10\. Mude a cor dos rótulos para azul. Como faremos isso?
 
-para. Adicionando uma coluna chamada `blue` para `murders`.
+a. Adicionando uma coluna chamada `blue` em `murders`.
 b. Como cada etiqueta precisa de uma cor diferente, mapeamos as cores através `aes`.
 c. Usando o argumento `color` no `ggplot`.
 d. Como queremos que todas as cores sejam azuis, não precisamos atribuir cores, basta usar o argumento de cores em `geom_label`.
 
 
-Onze\. Reescreva o código acima para que os rótulos fiquem azuis.
+11\. Reescreva o código acima para que os rótulos fiquem azuis.
 
 
-12\. Agora, suponha que desejamos usar cores para representar as diferentes regiões. Nesse caso, qual das seguintes opções é a mais apropriada?
+12\. Agora, suponha que desejemos usar cores para representar as diferentes regiões. Nesse caso, qual das seguintes opções é a mais apropriada?
 
-para. Adicione uma coluna chamada `color` para `murders` com a cor que queremos usar.
-b. Como cada tag precisa de uma cor diferente, mapeie as cores através do argumento de cores de `aes` .
-c. Use o argumento `color` no `ggplot`.
+a. Adicione uma coluna chamada `color` em `murders` com a cor que queremos usar.
+b. Como cada tag precisa de uma cor diferente, mapeie as cores através do argumento de cores da função `aes` .
+c. Use o argumento `color` do `ggplot`.
 d. Como queremos que todas as cores sejam azuis, não precisamos atribuir cores, basta usar o argumento de cores em `geom_label`.
 
 
@@ -580,6 +579,6 @@ geom_label()
 
 Para alterar o eixo y para uma escala logarítmica, aprendemos sobre a função `scale_x_log10()`. Adicione esta camada ao objeto `p` para alterar a escala e criar o gráfico.
 
-Quinze\. Repita o exercício anterior, mas agora mude os dois eixos para que estejam na escala logarítmica.
+15\. Repita o exercício anterior, mas agora mude os dois eixos para que estejam na escala logarítmica.
 
 16\. Agora edite o código acima para adicionar o título "Dados de assassinatos por armas" ao argumento. Dica: use a função `ggtitle`.
