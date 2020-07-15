@@ -4,11 +4,11 @@
 img_path <- "dataviz/img"
 ```
 
-Já definimos algumas regras a serem seguidas ao criar gráficos para nossos exemplos. Aqui, nosso objetivo é oferecer alguns princípios gerais que podemos usar como um guia para uma visualização eficaz dos dados. Grande parte desta seção é baseada em uma palestra de Karl Broman^[http://kbroman.org/] intitulada "Criando figuras e tabelas eficazes"^[https://www.biostat.wisc.edu/~kbroman/presentations/graphs2017.pdf] e inclui algumas das figuras que foram criadas com o código que Karl disponibiliza em seu repositório GitHub^[https://github.com/kbroman/Talk_Graphs], bem como as notas da classe " Introdução à visualização de dados ", de Peter Aldhous^[http://paldhous.github.io/ucb/2016/dataviz/index.html]. Seguindo a abordagem de Karl, mostramos alguns exemplos de estilos de gráfico a serem evitados, explicamos como melhorá-los e depois os usamos como motivação para uma lista de princípios. Além disso, comparamos e contrastamos gráficos que seguem esses princípios com outros que os ignoram.
+Já definimos algumas regras a serem seguidas ao criar gráficos para nossos exemplos. Aqui, nosso objetivo é oferecer alguns princípios gerais que podemos usar como um guia para uma visualização eficaz dos dados. Grande parte desta seção é baseada em uma palestra de Karl Broman^[http://kbroman.org/] intitulada "Criando figuras e tabelas eficazes"^[https://www.biostat.wisc.edu/~kbroman/presentations/graphs2017.pdf] e inclui algumas das figuras que foram criadas com códigos que Karl disponibiliza em seu repositório GitHub^[https://github.com/kbroman/Talk_Graphs]. Também nos baseamos em anotações das aulas do curso "Introdução à visualização de dados" de Peter Aldhous^[http://paldhous.github.io/ucb/2016/dataviz/index.html]. Seguindo a abordagem de Karl, mostramos alguns exemplos de estilos de gráficos que devem ser evitados, explicamos como melhorá-los e depois os usamos como motivação para uma lista de princípios. Além disso, comparamos e contrastamos gráficos que seguem esses princípios com outros que os ignoram.
 
-Os princípios são baseados principalmente em pesquisas relacionadas à forma como os seres humanos detectam padrões e fazem comparações visuais. As abordagens preferidas são as que melhor se adaptam à maneira como nossos cérebros processam as informações visuais. Ao escolher as ferramentas de visualização, é importante ter em mente nosso objetivo. Podemos comparar um número suficientemente pequeno de números que podem ser distinguidos, descrevendo distribuições de dados categóricos ou valores numéricos, comparando os dados de dois grupos ou descrevendo a relação entre duas variáveis e isso afeta a apresentação que escolheremos. Como observação final, queremos enfatizar que é importante para os cientistas de dados adaptar e otimizar gráficos para o público. Por exemplo, um gráfico exploratório feito para nós será diferente de uma tabela destinada a comunicar uma descoberta a um público em geral.
+Os princípios são baseados principalmente em pesquisas relacionadas à forma como os seres humanos detectam padrões e fazem comparações visuais. As abordagens preferidas são as que melhor se adaptam à maneira como nossos cérebros processam as informações visuais. Ao escolher as ferramentas de visualização, é importante ter em mente nosso objetivo. Podemos comparar um número suficientemente pequeno de números que podem ser distinguidos, descrevendo distribuições de dados categóricos ou valores numéricos, comparando os dados de dois grupos ou descrevendo a relação entre duas variáveis e isso afeta a apresentação que escolheremos. Como observação final, queremos enfatizar que é importante para cientistas de dados adaptar e otimizar gráficos para o público. Por exemplo, um gráfico exploratório feito para nós mesmos será diferente de um gráfico destinado a comunicação de uma descoberta a um público em geral.
 
-Vamos usar estes pacotes:
+Vamos usar estas bibliotecas:
 
 
 ```{r, warning=FALSE, message=FALSE}
@@ -18,9 +18,9 @@ library(gridExtra)
 ```
 
 
-## Como codificar dados usando pistas visuais
+## Codificando dados usando dicas visuais
 
-Começamos descrevendo alguns princípios para codificar dados. Existem várias abordagens à nossa disposição, incluindo posição, comprimento, ângulos, área, brilho e tom da cor.
+Vamos começar descrevendo alguns princípios para codificar dados. Existem várias abordagens à nossa disposição, incluindo posição, comprimento, ângulos, área, brilho e cor.
 
 
 ```{r, echo=FALSE}
@@ -31,7 +31,7 @@ mutate(Browser = reorder(Browser, Percentage))
 ```
 
 
-Para ilustrar como algumas dessas estratégias se comparam, suponha que desejamos relatar os resultados de duas pesquisas hipotéticas, realizadas em 2000 e depois em 2015, em relação à preferência do navegador. Para cada ano, estamos simplesmente comparando cinco quantidades: as cinco porcentagens. Uma representação gráfica de porcentagens amplamente usada e popularizada pelo Microsoft Excel é o gráfico de pizza:
+Para ilustrar como algumas dessas estratégias se comparam, vamos supor que desejamos relatar os resultados de duas pesquisas hipotéticas relacionadas à preferência por navegador de Internet, realizadas em 2000 e 2015, respectivamente. Para cada ano, estamos simplesmente comparando cinco quantidades: as cinco porcentagens. Uma representação gráfica de porcentagens amplamente usada e popularizada pelo Microsoft Excel é o gráfico de pizza:
 
 
 ```{r piechart, echo=FALSE}
