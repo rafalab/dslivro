@@ -31,7 +31,7 @@ mutate(Browser = reorder(Browser, Percentage))
 ```
 
 
-Para ilustrar como algumas dessas estratégias se comparam, vamos supor que desejamos relatar os resultados de duas pesquisas hipotéticas relacionadas à preferência por navegador de Internet, realizadas em 2000 e 2015, respectivamente. Para cada ano, estamos simplesmente comparando cinco quantidades: as cinco porcentagens. Uma representação gráfica de porcentagens amplamente usada e popularizada pelo Microsoft Excel é o gráfico de pizza:
+Para ilustrar como algumas dessas estratégias se comparam, vamos supor que desejamos relatar os resultados de duas pesquisas hipotéticas relacionadas à preferência por navegador de Internet (_browser_), realizadas em 2000 e 2015, respectivamente. Para cada ano, estamos simplesmente comparando cinco quantidades: as cinco porcentagens. Uma representação gráfica de porcentagens amplamente usada e popularizada pelo Microsoft Excel é o gráfico de pizza:
 
 
 ```{r piechart, echo=FALSE}
@@ -47,7 +47,7 @@ p1
 ```
 
 
-Aqui estamos representando quantidades com áreas e ângulos, pois o ângulo e a área de cada seção do gráfico são proporcionais à quantidade que o setor representa. Isso acaba sendo uma opção abaixo do ideal, pois, como mostram os estudos perceptivos, os seres humanos não são bons em quantificar com precisão ângulos e são ainda piores quando a área é o único sinal visual disponível. O gráfico em anel é um exemplo de gráfico que usa apenas a área:
+Aqui, estamos representando as quantidades através das áreas e dos ângulos, uma vez que o ângulo e a área de cada seção do gráfico são proporcionais à quantidade que o setor representa. Isso acaba sendo uma opção abaixo do ideal, pois, como demonstrado por estudos perceptivos, os seres humanos não são bons em quantificar com precisão ângulos e são ainda piores quando a área é o único sinal visual disponível. O gráfico de rosca é um exemplo de gráfico que usa apenas a área:
 
 ```{r donutchart, echo=FALSE}
 browsers %>% ggplot(aes(x = 2, y = Percentage, fill = Browser)) +
@@ -61,12 +61,12 @@ facet_grid(.~Year)
 
 ```
 
-Para ver como é difícil quantificar ângulos e área, lembre-se de que as classificações e todas as porcentagens nos gráficos acima foram alteradas de 2000 para 2015. Você pode determinar as porcentagens reais e classificar a popularidade dos navegadores? Você pode ver como as porcentagens mudaram de 2000 para 2015? Não é fácil diferenciá-lo do gráfico. De fato, a função `pie` da página de ajuda de R observa que:
+Para ver como é difícil quantificar ângulos e áreas, note que as classificações e todas as porcentagens nos gráficos acima foram alteradas entre 2000 e 2015. Você pode determinar as porcentagens reais e classificar a popularidade dos navegadores? Você pode ver como as porcentagens mudaram de 2000 para 2015? Não é fácil identificar isso através desse gráfico. De fato, a função `pie` da página de ajuda de R afirma que:
 
-> Os gráficos de pizza são uma maneira muito ruim de exibir informações. O olho é bom em julgar medições lineares e ruim em julgar áreas relativas. Um diagrama de barras ou pontos é uma maneira preferível de exibir esse tipo de dados.
+> Os gráficos de pizza são uma maneira muito ruim de exibir informações. O olho é bom em julgar medições lineares e ruim em julgar áreas relativas. Um gráfico de barras ou pontos é uma maneira preferível de exibir esse tipo de dados.
 
 
-Nesse caso, simplesmente exibir os números não é apenas mais claro, mas também reduziria os custos de impressão se você imprimir uma cópia em papel:
+Nesse caso, simplesmente exibir os números não é apenas mais claro, mas também reduziria custos caso você queira imprimir uma cópia em papel:
 
 ```{r, echo=FALSE}
 if(knitr::is_html_output()){
