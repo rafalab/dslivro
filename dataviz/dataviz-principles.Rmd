@@ -170,7 +170,7 @@ ggplot(aes(Candidato, Percentual, fill = Candidato)) +
 geom_bar(stat = "identity", width = 0.65, show.legend = FALSE)
 ```
 
-Ao usar a posição em vez do comprimento, não é necessário incluir 0. Esse é particularmente o caso quando queremos comparar as diferenças entre os grupos em relação à variabilidade dentro de um grupo. Aqui está um exemplo ilustrativo que mostra a expectativa média de vida de cada país estratificado por continente em 2012:
+Ao construir gráficos que usam posições em vez de comprimentos, não é necessário iniciar o eixo y em 0. Particularmente, esse é o caso quando queremos comparar as diferenças entre grupos considerando o quanto seus dados variam. Aqui está um exemplo ilustrativo mostrando a expectativa média de vida de cada país estratificada por continente em 2012:
 
 ```{r points-plot-not-from-zero, echo=FALSE, out.width="100%", fig.width = 6, fig.height = 3}
 p1 <- gapminder %>% filter(year == 2012) %>%
@@ -181,21 +181,21 @@ scale_y_continuous(limits = c(0, 84))
 grid.arrange(p2, p1, ncol = 2)
 ```
 
-Observe que, no gráfico à esquerda, que inclui 0, o espaço entre 0 e 43 não adiciona informações e dificulta a comparação da variabilidade entre e dentro do grupo.
+Observe que, no gráfico à esquerda (que inicia em 0), o espaço entre 0 e 43 não adiciona informações relevantes e, ainda, dificulta a comparação da variabilidade dentre grupos e dentro de cada grupo.
 
 
 ## Não distorça quantidades
 
-Durante o discurso do Estado da União de Barack Obama em 2011, o gráfico a seguir foi usado para comparar o PIB dos EUA. EUA com o PIB de quatro nações concorrentes:
+Durante o discurso do Estado da União do presidente Barack Obama em 2011, o gráfico a seguir foi usado para comparar o PIB dos EUA com o PIB de quatro nações concorrentes:
 
 ```{r, echo=FALSE}
 ## idea from http://paldhous.github.io/ucb/2016/dataviz/img/class2_30.jpg
 ## screen shot my own from state of the union
 knitr::include_graphics(file.path(img_path, "state-of-the-union.png"))
 ```
-(Fonte: endereço do estado da união de 2011^[https://www.youtube.com/watch?v=kl2g40GoRxg])
+(Fonte: Discurso do Estado da União de 2011^[https://www.youtube.com/watch?v=kl2g40GoRxg])
 
-Se julgarmos pela área dos círculos, os Estados Unidos parecem ter uma economia cinco vezes maior que a da China e mais de 30 vezes maior que a da França. No entanto, se olharmos para os números atuais, veremos que esse não é o caso. As proporções são 2,6 e 5,8 vezes superiores às da China e da França, respectivamente. A razão para essa distorção é que o raio do círculo, em vez da área, se tornou proporcional à quantidade, o que implica que a razão entre as áreas é quadrada: 2,6 se torna 6,5 e 5,8 se torna 34,1. Aqui está uma comparação dos círculos que obtemos se tornarmos o valor proporcional ao raio e à área:
+Se julgarmos pela área dos círculos, os Estados Unidos parecem ter uma economia cinco vezes maior do que a da China e mais de 30 vezes maior do que a da França. No entanto, se olharmos para os números atuais, veremos que esse não é o caso. As proporções são 2,6 e 5,8 vezes superiores às da China e da França, respectivamente. A razão para essa distorção é que foram utilizados os raios dos círculos para representar as quantidades, em vez das áreas. Como a proporção entre as áreas é ao quadrado, 2,6 se torna 6,5 e 5,8 se torna 34,1. Aqui está uma comparação dos círculos que obtemos se tornarmos o valor proporcional ao raio e à área:
 
 ```{r area-not-radius, echo = FALSE}
 gdp <- c(14.6, 5.7, 5.3, 3.3, 2.5)
