@@ -195,7 +195,7 @@ knitr::include_graphics(file.path(img_path, "state-of-the-union.png"))
 ```
 (Fonte: Discurso do Estado da União de 2011^[https://www.youtube.com/watch?v=kl2g40GoRxg])
 
-Se julgarmos pela área dos círculos, os Estados Unidos parecem ter uma economia cinco vezes maior do que a da China e mais de 30 vezes maior do que a da França. No entanto, se olharmos para os números atuais, veremos que esse não é o caso. As proporções são 2,6 e 5,8 vezes superiores às da China e da França, respectivamente. A razão para essa distorção é que foram utilizados os raios dos círculos para representar as quantidades, em vez das áreas. Como a proporção entre as áreas é ao quadrado, 2,6 se torna 6,5 e 5,8 se torna 34,1. Aqui está uma comparação dos círculos que obtemos se tornarmos o valor proporcional ao raio e à área:
+Se julgarmos pela área dos círculos, os Estados Unidos parecem ter uma economia cinco vezes maior do que a da China e mais de 30 vezes maior do que a da França. No entanto, se olharmos para os números atuais, veremos que esse não é o caso. As proporções são 2,6 e 5,8 vezes superiores às da China e da França, respectivamente. A razão para essa distorção é que foram utilizados os raios dos círculos para representar as quantidades, em vez das áreas. Como a proporção entre as áreas é ao quadrado, 2,6 se torna 6,5 e 5,8 se torna 34,1. Aqui está uma comparação entre círculos para valores proporcionais ao raio (esquerda) e à área (direita):
 
 ```{r area-not-radius, echo = FALSE}
 gdp <- c(14.6, 5.7, 5.3, 3.3, 2.5)
@@ -210,17 +210,17 @@ scale_size(range = c(2,25)) +
 coord_flip() + ylab("") + xlab("")
 ```
 
-Não é surpresa que, por padrão, __ggplot2__ use a área em vez do raio. No entanto, nesse caso, realmente não devemos usar a área, pois podemos usar a posição e o comprimento:
+Não é surpresa que __ggplot2__ use por padrão a área em vez do raio. Obviamente, nesse caso, não devemos usar a área, pois podemos usar a posição e o comprimento:	
 
 ```{r barplot-better-than-area, out.width="50%", echo=FALSE}
 gdp_data %>%
 filter(y == "Area") %>%
 ggplot(aes(Country, GDP)) +
 geom_bar(stat = "identity", width = 0.5) +
-ylab("GDP in trillions of US dollars")
+ylab("PIB em trilhões de dólares")
 ```
 
-## Classificar categorias por valor significativo
+## Ordenando categorias por um valor significativo
 
 Quando um dos eixos é usado para exibir categorias, como é feito nos gráficos de barras, o comportamento padrão de __ggplot2__ é classificar as categorias em ordem alfabética quando definidas por cadeias de caracteres. Se eles são definidos por fatores, são ordenados de acordo com os níveis dos fatores. Raramente queremos usar a ordem alfabética. Em vez disso, devemos solicitar uma quantidade significativa. Em todos os casos anteriores, os gráficos de barras foram ordenados de acordo com os valores mostrados. A exceção foram gráficos de barras comparando navegadores. Nesse caso, mantivemos a ordem igual em todos os gráficos de barras para facilitar a comparação. Especificamente, em vez de solicitar navegadores separadamente nos dois anos, solicitamos os dois anos pelo valor médio de 2000 e 2015.
 
