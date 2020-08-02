@@ -63,7 +63,7 @@ facet_grid(.~Year)
 
 Para ver como é difícil quantificar ângulos e áreas, note que as classificações e todas as porcentagens nos gráficos acima foram alteradas entre 2000 e 2015. Você pode determinar as porcentagens reais e classificar a popularidade dos navegadores? Você pode ver como as porcentagens mudaram de 2000 para 2015? Não é fácil identificar isso através desse gráfico. De fato, a função `pie` da página de ajuda de R afirma que:
 
-> Os gráficos de pizza são uma maneira muito ruim de exibir informações. O olho é bom em julgar medições lineares e ruim em julgar áreas relativas. Um gráfico de barras ou pontos é uma maneira preferível de exibir esse tipo de dados.
+> Os gráficos de pizza são uma forma ruim de exibir informações. O olho humano é bom em julgar medições lineares, mas ruim em julgar áreas relativas. Gráficos de barras ou de pontos são maneiras preferíveis de exibir esse tipo de dados.
 
 
 Nesse caso, simplesmente exibir os números não é apenas mais claro, mas também reduziria custos caso você queira imprimir uma cópia em papel:
@@ -79,20 +79,20 @@ kableExtra::kable_styling(font_size = 8)
 }
 ```
 
-A maneira preferida de representar graficamente essas quantidades é usar comprimento e posição como pistas visuais, uma vez que os humanos são muito melhores em julgar medições lineares. O gráfico de barras usa essa abordagem usando barras de comprimento proporcional às quantias de interesse. Ao adicionar linhas horizontais aos valores escolhidos estrategicamente, neste caso, a cada múltiplo de 10, aliviaremos a carga visual da quantificação através da posição da parte superior das barras. Compare e compare as informações que podemos extrair dos dois pares de gráficos a seguir.
+Uma maneira preferivelmente melhor de representar graficamente essas quantidades é usar comprimento e posição como pistas visuais, uma vez que os humanos são muito melhores em julgar medições lineares. O gráfico de barras usa essa abordagem usando barras de comprimento proporcionais às quantias de interesse. Ao adicionar linhas horizontais a valores estrategicamente escolhidos, neste caso a cada múltiplo de 10, amenizamos a carga visual permitindo a identificação de quantidades através da posição da parte superior das barras. Compare e contraste as informações que podemos extrair das duas figuras abaixo.
 
 ```{r two-barplots, echo=FALSE, out.width="100%", fig.width = 6, fig.height = 5}
 p2 <-browsers %>%
 ggplot(aes(Browser, Percentage)) +
 geom_bar(stat = "identity", width=0.5) +
-ylab("Percent using the Browser") +
+ylab("Percentual de uso do navegador") +
 facet_grid(.~Year)
 grid.arrange(p1, p2, nrow = 2)
 ```
 
-Observe como é fácil ver as diferenças no gráfico de barras. De fato, agora podemos determinar as porcentagens reais seguindo uma linha horizontal para o eixo x.
+Observe como é fácil ver as diferenças no gráfico de barras. De fato, agora podemos determinar as porcentagens reais seguindo as linhas horizontais ao eixo x.
 
-Se, por algum motivo, você precisar criar um gráfico circular, rotule cada seção do círculo com sua respectiva porcentagem para que o público não precise inferi-las a partir dos ângulos ou da área:
+Se, por algum motivo, você precisar criar um gráfico de pizza, rotule cada seção do círculo com sua respectiva porcentagem para que o público não precise inferi-las a partir dos ângulos ou da área:
 
 ```{r excel-barplot, warning = FALSE, message=FALSE, echo=FALSE}
 library(scales)
@@ -111,20 +111,20 @@ y = at,
 label = label, size=4)
 ```
 
-Em geral, ao exibir quantidades, posição e comprimento sobre ângulos e/ ou área são os preferidos. O brilho e a cor são ainda mais difíceis de quantificar do que os ângulos. Mas, como veremos mais adiante, às vezes são úteis quando mais de duas dimensões devem ser exibidas ao mesmo tempo.
+Em geral, ao exibir quantidades, posições e comprimentos são preferíveis do que exibir ângulos e/ou áreas. Além disso, brilho e cor são ainda mais difíceis de quantificar do que os ângulos. Mas, como veremos mais adiante, às vezes são úteis quando mais de duas dimensões devem ser exibidas ao mesmo tempo.
 
 ## Saiba quando incluir 0
 
-Ao usar gráficos de barras, é errado não iniciar as barras em 0. Isso ocorre porque, ao usar um gráfico de barras, estamos sugerindo que o comprimento é proporcional às quantidades mostradas. Ao evitar 0, você pode fazer com que diferenças relativamente pequenas pareçam muito maiores do que realmente são. Essa abordagem é frequentemente usada por políticos ou pela mídia que tentam exagerar a diferença. Abaixo está um exemplo ilustrativo usado por Peter Aldhous nesta palestra: http://paldhous.github.io/ucb/2016/dataviz/week2.htmlfont^^ http://paldhous.github.io/ucb/2016/ dataviz/ week2.html].
+Ao usar gráficos de barras, é considerado desinformativo não iniciar as barras em 0. Isso ocorre porque, ao usar um gráfico de barras, estamos sugerindo que o comprimento é proporcional às quantidades mostradas. Evitando iniciar em 0, você pode fazer com que diferenças relativamente pequenas pareçam muito maiores do que realmente são. Essa abordagem é frequentemente usada por políticos ou organizações midiáticas tentando exagerar a diferença. Abaixo está um exemplo ilustrativo usado por Peter Aldhous nesta palestra: [http://paldhous.github.io/ucb/2016/dataviz/week2.html](http://paldhous.github.io/ucb/2016/dataviz/week2.html).
 
 ```{r echo=FALSE}
 ## http://paldhous.github.io/ucb/2016/dataviz/img/class2_8.jpg
 knitr::include_graphics(file.path(img_path, "class2_8.jpg"))
 ```
 
-(Fonte: Fox News, via Media Matters^[http://mediamatters.org/blog/2013/04/05/fox-news-newest-dishonest-chart-immigration-enf/193507].)
+(Detenções nas fronteiras dos Estados Unidos entre 2011 e 2013. Fonte: Fox News, via Media Matters^[http://mediamatters.org/blog/2013/04/05/fox-news-newest-dishonest-chart-immigration-enf/193507].)
 
-No gráfico acima, as detenções parecem ter triplicado quando, de fato, elas aumentaram apenas aproximadamente 16%. Iniciar o gráfico em 0 ilustra isso claramente:
+No gráfico acima, as detenções parecem ter triplicado quando, de fato, elas aumentaram apenas cerca de 16%. Iniciar o gráfico em 0 ilustra isso claramente:
 
 ```{r barplot-from-zero-1, echo=FALSE}
 data.frame(Year = as.character(c(2011, 2012, 2013)),Southwest_Border_Apprehensions = c(165244,170223,192298)) %>%
@@ -138,9 +138,9 @@ Abaixo, vemos outro exemplo, que é descrito em detalhes em um artigo do blog "F
 ## http://i2.wp.com/flowingdata.com/wp-content/uploads/2012/08/Bush-cuts.png
 knitr::include_graphics(file.path(img_path, "Bush-cuts.png"))
 ```
-(Fonte: Fox News, através da Flowing Data^[http://flowingdata.com/2012/08/06/fox-news-continues-charting-excellence/])
+(Previsão do aumento de taxas nos Estados Unidos se o corte de impostos determinado no governo do presidente Bush expirar. Fonte: Fox News, através da Flowing Data^[http://flowingdata.com/2012/08/06/fox-news-continues-charting-excellence/])
 
-Este gráfico faz um aumento de 13% parecer cinco vezes maior. Aqui está o gráfico apropriado:
+Este gráfico faz um aumento de 13% parecer cinco vezes maior. Aqui está um gráfico mais apropriado:
 
 ```{r barplot-from-zero-2, echo=FALSE}
 data.frame(date = c("Now", "Jan 1, 2013"), tax_rate = c(35, 39.6)) %>%
@@ -148,7 +148,7 @@ mutate(date = reorder(date, tax_rate)) %>%
 ggplot(aes(date, tax_rate)) +
 ylab("") + xlab("") +
 geom_bar(stat = "identity", fill = "yellow", col = "black", width = 0.5) +
-ggtitle("Top Tax Rate If Bush Tax Cut Expires")
+ggtitle("Aumento nas taxas se o corte de impostos de Bush expirar")
 ```
 
 Finalmente, aqui está um exemplo extremo que faz uma diferença muito pequena de menos de 2% parecer 10 a 100 vezes maior:
@@ -161,12 +161,12 @@ knitr::include_graphics(file.path(img_path, "venezuela-election.png"))
 (Fonte:
 Televisão venezuelana via Pakistan Today^[https://www.pakistantoday.com.pk/2018/05/18/whats-at-stake-in-venezuelan-presidential-vote] e Diego Mariano)
 
-Aqui está o gráfico apropriado:
+Aqui está um gráfico mais apropriado:
 
 ```{r barplot-from-zero-3, echo=FALSE}
-data.frame(Candidate = factor(c("Maduro", "Capriles"), levels = c("Maduro", "Capriles")),
-Percent = c(50.66, 49.07)) %>%
-ggplot(aes(Candidate, Percent, fill = Candidate)) +
+data.frame(Candidato = factor(c("Maduro", "Capriles"), levels = c("Maduro", "Capriles")),
+Percentual = c(50.66, 49.07)) %>%
+ggplot(aes(Candidato, Percentual, fill = Candidato)) +
 geom_bar(stat = "identity", width = 0.65, show.legend = FALSE)
 ```
 
