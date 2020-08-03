@@ -317,7 +317,7 @@ ggplot(aes(sex, height)) +
 geom_point()
 ```
 
-O gráfico acima nos dá uma idéia do alcance dos dados. No entanto, este gráfico também possui limitações, pois não podemos realmente ver toda a soma `r (heights $sex=="Female")` y `r sum(heights$ sex == "Male") `pontos plotados para mulheres e homens, respectivamente, e muitos pontos são plotados um sobre o outro. Como descrevemos anteriormente, visualizar a distribuição é muito mais informativo. Porém, antes de fazer isso, apontamos duas maneiras de melhorar um gráfico que mostra todos os pontos.
+O gráfico acima nos dá uma idéia do alcance dos dados. No entanto, este gráfico também possui limitações, pois não podemos realmente ver toda a soma `r (heights$sex=="Female")` y `r sum(heights$sex == "Male")` pontos plotados para mulheres e homens, respectivamente, e muitos pontos são plotados um sobre o outro. Como descrevemos anteriormente, visualizar a distribuição é muito mais informativo. Porém, antes de fazer isso, apontamos duas maneiras de melhorar um gráfico que mostra todos os pontos.
 
 O primeiro é adicionar _jitter_, que adiciona um pequeno deslocamento aleatório a cada ponto. Nesse caso, adicionar horizontal _jitter_ não altera a interpretação, pois as alturas dos pontos não mudam, mas minimizamos o número de pontos que se sobrepõem e, portanto, temos uma melhor ideia visual de como os dados são distribuídos. Uma segunda melhoria vem do uso de _alpha blending_, que torna os pontos um pouco transparentes. Quanto mais pontos se sobrepuserem, mais escuro será o gráfico, o que também nos ajudará a ter uma idéia de como os pontos são distribuídos. Aqui está o mesmo gráfico com _jitter_e_alpha blending_:
 
