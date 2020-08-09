@@ -333,7 +333,7 @@ Agora começamos a sentir que, em média, os homens são mais altos que as mulhe
 
 ### Use eixos em comum
 
-Como existem muitos pontos, é mais eficaz mostrar distribuições do que pontos individuais. Portanto, mostramos histogramas para cada grupo:
+Uma vez que existem muitos pontos, é mais eficaz mostrar distribuições do que pontos individuais. Portanto, mostramos histogramas para cada grupo:
 
 ```{r common-axes-histograms-wrong, echo=FALSE}
 heights %>%
@@ -342,7 +342,7 @@ geom_histogram(binwidth = 1, color="black") +
 facet_grid(.~sex, scales = "free_x")
 ```
 
-No entanto, olhando para o gráfico acima, não é imediatamente óbvio que os homens são, em média, mais altos que as mulheres. Temos que observar com atenção para perceber que o eixo x tem uma faixa de valores mais alta no histograma masculino. Um princípio importante aqui é **manter os eixos iguais** ao comparar dados em dois gráficos. A seguir, vemos como a comparação se torna mais fácil:
+No entanto, olhando para o gráfico acima, não é imediatamente óbvio que homens são, em média, mais altos que mulheres. Temos que observar com atenção para perceber que o eixo x tem uma faixa de valores mais alta no histograma masculino. Um princípio importante aqui é **manter os eixos iguais** ao comparar dados em dois gráficos. A seguir, vemos como a comparação se torna mais fácil:
 
 ```{r common-axes-histograms-right, echo=FALSE}
 heights %>%
@@ -353,7 +353,7 @@ facet_grid(.~sex)
 
 ### Alinhe os gráficos verticalmente para ver alterações horizontais e horizontalmente para ver alterações verticais
 
-Nesses histogramas, o sinal visual relacionado a reduções ou aumentos de altura são alterações à esquerda ou à direita, respectivamente: alterações horizontais. O alinhamento vertical dos gráficos nos ajuda a ver essa alteração quando os eixos são fixos:
+Nesses histogramas, o sinal visual relacionado a reduções ou aumentos de altura são deslocamentos para a esquerda ou para a direita, respectivamente: alterações horizontais. O alinhamento vertical dos gráficos nos ajuda a ver essa alteração quando os eixos são fixos:
 
 ```{r common-axes-histograms-right-2, echo = FALSE}
 p2 <- heights %>%
@@ -370,16 +370,16 @@ geom_histogram(binwidth = 1, color="black") +
 facet_grid(sex~.)
 ```
 
-O gráfico acima facilita a observação de que os machos são, em média, mais altos.
+O gráfico acima facilita notar que homens são, em média, mais altos.
 
-Se quisermos obter o resumo compacto que os boxplots oferecem, precisamos alinhá-los horizontalmente, pois, por padrão, os boxplots se movem para cima e para baixo com base nas mudanças de altura. Seguindo o princípio "mostrar os dados", sobrepusemos todos os pontos de dados:
+Se quisermos obter o resumo compacto que os boxplots oferecem, precisamos alinhá-los horizontalmente, uma vez que, por padrão, os boxplots se movem para cima e para baixo com base nas mudanças de altura. Seguindo o princípio "mostre os dados", devemos sobrepor todos os pontos de dados:
 
 ```{r boxplot-with-points-with-jitter, echo=FALSE}
 p3 <- heights %>%
 ggplot(aes(sex, height)) +
 geom_boxplot(coef=3) +
 geom_jitter(width = 0.1, alpha = 0.2) +
-ylab("Height in inches")
+ylab("Altura em polegadas")
 p3
 ```
 
@@ -388,16 +388,16 @@ heights %>%
 ggplot(aes(sex, height)) +
 geom_boxplot(coef=3) +
 geom_jitter(width = 0.1, alpha = 0.2) +
-ylab("Height in inches")
+ylab("Altura em polegadas")
 ```
 
-Agora compare e contraste estes três gráficos, com base exatamente nos mesmos dados:
+Agora compare e contraste estes três gráficos baseados exatamente nos mesmos dados:
 
 ```{r show-the-data-comparison, out.width="100%", echo=FALSE}
 grid.arrange(p1, p2, p3, ncol = 3)
 ```
 
-Observe quanto aprendemos mais nos dois gráficos à direita. Os gráficos de barras são úteis para exibir um número, mas não são muito úteis quando queremos descrever distribuições.
+Observe o quanto aprendemos mais nos dois gráficos à direita. Os gráficos de barras são úteis para exibir um número, mas não são muito úteis quando queremos descrever distribuições.
 
 ### Considere transformações
 
