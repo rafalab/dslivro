@@ -307,9 +307,9 @@ ylab("Altura em polegadas")
 p1
 ```
 
-A média de cada grupo é representada pelo topo de cada barra e as antenas se estendem da média para a média mais dois erros padrão. Se tudo o que o ET obtiver for esse gráfico, você terá poucas informações sobre o que esperar se encontrar um grupo de homens e mulheres. As barras vão para 0: isso significa que existem seres humanos pequenos com menos de um pé de altura? Todos os homens são mais altos que as mulheres mais altas? Existe uma variedade de alturas? O ET é incapaz de responder a essas perguntas, pois mal lhe fornecemos informações sobre a distribuição da altura.
+A média de cada grupo é representada pelo topo de cada barra e as antenas se estendem da média até mais dois erros padrão. Se tudo o que o ET receber for esse gráfico, ele terá poucas informações sobre o que esperar se encontrar um grupo de homens e mulheres. As barras iniciam em 0: isso significa que existem seres humanos pequenos com menos de 30 centímetros de altura? Todos os homens são mais altos mesmo comparados com as mulheres mais altas? Existe uma variedade de alturas? O ET é incapaz de responder a essas perguntas, pois mal lhe fornecemos informações sobre a distribuição de alturas.
 
-Isso nos leva ao nosso primeiro princípio: exibir os dados. Esse código __ggplot2__ simples já gera um gráfico mais informativo que o gráfico de barras, exibindo todos os pontos de dados:
+Isso nos leva ao nosso primeiro princípio: exibir os dados. Este simples código do __ggplot2__ gera um gráfico mais informativo que o gráfico de barras, simplesmente exibindo todos os pontos de dados:
 
 ```{r show-data-2}
 heights %>%
@@ -317,9 +317,9 @@ ggplot(aes(sex, height)) +
 geom_point()
 ```
 
-O gráfico acima nos dá uma idéia do alcance dos dados. No entanto, este gráfico também possui limitações, pois não podemos realmente ver toda a soma `r (heights$sex=="Female")` y `r sum(heights$sex == "Male")` pontos plotados para mulheres e homens, respectivamente, e muitos pontos são plotados um sobre o outro. Como descrevemos anteriormente, visualizar a distribuição é muito mais informativo. Porém, antes de fazer isso, apontamos duas maneiras de melhorar um gráfico que mostra todos os pontos.
+O gráfico acima nos dá uma ideia da variação dos dados. No entanto, esee gráfico também possui limitações, uma vez que não podemos realmente ver toda a soma de todos os `r (heights$sex=="Female")` e `r sum(heights$sex == "Male")` pontos plotados para mulheres e homens, respectivamente, e muitos pontos são plotados um sobre o outro. Como descrevemos anteriormente, visualizar a distribuição é muito mais informativo. Porém, antes de fazer isso, podemos apontar duas maneiras de melhorar um gráfico que mostra todos os pontos.
 
-O primeiro é adicionar _jitter_, que adiciona um pequeno deslocamento aleatório a cada ponto. Nesse caso, adicionar horizontal _jitter_ não altera a interpretação, pois as alturas dos pontos não mudam, mas minimizamos o número de pontos que se sobrepõem e, portanto, temos uma melhor ideia visual de como os dados são distribuídos. Uma segunda melhoria vem do uso de _alpha blending_, que torna os pontos um pouco transparentes. Quanto mais pontos se sobrepuserem, mais escuro será o gráfico, o que também nos ajudará a ter uma idéia de como os pontos são distribuídos. Aqui está o mesmo gráfico com _jitter_e_alpha blending_:
+A primeira é adicionar _jitter_, que adiciona um pequeno deslocamento aleatório a cada ponto. Nesse caso, adicionar _jitter_ horizontal não altera a interpretação, pois as alturas dos pontos não mudam. Além disso, minimizamos o número de pontos que se sobrepõem e, assim, temos uma melhor ideia visual de como os dados estão distribuídos. Uma segunda melhoria vem do uso de _alpha blending_, que torna os pontos um pouco transparentes. Quanto mais pontos se sobrepuserem, mais escuro será o gráfico, o que também nos ajudará a ter uma ideia de como os pontos estão distribuídos. Aqui está o mesmo gráfico com _jitter_ e _alpha blending_ aplicados:
 
 ```{r show-points-with-jitter}
 heights %>%
@@ -327,11 +327,11 @@ ggplot(aes(sex, height)) +
 geom_jitter(width = 0.1, alpha = 0.2)
 ```
 
-Agora começamos a sentir que, em média, os machos são mais altos que as fêmeas. Também observamos faixas pontilhadas horizontais escuras, o que mostra que muitos alunos indicam valores arredondados para o número inteiro mais próximo.
+Agora começamos a sentir que, em média, os homens são mais altos que as mulheres. Também observamos faixas horizontais de pontos mais escuras, demonstrando que muitos valores relatados foram arredondados para o número inteiro mais próximo.
 
-## Como facilitar comparações
+## Facilite comparações
 
-### Use eixos comuns
+### Use eixos em comum
 
 Como existem muitos pontos, é mais eficaz mostrar distribuições do que pontos individuais. Portanto, mostramos histogramas para cada grupo:
 
