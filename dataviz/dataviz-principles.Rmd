@@ -222,10 +222,10 @@ ylab("PIB em trilhões de dólares")
 
 ## Ordenando categorias por um valor significativo
 
-Quando um dos eixos é usado para exibir categorias, como é feito nos gráficos de barras, o comportamento padrão de __ggplot2__ é classificar as categorias em ordem alfabética quando definidas por cadeias de caracteres. Se eles são definidos por fatores, são ordenados de acordo com os níveis dos fatores. Raramente queremos usar a ordem alfabética. Em vez disso, devemos solicitar uma quantidade significativa. Em todos os casos anteriores, os gráficos de barras foram ordenados de acordo com os valores mostrados. A exceção foram gráficos de barras comparando navegadores. Nesse caso, mantivemos a ordem igual em todos os gráficos de barras para facilitar a comparação. Especificamente, em vez de solicitar navegadores separadamente nos dois anos, solicitamos os dois anos pelo valor médio de 2000 e 2015.
+Quando um dos eixos é usado para exibir categorias, como nos gráficos de barras, o comportamento padrão do __ggplot2__ é classificar as categorias em ordem alfabética quando definidas por cadeias de caracteres. Se as categorias forem definidas por fatores, elas são ordenados de acordo com os níveis dos fatores. Nesses casos, raramente queremos usar a ordem alfabética. Em vez disso, devemos ordenar por quantidades significativa. Em todos os casos apresentados anteriormente, gráficos de barras foram ordenados de acordo com os valores mostrados, exceto nos gráficos de barras comparando navegadores. Nesse caso, mantivemos a ordem igual em todos os gráficos de barras para facilitar a comparação. Especificamente, em vez de ordenar os navegadores separadamente nos dois anos, ordenamos ambos os anos pelo valor médio de 2000 e 2015.
 
 
-Anteriormente, aprendemos a usar a função `reorder`, o que nos ajuda a alcançar esse objetivo. Para avaliar como a ordem correta pode ajudar a transmitir uma mensagem, suponha que desejamos criar um gráfico para comparar a taxa de homicídios em todos os estados dos EUA.estamos particularmente interessados nos estados mais perigosos e mais seguros. Lembre-se da diferença quando solicitamos alfabeticamente, a ação padrão, versus quando solicitamos pela taxa real:
+Anteriormente, aprendemos a usar a função `reorder`, o que nos ajuda a alcançar esse objetivo. Para avaliar como a ordem correta pode ajudar a transmitir uma mensagem, suponha que desejamos criar um gráfico para comparar a taxa de homicídios em todos os estados dos EUA. Estamos particularmente interessados nos estados mais perigosos e nos mais seguros. Note a diferença de quando ordenamos alfabeticamente (a ação padrão) versus quando ordenamos pela taxa real:
 
 ```{r do-not-order-alphabetically, fig.height = 5, echo=FALSE}
 data(murders)
@@ -247,7 +247,7 @@ xlab("")
 grid.arrange(p1, p2, ncol = 2)
 ```
 
-Podemos fazer o segundo gráfico assim:
+Podemos fazer o segundo gráfico desta forma:
 
 ```{r, eval=FALSE}
 data(murders)
@@ -260,7 +260,7 @@ theme(axis.text.y = element_text(size = 6)) +
 xlab("")
 ```
 
-A função `reorder` também nos permite reordenar grupos. Anteriormente, vimos um exemplo relacionado à distribuição de renda entre regiões. Aqui vemos as duas versões representadas graficamente uma contra a outra:
+A função `reorder` também nos permite reordenar grupos. Anteriormente, vimos um exemplo relacionado à distribuição de renda entre regiões. Aqui vemos as duas versões representadas graficamente lado a lado:
 
 ```{r reorder-boxplot-example, out.width="100%", echo=FALSE}
 past_year <- 1970
@@ -286,13 +286,13 @@ xlab("")
 grid.arrange(p1, p2, nrow=1)
 ```
 
-O primeiro gráfico classifica as regiões em ordem alfabética, enquanto o segundo gráfico as classifica pela mediana do grupo.
+O primeiro gráfico classifica as regiões em ordem alfabética, enquanto o segundo as classifica de acordo com a mediana do grupo.
 
-## Mostrar os dados
+## Mostre os dados
 
-Nosso foco foi exibir quantidades únicas em todas as categorias. Agora, voltamos nossa atenção para a visualização de dados, com foco na comparação de grupos.
+Nós temos focando em exibir quantidades únicas em todas as categorias. Agora, voltamos nossa atenção para a visualização de dados, com foco na comparação de grupos.
 
-Para motivar nosso primeiro princípio, "mostrar os dados", retornamos ao nosso exemplo artificial de descrição de alturas para ET, um alienígena. Desta vez, suponha que o ET esteja interessado na diferença de altura entre homens e mulheres. Um gráfico comumente usado para comparações de grupo e popularizado por software como o Microsoft Excel, é o _dynamite plot_, que mostra os erros médios e padrão (os erros padrão são definidos em um capítulo posterior, mas não os confundem com o desvio padrão do dados). O gráfico fica assim:
+Para motivar nosso primeiro princípio, "mostre os dados", retornamos ao nosso exemplo artificial de descrição de alturas para ET, o extraterrestre. Desta vez, suponha que o ET esteja interessado nas diferenças de alturas entre homens e mulheres. Um gráfico comumente usado para comparações de grupos, popularizado por programas como o Microsoft Excel, é o gráfico de dinamite (_dynamite plot_), que mostra a média e o erro padrão (os erros padrão são definidos em um capítulo posterior, mas não os confundem com o desvio padrão de dados). O gráfico fica assim:
 
 ```{r show-data-1, echo=FALSE, fig.height=6}
 data("heights")
@@ -303,7 +303,7 @@ ggplot(aes(sex, average)) +
 theme_excel() +
 geom_errorbar(aes(ymin = average - 2*se, ymax = average+2*se), width = 0.25) +
 geom_bar(stat = "identity", width=0.5, fill = "blue", color = "black") +
-ylab("Height in inches")
+ylab("Altura em polegadas")
 p1
 ```
 
