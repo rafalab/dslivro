@@ -728,7 +728,7 @@ knitr::include_graphics(file.path(img_path,c("fig1e.png", "fig2d.png")))
 
 ## Evite muitos dígitos significativos
 
-Por padrão, softwares estatísticos como R retornam muitos dígitos significativos. O comportamento padrão em R é exibir 7 dígitos significativos. Esse número de dígitos geralmente não adiciona informações e a desordem visual adicionada pode dificultar o entendimento da mensagem. Como exemplo, aqui estão as taxas de doença por 10.000 para a Califórnia em cinco décadas, calculadas a partir dos totais e da população com R:
+Por padrão, softwares estatísticos como R retornam muitos dígitos significativos. O comportamento padrão do R é exibir 7 dígitos significativos. Esse número de dígitos geralmente não adiciona informações e a desordem visual adicionada pode dificultar o entendimento da mensagem. Como exemplo, aqui estão as taxas de doenças por 10.000 habitantes para a Califórnia em cinco décadas, calculadas a partir dos totais e da população com R:
 
 ```{r, echo=FALSE}
 data(us_contagious_diseases)
@@ -750,8 +750,9 @@ kableExtra::kable_styling(font_size = 8)
 }
 options(digits=tmp)
 ```
+(Measles: Sarampo, Pertussis: Coqueluche, Polio: Poliomielite)
 
-Estamos relatando precisão de até 0,00001 casos por 10.000, um valor muito pequeno no contexto de alterações que ocorrem ao longo do tempo. Nesse caso, dois números significativos são mais que suficientes e indicam claramente que as taxas estão diminuindo:
+Nesse caso, estamos relatando precisão de até 0,00001 casos por 10.000, um valor muito pequeno no contexto das mudanças que estão ocorrendo nas datas. Nesse caso, dois algarismos significativos são mais do que suficientes e deixam claro que as taxas estão diminuindo:
 
 ```{r, echo = FALSE}
 dat <- dat %>%
@@ -765,7 +766,7 @@ kableExtra::kable_styling(font_size=8)
 }
 ```
 
-Para alterar o número de dígitos significativos ou números redondos, usamos `signif` e `round`. Eles podem definir o número de dígitos significativos em todo o mundo, configurando opções como esta: `options(digits = 3)`.
+Para alterar o número de dígitos significativos ou números redondos, usamos `signif` e `round`. Você pode definir globalmente o número de dígitos significativos, configurando as opções desta forma: `options(digits = 3)`.
 
 
 Outro princípio relacionado à exibição de tabelas é colocar os valores que são comparados em colunas em vez de linhas. Observe que nossa tabela acima é mais fácil de ler do que esta:
@@ -788,17 +789,17 @@ kableExtra::kable_styling(font_size = 8)
 }
 ```
 
-## Conheça o seu público
+## Conheça seu público
 
-Os gráficos podem ser usados para 1) nossas próprias análises exploratórias de dados, 2) para transmitir uma mensagem aos especialistas ou 3) para ajudar a contar uma história para o público em geral. Certifique-se de que o público-alvo entenda cada elemento do gráfico.
+Fráficos podem ser usados para: (1) nossas próprias análises exploratórias de dados, (2) para transmitir uma mensagem a especialistas, ou (3) para ajudar a contar uma história para o público em geral. Logo, certifique-se de que o público-alvo entenda cada elemento do gráfico.
 
-Como um exemplo simples, considere que pode ser mais útil para sua própria exploração transformar os dados logaritmicamente e depois fazer um gráfico. No entanto, para uma audiência geral que não está familiarizada com a conversão de valores logarítmicos em medições originais, será muito mais fácil entender o uso de uma escala logarítmica para o eixo, em vez de valores transformados logaritmicamente.
+Como um simples exemplo, considere que, para sua própria exploração, pode ser mais útil transformar os dados logaritmicamente e depois plotá-los. No entanto, para uma audiência geral que não está familiarizada com a conversão de valores logarítmicos em medições originais, será muito mais fácil entender o uso de uma escala logarítmica para o eixo, em vez de valores transformados logaritmicamente.
 
 
 ## Exercícios
 
 
-Para esses exercícios, usaremos os dados da vacina no pacote __dslabs__:
+Para esses exercícios, usaremos os dados de vacinas do pacote __dslabs__:
 
 ```{r}
 library(dslabs)
@@ -807,12 +808,12 @@ data(us_contagious_diseases)
 
 1\. Os gráficos de pizza são adequados:
 
-para. Quando queremos mostrar porcentagens.
+a. Quando queremos mostrar porcentagens.
 b. Quando __ggplot2__ não estiver disponível.
-c. Quando estou jogando frisbee.
-d. Nunca. Gráficos e tabelas de barras são sempre melhores.
+c. Quando estou em uma pizzaria.
+d. Nunca. Gráficos de barras e tabelas são sempre melhores.
 
-2\. Qual é o problema com o gráfico a seguir?
+2\. Qual é o problema com o gráfico abaixo:
 
 ```{r baplot-not-from-zero-exercises, echo=FALSE, message=FALSE}
 library(tidyverse)
@@ -821,18 +822,18 @@ data.frame(candidate=c("Clinton","Trump"), electoral_votes = c(232, 306)) %>%
 ggplot(aes(candidate, electoral_votes)) +
 geom_bar(stat = "identity", width=0.5, color =1, fill = c("Blue","Red")) +
 coord_cartesian(ylim=c(200,310)) +
-ylab("Electoral Votes") +
+ylab("Votos do Colégio Eleitoral") +
 xlab("") +
-ggtitle("Results of Presidential Election 2016")
+ggtitle("Resultados da Eleição Presidencial de 2016")
 ```
 
-para. Os valores estão errados. A votação final foi 306-232.
-b. O eixo não começa em 0. A julgar pelo comprimento, parece que Trump recebeu três vezes mais votos quando, na verdade, ele era aproximadamente 30% a mais.
+a. Os valores estão errados. A votação final foi 306-232.
+b. O eixo não começa em 0. A julgar pelo comprimento, parece que Trump recebeu três vezes mais votos quando, na verdade, recebeu aproximadamente 30% a mais.
 c. As cores devem ser as mesmas.
 d. As porcentagens devem ser mostradas como um gráfico de pizza.
 
 
-3\. Veja os dois gráficos a seguir. Eles mostram a mesma informação: taxas de sarampo em 1928 em todos os 50 estados.
+3\. Veja os dois gráficos a seguir. Eles mostram a mesma informação: taxas de sarampo em 1928 em todos os 50 estados dos EUA.
 
 ```{r measels-exercise, fig.height = 5, echo=FALSE}
 library(gridExtra)
@@ -854,15 +855,15 @@ coord_flip() +
 xlab("")
 grid.arrange(p1, p2, ncol = 2)
 ```
-Qual gráfico é mais fácil de ler se você deseja determinar quais são os melhores e os piores estados em termos de taxas e por quê?
+Qual gráfico é mais fácil de ler se você deseja determinar quais são os melhores e os piores estados em termos de taxas? Por quê?
 
-para. Eles dão a mesma informação, então ambos são igualmente bons.
+a. Eles dão a mesma informação, então ambos são igualmente bons.
 b. O gráfico à esquerda é melhor porque ordena os estados em ordem alfabética.
-c. O gráfico à direita é melhor porque a ordem alfabética não tem nada a ver com a doença e, ordenando de acordo com a taxa real, vemos rapidamente os estados com as taxas mais alta e mais baixa.
-d. Ambos os gráficos devem ser um gráfico de pizza.
+c. O gráfico à direita é melhor porque a ordem alfabética não tem nada a ver com a doença e, ordenando de acordo com a taxa real, vemos rapidamente os estados com as taxas mais altas e mais baixas.
+d. Ambos os gráficos deveriam ser um gráfico de pizza.
 
 
-4\. Para fazer o gráfico à esquerda, precisamos reordenar os níveis das variáveis de estado.
+4\. Para fazer o gráfico à esquerda, precisamos reordenar os níveis das variáveis dos estados.
 
 ```{r}
 dat <- us_contagious_diseases %>%
@@ -871,7 +872,7 @@ mutate(rate = count/ population * 10000 * 52/ weeks_reporting)
 ```
 
 
-Lembre-se do que acontece quando criamos um gráfico de barras:
+Note o que acontece quando criamos um gráfico de barras:
 
 ```{r barplot-plot-exercise-example, fig.height = 5}
 dat %>% ggplot(aes(state, rate)) +
@@ -886,13 +887,13 @@ state <- dat$state
 rate <- dat$count/dat$population*10000*52/dat$weeks_reporting
 ```
 
-Redefinir o objeto `state` para que os níveis sejam reorganizados. Imprimir o novo objeto `state` e seus níveis para que você possa ver que os níveis não reorganizam o vetor.
+Redefina o objeto `state` para que os níveis sejam reorganizados. Imprima o novo objeto `state` e seus níveis para que você possa ver que os níveis não reorganizam o vetor.
 
 
-5\. Agora edite o código acima para redefinir `dat` para que os níveis da variável `state` reordenar por variável `rate`. Em seguida, faça um gráfico de barras usando o código acima, mas para este novo `dat`.
+5\. Agora, edite o código acima redefinindo `dat` para que os níveis da variável `state` sejam reordenados pela variável `rate`. Em seguida, faça um gráfico de barras usando o código acima, mas para este novo `dat`.
 
 
-6\. Digamos que você esteja interessado em comparar as taxas de homicídio por arma de fogo em todas as regiões dos EUA. EUA Veja este gráfico:
+6\. Digamos que você esteja interessado em comparar as taxas de homicídio por arma de fogo em todas as regiões dos EUA. Ao ver este gráfico:
 
 
 ```{r us-murders-barplot}
@@ -904,26 +905,26 @@ summarize(avg = mean(rate)) %>%
 mutate(region = factor(region)) %>%
 ggplot(aes(region, avg)) +
 geom_bar(stat="identity") +
-ylab("Murder Rate Average")
+ylab("Média da taxa de homicídio")
 ```
+(Northeast: Nordeste, South: Sul, North Central: Centro-norte, West: Oeste)
 
+você decide se mudar para um estado na região oeste. Qual é o principal problema com essa interpretação?
 
-e decide se mudar para um estado na região oeste. Qual é o principal problema com esta interpretação?
-
-para. As categorias são organizadas em ordem alfabética.
+a. As categorias estão organizadas em ordem alfabética.
 b. O gráfico não mostra erros padrão.
-c. O gráfico não mostra todos os dados. Não vemos variabilidade dentro de uma região e os estados mais seguros podem não estar no oeste.
+c. O gráfico não mostra todos os dados. Não vemos variabilidade dentro de uma região. É possível que estados mais seguros possam não estar no oeste.
 d. O Nordeste tem a menor média.
 
 
-7\. Faça um gráfico de caixa das taxas de homicídio definidas como:
+7\. A taxa de homicídios pode ser definida da seguinte forma:
 
 ```{r, eval = FALSE}
 data("murders")
 murders %>% mutate(rate = total/population*100000)
 ```
 
-por região, mostrando todos os pontos e ordenando as regiões pela taxa média.
+Faça um _boxplot_ das taxas de homicídio (_murders_) por região, mostrando todos os pontos e ordenando as regiões pela taxa média.
 
 
 8\. Os gráficos abaixo mostram três variáveis contínuas.
@@ -956,19 +957,21 @@ abline(v=2, col=3)
 
 Por que acontece isso?
 
-para. Os seres humanos não são bons em ler gráficos pseudo-3D.
+a. Os seres humanos não são bons em ler gráficos pseudo-3D.
 b. Deve haver um erro no código.
 c. Cores nos confundem.
 d. Diagramas de dispersão não devem ser usados para comparar duas variáveis quando tivermos acesso a três variáveis.
 
 
-9\. Reproduza o gráfico de imagem que criamos anteriormente, mas para varíola. Para este gráfico, não inclua anos em que nenhum caso foi relatado em 10 ou mais semanas.
+9\. Reproduza a imagem do gráfico que criamos anteriormente para varíola (_smallpox_). Para este gráfico, não inclua anos em que nenhum caso foi relatado em 10 ou mais semanas.
 
 
 10\. Agora, repita o gráfico de séries temporais que criamos anteriormente, mas desta vez seguindo as instruções da pergunta anterior.
 
 
-Onze\. Para o estado da Califórnia, faça gráficos de séries temporais que mostrem as taxas de todas as doenças. Inclua apenas anos nos quais os dados são fornecidos em 10 ou mais semanas. Use uma cor diferente para cada doença.
+11\. Para o estado da Califórnia, faça gráficos de séries temporais que mostrem as taxas de todas as doenças. Inclua apenas anos nos quais os dados são fornecidos em 10 ou mais semanas. Use uma cor diferente para cada doença.
 
 
-12\. Agora faça o mesmo para as taxas dos EUA. Dica: calcule a taxa dos EUA. EUA usando `summarize`, o número total de casos dividido pela população total.
+12\. Agora faça o mesmo para as taxas dos EUA. Dica: calcule a taxa dos EUA usando `summarize`, o número total de casos dividido pela população total.
+
+
