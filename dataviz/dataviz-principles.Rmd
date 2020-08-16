@@ -401,9 +401,9 @@ Observe o quanto aprendemos mais nos dois gráficos à direita. Os gráficos de 
 
 ### Considere transformações
 
-Incentivamos o uso de transformação logarítmica nos casos em que as alterações são multiplicativas. O tamanho da população foi um exemplo em que descobrimos que uma transformação logarítmica produziu uma transformação mais informativa.
+Incentivamos o uso de transformação logarítmica nos casos em que as mudanças são multiplicativas. O tamanho da população foi um exemplo em que estabelecemos uma transformação logarítmica para produzir uma transformação mais informativa.
 
-A combinação de um gráfico de barras escolhido incorretamente e a não utilização de uma transformação logarítmica, quando necessário, podem ser particularmente distorcidas. Como exemplo, considere este gráfico de barras mostrando os tamanhos médios da população para cada continente em 2015:
+A combinação de um gráfico de barras escolhido incorretamente e a não utilização de uma transformação logarítmica, quando necessária, podem particularmente causar distorções. Como exemplo, considere este gráfico de barras mostrando os tamanhos médios da população para cada continente em 2015:
 
 ```{r no-transformations-wrong-use-of-barplot, echo=FALSE}
 data(gapminder)
@@ -415,23 +415,23 @@ mutate(continent = reorder(continent, population)) %>%
 ggplot(aes(continent, population/10^6)) +
 geom_bar(stat = "identity", width=0.5, fill="blue") +
 theme_excel() +
-ylab("Population in Millions") +
-xlab("Continent")
+ylab("População em Milhões") +
+xlab("Continente")
 p1
 ```
 
-Observando o gráfico acima, conclui-se que os países asiáticos são muito mais populosos do que os de outros continentes. Seguindo o princípio "mostrar os dados", notamos rapidamente que isso se deve a dois países muito grandes, que assumimos serem a Índia e a China:
+Observando o gráfico acima, conclui-se que os países asiáticos são muito mais populosos do que os de outros continentes. Seguindo o princípio "mostre os dados", notamos rapidamente que isso se deve a dois países muito grandes, que presumimos serem a Índia e a China:
 
 ```{r no-transformation, echo=FALSE}
 p2 <- gapminder %>% filter(year == 2015) %>%
 mutate(continent = reorder(continent, population, median)) %>%
 ggplot(aes(continent, population/10^6)) +
-ylab("Population in Millions") +
-xlab("Continent")
+ylab("População em Milhões") +
+xlab("Continente")
 p2 + geom_jitter(width = .1, alpha = .5)
 ```
 
-Usar uma transformação logarítmica aqui produz um gráfico muito mais informativo. Comparamos o gráfico de barras original com um gráfico de caixa usando a transformação de escala logarítmica para o eixo y:
+Usar uma transformação logarítmica aqui produz um gráfico muito mais informativo. Comparamos o gráfico de barras original com um _boxplot_ usando a transformação de escala logarítmica para o eixo y:
 
 
 ```{r correct-transformation, out.width="100%", echo=FALSE, fig.height=3.5}
@@ -442,9 +442,9 @@ theme(axis.text.x = element_text(size = 7))
 grid.arrange(p1, p2, ncol = 2)
 ```
 
-Com o novo gráfico, percebemos que os países africanos realmente têm uma população mediana maior que a Ásia.
+Com o novo gráfico, percebemos que os países africanos realmente têm uma população mediana maior que os da Ásia.
 
-Outras transformações a considerar são a transformação logística ( `logit`), que é útil para ver melhor as alterações nas probabilidades e a transformação da raiz quadrada ( `sqrt`), o que é útil para contagens.
+Outras transformações a considerar são a transformação logística (`logit`), que é útil para ver melhor as alterações nas probabilidades e a transformação da raiz quadrada ( `sqrt`), que é útil para contagens.
 
 ### As indicações visuais comparadas devem ser adjacentes
 
