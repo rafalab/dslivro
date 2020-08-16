@@ -448,7 +448,7 @@ Outras transformações a considerar são a transformação logística (`logit`)
 
 ### As indicações visuais comparadas devem ser adjacentes
 
-Para cada continente, vamos comparar a renda em 1970 versus 2010. Ao comparar dados de renda entre regiões entre 1970 e 2010, fizemos um gráfico semelhante ao seguinte, mas desta vez investigamos os continentes em vez de regiões.
+Para cada continente, vamos comparar a renda em 1970 versus 2010. Quando comparamos dados de renda por regiões entre 1970 e 2010, construímos um gráfico semelhante à figura abaixo. Desta vez, investigamos os continentes em vez de regiões.
 
 ```{r boxplots-not-adjacent, echo=FALSE}
 gapminder %>%
@@ -459,11 +459,12 @@ ggplot(aes(labels, dollars_per_day)) +
 geom_boxplot() +
 theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
 scale_y_continuous(trans = "log2") +
-ylab("Income in dollars per day")
+ylab("Renda em dólares por dia")
 ```
 
 
-O comportamento padrão de __ggplot2__ é classificar os rótulos em ordem alfabética para que os rótulos com 1970 apareçam antes dos rótulos com 2010. Isso dificulta as comparações porque a distribuição de um continente em 1970 é visualmente distante da sua distribuição em 2010. É muito mais fácil Faça a comparação entre 1970 e 2010 para cada continente quando as plotagens da caixa para esse continente estiverem próximas uma da outra:
+O comportamento padrão do __ggplot2__ é classificar os rótulos em ordem alfabética de modo que os rótulos com 1970 venham antes dos rótulos com 2010. Isso dificulta as comparações porque a distribuição de um continente em 1970 é visualmente distante da sua distribuição em 2010. É muito mais fácil fazer a comparação entre 1970 e 2010 para cada continente quando seus _boxplots_  estiverem lado a lado:
+
 
 ```{r boxplot-adjacent-comps, echo=FALSE}
 gapminder %>%
@@ -474,7 +475,7 @@ ggplot(aes(labels, dollars_per_day)) +
 geom_boxplot() +
 theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
 scale_y_continuous(trans = "log2") +
-ylab("Income in dollars per day")
+ylab("Renda em dólares por dia")
 ```
 
 ### Use cores
@@ -490,13 +491,13 @@ ggplot(aes(continent, dollars_per_day, fill = year)) +
 geom_boxplot() +
 theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
 scale_y_continuous(trans = "log2") +
-ylab("Income in dollars per day")
+ylab("Renda em dólares por dia")
 ```
 
 
 ## Pense no daltônico
 
-Cerca de 10% da população é daltônica. Infelizmente, as cores padrão usadas em __ggplot2__ não são ideais para este grupo. No entanto, __ggplot2__ facilita a alteração da paleta de cores usada nos gráficos. Aqui está um exemplo de como podemos usar uma paleta que considera daltônicos: [http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palettefont/5(http:// www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette):
+Cerca de 10% da população é daltônica. Infelizmente, as cores padrão usadas em __ggplot2__ não são ideais para esse grupo. No entanto, __ggplot2__ facilita a alteração da paleta de cores usada nos gráficos. Aqui está um exemplo de como podemos usar uma paleta que considera daltônicos: [http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette](http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette):
 
 ```{r, eval=FALSE}
 color_blind_friendly_cols <-
@@ -525,17 +526,17 @@ panel.grid.minor = element_blank())
 p1 + scale_color_manual(values=color_blind_friendly_cols)
 ```
 
-Além disso, existem vários recursos que podem ajudá-lo a selecionar cores, por exemplo, este: [http://bconnelly.net/2013/10/creating-colorblind-friendly-figures/font/1(http://bconnelly.net/2013/ 10/ create-colorblind-friendly-figures/).
+Além disso, existem vários recursos que podem ajudá-lo a selecionar cores, por exemplo, este: [http://bconnelly.net/2013/10/creating-colorblind-friendly-figures/](http://bconnelly.net/2013/10/creating-colorblind-friendly-figures/). 
 
-## Gráficos para duas variáveis
+## Plotagens para duas variáveis
 
-Em geral, eles devem usar diagramas de dispersão para visualizar o relacionamento entre duas variáveis. Para cada caso em que examinamos a relação entre duas variáveis, incluindo mortes totais versus tamanho da população, expectativa de vida versus taxas de fertilidade e mortalidade infantil versus renda, usamos gráficos de dispersão e esse é o gráfico que geralmente recomendamos. No entanto, existem algumas exceções e aqui descrevemos dois gráficos alternativos: o _slope chart_e o_Bland-Altman chart_.
+Em geral, deve-se usar gráficos de dispersão para visualizar o relacionamento entre duas variáveis. Em todos os casos em que examinamos a relação entre duas variáveis, incluindo assassinatos totais versus tamanho da população, expectativa de vida versus taxas de fertilidade e mortalidade infantil versus renda, usamos gráficos de dispersão. Esse é o gráfico que geralmente recomendamos. Entretanto, existem algumas exceções e aqui descrevemos dois gráficos alternativos: o gráfico de inclinação (_slope chart_) e o gráfico de Bland-Altman (_Bland-Altman plot_).
 
 ### Gráficos de inclinação
 
-Uma exceção na qual outro tipo de gráfico pode ser mais informativo é quando variáveis do mesmo tipo são comparadas, mas em momentos diferentes e para um número relativamente pequeno de comparações. Por exemplo, se estivermos comparando a expectativa de vida entre 2010 e 2015. Nesse caso, poderíamos recomendar um _slope chart_.
+Uma exceção onde outro tipo de gráfico pode ser mais informativo é quando compara-se variáveis do mesmo tipo, mas em momentos diferentes e para um número relativamente pequeno de comparações. Por exemplo, se estivermos comparando a expectativa de vida entre 2010 e 2015. Nesse caso, poderíamos recomendar um gráfico de inclinação.
 
-Não há geometria para os _slope charts_em__ggplot2__, mas podemos construir uma usando `geom_line`. Precisamos fazer alguns ajustes para adicionar etiquetas. Aqui está um exemplo comparando 2010 a 2015 para os grandes países ocidentais:
+Não há geometria para gráficos de inclinação no __ggplot2__, mas podemos construir um usando `geom_line`. Precisamos apenas fazer alguns ajustes para adicionar os rótulos. Abaixo, é apresentado um exemplo comparando a expectativa de vida de 2010 a 2015 para os grandes países ocidentais:
 
 ```{r slope-plot}
 west <- c("Western Europe","Northern Europe","Southern Europe",
@@ -556,10 +557,10 @@ ggplot(aes(year, life_expectancy, group = country)) +
 geom_line(aes(color = country), show.legend = FALSE) +
 geom_text(aes(x = location, label = country, hjust = hjust),
 show.legend = FALSE) +
-xlab("") + ylab("Life Expectancy")
+xlab("") + ylab("Expectativa de Vida")
 ```
 
-Uma vantagem do _slope chart_ é que ele rapidamente nos dá uma idéia das mudanças com base na inclinação das linhas. Embora estejamos usando o ângulo como uma sugestão visual, também estamos usando a posição para determinar valores exatos. Comparar melhorias é um pouco mais difícil com um diagrama de dispersão:
+Uma vantagem do gráfico de inclinação é que ele rapidamente nos dá uma ideia das mudanças com base na inclinação das linhas. Embora estejamos usando o ângulo como uma sugestão visual, também estamos usando a posição para determinar valores exatos. Comparar melhorias é um pouco mais difícil com um gráfico de dispersão:
 
 
 ```{r scatter-plot-instead-of-slope, echo=FALSE}
@@ -584,11 +585,11 @@ xlab("2010") +
 ylab("2015")
 ```
 
-No diagrama de dispersão, seguimos o princípio de usar eixos comuns, porque os estamos comparando antes e depois. No entanto, se tivermos muitos pontos, os _slope charts_ não serão mais úteis, pois é difícil ver todas as linhas.
+No gráfico de dispersão, seguimos o princípio _use eixos comuns_, uma vez que estamos comparando antes e depois. No entanto, se tivermos muitos pontos, os gráficos de inclinação deixam de ser úteis, pois se torna difícil ver todas as linhas.
 
 ### Gráfico de Bland-Altman
 
-Como estamos interessados principalmente na diferença, faz sentido dedicar um de nossos eixos a ela. O gráfico de Bland-Altman, também conhecido como gráfico de diferença média de Tukey e _MA plot_, mostra a diferença em relação à média:
+Como estamos interessados principalmente na diferença, faz sentido dedicar um de nossos eixos a ela. O gráfico de Bland-Altman, também conhecido como gráfico de diferença média de Tukey ou _MA plot_, mostra a diferença em relação à média:
 
 ```{r, bland-altman}
 library(ggrepel)
@@ -602,15 +603,15 @@ ggplot(aes(average, difference, label = country)) +
 geom_point() +
 geom_text_repel() +
 geom_abline(lty = 2) +
-xlab("Average of 2010 and 2015") +
-ylab("Difference between 2015 and 2010")
+xlab("Média de 2010 e 2015") +
+ylab("Diferença entre 2015 e 2010")
 ```
 
-Aqui, simplesmente olhando o eixo y, vemos rapidamente quais países mostraram a maior melhoria. Além disso, temos uma idéia do valor geral do eixo x.
+Aqui, simplesmente olhando o eixo y, vemos rapidamente quais países mostraram a maior melhoria. Além disso, temos uma ideia do valor geral do eixo x.
 
-## Como codificar uma terceira variável
+## Codificando uma terceira variável
 
-Um gráfico de dispersão anterior mostrou a relação entre sobrevivência infantil e renda média. Abaixo está uma versão deste gráfico que codifica três variáveis: participação na OPEP, região e população.
+Um gráfico de dispersão, apresentado anteriormente, mostrou a relação entre sobrevivência infantil e renda média. Abaixo está uma versão desse gráfico que codifica três variáveis: participação na OPEP (Organização dos Países Exportadores de Petróleo), região e população.
 
 ```{r encoding-third-variable, echo=FALSE}
 present_year <- 2010
@@ -636,10 +637,10 @@ scale_x_continuous(trans = "log2", limits=c(0.25, 150)) +
 scale_y_continuous(trans = "logit",limit=c(0.875, .9981),
 breaks=c(.85,.90,.95,.99,.995,.998)) +
 geom_point(alpha = 0.5) +
-ylab("Infant survival proportion")
+ylab("Proporção de sobrevivência infantil")
 ```
 
-Codificamos variáveis categóricas com cor e forma. Essas formas podem ser controladas com o argumento `shape`. Abaixo, mostramos as formas disponíveis para uso em R. Nos últimos cinco, a cor preenche a forma.
+Codificamos variáveis categóricas com cor e forma. Essas formas podem ser controladas com o argumento `shape`. Abaixo, mostramos as formas disponíveis para uso no R. Para as últimas cinco, cores podem ser usadas para preencher o interior da forma.
 
 ```{r available-shapes, echo=FALSE, fig.height=2.25}
 dat=data.frame(x=c(0:25))
@@ -660,7 +661,7 @@ geom_text(dat, mapping=aes(x%%9, x%/%9+0.25, label=x), size=4)
 
 Para variáveis contínuas, podemos usar cor, intensidade ou tamanho. Aqui está um exemplo de como fazer isso com um estudo de caso.
 
-Ao selecionar cores para quantificar uma variável numérica, escolhemos entre duas opções: seqüencial e divergente. As cores seqüenciais são adequadas para dados que variam do mais alto ao mais baixo. Valores altos são claramente diferenciados de valores baixos. Aqui estão alguns exemplos oferecidos pelo pacote `RColorBrewer`:
+Ao selecionar cores para quantificar uma variável numérica, escolhemos entre duas opções: sequencial ou divergente. Cores sequenciais são adequadas para dados que variam do mais alto ao mais baixo. Valores altos são claramente diferenciados de valores baixos. Aqui estão alguns exemplos oferecidos pelo pacote `RColorBrewer`:
 
 ```{r eval=FALSE}
 library(RColorBrewer)
@@ -673,7 +674,7 @@ rafalib::mypar()
 display.brewer.all(type="seq")
 ```
 
-Cores divergentes são usadas para representar valores que divergem de um centro. Colocamos ênfase igual nos dois extremos do intervalo de dados: mais alto que o centro e mais baixo que o centro. Um exemplo de quando usaríamos um padrão divergente seria quando mostramos a altura em quantos desvios padrão ela é da média. Aqui estão alguns exemplos de padrões divergentes:
+Cores divergentes são usadas para representar valores que divergem de um centro. Colocamos ênfase igual nos dois extremos do intervalo de dados: mais alto que o centro e mais baixo que o centro. Um exemplo de quando usaríamos um padrão divergente seria se tivéssemos que mostrar a altura em desvios-padrão da média. Aqui estão alguns exemplos de padrões divergentes:
 
 ```{r eval=FALSE}
 library(RColorBrewer)
@@ -688,10 +689,10 @@ display.brewer.all(type="div")
 ```
 
 
-## Evitar gráficos pseudo-tridimensionais
+## Evite gráficos pseudo-tridimensionais
 
 A figura a seguir, extraída da literatura científica^[https://projecteuclid.org/download/pdf_1/euclid.ss/1177010488],
-mostra três variáveis: dose, tipo de medicamento e sobrevida. Embora suas telas ou páginas do livro sejam planas e bidimensionais, o gráfico tenta imitar três dimensões e atribui uma dimensão a cada variável.
+mostra três variáveis: dose, tipo de medicamento e sobrevida. Embora telas ou páginas de livro sejam planas e bidimensionais, o gráfico tenta imitar três dimensões, atribuindo uma dimensão para cada variável.
 
 ```{r, echo=FALSE}
 ## https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig8b.png
@@ -699,7 +700,7 @@ knitr::include_graphics(file.path(img_path,"fig8b.png"))
 ```
 (Imagem cortesia de Karl Broman)
 
-Os seres humanos não são bons em ver em três dimensões (o que explica por que o estacionamento paralelo é difícil) e nossa limitação é ainda pior em relação às pseudo-três dimensões. Para ver isso, tente determinar os valores da variável de sobrevivência no gráfico acima. Você pode dizer quando a fita roxa cruza a fita vermelha? Este é um exemplo em que podemos usar cores facilmente para representar a variável categórica em vez de um pseudo-3D:
+Seres humanos não são bons em ver em três dimensões (o que explica por que é tão difícil realizar uma baliza para estacionar). Nossa limitação é ainda pior em relação aos espaços pseudo-tridimensionais. Para ver isso, tente determinar os valores da variável de sobrevivência no gráfico acima. Você pode dizer quando a fita roxa intercepta a fita vermelha? Abaixo está um exemplo em que podemos facilmente usar cores para representar a variável categórica em vez de um pseudo-3D:
 
 ```{r colors-for-different-lines, echo=FALSE}
 ##First read data
@@ -713,9 +714,9 @@ ggplot(aes(log.dose, survival, color = drug)) +
 geom_line()
 ```
 
-Veja como é mais fácil determinar os valores de sobrevivência.
+Note como é mais fácil determinar os valores de sobrevivência.
 
-Às vezes, o pseudo-3D é usado de forma totalmente gratuita - os gráficos são criados para parecer 3D, mesmo quando a terceira dimensão não representa uma quantidade. Isso apenas aumenta a confusão e dificulta a transmissão da sua mensagem. Aqui estão dois exemplos:
+Às vezes, o pseudo-3D é usado de forma totalmente gratuita: os gráficos são criados para parecer 3D, mesmo quando a terceira dimensão não representa uma quantidade. Isso apenas aumenta a confusão e torna mais difícil transmitir sua mensagem. Aqui estão dois exemplos:
 
 ```{r, echo=FALSE, out.width="45%"}
 ##https://raw.githubusercontent.com/kbroman/Talk_Graphs/master/Figs/fig1e.png
