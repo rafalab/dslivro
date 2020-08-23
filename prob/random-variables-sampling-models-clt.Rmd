@@ -170,15 +170,15 @@ $$\mbox{E}[X]$$
 
 para denotar o valor esperado da variável aleatória $X$.
 
-Uma variável aleatória variará em torno do valor esperado de uma maneira que, se eles tiverem a média de muitos, muitos empates, a média dos empates se aproximará do valor esperado, aproximando-se cada vez mais à medida que os empates aumentam.
+Uma variável aleatória irá variar em torno do valor esperado de uma maneira que, se você pegar a média de muitos, muitos sorteios, a média dos sorteios se aproximará do valor esperado, aproximando-se cada vez mais à medida que os sorteios aumentam.
 
-A estatística teórica oferece técnicas que facilitam o cálculo dos valores esperados em diferentes circunstâncias. Por exemplo, uma fórmula útil nos diz que o valor esperado de uma variável aleatória definida por um empate é a média dos números na urna. Na urna que usamos para modelar apostas de roleta, temos $ 20 e $ 18 negativos. O valor esperado é então:
+A estatística teórica fornece técnicas que facilitam o cálculo dos valores esperados em diferentes circunstâncias. Por exemplo, uma fórmula útil nos diz que _o valor esperado de uma variável aleatória definida por um sorteio é a média dos números na urna_. Na urna que usamos para modelar apostas de roleta no vermelho, obtivemos 20 resultados de $1 e 18 resultados de -$1. O valor esperado é então:
 
 $$
 \mbox{E}[X] = (20 + -18)/38
 $$
 
-que é como 5 centavos. É um pouco contraditório dizer que $X$ varia em torno de 0,05, quando os únicos valores necessários são 1 e -1. Uma maneira de entender o valor esperado nesse contexto é perceber que, se jogarmos o jogo repetidamente, o cassino ganha, em média, 5 centavos por jogo. Uma simulação de Monte Carlo confirma isso:
+que é cerca de 5 centavos. É um pouco contra-intuitivo dizer que $X$ varia em torno de 0,05, quando os únicos valores utilizados são 1 e -1. Uma maneira de entender o valor esperado nesse contexto é perceber que, se jogarmos o jogo repetidamente, o cassino ganha, em média, 5 centavos por jogo. Uma simulação de Monte Carlo confirma isso:
 
 ```{r}
 B <- 10^6
@@ -186,57 +186,57 @@ x <- sample(c(-1,1), B, replace = TRUE, prob=c(9/19, 10/19))
 mean(x)
 ```
 
-Em geral, se a urna tem dois resultados possíveis, digamos $a$ e $b$ com proporções $p$ e $1-p$ respectivamente, a média é:
+Em geral, se a urna tem dois resultados possíveis, digamos $a$ e $b$ com proporções $p$ e $1-p$, respectivamente, a média é:
 
 $$\mbox{E}[X] = ap + b(1-p)$$
 
-Para ver isso, observe que, se houver $n$ contas nas urnas, então temos $np$ $a$ sy $n(1-p)$ $b$ s, e como a média é a soma, $n\times a \times p + n\times b \times (1-p)$, dividido pelo total $n$, obtemos que a média é $ap + b(1-p)$.
+Para ver isso, observe que se houver $n$ bolas na urna, então temos $np$ $a$s e $n(1-p)$ $b$s, e como a média é a soma, $n\times a \times p + n\times b \times (1-p)$, dividido pelo total $n$, obtemos que a média é $ap + b(1-p)$.
 
-Agora, a razão pela qual definimos o valor esperado é porque essa definição matemática é útil para aproximar as distribuições de probabilidade da soma, que é útil para descrever a distribuição de médias e proporções. O primeiro fato útil é que o valor esperado da soma dos draws é:
+Agora, a razão pela qual definimos o valor esperado é porque essa definição matemática é útil para aproximar as distribuições de probabilidade da soma, que é útil para descrever a distribuição de médias e proporções. O primeiro fato útil é que _o valor esperado da soma dos sorteios_ é:
 
 $$
-\mbox{}\mbox{number of draws } \times \mbox{ average of the numbers in the urn}
+\mbox{}\mbox{número de sorteios } \times \mbox{ média dos números na urna}
 $$
 
-Portanto, se 1.000 pessoas jogam roleta, o cassino espera ganhar, em média, cerca de 1.000 $\times$ \$0.05 = \$ 50. Mas esse é um valor esperado. Quão diferente pode ser uma observação do valor esperado? O cassino realmente precisa saber disso. Qual é o intervalo de probabilidades? Se números negativos forem muito prováveis, eles não instalarão roletas. A teoria estatística mais uma vez responde a essa pergunta. O _padrão padrão_, ou SE, nos dá uma ideia do tamanho da variação em torno do valor esperado. Nos livros de estatística, é comum usar:
+Portanto, se 1.000 pessoas jogam roleta, o cassino espera ganhar, em média, cerca de 1.000 $\times$ \$0,05 = \$50. Mas esse é um valor esperado. Quão diferente pode ser uma observação do valor esperado? O cassino realmente precisa saber disso. Qual é o intervalo de probabilidades? Se números negativos forem muito prováveis, eles não instalarão roletas. A teoria estatística mais uma vez responde a essa pergunta. O _erro padrão_ (do inglês _standard error_ ou SE) nos dá uma ideia do tamanho da variação em torno do valor esperado. Nos livros de estatística, é comum usar:
 
 $$\mbox{SE}[X]$$
 
 para denotar o erro padrão de uma variável aleatória.
 
-**Se nossos sorteios são independentes**, o _standard sum error_ é dado pela equação:
+**Se nossos sorteios são independentes**, o erro padrão da soma é dado pela equação:
 
 $$
-\sqrt{\mbox{number of draws }} \times \mbox{ standard deviation of the numbers in the urn}
+\sqrt{\mbox{número de sorteios }} \times \mbox{ desvio padrão dos números na urna}
 $$
 
 Usando a definição de desvio padrão, podemos derivar, com um pouco de matemática, que se uma urna contiver dois valores $a$ e $b$ com proporções $p$ e $(1-p)$, respectivamente, o desvio padrão é:
 
 $$\mid b - a \mid \sqrt{p(1-p)}.$$
 
-Portanto, no nosso exemplo de roleta, o desvio padrão dos valores dentro da urna é: $\mid 1 - (-1) \mid \sqrt{10/19 \times 9/19}$ ou:
+Portanto, no nosso exemplo da roleta, o desvio padrão dos valores dentro da urna é: $\mid 1 - (-1) \mid \sqrt{10/19 \times 9/19}$ ou:
 
 
 ```{r}
 2 * sqrt(90)/19
 ```
 
-O erro padrão nos diz a diferença típica entre uma variável aleatória e sua expectativa. Como um empate é obviamente a soma de um único empate, podemos usar a fórmula acima para calcular que a variável aleatória definida por um empate tem um valor esperado de 0,05 e um erro padrão de cerca de 1. Isso faz sentido, pois obtemos 1 ou -1, com 1 ligeiramente favorecido sobre -1.
+O erro padrão nos diz a diferença típica entre uma variável aleatória e sua expectativa. Como um sorteio é obviamente a soma de um único sorteio, podemos usar a fórmula acima para calcular que a variável aleatória definida por um sorteio tem um valor esperado de 0,05 e um erro padrão de aproximadamente 1. Isso faz sentido, já que obtemos 1 ou -1, com 1 levemente favorecido sobre -1.
 
-Usando a fórmula acima, a soma de 1.000 pessoas jogando tem um erro padrão de aproximadamente \$ 32:
+Usando a fórmula acima, a soma de 1.000 pessoas jogando tem um erro padrão de aproximadamente \$32:
 
 ```{r}
 n <- 1000
 sqrt(n) * 2 * sqrt(90)/19
 ```
 
-Como resultado, quando 1.000 pessoas apostarem no vermelho, o cassino deverá ganhar \$50 con un error estándar de \$ 32. Parece uma aposta segura. Mas ainda não respondemos à pergunta: qual a probabilidade de perder dinheiro? Aqui a CLT nos ajudará.
+Como resultado, quando 1.000 pessoas apostarem no vermelho, o cassino deverá ganhar \$50 com um erro padrão de \$32. Portanto, isso aparenta ser uma aposta segura. Mas ainda não respondemos à pergunta: qual a probabilidade de perder dinheiro? Aqui o teorema do limite central nos ajudará.
 
-**Nota Avançada**: Antes de continuar, devemos observar que os cálculos exatos de probabilidade de vitória no cassino podem ser feitos com a distribuição binomial. No entanto, aqui nos concentramos no CLT, que geralmente pode ser aplicado a somas de variáveis aleatórias, algo que não pode ser feito com a distribuição binomial.
+**Nota Avançada**: Antes de continuar, devemos apontar que os cálculos exatos de probabilidade de vitória no cassino podem ser feitos com a distribuição binomial. Entretanto, aqui nos concentramos no teorema do limite central, que geralmente pode ser aplicado a somas de variáveis aleatórias, algo que não pode ser feito com a distribuição binomial.
 
 ### População SD versus amostra SD
 
-O desvio padrão, ou SD, de uma lista `x` (usamos as alturas abaixo como exemplo) é definida como a raiz quadrada da média das diferenças quadradas:
+O desvio padrão (do inglês _standard deviation_ ou SD), de uma lista `x` (usamos as alturas abaixo como exemplo) é definida como a raiz quadrada da média das diferenças quadradas:
 
 ```{r}
 library(dslabs)
