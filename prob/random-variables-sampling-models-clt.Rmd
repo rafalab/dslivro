@@ -1,12 +1,12 @@
 # Variáveis aleatórias
 
-Na ciência de dados, geralmente trabalhamos com dados que são afetados de alguma forma pelo acaso. Alguns exemplos são dados provenientes de uma amostra aleatória, dados afetados por um erro de medição ou dados que medem um resultado de natureza aleatória. Ser capaz de quantificar a incerteza introduzida pela aleatoriedade é um dos trabalhos mais importantes dos analistas de dados. A inferência estatística oferece uma estrutura, bem como várias ferramentas práticas para isso. O primeiro passo é aprender a descrever matematicamente variáveis aleatórias.
+Na ciência de dados, geralmente trabalhamos com dados que são afetados de alguma forma pelo acaso. Alguns exemplos são dados provenientes de uma amostra aleatória, dados afetados por um erro de medição ou dados que medem algum resultado de natureza aleatória. Ser capaz de quantificar a incerteza introduzida pela aleatoriedade é um dos trabalhos mais importantes dos analistas de dados. A inferência estatística oferece uma estrutura para fazer isso, assim como diversas outras ferramentas práticas. O primeiro passo é aprender a como descrever matematicamente variáveis aleatórias.
 
-Neste capítulo, apresentamos variáveis aleatórias e suas propriedades começando com sua aplicação em jogos de azar. Em seguida, descrevemos alguns dos eventos que cercam a crise financeira de 2007-2008^[https://en.wikipedia.org/w/index.php?title=Financial_crisis_of_2007%E2%80%932008] usando a teoria da probabilidade. Essa crise financeira foi causada em parte pela subestimação do risco de certos valores mobiliários vendidos por instituições financeiras. Especificamente, os riscos de títulos lastreados em hipotecas (MBSs) e obrigações de dívida colateralizada (CDOs) foram amplamente subestimados. Esses ativos foram vendidos a preços que muitos proprietários esperavam que pagassem pontualmente, e a probabilidade de que isso não ocorresse foi calculada como baixa. Uma combinação de fatores resultou em muito mais inadimplências do que o esperado, levando a uma queda nos preços desses títulos. Como conseqüência, os bancos perderam tanto dinheiro que precisavam de resgates do governo para evitar o fechamento completo.
+Neste capítulo, apresentamos variáveis aleatórias (_random variables_) e suas propriedades, começando com sua aplicação em jogos de azar. Em seguida, descrevemos alguns dos eventos relacionados à crise financeira de 2007-2008^[https://pt.wikipedia.org/wiki/Crise_financeira_de_2007–2008] usando a teoria da probabilidade. Essa crise financeira foi causada em parte pela subestimação do risco de certos títulos vendidos por instituições financeiras. Especificamente, os riscos de títulos hipotecários e as obrigações de dívidas com garantias foram amplamente subestimados. Esses ativos foram vendidos a preços que presumiam que a maioria dos proprietários pagaria pontualmente, e a probabilidade de que isso não ocorresse foi calculada como baixa. Uma combinação de fatores resultou em muito mais inadimplências do que o esperado, levando a uma queda nos preços desses títulos. Como consequência, bancos perderam tanto dinheiro que precisaram de ajuda do governo americano para evitar o fechamento completo.
 
 ## Variáveis aleatórias
 
-Variáveis aleatórias são os resultados numéricos de processos aleatórios. Podemos facilmente gerar variáveis aleatórias usando alguns dos exemplos acima. Por exemplo, defina `X` será 1 se a conta (_bead_ em inglês) for azul e 0 caso contrário:
+Variáveis aleatórias são os resultados numéricos de processos aleatórios. Podemos facilmente gerar variáveis aleatórias usando alguns dos simples exemplos que mostramos anteriormente. Por exemplo, vamos definir `X` igual a 1 se uma miçanga (_bead_ em inglês) for azul ou igual a 0 caso seja vermelha:
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -19,7 +19,7 @@ beads <- rep( c("red", "blue"), times = c(2,3))
 X <- ifelse(sample(beads, 1) == "blue", 1, 0)
 ```
 
-Aqui `X` é uma variável aleatória: toda vez que selecionamos uma nova conta, o resultado muda aleatoriamente. Olhar para baixo:
+Aqui `X` é uma variável aleatória: toda vez que selecionamos uma nova miçanga, o resultado muda aleatoriamente. Veja abaixo:
 
 ```{r}
 ifelse(sample(beads, 1) == "blue", 1, 0)
