@@ -157,15 +157,14 @@ Outra maneira de pensar sobre isso, que não envolva uma urna, é executar uma s
 
 ## Notação para variáveis aleatórias
 
-Nos livros estatísticos, as letras maiúsculas são usadas para denotar variáveis aleatórias e seguimos esta convenção aqui. Letras minúsculas são usadas para os valores observados. Você verá alguma notação que inclui ambos. Por exemplo, eles verão eventos definidos como $X \leq x$. Aqui $X$ é uma variável aleatória, portanto, é um evento aleatório e $x$ é um valor arbitrário e não aleatório. Por exemplo, $X$ poderia representar o número em um dado e $x$ representará um valor real que vemos: 1, 2, 3, 4, 5 ou 6. Portanto, neste caso, a probabilidade de $X=x$ é 1/6 independentemente do valor observado $x$. Essa notação é um pouco estranha porque, quando fazemos perguntas de probabilidade, $X$ não é uma quantidade observada, mas uma quantidade aleatória que veremos no futuro. Podemos descrever o que esperamos ver, quais valores são prováveis, mas não o que é. Mas assim que temos dados, vemos uma realização de $X$. Então, os cientistas de dados falam sobre o que poderia ter sido depois de ver o que realmente aconteceu.
+Nos livros estatísticos, as letras maiúsculas são usadas para denotar variáveis aleatórias e seguimos essa convenção aqui. Letras minúsculas são usadas para valores observados. Você verá algumas notações que incluem ambos. Por exemplo, verá eventos definidos como $X \leq x$. Aqui, $X$ é uma variável aleatória, fazendo disso um evento aleatório, e $x$ é um valor arbitrário e não aleatório. Assim, $X$ poderia, por exemplo, representar o número em um dado e $x$ representará um valor real que vemos: 1, 2, 3, 4, 5 ou 6. Portanto, neste caso, a probabilidade de $X=x$ é 1/6 independentemente do valor observado $x$. Essa notação é um pouco estranha porque, quando fazemos perguntas de probabilidade, $X$ não é uma quantidade observada, mas uma quantidade aleatória que veremos no futuro. Podemos falar sobre o que esperamos que seja, quais valores são prováveis, mas não quais são exatamente. Mas, uma vez que temos os dados, vemos uma realização de $X$. Portanto, cientistas de dados falam sobre o que poderia ter sido depois de ver o que realmente aconteceu.
 
 
 ## O valor esperado e o erro padrão
 
-Nós descrevemos modelos de amostragem para sorteios. Agora, revisaremos a teoria matemática que nos permite aproximar as distribuições de probabilidade para a soma dos empates. Depois de fazer isso, podemos ajudar o cassino a prever quanto dinheiro eles ganharão. A mesma abordagem que usamos para a soma dos sorteios será útil para descrever a distribuição das médias e a proporção que precisaremos para entender como as pesquisas funcionam.
+Descrevemos anteriormente modelos de amostragem para sorteios. Agora, revisaremos a teoria matemática que nos permite aproximar as distribuições de probabilidade para a soma dos sorteios. Depois de fazer isso estaremos aptos para ajudar o cassino a prever quanto dinheiro ganharão. A mesma abordagem que usamos para a soma dos sorteios será útil para descrever a distribuição das médias e a proporção que precisaremos para entender como as pesquisas funcionam.
 
-O primeiro conceito importante a aprender é o valor esperado.
-Nos livros de estatística, é comum usar a letra $\mbox{E}$ assim:
+O primeiro conceito importante a aprender é o valor esperado. Nos livros de estatística, é comum usar a letra $\mbox{E}$ desta forma:
 
 $$\mbox{E}[X]$$
 
