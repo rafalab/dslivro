@@ -6,7 +6,7 @@ Neste capítulo, apresentamos variáveis aleatórias (_random variables_) e suas
 
 ## Variáveis aleatórias
 
-Variáveis aleatórias são os resultados numéricos de processos aleatórios. Podemos facilmente gerar variáveis aleatórias usando alguns dos simples exemplos que mostramos anteriormente. Por exemplo, vamos definir `X` igual a 1 se uma miçanga (_bead_ em inglês) for azul ou igual a 0 caso seja vermelha:
+Variáveis aleatórias são os resultados numéricos de processos aleatórios. Podemos facilmente gerar variáveis aleatórias usando alguns dos simples exemplos que mostramos anteriormente. Por exemplo, vamos definir `X` igual a 1 se uma bola for azul ou igual a 0 caso seja vermelha:
 
 ```{r,echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -15,16 +15,16 @@ set.seed(1)
 ```
 
 ```{r}
-beads <- rep( c("red", "blue"), times = c(2,3))
-X <- ifelse(sample(beads, 1) == "blue", 1, 0)
+bolas <- rep( c("vermelho", "azul"), times = c(2,3))
+X <- ifelse(sample(bolas, 1) == "azul", 1, 0)
 ```
 
-Aqui `X` é uma variável aleatória: toda vez que selecionamos uma nova miçanga, o resultado muda aleatoriamente. Veja abaixo:
+Aqui `X` é uma variável aleatória: toda vez que selecionamos uma nova bola, o resultado muda aleatoriamente. Veja abaixo:
 
 ```{r}
-ifelse(sample(beads, 1) == "blue", 1, 0)
-ifelse(sample(beads, 1) == "blue", 1, 0)
-ifelse(sample(beads, 1) == "blue", 1, 0)
+ifelse(sample(bolas, 1) == "azul", 1, 0)
+ifelse(sample(bolas, 1) == "azul", 1, 0)
+ifelse(sample(bolas, 1) == "azul", 1, 0)
 ```
 
 Às vezes é 1 e às vezes é 0.
@@ -99,7 +99,7 @@ mean(S<0)
 ```
 
 
-Podemos visualizar a distribuição de $S$ criando um histograma mostrando a probabilidade $F(b)-F(a)$ para vários intervalos $(a, b)$:
+Podemos visualizar a distribuição de $S$ criando um histograma mostrando a probabilidade $F(b)-F(a)$ para vários intervalos $(a,b]$:
 
 ```{r normal-approximates-distribution, echo=FALSE}
 s <- seq(min(S), max(S), length = 100)
