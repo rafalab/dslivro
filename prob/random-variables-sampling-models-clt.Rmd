@@ -34,31 +34,31 @@ ifelse(sample(beads, 1) == "blue", 1, 0)
 
 ## Modelos de amostragem
 
-Muitos procedimentos de geração de dados, aqueles que produzem os dados que estudamos, podem ser modelados relativamente bem como escolhas de urnas. Por exemplo, podemos modelar o provável processo de votação dos eleitores, como obter 0s (republicanos) e 1s (democratas) de uma urna que contém os códigos 0 e 1 para todos os prováveis eleitores. Em estudos epidemiológicos, geralmente assumimos que os sujeitos de nosso estudo são uma amostra aleatória da população de interesse. Os dados relacionados a um resultado específico podem ser modelados como uma amostra aleatória de uma urna contendo o resultado para toda a população de interesse. Da mesma forma, na pesquisa experimental, geralmente assumimos que os organismos individuais que estamos estudando, por exemplo, vermes, moscas ou ratos, são uma amostra aleatória de uma população maior. Experimentos aleatórios também podem ser modelados, selecionando uma urna, dada a maneira como os indivíduos são designados para grupos: quando designados, o grupo é escolhido aleatoriamente. Os modelos de amostragem são, portanto, onipresentes na ciência de dados. Os jogos de cassino oferecem um grande número de exemplos de situações do mundo real nas quais modelos de amostragem são usados para responder a perguntas específicas. Portanto, começaremos com esses exemplos.
+Muitos procedimentos de geração de dados, aqueles que produzem os dados que estudamos, podem ser modelados relativamente bem como se estivéssemos sorteando de olhos vendados elementos em uma urna. Por exemplo, podemos modelar os votos de eleitores americanos como 0s (para eleitores do partido republicano) e 1s (para eleietores do partido democrata) em uma urna que contém os códigos 0 e 1 para todos os prováveis eleitores. Em estudos epidemiológicos, geralmente assumimos que os sujeitos de nosso estudo são uma amostra aleatória da população de interesse. Os dados relacionados a um resultado específico podem ser modelados como uma amostra aleatória de uma urna contendo o resultado para toda a população de interesse. Da mesma forma, na pesquisa experimental, geralmente assumimos que os organismos individuais que estamos estudando, como por exemplo, vermes, moscas ou ratos, são uma amostra aleatória de uma população maior. Experimentos aleatórios também podem ser modelados como o sorteio de uma urna, considerando a maneira como os indivíduos são designados para grupos: quando designados, o grupo é escolhido aleatoriamente. Os modelos de amostragem são, portanto, onipresentes na ciência de dados. Jogos de cassino oferecem uma infinidade de exemplos de situações do mundo real em que modelos de amostragem são usados para responder a perguntas específicas. Portanto, começaremos com esses exemplos.
 
-Suponha que um cassino muito pequeno o contrate para ver se eles devem incluir roletas em seus jogos. Para simplificar o exemplo, assumiremos que 1.000 pessoas jogarão e que a única aposta que podem fazer na roleta é apostar em vermelho ou preto. O cassino quer que eles prevejam quanto dinheiro ganharão ou perderão. Eles querem uma gama de valores e, em particular, querem saber qual é a probabilidade de perder dinheiro. Se essa probabilidade for muito alta, eles não instalarão roletas.
+Suponha que um cassino muito pequeno o contrate para ver se eles devem incluir jogos de roleta. Para simplificar o exemplo, assumiremos que 1.000 pessoas jogarão e que o único tipo de aposta que podem fazer na roleta é apostar em vermelho ou preto. O cassino quer que você preveja quanto dinheiro ganharão ou perderão. Eles querem uma gama de valores e, em particular, querem saber qual é a probabilidade de perderem dinheiro. Se essa probabilidade for muito alta, eles não instalarão jogos de roleta.
 
-Nós vamos definir uma variável aleatória $S$ que representará o total de ganhos do cassino. Vamos começar construindo a urna. Uma roleta tem 18 bolsos vermelhos, 18 bolsos pretos e 2 verdes. Portanto, jogar uma cor em um jogo de roleta é equivalente a escolher na caixa a seguir:
+Vamos definir uma variável aleatória $S$ que irá representar o total de ganhos do cassino. Vamos começar construindo a urna. Uma roleta tem 18 posições vermelhas, 18 posições pretas e duas verdes. Portanto, jogar uma cor em um jogo de roleta é equivalente a escolher desta urna:
 
 ```{r}
-color <- rep(c("Black", "Red", "Green"), c(18, 18, 2))
+color <- rep(c("Preto", "Vermelho", "Verde"), c(18, 18, 2))
 ```
 
-Os 1.000 resultados de 1.000 pessoas jogando são empates independentes desta urna. Se aparecer vermelho, o jogador ganha e o cassino perde um dólar, então empatamos um - \$1. De otra manera, el casino gana un dólar y sacamos un \$ 1. Para construir nossa variável aleatória $S$, podemos usar este código:
+Os 1.000 resultados de 1.000 pessoas jogando são sorteios independentes desta urna. Se o jogador apostar no vermelho e o resultado for vermelho, o jogador ganha e o cassino perde um dólar, então obtemos -\$1. Por outro lado, se o jogador apostar no vermelho e o resultado for preto, o casino ganha um dólar e obtemos \$1. Para construir nossa variável aleatória $S$, podemos usar este código:
 
 ```{r}
 n <- 1000
-X <- sample(ifelse(color == "Red", -1, 1), n, replace = TRUE)
+X <- sample(ifelse(color == "Vermelho", -1, 1), n, replace = TRUE)
 X[1:10]
 ```
 
-Como sabemos as proporções de 1s e -1s, podemos gerar as eleições com uma linha de código, sem definir `color`:
+Como sabemos as proporções de 1s e -1s, podemos simular os resultados da roleta com uma linha de código, sem a necessidade de definir a cor (`color`):
 
 ```{r}
 X <- sample(c(-1,1), n, replace = TRUE, prob=c(9/19, 10/19))
 ```
 
-Chamamos isso de **modelo de amostragem**, pois estamos modelando o comportamento aleatório da roleta com a amostragem das opções das urnas. Ganhos totais $S$ eles são simplesmente a soma desses 1.000 empates independentes:
+Chamamos isso de **modelo de amostragem**, pois estamos modelando o comportamento aleatório da roleta com a amostragem das opções disponíveis. O ganho total de $S$ é simplesmente a soma desses 1.000 sorteios independentes:
 
 ```{r}
 X <- sample(c(-1,1), n, replace = TRUE, prob=c(9/19, 10/19))
@@ -71,9 +71,9 @@ S
 
 Se você executar o código acima, verá que $S$ muda sempre. Isto é porque $S$ é uma **variável aleatória**. A distribuição de probabilidade de uma variável aleatória nos diz a probabilidade de que o valor observado caia em um determinado intervalo. Por exemplo, se queremos saber a probabilidade de perdermos dinheiro, estamos perguntando a probabilidade de que $S$ estar no intervalo $S<0$.
 
-Lembre-se de que, se pudermos definir uma função de distribuição cumulativa $F(a) = \mbox{Pr}(S\leq a)$, então podemos responder a qualquer pergunta relacionada à probabilidade de eventos definida por nossa variável aleatória $S$, incluindo o evento $S<0$. A esta $F$ nós dizemos a você a função de distribuição da variável aleatória.
+Observe que se pudermos definir uma função de distribuição cumulativa $F(a) = \mbox{Pr}(S\leq a)$, então podemos responder a qualquer pergunta relacionada à probabilidade de eventos definidos por nossa variável aleatória $S$, incluindo o evento $S<0$. Chamamos isso de _função de distribuição_ da variável aleatória.
 
-Podemos estimar a função de distribuição para a variável aleatória $S$ usando uma simulação de Monte Carlo para gerar muitas realizações da variável aleatória. Com esse código, realizamos o experimento de ter 1.000 pessoas jogando roleta várias vezes, especificamente $B = 10,000$ vezes:
+Podemos estimar a função de distribuição de uma variável aleatória $S$ usando a simulação de Monte Carlo para gerar multiplas repetições de uma variável randômica. No código a seguir, realizamos o experimento de ter 1.000 pessoas jogando roleta $B$ vezes, especificamente $B = 10.000$ vezes neste exemplo:
 
 ```{r}
 n <- 1000
@@ -91,7 +91,7 @@ Agora podemos perguntar o seguinte: em nossas simulações, com que frequência 
 mean(S <= a)
 ```
 
-Essa será uma aproximação muito boa de $F(a)$ e podemos facilmente responder à pergunta do cassino: qual a probabilidade de perdermos dinheiro? Podemos ver que a probabilidade é bastante baixa:
+Essa será uma aproximação muito boa de $F(a)$. Podemos facilmente responder à pergunta do cassino: qual a probabilidade de perdermos dinheiro? Podemos ver que a probabilidade é bastante baixa:
 
 
 ```{r}
@@ -99,43 +99,45 @@ mean(S<0)
 ```
 
 
-Podemos visualizar a distribuição de $S$ criando um histograma mostrando a probabilidade $F(b)-F(a)$ em vários intervalos $(a,b]$:
+Podemos visualizar a distribuição de $S$ criando um histograma mostrando a probabilidade $F(b)-F(a)$ para vários intervalos $(a, b)$:
 
 ```{r normal-approximates-distribution, echo=FALSE}
 s <- seq(min(S), max(S), length = 100)
 normal_density <- data.frame(s = s, f=dnorm(s, mean(S), sd(S)))
 data.frame(S=S) %>% ggplot(aes(S, ..density..)) +
 geom_histogram(color = "black", binwidth = 10) +
-ylab("Probability") +
+ylab("Probabilidade") +
 geom_line(data = normal_density, mapping=aes(s,f), color="blue")
 ```
 
-Vemos que a distribuição parece ser aproximadamente normal. Um gráfico QQ confirmará que a aproximação normal está próxima de uma aproximação perfeita para esta distribuição. De fato, se a distribuição é normal, tudo o que precisamos para definir a distribuição é a média e o desvio padrão. Como temos os valores originais dos quais a distribuição é criada, podemos calculá-los facilmente com `mean(S)` e `sd(S)`. A curva azul adicionada ao histograma acima é uma densidade normal com essa média e desvio padrão.
+Vemos que a distribuição parece ser aproximadamente normal. Um gráfico QQ confirmará que a aproximação normal está próxima de uma aproximação perfeita para essa distribuição. De fato, se a distribuição é normal, tudo o que precisamos para definir a distribuição é a média e o desvio padrão. Como temos os valores originais dos quais a distribuição é criada, podemos facilmente calculá-los usando `mean(S)` e `sd(S)`. A curva azul adicionada ao histograma acima representa uma densidade normal com essa média e desvio padrão.
 
-Essa média e esse desvio padrão têm nomes especiais. Eles são conhecidos como _expected value_e_standard error_ da variável aleatória $S$ e será discutido mais adiante na próxima seção.
+Nesse caso, a média e o desvio padrão têm nomes especiais. Eles são conhecidos como valor esperado (_expected value_) e erro padrão (_standard error_) da variável aleatória $S$. Discutiremos mais sobre isso na próxima seção.
 
 A teoria estatística fornece uma maneira de derivar a distribuição de variáveis aleatórias definidas como extrações aleatórias independentes de uma urna. Especificamente, em nosso exemplo anterior, podemos mostrar que $(S+n)/2$ segue uma distribuição binomial. Portanto, não precisamos executar simulações de Monte Carlo para conhecer a distribuição de probabilidade de $S$. Fizemos isso para fins ilustrativos.
 
-Nós podemos usar as funções `dbinom` e `pbinom` para calcular exatamente as probabilidades. Por exemplo, para calcular $\mbox{Pr}(S < 0)$ nós notamos que:
+Podemos usar as funções `dbinom` e `pbinom` para calcular as probabilidades exatamente. Por exemplo, para calcular $\mbox{Pr}(S < 0)$ nós notamos que:
 
 $$\mbox{Pr}(S < 0) = \mbox{Pr}((S+n)/2 < (0+n)/2)$$
 
-e podemos usar `pbinom` calcular: $$\mbox {Pr}(S \leq 0) $$
+e podemos usar `pbinom` calcular: 
+
+$$\mbox {Pr}(S \leq 0) $$
 
 ```{r}
 n <- 1000
 pbinom(n/2, size = n, prob = 10/19)
 ```
 
-Por se tratar de uma função de probabilidade discreta, obter $\mbox{Pr}(S < 0)$ ao invés de $\mbox{Pr}(S \leq 0)$, nós escrevemos:
+Por se tratar de uma função de probabilidade discreta, para obter $\mbox{Pr}(S < 0)$ ao invés de $\mbox{Pr}(S \leq 0)$, nós escrevemos:
 
 ```{r}
 pbinom(n/2-1, size = n, prob = 10/19)
 ```
 
-Para mais detalhes sobre a distribuição binomial, você pode consultar qualquer livro de probabilidades básico ou mesmo Wikipedia^[https://en.wikipedia.org/w/index.php?title=Binomial_distribution].
+Para mais detalhes sobre a distribuição binomial, você pode consultar qualquer livro de probabilidades básico ou mesmo a Wikipedia^[https://pt.wikipedia.org/wiki/Distribuição_binomial].
 
-Nós não cobrimos esses detalhes aqui. Em vez disso, discutiremos uma abordagem incrivelmente útil que nos fornece a teoria matemática que geralmente se aplica a somas e calcula as médias de qualquer caixa de votação: o Teorema do Limite Central, ou CLT.
+Aqui, nós não iremos cobrir esses detalhes. Em vez disso, discutiremos uma abordagem incrivelmente útil fornecida pela teoria matemática que geralmente se aplica a somas e calcula as médias de qualquer caixa de votação: o Teorema do Limite Central, ou CLT.
 
 
 ## Distribuições versus distribuições de probabilidade
