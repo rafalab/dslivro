@@ -137,25 +137,25 @@ pbinom(n/2-1, size = n, prob = 10/19)
 
 Para mais detalhes sobre a distribuição binomial, você pode consultar qualquer livro de probabilidades básico ou mesmo a Wikipedia^[https://pt.wikipedia.org/wiki/Distribuição_binomial].
 
-Aqui, nós não iremos cobrir esses detalhes. Em vez disso, discutiremos uma abordagem incrivelmente útil fornecida pela teoria matemática que geralmente se aplica a somas e calcula as médias de qualquer caixa de votação: o Teorema do Limite Central, ou CLT.
+Aqui, nós não iremos cobrir esses detalhes. Em vez disso, discutiremos uma abordagem incrivelmente útil fornecida pela teoria matemática que se aplica geralmente a somas e calcula as médias de qualquer caixa de votação: o Teorema do Limite Central.
 
 
 ## Distribuições versus distribuições de probabilidade
 
-Antes de continuar, vamos fazer uma distinção e uma conexão importante entre a distribuição de uma lista de números e uma distribuição de probabilidade. No capítulo de visualização, descrevemos como qualquer lista de números $x_1,\dots,x_n$ tem uma distribuição. A definição é bastante simples. Nós definimos $F(a)$ como a função que nos diz que proporção da lista é menor ou igual a $a$. Como são resumos úteis quando a distribuição é aproximadamente normal, definimos a média e o desvio padrão. Eles são definidos com uma operação simples do vetor que contém a lista de números `x`:
+Antes de continuar, vamos fazer uma distinção e uma conexão importante entre a distribuição de uma lista de números e uma distribuição de probabilidade. No capítulo de visualização, descrevemos como qualquer lista de números $x_1,\dots,x_n$ tem uma distribuição. A definição é bastante direta. Definimos $F(a)$ como a função que nos diz que proporção da lista é menor ou igual a $a$. Como são resumos úteis quando a distribuição é aproximadamente normal, definimos a média e o desvio padrão. Eles são definidos com uma operação simples do vetor que contém a lista de números `x`:
 
 ```{r, eval=FALSE}
 m <- sum(x)/length(x)
 s <- sqrt(sum((x - m)^2)/ length(x))
 ```
 
-Uma variável aleatória $X$ tem uma função de distribuição. Para definir isso, não precisamos de uma lista de números. É um conceito teórico. Nesse caso, definimos a distribuição como o $F(a)$ respondendo à pergunta: qual é a probabilidade de $X$ é menor ou igual a $a$? Não há lista de números.
+Uma variável aleatória $X$ tem uma função de distribuição. Para definir isso, não precisamos de uma lista de números. É um conceito teórico. Nesse caso, definimos a distribuição como o $F(a)$ respondendo à pergunta: qual é a probabilidade de $X$ ser menor ou igual a $a$? Não há lista de números.
 
-No entanto, se $X$ é definido como uma seleção de uma urna com números, portanto, há uma lista: a lista de números dentro da urna. Nesse caso, a distribuição dessa lista é a distribuição de probabilidade de $X$ e a média e o desvio padrão dessa lista são o valor esperado e o erro padrão da variável aleatória.
+No entanto, se $X$ é definido como uma seleção de uma urna com números, então há uma lista: a lista de números dentro da urna. Nesse caso, a distribuição dessa lista é a distribuição de probabilidade de $X$ e a média e o desvio padrão dessa lista são o valor esperado e o erro padrão da variável aleatória.
 
-Outra maneira de pensar sobre isso que não envolve uma urna é executar uma simulação de Monte Carlo e gerar uma lista muito grande de resultados de $X$. Estes resultados são uma lista de números. A distribuição desta lista será uma aproximação muito boa da distribuição de probabilidade de $X$. Quanto maior a lista, melhor a aproximação. A média e o desvio padrão desta lista aproximam o valor esperado e o erro padrão da variável aleatória.
+Outra maneira de pensar sobre isso, que não envolva uma urna, é executar uma simulação de Monte Carlo e gerar uma lista muito grande de resultados de $X$. Esses resultados são uma lista de números. A distribuição dessa lista será uma aproximação muito boa da distribuição de probabilidade de $X$. Quanto maior a lista, melhor a aproximação. A média e o desvio padrão dessa lista irão se aproximar do valor esperado e do erro padrão da variável aleatória.
 
-Notação ## para variáveis aleatórias
+## Notação para variáveis aleatórias
 
 Nos livros estatísticos, as letras maiúsculas são usadas para denotar variáveis aleatórias e seguimos esta convenção aqui. Letras minúsculas são usadas para os valores observados. Você verá alguma notação que inclui ambos. Por exemplo, eles verão eventos definidos como $X \leq x$. Aqui $X$ é uma variável aleatória, portanto, é um evento aleatório e $x$ é um valor arbitrário e não aleatório. Por exemplo, $X$ poderia representar o número em um dado e $x$ representará um valor real que vemos: 1, 2, 3, 4, 5 ou 6. Portanto, neste caso, a probabilidade de $X=x$ é 1/6 independentemente do valor observado $x$. Essa notação é um pouco estranha porque, quando fazemos perguntas de probabilidade, $X$ não é uma quantidade observada, mas uma quantidade aleatória que veremos no futuro. Podemos descrever o que esperamos ver, quais valores são prováveis, mas não o que é. Mas assim que temos dados, vemos uma realização de $X$. Então, os cientistas de dados falam sobre o que poderia ter sido depois de ver o que realmente aconteceu.
 
@@ -419,10 +419,10 @@ Outro uso incorreto interessante da lei das médias está nos esportes, quando o
 ## Exercícios
 
 
-1\. Na roleta americana, você também pode apostar no verde. Existem 18 vermelhos, 18 pretos e 2 verdes (0 e 00). Quais são as chances de um green sair?
+1\. Na roleta americana, você também pode apostar no verde. Existem 18 vermelhos, 18 pretos e dois verdes (0 e 00). Quais são as chances de um green sair?
 
 
-2\. O pagamento verde é \$17 dollars. Esto significa que si apuesta un dólar y cae en verde, obtiene \$ 17. Crie um modelo de amostragem usando uma amostra para simular a variável aleatória $X$ dos seus ganhos. Dica: Veja o exemplo abaixo para o código de apostas vermelho.
+2\. O pagamento verde é \$17 dollars. Esto significa que si apuesta un dólar y cae en verde, obtiene \$17. Crie um modelo de amostragem usando uma amostra para simular a variável aleatória $X$ dos seus ganhos. Dica: Veja o exemplo abaixo para o código de apostas vermelho.
 
 ```{r}
 x <- sample(c(1,-1), 1, prob = c(9/19, 10/19))
@@ -452,7 +452,7 @@ x <- sample(c(1,-1), 1, prob = c(9/19, 10/19))
 
 Onze\. O resultado da simulação de Monte Carlo e a aproximação CLT estão próximos, mas não tão próximos. O que poderia explicar isso?
 
-para. 1.000 simulações não são suficientes. Se fizermos mais, eles coincidem.
+a. 1.000 simulações não são suficientes. Se fizermos mais, eles coincidem.
 b. O CLT não funciona tão bem quando a probabilidade de sucesso é pequena. Nesse caso, era 1/19. Se aumentarmos o número de jogos de roleta, eles coincidirão melhor.
 c. A diferença está dentro do erro de arredondamento.
 d. O CLT funciona apenas para médias.
@@ -473,7 +473,7 @@ Quinze\. Qual é a probabilidade de que, quando você terminar de jogar, os ganh
 
 18\. O resultado da simulação de Monte Carlo e a aproximação CLT estão agora muito mais próximos. O que poderia explicar isso?
 
-para. Agora estamos calculando médias em vez de somas.
+a. Agora estamos calculando médias em vez de somas.
 b. 2.500 simulações de Monte Carlo não são melhores que 1.000.
 c. O CLT funciona melhor quando o tamanho da amostra é maior. Aumentado de 1.000 para 2.500.
 d. Não está mais perto. A diferença está dentro do erro de arredondamento.
