@@ -348,7 +348,7 @@ $$
 \mbox{E}[X_1+X_2+\dots+X_n] = \mbox{E}[X_1] + \mbox{E}[X_2]+\dots+\mbox{E}[X_n]
 $$
 
-Se ele $X$ são empates independentes das urnas, portanto todos têm o mesmo valor esperado. Vamos chamá-lo $\mu$ e, por conseguinte:
+Se $X$ são sorteios independentes das urnas, então todos têm o mesmo valor esperado. Vamos chamar isso de $\mu$. Logo:
 
 $$
 \mbox{E}[X_1+X_2+\dots+X_n]= n\mu
@@ -362,7 +362,7 @@ $$
 \mbox{E}[aX] = a\times\mbox{E}[X]
 $$
 
-Para ver por que isso é intuitivo, considere alterar as unidades. Se mudarmos as unidades de uma variável aleatória, digamos de dólares para centavos, a expectativa deve mudar da mesma maneira. Uma conseqüência dos dois fatos anteriores é que o valor esperado da média de extrações independentes da mesma urna é o valor esperado da urna. $\mu$ de novo:
+Para ver por que isso é intuitivo, considere alterar as unidades. Se mudarmos as unidades de uma variável aleatória, digamos de dólares para centavos, a expectativa deve mudar da mesma maneira. Uma consequência dos dois fatos anteriores é que o valor esperado da média de sorteios independentes da mesma urna é o valor esperado da urna. Chame isso de $\mu$ novamente:
 
 $$
 \mbox{E}[(X_1+X_2+\dots+X_n)/ n]= \mbox{E}[X_1+X_2+\dots+X_n]/ n = n\mu/n = \mu
@@ -375,7 +375,7 @@ $$
 \mbox{SE}[X_1+X_2+\dots+X_n] = \sqrt{\mbox{SE}[X_1]^2 + \mbox{SE}[X_2]^2+\dots+\mbox{SE}[X_n]^2 }
 $$
 
-O quadrado do erro padrão é chamado _variance_ nos livros de estatística. Observe que essa propriedade em particular não é tão intuitiva quanto as duas anteriores e que explicações detalhadas podem ser encontradas nos livros de estatística.
+O quadrado do erro padrão é chamado de variância (_variance_) nos livros didáticos de estatística. Observe que essa propriedade em particular não é tão intuitiva quanto as anteriores. Explicações mais detalhadas podem ser encontradas nos livros de estatística.
 
 4\. O erro padrão de uma constante não aleatória multiplicada por uma variável aleatória é a constante não aleatória multiplicada pelo erro padrão da variável aleatória. O mesmo que para o valor esperado:
 $$
@@ -384,7 +384,7 @@ $$
 
 Para ver por que isso é intuitivo, pense novamente nas unidades.
 
-Uma consequência de 3 e 4 é que o erro padrão da média de empates independentes para a mesma urna é o desvio padrão da urna dividido pela raiz quadrada de $n$ (o número de empates), chame-o $\sigma$:
+Uma consequência de 3 e 4 é que o erro padrão da média de sorteios independentes para a mesma urna é o desvio padrão da urna dividido pela raiz quadrada de $n$ (o número de sorteios), chame isso de $\sigma$:
 
 $$
 \begin{aligned}
@@ -397,10 +397,10 @@ $$
 $$
 
 
-5\. Sim $X$ é uma variável aleatória distribuída normalmente, portanto, se $a$ e $b$ são constantes não aleatórias, $aX + b$ também é uma variável aleatória distribuída normalmente. Tudo o que estamos fazendo é alterar as unidades da variável aleatória multiplicando por $a$ e, em seguida, movendo o centro $b$.
+5\. Se $X$ é uma variável aleatória distribuída normalmente e se $a$ e $b$ são constantes não aleatórias, então $aX + b$ também é uma variável aleatória distribuída normalmente. Tudo o que estamos fazendo é alterar as unidades da variável aleatória multiplicando por $a$ e, em seguida, movendo o centro $b$.
 
 
-Lembre-se de que os estatísticos usam livros gregos $\mu$ e $\sigma$ para indicar o valor esperado e o erro padrão, respectivamente. Isto é porque $\mu$ é a letra grega para $m$, a primeira letra de _mean_, que é outro termo usado para o valor esperado. Da mesma forma, $\sigma$ é a letra grega para $s$, a primeira letra do erro padrão.
+Note que os livros didáticos estatísticos usam as letras gregas $\mu$ e $\sigma$ para indicar o valor esperado e o erro padrão, respectivamente. Isto ocorre porque $\mu$ é a letra grega para $m$, a primeira letra de _média_, que é outro termo usado para o valor esperado. Da mesma forma, $\sigma$ é a letra grega para $s$, a primeira letra de _standard error_ (erro padrão).
 
 ## Lei dos grandes números
 
