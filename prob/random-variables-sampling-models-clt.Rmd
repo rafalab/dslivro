@@ -267,26 +267,26 @@ $$
 s = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar{X})^2}
 $$
 
-Você pode ver que esse é o caso escrevendo:
+Você pode ver que esse é o caso digitando:
 
 ```{r}
 n <- length(x)
 s-sd(x)*sqrt((n-1)/ n)
 ```
 
-Para toda a teoria discutida aqui, eles devem calcular o desvio padrão real, conforme definido:
+Para toda a teoria discutida aqui, você precisa calcular o desvio padrão real, conforme definido:
 
 ```{r, eval = FALSE}
 sqrt(mean((x-m)^2))
 ```
 
-Portanto, tenha cuidado ao usar a função `sd` em R. No entanto, lembre-se de que, ao longo do livro, às vezes usamos a função `sd` quando realmente queremos o verdadeiro SD. Isso ocorre porque quando o tamanho da lista é grande, esses dois são praticamente equivalentes, pois $\sqrt{(N-1)/N} \approx 1$.
+Portanto, tenha cuidado ao usar a função `sd` no R. No entanto, lembre-se de que, ao longo do livro, às vezes usamos a função `sd` quando realmente queremos o verdadeiro desvio padrão. Isso ocorre porque quando o tamanho da lista é grande, os valores obtidos pelas duas fórmulas são praticamente equivalentes, pois $\sqrt{(N-1)/N} \approx 1$.
 
-## Teorema do limite central
+## Teorema do Limite Central
 
-O Teorema do Limite Central, ou CLT, diz-nos que quando o número de empates, também chamado _tamanho da amostra_, é grande, a distribuição de probabilidade da soma dos empates independentes é aproximadamente normal. Como os modelos de amostragem são usados para muitos processos de geração de dados, o CLT é considerado uma das idéias matemáticas mais importantes da história.
+O Teorema do Limite Central, ou CLT (do inglês _Central Limit Theorem_), nos diz que quando o número de sorteios, também chamado _tamanho da amostra_, é grande, a distribuição de probabilidade da soma de sorteios independentes é aproximadamente normal. Como modelos de amostragem são usados para muitos processos de geração de dados, o Teorema do Limite Central é considerado uma das ideias matemáticas mais importantes da história.
 
-Anteriormente, discutimos que, se soubermos que a distribuição de uma lista de números se aproxima da distribuição normal, tudo o que precisamos para descrever a lista é a média e o desvio padrão. Também sabemos que o mesmo se aplica às distribuições de probabilidade. Se uma variável aleatória tem uma distribuição de probabilidade que se aproxima da distribuição normal, tudo o que precisamos para descrever a distribuição de probabilidade é a média e o desvio padrão, conhecido como valor esperado e erro padrão.
+Anteriormente, discutimos que, se soubermos que a distribuição de uma lista de números se aproxima da distribuição normal, tudo o que precisamos para descrever a lista é a média e o desvio padrão. Também sabemos que o mesmo se aplica às distribuições de probabilidade. Se uma variável aleatória tem uma distribuição de probabilidade que se aproxima da distribuição normal, tudo o que precisamos para descrever a distribuição de probabilidade é a média e o desvio padrão, referidos como valor esperado e erro padrão.
 
 Anteriormente, executamos esta simulação de Monte Carlo:
 
@@ -300,21 +300,21 @@ sum(X)
 S <- replicate(B, roulette_winnings(n))
 ```
 
-A CLT nos diz que a soma $S$ é aproximado por uma distribuição normal. Usando as fórmulas acima, sabemos que o valor esperado e o erro padrão são:
+O Teorema do Limite Central nos diz que a soma $S$ é aproximada por uma distribuição normal. Usando as fórmulas acima, sabemos que o valor esperado e o erro padrão são:
 
 ```{r}
 n * (20-18)/38
 sqrt(n) * 2 * sqrt(90)/19
 ```
 
-Os valores teóricos anteriores coincidem com os obtidos com a simulação de Monte Carlo:
+Os valores teóricos acima correspondem aos obtidos com a simulação de Monte Carlo:
 
 ```{r}
 mean(S)
 sd(S)
 ```
 
-Usando o CLT, podemos pular a simulação de Monte Carlo e, em vez disso, calcular a probabilidade de o cassino perder dinheiro usando esta aproximação:
+Usando o Teorema do Limite Central, podemos pular a simulação de Monte Carlo e, em vez disso, calcular a probabilidade de o cassino perder dinheiro usando esta aproximação:
 
 ```{r}
 mu <- n * (20-18)/38
@@ -329,18 +329,18 @@ mean(S < 0)
 ```
 
 
-Qual é o tamanho do teorema do limite central?
+Qual é o tamanho do Teorema do Limite Central?
 
-O CLT funciona quando o número de empates é grande. Mas ótimo é um termo relativo. Em muitas circunstâncias, apenas 30 empates são suficientes para que o CLT seja útil. Em alguns casos específicos, apenas 10 são suficientes. No entanto, estas não devem ser consideradas regras gerais. Por exemplo, quando a probabilidade de sucesso é muito pequena, precisamos de tamanhos de amostra muito maiores.
+O Teorema do Limite Central funciona quando o número de sorteios é amplo. Mas amplo é um termo relativo. Em muitas circunstâncias, apenas 30 sorteios são suficientes para que o Teorema do Limite Central seja útil. Em alguns casos específicos, apenas 10 sorteios são suficientes. No entanto, essas não devem ser consideradas regras gerais. Por exemplo, quando a probabilidade de sucesso é muito pequena, precisamos de tamanhos de amostra muito maiores.
 
-Como ilustração, considere a loteria. Na loteria, a probabilidade de ganhar é menor que 1 em um milhão. Milhares de pessoas jogam, então o número de empates é muito grande. No entanto, o número de vencedores, a soma dos empates, varia de 0 a 4. A distribuição normal não é uma boa aproximação da soma, portanto o CLT não se aplica, mesmo quando o tamanho da amostra é muito grande. . Isso geralmente é verdade quando a probabilidade de sucesso é muito baixa. Nestes casos, a distribuição de Poisson é mais apropriada.
+A título de ilustração, vamos considerar a loteria. Na loteria, a chance de ganhar é menor que 1 em um milhão. Milhares de pessoas jogam, então o número de apostas é muito grande. Já o número de vencedores, a soma dos sorteados, varia entre 0 a 4. A distribuição normal não é uma boa aproximação da soma, portanto o Teorema do Limite Central não se aplica, mesmo quando o tamanho da amostra é muito grande. Isso geralmente é verdade quando a probabilidade de sucesso é muito baixa. Nesses casos, a distribuição de Poisson é mais apropriada.
 
-Você pode examinar as propriedades da distribuição Poisson usando `dpois` e `ppois`. Eles podem gerar variáveis aleatórias seguindo esta distribuição com `rpois`. No entanto, não discutimos a teoria aqui. Para saber mais sobre a distribuição de Poisson, você pode consultar qualquer livro de probabilidade e até Wikipedia^[https://en.wikipedia.org/w/index.php?title=Poisson_distribution]
+Você pode examinar as propriedades da distribuição de Poisson usando `dpois` ou `ppois`. Você pode gerar variáveis aleatórias seguindo esta distribuição com `rpois`. No entanto, não discutimos a teoria aqui. Para saber mais sobre a distribuição de Poisson, você pode consultar qualquer livro de probabilidade ou até mesmo a Wikipedia^[https://en.wikipedia.org/w/index.php?title=Poisson_distribution].
 
 
 ## Propriedades estatísticas das médias
 
-Existem vários resultados matemáticos úteis que usamos anteriormente e que costumamos empregar ao trabalhar com dados. Listamos-os abaixo.
+Existem diversos resultados matemáticos úteis que usamos frequentemente para trabalhar com dados. Listamos alguns abaixo.
 
 1\. O valor esperado da soma das variáveis aleatórias é a soma do valor esperado de cada variável aleatória. Podemos escrever assim:
 
