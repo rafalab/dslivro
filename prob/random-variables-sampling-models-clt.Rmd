@@ -234,9 +234,9 @@ Como resultado, quando 1.000 pessoas apostarem no vermelho, o cassino deverá ga
 
 **Nota Avançada**: Antes de continuar, devemos apontar que os cálculos exatos de probabilidade de vitória no cassino podem ser feitos com a distribuição binomial. Entretanto, aqui nos concentramos no teorema do limite central, que geralmente pode ser aplicado a somas de variáveis aleatórias, algo que não pode ser feito com a distribuição binomial.
 
-### População SD versus amostra SD
+### Desvio padrão da população versus desvio padrão da amostra
 
-O desvio padrão (do inglês _standard deviation_ ou SD), de uma lista `x` (usamos as alturas abaixo como exemplo) é definida como a raiz quadrada da média das diferenças quadradas:
+O desvio padrão (do inglês _standard deviation_ ou SD) de uma lista `x` (usamos as alturas abaixo como exemplo) é definido como a raiz quadrada da média das diferenças quadradas:
 
 ```{r}
 library(dslabs)
@@ -259,7 +259,7 @@ identical(s, sd(x))
 s-sd(x)
 ```
 
-Isso ocorre porque a função `sd` em R não retorna o `sd` da lista, mas usa uma fórmula que estima desvios padrão da população usando uma amostra aleatória $X_1, \dots, X_N$ que, por razões não discutidas aqui, divide a soma dos quadrados por $N-1$.
+Isso ocorre porque a função `sd` em R não retorna o desvio padrão da lista, mas sim usa uma fórmula que estima desvios padrão da população a partir de uma amostra aleatória $X_1, \dots, X_N$ que, por razões não discutidas aqui, divide a soma dos quadrados por $N-1$.
 
 
 $$
