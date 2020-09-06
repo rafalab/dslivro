@@ -44,7 +44,7 @@ Vamos definir uma variável aleatória $S$ que irá representar o total de ganho
 color <- rep(c("Preto", "Vermelho", "Verde"), c(18, 18, 2))
 ```
 
-Os 1.000 resultados de 1.000 pessoas jogando são sorteios independentes desta urna. Se o jogador apostar no vermelho e o resultado for vermelho, o jogador ganha e o cassino perde um dólar, então obtemos -\$1. Por outro lado, se o jogador apostar no vermelho e o resultado for preto, o casino ganha um dólar e obtemos \$1. Para construir nossa variável aleatória $S$, podemos usar este código:
+Os 1.000 resultados de 1.000 pessoas jogando são eventos independentes desta urna. Se o jogador apostar no vermelho e o resultado for vermelho, o jogador ganha e o cassino perde um dólar, então obtemos -\$1. Por outro lado, se o jogador apostar no vermelho e o resultado for preto, o casino ganha um dólar e obtemos \$1. Para construir nossa variável aleatória $S$, podemos usar este código:
 
 ```{r}
 n <- 1000
@@ -58,7 +58,7 @@ Como sabemos as proporções de 1s e -1s, podemos simular os resultados da rolet
 X <- sample(c(-1,1), n, replace = TRUE, prob=c(9/19, 10/19))
 ```
 
-Chamamos isso de **modelo de amostragem**, pois estamos modelando o comportamento aleatório da roleta com a amostragem das opções disponíveis. O ganho total de $S$ é simplesmente a soma desses 1.000 sorteios independentes:
+Chamamos isso de **modelo de amostragem**, pois estamos modelando o comportamento aleatório da roleta com a amostragem das opções disponíveis. O ganho total de $S$ é simplesmente a soma desses 1.000 eventos independentes:
 
 ```{r}
 X <- sample(c(-1,1), n, replace = TRUE, prob=c(9/19, 10/19))
@@ -162,7 +162,7 @@ Nos livros estatísticos, as letras maiúsculas são usadas para denotar variáv
 
 ## O valor esperado e o erro padrão
 
-Descrevemos anteriormente modelos de amostragem para sorteios. Agora, revisaremos a teoria matemática que nos permite aproximar as distribuições de probabilidade para a soma dos sorteios. Depois de fazer isso estaremos aptos para ajudar o cassino a prever quanto dinheiro ganharão. A mesma abordagem que usamos para a soma dos sorteios será útil para descrever a distribuição das médias e a proporção que precisaremos para entender como as pesquisas funcionam.
+Descrevemos anteriormente modelos de amostragem para eventos. Agora, revisaremos a teoria matemática que nos permite aproximar as distribuições de probabilidade para a soma dos eventos. Depois de fazer isso estaremos aptos para ajudar o cassino a prever quanto dinheiro ganharão. A mesma abordagem que usamos para a soma dos eventos será útil para descrever a distribuição das médias e a proporção que precisaremos para entender como as pesquisas funcionam.
 
 O primeiro conceito importante a aprender é o valor esperado. Nos livros de estatística, é comum usar a letra $\mbox{E}$ desta forma:
 
@@ -170,7 +170,7 @@ $$\mbox{E}[X]$$
 
 para denotar o valor esperado da variável aleatória $X$.
 
-Uma variável aleatória irá variar em torno do valor esperado de uma maneira que, se você pegar a média de muitos, muitos sorteios, a média dos sorteios se aproximará do valor esperado, aproximando-se cada vez mais à medida que os sorteios aumentam.
+Uma variável aleatória irá variar em torno do valor esperado de uma maneira que, se você pegar a média de muitos, muitos eventos, a média dos eventos se aproximará do valor esperado, aproximando-se cada vez mais à medida que os eventos aumentam.
 
 A estatística teórica fornece técnicas que facilitam o cálculo dos valores esperados em diferentes circunstâncias. Por exemplo, uma fórmula útil nos diz que _o valor esperado de uma variável aleatória definida por um sorteio é a média dos números na urna_. Na urna que usamos para modelar apostas de roleta no vermelho, obtivemos 20 resultados de $1 e 18 resultados de -$1. O valor esperado é então:
 
@@ -192,10 +192,10 @@ $$\mbox{E}[X] = ap + b(1-p)$$
 
 Para ver isso, observe que se houver $n$ bolas na urna, então temos $np$ $a$s e $n(1-p)$ $b$s, e como a média é a soma, $n\times a \times p + n\times b \times (1-p)$, dividido pelo total $n$, obtemos que a média é $ap + b(1-p)$.
 
-Agora, a razão pela qual definimos o valor esperado é porque essa definição matemática é útil para aproximar as distribuições de probabilidade da soma, que é útil para descrever a distribuição de médias e proporções. O primeiro fato útil é que _o valor esperado da soma dos sorteios_ é:
+Agora, a razão pela qual definimos o valor esperado é porque essa definição matemática é útil para aproximar as distribuições de probabilidade da soma, que é útil para descrever a distribuição de médias e proporções. O primeiro fato útil é que _o valor esperado da soma dos eventos_ é:
 
 $$
-\mbox{}\mbox{número de sorteios } \times \mbox{ média dos números na urna}
+\mbox{}\mbox{número de eventos } \times \mbox{ média dos números na urna}
 $$
 
 Portanto, se 1.000 pessoas jogam roleta, o cassino espera ganhar, em média, cerca de 1.000 $\times$ \$0,05 = \$50. Mas esse é um valor esperado. Quão diferente pode ser uma observação do valor esperado? O cassino realmente precisa saber disso. Qual é o intervalo de probabilidades? Se números negativos forem muito prováveis, eles não instalarão roletas. A teoria estatística mais uma vez responde a essa pergunta. O _erro padrão_ (do inglês _standard error_ ou SE) nos dá uma ideia do tamanho da variação em torno do valor esperado. Nos livros de estatística, é comum usar:
@@ -204,10 +204,10 @@ $$\mbox{SE}[X]$$
 
 para denotar o erro padrão de uma variável aleatória.
 
-**Se nossos sorteios são independentes**, o erro padrão da soma é dado pela equação:
+**Se nossos eventos são independentes**, o erro padrão da soma é dado pela equação:
 
 $$
-\sqrt{\mbox{número de sorteios }} \times \mbox{ desvio padrão dos números na urna}
+\sqrt{\mbox{número de eventos }} \times \mbox{ desvio padrão dos números na urna}
 $$
 
 Usando a definição de desvio padrão, podemos derivar, com um pouco de matemática, que se uma urna contiver dois valores $a$ e $b$ com proporções $p$ e $(1-p)$, respectivamente, o desvio padrão é:
@@ -284,7 +284,7 @@ Portanto, tenha cuidado ao usar a função `sd` no R. No entanto, lembre-se de q
 
 ## Teorema do Limite Central
 
-O Teorema do Limite Central (TLC) nos diz que quando o número de sorteios, também chamado _tamanho da amostra_, é grande, a distribuição de probabilidade da soma de sorteios independentes é aproximadamente normal. Como modelos de amostragem são usados para muitos processos de geração de dados, o TLC é considerado uma das ideias matemáticas mais importantes da história.
+O Teorema do Limite Central (TLC) nos diz que quando o número de eventos, também chamado _tamanho da amostra_, é grande, a distribuição de probabilidade da soma de eventos independentes é aproximadamente normal. Como modelos de amostragem são usados para muitos processos de geração de dados, o TLC é considerado uma das ideias matemáticas mais importantes da história.
 
 Anteriormente, discutimos que, se soubermos que a distribuição de uma lista de números se aproxima da distribuição normal, tudo o que precisamos para descrever a lista é a média e o desvio padrão. Também sabemos que o mesmo se aplica às distribuições de probabilidade. Se uma variável aleatória tem uma distribuição de probabilidade que se aproxima da distribuição normal, tudo o que precisamos para descrever a distribuição de probabilidade é a média e o desvio padrão, referidos como valor esperado e erro padrão.
 
@@ -331,7 +331,7 @@ mean(S < 0)
 
 Qual é o tamanho do Teorema do Limite Central?
 
-O Teorema do Limite Central funciona quando o número de sorteios é amplo. Mas amplo é um termo relativo. Em muitas circunstâncias, apenas 30 sorteios são suficientes para que o TLC seja útil. Em alguns casos específicos, apenas 10 sorteios são suficientes. No entanto, essas não devem ser consideradas regras gerais. Por exemplo, quando a probabilidade de sucesso é muito pequena, precisamos de tamanhos de amostra muito maiores.
+O Teorema do Limite Central funciona quando o número de eventos é amplo. Mas amplo é um termo relativo. Em muitas circunstâncias, apenas 30 eventos são suficientes para que o TLC seja útil. Em alguns casos específicos, apenas 10 eventos são suficientes. No entanto, essas não devem ser consideradas regras gerais. Por exemplo, quando a probabilidade de sucesso é muito pequena, precisamos de tamanhos de amostra muito maiores.
 
 A título de ilustração, vamos considerar a loteria. Na loteria, a chance de ganhar é menor que 1 em um milhão. Milhares de pessoas jogam, então o número de apostas é muito grande. Já o número de vencedores, a soma dos sorteados, varia entre 0 a 4. A distribuição normal não é uma boa aproximação da soma, portanto o Teorema do Limite Central não se aplica, mesmo quando o tamanho da amostra é muito grande. Isso geralmente é verdade quando a probabilidade de sucesso é muito baixa. Nesses casos, a distribuição de Poisson é mais apropriada.
 
@@ -348,13 +348,13 @@ $$
 \mbox{E}[X_1+X_2+\dots+X_n] = \mbox{E}[X_1] + \mbox{E}[X_2]+\dots+\mbox{E}[X_n]
 $$
 
-Se $X$ são sorteios independentes das urnas, então todos têm o mesmo valor esperado. Vamos chamar isso de $\mu$. Logo:
+Se $X$ são eventos independentes das urnas, então todos têm o mesmo valor esperado. Vamos chamar isso de $\mu$. Logo:
 
 $$
 \mbox{E}[X_1+X_2+\dots+X_n]= n\mu
 $$
 
-que é outra maneira de escrever o resultado mostrado acima para a soma dos sorteios.
+que é outra maneira de escrever o resultado mostrado acima para a soma dos eventos.
 
 2\. O valor esperado de uma constante não aleatória multiplicada por uma variável aleatória é a constante não aleatória multiplicada pelo valor esperado de uma variável aleatória. É mais fácil explicar com símbolos:
 
@@ -362,7 +362,7 @@ $$
 \mbox{E}[aX] = a\times\mbox{E}[X]
 $$
 
-Para ver por que isso é intuitivo, considere alterar as unidades. Se mudarmos as unidades de uma variável aleatória, digamos de dólares para centavos, a expectativa deve mudar da mesma maneira. Uma consequência dos dois fatos anteriores é que o valor esperado da média de sorteios independentes da mesma urna é o valor esperado da urna. Chame isso de $\mu$ novamente:
+Para ver por que isso é intuitivo, considere alterar as unidades. Se mudarmos as unidades de uma variável aleatória, digamos de dólares para centavos, a expectativa deve mudar da mesma maneira. Uma consequência dos dois fatos anteriores é que o valor esperado da média de eventos independentes da mesma urna é o valor esperado da urna. Chame isso de $\mu$ novamente:
 
 $$
 \mbox{E}[(X_1+X_2+\dots+X_n)/ n]= \mbox{E}[X_1+X_2+\dots+X_n]/ n = n\mu/n = \mu
@@ -384,7 +384,7 @@ $$
 
 Para ver por que isso é intuitivo, pense novamente nas unidades.
 
-Uma consequência de 3 e 4 é que o erro padrão da média de sorteios independentes para a mesma urna é o desvio padrão da urna dividido pela raiz quadrada de $n$ (o número de sorteios), chame isso de $\sigma$:
+Uma consequência de 3 e 4 é que o erro padrão da média de eventos independentes para a mesma urna é o desvio padrão da urna dividido pela raiz quadrada de $n$ (o número de eventos), chame isso de $\sigma$:
 
 $$
 \begin{aligned}
@@ -404,12 +404,12 @@ Note que os livros didáticos estatísticos usam as letras gregas $\mu$ e $\sigm
 
 ## Lei dos grandes números
 
-Uma implicação importante do resultado final é que o erro padrão da média se torna cada vez menor conforme $n$ torna-se maior. Quando $n$ é muito grande, então o erro padrão é praticamente 0 e a média dos sorteios converge para a média da urna. Isso é conhecido nos livros estatísticos como a lei dos grandes números ou a lei das médias.
+Uma implicação importante do resultado final é que o erro padrão da média se torna cada vez menor conforme $n$ torna-se maior. Quando $n$ é muito grande, então o erro padrão é praticamente 0 e a média dos eventos converge para a média da urna. Isso é conhecido nos livros estatísticos como a lei dos grandes números ou a lei das médias.
 
 
 ### Interpretação incorreta da lei das médias
 
-A lei das médias, às vezes, é mal interpretada. Por exemplo, se você jogar uma moeda cinco vezes e obter cara em todas, alguém pode argumentar que o próximo sorteio é provavelmente dará coroa devido à lei das médias: em média, devemos ver 50\% cara e 50\% coroa. Um argumento semelhante seria dizer que o resultado da roleta deve ser vermelho depois de ver que o preto apareceu cinco vezes seguidas. Esses eventos são independentes, portanto a probabilidade de se obter cara após girar uma moeda é de 50\%, independentemente dos cinco resultados anteriores. Esse também é o caso do resultado da roleta. A lei das médias se aplica somente quando o número de sorteios é muito grande e não em amostras pequenas. Após um milhão de jogadas, você definitivamente verá que cerca de 50\% dos resultados serão cara, independentemente do resultado dos cinco primeiros lançamentos.
+A lei das médias, às vezes, é mal interpretada. Por exemplo, se você jogar uma moeda cinco vezes e obter cara em todas, alguém pode argumentar que o próximo sorteio é provavelmente dará coroa devido à lei das médias: em média, devemos ver 50\% cara e 50\% coroa. Um argumento semelhante seria dizer que o resultado da roleta deve ser vermelho depois de ver que o preto apareceu cinco vezes seguidas. Esses eventos são independentes, portanto a probabilidade de se obter cara após girar uma moeda é de 50\%, independentemente dos cinco resultados anteriores. Esse também é o caso do resultado da roleta. A lei das médias se aplica somente quando o número de eventos é muito grande e não em amostras pequenas. Após um milhão de jogadas, você definitivamente verá que cerca de 50\% dos resultados serão cara, independentemente do resultado dos cinco primeiros lançamentos.
 
 Outro interessante uso incorreto da lei das médias está nos esportes, quando, por exemplo, apresentadores de televisão prevêem que um jogador está prestes a ter sucesso porque falhou várias vezes seguidas.
 
