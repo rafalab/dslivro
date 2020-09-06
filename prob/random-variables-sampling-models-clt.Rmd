@@ -404,24 +404,24 @@ Note que os livros didáticos estatísticos usam as letras gregas $\mu$ e $\sigm
 
 ## Lei dos grandes números
 
-Uma implicação importante do resultado final é que o erro padrão da média se torna cada vez menor conforme $n$ torna-se maior. Quando $n$ é muito grande, portanto o erro padrão é praticamente 0 e a média dos empates converge para a média das urnas. Isso é conhecido nos livros estatísticos como a lei dos grandes números ou a lei das médias.
+Uma implicação importante do resultado final é que o erro padrão da média se torna cada vez menor conforme $n$ torna-se maior. Quando $n$ é muito grande, então o erro padrão é praticamente 0 e a média dos sorteios converge para a média da urna. Isso é conhecido nos livros estatísticos como a lei dos grandes números ou a lei das médias.
 
 
 ### Interpretação incorreta da lei das médias
 
-A lei das médias às vezes é mal interpretada. Por exemplo, se eles jogam uma moeda 5 vezes e ela joga cara a cada vez, alguém pode argumentar que o próximo sorteio é provavelmente coroa devido à lei das médias: em média, devemos ver 50 \% cara e 50 \% coroa. Um argumento semelhante seria dizer que "toca" o vermelho na roleta depois de ver que o preto aparece cinco vezes seguidas. Como esses eventos são independentes, a probabilidade de uma moeda rolar é de 50 \%, independentemente dos 5 resultados anteriores. Este também é o caso do resultado da roleta. A lei das médias se aplica somente quando o número de empates é muito grande e não em amostras pequenas. Após um milhão de lançamentos, você definitivamente verá cerca de 50 \% de cabeças, independentemente do resultado dos cinco primeiros lançamentos.
+A lei das médias, às vezes, é mal interpretada. Por exemplo, se você jogar uma moeda cinco vezes e obter cara em todas, alguém pode argumentar que o próximo sorteio é provavelmente dará coroa devido à lei das médias: em média, devemos ver 50\% cara e 50\% coroa. Um argumento semelhante seria dizer que o resultado da roleta deve ser vermelho depois de ver que o preto apareceu cinco vezes seguidas. Esses eventos são independentes, portanto a probabilidade de se obter cara após girar uma moeda é de 50\%, independentemente dos cinco resultados anteriores. Esse também é o caso do resultado da roleta. A lei das médias se aplica somente quando o número de sorteios é muito grande e não em amostras pequenas. Após um milhão de jogadas, você definitivamente verá que cerca de 50\% dos resultados serão cara, independentemente do resultado dos cinco primeiros lançamentos.
 
-Outro uso incorreto interessante da lei das médias está nos esportes, quando os apresentadores de televisão prevêem que um jogador está prestes a ter sucesso porque falhou várias vezes seguidas.
+Outro interessante uso incorreto da lei das médias está nos esportes, quando, por exemplo, apresentadores de televisão prevêem que um jogador está prestes a ter sucesso porque falhou várias vezes seguidas.
 
 
 
 ## Exercícios
 
 
-1\. Na roleta americana, você também pode apostar no verde. Existem 18 vermelhos, 18 pretos e dois verdes (0 e 00). Quais são as chances de um green sair?
+1\. Nos jogos de roleta americanos, você também pode apostar no verde. Existem 18 vermelhos, 18 pretos e dois verdes (0 e 00). Quais são as chances de um verde sair?
 
 
-2\. O pagamento verde é \$17 dollars. Esto significa que si apuesta un dólar y cae en verde, obtiene \$17. Crie um modelo de amostragem usando uma amostra para simular a variável aleatória $X$ dos seus ganhos. Dica: Veja o exemplo abaixo para o código de apostas vermelho.
+2\. O pagamento caso você acerte no verde é de \$17 dólares. Isto significa que se você apostar um dólar e o resultado cair no verde, você ganha \$17. Crie um modelo de amostragem usando uma amostra para simular a variável aleatória $X$ para seus ganhos. Dica: Veja o exemplo abaixo de como seria esse código para apostas no vermelho.
 
 ```{r}
 x <- sample(c(1,-1), 1, prob = c(9/19, 10/19))
@@ -433,7 +433,7 @@ x <- sample(c(1,-1), 1, prob = c(9/19, 10/19))
 4\. Qual é o erro padrão de $X$?
 
 
-5\. Agora crie uma variável aleatória $S$ que é a soma dos seus ganhos depois de apostar verde 1.000 vezes. Dica: altere os argumentos `size` e `replace` na sua resposta à pergunta 2. Inicie seu código configurando a semente como 1 com `set.seed(1)`.
+5\. Agora crie uma variável aleatória $S$ que deve receber a soma dos seus ganhos depois de apostar no verde 1.000 vezes. Dica: altere os argumentos `size` e `replace` na sua resposta da pergunta 2. Inicie seu código configurando a semente aleatória como 1 usando `set.seed(1)`.
 
 6\. Qual é o valor esperado de $S$?
 
@@ -441,39 +441,38 @@ x <- sample(c(1,-1), 1, prob = c(9/19, 10/19))
 7\. Qual é o erro padrão de $S$?
 
 
-8\. Qual é a probabilidade de você acabar ganhando dinheiro? Dica: use o CLT.
+8\. Qual é a probabilidade de você acabar ganhando dinheiro? Dica: use o TLC.
 
 
-9\. Crie uma simulação de Monte Carlo que gere 1.000 resultados a partir de $S$. Calcule a média e o desvio padrão da lista resultante para confirmar os resultados de 6 e 7. Inicie seu código configurando a semente como 1 com `set.seed(1)`.
+9\. Crie uma simulação de Monte Carlo que gere 1.000 resultados a partir de $S$. Calcule a média e o desvio padrão da lista resultante para confirmar os resultados das questões 6 e 7. Inicie seu código configurando a semente aleatória como 1 usando `set.seed(1)`.
 
 
-10\. Agora verifique sua resposta à pergunta 8 usando o resultado da simulação de Monte Carlo.
+10\. Agora verifique sua resposta da pergunta 8 usando o resultado da simulação de Monte Carlo.
 
-Onze\. O resultado da simulação de Monte Carlo e a aproximação CLT estão próximos, mas não tão próximos. O que poderia explicar isso?
+11\. O resultado da simulação de Monte Carlo e a aproximação TLC estão próximos, mas não tão próximos. O que poderia explicar isso?
 
-a. 1.000 simulações não são suficientes. Se fizermos mais, eles coincidem.
-b. O CLT não funciona tão bem quando a probabilidade de sucesso é pequena. Nesse caso, era 1/19. Se aumentarmos o número de jogos de roleta, eles coincidirão melhor.
+a. 1.000 simulações não são suficientes. Se fizermos mais, eles irão coincidir.
+b. O TLC não funciona tão bem quando a probabilidade de sucesso é pequena. Nesse caso, era 1/19. Se aumentarmos o número de jogos de roleta, eles coincidirão melhor.
 c. A diferença está dentro do erro de arredondamento.
-d. O CLT funciona apenas para médias.
+d. O TLC funciona apenas para médias.
 
 
-12\. Agora crie uma variável aleatória $Y$ faça o seu pagamento médio por aposta depois de apostar 1.000 vezes no green.
+12\. Agora crie uma variável aleatória $Y$ que deve armazenar sua média de ganhos por aposta depois de apostar 1.000 vezes no verde.
 
 13\. Qual é o valor esperado de $Y$?
 
 14\. Qual é o erro padrão de $Y$?
 
-Quinze\. Qual é a probabilidade de que, quando você terminar de jogar, os ganhos por jogo sejam positivos? Dica: use o CLT.
+15\. Qual é a probabilidade de que, quando você terminar de jogar, os ganhos por jogo sejam positivos? Dica: use o TLC.
 
+16\. Crie uma simulação de Monte Carlo que gere 2.500 resultados a partir de $Y$. Calcule a média e o desvio padrão da lista resultante para confirmar os resultados das questões 6 e 7. Inicie seu código configurando a semente aleatória como 1 usando `set.seed(1)`.
 
-16\. Crie uma simulação de Monte Carlo que gere 2.500 resultados a partir de $Y$. Calcule a média e o desvio padrão da lista resultante para confirmar os resultados de 6 e 7. Inicie seu código configurando a semente como 1 com `set.seed(1)`.
+17\. Agora verifique sua resposta da pergunta 8 usando o resultado da simulação de Monte Carlo.
 
-17\. Agora verifique sua resposta para 8 usando o resultado da simulação de Monte Carlo.
-
-18\. O resultado da simulação de Monte Carlo e a aproximação CLT estão agora muito mais próximos. O que poderia explicar isso?
+18\. O resultado da simulação de Monte Carlo e a aproximação TLC estão agora muito mais próximos. O que poderia explicar isso?
 
 a. Agora estamos calculando médias em vez de somas.
 b. 2.500 simulações de Monte Carlo não são melhores que 1.000.
-c. O CLT funciona melhor quando o tamanho da amostra é maior. Aumentado de 1.000 para 2.500.
+c. O TLC funciona melhor quando o tamanho da amostra é maior. Aumentamos de 1.000 para 2.500.
 d. Não está mais perto. A diferença está dentro do erro de arredondamento.
 
