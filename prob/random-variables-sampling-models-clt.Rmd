@@ -284,7 +284,7 @@ Portanto, tenha cuidado ao usar a função `sd` no R. No entanto, lembre-se de q
 
 ## Teorema do Limite Central
 
-O Teorema do Limite Central, ou CLT (do inglês _Central Limit Theorem_), nos diz que quando o número de sorteios, também chamado _tamanho da amostra_, é grande, a distribuição de probabilidade da soma de sorteios independentes é aproximadamente normal. Como modelos de amostragem são usados para muitos processos de geração de dados, o Teorema do Limite Central é considerado uma das ideias matemáticas mais importantes da história.
+O Teorema do Limite Central (TLC) nos diz que quando o número de sorteios, também chamado _tamanho da amostra_, é grande, a distribuição de probabilidade da soma de sorteios independentes é aproximadamente normal. Como modelos de amostragem são usados para muitos processos de geração de dados, o TLC é considerado uma das ideias matemáticas mais importantes da história.
 
 Anteriormente, discutimos que, se soubermos que a distribuição de uma lista de números se aproxima da distribuição normal, tudo o que precisamos para descrever a lista é a média e o desvio padrão. Também sabemos que o mesmo se aplica às distribuições de probabilidade. Se uma variável aleatória tem uma distribuição de probabilidade que se aproxima da distribuição normal, tudo o que precisamos para descrever a distribuição de probabilidade é a média e o desvio padrão, referidos como valor esperado e erro padrão.
 
@@ -314,7 +314,7 @@ mean(S)
 sd(S)
 ```
 
-Usando o Teorema do Limite Central, podemos pular a simulação de Monte Carlo e, em vez disso, calcular a probabilidade de o cassino perder dinheiro usando esta aproximação:
+Usando o TLC, podemos pular a simulação de Monte Carlo e, em vez disso, calcular a probabilidade de o cassino perder dinheiro usando esta aproximação:
 
 ```{r}
 mu <- n * (20-18)/38
@@ -331,7 +331,7 @@ mean(S < 0)
 
 Qual é o tamanho do Teorema do Limite Central?
 
-O Teorema do Limite Central funciona quando o número de sorteios é amplo. Mas amplo é um termo relativo. Em muitas circunstâncias, apenas 30 sorteios são suficientes para que o Teorema do Limite Central seja útil. Em alguns casos específicos, apenas 10 sorteios são suficientes. No entanto, essas não devem ser consideradas regras gerais. Por exemplo, quando a probabilidade de sucesso é muito pequena, precisamos de tamanhos de amostra muito maiores.
+O Teorema do Limite Central funciona quando o número de sorteios é amplo. Mas amplo é um termo relativo. Em muitas circunstâncias, apenas 30 sorteios são suficientes para que o TLC seja útil. Em alguns casos específicos, apenas 10 sorteios são suficientes. No entanto, essas não devem ser consideradas regras gerais. Por exemplo, quando a probabilidade de sucesso é muito pequena, precisamos de tamanhos de amostra muito maiores.
 
 A título de ilustração, vamos considerar a loteria. Na loteria, a chance de ganhar é menor que 1 em um milhão. Milhares de pessoas jogam, então o número de apostas é muito grande. Já o número de vencedores, a soma dos sorteados, varia entre 0 a 4. A distribuição normal não é uma boa aproximação da soma, portanto o Teorema do Limite Central não se aplica, mesmo quando o tamanho da amostra é muito grande. Isso geralmente é verdade quando a probabilidade de sucesso é muito baixa. Nesses casos, a distribuição de Poisson é mais apropriada.
 
