@@ -125,7 +125,7 @@ Este gráfico mostra claramente que a maioria dos países mudou do cluster de _p
 
 ### `facet_wrap`
 
-Para explorar como essa transformação ocorreu ao longo dos anos, podemos fazer o gráfico por vários anos. Por exemplo, podemos adicionar os anos 1970, 1980, 1990 e 2000. No entanto, se fizermos isso, não queremos todos os gráficos na mesma linha, que é o que faz `facet_grid` por padrão, pois eles parecerão muito estreitos para exibir os dados. Em vez disso, queremos usar várias linhas e colunas. A função `facet_wrap` nos permite fazer isso automaticamente, acomodando a série de gráficos para que cada imagem tenha dimensões visíveis:
+Para explorar como essa transformação ocorreu ao longo dos anos, podemos fazer o gráfico para vários anos. Por exemplo, podemos adicionar os anos 1970, 1980, 1990 e 2000. No entanto, se fizermos isso, não queremos todos os gráficos na mesma linha, que é o que faz `facet_grid` por padrão, pois eles parecerão muito estreitos para exibir os dados. Em vez disso, queremos usar várias linhas e colunas. A função `facet_wrap` nos permite fazer isso automaticamente, acomodando a série de gráficos para que cada imagem tenha dimensões visíveis:
 
 
 ```{r fertility-versus-life-expectancy-five-years, out.width="100%"}
@@ -138,11 +138,11 @@ geom_point() +
 facet_wrap(~year)
 ```
 
-Este gráfico mostra claramente como a maioria dos países asiáticos melhorou a uma taxa muito mais rápida que a Europa.
+Este gráfico mostra claramente como a maioria dos países asiáticos melhorou a uma taxa muito mais rápida que os países europeus.
 
 ### Escalas fixas para melhores comparações
 
-A escolha padrão da faixa de eixos é importante. Quando não estiver em uso `facet` esse intervalo é determinado pelos dados mostrados no gráfico. Quando eles usam `facet` esse intervalo é determinado pelos dados exibidos em todos os gráficos e, portanto, permanece fixo em todos os gráficos. Isso facilita muito as comparações entre gráficos. Por exemplo, no gráfico acima, podemos ver que a expectativa de vida aumentou e a fertilidade diminuiu na maioria dos países. Vemos isso porque a nuvem de pontos está se movendo. Este não é o caso se ajustarmos as escalas:
+A escolha padrão da faixa de eixos é importante. Quando não estiver usando`facet`, esse intervalo é determinado pelos dados mostrados no gráfico. Usando `facet`, esse intervalo é determinado pelos dados exibidos em todos os gráficos e, portanto, permanece fixo em todas os plotes. Isso facilita muito nas comparações entre gráficos. Por exemplo, no gráfico acima, podemos ver que a expectativa de vida aumentou e a fertilidade diminuiu na maioria dos países. Vemos isso porque a nuvem de pontos está se movendo. Este não é o caso se ajustarmos as escalas:
 
 ```{r facet-without-fixed-scales, warning=FALSE}
 filter(gapminder, year%in%c(1962, 2012)) %>%
@@ -151,7 +151,7 @@ geom_point() +
 facet_wrap(. ~ year, scales = "free")
 ```
 
-No gráfico acima, devemos prestar atenção especial ao intervalo, para observar que o gráfico à direita tem uma expectativa de vida mais longa.
+No gráfico acima, devemos prestar atenção especial ao intervalo para observar que o gráfico à direita tem uma expectativa de vida mais longa.
 
 ## Gráficos de séries temporais
 
