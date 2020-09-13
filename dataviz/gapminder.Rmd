@@ -155,9 +155,9 @@ No gráfico acima, devemos prestar atenção especial ao intervalo para observar
 
 ## Gráficos de séries temporais
 
-As visualizações acima ilustram efetivamente que os dados não são mais consistentes com a visão de mundo ocidental versus o mundo em desenvolvimento. Vendo esses gráficos, novas questões surgem. Por exemplo, quais países estão melhorando mais e quais são os menos? A melhoria foi constante nos últimos 50 anos ou acelerou mais em determinados períodos? Para uma análise mais detalhada que possa ajudar a responder a essas perguntas, apresentamos gráficos de séries temporais.
+As visualizações acima ilustram efetivamente que os dados não são mais consistentes com a visão de mundo ocidental versus o mundo em desenvolvimento. Vendo esses gráficos, novas questões surgem. Por exemplo, quais países estão melhorando mais e quais menos? A melhoria foi constante nos últimos 50 anos ou acelerou mais em determinados períodos? Para uma análise mais detalhada que possa ajudar a responder a essas perguntas, apresentamos gráficos de séries temporais.
 
-Os gráficos de séries temporais possuem tempo no eixo x e um resultado ou medida de interesse no eixo y. Por exemplo, aqui está um gráfico da tendência nas taxas de fertilidade nos Estados Unidos:
+Os gráficos de séries temporais apresentam o tempo no eixo x e um resultado ou medida de interesse no eixo y. Por exemplo, aqui está um gráfico da tendência nas taxas de fertilidade nos Estados Unidos:
 
 ```{r fertility-time-series-plot-points, warning=FALSE}
 gapminder %>%
@@ -166,9 +166,9 @@ ggplot(aes(year, fertility)) +
 geom_point()
 ```
 
-Observamos que a tendência não é linear, mas que durante os anos sessenta e setenta há uma queda acentuada abaixo de 2. Em seguida, a tendência retorna a 2 e se estabiliza nos anos noventa.
+Observamos que a tendência não é linear. Em vez disso, há uma queda acentuada durante as décadas de 1960 e 1970 para menos de dois filhos em média por mulher. Em seguida, a tendência retorna a dois e se estabiliza nos anos 1990.
 
-Quando os pontos são espaçados regularmente e densamente, como vemos acima, criamos uma curva que conecta os pontos às linhas, para transmitir que esses dados são provenientes de uma única série, aqui um país. Para fazer isso, usamos a função `geom_line` em vez de `geom_point`.
+Quando os pontos são regularmente e densamente espaçados, como vemos acima, criamos uma curva que conecta os pontos às linhas, para transmitir a ideia de que esses dados são provenientes de uma única série, aqui representando um país. Para fazer isso, usamos a função `geom_line` em vez de `geom_point`.
 
 ```{r fertility-time-series-plot-curve, warning=FALSE}
 gapminder %>%
@@ -177,7 +177,7 @@ ggplot(aes(year, fertility)) +
 geom_line()
 ```
 
-Isso é particularmente útil ao comparar dois países. Se criarmos um subconjunto dos dados para incluir dois países, um da Europa e outro da Ásia, adaptaremos o código acima:
+Isso é particularmente útil ao comparar dois países. Se criarmos um subconjunto dos dados para incluir dois países, um da Europa e outro da Ásia, podemos adaptar o código acima:
 
 ```{r wrong-time-series-plot, warning=FALSE, message=FALSE}
 countries <- c("South Korea","Germany")
@@ -187,7 +187,7 @@ ggplot(aes(year,fertility)) +
 geom_line()
 ```
 
-Claramente, esse __not__ é o gráfico que queremos. Em vez de uma linha para cada país, os pontos dos dois países são unidos porque não informamos `ggplot` que queremos duas linhas independentes. Para que `ggplot` para entender que existem duas curvas que devem ser feitas separadamente, atribuímos cada ponto a uma `group`, um para cada país:
+Claramente, esse __não__ é o gráfico que queremos. Em vez de uma linha para cada país, os pontos dos dois países foram unidos porque não informamos a `ggplot` que queremos duas linhas independentes. Para que `ggplot` entenda que existem duas curvas que devem ser feitas separadamente, atribuímos cada ponto a um `group`, um para cada país:
 
 
 ```{r time-series-two-curves, warning=FALSE, message=FALSE}
@@ -198,8 +198,8 @@ ggplot(aes(year, fertility, group = country)) +
 geom_line()
 ```
 
-Mas qual linha vai com qual país? Podemos atribuir cores para fazer essa distinção.
-Um efeito colateral útil do uso do argumento `color` para atribuir cores diferentes a diferentes países, os dados são agrupados automaticamente:
+Mas qual linha representa cada país? Podemos atribuir cores para fazer essa distinção.
+Uma vantagem colateral do uso do argumento `color` para atribuir cores diferentes a diferentes países é que os dados são agrupados automaticamente:
 
 ```{r fertility-time-series-plot}
 countries <- c("South Korea","Germany")
@@ -209,9 +209,9 @@ ggplot(aes(year,fertility, col = country)) +
 geom_line()
 ```
 
-O gráfico mostra claramente como a taxa de fertilidade da Coréia do Sul caiu drasticamente durante as décadas de 1960 e 1970, e em 1990 teve uma taxa semelhante à da Alemanha.
+O gráfico mostra claramente como a taxa de fertilidade da Coreia do Sul caiu drasticamente durante as décadas de 1960 e 1970, e por volta de 1990 chegou a uma taxa semelhante à da Alemanha.
 
-### Etiquetas em vez de legendas
+### Rótulos em vez de legendas
 
 Para gráficos de tendências, recomendamos rotular as linhas em vez de usar legendas, pois o espectador pode ver rapidamente qual linha representa qual país. Essa sugestão se aplica à maioria dos gráficos: os rótulos geralmente são preferidos às legendas.
 
