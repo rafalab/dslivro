@@ -9,12 +9,12 @@ Hans Rosling^[https://pt.wikipedia.org/wiki/Hans_Rosling] foi co-fundador da Fun
 
 >>> Jornalistas e lobistas contam histórias dramáticas. Esse é o trabalho deles. Eles contam histórias sobre eventos extraordinários e pessoas incomuns. As pilhas de histórias dramáticas se acumulam na mente das pessoas gerando visões de mundo excessivamente dramáticas, estresse e fortes sentimentos negativos: "O mundo está ficando pior!", "Somos nós contra eles!", "Outras pessoas são estranhas!", "A população continua crescendo!" e "Ninguém liga!"
 
-Hans Rosling decidiu, de maneira dramática, educar o público sobre tendências orientadas a dados usando visualizações de dados eficazes. Esta seção é baseada em duas palestras que exemplificam essa perspectiva educacional: _Novas perspectivas sobre a pobreza_^[https://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty?language=en] e _As melhores estatísticas que você já viu_^[https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen]. Especificamente, nesta seção, usamos dados para tentar responder às duas perguntas a seguir:
+Hans Rosling decidiu, de maneira dramática, educar o público sobre tendências reais orientadas a dados usando visualizações eficazes. Esta seção é baseada em duas palestras que exemplificam essa perspectiva educacional: _Novas Perspectivas Sobre a Pobreza_^[https://www.ted.com/talks/hans_rosling_reveals_new_insights_on_poverty?language=pt] e _As Melhores Estatísticas Jamais Vistas_^[https://www.ted.com/talks/hans_rosling_shows_the_best_stats_you_ve_ever_seen?language=pt]. Especificamente, nesta seção, usamos dados para tentar responder às duas perguntas a seguir:
 
-1. É uma caracterização justa do mundo de hoje dizer que está dividido em nações ocidentais ricas e no mundo em desenvolvimento formado pela África, Ásia e América Latina?
+1. É uma caracterização justa dizer que, nos dias de hoje, o mundo está dividido em nações ocidentais ricas e nações em desenvolvimento na África, Ásia e América Latina?
 2. A desigualdade de renda piorou em todos os países nos últimos 40 anos?
 
-Para responder a essas perguntas, usaremos o conjunto de dados `gapminder` fornecido por __dslabs__. Esse conjunto de dados foi criado usando várias planilhas disponíveis da Fundação Gapminder. Eles podem acessar a tabela desta maneira:
+Para responder a essas perguntas, usaremos a base de dados `gapminder` fornecida pelo __dslabs__. Esse _dataset_ foi criado usando diversas planilhas disponibilizadas pela Fundação Gapminder. Você pode acessar essa tabela desta maneira:
 
 ```{r load libraries, message=FALSE, echo=TRUE}
 library(tidyverse)
@@ -23,9 +23,9 @@ data(gapminder)
 gapminder %>% as_tibble()
 ```
 
-Teste de Hans Rosling
+### Teste de Hans Rosling
 
-Como no vídeo _New Insights on Poverty_, começamos testando nosso conhecimento das diferenças na mortalidade infantil em diferentes países. Para cada um dos cinco pares de países abaixo, quais países você acha que tiveram as maiores taxas de mortalidade infantil em 2015? Quais pares você acha que são mais parecidos?
+Assim como na apresentação em vídeo _Novas Perspectivas Sobre a Pobreza_, começamos testando nossos conhecimentos sobre as diferenças na mortalidade infantil em diferentes países. Para cada um dos cinco pares de países abaixo, quais deles você imagina que tiveram as maiores taxas de mortalidade infantil em 2015? Quais pares você acha que são mais parecidos?
 
 1. Sri Lanka ou Turquia
 2. Polônia ou Coréia do Sul
@@ -33,7 +33,7 @@ Como no vídeo _New Insights on Poverty_, começamos testando nosso conhecimento
 4. Paquistão ou Vietnã
 5. Tailândia ou África do Sul
 
-Ao responder a essas perguntas sem dados, os países não europeus geralmente são escolhidos como os que apresentam as mais altas taxas de mortalidade infantil: Sri Lanka sobre a Turquia, Coréia do Sul sobre Polônia e Malásia sobre Rússia. Também é comum supor que os países considerados parte do mundo em desenvolvimento - Paquistão, Vietnã, Tailândia e África do Sul - têm taxas de mortalidade igualmente altas.
+Ao responder a essas perguntas sem dados, os países não europeus geralmente são escolhidos como os que apresentam as mais altas taxas de mortalidade infantil: Sri Lanka sobre a Turquia, Coreia do Sul sobre Polônia e Malásia sobre Rússia. Também é comum supor que os países considerados parte do mundo em desenvolvimento - Paquistão, Vietnã, Tailândia e África do Sul - têm taxas de mortalidade igualmente altas.
 
 Para responder a essas perguntas __com dados__, podemos usar __dplyr__. Por exemplo, para a primeira comparação, vemos que:
 
@@ -67,14 +67,16 @@ kableExtra::kable_styling(font_size = 8)
 }
 ```
 
+Vemos que os países europeus desta lista têm taxas de mortalidade infantil mais altas: a Polônia tem uma taxa mais alta do que a Coreia do Sul e a Rússia tem uma taxa mais alta que a Malásia. Também vemos que o Paquistão tem uma taxa muito mais alta do que o Vietnã e a África do Sul tem uma taxa muito mais alta do que a Tailândia. Acontece que, quando Hans Rosling deu esse teste para grupos de pessoas instruídas, a pontuação média foi inferior a 2,5 em 5, pior do que eles teriam obtido se tivessem apenas chutado as respostas. Isso implica que, mais do que ignorantes, estamos mal informados. Neste capítulo, vemos como a visualização dos dados ajuda a nos informar.
 
-## Diagrama de dispersão
 
-A razão para as pontuações baixas decorre da noção preconcebida de que o mundo está dividido em dois grupos: o mundo ocidental (Europa Ocidental e América do Norte), caracterizado por vida longa e famílias pequenas, versus o mundo em desenvolvimento (África). , Ásia e América Latina), caracterizada por curtos períodos de vida e famílias numerosas. Mas os dados suportam essa visão dicotômica?
+## Diagramas de dispersão (_scatterplots_)
 
-Os dados necessários para responder a esta pergunta também estão disponíveis em nossa tabela. `gapminder`. Usando nossas habilidades de visualização de dados recém-aprendidas, podemos enfrentar esse desafio.
+A razão disso decorre da noção preconcebida de que o mundo está dividido em dois grupos: o mundo ocidental (Europa Ocidental e América do Norte), caracterizado por uma longa expectativa de vida e famílias pequenas, versus o mundo em desenvolvimento (África, Ásia e América Latina), caracterizada por uma curta expectativa de vida e famílias numerosas. Mas os dados suportam essa visão dicotômica?
 
-Para analisar essa visão de mundo, nosso primeiro gráfico é um gráfico de dispersão da expectativa de vida versus taxas de fertilidade (número médio de filhos por mulher). Começamos analisando os dados de cerca de 50 anos atrás, quando talvez essa visão tenha sido consolidada em nossas mentes.
+Os dados necessários para responder a essa pergunta também estão disponíveis em nossa tabela `gapminder`. Usando nossas habilidades de visualização de dados recém-aprendidas, podemos enfrentar esse desafio.
+
+Para analisar essa visão de mundo, nosso primeiro plote é um gráfico de dispersão da expectativa de vida versus taxas de fertilidade (número médio de filhos por mulher). Começamos analisando os dados de cerca de 50 anos atrás, quando talvez essa visão tenha sido consolidada em nossas mentes.
 
 ```{r fertility-versus-life-expectancy-1962, warning=FALSE}
 filter(gapminder, year == 1962) %>%
@@ -82,12 +84,12 @@ ggplot(aes(fertility, life_expectancy)) +
 geom_point()
 ```
 
-A maioria dos pontos é dividida em duas categorias diferentes:
+A maioria dos pontos se enquadra em duas categorias diferentes:
 
 1. Expectativa de vida em torno de 70 anos e 3 ou menos filhos por família.
-2. Expectativa de vida de menos de 65 anos e mais de 5 filhos por família.
+2. Expectativa de vida menor que 65 anos e mais de 5 filhos por família.
 
-Para confirmar que esses países são das regiões que esperamos, podemos usar uma cor para representar um continente.
+Para confirmar que esses países são das regiões que esperamos, podemos usar cores para representar os continentes.
 
 ```{r fertility-versus-life-expectancy-1962-with-color}
 filter(gapminder, year == 1962) %>%
@@ -95,7 +97,7 @@ ggplot( aes(fertility, life_expectancy, color = continent)) +
 geom_point()
 ```
 
-Em 1962, a visão do "Ocidente versus o mundo em desenvolvimento" era baseada em uma certa realidade. Ainda é assim 50 anos depois?
+Em 1962, a visão do "Ocidente versus mundo em desenvolvimento" era baseada em uma certa realidade. Será que ainda é assim 50 anos depois?
 
 ## Separe em facetas
 
@@ -110,7 +112,7 @@ geom_point() +
 facet_grid(continent~year)
 ```
 
-Acima, vemos um gráfico para cada combinação de continente/ ano. No entanto, este é apenas um exemplo e mais do que queremos, que é simplesmente comparar dois anos: 1962 e 2012. Nesse caso, existe apenas uma variável e usamos `.` para que `facet_grid` saiba que não estamos usando uma das variáveis:
+Acima, vemos um gráfico para cada combinação de continente/ano. No entanto, este exemplo apresenta mais do que queremos, que é simplesmente comparar dois anos: 1962 e 2012. Nesse caso, existe apenas uma variável. Podemos usar `.` para que `facet_grid` saiba que queremos usar todas as variáveis:
 
 ```{r fertility-versus-life-expectancy-two-years, warning=FALSE, out.width="100%", fig.height=3}
 filter(gapminder, year%in%c(1962, 2012)) %>%
@@ -119,7 +121,7 @@ geom_point() +
 facet_grid(. ~ year)
 ```
 
-Este gráfico mostra claramente que a maioria dos países mudou do conjunto _desenvolvido_mundo para o_estilo ocidental_. Em 2012, a visão do mundo ocidental versus o mundo em desenvolvimento não faz mais sentido. Isso é particularmente evidente ao comparar a Europa com a Ásia, este último agora com vários países que fizeram grandes melhorias.
+Este gráfico mostra claramente que a maioria dos países mudou do cluster de _países em desenvolvimento_ para o cluster de _países ocidentais_. Em 2012, a visão do mundo ocidental versus o mundo em desenvolvimento não faz mais sentido. Isso é particularmente evidente ao comparar a Europa com a Ásia, este último agora inclui vários países que apresentaram grandes melhorias.
 
 ### `facet_wrap`
 
