@@ -348,7 +348,7 @@ geom_point() +
 scale_x_continuous(trans = "log2")
 ```
 
-Já podemos ver que existe de fato uma dicotomia "oeste versus o resto": existem dois grupos claros, com o rico grupo constituído pela América do Norte, Europa do Norte e Ocidental, Nova Zelândia e Austrália. Definimos grupos com base nesta observação:
+Já podemos ver que existe de fato uma dicotomia "ocidente versus o resto": existem dois grupos claros, com o rico grupo constituído pela América do Norte, Europa do Norte e Ocidental, Nova Zelândia e Austrália. Definimos grupos com base nesta observação:
 
 ```{r}
 gapminder <- gapminder %>%
@@ -364,7 +364,7 @@ region != "Northern Africa" ~ "Sub-Saharan",
 TRUE ~ "Others"))
 ```
 
-Nós convertemos essa variável `group` em um fator para controlar a ordem dos níveis:
+Convertemos essa variável `group` em um _factor_ para controlar a ordem dos níveis:
 
 ```{r}
 gapminder <- gapminder %>%
@@ -374,11 +374,11 @@ mutate(group = factor(group, levels = c("Others", "Latin America",
 ```
 
 
-Na próxima seção, mostramos como visualizar e comparar distribuições entre grupos.
+Na próxima seção, mostraremos como visualizar e comparar distribuições entre grupos.
 
-### Diagrama de caixa
+### _Boxplots_ (diagramas de caixa)
 
-A análise exploratória dos dados acima revelou duas características sobre a distribuição de renda média em 1970. Usando um histograma, encontramos uma distribuição bimodal com modos relacionados a países ricos e pobres. Agora, queremos comparar a distribuição entre esses cinco grupos para confirmar a dicotomia "oeste versus repouso". O número de pontos em cada categoria é grande o suficiente para que um gráfico de resumo possa ser útil. Poderíamos gerar cinco histogramas ou cinco gráficos de densidade, mas pode ser mais prático ter todos os resumos visuais em um gráfico. Portanto, começamos empilhando diagramas de caixas um ao lado do outro. Observe que adicionamos a camada `theme(axis.text.x = element_text(angle = 90, hjust = 1))` para que os rótulos dos grupos sejam verticais, pois não cabem se os mostrarmos horizontalmente e para removê-los do eixo para liberar espaço.
+A análise exploratória dos dados acima revelou duas características sobre a distribuição de renda média em 1970. Usando um histograma, encontramos uma distribuição bimodal com modas relacionadas a países ricos e pobres. Agora, queremos comparar a distribuição entre esses cinco grupos para confirmar a dicotomia "oeste versus o resto". O número de pontos em cada categoria é grande o suficiente para que um gráfico de resumo possa ser útil. Poderíamos gerar cinco histogramas ou cinco gráficos de densidade, mas pode ser mais prático ter todos os resumos visuais em um único gráfico. Portanto, vamos começar então colocando os boxplots lado a lado. Observe que adicionamos a camada `theme(axis.text.x = element_text(angle = 90, hjust = 1))` para colocar os rótulos dos grupos na vertical, uma vez que, se os mostrarmos horizontalmente, eles não irão caber no eixo. Assim, podemos ganhar espaço.
 
 
 ```{r dollars-per-day-boxplot}
@@ -392,16 +392,16 @@ theme(axis.text.x = element_text(angle = 90, hjust = 1))
 p
 ```
 
-Os diagramas de caixa têm a limitação de que, resumindo os dados em cinco números, recursos importantes dos dados podem ser perdidos. Uma maneira de evitar isso é exibindo os dados.
+Os _boxplots_ têm a limitação de que, resumindo os dados em cinco números, podemos perder importantes características dos dados. Uma maneira de evitar isso é exibindo os dados como pontos.
 
 ```{r dollars-per-day-boxplot-with-data}
 p + geom_point(alpha = 0.5)
 ```
 
 
-Gráficos ### _ridge_
+### Gráficos _ridge_
 
-Mostrar cada ponto individual nem sempre revela características importantes da distribuição. Embora esse não seja o caso aqui, quando o número de pontos de dados é muito grande, acabamos sobrescrevendo e exibindo os dados pode sair pela culatra. Os diagramas de caixa ajudam nisso, fornecendo um resumo de cinco números, mas isso também tem limitações. Por exemplo, gráficos de caixa não revelam distribuições bimodais. Para ver isso, observe os dois gráficos abaixo que resumem o mesmo conjunto de dados:
+Mostrar cada ponto individual nem sempre revela características importantes da distribuição. Embora esse não seja o caso aqui, quando o número de pontos representando dados é tão grande que há sobreposição, mostrar os dados pode ser contraproducente. Os _boxplots_ ajudam nisso, fornecendo um resumo de cinco números, mas isso também tem suas limitações. Por exemplo, _boxplots_ não revelam distribuições bimodais. Para ver isso, observe os dois gráficos abaixo que resumem o mesmo conjunto de dados:
 
 ```{r boxplot-dont-show-bimodal, warning=FALSE, out.width="100%", message = FALSE, echo=FALSE, fig.height=3}
 set.seed(1987)
@@ -413,7 +413,7 @@ p2 <- qplot("", x, geom="boxplot")
 gridExtra::grid.arrange(p1, p2, nrow = 1)
 ```
 
-Nos casos em que estamos preocupados que o resumo do gráfico de caixa seja muito simplista, podemos exibir densidades suaves ou histogramas empilhados usando _ridge graphs_. Como estamos acostumados a visualizar densidades com valores no eixo x, as empilhamos verticalmente. Além disso, como precisamos de mais espaço nessa abordagem, é conveniente cobri-los. O pacote __ggridges__ inclui uma função conveniente para fazer isso. Abaixo estão os dados da receita, mostrados acima com gráficos de caixa, mas agora exibidos com uma crista gráfica _.
+Nos casos em que estamos preocupados que o resumo do _boxplot_ seja muito simplista, podemos exibir densidades suaves ou histogramas empilhados usando gráficos _ridge_. Como estamos acostumados a visualizar densidades com valores no eixo x, as empilhamos verticalmente. Além disso, como precisamos de mais espaço nessa abordagem, é conveniente cobri-los. O pacote __ggridges__ inclui uma função conveniente para fazer isso. Abaixo estão os dados da receita, mostrados acima com gráficos de caixa, mas agora exibidos com uma crista gráfica _.
 
 ```{r ridge-plot, message=FALSE}
 library(ggridges)
