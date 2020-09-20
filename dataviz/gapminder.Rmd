@@ -444,7 +444,7 @@ point_alpha = 1, alpha = 0.7)
 
 ### Exemplo: distribuições de renda 1970 versus 2010
 
-A exploração dos dados mostra claramente que em 1970 havia uma dicotomia "oeste versus o resto". Mas essa dicotomia persiste? Vamos usar `facet_grid` para ver como as distribuições mudaram. Para começar, focamos em dois grupos: o oeste e o resto. Fazemos quatro histogramas.
+A exploração dos dados mostra claramente que em 1970 havia uma dicotomia "ocidente versus o resto". Mas essa dicotomia persiste? Vamos usar `facet_grid` para ver como as distribuições mudaram. Para começar, focamos em dois grupos: o ocidente e o resto. Vamos fazer quatro histogramas:
 
 ```{r income-hist-west-v-developing-two-years}
 past_year <- 1970
@@ -459,9 +459,9 @@ scale_x_continuous(trans = "log2") +
 facet_grid(year ~ west)
 ```
 
-Antes de interpretar as conclusões deste gráfico, notamos que há mais países representados nos histogramas de 2010 do que em 1970: a contagem total é maior. Uma razão para isso é que vários países foram fundados após 1970. Por exemplo, a União Soviética foi dividida em diferentes países durante os anos 90. Outra razão é que mais dados estão disponíveis para mais países em 2010.
+Antes de interpretar as conclusões deste gráfico, notamos que há mais países representados nos histogramas de 2010 do que em 1970: a contagem total é maior. Uma razão para isso é que vários países foram fundados após 1970. Por exemplo, a União Soviética foi dividida em diferentes países durante os anos 1990. Uma outra razão é que mais dados estão disponíveis para mais países em 2010.
 
-Nós refizemos os gráficos usando apenas países com dados disponíveis para os dois anos. Na parte _data wrangling_ deste livro, aprenderemos como usar as ferramentas __tidyverse__ que nos permitirão escrever código eficiente para isso, mas aqui podemos usar código simples usando a função `intersect`:
+Refizemos os gráficos usando apenas países com dados disponíveis para ambos os anos. Na seção _data wrangling_ deste livro, aprenderemos a usar as ferramentas __tidyverse__ que nos permitirão escrever códigos eficiente para isso. Entretanto, aqui iremos usar um simples código usando a função `intersect`:
 
 ```{r}
 country_list_1 <- gapminder %>%
@@ -475,10 +475,10 @@ pull(country)
 country_list <- intersect(country_list_1, country_list_2)
 ```
 
-Estes `r length(country_list)` constituir
+Estes `r length(country_list)` representam 
 `r round(gapminder %>% filter(year==present_year) %>% summarize(perc=sum(population[country%in%country_list], na.rm=TRUE)/sum(population, na.rm=TRUE)) %>% pull(perc)*100 )`% da população mundial, portanto esse subconjunto deve ser representativo.
 
-Vamos refazer o gráfico, mas apenas para este subconjunto simplesmente adicionando `country %in% country_list` para a função `filter`:
+Vamos refazer o gráfico apenas para esse subconjunto, simplesmente adicionando `country %in% country_list` para a função `filter`:
 
 ```{r income-histogram-west-v-devel, echo=FALSE}
 gapminder %>%
@@ -490,9 +490,9 @@ scale_x_continuous(trans = "log2") +
 facet_grid(year ~ west)
 ```
 
-Agora vemos que os países ricos ficaram um pouco mais ricos, mas em termos de porcentagem, os países pobres parecem ter melhorado mais. Em particular, vemos que a proporção de países em desenvolvimento que ganha mais de US $ 16 por dia aumentou substancialmente.
+Agora vemos que os países ricos ficaram um pouco mais ricos, mas em termos de porcentagem, os países pobres parecem ter melhorado mais. Em particular, vemos que a proporção de países em desenvolvimento que ganha mais de 16 dólares por dia aumentou substancialmente.
 
-Para ver quais regiões específicas melhoraram mais, podemos refazer os _boxplots_ que fizemos anteriormente, mas agora adicionamos o ano de 2010 e usamos _facet_ para comparar os dois anos.
+Para ver quais regiões específicas melhoraram mais, podemos refazer os _boxplots_ construídos anteriormente, mas agora adicionamos o ano de 2010, e então, usamos _facet_ para comparar os dois anos.
 
 
 ```{r income-histogram-by-region, out.width="100%"}
@@ -506,9 +506,9 @@ xlab("") +
 facet_grid(. ~ year)
 ```
 
-Aqui, fazemos uma pausa para introduzir outro recurso importante do __ggplot2__. Como queremos comparar cada região antes e depois, seria conveniente ter o diagrama de caixa de `r past_year` próximo ao de `r present_year` para cada região. Em geral, as comparações são mais fáceis quando os dados são plotados um ao lado do outro.
+Agora faremos uma pausa para introduzir outro recurso importante do __ggplot2__. Como queremos comparar cada região antes e depois, seria conveniente ter o _boxplot_ de `r past_year` próximo ao de `r present_year` para cada região. Em geral, as comparações são mais fáceis quando os dados são plotados um ao lado do outro.
 
-Portanto, em vez de nos separarmos em facetas, mantemos os dados de cada ano juntos e pedimos para colorir (ou preenchê-los) por ano. Observe que os grupos são separados automaticamente por ano e cada par de diagramas de caixas é desenhado lado a lado. Como o ano é um número, nós o tornamos um fator, já que __ggplot2__ atribui automaticamente uma cor a cada categoria de um fator. Lembre-se que temos que converter as colunas `year` de numérico para fator.
+Portanto, em vez de separarmos em facetas, manteremos os dados de cada ano juntos e iremos colori-los dependendo do ano. Observe que os grupos são separados automaticamente por ano e cada par de _boxplot_ é desenhado lado a lado. Como o ano é um número, nós o converteremos em um _factor_, uma vez que __ggplot2__ atribui automaticamente uma cor a cada categoria de um _factor_. Lembre-se que temos que converter as colunas `year` de _numeric_ para _factor_.
 
 ```{r income-histogram-west-v-devel-by-year}
 gapminder %>%
@@ -540,9 +540,9 @@ ylab(paste("Percent increase:", past_year, "to", present_year))
 ```
 
 
-A exploração de dados anteriores sugere que a diferença de renda entre países ricos e pobres diminuiu consideravelmente nos últimos 40 anos. Usamos uma série de histogramas e gráficos de caixa para ver isso. Sugerimos uma maneira sucinta de transmitir essa mensagem com apenas um gráfico.
+A exploração de dados anterior sugere que a diferença de renda entre países ricos e pobres diminuiu consideravelmente nos últimos 40 anos. Usamos uma série de histogramas e _boxplots_ para ver isso. Sugerimos uma maneira sucinta de transmitir essa mensagem com apenas um gráfico.
 
-Vamos começar observando que os gráficos de densidade para a distribuição de renda em `r past_year` e `r present_year` eles transmitem a mensagem de que a lacuna está se fechando:
+Vamos começar observando que os gráficos de densidade para a distribuição de renda em `r past_year` e `r present_year` transmitem a mensagem de que a diferença está diminuindo:
 
 ```{r income-smooth-density-by-year, out.width="100%", fig.height=3}
 gapminder %>%
