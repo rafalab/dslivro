@@ -413,7 +413,7 @@ p2 <- qplot("", x, geom="boxplot")
 gridExtra::grid.arrange(p1, p2, nrow = 1)
 ```
 
-Nos casos em que estamos preocupados que o resumo do _boxplot_ seja muito simplista, podemos exibir densidades suaves ou histogramas empilhados usando gráficos _ridge_. Como estamos acostumados a visualizar densidades com valores no eixo x, as empilhamos verticalmente. Além disso, como precisamos de mais espaço nessa abordagem, é conveniente cobri-los. O pacote __ggridges__ inclui uma função conveniente para fazer isso. Abaixo estão os dados da receita, mostrados acima com gráficos de caixa, mas agora exibidos com uma crista gráfica _.
+Nos casos em que estamos preocupados que o resumo do _boxplot_ seja muito simplista, podemos exibir densidades suaves ou histogramas empilhados usando gráficos _ridge_. Como estamos acostumados a visualizar densidades com valores no eixo x, as empilhamos verticalmente. Além disso, como precisamos de mais espaço nessa abordagem, é conveniente permitir sobreposições. O pacote __ggridges__ inclui uma função conveniente para fazer isso. Abaixo estão os dados da receita, mostrados acima com gráficos de caixa, mas agora exibidos com uma crista gráfica _.
 
 ```{r ridge-plot, message=FALSE}
 library(ggridges)
@@ -424,7 +424,7 @@ scale_x_continuous(trans = "log2")
 p + geom_density_ridges()
 ```
 
-Lembre-se de que precisamos investir o `x` e `y` que foram usados para o gráfico da caixa. Um parâmetro útil de `geom_density_ridges` é `scale`, o que lhes permite determinar quanto se sobrepõem; por exemplo, `scale = 1` significa que não há sobreposição. Valores maiores que 1 resultam em maior sobreposição.
+Note de que precisamos inverter os valores de `x` e `y` que foram usados para o _boxplot_. Um parâmetro útil para `geom_density_ridges` é `scale`, que permite determinar quanto os gráficos irão se sobrepor. Por exemplo, `scale = 1` significa que não há sobreposição. Valores maiores que 1 resultam em maior sobreposição.
 
 Se o número de pontos de dados for pequeno o suficiente, podemos adicioná-los ao gráfico _ridge_ usando o seguinte código:
 
@@ -432,7 +432,8 @@ Se o número de pontos de dados for pequeno o suficiente, podemos adicioná-los 
 p + geom_density_ridges(jittered_points = TRUE)
 ```
 
-Por padrão, a altura dos pontos é _jittered_ e não deve ser interpretada de forma alguma. Para exibir pontos de dados, mas sem usar _jitter_, podemos usar o código a seguir para adicionar o que é conhecido como uma representação _rug_ dos dados.
+Por padrão, a altura dos pontos é instável (_jittered_) e não deve ser interpretada de forma alguma. Para exibir pontos de dados, mas sem usar _jitter_, podemos usar o código a seguir para adicionar o que é conhecido como uma representação _rug_ dos dados.
+
 ```{r ridge-plot-with-rug, message=FALSE}
 p + geom_density_ridges(jittered_points = TRUE,
 position = position_points_jitter(height = 0),
