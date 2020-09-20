@@ -2,7 +2,7 @@
 
 
 
-## Valores atípicos
+## Valores atípicos 
 
 Anteriormente, descrevemos como os boxplots mostram _outliers_, mas não oferecemos uma definição precisa. Aqui discutimos discrepâncias, abordagens que podem ajudar a detectá-las e resumos que levam sua presença em consideração.
 
