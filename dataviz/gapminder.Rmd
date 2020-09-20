@@ -213,7 +213,7 @@ O gráfico mostra claramente como a taxa de fertilidade da Coreia do Sul caiu dr
 
 ### Rótulos em vez de legendas
 
-Para gráficos de tendências, recomendamos rotular as linhas em vez de usar legendas, pois o espectador pode ver rapidamente qual linha representa qual país. Essa sugestão se aplica à maioria dos gráficos: os rótulos geralmente são preferidos às legendas.
+Para gráficos de tendências, recomendamos rotular as linhas em vez de usar legendas. Assim, o espectador pode ver rapidamente qual linha representa qual país. Essa sugestão se aplica à maioria dos gráficos: rótulos geralmente são preferidos a legendas.
 
 Demonstramos como fazer isso usando dados de expectativa de vida. Definimos uma tabela de dados com os locais dos rótulos e, em seguida, usamos uma segunda atribuição apenas para esses rótulos:
 
@@ -228,26 +228,26 @@ geom_text(data = labels, aes(x, y, label = country), size = 5) +
 theme(legend.position = "none")
 ```
 
-O gráfico mostra claramente como uma melhoria na expectativa de vida se seguiu a quedas nas taxas de fertilidade. Em 1960, os alemães viveram 15 anos a mais que os sul-coreanos, embora em 2010 a diferença esteja completamente fechada. Ele exemplifica a melhoria que muitos países não ocidentais fizeram nos últimos 40 anos.
+O gráfico mostra claramente como uma melhoria na expectativa de vida ocorreu em paralelo a quedas nas taxas de fertilidade. Em 1960, alemães viviam 15 anos a mais que sul-coreanos. Contudo, por volta de 2010, já não havia diferença. Isso exemplifica a melhoria que muitos países não ocidentais obtiveram nos últimos 40 anos.
 
 
 
 ## Transformações de dados
 
-Agora voltamos nossa atenção para a segunda questão relacionada à idéia comum de que a distribuição da riqueza em todo o mundo piorou nas últimas décadas. Quando se pergunta ao público em geral se os países pobres se tornaram mais pobres e os países ricos se tornaram mais ricos, a maioria responde que sim. Usando camadas, histogramas, densidades suaves e gráficos de caixa, podemos ver se esse é realmente o caso. Primeiro, aprenderemos como as transformações às vezes podem ajudar a fornecer resumos e gráficos mais informativos.
+Agora voltaremos nossa atenção para a segunda questão relacionada à ideia comum de que a distribuição da riqueza em todo o mundo piorou nas últimas décadas. Quando se pergunta ao público em geral se os países pobres se tornaram mais pobres e os países ricos se tornaram mais ricos, a maioria responde que sim. Usando estratificações, histogramas, gráficos de densidades e boxplots, podemos ver se isso é verdade. Primeiro, aprenderemos como as transformações às vezes podem ajudar a fornecer resumos e gráficos mais informativos.
 
-A tabela de dados `gapminder` inclui uma coluna com o produto interno bruto do país, ou PIB. O PIB mede o valor de mercado de bens e serviços produzidos por um país em um ano. O PIB por pessoa é frequentemente usado como um resumo aproximado da riqueza de um país. Aqui, dividimos esse valor por 365 para obter a medida mais interpretável de _dólares por dia_. Usando o dólar atual como unidade, uma pessoa que sobrevive com uma renda inferior a US $ 2 por dia é definida como vivendo em "pobreza absoluta". Nós adicionamos essa variável à tabela de dados:
+A tabela de dados `gapminder` inclui uma coluna com o produto interno bruto (PIB) dos países. O PIB mede o valor de mercado de bens e serviços produzidos por um país em um ano. O PIB por pessoa é frequentemente usado como um resumo aproximado da riqueza de um país. Aqui, dividimos esse valor por 365 para obter uma medida mais interpretável: _dólares por dia_. Usando o dólar atual como unidade, uma pessoa que sobrevive com uma renda inferior a US$2 por dia é definida como vivendo em _pobreza absoluta_. Vamos adicionar essa variável à tabela de dados:
 
 
 ```{r}
 gapminder <- gapminder %>% mutate(dollars_per_day = gdp/population/365)
 ```
 
-Os valores do PIB são ajustados pela inflação e representam o dólar atual, portanto esses valores devem ser comparáveis ao longo dos anos. Obviamente, essas são as médias dos países e dentro de cada país há muita variabilidade. Todos os gráficos e idéias descritos abaixo se referem às médias dos países e não aos indivíduos dentro deles.
+Os valores do PIB são ajustados pela inflação e representam o dólar atual, portanto esses valores devem ser comparáveis ao longo dos anos. Obviamente, essas são as médias dos países e dentro de cada país há muita variabilidade. Todos os gráficos e percepções descritos abaixo se referem às médias dos países e não aos indivíduos dentro deles.
 
 ### Transformação logarítmica
 
-Abaixo está um histograma de ganhos diários de 1970:
+Abaixo está um histograma de renda por dia em 1970:
 
 ```{r dollars-per-day-distribution}
 past_year <- 1970
@@ -257,7 +257,7 @@ ggplot(aes(dollars_per_day)) +
 geom_histogram(binwidth = 1, color = "black")
 ```
 
-Nós usamos o argumento `color = "black"` traçar um limite e distinguir claramente os compartimentos.
+Usamos o argumento `color = "black"` para inserir bordas, e assim, distinguir claramente as barras.
 
 Neste gráfico, vemos que para a maioria dos países, as médias estão abaixo de \$10 por día. Sin embargo, la mayoría del eje-x está dedicado a `r filter(gapminder, year == past_year & !is.na(gdp)) %>% summarise(x = sum(dollars_per_day>10)) %>% pull(x)` países con promedio de menos de \$ 10. Portanto, o gráfico não é muito informativo em relação aos países com valores abaixo de \$ 10 por dia.
 
