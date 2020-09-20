@@ -259,9 +259,9 @@ geom_histogram(binwidth = 1, color = "black")
 
 Usamos o argumento `color = "black"` para inserir bordas, e assim, distinguir claramente as barras.
 
-Neste gráfico, vemos que para a maioria dos países, as médias estão abaixo de \$10 por día. Sin embargo, la mayoría del eje-x está dedicado a `r filter(gapminder, year == past_year & !is.na(gdp)) %>% summarise(x = sum(dollars_per_day>10)) %>% pull(x)` países con promedio de menos de \$ 10. Portanto, o gráfico não é muito informativo em relação aos países com valores abaixo de \$ 10 por dia.
+Neste gráfico, vemos que, para a maioria dos países, as médias estão abaixo de \$10 por dia. Entretanto, a maioria do eixo x está dedicado aos `r filter(gapminder, year == past_year & !is.na(gdp)) %>% summarise(x = sum(dollars_per_day>10)) %>% pull(x)` países com médias abaixo de \$10. Esse gráfico não é muito informativo em relação a esses países.
 
-Seria mais informativo ver rapidamente quantos países têm renda média diária de cerca de $1 (extremadamente pobre), \$ 2 (muito ruim), \$4 (pobre), \$ 8 (média), \$16 (acomodado), \$ 32 (rico), \$ 64 (muito rico) por dia. Essas mudanças são multiplicativas, e as transformações logarítmicas convertem as alterações multiplicativas em aditivos: quando a base 2 é usada, dobrar um valor se torna um aumento de 1.
+Seria mais informativo ver rapidamente quantos países têm renda média diária de cerca de $1 (extremadamente pobre), \$2 (muito pobre), \$4 (pobre), \$8 (médio), \$16 (bem de vida), \$32 (rico), \$64 (muito rico) por dia. Como essas mudanças são multiplicativas, as transformações logarítmicas permitem converter as alterações multiplicativas em aditivas: quando a base 2 é usada, dobrar um valor se torna um aumento de 1.
 
 Aqui está a distribuição se aplicarmos uma transformação logarítmica de base 2:
 ```{r dollars-per-day-distribution-log}
@@ -275,15 +275,15 @@ geom_histogram(binwidth = 1, color = "black")
 
 ### Qual base?
 
-No caso anterior, usamos a base 2 nas transformações logarítmicas. Outras opções comuns são básicas $\mathrm{e}$ (o logaritmo natural) e base 10.
+No caso anterior, usamos a base 2 nas transformações logarítmicas. Outras opções comuns são a base $\mathrm{e}$ (o logaritmo natural) e a base 10.
 
-Em geral, não recomendamos o uso do logaritmo natural para exploração e visualização de dados. A razão é porque enquanto $2^2, 2^3, 2^4, \dots$ ou $10^2, 10^3, \dots$ eles são fáceis de calcular em nossas cabeças, o mesmo não é verdade para $\mathrm{e}^2, \mathrm{e}^3, \dots$ portanto, a escala não é intuitiva nem fácil de interpretar.
+Em geral, não recomendamos o uso do logaritmo natural para exploração e visualização de dados. A razão disso é porque enquanto $2^2, 2^3, 2^4, \dots$ ou $10^2, 10^3, \dots$ são fáceis de calcular em nossas mentes, o mesmo não é verdade para $\mathrm{e}^2, \mathrm{e}^3, \dots$. Essa escala não é intuitiva nem fácil de interpretar.
 
-No exemplo de dólares por dia, usamos a base 2 em vez da base 10 porque o intervalo resultante é mais fácil de interpretar. O intervalo dos valores plotados é `r with(filter(gapminder, year==past_year), range(dollars_per_day, na.rm=TRUE))`.
+No exemplo da renda em dólares por dia, usamos a base 2 em vez da base 10 porque o intervalo resultante é mais fácil de interpretar. O intervalo dos valores plotados é `r with(filter(gapminder, year==past_year), range(dollars_per_day, na.rm=TRUE))`.
 
-Na base 10, isso se torna um intervalo que inclui muito poucos números inteiros: apenas 0 e 1. Com a base dois, nosso intervalo inclui -2, -1, 0, 1, 2, 3, 4 e 5. É mais fácil de calcular $2^x$ e $10^x$ quando $x$ é um número inteiro e está entre -10 e 10, portanto, preferimos ter números inteiros menores na escala. Outra conseqüência de um intervalo limitado é que escolher a largura da bandeja (_binwidth_ em inglês) é mais difícil. Com o log de base 2, sabemos que uma largura de compartimento de 1 se tornará um compartimento com alcance $x$ para $2x$.
+Na base 10, isso se torna um intervalo que inclui muito poucos números inteiros: apenas 0 e 1. Com a base dois, nosso intervalo inclui -2, -1, 0, 1, 2, 3, 4 e 5. É mais fácil de calcular $2^x$ e $10^x$ quando $x$ é um número inteiro e está entre -10 e 10. Portanto, preferimos ter números inteiros menores na escala. Outra consequência de um intervalo limitado é que escolher a largura das barras (_binwidth_ em inglês) é mais difícil. Com o log de base 2, sabemos que uma largura de barra igual a 1 será traduzida em uma barra com alcance de $x$ a $2x$.
 
-Para um exemplo em que a base 10 faz mais sentido, considere o tamanho da população. Um logaritmo de base 10 é preferível, pois o intervalo para eles é:
+Para um exemplo em que a base 10 faz mais sentido, considere os tamanhos de populações. Um logaritmo de base 10 é preferível uma vez que o intervalo para esse caso é:
 
 ```{r}
 filter(gapminder, year == past_year) %>%
@@ -299,11 +299,11 @@ ggplot(aes(log10(population))) +
 geom_histogram(binwidth = 0.5, color = "black")
 ```
 
-No gráfico acima, vemos rapidamente que as populações dos países variam entre dez bilhões e dez bilhões.
+No gráfico acima, vemos rapidamente que as populações dos países variam entre dez mil e dez bilhões.
 
-### Transformar valores ou escala?
+### Transformar os valores ou a escala?
 
-Existem duas maneiras de usar transformações logarítmicas em gráficos. Podemos pegar o logaritmo dos valores antes de representá-los graficamente ou usar escalas logarítmicas nos eixos. Ambas as abordagens são úteis e têm vantagens diferentes. Se tomarmos o logaritmo dos dados, podemos interpretar mais facilmente os valores intermediários na escala. Por exemplo, se virmos:
+Existem duas maneiras de usar transformações logarítmicas em gráficos. Podemos pegar o logaritmo dos valores antes de representá-los graficamente ou usar escalas logarítmicas nos eixos. Ambas as abordagens são úteis e têm diferentes vantagens. Se transformarmos os dados em logaritmo, podemos interpretar mais facilmente os valores intermediários na escala. Por exemplo, se virmos:
 
 `----1----x----2--------3----`
 
@@ -311,9 +311,9 @@ para dados transformados com o logaritmo, sabemos que o valor de $x$ é aproxima
 
 `----1----x----10------100---`
 
-para determinar `x` precisamos calcular $10^{1.5}$, o que não é fácil de fazer mentalmente. A vantagem de usar escalas logarítmicas é que vemos os valores originais nos eixos. No entanto, a vantagem de exibir escalas logarítmicas é que os valores originais são mostrados no gráfico e são mais fáceis de interpretar. Por exemplo, veríamos "US $ 32 por dia" em vez de "5 bases de log US $ 2 por dia".
+então, para determinar `x` precisamos calcular $10^{1.5}$, o que não é fácil de fazer mentalmente. A vantagem de usar escalas logarítmicas é que vemos os valores originais nos eixos. No entanto, a vantagem de apenas exibir essas escalas é que os valores originais são mostrados no gráfico e são mais fáceis de interpretar. Por exemplo, veríamos "32 dólares por dia" em vez de "5 log base 2 dólares por dia".
 
-Como aprendemos anteriormente, se queremos escalar o eixo com logaritmos, podemos usar a função `scale_x_continuous`. Em vez de primeiro pegar o logaritmo dos valores, aplicamos esta camada:
+Como aprendemos anteriormente, se quisermos dimensionar o eixo com logaritmos, podemos usar a função `scale_x_continuous`. Em vez de primeiro transformar os valores em logaritmo, aplicamos esta camada:
 
 ```{r dollars-per-day-log-scale}
 gapminder %>%
@@ -323,9 +323,9 @@ geom_histogram(binwidth = 1, color = "black") +
 scale_x_continuous(trans = "log2")
 ```
 
-Observe que a transformação logarítmica da base 10 tem sua própria função: `scale_x_log10()`, mas atualmente a base 2 não, embora possamos definir facilmente uma.
+Observe que a transformação logarítmica da base 10 tem sua própria função: `scale_x_log10()`, mas atualmente a base 2 não, embora possamos definir facilmente a nossa própria.
 
-Outras transformações estão disponíveis através do argumento `trans`. Como aprenderemos mais adiante, a transformação da raiz quadrada ( `sqrt`) é útil ao considerar contagens. A transformação logística ( `logit`) é útil ao plotar proporções entre 0 e 1. A transformação `reverse` é útil quando queremos que os menores valores estejam à direita ou acima.
+Outras transformações estão disponíveis através do argumento `trans`. Como aprenderemos mais adiante, a transformação da raiz quadrada (`sqrt`) é útil ao considerar contagens. A transformação logística (`logit`) é útil ao plotar proporções entre 0 e 1. E a transformação `reverse` é útil quando queremos que os menores valores estejam à direita ou acima.
 
 ## Como visualizar distribuições multimodais
 
