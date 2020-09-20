@@ -329,13 +329,13 @@ Outras transformações estão disponíveis através do argumento `trans`. Como 
 
 ## Como visualizar distribuições multimodais
 
-No histograma acima, vemos dois solavancos: um aos 4 e outro aos 32. Estatisticamente, esses solos às vezes são chamados de _modes_. O modo de uma distribuição é o valor com a frequência mais alta. O modo de distribuição normal é a média. Quando uma distribuição, como a acima, não diminui monotonicamente na moda, chamamos os lugares onde ela sobe e desce novamente - moda local - e dizemos que a distribuição tem - moda múltipla.
+No histograma acima, vemos dois picos: um aos 4 e outro aos 32. Estatisticamente, esses picos às vezes são chamados de _modas_. A moda de uma distribuição é o valor com a frequência mais alta. A moda de uma distribuição normal é a média. Quando uma distribuição, como aquela apresentada acima, não diminui monotonicamente na moda, chamamos os locais onde ela sobe e desce novamente de _moda local_ e dizemos que a distribuição tem _modas múltiplas_.
 
-O histograma acima sugere que a distribuição de renda dos países em 1970 possui dois modos: um de aproximadamente US $ 2 por dia (1 na escala log 2) e outro de aproximadamente US $ 32 por dia (5 na escala log 2) . Essa bimodalidade é consistente com um mundo dicotômico composto por países com renda média inferior a US $ 8 (3 na escala log 2) por dia e países acima disso.
+O histograma acima sugere que a distribuição de renda dos países em 1970 possui duas modss: uma de aproximadamente 2 dólares por dia (1 na escala log 2) e outro de aproximadamente 32 dólares por dia (5 na escala log 2) . Essa _bimodalidade_ é consistente com um mundo dicotômico composto por países com renda média inferior a $8 (3 na escala log 2) por dia e países acima disso.
 
-## Como comparar várias distribuições com gráficos de caixas e gráficos _ridge_
+## Como comparar múltiplas distribuições com _boxplots_ e gráficos _ridge_
 
-De acordo com o histograma, os valores da distribuição de renda para 1970 mostram uma dicotomia. No entanto, o histograma não nos mostra se os dois grupos de países estão no oeste ou em parte do mundo em desenvolvimento.
+De acordo com o histograma, os valores da distribuição de renda para 1970 mostram uma dicotomia. No entanto, o histograma não nos mostra se os dois grupos de países são ocidentais ou parte do mundo em desenvolvimento.
 
 Vamos começar analisando rapidamente os dados por região. Reorganizamos as regiões pela mediana e usamos uma escala logarítmica.
 
@@ -491,7 +491,7 @@ facet_grid(year ~ west)
 
 Agora vemos que os países ricos ficaram um pouco mais ricos, mas em termos de porcentagem, os países pobres parecem ter melhorado mais. Em particular, vemos que a proporção de países em desenvolvimento que ganha mais de US $ 16 por dia aumentou substancialmente.
 
-Para ver quais regiões específicas melhoraram mais, podemos refazer os boxplots que fizemos anteriormente, mas agora adicionamos o ano de 2010 e usamos _facet_ para comparar os dois anos.
+Para ver quais regiões específicas melhoraram mais, podemos refazer os _boxplots_ que fizemos anteriormente, mas agora adicionamos o ano de 2010 e usamos _facet_ para comparar os dois anos.
 
 
 ```{r income-histogram-by-region, out.width="100%"}
