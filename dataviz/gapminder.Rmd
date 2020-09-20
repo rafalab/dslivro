@@ -591,7 +591,7 @@ O gráfico acima mostra que há o mesmo número de países em cada grupo. Para m
 
 ### Como acessar variáveis calculadas
 
-Para tornar as áreas dessas densidades proporcionais ao tamanho do grupo, simplesmente multiplicamos os valores do eixo y pelo tamanho do grupo. No arquivo de ajuda de `geom_density`, vemos que as funções calculam uma variável chamada `count` quem faz exatamente isso. Queremos que essa variável, e não a densidade, esteja no eixo y.
+Para tornar as áreas dessas densidades proporcionais ao tamanho do grupo, simplesmente multiplicamos os valores do eixo y pelo tamanho do grupo. No arquivo de ajuda de `geom_density`, vemos que as funções calculam uma variável chamada `count` que faz exatamente isso. Queremos que essa variável, e não a densidade, esteja no eixo y.
 
 Em __ggplot2__, obtemos acesso a essas variáveis cercando o nome com dois pontos. Portanto, usaremos o seguinte mapeamento:
 
@@ -599,7 +599,7 @@ Em __ggplot2__, obtemos acesso a essas variáveis cercando o nome com dois ponto
 aes(x = dollars_per_day, y = ..count..)
 ```
 
-Agora podemos criar o diagrama desejado simplesmente alterando o mapeamento no snippet de código acima. Também estenderemos os limites do eixo x.
+Agora podemos criar o gráfico desejado simplesmente alterando o mapeamento do código anterior. Também estenderemos os limites do eixo x.
 
 
 ```{r income-smooth-density-counts}
@@ -619,7 +619,7 @@ Se queremos que as densidades sejam mais suaves, usamos o argumento `bw` para qu
 p + geom_density(alpha = 0.2, bw = 0.75) + facet_grid(year ~ .)
 ```
 
-Este gráfico agora mostra o que está acontecendo muito claramente. A distribuição do mundo em desenvolvimento está mudando. Uma terceira tendência aparece, composta pelos países que mais diminuíram a diferença.
+Esse gráfico agora mostra o que está acontecendo muito claramente. A distribuição do mundo em desenvolvimento está mudando. Uma terceira modalidade aparece, apresentando os países que mais diminuíram a diferença.
 
 Para visualizar se algum dos grupos definidos acima é a principal causa dessas alterações, podemos criar rapidamente um gráfico _ridge_:
 
@@ -646,14 +646,14 @@ geom_density(alpha = 0.2, bw = 0.75, position = "stack") +
 facet_grid(year ~ .)
 ```
 
-Aqui podemos ver claramente como as distribuições para o leste da Ásia, América Latina e outros se deslocam visivelmente para a direita. Enquanto a África subsaariana permanece estagnada.
+Aqui podemos ver claramente como as distribuições para o Leste da Ásia, América Latina e outros se deslocam visivelmente para a direita. Enquanto a África Subsaariana permanece estagnada.
 
-Observe que ordenamos os níveis do grupo para que a densidade do Ocidente seja grafada primeiro, depois na África Subsaariana. Tendo ambas as extremidades representadas graficamente primeiro, permite-nos ver melhor a bimodalidade restante.
+Observe que ordenamos os níveis do grupo para que a densidade do Ocidente seja plotada primeiro, seguida pela África Subsaariana. Ter ambas as extremidades representadas graficamente primeiro nos permite ver melhor a bimodalidade restante.
 
 
 ### Densidades ponderadas
 
-Como ponto final, notamos que essas distribuições pesam cada país igualmente. Portanto, se a maioria da população está melhorando, mas morando em um país muito grande, como a China, talvez não gostemos disso. De fato, podemos ponderar as densidades suaves usando o argumento de mapeamento `weight`. O gráfico fica assim:
+Como ponto final, notamos que essas distribuições têm o mesmo peso para cada país. Portanto, se a maioria da população está melhorando, mas se tratando em um país muito grande, como a China, talvez não avaliemos isso. De fato, podemos ponderar as densidades suaves usando o argumento de mapeamento `weight`. O gráfico então ficaria assim:
 
 ```{r income-smooth-density-counts-by-region-year-weighted, warning=FALSE, echo=FALSE}
 gapminder %>%
@@ -666,14 +666,14 @@ scale_x_continuous(trans = "log2", limit = c(0.125, 300)) +
 geom_density(alpha = 0.2, bw = 0.75, position = "stack") + facet_grid(year ~ .)
 ```
 
-Esta figura em particular mostra muito claramente como a lacuna na distribuição de renda está diminuindo e que a maioria dos países ainda em situação de pobreza está na África Subsaariana.
+Essa figura em particular mostra muito claramente como a diferença na distribuição de renda está diminuindo e que a maioria dos países ainda em situação de pobreza está na África Subsaariana.
 
 
 ## A falácia ecológica e a importância de mostrar os dados
 
 Ao longo desta seção, comparamos regiões do mundo. Vimos que, em média, algumas regiões têm melhor desempenho que outras. Nesta seção, vamos nos concentrar na descrição da importância da variabilidade dentro dos grupos, examinando a relação entre as taxas de mortalidade infantil de um país e a renda média.
 
-Definimos mais algumas regiões e comparamos as médias entre as regiões:
+Vamos definir mais algumas regiões e comparar as médias entre elas:
 
 ```{r ecological-fallacy-averages, echo=FALSE}
 gapminder <- gapminder %>%
@@ -711,20 +711,20 @@ A relação entre essas duas variáveis é quase perfeitamente linear e o gráfi
 
 Observe que o gráfico usa uma nova transformação, a transformação logística.
 
-### Transformação de logística {#logit}
-Transformação logística ou _logit_ para uma proporção ou taxa $p$ é definido como:
+### Transformação logística {#logit}
+Transformação logística ou _logit_ para uma proporção ou taxa $p$ é definida como:
 
 $$f(p) = \log \left( \frac{p}{1-p} \right)$$
 
-Quando $p$ é uma proporção ou probabilidade, a quantidade que transformamos com o logaritmo, $p/(1-p)$, é chamado _odds_. Neste caso $p$ é a proporção de bebês que sobreviveram. Os filhos nos dizem quantos mais bebês devem sobreviver à morte. A transformação logarítmica torna simétrica. Se as taxas forem iguais, as _log odds_ serão 0. Aumentos multiplicativos são convertidos em aumentos positivos ou negativos, respectivamente.
+Quando $p$ é uma proporção ou probabilidade, a quantidade que transformamos com o logaritmo, $p/(1-p)$, é chamado _odds_. Neste caso $p$ é a proporção de bebês que sobreviveram. Os _odds_ nos dizem quantos bebês a mais devem sobreviver do que morrer. A transformação logarítmica torna isso simétrico. Se as taxas forem iguais, os _log odds_ serão 0. Aumentos multiplicativos são convertidos em aumentos positivos ou negativos, respectivamente.
 
-Essa escala é útil quando queremos destacar diferenças próximas de 0 ou 1. Para taxas de sobrevivência, isso é importante porque uma taxa de sobrevivência de 90% é inaceitável, enquanto uma sobrevivência de 99% é relativamente boa. Preferiríamos muito uma taxa de sobrevivência próxima de 99,9%. Queremos que nossa escala destaque essas diferenças e o _logit_ o faz. Lembre-se de que 99,9/ 0,1 é aproximadamente 10 vezes maior que 99/1, que é aproximadamente 10 vezes maior que 90/10. Usando o logaritmo, esses incrementos multiplicativos são convertidos em aumentos constantes.
+Essa escala é útil quando queremos destacar diferenças próximas de 0 ou 1. Para taxas de sobrevivência, isso é importante porque uma taxa de sobrevivência de 90% é inaceitável, enquanto uma sobrevivência de 99% é relativamente boa. Preferiríamos muito uma taxa de sobrevivência próxima de 99,9%. Queremos que nossa escala destaque essas diferenças e o _logit_ o faz. Lembre-se de que 99,9/0,1 é aproximadamente 10 vezes maior que 99/1, que é aproximadamente 10 vezes maior que 90/10. Usando o logaritmo, esses incrementos multiplicativos são convertidos em aumentos constantes.
 
-### Mostrar os dados
+### Mostre os dados
 
-Agora, de volta ao nosso gráfico. Com base no gráfico acima, concluímos que um país de baixa renda está destinado a ter uma baixa taxa de sobrevivência? Além disso, concluímos que as taxas de sobrevivência na África subsaariana são mais baixas do que no sul da Ásia, que por sua vez são mais baixas do que nas ilhas do Pacífico e assim por diante?
+Agora, de volta ao nosso gráfico. Com base no gráfico acima, podemos concluir que um país de baixa renda está destinado a ter uma baixa taxa de sobrevivência? Além disso, podemos concluir que as taxas de sobrevivência na África Subsaariana são mais baixas do que no Sul da Ásia, que por sua vez, são mais baixas do que nas ilhas do Pacífico e assim por diante?
 
-Saltar para esta conclusão com base em um gráfico mostrando médias é chamado de _falácia ecológica_. A relação quase perfeita entre taxas de sobrevivência e renda é observada apenas para médias regionais. Depois de mostrar todos os dados, vemos uma história mais complicada:
+Ir direto para essa conclusão com base em um gráfico que mostra as médias é conhecido como _falácia ecológica_. A relação quase perfeita entre taxas de sobrevivência e renda é observada apenas para médias regionais. Depois de mostrar todos os dados, vemos uma história um pouco mais complicada:
 
 ```{r ecological-fallacy-all-data, echo=FALSE}
 library(ggrepel)
@@ -743,8 +743,5 @@ geom_text_repel(size = 4, show.legend = FALSE)
 ```
 
 Especificamente, vemos que há muita variabilidade. Vemos que os países nas mesmas regiões podem ser bem diferentes e que os países com a mesma renda podem ter taxas de sobrevivência diferentes. Por exemplo, enquanto a África Subsaariana teve os piores resultados econômicos e de saúde em média, há uma grande variabilidade dentro desse grupo. Maurício e Botsuana são melhores que Angola e Serra Leoa, com Maurício comparável aos países ocidentais.
-
-
-
 
 
