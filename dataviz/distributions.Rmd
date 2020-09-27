@@ -29,19 +29,19 @@ library(dslabs)
 data(heights)
 ```
 
-Uma maneira de passar as alturas para o ET é simplesmente enviar a ele esta lista de `r prettyNum(nrow(heights), big.mark=",")` alturas. No entanto, existem maneiras muito mais eficazes de transmitir informações e, para isso, nos ajudarão a entender o conceito de distribuição. Para simplificar a explicação, primeiro nos concentramos nas alturas masculinas. Examinamos os dados de altura feminina na Seção \@ref(student-height-cont).
+Uma maneira de passar as alturas para o ET é simplesmente enviar a ele esta lista de `r prettyNum(nrow(heights), big.mark=",")` alturas. Entretanto, existem maneiras muito mais eficazes de transmitir essas informações, e entender o conceito de uma distribuição ajudará. Para simplificar a explicação, primeiro nos concentraremos nas alturas masculinas. Examinaremos os dados de altura feminina na Seção \@ref(student-height-cont).
 
-## A função de distribuição
+## Função de distribuição
 
-Acontece que, em alguns casos, o desvio médio e padrão são praticamente tudo o que precisamos para entender os dados. Aprenderemos técnicas de visualização de dados que nos ajudarão a determinar quando esse resumo de dois números é apropriado. Essas mesmas técnicas servirão como uma alternativa para quando dois números não forem suficientes.
+Acontece que, em alguns casos, a média e o desvio padrão são praticamente tudo que precisamos para entender os dados. Aprenderemos técnicas de visualização de dados que nos ajudarão a determinar quando esse resumo de dois números é apropriado. Essas mesmas técnicas servirão como uma alternativa para quando esses dois números não forem suficientes.
 
-O resumo estatístico mais básico de uma lista de objetos ou números é sua distribuição. A maneira mais simples de pensar em uma distribuição é como uma descrição compacta de uma lista com muitas entradas. Este conceito não deve ser novo para os leitores deste livro. Por exemplo, com dados categóricos, a distribuição simplesmente descreve a proporção de cada categoria exclusiva. O sexo representado no conjunto de dados de altura é:
+O resumo estatístico mais básico de uma lista de objetos ou números é sua distribuição. A maneira mais simples de pensar em uma distribuição é como uma descrição compacta de uma lista com muitas entradas. Este conceito não deve ser novo para os leitores deste livro. Por exemplo, com dados categóricos, a distribuição simplesmente descreve a proporção de cada categoria exclusiva. Para o sexo representado no conjunto de dados de altura seria:
 
 ```{r echo = FALSE}
 prop.table(table(heights$sex))
 ```
 
-Essa _frequency table_ de duas categorias é a forma mais simples de uma distribuição. Nós realmente não precisamos visualizá-lo, pois um número descreve tudo o que precisamos saber: `r round(mean(heights$sex=="Female")*100)`% são mulheres e o restante são homens. Quando há mais categorias, um gráfico de barras simples descreve a distribuição. Aqui está um exemplo com as regiões estaduais dos EUA. EUA:
+Essa tabela de frequência de duas categorias é a forma mais simples de uma distribuição. Nós não precisamos realmente visualizar isso, pois um número descreve tudo o que precisamos saber: `r round(mean(heights$sex=="Female")*100)`% são mulheres e os restantes são homens. Quando há mais categorias, um gráfico de barras simples pode descrever a distribuição. Aqui está um exemplo de distribuição dos estados dos EUA por região:
 
 ```{r state-region-distribution, echo=FALSE}
 murders %>% group_by(region) %>%
@@ -53,7 +53,7 @@ geom_bar(stat = "identity", show.legend = FALSE) +
 xlab("")
 ```
 
-Este gráfico simplesmente mostra quatro números, um para cada categoria. Geralmente usamos gráficos de barras quando temos poucos números. Embora esse gráfico em particular não forneça muito mais informações do que uma tabela de frequência, ele é um excelente exemplo de como convertemos um vetor em um gráfico que resume sucintamente todas as informações no vetor. Quando os dados são numéricos, a tarefa de exibir distribuições é mais desafiadora.
+Esse gráfico simplesmente mostra quatro números, um para cada categoria. Geralmente usamos gráficos de barras quando temos poucos números. Embora esse gráfico em particular não forneça muito mais informações do que uma tabela de frequência, ele é um excelente exemplo de como convertemos um vetor em um gráfico que resume sucintamente todas as informações. Quando os dados são numéricos, a tarefa de exibir distribuições é mais desafiadora.
 
 ## Funções de distribuição cumulativa {#cdf-intro}
 
