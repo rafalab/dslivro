@@ -716,7 +716,7 @@ Transformação logística ou _logit_ para uma proporção ou taxa $p$ é defini
 
 $$f(p) = \log \left( \frac{p}{1-p} \right)$$
 
-Quando $p$ é uma proporção ou probabilidade, a quantidade que transformamos com o logaritmo, $p/(1-p)$, é chamado _odds_. Neste caso $p$ é a proporção de bebês que sobreviveram. Os _odds_ nos dizem quantos bebês a mais devem sobreviver do que morrer. A transformação logarítmica torna isso simétrico. Se as taxas forem iguais, os _log odds_ serão 0. Aumentos multiplicativos são convertidos em aumentos positivos ou negativos, respectivamente.
+Quando $p$ é uma proporção ou probabilidade, a quantidade que transformamos com o logaritmo, $p/(1-p)$, é chamado de _chance_. Neste caso $p$ é a proporção de bebês que sobreviveram. As chances nos dizem quantos bebês a mais devem sobreviver do que morrer. A transformação logarítmica torna isso simétrico. Se as taxas forem iguais, o _log_ das chances será 0. Aumentos multiplicativos são convertidos em aumentos positivos ou negativos, respectivamente.
 
 Essa escala é útil quando queremos destacar diferenças próximas de 0 ou 1. Para taxas de sobrevivência, isso é importante porque uma taxa de sobrevivência de 90% é inaceitável, enquanto uma sobrevivência de 99% é relativamente boa. Preferiríamos muito uma taxa de sobrevivência próxima de 99,9%. Queremos que nossa escala destaque essas diferenças e o _logit_ o faz. Lembre-se de que 99,9/0,1 é aproximadamente 10 vezes maior que 99/1, que é aproximadamente 10 vezes maior que 90/10. Usando o logaritmo, esses incrementos multiplicativos são convertidos em aumentos constantes.
 
