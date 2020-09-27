@@ -1,10 +1,10 @@
-# Como visualizar distribuições de dados {#distributions}
+# Visualizando distribuições de dados {#distributions}
 
-Os dados numéricos são frequentemente resumidos com o valor _average_. Por exemplo, a qualidade de uma escola secundária às vezes é resumida em um único número: a pontuação média em um teste padronizado. Ocasionalmente, um segundo número é incluído: o desvio padrão. Por exemplo, eles podem ler um relatório de que as pontuações foram 680 mais ou menos 50 (o desvio padrão). O relatório resumiu um vetor completo de pontuações com apenas dois números. Isso é apropriado? Existe alguma informação importante que não estamos considerando ao exibir este resumo em vez da lista completa?
+Os dados numéricos são frequentemente resumidos com o valor da média. Por exemplo, a qualidade de uma escola secundária às vezes é resumida em um único número: a pontuação média em um teste padronizado. Ocasionalmente, um segundo número é incluído: o desvio padrão. Por exemplo, você pode ler um relatório afirmando que as pontuações foram 680 mais ou menos 50 (o desvio padrão). O relatório resumiu um vetor completo de pontuações com apenas dois números. Isso é apropriado? Existe alguma informação importante que não estamos considerando ao exibir esse resumo em vez da lista completa?
 
-Nosso primeiro componente básico de visualização de dados está aprendendo a resumir listas de fatores ou vetores de números. Geralmente, a melhor maneira de compartilhar ou explorar este resumo é através da visualização de dados. O resumo estatístico mais básico de uma lista de objetos ou números é sua distribuição. Depois que um vetor é resumido como uma distribuição, existem várias técnicas de visualização de dados para transmitir efetivamente essas informações.
+O primeiro componente básico de visualização de dados que aprenderemos será como resumir listas de fatores ou vetores de números. Na maioria das vezes, a melhor maneira de compartilhar ou explorar esses resumos é através da visualização de dados. O resumo estatístico mais básico de uma lista de objetos ou números é sua distribuição. Depois que um vetor é resumido como uma distribuição, existem várias técnicas de visualização de dados para transmitir efetivamente essas informações.
 
-Neste capítulo, discutiremos primeiro as propriedades de uma variedade de distribuições e como visualizá-las usando um exemplo motivador de altura dos alunos. Então na Seção \@ref(other-geometries), discutiremos as geometrias __ggplot2__ para essas visualizações.
+Neste capítulo, discutiremos primeiro as propriedades de uma variedade de distribuições e como visualizá-las usando como estudo de caso uma base de dados com altura de alunos. Então, na Seção \@ref(other-geometries), discutiremos as geometrias __ggplot2__ para essas visualizações.
 
 
 ## Tipos de variáveis
