@@ -26,7 +26,7 @@ A primeira etapa na importação de dados de uma planilha é localizar o arquivo
 
 O principal desafio desta primeira etapa é permitir que as funções R de importação saibam onde procurar o arquivo que contém os dados. A maneira mais fácil de fazer isso é ter uma cópia do arquivo na pasta em que as funções de importação pesquisam por padrão. Depois disso, basta fornecer o nome do arquivo para a função de importação.
 
-O pacote __dslabs__ inclui uma planilha contendo os dados dos assassinatos nos EUA. A localização desse arquivo não é óbvia, mas as seguintes linhas de código copiam o arquivo para a pasta que R procura por padrão. Abaixo, explicamos como essas linhas funcionam.
+O pacote __dslabs__ inclui uma planilha contendo dados de assassinatos nos EUA. A localização desse arquivo não é óbvia, mas as seguintes linhas de código copiam o arquivo para a pasta que R procura por padrão. Abaixo, explicamos como essas linhas funcionam.
 
 ```{r, eval=FALSE}
 filename <- "murders.csv"
@@ -35,31 +35,31 @@ fullpath <- file.path(dir, filename)
 file.copy(fullpath, "murders.csv")
 ```
 
-Este código não lê os dados em R, apenas copia um arquivo. Mas uma vez que o arquivo é copiado, podemos importar os dados com apenas uma linha de código. Aqui usamos a função `read_csv` do pacote __readr__, que faz parte do __tidyverse__.
+Esse código não importa os dados para o R, apenas copia um arquivo. Entretanto, uma vez que o arquivo é copiado, podemos importar os dados com apenas uma linha de código. Aqui, usamos a função `read_csv` do pacote __readr__, que faz parte do __tidyverse__.
 
 ```{r, eval=FALSE}
 library(tidyverse)
 dat <- read_csv(filename)
 ```
 
-Os dados são importados e armazenados em `dat`. O restante desta seção define alguns conceitos importantes e fornece uma visão geral de como escrevemos código para que o R possa encontrar os arquivos que queremos importar. Capítulo \@ref(unix) oferece mais detalhes sobre este tópico.
+Os dados são importados e armazenados em `dat`. O restante desta seção define alguns conceitos importantes e fornece uma visão geral de como escrevemos códigos para que o R possa encontrar os arquivos que queremos importar. O capítulo \@ref(unix) fornece mais detalhes sobre esse tópico.
 
-### O sistema de arquivos
+### Sistema de arquivos
 
-Eles podem pensar no sistema de arquivos do seu computador (_file system_) como uma série de pastas aninhadas, cada uma contendo outras pastas e arquivos. Os cientistas de dados se referem às pastas como _diretórios_e à pasta que contém todas as outras pastas como o_root directory_. O diretório em que estamos localizados é chamado de _working directory_. Portanto, o diretório de trabalho muda à medida que você percorre as pastas - considere-o como seu local atual.
+Você pode pensar no sistema de arquivos do seu computador como uma série de pastas aninhadas, cada uma contendo outras pastas e arquivos. Cientistas de dados se referem às pastas como _diretórios_. Nos referimos à pasta que contém todas as outras pastas como o diretório raiz (_root_). O diretório em que estamos localizados é chamado de diretório de trabalho (_working directory_). Portanto, o diretório de trabalho muda à medida que você percorre as pastas: pense nele como sua localização atual.
 
 
-### Caminhos relativos e completos
+### Caminhos relativos e absolutos
 
-O _path_ (_path_ em inglês) de um arquivo é uma lista de nomes de diretórios que podem ser considerados instruções em quais pastas clicar e em que ordem para localizar o arquivo. Se essas instruções forem para encontrar o arquivo no diretório raiz, vamos nos referir a elas como o caminho completo (_full path_ em inglês). Se as instruções forem para encontrar o arquivo no diretório ativo, nós os referimos como um caminho relativo (_relative path_ em inglês). Seção \@ref(filesystem) oferece mais detalhes sobre este tópico.
+O endereço ou caminho (_path_ em inglês) de um arquivo é uma lista de nomes de diretórios que podem ser considerados instruções sobre qual ordem de pastas clicar para localizar o arquivo. Se essas instruções forem para encontrar o arquivo no diretório raiz, vamos nos referir a elas como caminho absoluto (ou caminho completo). Se as instruções forem para encontrar o arquivo com base no diretório atual, nós referimos a isso como caminho relativo. A seção \@ref(filesystem) oferece mais detalhes sobre esse tópico.
 
-Para ver um exemplo de caminho completo em seus sistemas, digite o seguinte:
+Para ver um exemplo de caminho completo em seu sistema, digite o seguinte:
 
 ```{r, eval = FALSE}
 system.file(package = "dslabs")
 ```
 
-As cadeias separadas por barras são os nomes dos diretórios. A primeira barra representa o diretório raiz e sabemos que esse é um caminho completo porque começa com uma barra. Se o primeiro nome do diretório aparecer sem uma barra, R assume que o caminho é relativo. Nós podemos usar a função `list.files` para ver exemplos de rotas relativas:
+Os caracteres separados por barras são os nomes dos diretórios. A primeira barra representa o diretório raiz e sabemos que esse é um caminho completo porque começa com uma barra. Se o primeiro nome do diretório aparecer sem uma barra, R assume que o caminho é relativo. Podemos usar a função `list.files` para ver exemplos de rotas relativas:
 
 ```{r}
 dir <- system.file(package = "dslabs")
@@ -68,11 +68,11 @@ list.files(path = dir)
 
 Esses caminhos relativos nos fornecem a localização dos arquivos ou diretórios se iniciarmos no diretório com o caminho completo. Por exemplo, o caminho completo para o diretório `help` no exemplo acima, é: `/Library/Frameworks/R.framework/Versions/3.5/Resources/library/dslabs/help`.
 
-**Nota**: eles provavelmente não farão muito uso do recurso `system.file` no seu trabalho diário de análise de dados. Nós o apresentamos nesta seção, pois facilita a troca de planilhas, incluindo-as no pacote __dslabs__. Raramente eles terão o luxo de incluir dados nos pacotes que já instalaram. No entanto, eles geralmente precisam navegar por caminhos completos e relativos e importar dados no formato de planilha.
+**Nota**: você provavelmente não fará muito uso da função `system.file` no trabalho diário em análise de dados. Apresentamos isso nesta seção para facilitar o compartilhamento de planilhas, uma vez que as incluímos no pacote __dslabs__. Raramente você terá o luxo de dados sendo incluído nos pacotes já instalados. No entanto, você geralmente precisa navegar por caminhos completos e relativos e importar dados no formato de planilha.
 
 ### O diretório de trabalho
 
-Recomendamos escrever apenas caminhos relativos no seu código, pois os caminhos completos são exclusivos para seus computadores e você deseja que seu código seja portátil. Eles podem obter o caminho completo do diretório de trabalho sem gravá-lo explicitamente usando a função `getwd`:
+Fortemente recomendamos escrever apenas caminhos relativos no seu código, pois os caminhos completos são exclusivos para o seu computador e você deve desejar que seu código seja portátil. Você pode obter o caminho completo do diretório de trabalho usando a função `getwd`:
 
 ```{r, eval=FALSE}
 wd <- getwd()
