@@ -78,11 +78,11 @@ Fortemente recomendamos escrever apenas caminhos relativos no seu código, pois 
 wd <- getwd()
 ```
 
-Se você precisar alterar seu diretório de trabalho, poderá usar a função `setwd` ou eles podem alterá-lo através do RStudio, clicando em "Sessão".
+Se você precisar alterar o diretório de trabalho, poderá usar a função `setwd` ou pode alterá-lo através do RStudio, clicando em "Sessão" (_Session_).
 
-### Como gerar nomes de caminhos
+### Gerando nomes de caminhos
 
-Outro exemplo de como obter um caminho completo sem escrever explicitamente foi oferecido acima quando criamos o objeto `fullpath` desta maneira:
+Outro exemplo de como obter um caminho completo sem escrever explicitamente foi apresentado acima quando criamos o objeto `fullpath` desta maneira:
 
 ```{r}
 filename <- "murders.csv"
@@ -97,20 +97,20 @@ dir <- system.file(package = "dslabs")
 filename %in% list.files(file.path(dir, "extdata"))
 ```
 
-A função `system.file` nos permite fornecer um subdiretório como o primeiro argumento, para que possamos obter o caminho completo do diretório `extdata` assim:
+A função `system.file` permite que forneçamos um subdiretório como primeiro argumento, assim podemos obter o caminho completo do diretório `extdata` assim:
 
 ```{r}
 dir <- system.file("extdata", package = "dslabs")
 ```
 
-A função `file.path` é usado para combinar os nomes dos diretórios para produzir o caminho completo do arquivo que queremos importar.
+A função `file.path` é usada para combinar os nomes dos diretórios para produzir o caminho completo do arquivo que queremos importar.
 
 ```{r}
 fullpath <- file.path(dir, filename)
 ```
 
 
-### Como copiar arquivos usando caminhos
+### Copiando arquivos usando caminhos
 
 A última linha de código que usamos para copiar o arquivo em nosso diretório inicial usou a função `file.copy`. Isso requer dois argumentos: o nome do arquivo a ser copiado e o nome a ser usado no novo diretório.
 
