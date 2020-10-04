@@ -242,21 +242,21 @@ url <- "https://raw.githubusercontent.com/rafalab/dslabs/master/inst/
 extdata/murders.csv"
 ```
 
-O arquivo `read_csv` você pode ler esses arquivos diretamente:
+A função `read_csv` pode ler esses arquivos diretamente:
 
 ```{r, message = FALSE}
 dat <- read_csv(url)
 ```
 
-Se você deseja ter uma cópia local do arquivo, pode usar a função `download.file`:
+Se deseja ter uma cópia local do arquivo, você pode usar a função `download.file`:
 
 ```{r}
 download.file(url, "murders.csv")
 ```
 
-Isso fará o download do arquivo e o salvará no seu sistema com o nome `murders.csv`. Você pode usar qualquer nome aqui, não necessariamente `murders.csv`. Lembre-se de que ao usar `download.file` tenha cuidado, pois **substituirá os arquivos existentes sem aviso prévio**.
+Isso fará o _download_ do arquivo e o salvará no seu sistema com o nome `murders.csv`. Você pode usar qualquer nome aqui, não necessariamente `murders.csv`. Tenha cuidado ao usar o comando `download.file`, pois ele **irá substituir arquivos existentes com mesmo nome sem aviso prévio**.
 
-Duas funções que às vezes são úteis ao baixar dados da Internet são `tempdir` e `tempfile`. O primeiro cria um diretório com um nome aleatório que provavelmente é único. Igualmente, `tempfile` crie uma cadeia de caracteres, não um arquivo, que provavelmente é um nome de arquivo exclusivo. Eles podem executar um comando, como o seguinte, que exclui o arquivo temporário depois que os dados são importados:
+Duas funções que às vezes são úteis ao baixar dados da internet são `tempdir` e `tempfile`. A primeira cria um diretório com um nome aleatório provavelmente único. Da mesma forma, `tempfile` cria uma cadeia de caracteres, não um arquivo, que provavelmente é um nome de arquivo exclusivo. Eles podem executar um comando, como o seguinte, que exclui o arquivo temporário depois que os dados são importados:
 
 ```{r, eval=FALSE}
 tmp_filename <- tempfile()
