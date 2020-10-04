@@ -22,11 +22,11 @@ Começamos este capítulo descrevendo as diferenças entre arquivos de texto (AS
 
 ## Caminhos e diretório de trabalho
 
-A primeira etapa na importação de dados de uma planilha é localizar o arquivo que contém os dados. Embora não o recomendamos, você pode usar uma abordagem semelhante à usada para abrir arquivos no Microsoft Excel, clicando no menu "Arquivo" no RStudio, clicando em "Importar conjunto de dados" e depois clicando em pastas até encontrar o arquivo. Queremos escrever código em vez de apontar e clicar. As chaves e os conceitos que precisamos aprender como fazer isso são descritos em detalhes na parte "Ferramentas de produtividade" do livro. Aqui, fornecemos uma visão geral do básico.
+A primeira etapa na importação de dados de uma planilha é localizar o arquivo que contém os dados. Embora não seja muito recomendável, você pode usar uma abordagem semelhante à usada para abrir arquivos no Microsoft Excel, clicando no menu "Arquivo" (_File_) no RStudio, clicando em "Importar conjunto de dados" (_Import Dataset_) e depois navegando por pastas até encontrar o arquivo. Queremos que vocês estejam aptos a desenvolver códigos em vez de apenas selecionar e clicar em pastas. As chaves e os conceitos que precisaremos para aprender a fazer isso são descritos em detalhes na seção "Ferramentas de produtividade" deste livro. Aqui, fornecemos uma visão geral do básico.
 
 O principal desafio desta primeira etapa é permitir que as funções R de importação saibam onde procurar o arquivo que contém os dados. A maneira mais fácil de fazer isso é ter uma cópia do arquivo na pasta em que as funções de importação pesquisam por padrão. Depois disso, basta fornecer o nome do arquivo para a função de importação.
 
-O pacote __dslabs__ inclui uma planilha contendo os dados dos assassinatos nos EUA. EUA A localização desse arquivo não é óbvia, mas as seguintes linhas de código copiam o arquivo para a pasta que R procura por padrão. Abaixo, explicamos como essas linhas funcionam.
+O pacote __dslabs__ inclui uma planilha contendo os dados dos assassinatos nos EUA. A localização desse arquivo não é óbvia, mas as seguintes linhas de código copiam o arquivo para a pasta que R procura por padrão. Abaixo, explicamos como essas linhas funcionam.
 
 ```{r, eval=FALSE}
 filename <- "murders.csv"
