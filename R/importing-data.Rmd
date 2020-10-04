@@ -314,48 +314,34 @@ Extrair dados de uma planilha armazenada como um arquivo de texto é talvez a ma
 
 ## Unicode versus ASCII
 
-Uma armadilha na ciência de dados é assumir que um arquivo é um arquivo de texto ASCII, quando na verdade é outra coisa que pode se parecer muito com um arquivo de texto ASCII: um arquivo de texto Unicode.
+Uma armadilha na ciência de dados é assumir que um dado arquivo se trata de um arquivo de texto ASCII, quando na verdade é outra coisa que pode se parecer muito com um arquivo de texto ASCII: um arquivo de texto Unicode.
 
-Para entender a diferença entre eles, lembre-se de que tudo no computador precisa se tornar 0s e 1s. ASCII é um _encoding_ que define uma correspondência entre caracteres e números. O ASCII usa 7 _bits_ (0s e 1s), o que resulta em $2^7 = 128$ elementos exclusivos, suficientes para codificar todos os caracteres em um teclado em inglês. No entanto, outros idiomas, como o espanhol, usam caracteres não incluídos nesta codificação. Por exemplo, os tildes não são codificados em ASCII. Por esse motivo, foi definida uma nova codificação que usa mais de 7 _bits_: Unicode. Ao usar o Unicode, você pode escolher entre UTF-8, UTF-16 e UTF-32 abreviado de 8, 16 e 32 bits, respectivamente. O RStudio usa a codificação UTF-8 por padrão.
+Para entender a diferença entre eles, lembre-se de que tudo no computador precisa ser convertido em 0s e 1s. ASCII é uma codificação que define uma correspondência entre caracteres e números. O ASCII usa 7 _bits_ (0s e 1s), o que resulta em $2^7 = 128$ elementos únicos, que é suficiente para codificar todos os caracteres de um teclado do idioma inglês. No entanto, outros idiomas, como o português, usam caracteres não incluídos nessa codificação. Por exemplo, o `é` na palavra México não é codificado em ASCII. Por esse motivo, foi definida uma nova codificação que usa mais do que 7 _bits_: Unicode. Ao usar o Unicode, você pode escolher entre as codificações UTF-8, UTF-16 ou UTF-32 que utilizam 8, 16 ou 32 bits, respectivamente. O RStudio usa a codificação UTF-8 por padrão.
 
-Embora não entremos em detalhes sobre como lidar com diferentes codificações aqui, é importante que você saiba que existem codificações diferentes para que você possa diagnosticar bem um problema, se o encontrar. Uma maneira de os problemas se manifestarem é quando personagens "de aparência estranha" surgem e você não esperava. Esta discussão do StackOverflow é um exemplo: [https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell>(https://stackoverflow.com/questions/18789330/r-on- Windows-personagem-codificação-inferno).
+Embora não entremos em detalhes sobre como lidar com diferentes codificações aqui, é importante que você saiba que existem codificações diferentes para que você possa diagnosticar melhor caso encontre um problema. Um exemplo de problema é quando surgem caracteres "de aparência estranha" e que você não esperava. Esta discussão do StackOverflow é um exemplo: [https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell](https://stackoverflow.com/questions/18789330/r-on-windows-character-encoding-hell).
 
 ## Como organizar dados com planilhas
 
-Embora este livro se concentre quase exclusivamente na análise de
-dados, o gerenciamento de dados também é uma parte importante do
-ciência de dados. Como explicamos na introdução, não cobrimos isso
-tema. No entanto, muitas vezes analistas de dados
-eles precisam coletar dados ou trabalhar com outras pessoas que coletam dados,
-portanto, a maneira mais conveniente de armazená-los é
-planilha. Embora o preenchimento manual de uma planilha seja um
-prática que não recomendamos e preferimos que o processo
-é automatizado o máximo possível, às vezes não há outra opção. Para o
-portanto, nesta seção, oferecemos recomendações sobre como organizar
-os dados em uma planilha. Embora existam pacotes R projetados para
-lendo planilhas do Microsoft Excel, geralmente queremos evitar
-este formato. Recomendamos o _Google Sheets_ como uma ferramenta para
-_software_ grátis. Baixa
-resumimos as recomendações feitas em uma publicação de Karl Broman
-e Kara Woo^[https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989].
-Leia o artigo completo para obter detalhes mais importantes.
+Embora este livro se concentre quase exclusivamente na análise de dados, o gerenciamento de dados também é uma parte importante da ciência de dados. Como explicamos na introdução, não cobrimos esse tema. No entanto, muitas vezes analistas de dados precisam realizar coletas ou trabalhar com outras pessoas que coletam dados,
+portanto, a maneira mais conveniente de armazená-los é em uma planilha. Embora o preenchimento manual de uma planilha seja uma prática que não recomendamos e preferimos que o processo seja automatizado o máximo possível, às vezes não há outra opção. Portanto, nesta seção, oferecemos recomendações sobre como organizar dados em uma planilha. Embora existam pacotes R projetados para ler planilhas do Microsoft Excel, geralmente devemos evitar
+esse formato. Recomendamos o _Google Sheets_ por ser uma ferramenta gratuita. Abaixo resumimos as recomendações feitas em um artigo publicado por Karl Broman e Kara Woo^[https://www.tandfonline.com/doi/abs/10.1080/00031305.2017.1375989]. Para obter mais detalhes, leia o artigo completo.
 
-* __Seja consistente__ - Antes de começar a inserir dados, tenha um plano. Depois de ter, seja consistente e siga-o.
-* __Escolha bons nomes para as coisas__: os nomes que você escolher para objetos, arquivos e diretórios devem ser memoráveis, fáceis de soletrar e descritivos. Esse é um equilíbrio difícil de alcançar e requer tempo e reflexão. Uma regra importante a seguir é **não use espaços**, use sublinhados `_` ou hífens `-`. Além disso, evite símbolos; é melhor usar letras e números.
+* __Seja consistente__ - Antes de começar a inserir dados, tenha um plano. Depois de estabelecer o plano, seja consistente e siga-o.
+* __Escolha bons nomes para as coisas__: os nomes que você escolher para objetos, arquivos e diretórios devem ser memoráveis, fáceis de soletrar e descritivos. Esse é um equilíbrio difícil de alcançar e requer tempo e reflexão. Uma regra importante a seguir é **não use espaços**, use sublinhados `_` ou hífens `-`. Além disso, evite símbolos e caracteres especiais (como acentos e cedilha); é melhor usar letras e números.
 * __Insira as datas como AAAA-MM-DD__ - Para evitar confusão, recomendamos o uso do padrão global ISO 8601.
-* __Evitar células vazias__ - Preencha todas as células e use código comum para a falta de dados.
+* __Evite células vazias__ - Preencha todas as células. Você pode usar algum código comum para representar dados ausentes.
 * __Coloque apenas uma coisa em cada célula__ - É melhor adicionar colunas para armazenar informações adicionais em vez de ter mais de uma informação em uma célula.
 * __Faça um retângulo__ - A planilha deve ser um retângulo.
-* __Criar um dicionário de dados__ - Se você precisar explicar as coisas, por exemplo, quais são as colunas ou os rótulos usados para variáveis categóricas, faça isso em um arquivo separado.
-* __Não faça cálculos em arquivos de dados brutos__ - o Excel permite que você faça cálculos. Não faça parte da sua planilha. O código para os cálculos deve estar em um _script_.
-* __Não use cores ou realces como dados__ - A maioria das funções de importação não pode importar essas informações. Em vez disso, codifique essas informações como uma variável.
-* __Faça backup de suas informações__: faça backup de seus dados com freqüência.
-* __Utilize a validação de dados para evitar erros__ - Aproveite as ferramentas do seu _spreadsheet_software_ para tornar o processo o mais livre possível de erros e lesões por esforço repetitivo.
-* __Salvar dados como arquivos de texto__ - Salve os arquivos para compartilhar em formato delimitado por vírgula ou _tabs_.
+* __Crie um dicionário de dados__ - Se você precisar explicar as coisas, por exemplo, quais são as colunas ou os rótulos usados para variáveis categóricas, faça isso em um arquivo separado.
+* __Não faça cálculos em arquivos de dados brutos__ - O Excel permite que você faça cálculos. Não faça disso parte de sua planilha. Códigos para realização de cálculos devem estar em um _script_ separado.
+* __Não use cores ou realces como dados__ - A maioria das funções de importação não consegue importar essas informações. Em vez disso, codifique-as como variáveis.
+* __Faça backup de suas informações__: faça backup de seus dados com frequência.
+* __Utilize a validação de dados para evitar erros__ - Aproveite as ferramentas de seu programa de edição de planilhas para tornar o processo o mais livre possível de erros e de lesões por esforço repetitivo.
+* __Salve dados como arquivos de texto__ - Salve os arquivos para compartilhar em formato delimitado por vírgula ou tabulações.
 
 ## Exercícios
 
-1\. Escolha uma ação que você pode executar regularmente. Por exemplo, seu peso diário ou quanto tempo leva para percorrer 8 km. Mantenha uma planilha que inclua data, hora, medida e outras variáveis informativas que considere valiosas. Faça isso por 2 semanas. Então faça um gráfico.
+1\. Escolha uma medida que você possa mensurar regularmente. Por exemplo, seu peso diário ou quanto tempo leva para percorrer 8 km. Mantenha uma planilha que inclua data, hora, medida e outras variáveis informativas que considere valiosas. Faça isso por 2 semanas. Então faça um gráfico.
 
 
 ```{r, message=FALSE, echo=FALSE}
