@@ -256,7 +256,7 @@ download.file(url, "murders.csv")
 
 Isso fará o _download_ do arquivo e o salvará no seu sistema com o nome `murders.csv`. Você pode usar qualquer nome aqui, não necessariamente `murders.csv`. Tenha cuidado ao usar o comando `download.file`, pois ele **irá substituir arquivos existentes com mesmo nome sem aviso prévio**.
 
-Duas funções que às vezes são úteis ao baixar dados da internet são `tempdir` e `tempfile`. A primeira cria um diretório com um nome aleatório provavelmente único. Da mesma forma, `tempfile` cria uma cadeia de caracteres, não um arquivo, que provavelmente é um nome de arquivo exclusivo. Eles podem executar um comando, como o seguinte, que exclui o arquivo temporário depois que os dados são importados:
+Duas funções que às vezes são úteis ao baixar dados da internet são `tempdir` e `tempfile`. A primeira cria um diretório com um nome aleatório e provavelmente único. Da mesma forma, `tempfile` também cria um nome aleatório que será usado para renomear o arquivo. Você pode executar o seguinte comando para excluir os arquivos temporários depois que os dados forem importados:
 
 ```{r, eval=FALSE}
 tmp_filename <- tempfile()
@@ -265,15 +265,15 @@ dat <- read_csv(tmp_filename)
 file.remove(tmp_filename)
 ```
 
-## Funções básicas de importação R
+## Funções básicas de importação do R
 
-A base R também fornece funções de importação. Eles têm nomes semelhantes aos do _tidyverse_, por exemplo `read.table`, `read.csv` e `read.delim`. No entanto, existem algumas diferenças importantes. Para mostrar isso, lemos os dados com uma função base R:
+O pacote base do R também fornece funções de importação. Eles têm nomes semelhantes aos do _tidyverse_, por exemplo, `read.table`, `read.csv` e `read.delim`. No entanto, existem algumas diferenças importantes. Para mostrar isso, vamos ler os dados com uma função básica do R:
 
 ```{r}
 dat2 <- read.csv(filename)
 ```
 
-Uma diferença importante é que os personagens se tornam fatores:
+Uma diferença importante é que os caracteres são convertidos em fatores (_factors_):
 
 ```{r}
 class(dat2$abb)
@@ -287,13 +287,13 @@ dat <- read.csv("murders.csv", stringsAsFactors = FALSE)
 class(dat$state)
 ```
 
-Em nossa experiência, isso pode ser confuso, pois uma variável que foi salva como caracteres no arquivo se torna fatores, independentemente do que a variável represente. De fato, é altamente recomendável definir sempre `stringsAsFactors=FALSE` para ser sua abordagem padrão ao usar leitores de base R. Eles podem converter facilmente as colunas desejadas em fatores após a importação de dados.
+Em nossa experiência, isso pode ser motivo de confusão, uma vez que uma variável que foi salva como caracteres no arquivo se é obrigatoriamente convertida em _factor_, independente do que a variável represente. De fato, é __altamente__ recomendável definir `stringsAsFactors=FALSE` para ser a abordagem padrão ao usar o _parser_ da base R. Você pode facilmente converter colunas desejadas em fatores após a importação de dados.
 
 ### `scan`
 
-Ao ler planilhas, muitas coisas podem dar errado. O arquivo pode ter um cabeçalho de várias linhas, as células podem estar ausentes ou pode usar uma codificação inesperada^[https://en.wikipedia.org/wiki/Character_encoding]. Recomendamos que você leia esta postagem sobre problemas comuns: [https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about -unicode -and-character-sets-no-desculuses/] (https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about) -unicode-and-character-sets-no-desculpas/).
+Ao ler planilhas, muitas coisas podem dar errado. O arquivo pode ter um cabeçalho de múltiplas linhas, algumas células podem estar ausentes ou o arquivo pode estar utilizando uma codificação inesperada^[https://pt.wikipedia.org/wiki/Codificação_de_caracteres]. Recomendamos que você leia este artigo sobre problemas comuns com caracteres: [https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/).
 
-Com a experiência, eles aprenderão a lidar com diferentes desafios. Além disso, ajudará você a ler atentamente os arquivos de ajuda para as funções discutidas aqui. Com `scan` eles podem ler todas as células em um arquivo, como vemos aqui:
+Com a experiência, você aprenderá a lidar com diferentes desafios. Além disso, ler atentamente os arquivos de ajuda para as funções discutidas aqui poderá ser útil. Com a função `scan` você pode ler cada célula de um arquivo. Aqui está um exemplo:
 
 ```{r}
 path <- system.file("extdata", package = "dslabs")
@@ -302,7 +302,7 @@ x <- scan(file.path(path, filename), sep=",", what = "c")
 x[1:10]
 ```
 
-Observe que o _tidyverse_ inclui `read_lines`, uma função igualmente útil.
+Note que o _tidyverse_ fornece `read_lines`, uma função igualmente útil.
 
 ## Arquivos de texto versus arquivos binários
 
