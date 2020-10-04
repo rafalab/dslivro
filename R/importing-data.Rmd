@@ -112,16 +112,16 @@ fullpath <- file.path(dir, filename)
 
 ### Copiando arquivos usando caminhos
 
-A última linha de código que usamos para copiar o arquivo em nosso diretório inicial usou a função `file.copy`. Isso requer dois argumentos: o nome do arquivo a ser copiado e o nome a ser usado no novo diretório.
+A última linha do código que utilizamos para copiar o arquivo em nosso diretório inicial usou a função `file.copy`. Isso requer dois argumentos: o nome do arquivo a ser copiado e o nome a ser usado no novo diretório.
 
 
 ```{r}
 file.copy(fullpath, "murders.csv")
 ```
 
-Se um arquivo for copiado com sucesso, a função `file.copy` trazer de volta `TRUE`. Lembre-se de que estamos dando o mesmo nome ao arquivo, `murders.csv`, mas poderíamos ter dado qualquer nome a ele. Lembre-se também de que, ao não iniciar a sequência com uma barra, R assume que este é um caminho relativo e copia o arquivo no diretório de trabalho.
+Se o arquivo for copiado com sucesso, a função `file.copy` retorna a mensagem `TRUE` (verdadeiro). Note que estamos dando o mesmo nome ao arquivo, `murders.csv`, mas poderíamos ter dado qualquer outro nome a ele. Note também que, ao não iniciar a sequência com uma barra, R assume que esse é um caminho relativo e copia o arquivo para o diretório de trabalho.
 
-Eles devem poder visualizar o arquivo em seu diretório de trabalho usando:
+Você deve poder visualizar o arquivo em seu diretório de trabalho usando:
 
 ```{r, eval=FALSE}
 list.files()
@@ -129,7 +129,7 @@ list.files()
 
 ## Os pacotes readr e readxl
 
-Nesta seção, apresentamos as principais funções de importação do _tidyverse_. Nós vamos usar o arquivo `murders.csv` do pacote __dslabs__ como um exemplo. Para simplificar a ilustração, copiaremos o arquivo para nosso diretório de trabalho usando o seguinte código:
+Nesta seção, apresentamos as principais funções de importação do _tidyverse_. Vamos usar o arquivo `murders.csv` do pacote __dslabs__ como um exemplo. Para simplificar a ilustração, copiaremos o arquivo para nosso diretório de trabalho usando o seguinte código:
 
 ```{r, eval=FALSE}
 filename <- "murders.csv"
@@ -141,7 +141,7 @@ file.copy(fullpath, "murders.csv")
 
 ### readr
 
-O pacote __readr__ inclui funções para ler dados armazenados em planilhas. __readr__faz parte do pacote__tidyverse__, ou você pode carregá-lo diretamente assim:
+O pacote __readr__ inclui funções para ler dados de planilhas armazenados em arquivos de texto. __readr__ faz parte do pacote__tidyverse__, ou você pode carregá-lo diretamente assim:
 
 ```{r, warning=FALSE, message=FALSE}
 library(readr)
@@ -150,33 +150,33 @@ library(readr)
 
 As seguintes funções estão disponíveis para leitura de planilhas:
 
-| Função | Formato | Sufixo típico |
+| Função | Formato | Extensão |
 |-----------|--------------------------------------------------|----------------|
-| read_table | valores separados por espaços em branco | txt
-| read_csv | valores separados por vírgula | CSV
-| read_csv2 | valores separados por ponto e vírgula | CSV
-| read_tsv | valores separados delimitados por tabulação | tsv
-| read_delim | formato de arquivo de texto geral, você deve definir delimitador | txt
+| read_table | valores separados por espaços em branco | txt |
+| read_csv | valores separados por vírgula | csv |
+| read_csv2 | valores separados por ponto e vírgula | csv |
+| read_tsv | valores separados por tabulação | tsv | 
+| read_delim | formato geral de arquivo de texto, você deve definir delimitador | txt |
 
 
 
-Embora o sufixo geralmente nos diga que tipo de arquivo é, não há garantia de que eles sempre correspondam. Podemos abrir o arquivo para dar uma olhada ou usar a função `read_lines` para ver algumas linhas:
+Embora a extensão geralmente nos diga que tipo de arquivo é, não há garantia de que eles sempre correspondam. Podemos abrir o arquivo para dar uma olhada ou usar a função `read_lines` para ver algumas linhas:
 
 ```{r}
 read_lines("murders.csv", n_max = 3)
 ```
 
-Isso também mostra que existe um cabeçalho. Agora estamos prontos para ler os dados em R. A partir do sufixo .csv e do arquivo, sabemos que precisamos usar `read_csv`:
+Isso também mostra que existe um cabeçalho. Agora estamos prontos para ler dados em R. A partir da extensão .csv e da visualização das três primeiras linhas do arquivo, sabemos que precisamos usar `read_csv`:
 
 ```{r, message}
 dat <- read_csv(filename)
 ```
-Observe que recebemos uma mensagem informando que tipos de dados foram usados para cada coluna. Observe também que `dat` é um `tibble`, não apenas um _data frame_. Isto é porque `read_csv` é um leitor (_parser_ em inglês) de _tidyverse_. Podemos confirmar que os dados foram lidos da seguinte forma:
+Observe que recebemos uma mensagem informando que tipos de dados foram usados para cada coluna. Observe também que `dat` é um `tibble`, não apenas um _data frame_. Isso ocorre porque `read_csv` é um _parser_ (analisador) do _tidyverse_. Podemos confirmar que os dados foram lidos da seguinte forma:
 
 ```{r, eval=FALSE}
 View(dat)
 ```
-Por fim, lembre-se de que também podemos usar o caminho completo para o arquivo:
+Por fim, note também que podemos usar o caminho completo para o arquivo:
 
 ```{r, eval=FALSE}
 dat <- read_csv(fullpath)
@@ -184,21 +184,21 @@ dat <- read_csv(fullpath)
 
 ### readxl
 
-Eles podem carregar o pacote __readxl__ usando:
+Você pode carregar o pacote __readxl__ usando:
 
 ```{r, eval=FALSE}
 library(readxl)
 ```
 
-O pacote oferece funções para a leitura dos formatos do Microsoft Excel:
+O pacote oferece funções para a leitura de arquivos nos formatos do Microsoft Excel:
 
-| Função | Formato | Sufixo típico |
+| Função | Formato | Extensão |
 |-----------|--------------------------------------------------|----------------|
-| read_excel | detectar automaticamente o formato | xls, xlsx |
-| read_xls | formato original | xls
-| read_xlsx | novo formato | xlsx
+| read_excel | detecta automaticamente o formato | xls, xlsx |
+| read_xls | formato original | xls |
+| read_xlsx | novo formato | xlsx |
 
-Os formatos do Microsoft Excel permitem que você tenha mais de uma planilha em um arquivo. Estes são conhecidos como _sheets_. As funções listadas acima leem a primeira folha por padrão, mas também podemos ler as outras. A função `excel_sheets` nos fornece os nomes de todas as planilhas em um arquivo excel. Esses nomes podem ser passados para o argumento `sheet` nas três funções anteriores para ler folhas diferentes da primeira.
+Os formatos do Microsoft Excel permitem que você tenha mais de uma planilha em um arquivo. As funções listadas acima leem por padrão a primeira folha, mas também podemos ler as outras. A função `excel_sheets` nos fornece os nomes de todas as planilhas em um arquivo do Excel. Esses nomes podem ser passados pelo argumento `sheet` das três funções apresentadas anteriormente, permitindo assim a leitura de outras planilhas do arquivo além da primeira.
 
 ## Exercícios
 
@@ -212,12 +212,12 @@ files
 ```
 
 
-2\. Observe que o último, o arquivo `olive`, nos dá um aviso. Isso ocorre porque a primeira linha do arquivo está ausente no cabeçalho da primeira coluna.
+2\. Observe que o último arquivo (`olive`), retorna um aviso. Isso ocorre porque a primeira linha do arquivo não contém o cabeçalho da primeira coluna.
 
-Leia a página de ajuda para `read_csv` para aprender a ler o arquivo sem ler este cabeçalho. Se você omitir o cabeçalho, não deverá receber este aviso. Salve o resultado em um objeto chamado `dat`.
+Leia a página de ajuda para `read_csv` para aprender a ler o arquivo sem ler esse cabeçalho. Se você omitir o cabeçalho, você não deverá receber esse aviso. Salve o resultado em um objeto chamado `dat`.
 
 
-3\. Um problema com a abordagem acima é que não sabemos o que as colunas representam. Escriba:
+3\. Um problema com a abordagem acima é que não sabemos o que as colunas representam. Digite:
 
 ```{r, eval=FALSE}
 names(dat)
@@ -225,10 +225,10 @@ names(dat)
 
 para confirmar que os nomes não são informativos.
 
-Use a função `readLines` para ler apenas a primeira linha (mais tarde aprenderemos como extrair valores de _output_).
+Use a função `readLines` para ler apenas a primeira linha (mais tarde aprenderemos como extrair valores do _output_).
 
 
-## Como baixar arquivos
+## Como fazer _download_ de arquivos
 
 Outro local comum onde os dados residem é na internet. Quando esses dados estão em arquivos, podemos baixá-los e importá-los, ou mesmo lê-los diretamente da web. Por exemplo, observamos que, como o pacote __dslabs__ está no GitHub, o arquivo que baixamos com o pacote tem uma URL:
 
