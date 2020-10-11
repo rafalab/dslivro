@@ -80,9 +80,9 @@ Uma observação final: como os FDCs podem ser matematicamente definidos, a pala
 
 ## Histogramas
 
-Embora o conceito de FDC seja amplamente discutido nos livros estatísticos, o gráfico não é muito popular na prática. O principal motivo é que ele não transmite facilmente características de interesse, como: Em que valor a distribuição se concentra? A distribuição é simétrica? Quais intervalos contêm 95% dos valores? Os histogramas são preferidos porque facilitam muito a resposta a essas perguntas. Os histogramas sacrificam apenas um pouco de informação para produzir gráficos muito mais fáceis de interpretar.
+Embora o conceito de FDC seja amplamente discutido nos livros estatísticos, o gráfico não é muito popular na prática. O principal motivo é que ele não transmite facilmente características de interesse, como: em que valor a distribuição se concentra? A distribuição é simétrica? Quais intervalos contêm 95% dos valores? Os histogramas são preferidos porque facilitam responder a essas perguntas. Os histogramas sacrificam apenas um pouco de informação para produzir gráficos muito mais fáceis de interpretar.
 
-A maneira mais fácil de criar um histograma é dividir o _span_dos nossos dados em_bins_não sobrepostos_ do mesmo tamanho. Então, para cada compartimento, contamos o número de valores que estão nesse intervalo. O histograma representa graficamente essas contagens como barras com a base da barra definida pelos intervalos. Aqui está o histograma para os dados de altura que dividem o intervalo de valores em intervalos de uma polegada: $[49.5, 50.5], [51.5,52.5],(53.5,54.5],...,(82.5,83.5]$
+A maneira mais fácil de criar um histograma é dividir a distribuição dos nossos dados em compartimentos de mesmo tamanho que não se sobrepõem. Então, para cada compartimento, contamos o número de valores que estão nesse intervalo. O histograma representa graficamente essas contagens como barras em que a base é definida pelos intervalos. Aqui está o histograma para os dados de altura separados pelos intervalos de valores em polegadas: $[49.5, 50.5], [51.5,52.5],(53.5,54.5],...,(82.5,83.5]$
 
 ```{r height-histogram, echo=FALSE}
 heights %>%
