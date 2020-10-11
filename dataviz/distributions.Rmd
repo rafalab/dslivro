@@ -99,9 +99,9 @@ Que informações perdemos? Note que todos os valores em cada intervalo são tra
 
 Discutimos como codificar histogramas na Seção \@ref(other-geometries).
 
-## Gráficos de densidade
+## Curvas de densidade
 
-Os gráficos de densidade, também conhecidos como gráficos de densidade suave (_smooth density_), são esteticamente mais atraentes que os histogramas. Abaixo, vemos um gráfico de densidade para nossos dados de altura:
+Os gráficos de densidade, também conhecidos como curvas de densidade suavizadas (_smooth density_), são esteticamente mais atraentes que os histogramas. Abaixo, vemos um gráfico de densidade para nossos dados de altura:
 
 ```{r example-of-smoothed-density, echo=FALSE}
 heights %>%
@@ -146,7 +146,7 @@ geom_line(stat='density')
 
 Agora, voltamos à realidade. Não temos milhões de medições. Em vez disso, temos `r sum(heights$sex=="Male")` e não podemos fazer um histograma com compartimentos muito pequenos.
 
-Portanto, fazemos um histograma usando tamanhos de compartimento apropriados para nossos dados e calculamos as frequências em vez de contagens. Além disso, desenhamos uma curva suave que passa pelo topo das barras do histograma. Os gráficos a seguir mostram as etapas que levam à construção do gráfico de densidade suave:
+Portanto, fazemos um histograma usando tamanhos de compartimento apropriados para nossos dados e calculamos as frequências em vez de contagens. Além disso, desenhamos uma curva suave que passa pelo topo das barras do histograma. Os gráficos a seguir mostram as etapas que levam à construção das curvas de densidade suavizadas:
 
 ```{r smooth-density-2, echo=FALSE, out.width = "100%"}
 hist1 <- heights %>%
