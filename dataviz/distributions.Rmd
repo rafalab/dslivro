@@ -205,7 +205,7 @@ A proporção dessa área é de aproximadamente
 `r round(mean(dplyr::between(heights$height[heights$sex == "Male"], 65, 68)), 2)`,
 o que significa que aproximadamente `r noquote(paste0(round(mean(dplyr::between(heights$height[heights$sexo == "Male"], 65, 68)), 2) * 100, '%'))` das alturas dos estudantes do sexo masculino estão entre 65 e 68 polegadas.
 
-Ao entender isso, estamos prontos para usar a densidade suave como um resumo. Para esse conjunto de dados, nos sentimos confortáveis em assumir suavidade e, assim, compartilhar essa figura esteticamente agradável com o ET, que pode usá-lo para entender nossos dados de altura masculinos:
+Ao entender isso, estamos prontos para usar as curvas de densidade como uma forma de sumarizar. Para esse conjunto de dados, nos sentimos confortáveis em assumir suavidade e, assim, compartilhar essa figura esteticamente agradável com o ET, que pode usá-la para entender nossos dados de altura masculina:
 
 ```{r example-of-smoothed-density-2, echo=FALSE}
 heights %>%
@@ -216,9 +216,9 @@ geom_line(stat='density')
 ```
 
 
-### Densidades permitem camadas
+### Densidades permitem a estratificação
 
-Como nota final, observamos que uma vantagem das densidades suaves sobre os histogramas para fins de exibição é que as densidades facilitam a comparação de duas distribuições. Isso se deve em grande parte às bordas irregulares do histograma, que agregam confusão. Aqui está um exemplo comparando as alturas masculina e feminina:
+Como nota final, observamos que uma vantagem das densidades suaves sobre os histogramas para propósitos de visualização é que as densidades facilitam a comparação entre duas distribuições. Isso se deve em grande parte às bordas irregulares do histograma, que geram confusão. Aqui está um exemplo comparando as alturas masculina e feminina:
 
 ```{r two-densities-one-plot, echo=FALSE}
 heights %>%
@@ -227,7 +227,7 @@ geom_density(alpha = 0.2, color = 0) +
 geom_line(stat='density')
 ```
 
-Com o argumento correto, `ggplot` sombreia automaticamente a região de interseção com uma cor diferente. Mostraremos amostras de código __ggplot2__ para densidades na Seção \@ref(gapminder) bem como na Seção \@ref(other-geometries).
+Com o argumento correto, `ggplot` sombreia automaticamente a região de interseção com uma cor diferente. Mostraremos exemplos de códigos para densidades do __ggplot2__ na Seção \@ref(gapminder) bem como na Seção \@ref(other-geometries).
 
 
 ## Exercícios
