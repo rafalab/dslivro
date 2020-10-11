@@ -57,7 +57,7 @@ Esse gráfico simplesmente mostra quatro números, um para cada categoria. Geral
 
 ## Funções de distribuição cumulativa {#cdf-intro}
 
-Dados numéricos que não são categóricos também têm distribuições. Em geral, quando os dados não são categóricos, a indicação da frequência de cada entrada não é um resumo efetivo, pois a maioria das entradas é exclusiva. Em nosso estudo de caso, por exemplo, enquanto vários estudantes relataram uma altura de 68 polegadas, um estudante relatou uma altura de `68.503937007874` polegadas e outra uma altura `68.8976377952756` polegadas. Supomos que eles tenham convertido suas alturas em 174 e 175 centímetros, respectivamente.
+Dados numéricos que não são categóricos também têm distribuições. Em geral, quando os dados não são categóricos, a indicação da frequência de cada entrada não é um resumo efetivo, pois a maioria das entradas são únicas. Em nosso estudo de caso, por exemplo, enquanto vários estudantes relataram uma altura de 68 polegadas, um estudante relatou uma altura de `68.503937007874` polegadas e outra uma altura `68.8976377952756` polegadas. Supomos que eles tenham convertido suas alturas em 174 e 175 centímetros, respectivamente.
 
 Os livros de estatística nos ensinam que uma maneira mais útil de definir uma distribuição numérica de dados é definir uma função que indica a proporção dos dados abaixo $a$ para todos os valores possíveis de $a$. Essa função é chamada de função de distribuição cumulativa, ou CDF, para abreviar. Nas estatísticas, a seguinte notação é usada:
 
