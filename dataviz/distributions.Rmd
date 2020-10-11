@@ -55,11 +55,11 @@ xlab("")
 
 Esse gráfico simplesmente mostra quatro números, um para cada categoria. Geralmente usamos gráficos de barras quando temos poucos números. Embora esse gráfico em particular não forneça muito mais informações do que uma tabela de frequência, ele é um excelente exemplo de como convertemos um vetor em um gráfico que resume sucintamente todas as informações. Quando os dados são numéricos, a tarefa de exibir distribuições é mais desafiadora.
 
-## Funções de distribuição cumulativa {#cdf-intro}
+## Funções de distribuição acumulada {#cdf-intro}
 
 Dados numéricos que não são categóricos também têm distribuições. Em geral, quando os dados não são categóricos, a indicação da frequência de cada entrada não é um resumo efetivo, pois a maioria das entradas são únicas. Por exemplo, em nosso estudo de caso, enquanto vários estudantes relataram uma altura de 68 polegadas, dois estudantes relataram alturas de `68.503937007874` e `68.8976377952756` polegadas. Acreditamos que eles tenham convertido suas alturas para polegadas a partir dos valores 174 e 175 centímetros, respectivamente.
 
-Os livros de estatística nos ensinam que uma maneira mais útil de definir uma distribuição numérica de dados é definir uma função que indica a proporção dos dados abaixo de $a$ para todos os valores possíveis de $a$. Essa função é chamada de função de distribuição cumulativa (FDC). Em estatística, a seguinte notação é usada:
+Os livros de estatística nos ensinam que uma maneira mais útil de definir uma distribuição numérica de dados é definir uma função que indica a proporção dos dados abaixo de $a$ para todos os valores possíveis de $a$. Essa função é chamada de função de distribuição acumulada (FDA). Em estatística, a seguinte notação é usada:
 
 $$ F(a) = \mbox{Pr}(x \leq a) $$
 
@@ -72,15 +72,15 @@ stat_ecdf() +
 ylab("F(a)") + xlab("a")
 ```
 
-Semelhante ao que a tabela de frequência faz para dados categóricos, o FDC define a distribuição de dados numéricos. No gráfico, podemos ver que `r round(ecdf(heights$height[heights$sex == "Male"])(66)*100)`% dos valores são menores que 65, pois $F(66)=$ `r ecdf(heights$height[heights$sex == "Male"])(66)`, ou que `r round(ecdf(heights$height[heights$ sex == "Male"])(72)*100)`% dos valores são menores que 72, pois $F(72)=$ `r ecdf(heights$height[heights$sex == "Male"])(72)`
+Semelhante ao que a tabela de frequência faz para dados categóricos, o FDA define a distribuição de dados numéricos. No gráfico, podemos ver que `r round(ecdf(heights$height[heights$sex == "Male"])(66)*100)`% dos valores são menores que 65, pois $F(66)=$ `r ecdf(heights$height[heights$sex == "Male"])(66)`, ou que `r round(ecdf(heights$height[heights$ sex == "Male"])(72)*100)`% dos valores são menores que 72, pois $F(72)=$ `r ecdf(heights$height[heights$sex == "Male"])(72)`
 e assim por diante. De fato, podemos relatar a proporção de valores entre duas alturas, denominadas aqui como $a$ e $b$, ao computar $F(b) - F(a)$. Isso significa que, se enviarmos esse diagrama para o ET, ele terá todas as informações necessárias para reconstruir a lista completa. Parafraseando a expressão "uma imagem vale mais que mil palavras", neste caso, uma imagem é tão informativa quanto `r sum(heights$sex=="Male")` números.
 
-Uma observação final: como os FDCs podem ser matematicamente definidos, a palavra _empírico_ é adicionada para distinguir quando os dados são usados. Portanto, usamos o termo FDC empírico (FDCE).
+Uma observação final: como os FDAs podem ser matematicamente definidos, a palavra _empírico_ é adicionada para distinguir quando os dados são usados. Portanto, usamos o termo FDA empírico (FDAE).
 
 
 ## Histogramas
 
-Embora o conceito de FDC seja amplamente discutido nos livros estatísticos, o gráfico não é muito popular na prática. O principal motivo é que ele não transmite facilmente características de interesse, como: em que valor a distribuição se concentra? A distribuição é simétrica? Quais intervalos contêm 95% dos valores? Os histogramas são preferidos porque facilitam responder a essas perguntas. Os histogramas sacrificam apenas um pouco de informação para produzir gráficos muito mais fáceis de interpretar.
+Embora o conceito de FDA seja amplamente discutido nos livros estatísticos, o gráfico não é muito popular na prática. O principal motivo é que ele não transmite facilmente características de interesse, como: em que valor a distribuição se concentra? A distribuição é simétrica? Quais intervalos contêm 95% dos valores? Os histogramas são preferidos porque facilitam responder a essas perguntas. Os histogramas sacrificam apenas um pouco de informação para produzir gráficos muito mais fáceis de interpretar.
 
 A maneira mais fácil de criar um histograma é dividir a distribuição dos nossos dados em compartimentos de mesmo tamanho que não se sobrepõem. Então, para cada compartimento, contamos o número de valores que estão nesse intervalo. O histograma representa graficamente essas contagens como barras em que a base é definida pelos intervalos. Aqui está o histograma para os dados de altura separados pelos intervalos de valores em polegadas: $[49.5, 50.5], [51.5,52.5],(53.5,54.5],...,(82.5,83.5]$
 
@@ -99,9 +99,9 @@ Que informações perdemos? Note que todos os valores em cada intervalo são tra
 
 Discutimos como codificar histogramas na Seção \@ref(other-geometries).
 
-## Densidade suavizada
+## Gráficos de densidade
 
-Os gráficos de densidade suave são esteticamente mais atraentes que os histogramas. Abaixo, vemos um gráfico de densidade suave para nossos dados de altura:
+Os gráficos de densidade, também conhecidos como gráficos de densidade suave (_smooth density_), são esteticamente mais atraentes que os histogramas. Abaixo, vemos um gráfico de densidade para nossos dados de altura:
 
 ```{r example-of-smoothed-density, echo=FALSE}
 heights %>%
@@ -111,13 +111,13 @@ geom_density(alpha = .2, fill= "#00BFC4", color = 0) +
 geom_line(stat='density')
 ```
 
-Neste gráfico, não temos mais arestas vivas nos limites do intervalo e muitos dos picos locais foram removidos. Além disso, a escala do eixo y mudou de contagens para _densidade_.
+Nesse gráfico, não temos mais extremidades afiadas nos limites de intervalo e muitos dos picos locais foram removidos. Além disso, a escala do eixo y mudou de contagens para _densidade_.
 
-Para entender densidades suaves, precisamos entender _estimations_, um tópico que não abordamos até mais tarde. No entanto, oferecemos uma explicação heurística para ajudá-lo a entender o básico, para que você possa usar esta útil ferramenta de visualização de dados.
+Para entender o gráfico de densidade, precisamos entender sobre _estimativas_, um tópico que não abordaremos até mais tarde. No entanto, ofereceremos aqui uma explicação heurística para ajudá-lo a entender o básico, e assim, você possa usar essa útil ferramenta na visualização de dados.
 
-O principal novo conceito que você precisa entender é que assumimos que nossa lista de valores observados é um subconjunto de uma lista muito maior de valores não observados. No caso de alturas, você pode imaginar que nossa lista de `r sum(heights$sex=="Male")` os estudantes do sexo masculino vêm de uma lista hipotética que contém todas as alturas de todos os estudantes do mundo todo, todos medidos com grande precisão. Digamos que existem 1.000.000 dessas medidas. Essa lista de valores tem uma distribuição, como qualquer lista de valores, e essa distribuição considerável é realmente o que queremos transmitir ao ET, pois é muito mais geral. Infelizmente, não podemos ver essa lista enorme.
+O principal novo conceito que você precisa entender é que assumimos que nossa lista de valores observados é um subconjunto de uma lista muito maior de valores não observados. No caso das alturas, você pode imaginar que nossa lista com `r sum(heights$sex=="Male")` estudantes do sexo masculino se origina de uma lista hipotética que contém as alturas de todos os estudantes do mundo, medidas com grande precisão. Digamos que existam 1.000.000 dessas medidas. Essa lista de valores tem uma distribuição, como qualquer lista de valores. Essa distribuição considerável é o que queremos realmente reportar ao ET, pois é muito mais geralizada. Infelizmente, não conseguimos ver isso.
 
-No entanto, podemos fazer uma suposição que pode nos ajudar a aproximar isso. Se tivéssemos 1.000.000 valores, medidos com muita precisão, poderíamos fazer um histograma com compartimentos muito, muito pequenos. A suposição é que, se mostrarmos isso, a altura dos compartimentos consecutivos será semelhante. Aqui está o que entendemos por macio: não temos grandes saltos nas alturas de compartimentos consecutivos. Aqui está um histograma hipotético com compartimentos de tamanho 1:
+Entretanto, podemos fazer uma suposição que pode nos ajudar a obter um resultado aproximado disso. Se tivéssemos 1.000.000 valores, medidos com muita precisão, poderíamos fazer um histograma com barras de compartimentos muito, muito pequenas. A suposição é que, se mostrarmos isso, a altura das barras consecutivas será semelhante. Isso é o que queremos dizer com densidade suave (_smooth density_): não temos grandes saltos nas alturas de barras consecutivas. Aqui está um histograma hipotético com barras de tamanho 1:
 
 
 ```{r simulated-data-histogram-1, echo=FALSE}
@@ -126,7 +126,7 @@ x <- data.frame(height = c(rnorm(1000000,69,3), rnorm(1000000,65,3)))
 x %>% ggplot(aes(height)) + geom_histogram(binwidth = 1, color = "black")
 ```
 
-Quanto menores os compartimentos, mais suave o histograma se torna. Aqui estão os histogramas com larguras de compartimento de 1, 0,5 e 0,1:
+Quanto menor o intervalo do compartimento das barras, mais suave o histograma se torna. Aqui estão os histogramas com larguras de compartimento de 1, 0,5 e 0,1:
 
 ```{r simulated-data-histogram-2, fig.width=9, fig.height=3, out.width = "100%",echo=FALSE, message=FALSE}
 p1 <- x %>% ggplot(aes(height)) + geom_histogram(binwidth = 1, color = "black") + ggtitle("binwidth=1")
@@ -144,9 +144,9 @@ geom_histogram(aes(y=..density..), binwidth = 0.1, color = I("black")) +
 geom_line(stat='density')
 ```
 
-Agora de volta à realidade. Não temos milhões de medições. Em vez disso, temos `r sum(heights$sex=="Male")` e não podemos fazer um histograma com compartimentos muito pequenos.
+Agora, voltamos à realidade. Não temos milhões de medições. Em vez disso, temos `r sum(heights$sex=="Male")` e não podemos fazer um histograma com compartimentos muito pequenos.
 
-Portanto, fazemos um histograma, usando tamanhos de compartimento apropriados para nossos dados e frequências de computação em vez de contagens. Além disso, desenhamos uma curva suave que passa pela parte superior das barras do histograma. Os gráficos a seguir mostram as etapas que levam a uma densidade suave:
+Portanto, fazemos um histograma usando tamanhos de compartimento apropriados para nossos dados e calculamos as frequências em vez de contagens. Além disso, desenhamos uma curva suave que passa pelo topo das barras do histograma. Os gráficos a seguir mostram as etapas que levam à construção do gráfico de densidade suave:
 
 ```{r smooth-density-2, echo=FALSE, out.width = "100%"}
 hist1 <- heights %>%
@@ -170,7 +170,7 @@ scale_y_continuous(limits = layer_scales(hist2)$y$range$range)
 grid.arrange(hist1, hist3, hist4, hist5, hist2, hist6, nrow=2)
 ```
 
-No entanto, lembre-se de que _soft_ (_smooth_ em inglês) é um termo relativo. De fato, podemos controlar a suavidade da curva alterando o número de pontos nos compartimentos. Essa opção é conhecida como _bandwidth_, _span_, _window size_ ou, em espanhol, _smoothing window_ ou _smoothing parameter_ e pode ser ajustada na função que calcula a curva de densidade suave. Aqui estão dois exemplos que usam diferentes níveis de suavidade no mesmo histograma:
+No entanto, lembre-se de que _suave_ é um termo relativo. De fato, podemos controlar a suavidade da curva alterando o número de pontos nos compartimentos. Essa opção é conhecida como _bandwidth_, _span_, ou _window size_ pode ser ajustada na função que calcula a curva de densidade suave. Aqui estão dois exemplos que usam diferentes níveis de suavidade no mesmo histograma:
 
 
 ```{r densities-different-smoothness, echo = FALSE, out.width = "100%", fig.width = 6, fig.height = 3}
@@ -258,7 +258,7 @@ b. O gráfico acima mostra apenas quatro números com um gráfico de barras.
 c. As categorias não são números, portanto, não faz sentido representar graficamente a distribuição.
 d. Cores, não a altura das barras, descrevem a distribuição.
 
-3\. O gráfico a seguir mostra o FDCE para a altura dos homens:
+3\. O gráfico a seguir mostra o FDAE para a altura dos homens:
 
 
 ```{r ecdf-exercise, echo=FALSE}
@@ -282,7 +282,7 @@ b. 64 polegadas
 c. 69 polegadas
 d. 74 polegadas
 
-5\. Aqui está um FDCE das taxas de homicídio entre os estados:
+5\. Aqui está um FDAE das taxas de homicídio entre os estados:
 
 ```{r ecdf-exercise-2, echo=FALSE}
 murders %>% mutate(murder_rate = total/population * 10^5) %>%
@@ -299,7 +299,7 @@ c. 10
 d. cinquenta
 
 
-6\. De acordo com o FDCE anterior, qual das seguintes afirmações é verdadeira?
+6\. De acordo com o FDAE anterior, qual das seguintes afirmações é verdadeira?
 
 
 para. Cerca de metade dos estados têm taxas de homicídio acima de 7 por 100.000 e a outra metade abaixo.
