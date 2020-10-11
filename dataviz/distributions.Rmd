@@ -91,15 +91,15 @@ ggplot(aes(height)) +
 geom_histogram(binwidth = 1, color = "black")
 ```
 
-Como você pode ver na figura acima, um histograma é semelhante a um gráfico de barras, mas difere no fato de o eixo x ser numérico, não categórico.
+Como você pode ver na figura acima, um histograma é semelhante a um gráfico de barras, mas se diferencia pelo fato de o eixo x ser numérico e não categórico.
 
-Se enviarmos esse diagrama para o ET, ele aprenderá imediatamente alguns detalhes importantes sobre nossos dados. Primeiro, o intervalo de dados é de 50 a 84, com a maioria (acima de 95%) entre 63 e 75 polegadas. Além disso, as alturas são quase simétricas em torno de 69 polegadas. Finalmente, adicionando contagens, o ET pode obter uma aproximação muito boa da proporção dos dados em qualquer intervalo. Portanto, o histograma acima não é apenas fácil de interpretar, mas também oferece quase todas as informações contidas na lista bruta de `r sum(heights$sex=="Male")` alturas com aproximadamente 30 contagens, uma para cada compartimento.
+Se enviarmos esse gráfico para o ET, ele aprenderá imediatamente alguns detalhes importantes sobre nossos dados. Primeiro, o intervalo de dados varia de 50 a 84, com a maioria (acima de 95%) entre 63 e 75 polegadas. Em segundo lugar, as alturas são quase simétricas ficando em torno de 69 polegadas. Além disso, adicionando contagens, o ET poderia obter uma aproximação muito boa da proporção dos dados em qualquer intervalo. Portanto, o histograma acima não é apenas mais fácil de interpretar, mas também oferece quase todas as informações contidas na lista com `r sum(heights$sex=="Male")` alturas em menos de 30 barras.
 
-Que informação perdemos? Lembre-se de que todos os valores em cada intervalo são tratados da mesma maneira ao calcular as alturas dos compartimentos. Por exemplo, o histograma não distingue entre 64, 64,1 e 64,2 polegadas. Como essas diferenças são quase imperceptíveis aos olhos, as implicações práticas são desprezíveis e conseguimos resumir os dados em apenas 23 números.
+Que informações perdemos? Note que todos os valores em cada intervalo são tratados da mesma maneira ao calcular as alturas das barras. Por exemplo, o histograma não distingue entre 64, 64,1 e 64,2 polegadas. Como essas diferenças são quase imperceptíveis aos olhos, as implicações práticas são desprezíveis e conseguimos resumir os dados em apenas 23 números.
 
 Discutimos como codificar histogramas na Seção \@ref(other-geometries).
 
-## Densidade suave
+## Densidade suavizada
 
 Os gráficos de densidade suave são esteticamente mais atraentes que os histogramas. Abaixo, vemos um gráfico de densidade suave para nossos dados de altura:
 
