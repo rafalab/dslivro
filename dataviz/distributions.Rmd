@@ -233,7 +233,7 @@ Com o argumento correto, `ggplot` sombreia automaticamente a região de interse�
 ## Exercícios
 
 
-1\. No conjunto de dados `murders`, a região é uma variável categórica e sua distribuição é a seguinte:
+1\. No conjunto de dados `murders` (assassinatos), a região é uma variável categórica e sua distribuição é a seguinte:
 
 ```{r barplot-exercise, echo=FALSE}
 library(dslabs)
@@ -248,15 +248,15 @@ geom_bar(stat = "identity", show.legend = FALSE) +
 xlab("")
 ```
 
-Arredondando para os 5% mais próximos, qual a proporção de estados na região "Norte Central"?
+Arredondando para os 5% mais próximos, qual a proporção de estados na região "Centro-Norte" (_North Central_)?
 
 
-2\. Qual dos seguintes é verdadeiro?
+2\. Qual das seguintes opções é verdadeira?
 
-para. O gráfico acima é um histograma.
+a. O gráfico acima é um histograma.
 b. O gráfico acima mostra apenas quatro números com um gráfico de barras.
 c. As categorias não são números, portanto, não faz sentido representar graficamente a distribuição.
-d. Cores, não a altura das barras, descrevem a distribuição.
+d. As cores, e não a altura das barras, descrevem a distribuição.
 
 3\. O gráfico a seguir mostra o FDAE para a altura dos homens:
 
@@ -269,15 +269,15 @@ ylab("F(a)") + xlab("a")
 
 De acordo com o gráfico, qual a porcentagem de homens com menos de 75 polegadas?
 
-para. 100%
+a. 100%
 b. 95%
 c. 80%
 d. 72 polegadas
 
 
-4\. Para a polegada mais próxima, qual a altura `m` tem a propriedade de que metade dos estudantes do sexo masculino é mais alta que `m` e metade são menores?
+4\. Considerando o valor em polegadas mais próximo, qual a altura `m` que separa a metade dos estudantes do sexo masculino maiores da outra metade?
 
-para. 61 polegadas
+a. 61 polegadas
 b. 64 polegadas
 c. 69 polegadas
 d. 74 polegadas
@@ -291,24 +291,24 @@ stat_ecdf() +
 ylab("F(a)") + xlab("a")
 ```
 
-Sabendo que existem 51 estados (contando DC) e com base neste gráfico, quantos estados têm taxas de homicídios superiores a 10 por 100.000 pessoas?
+Sabendo que existem 51 estados (contando DC) e com base nesse gráfico, quantos estados têm taxas de homicídios superiores a 10 por 100.000 pessoas?
 
-para. 1
+a. 1
 b. 5
 c. 10
-d. cinquenta
+d. 50
 
 
 6\. De acordo com o FDAE anterior, qual das seguintes afirmações é verdadeira?
 
 
-para. Cerca de metade dos estados têm taxas de homicídio acima de 7 por 100.000 e a outra metade abaixo.
+a. Cerca de metade dos estados têm taxas de homicídio acima de 7 por 100.000 e a outra metade abaixo.
 b. A maioria dos estados tem taxas de homicídio inferiores a 2 por 100.000.
 c. Todos os estados têm taxas de homicídio superiores a 2 por 100.000.
 d. Com exceção de 4 estados, as taxas de homicídio são inferiores a 5 por 100.000.
 
 
-7\. Aqui está o histograma das alturas masculinas do nosso conjunto de dados `heights`:
+7\. Abaixo é apresentado o histograma das alturas masculinas do conjunto de dados `heights`:
 
 ```{r height-histogram-exercise, echo=FALSE}
 heights %>%
@@ -317,30 +317,31 @@ ggplot(aes(height)) +
 geom_histogram(binwidth = 1, color = "black")
 ```
 
-De acordo com este gráfico, quantos homens existem entre 63,5 e 65,5?
+De acordo com esse gráfico, quantos homens possuem entre 63,5 e 65,5 polegadas de altura?
 
-para. 10
+a. 10
 b. 24
-c. 3. 4
+c. 34
 d. 100
 
-8\. Aproximadamente, o que **porcentagem** tem menos de 60 polegadas?
+8\. Aproximadamente, qual **porcentagem** tem menos de 60 polegadas?
 
-para. 1%
+a. 1%
 b. 10%
 c. 25%
-d. cinquenta%
+d. 50%
 
-9\. Com base no gráfico de densidade abaixo, aproximadamente qual proporção de estados dos EUA? EUA Você tem populações com mais de 10 milhões de pessoas?
+9\. Com base no gráfico de densidade abaixo, qual a proporção aproximada de estados dos EUA tem populações com mais de 10 milhões de habitantes?
 
 ```{r density-exercise, echo=FALSE}
 murders %>% ggplot(aes(x=population/10^6)) +
 geom_density(fill = "grey") +
 scale_x_log10() +
-xlab("Population in millions")
+xlab("População em milhões")+
+ylab("Densidade")
 ```
 
-para. 0,02
+a. 0,02
 b. 0,15
 c. 0,50
 d. 0,55
@@ -350,22 +351,22 @@ d. 0,55
 ```{r density-exercise-2, echo=FALSE, warning=FALSE, message=FALSE}
 library(gridExtra)
 p1 <- murders %>% ggplot(aes(x=population/10^6)) +
-geom_density(fill = "grey", bw = 5) + xlab("Population in millions") + ggtitle("1")
+geom_density(fill = "grey", bw = 5) + xlab("População em milhões") + ylab("Densidade") + ggtitle("1")
 p2 <- murders %>% ggplot(aes(x=population/10^6)) +
-geom_density(fill = "grey", bw = .05) + scale_x_log10() + xlab("Population in millions") + ggtitle("2")
+geom_density(fill = "grey", bw = .05) + scale_x_log10() + xlab("População em milhões") + ylab("Densidade") + ggtitle("2")
 p3 <- murders %>% ggplot(aes(x=population/10^6)) +
-geom_density(fill = "grey", bw = 1) + scale_x_log10() + xlab("Population in millions") + ggtitle("3")
+geom_density(fill = "grey", bw = 1) + scale_x_log10() + xlab("População em milhões") + ylab("Densidade") + ggtitle("3")
 grid.arrange(p1,p2,p3,ncol=2)
 ```
 
 Qual das seguintes afirmações é verdadeira?
 
-para. É impossível que eles sejam do mesmo conjunto de dados.
-b. Eles são do mesmo conjunto de dados, mas os gráficos são diferentes devido a erros de código.
-c. Eles são do mesmo conjunto de dados, mas o primeiro e o segundo gráficos suavizam e o terceiro gráfico suaviza demais.
-d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala logarítmica, o segundo suaviza menos e o terceiro ultrapassa o pico.
+a. É impossível que eles sejam do mesmo conjunto de dados.
+b. Eles são do mesmo conjunto de dados, mas os gráficos são diferentes devido a erros no código.
+c. Eles são do mesmo conjunto de dados, mas o primeiro e o segundo gráficos aplica uma baixa suavização, enquanto o terceiro gráfico suaviza demais.
+d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala logarítmica, o segundo suaviza pouco e o terceiro suaviza demais.
 
-## A distribuição normal {#normal-distribution}
+## Distribuição normal {#normal-distribution}
 
 Histogramas e gráficos de densidade fornecem excelentes resumos de uma distribuição. Mas podemos resumir mais? Muitas vezes vemos o desvio médio e padrão usado como um resumo estatístico - um resumo de dois números! Para entender o que são esses resumos e por que são tão usados, precisamos entender a distribuição normal.
 
