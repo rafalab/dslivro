@@ -170,7 +170,7 @@ scale_y_continuous(limits = layer_scales(hist2)$y$range$range)
 grid.arrange(hist1, hist3, hist4, hist5, hist2, hist6, nrow=2)
 ```
 
-No entanto, lembre-se de que _suave_ é um termo relativo. De fato, podemos controlar a suavidade da curva alterando o número de pontos nos compartimentos. Essa opção é conhecida como _bandwidth_, _span_, ou _window size_ pode ser ajustada na função que calcula a curva de densidade suave. Aqui estão dois exemplos que usam diferentes níveis de suavidade no mesmo histograma:
+No entanto, lembre-se de que _suave_ é um termo relativo. De fato, podemos controlar a suavidade da curva alterando o número de pontos nos compartimentos. Aqui estão dois exemplos que usam diferentes níveis de suavidade no mesmo histograma:
 
 
 ```{r densities-different-smoothness, echo = FALSE, out.width = "100%", fig.width = 6, fig.height = 3}
@@ -186,13 +186,13 @@ geom_line(stat='density', adjust = 2)
 
 grid.arrange(p1,p2, ncol=2)
 ```
-Precisamos tomar essa decisão com cuidado, pois as visualizações resultantes podem alterar nossa interpretação dos dados. Devemos selecionar um grau de suavidade que possamos defender como representativo dos dados subjacentes. No caso da altura, realmente temos motivos para acreditar que a proporção de pessoas com alturas semelhantes deve ser a mesma. Por exemplo, a taxa de 72 polegadas deve ser mais semelhante à taxa de 71 do que a taxa de 78 ou 65. Isso implica que a curva deve ser razoavelmente suave; isto é, a curva deve se parecer mais com o exemplo à direita do que com a esquerda.
+Precisamos tomar essa decisão com cuidado, pois as visualizações resultantes podem alterar nossa interpretação dos dados. Devemos selecionar um grau de suavidade que sejam representativos para os dados subjacentes. No caso da altura, realmente temos motivos para acreditar que a proporção de pessoas com alturas semelhantes deve ser a mesma. Por exemplo, a proporção de estudantes com 72 polegadas de altura deve ser mais próxima à proporção de estudantes com 71 do que com 78 ou 65 polegadas. Isso implica que a curva deve ser razoavelmente suave; isto é, a curva deve se parecer mais com o exemplo à direita do que com a esquerda.
 
 Embora o histograma seja um resumo sem suposições, a densidade suavizada é baseada em algumas suposições.
 
-### Como interpretar o eixo y
+### Interpretando o eixo y
 
-Observe que a interpretação do eixo y de um gráfico de densidade suave não é óbvia. Ele é dimensionado para que a área sob a curva de densidade seja igual a 1. Se você imaginar que formamos um compartimento com uma base de 1 unidade de comprimento, o valor do eixo y indica a proporção de valores nesse compartimento. No entanto, isso é válido apenas para compartimentos de tamanho 1. Para intervalos de outro tamanho, a melhor proporção de dados nesse intervalo é determinada calculando a proporção da área total contida nesse intervalo. Por exemplo, aqui vemos a proporção de valores entre 65 e 68:
+Observe que a interpretação do eixo y de um gráfico de densidade suave não é óbvia. Ele é dimensionado para que a área sob a curva de densidade seja igual a 1. Se você imaginar que formamos um compartimento com uma base de 1 unidade de comprimento, o valor do eixo y indica a proporção de valores nesse compartimento. No entanto, isso é válido apenas para compartimentos de tamanho 1. Para intervalos de outro tamanho, a melhor maneira de determinar a proporção de dados nesse intervalo é calculando a proporção da área total contida no intervalo. Por exemplo, aqui vemos a proporção de valores entre 65 e 68:
 
 ```{r area-under-curve, echo=FALSE}
 d <- with(heights, density(height[sex=="Male"]))
@@ -203,7 +203,7 @@ geom_area(aes(x=height,y=density), data = filter(tmp, between(height, 65, 68)), 
 
 A proporção dessa área é de aproximadamente
 `r round(mean(dplyr::between(heights$height[heights$sex == "Male"], 65, 68)), 2)`,
-o que significa que aproximadamente `r noquote(paste0(round(mean(dplyr::between(heights$height[heights$sexo == "Male"], 65, 68)), 2) * 100, '%'))`das alturas dos machos estão entre 65 e 68 polegadas.
+o que significa que aproximadamente `r noquote(paste0(round(mean(dplyr::between(heights$height[heights$sexo == "Male"], 65, 68)), 2) * 100, '%'))` das alturas dos estudantes do sexo masculino estão entre 65 e 68 polegadas.
 
 Ao entender isso, estamos prontos para usar a densidade suave como um resumo. Para esse conjunto de dados, nos sentimos confortáveis em assumir suavidade e, assim, compartilhar essa figura esteticamente agradável com o ET, que pode usá-lo para entender nossos dados de altura masculinos:
 
