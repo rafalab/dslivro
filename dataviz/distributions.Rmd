@@ -57,13 +57,13 @@ Esse gráfico simplesmente mostra quatro números, um para cada categoria. Geral
 
 ## Funções de distribuição cumulativa {#cdf-intro}
 
-Dados numéricos que não são categóricos também têm distribuições. Em geral, quando os dados não são categóricos, a indicação da frequência de cada entrada não é um resumo efetivo, pois a maioria das entradas são únicas. Em nosso estudo de caso, por exemplo, enquanto vários estudantes relataram uma altura de 68 polegadas, um estudante relatou uma altura de `68.503937007874` polegadas e outra uma altura `68.8976377952756` polegadas. Supomos que eles tenham convertido suas alturas em 174 e 175 centímetros, respectivamente.
+Dados numéricos que não são categóricos também têm distribuições. Em geral, quando os dados não são categóricos, a indicação da frequência de cada entrada não é um resumo efetivo, pois a maioria das entradas são únicas. Por exemplo, em nosso estudo de caso, enquanto vários estudantes relataram uma altura de 68 polegadas, dois estudantes relataram alturas de `68.503937007874` e `68.8976377952756` polegadas. Acreditamos que eles tenham convertido suas alturas para polegadas a partir dos valores 174 e 175 centímetros, respectivamente.
 
-Os livros de estatística nos ensinam que uma maneira mais útil de definir uma distribuição numérica de dados é definir uma função que indica a proporção dos dados abaixo $a$ para todos os valores possíveis de $a$. Essa função é chamada de função de distribuição cumulativa, ou CDF, para abreviar. Nas estatísticas, a seguinte notação é usada:
+Os livros de estatística nos ensinam que uma maneira mais útil de definir uma distribuição numérica de dados é definir uma função que indica a proporção dos dados abaixo de $a$ para todos os valores possíveis de $a$. Essa função é chamada de função de distribuição cumulativa (FDC). Em estatística, a seguinte notação é usada:
 
 $$ F(a) = \mbox{Pr}(x \leq a) $$
 
-Aqui vemos um gráfico de $F$ para dados de altura masculina:
+Aqui vemos um gráfico de $F$ para dados de altura de estudantes do sexo masculino:
 
 ```{r ecdf, echo=FALSE}
 ds_theme_set()
@@ -72,15 +72,15 @@ stat_ecdf() +
 ylab("F(a)") + xlab("a")
 ```
 
-Semelhante ao que a tabela de frequência faz para dados categóricos, o CDF define a distribuição de dados numéricos. No gráfico, podemos ver que `r round(ecdf(heights$height[heights$sex == "Male"])(66)*100)`% dos valores são menores que 65, pois $F(66)=$ `r ecdf(heights$height[heights$sex == "Male"]) (66)`, o que ` r round (ecdf(heights$height[heights$ sex == "Male"]) (72) * 100) `% dos valores são menores que 72, pois $F(72)=$ `r ecdf(heights$height[heights$sex == "Male"]) (72) `
-e assim. De fato, podemos relatar a proporção de valores entre duas alturas, digamos $a$ e $b$, ao computar $F(b) - F(a)$. Isso significa que, se enviarmos esse diagrama para o ET, ele terá todas as informações necessárias para reconstruir a lista completa. Parafraseando a expressão "uma imagem vale mais que mil palavras", neste caso, uma imagem é tão informativa quanto `r sum(heights$sex=="Male")` números.
+Semelhante ao que a tabela de frequência faz para dados categóricos, o FDC define a distribuição de dados numéricos. No gráfico, podemos ver que `r round(ecdf(heights$height[heights$sex == "Male"])(66)*100)`% dos valores são menores que 65, pois $F(66)=$ `r ecdf(heights$height[heights$sex == "Male"])(66)`, ou que `r round(ecdf(heights$height[heights$ sex == "Male"])(72)*100)`% dos valores são menores que 72, pois $F(72)=$ `r ecdf(heights$height[heights$sex == "Male"])(72)`
+e assim por diante. De fato, podemos relatar a proporção de valores entre duas alturas, denominadas aqui como $a$ e $b$, ao computar $F(b) - F(a)$. Isso significa que, se enviarmos esse diagrama para o ET, ele terá todas as informações necessárias para reconstruir a lista completa. Parafraseando a expressão "uma imagem vale mais que mil palavras", neste caso, uma imagem é tão informativa quanto `r sum(heights$sex=="Male")` números.
 
-Uma observação final: como os CDFs podem ser matematicamente definidos, a palavra _empirical_ é adicionada para distinguir quando os dados são usados. Portanto, usamos o termo CDF empírico ou eCDF para abreviar.
+Uma observação final: como os FDCs podem ser matematicamente definidos, a palavra _empírico_ é adicionada para distinguir quando os dados são usados. Portanto, usamos o termo FDC empírico (FDCE).
 
 
 ## Histogramas
 
-Embora o conceito de CDF seja amplamente discutido nos livros estatísticos, o gráfico não é muito popular na prática. O principal motivo é que ele não transmite facilmente características de interesse, como: Em que valor a distribuição se concentra? A distribuição é simétrica? Quais intervalos contêm 95% dos valores? Os histogramas são preferidos porque facilitam muito a resposta a essas perguntas. Os histogramas sacrificam apenas um pouco de informação para produzir gráficos muito mais fáceis de interpretar.
+Embora o conceito de FDC seja amplamente discutido nos livros estatísticos, o gráfico não é muito popular na prática. O principal motivo é que ele não transmite facilmente características de interesse, como: Em que valor a distribuição se concentra? A distribuição é simétrica? Quais intervalos contêm 95% dos valores? Os histogramas são preferidos porque facilitam muito a resposta a essas perguntas. Os histogramas sacrificam apenas um pouco de informação para produzir gráficos muito mais fáceis de interpretar.
 
 A maneira mais fácil de criar um histograma é dividir o _span_dos nossos dados em_bins_não sobrepostos_ do mesmo tamanho. Então, para cada compartimento, contamos o número de valores que estão nesse intervalo. O histograma representa graficamente essas contagens como barras com a base da barra definida pelos intervalos. Aqui está o histograma para os dados de altura que dividem o intervalo de valores em intervalos de uma polegada: $[49.5, 50.5], [51.5,52.5],(53.5,54.5],...,(82.5,83.5]$
 
@@ -258,7 +258,7 @@ b. O gráfico acima mostra apenas quatro números com um gráfico de barras.
 c. As categorias não são números, portanto, não faz sentido representar graficamente a distribuição.
 d. Cores, não a altura das barras, descrevem a distribuição.
 
-3\. O gráfico a seguir mostra o eCDF para a altura dos homens:
+3\. O gráfico a seguir mostra o FDCE para a altura dos homens:
 
 
 ```{r ecdf-exercise, echo=FALSE}
@@ -282,7 +282,7 @@ b. 64 polegadas
 c. 69 polegadas
 d. 74 polegadas
 
-5\. Aqui está um eCDF das taxas de homicídio entre os estados:
+5\. Aqui está um FDCE das taxas de homicídio entre os estados:
 
 ```{r ecdf-exercise-2, echo=FALSE}
 murders %>% mutate(murder_rate = total/population * 10^5) %>%
@@ -299,7 +299,7 @@ c. 10
 d. cinquenta
 
 
-6\. De acordo com o eCDF anterior, qual das seguintes afirmações é verdadeira?
+6\. De acordo com o FDCE anterior, qual das seguintes afirmações é verdadeira?
 
 
 para. Cerca de metade dos estados têm taxas de homicídio acima de 7 por 100.000 e a outra metade abaixo.
