@@ -370,16 +370,16 @@ d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala log
 
 Histogramas e gráficos de densidade fornecem excelentes resumos de uma distribuição. Mas podemos resumi-los melhor? Muitas vezes vemos a média e o desvio padrão usados como um resumo estatístico: um resumo de dois números! Para entender o que são esses resumos e por que são tão usados, precisamos entender a distribuição normal.
 
-A distribuição normal, também conhecida como curva de sino ou como distribuição Gaussiana, é um dos conceitos matemáticos mais famosos da história. Uma razão para isso é que distribuições aproximadamente normais ocorrem em muitas situações, incluindo em jogos de azar, alturas, pesos, pressão arterial, resultados de testes padronizados e erros de medição experimentais. Existem explicações para isso e as descreveremos posteriormente. Aqui, focamos em como a distribuição normal nos ajuda a resumir os dados.
+A distribuição normal, também conhecida como curva de sino ou como distribuição Gaussiana, é um dos conceitos matemáticos mais famosos da história. Uma razão para isso é que distribuições aproximadamente normais ocorrem em muitas situações, incluindo em jogos de azar, alturas, pesos, pressão arterial, resultados de testes padronizados e erros de medição experimental. Existem explicações para isso e as descreveremos posteriormente. Aqui, focamos em como a distribuição normal nos ajuda a resumir os dados.
 
 Em vez de usar dados, a distribuição normal é definida com uma fórmula matemática. Para qualquer intervalo $(a,b)$, a proporção de valores nesse intervalo pode ser calculada usando esta fórmula:
 
 $$\mbox{Pr}(a < x < b) = \int_a^b \frac{1}{\sqrt{2\pi}s} e^{-\frac{1}{2}\left( \frac{x-m}{s} \right)^2} \, dx$$
 
 
-Eles não precisam memorizar ou entender os detalhes da fórmula. No entanto, lembre-se de que ele é completamente definido por apenas dois parâmetros: $m$ e $s$. O restante dos símbolos da fórmula representa os extremos do intervalo que determinamos, $a$ e $b$ e as constantes matemáticas conhecidas $\pi$ e $e$. Esses dois parâmetros, $m$ e $s$, são conhecidos respectivamente como _average_ (ou _the mean_) e _the desvio padrão_, ou SD, da distribuição.
+Você não precisa memorizar ou entender os detalhes da fórmula. Entretanto, note que essa fórmula é completamente definida por apenas dois parâmetros: $m$ e $s$. O restante dos símbolos na fórmula representa os extremos do intervalo que determinamos, $a$ e $b$, além das constantes matemáticas conhecidas $\pi$ e $e$. Esses dois parâmetros, $m$ e $s$, são conhecidos como média (do inglês _average_ ou _mean_) e desvio padrão (do inglês _standard deviation_ ou SD) da distribuição, respectivamente.
 
-A distribuição é simétrica, centrada na média, e a maioria dos valores (cerca de 95%) está dentro de 2 DP da média. É assim que a distribuição normal se parece quando a média é 0 e o SD é 1:
+A distribuição é simétrica, centrada na média, e a maioria dos valores (cerca de 95%) está dentro de 2 desvios padrão (DP) da média. É assim que a distribuição normal se parece quando a média é 0 e o DP é 1:
 
 ```{r normal-distribution-density, echo=FALSE}
 mu <- 0; s <- 1
@@ -387,7 +387,7 @@ norm_dist <- data.frame(x=seq(-4,4,len=50)*s+mu) %>% mutate(density=dnorm(x,mu,s
 norm_dist %>% ggplot(aes(x,density)) + geom_line()
 ```
 
-O fato de a distribuição ser definida por apenas dois parâmetros implica que, se a distribuição de um conjunto de dados puder ser aproximada por uma distribuição normal, todas as informações necessárias para descrever a distribuição poderão ser codificadas em apenas dois números: a média e a Desvio padrão. Agora vamos definir esses valores para uma lista arbitrária de números.
+O fato de a distribuição ser definida por apenas dois parâmetros implica que, se a distribuição de um conjunto de dados puder ser aproximada por uma distribuição normal, todas as informações necessárias para descrever a distribuição poderão ser codificadas em apenas dois números: a média e o desvio padrão. Agora vamos definir esses valores para uma lista arbitrária de números.
 
 Para uma lista de números contidos em um vetor `x`, a média é definida como:
 
@@ -395,20 +395,20 @@ Para uma lista de números contidos em um vetor `x`, a média é definida como:
 m <- sum(x)/ length(x)
 ```
 
-e SD é definido como:
+e o DP é definido como:
 ```{r}
 s <- sqrt(sum((x-mu)^2)/ length(x))
 ```
 que pode ser interpretado como a distância média entre os valores e sua média.
 
-Vamos calcular os valores para a altura dos machos que armazenaremos no objeto $x$:
+Vamos calcular os valores para alturas de homens que armazenaremos no objeto $x$:
 
 ```{r}
 index <- heights$sex == "Male"
 x <- heights$height[index]
 ```
 
-Funções predefinidas podem ser usadas `mean` e `sd` (observe que, por razões explicadas na Seção \@ref(data-driven-model), `sd` dividido por `length(x)-1` em vez de `length(x)`) :
+As funções predefinidas `mean` e `sd` podem ser usadas aqui (note que, por razões que serão explicadas na Seção \@ref(data-driven-model), `sd` é calculado dividindo por `length(x)-1` em vez de `length(x)`):
 ```{r}
 m <- mean(x)
 s <- sd(x)
