@@ -368,9 +368,9 @@ d. Eles são do mesmo conjunto de dados, mas o primeiro não está na escala log
 
 ## Distribuição normal {#normal-distribution}
 
-Histogramas e gráficos de densidade fornecem excelentes resumos de uma distribuição. Mas podemos resumir mais? Muitas vezes vemos o desvio médio e padrão usado como um resumo estatístico - um resumo de dois números! Para entender o que são esses resumos e por que são tão usados, precisamos entender a distribuição normal.
+Histogramas e gráficos de densidade fornecem excelentes resumos de uma distribuição. Mas podemos resumi-los melhor? Muitas vezes vemos a média e o desvio padrão usados como um resumo estatístico: um resumo de dois números! Para entender o que são esses resumos e por que são tão usados, precisamos entender a distribuição normal.
 
-A distribuição normal, também conhecida como curva de sino e distribuição gaussiana, é um dos conceitos matemáticos mais famosos da história. Uma razão para isso é que distribuições aproximadamente normais ocorrem em muitas situações, incluindo ganhos de jogo, alturas, pesos, pressão arterial, resultados de testes padronizados e erros de medição experimentais. Existem explicações para isso e as descreveremos posteriormente. Aqui, focamos em como a distribuição normal nos ajuda a resumir os dados.
+A distribuição normal, também conhecida como curva de sino ou como distribuição Gaussiana, é um dos conceitos matemáticos mais famosos da história. Uma razão para isso é que distribuições aproximadamente normais ocorrem em muitas situações, incluindo em jogos de azar, alturas, pesos, pressão arterial, resultados de testes padronizados e erros de medição experimentais. Existem explicações para isso e as descreveremos posteriormente. Aqui, focamos em como a distribuição normal nos ajuda a resumir os dados.
 
 Em vez de usar dados, a distribuição normal é definida com uma fórmula matemática. Para qualquer intervalo $(a,b)$, a proporção de valores nesse intervalo pode ser calculada usando esta fórmula:
 
