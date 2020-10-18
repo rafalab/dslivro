@@ -415,7 +415,7 @@ s <- sd(x)
 c(average = m, sd = s)
 ```
 
-Aqui está um gráfico da densidade suave e da distribuição normal com média = `r round(m,1)` e SD = `r round(s,1)` desenhada como uma linha preta com a densidade suave de nossas alturas de alunos azuis:
+Aqui está um gráfico da densidade suave. A distribuição normal com média = `r round(m,1)` e DP = `r round(s,1)` foi plotada como uma linha preta com a curva de densidade suave da altura dos alunos em azul:
 
 ```{r data-and-normal-densities, echo=FALSE}
 norm_dist <- data.frame(x = seq(-4, 4, len=50)*s + m) %>%
@@ -430,22 +430,22 @@ A distribuição normal parece ser uma boa aproximação aqui. Veremos agora com
 
 ## Unidades padrão
 
-Para dados distribuídos aproximadamente normalmente, é aconselhável pensar em termos de _standard units_. A unidade padrão de um valor nos diz quantos desvios padrão se desviam da média. Especificamente, para um valor `x` de um vetor `X`, definimos o valor de `x` em unidades padrão como `z = (x - m)/s` com `m` e `s` a média e desvio padrão de `X`, respectivamente. Por que é conveniente fazer isso?
+Para dados que estão aproximadamente com distribuição normal, é conveniente pensar em termos de unidades padrão. A unidade padrão de um valor nos diz a quantos desvios padrão da média ele está. Especificamente, para um valor `x` de um vetor `X`, definimos o valor de `x` em unidades padrão como `z = (x - m)/s`, sendo `m` e `s` a média e desvio padrão de `X`, respectivamente. Por que é conveniente fazer isso?
 
-Primeiro revise a fórmula da distribuição normal e observe que o que está sendo exposto é $-z^2/2$ com $z$ equivalente a $x$ em unidades padrão. O fato de que o máximo de $e^{-z^2/2}$ é quando $z=0$ explica por que a distribuição ocorre em média. Também explica a simetria, pois $- z^2/2$ é simétrico em torno de 0. Além disso, observe que, se convertermos dados normalmente distribuídos em unidades padrão, poderemos saber rapidamente se, por exemplo, uma pessoa é aproximadamente média ( $z=0$), entre os mais altos ( $z \approx 2$), entre os menores ( $z \approx -2$) ou uma ocorrência extremamente rara ( $z > 3$ ou $z < -3$) Lembre-se de que, independentemente das unidades originais, essas regras se aplicam a todos os dados que são aproximadamente normais.
+Primeiro, olhe novamente a fórmula da distribuição normal e note que o que está sendo exposto é $-z^2/2$ com $z$ equivalente a $x$ em unidades padrão. Uma vez que o máximo de $e^{-z^2/2}$ é alcançado quando $z=0$, isso explica por que o máximo da distribuição ocorre na média. Também explica a simetria, pois $-z^2/2$ é simétrico em torno de 0. Além disso, observe que, se convertermos dados normalmente distribuídos em unidades padrão, poderemos saber rapidamente, por exemplo, se uma pessoa está na média ($z=0$), entre os maiores($z \approx 2$), entre os menores ($z \approx -2$) ou apresenta uma ocorrência extremamente rara ($z > 3$ ou $z < -3$). Lembre-se de que, independentemente das unidades originais, essas regras se aplicam a todos os dados que são aproximadamente normais.
 
-Em R, podemos obter unidades padrão usando a função `scale`:
+Em R, podemos obter as unidades padrão usando a função `scale`:
 ```{r}
 z <- scale(x)
 ```
 
-Agora, para ver quantos homens estão dentro de 2 DP da média, simplesmente escrevemos:
+Agora, para ver quantos homens estão dentro de 2 DP da média, simplesmente digitamos:
 
 ```{r}
 mean(abs(z) < 2)
 ```
 
-A proporção é de aproximadamente 95%, que é o que a distribuição normal prevê! Para ter ainda mais confirmação de que a aproximação é precisa, podemos usar gráficos QQ (_quantile-quantile_ plots).
+A proporção é de aproximadamente 95%, que é o que a distribuição normal prevê! Para ter ainda mais confirmação de que a aproximação é precisa, podemos usar gráficos QQ (_quantile-quantile plots_).
 
 
 ## Gráficos QQ
