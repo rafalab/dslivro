@@ -487,7 +487,7 @@ A ideia de um gráfico QQ é que, se seus dados forem bem aproximados pela distr
 4. Plotamos os quantis da amostra versus os quantis teóricos.
 
 
-Vamos construir um diagrama QQ usando o código R. Comece definindo o vetor de proporções.
+Vamos construir um diagrama QQ usando um código em R. Comece definindo o vetor de proporções.
 ```{r}
 p <- seq(0.05, 0.95, 0.05)
 ```
@@ -497,7 +497,7 @@ Para obter os quantis dos dados, podemos usar a função `quantile` assim:
 sample_quantiles <- quantile(x, p)
 ```
 
-Para obter os quantis teóricos da distribuição normal com DP médio e correspondente, usamos a função `qnorm`:
+Para obter os quantis teóricos da distribuição normal com a média e o desvio padrão correspondentes, usamos a função `qnorm`:
 ```{r}
 theoretical_quantiles <- qnorm(p, mean = mean(x), sd = sd(x))
 ```
@@ -508,14 +508,14 @@ Para ver se eles correspondem ou não, nós os plotamos um contra o outro e dese
 qplot(theoretical_quantiles, sample_quantiles) + geom_abline()
 ```
 
-Observe que esse código é muito mais fácil se usarmos unidades padrão:
+Observe que esse código é muito mais limpo se usarmos unidades padrão:
 ```{r qqplot-standardized, eval=FALSE}
 sample_quantiles <- quantile(z, p)
 theoretical_quantiles <- qnorm(p)
 qplot(theoretical_quantiles, sample_quantiles) + geom_abline()
 ```
 
-O código acima está incluído para ajudar a descrever gráficos de QQ. No entanto, na prática, é mais fácil usar o código **ggplot2** descrito na Seção \@ref(other-geometries):
+O código acima foi apresentado para ajudar a melhor descrever o conceito dos gráficos QQ. No entanto, na prática, é mais fácil usar as funções do **ggplot2**, descritos na Seção \@ref(other-geometries):
 
 ```{r, eval=FALSE}
 heights %>% filter(sex == "Male") %>%
@@ -524,7 +524,7 @@ geom_qq() +
 geom_abline()
 ```
 
-Enquanto na ilustração anterior usamos 20 quantis, o valor padrão da função `geom_qq` é usar a mesma quantidade de quantis que dados.
+Enquanto na ilustração anterior usamos 20 quantis, a função `geom_qq` usa, por padrão, a mesma quantidade de quantis que dados.
 
 ## Percentis
 
