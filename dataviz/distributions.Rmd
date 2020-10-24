@@ -552,11 +552,11 @@ geom_abline() + ggtitle("QQ-plot")
 grid.arrange(p1, p2, ncol = 2)
 ```
 
-Nesse caso, o histograma acima ou o gráfico de densidade suave serviria como um resumo relativamente sucinto.
+Nesse caso, o histograma acima ou um gráfico de densidade suave serviria como um resumo relativamente sucinto.
 
-Agora, suponha que aqueles que estão acostumados a receber apenas dois números como resumos solicitem um resumo numérico mais compacto.
+Agora, suponha que aqueles que estão acostumados a receber apenas dois números como resumos solicitem uma sumarização numérica mais compacta.
 
-Aqui Tukey ofereceu alguns conselhos. Primeiro, ele recomendou fornecer um resumo de cinco números compostos pelo intervalo, juntamente com os quartis (percentis 25, 50 e 75). Além disso, Tukey sugeriu ignorar os _outliers_ ao calcular o intervalo e, em vez disso, plotá-los como pontos independentes. Mais adiante, ofereceremos uma explicação detalhada dos outliers. Por fim, ele recomendou que representássemos graficamente esses números como uma "caixa" com "bigodes", assim:
+Aqui, Tukey ofereceu alguns conselhos. Primeiramente, ele sugeriu fornecer um resumo de cinco números compostos pelo intervalo, juntamente com os quartis (percentis 25, 50 e 75). Além disso, Tukey sugeriu ignorar _outliers_ ao calcular o intervalo, sendo preferível plotá-los como pontos independentes. Ofereceremos uma explicação detalhada dos outliers mais adiante. Por fim, ele recomendou que representássemos graficamente esses números como uma "caixa" com "fios de bigode", assim:
 
 
 ```{r first-boxplot, echo=FALSE}
@@ -564,11 +564,11 @@ murders %>% ggplot(aes("",rate)) + geom_boxplot() +
 coord_cartesian(xlim = c(0, 2)) + xlab("")
 ```
 
-com o gráfico definido pelos percentis 25% e 75% e os bigodes mostrando o intervalo. A distância entre esses dois é chamada de intervalo _interquartil_. Os dois pontos são discrepantes, conforme definido por Tukey. A mediana é mostrada com uma linha horizontal.
+com a caixa definida pelos percentis 25% e 75% e os bigodes mostrando o intervalo. A distância entre esses dois é chamada de intervalo _interquartil_. Os dois pontos são representam valores discrepantes (_outliers_), conforme definido por Tukey. A mediana é mostrada com uma linha horizontal. Hoje, chamamos esse gráfico de _boxplot_.
 
-A partir deste gráfico simples, agora conhecido como _box diagram_, sabemos que a mediana é de aproximadamente 2,5, que a distribuição não é simétrica e que o intervalo é de 0 a 5 para a grande maioria dos estados, com duas exceções.
+A partir desse simples gráfico, sabemos que a mediana é de aproximadamente 2,5, que a distribuição não é simétrica e que o intervalo varia de 0 a 5 para a grande maioria dos estados, com duas exceções.
 
-Discutimos como criar boxplots na Seção \@ref(other-geometries).
+Discutimos como criar _boxplots_ na Seção \@ref(other-geometries).
 
 ## Estratificação {#stratification}
 
