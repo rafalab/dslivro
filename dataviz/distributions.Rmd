@@ -530,23 +530,22 @@ Enquanto na ilustração anterior usamos 20 quantis, a função `geom_qq` usa, p
 
 Antes de continuar, vamos definir alguns termos que são comumente usados na análise exploratória de dados.
 
-_Percentiles_são casos especiais de_quantiles_ que são comumente usados. Percentis são os quantis obtidos na configuração do $p$ para $0.01, 0.02, ..., 0.99$. Chamamos, por exemplo, o caso de $p=0.25$ o quartil inferior, pois fornece um número para o qual 25% dos dados estão abaixo. O percentil mais famoso é 50, também conhecido como o _mediana_.
+Percentis (_percentiles_) são formas de quantis comumente usadas. Percentis são quantis que podem ser obtidos ao definir $p$ como $0.01, 0.02, ..., 0.99$. Por exemplo, $p=0.25$ é denominado como 25º percentil, pois fornece um número para o qual 25% dos dados estão abaixo. O percentil mais famoso é 50º, também conhecido como _mediana_.
 
-Para a distribuição normal, o _median_ e a média são os mesmos, mas esse geralmente não é o caso.
+Para a distribuição normal, a mediana e a média são as mesmas, mas geralmente não é o caso.
 
-Outro caso especial que recebe um nome é o _quartiles_, obtido através da configuração $p=0.25,0.50$ e $0.75$.
+Outro caso especial que recebe um nome são os _quartis_, obtidos através da configuração $p=0.25$, $0.50$ e $0.75$.
 
 
-## Diagramas de caixas
+## Diagramas de caixas (_boxplots_)
 
-Para apresentar os gráficos de caixas (_boxplots_ em inglês), retornaremos aos dados de assassinatos nos EUA. EUA
-Suponha que queremos resumir a distribuição da taxa de homicídios. Usando a técnica de visualização de dados que aprendemos, podemos ver que a aproximação normal não se aplica aqui:
+Para apresentar os _boxplots_ (diagramas de caixas), usaremos mais uma vez os dados de assassinatos nos EUA. Vamos supor que queremos sumarizar a distribuição da taxa de homicídios. Usando as técnicas de visualização de dados que aprendemos anteriormente, podemos ver que a aproximação normal não se aplica aqui:
 
 ```{r hist-qqplot-non-normal-data, out.width = "100%", fig.width = 6, fig.height = 3, echo=FALSE}
 data(murders)
 murders <- murders %>% mutate(rate = total/population*100000)
 library(gridExtra)
-p1 <- murders %>% ggplot(aes(x=rate)) + geom_histogram(binwidth = 1) + ggtitle("Histogram")
+p1 <- murders %>% ggplot(aes(x=rate)) + geom_histogram(binwidth = 1) + ggtitle("Histograma")
 p2 <- murders %>% ggplot(aes(sample=rate)) +
 geom_qq(dparams=summarize(murders, mean=mean(rate), sd=sd(rate))) +
 geom_abline() + ggtitle("QQ-plot")
@@ -914,7 +913,7 @@ qplot(x, bins=15, color = I("black"), xlab = "Population")
 
 Qual é a variável que contém as alturas?
 
-para. `sex`
+a. `sex`
 b. `heights`
 c. `height`
 d. `heights$height`
@@ -944,11 +943,6 @@ geom_density()
 ```
 
 No entanto, aqui a segunda densidade é plotada em cima da primeira. Podemos tornar as curvas mais visíveis usando _alpha blending_ para adicionar transparência. Defina o parâmetro alfa como 0,2 na função `geom_density` para fazer essa alteração.
-
-
-
-
-
 
 
 
