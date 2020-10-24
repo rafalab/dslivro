@@ -482,7 +482,7 @@ Portanto, cerca de 50% são menores ou iguais a 69 polegadas. Isso implica que s
 A ideia de um gráfico QQ é que, se seus dados forem bem aproximados pela distribuição normal, os quantis de seus dados deverão ser semelhantes aos quantis de uma distribuição normal. Para criar um gráfico QQ, fazemos o seguinte:
 
 1. Definimos um vetor de $m$ dimensões $p_1, p_2, \dots, p_m$.
-2. Definimos um vetor de quantis $q_1, \dots, q_m$ para as proporções $p_1, \dots, p_m$ usando seus dados. Nós nos referimos a eles como os _sample quantiles_.
+2. Definimos um vetor de quantis $q_1, \dots, q_m$ para as proporções $p_1, \dots, p_m$ usando seus dados. Nos referimos a eles como _quantis de amostra_.
 3. Definimos um vetor de quantis teóricos para as proporções $p_1, \dots, p_m$ para uma distribuição normal com a mesma média e desvio padrão dos dados.
 4. Plotamos os quantis da amostra versus os quantis teóricos.
 
