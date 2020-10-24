@@ -450,9 +450,9 @@ A proporção é de aproximadamente 95%, que é o que a distribuição normal pr
 
 ## Gráficos QQ
 
-Uma maneira sistemática de avaliar quão bem a distribuição normal se ajusta aos dados é verificar se as proporções observadas e previstas correspondem. Em geral, este é o zoom do gráfico QQ.
+Uma maneira sistemática de avaliar quão bem a distribuição normal se ajusta aos dados é verificar se as proporções observadas e previstas correspondem. Em geral, essa é a abordagem do gráfico quantil-quantil (Gráfico QQ ou QQ-plot).
 
-Primeiro, definimos os quantis teóricos para a distribuição normal. Nos livros de estatística, usamos o símbolo $\Phi(x)$ para definir a função que nos dá a probabilidade de que uma distribuição normal padrão seja menor que $x$. Por exemplo, $\Phi(-1.96) = 0.025$ e $\Phi(1.96) = 0.975$. Em R, podemos avaliar $\Phi$ usando a função `pnorm`:
+Primeiro, vamos definir os quantis teóricos para a distribuição normal. Nos livros de estatística, usamos o símbolo $\Phi(x)$ para definir a função que nos dá a probabilidade de que uma distribuição normal padrão seja menor que $x$. Por exemplo, $\Phi(-1.96) = 0.025$ e $\Phi(1.96) = 0.975$. Em R, podemos avaliar $\Phi$ usando a função `pnorm`:
 
 ```{r}
 pnorm(-1.96)
@@ -465,21 +465,21 @@ A função inversa $\Phi^{-1}(x)$ nos fornece os quantis teóricos da distribui�
 qnorm(0.975)
 ```
 
-Observe que esses cálculos são para a distribuição normal padrão padrão (média = 0, desvio padrão = 1), mas também podemos defini-los para qualquer distribuição normal. Podemos fazer isso usando os argumentos `mean` e `sd` nas funções `pnorm` e `qnorm`. Por exemplo, podemos usar `qnorm` para determinar quantis de uma distribuição com média específica e desvio padrão:
+Note que esses cálculos são para a distribuição normal padrão (média = 0, desvio padrão = 1), mas também podemos defini-los para qualquer distribuição normal. Podemos fazer isso usando os argumentos `mean` e `sd` nas funções `pnorm` e `qnorm`. Por exemplo, podemos usar `qnorm` para determinar quantis de uma distribuição com média e desvio padrão específicos:
 
 ```{r}
 qnorm(0.975, mean = 5, sd = 2)
 ```
 
-Para a distribuição normal, todos os cálculos relacionados aos quantis são executados sem dados, daí o nome de _quiléticos teóricos_. Mas quantis podem ser definidos para qualquer distribuição, mesmo empírica. Então, se tivermos dados em um vetor $x$, podemos definir o quantil associado a qualquer proporção $p$ como ele $q$ para os quais a proporção de valores abaixo $q$ é $p$. Usando o código R, podemos definir `q` como o valor pelo qual `mean(x <= q) = p`. Note que nem tudo $p$ tem um $q$ para o qual a proporção é exatamente $p$. Existem várias maneiras de definir as melhores $q$ conforme discutido na página de ajuda da função NA.
+Para a distribuição normal, todos os cálculos relacionados aos quantis são executados sem dados, por isso recebem o nome de _quantis teóricos_. Mas quantis podem ser definidos para qualquer distribuição, mesmo empíricas. Então, se tivermos dados em um vetor $x$, podemos definir o quantil associado a qualquer proporção $p$, assim como o $q$ para os quais a proporção de valores abaixo de $q$ é $p$. Usando o código R, podemos definir `q` como o valor pelo qual `mean(x <= q) = p`. Note que nem todo $p$ tem um $q$ para o qual a proporção é exatamente $p$. Existem várias maneiras de definir os melhores $q$ conforme discutido na página de ajuda da função `quantile`.
 
 Como um exemplo rápido, para dados de altura masculina, vemos que:
 ```{r}
 mean(x <= 69.5)
 ```
-Portanto, cerca de 50% são menores ou iguais a 69 polegadas. Isso implica que se $p=0.50$, tão $q=69.5$.
+Portanto, cerca de 50% são menores ou iguais a 69 polegadas. Isso implica que se $p=0.50$, então $q=69.5$.
 
-A idéia de um gráfico QQ é que, se seus dados forem bem aproximados pela distribuição normal, os quantis de seus dados deverão ser semelhantes aos quantis de uma distribuição normal. Para criar um gráfico QQ, fazemos o seguinte:
+A ideia de um gráfico QQ é que, se seus dados forem bem aproximados pela distribuição normal, os quantis de seus dados deverão ser semelhantes aos quantis de uma distribuição normal. Para criar um gráfico QQ, fazemos o seguinte:
 
 1. Definimos um vetor de $m$ dimensões $p_1, p_2, \dots, p_m$.
 2. Definimos um vetor de quantis $q_1, \dots, q_m$ para as proporções $p_1, \dots, p_m$ usando seus dados. Nós nos referimos a eles como os _sample quantiles_.
