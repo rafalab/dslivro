@@ -696,13 +696,13 @@ No capítulo \@ref(ggplot2) apresentamos o pacote __ggplot2__ para visualizaçã
 
 ### Gráficos de barra
 
-Para gerar um gráfico de barras (_barplots_ em inglês), podemos usar a geometria `geom_bar`. Por padrão, R conta os casos em cada categoria e desenha uma barra. Aqui vemos o gráfico de barras para as regiões dos Estados Unidos.
+Para gerar um gráfico de barras (_barplot_ em inglês), podemos usar a geometria `geom_bar`. Por padrão, R conta o número de ocorrências em cada categoria e desenha uma barra. Aqui vemos o gráfico de barras para as regiões dos Estados Unidos.
 
 ```{r barplot-geom}
 murders %>% ggplot(aes(region)) + geom_bar()
 ```
 
-Muitas vezes, já temos uma tabela com uma distribuição que queremos apresentar como um gráfico de barras. Aqui está um exemplo dessa tabela:
+Muitas vezes, já temos uma tabela com a distribuição que queremos apresentar como um gráfico de barras. Como por exemplo:
 
 ```{r}
 data(murders)
@@ -712,7 +712,7 @@ mutate(proportion = n/sum(n))
 tab
 ```
 
-Não queremos mais `geom_bar` contar, mas apenas representar graficamente uma barra na altura fornecida pela variável `proportion`. Para isso, precisamos fornecer `x` (as categorias) e `y` (os valores) e use a opção `stat="identity"`.
+Não queremos mais que `geom_bar` realize as contagens, mas que apenas represente graficamente uma barra para a altura fornecida pela variável `proportion`. Para isso, precisamos fornecer as categorias (`x`) e os valores (`y`), além de usar a opção `stat="identity"`.
 
 ```{r region-freq-barplot}
 tab %>% ggplot(aes(region, proportion)) + geom_bar(stat = "identity")
@@ -720,8 +720,7 @@ tab %>% ggplot(aes(region, proportion)) + geom_bar(stat = "identity")
 
 ### Histogramas
 
-Para gerar histogramas, usamos `geom_histogram`. Ao revisar a página de ajuda para esta função, vemos que o único argumento necessário é `x`, a variável para a qual construiremos um histograma. Nós não usamos o `x` porque sabemos que é o primeiro argumento.
-O código fica assim:
+Para gerar histogramas, podemos utilizar a função `geom_histogram`. Ao analisar a página de ajuda dessa função, vemos que o único argumento necessário é `x`, a variável para a qual construiremos um histograma. Neste caso, ele não será necessário declará-lo, pois sabemos que `x` é o primeiro argumento usado. O código fica assim:
 
 ```{r, eval=FALSE}
 heights %>%
@@ -730,12 +729,11 @@ ggplot(aes(height)) +
 geom_histogram()
 ```
 
-Se executarmos o código acima, ele nos dará uma mensagem:
+Se executarmos o código acima, ele retornará uma mensagem:
 
-> `stat_bin()` usando `bins = 30`. Escolha um valor melhor com
-`binwidth`.
+> `stat_bin()` usando `bins = 30`. Escolha um valor melhor usando `binwidth`.
 
-Anteriormente, usamos um tamanho de compartimento de 1 polegada; portanto, o código fica assim:
+Anteriormente, usamos um tamanho de compartimento de 1 polegada; portanto, o código ficará assim:
 
 ```{r, eval=FALSE}
 heights %>%
@@ -744,20 +742,20 @@ ggplot(aes(height)) +
 geom_histogram(binwidth = 1)
 ```
 
-Finalmente, se por razões estéticas queremos adicionar cor, usamos os argumentos descritos na página de ajuda. Também adicionamos tags e um título:
+Finalmente, se por razões estéticas quisermos adicionar cores, podemos usar os argumentos descritos na página de ajuda. Podemos ainda adicionar rótulos e um título:
 
 ```{r height-histogram-geom}
 heights %>%
 filter(sex == "Female") %>%
 ggplot(aes(height)) +
 geom_histogram(binwidth = 1, fill = "blue", col = "black") +
-xlab("Male heights in inches") +
-ggtitle("Histogram")
+xlab("Altura masculina em polegadas") +
+ggtitle("Histograma")
 ```
 
 ### Gráficos de densidade
 
-Para criar uma densidade suave, usamos `geom_density`. Para criar um gráfico de densidade suave com os dados que visualizamos anteriormente como um histograma, podemos usar este código:
+Para criar um gráfico de densidade suave, usamos `geom_density`. Assim, para fazer um gráfico de densidade suave com os dados que visualizamos anteriormente como um histograma, podemos usar este código:
 
 ```{r, eval=FALSE}
 heights %>%
@@ -775,7 +773,7 @@ ggplot(aes(height)) +
 geom_density(fill="blue")
 ```
 
-Para alterar a suavidade da densidade, usamos o argumento `adjust` multiplicar o valor padrão por esse `adjust`. Por exemplo, se queremos que o parâmetro de suavização seja duas vezes maior, usamos:
+Para alterar a suavidade da densidade, usamos o argumento `adjust` para multiplicar o valor padrão pelo ajuste. Por exemplo, se queremos que o parâmetro de suavização seja duas vezes maior, usamos:
 
 ```{r eval = FALSE}
 heights %>%
@@ -783,9 +781,9 @@ filter(sex == "Female") +
 geom_density(fill="blue", adjust = 2)
 ```
 
-### Diagramas de caixas
+### _Boxplots_
 
-A geometria para a criação de gráficos de caixas é `geom_boxplot`. Como já discutimos, os boxplots são úteis para comparar distribuições. Por exemplo, abaixo, vemos as alturas mostradas acima para as mulheres, mas aqui em comparação aos homens. Para essa geometria, precisamos dos argumentos `x` como categorias e argumentos `y` valores semelhantes:
+A geometria para a criação de gráficos de caixas é a `geom_boxplot`. Como já discutimos, os _boxplots_ são úteis para comparar distribuições. Por exemplo, abaixo vemos as alturas mostradas anteriormente para as mulheres comparadas às alturas dos homens. Para essa geometria, precisamos dos argumentos `x` com as categorias e `y` com os valores:
 
 ```{r female-male-boxplots-geom, echo=FALSE}
 heights %>% ggplot(aes(sex, height)) +
