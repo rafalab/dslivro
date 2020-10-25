@@ -572,22 +572,22 @@ Discutimos como criar _boxplots_ na Seção \@ref(other-geometries).
 
 ## Estratificação {#stratification}
 
-Na análise dos dados, geralmente dividimos as observações em grupos com base nos valores de uma ou mais variáveis associadas a essas observações. Por exemplo, na próxima seção, dividimos os valores de altura em grupos de acordo com uma variável de gênero: mulheres e homens. Chamamos esse procedimento de _stratification_e nos referimos aos grupos resultantes como_strata_.
+Na análise de dados, geralmente dividimos as observações em grupos com base nos valores de uma ou mais variáveis associadas a essas observações. Por exemplo, na próxima seção, dividiremos os valores de altura em grupos de acordo com uma variável de gênero: mulheres e homens. Chamamos esse procedimento de _estratificação_ e nos referimos aos grupos resultantes como estratos (_strata_).
 
-A estratificação é comum na visualização de dados, porque geralmente estamos interessados em saber como a distribuição de variáveis difere entre diferentes subgrupos. Veremos vários exemplos ao longo desta parte do livro. Revisaremos o conceito de estratificação quando aprendermos a regressão no Capítulo \@ref(regression) e na parte de aprendizagem da máquina do livro.
+A estratificação é comum na visualização de dados, pois geralmente estamos interessados em saber como a distribuição de variáveis difere entre diferentes subgrupos. Veremos vários exemplos ao longo desta parte do livro. Além disso, revisaremos o conceito de estratificação quando aprendermos sobre regressão no Capítulo \@ref(regression) e na parte de aprendizagem da máquina do livro.
 
-## Estudo de caso: descrição das alturas dos alunos (continuação) {#student-height-cont}
+## Estudo de caso: descrevendo as alturas dos alunos (continuação) {#student-height-cont}
 
-Usando o histograma, gráficos de densidade e gráficos de QQ, ficamos convencidos de que os dados de altura masculina se aproximam muito de uma distribuição normal. Nesse caso, damos a ET um resumo muito sucinto: as alturas masculinas seguem uma distribuição normal com uma média de `r round(m, 1)` polegadas e um SD de `r round(s,1)` polegadas. Com essas informações, o ET terá uma boa idéia do que esperar quando conhecer nossos alunos do sexo masculino. No entanto, para fornecer uma imagem completa, também devemos fornecer um resumo das alturas das fêmeas.
+Usando histogramas, gráficos de densidade e gráficos QQ, ficamos convencidos de que os dados de altura masculina se aproximam muito de uma distribuição normal. Nesse caso, damos ao ET um resumo muito sucinto: as alturas masculinas seguem uma distribuição normal com uma média de `r round(m, 1)` polegadas e um desvio padrão de `r round(s,1)` polegadas. Com essas informações, o ET terá uma boa ideia do que esperar quando conhecer nossos alunos do sexo masculino. No entanto, para fornecer uma visão geral, também devemos fornecer um resumo das alturas femininas.
 
-Aprendemos que os boxplots são úteis quando queremos comparar rapidamente duas ou mais distribuições. Aqui vemos as alturas para machos e fêmeas:
+Aprendemos que os boxplots são úteis quando queremos comparar rapidamente duas ou mais distribuições. Aqui vemos as alturas para homens e mulheres:
 
 ```{r female-male-boxplots, echo=FALSE}
 heights %>% ggplot(aes(x=sex, y=height, fill=sex)) +
 geom_boxplot()
 ```
 
-O diagrama mostra imediatamente que os homens são, em média, mais altos que as mulheres. Os desvios padrão parecem ser semelhantes. Mas a aproximação normal também funciona para os dados de altura feminina coletados pela pesquisa? Esperamos que eles sigam uma distribuição normal, assim como os meninos. No entanto, gráficos exploratórios revelam que a aproximação não é tão útil:
+O diagrama mostra imediatamente que os homens são, em média, mais altos que as mulheres. Além disso, os desvios padrão parecem ser semelhantes. Mas a aproximação normal também funciona para os dados de altura feminina coletados pela pesquisa? Esperamos que eles sigam uma distribuição normal, assim como os meninos. No entanto, gráficos exploratórios revelam que a aproximação não é tão útil:
 
 
 ```{r histogram-qqplot-female-heights, echo=FALSE, out.width="100%", fig.width = 6, fig.height = 3}
