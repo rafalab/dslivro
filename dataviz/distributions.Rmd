@@ -866,9 +866,9 @@ Para fazer um histograma rápido, podemos usar:
 qplot(x)
 ```
 
-A função supõe que queremos criar um histograma porque fornecemos apenas uma variável. Na seção \@ref(qplot) vimos que, se fornecermos duas variáveis para `qplot` , cria automaticamente um diagrama de dispersão.
+A função supõe que queremos criar um histograma porque fornecemos apenas uma variável. Na seção \@ref(qplot) vimos que, se fornecermos duas variáveis para `qplot`, ele cria automaticamente um diagrama de dispersão.
 
-Para fazer um gráfico rápido de QQ, eles precisam usar o argumento `sample`. Lembre-se de que podemos adicionar camadas, como fazemos com `ggplot`.
+Para fazer um gráfico QQ rápido, você pode usar o argumento `sample`. Note que podemos adicionar camadas, como fazemos com `ggplot`.
 
 ```{r qplot-example-2, eval=FALSE}
 qplot(sample = scale(x)) + geom_abline()
