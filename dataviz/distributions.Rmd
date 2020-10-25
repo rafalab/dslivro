@@ -792,7 +792,7 @@ geom_boxplot()
 
 ### Gráficos QQ
 
-Para gráficos QQ, usamos geometria `geom_qq`. Na página de ajuda, aprendemos que precisamos especificar o `sample` (aprenderemos sobre amostras em um capítulo posterior). Aqui está o gráfico QQ para alturas masculinas:
+Para gráficos QQ, usamos a geometria `geom_qq`. Na página de ajuda, aprendemos que precisamos especificar o `sample` (aprenderemos sobre amostras em um capítulo posterior). Aqui está o gráfico QQ para as alturas masculinas:
 
 ```{r ggplot-qq}
 heights %>% filter(sex=="Male") %>%
@@ -800,7 +800,7 @@ ggplot(aes(sample = height)) +
 geom_qq()
 ```
 
-Por padrão, a variável de amostra é comparada a uma distribuição normal com uma média de 0 e um desvio padrão de 1. Para alterar isso, usamos o argumento `dparams` de acordo com a página de ajuda. Para adicionar uma linha de identidade, basta atribuir outra camada. Para linhas retas, usamos a função `geom_abline`. A linha padrão é a linha de identidade (inclinação = 1, interceptação = 0).
+Por padrão, a variável de amostra é comparada a uma distribuição normal com uma média de 0 e um desvio padrão de 1. Para alterar isso, usamos o argumento `dparams` de acordo com a página de ajuda. Para adicionar uma linha de identidade, basta atribuir uma outra camada. Para linhas retas, usamos a função `geom_abline`. Por padrão, a linha de identidade tem inclinação = 1 (_slope = 1_) e interceptação = 0 (_intercept = 0_).
 
 ```{r ggplot-qq-dparams, eval=FALSE}
 params <- heights %>% filter(sex=="Male") %>%
@@ -812,7 +812,7 @@ geom_qq(dparams = params) +
 geom_abline()
 ```
 
-Outra opção aqui é dimensionar os dados primeiro e, em seguida, plotar o QQ em relação à distribuição normal padrão.
+Outra opção aqui é dimensionar os dados primeiro e, em seguida, plotar o _QQplot_ em relação à distribuição normal padrão.
 
 ```{r ggplot-qq-standard-units, eval=FALSE}
 heights %>%
