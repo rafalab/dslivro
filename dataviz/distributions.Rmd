@@ -907,7 +907,7 @@ qplot(x, bins=15, color = I("black"), xlab = "Population")
 ## Exercícios
 
 
-1\. Agora vamos usar a função `geom_histogram` para fazer um histograma das alturas no conjunto de dados `height`. Lendo a documentação para esta função, vemos que ela requer apenas uma atribuição, os valores a serem usados para o histograma. Faça um histograma de todos os gráficos.
+1\. Agora vamos usar a função `geom_histogram` para fazer um histograma das alturas no conjunto de dados `height`. Lendo a documentação para essa função, vemos que ela requer apenas um mapeamento: os valores a serem usados para o histograma. Faça um histograma de todos os gráficos.
 
 Qual é a variável que contém as alturas?
 
@@ -916,22 +916,22 @@ b. `heights`
 c. `height`
 d. `heights$height`
 
-2\. Agora crie um objeto ggplot usando o _pipe_ para atribuir os dados de altura a um objeto ggplot. Atribuir `height` para os valores de x através da função `aes`.
+2\. Agora crie um objeto ggplot. Use o _pipe_ para atribuir os dados de altura ao objeto ggplot. Atribua `height` para os valores de x através da função `aes`.
 
-3\. Agora estamos prontos para adicionar uma camada para fazer o histograma. Use o objeto criado no exercício anterior e a função `geom_histogram` para fazer o histograma.
+3\. Agora, estamos prontos para adicionar uma camada para fazer o histograma. Use o objeto criado no exercício anterior e a função `geom_histogram` para fazer o histograma.
 
 4\. Quando executamos o código no exercício anterior, recebemos o aviso:
 `stat_bin()` usando `bins = 30`. Escolha um valor melhor com `binwidth`.
 
 Use o argumento `binwidth` para alterar o histograma criado no exercício anterior para usar compartimentos de 1 polegada.
 
-5\. Em vez de um histograma, vamos fazer um gráfico de densidade suave. Nesse caso, não criaremos um objeto, mas criaremos e exibiremos o gráfico com uma linha de código. Altere a geometria no código usado acima para criar uma densidade suave em vez de um histograma.
+5\. Em vez de um histograma, vamos fazer um gráfico de densidade suave. Neste caso, não criaremos um objeto. Em vez disso, criaremos e exibiremos o gráfico com uma linha de código. Altere a geometria no código usado anteriormente para criar uma densidade suave em vez de um histograma.
 
-6\. Agora vamos fazer um gráfico de densidade para machos e fêmeas separadamente. Podemos fazer isso usando o argumento `group`. Atribuímos grupos por meio de mapeamento estético, pois cada ponto precisa de um grupo antes de fazer os cálculos necessários para estimar uma densidade.
+6\. Agora vamos fazer um gráfico de densidade para homens e mulheres separadamente. Podemos fazer isso usando o argumento `group`. Atribuímos grupos por meio de mapeamento estético, pois cada ponto precisa de um grupo antes de fazer os cálculos necessários para estimar uma densidade.
 
 7\. Também podemos atribuir grupos através do argumento `color`. Isso tem o benefício adicional de usar cores para distinguir grupos. Mude o código acima para usar cores.
 
-8\. Além disso, podemos atribuir grupos através do argumento `fill`. Isso tem o benefício adicional de usar cores para distinguir grupos como:
+8\. Além disso, podemos atribuir grupos através do argumento `fill`. Esse argumento também permite usar cores para distinguir grupos, desta forma:
 
 
 ```{r, eval=FALSE}
@@ -940,7 +940,7 @@ ggplot(aes(height, fill = sex)) +
 geom_density()
 ```
 
-No entanto, aqui a segunda densidade é plotada em cima da primeira. Podemos tornar as curvas mais visíveis usando _alpha blending_ para adicionar transparência. Defina o parâmetro alfa como 0,2 na função `geom_density` para fazer essa alteração.
+No entanto, aqui a segunda densidade é plotada em cima da primeira. Podemos tornar as curvas mais visíveis usando _alpha blending_ para adicionar transparência. Defina o parâmetro _alpha_ como 0,2 na função `geom_density` para fazer essa alteração.
 
 
 
