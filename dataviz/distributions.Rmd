@@ -850,7 +850,7 @@ scale_fill_gradientn(colors = terrain.colors(10))
 
 ### Gráficos rápidos
 
-Na seção \@ref(qplot) apresentamos `qplot` como uma função útil quando precisamos fazer um diagrama de dispersão rápido. Também podemos usar `qplot` para criar histogramas, diagramas de densidade, diagramas de caixa, gráficos de QQ e muito mais. Embora não forneça o nível de controle `ggplot`, `qplot` é definitivamente útil, pois permite criar um gráfico com um pequeno trecho de código.
+Na seção \@ref(qplot), introduzimos `qplot` como uma função útil quando precisamos fazer um rápido diagrama de dispersão. Também podemos usar `qplot` para criar histogramas, gráficos de densidade, _boxplots_, gráficos QQ e muito mais. Embora não forneça o nível de controle do `ggplot`, `qplot` é definitivamente útil, pois permite criar um gráfico com um pequeno trecho de código.
 
 Suponha que tenhamos as alturas femininas em um objeto `x`:
 
