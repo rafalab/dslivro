@@ -812,7 +812,7 @@ geom_qq(dparams = params) +
 geom_abline()
 ```
 
-Outra opção aqui é dimensionar os dados primeiro e, em seguida, plotar o _QQplot_ em relação à distribuição normal padrão.
+Outra opção aqui é dimensionar os dados primeiro e, em seguida, plotar o _QQplot_ contra a distribuição normal padrão.
 
 ```{r ggplot-qq-standard-units, eval=FALSE}
 heights %>%
@@ -824,21 +824,21 @@ geom_abline()
 
 ### Imagens
 
-Não tivemos que usar imagens para os conceitos descritos neste capítulo, mas as usaremos na Seção \@ref(vaccines), por isso, apresentamos as duas geometrias usadas para criar imagens: __geom_tile__e__geom_raster__. Eles se comportam de maneira semelhante; Para ver como eles diferem, consulte a página de ajuda. Para criar uma imagem em __ggplot2__, precisamos de um _data frame_ com as coordenadas xey, além dos valores associados a cada uma delas. Aqui temos um _data frame_:
+Não tivemos que usar imagens para os conceitos descritos neste capítulo, mas as usaremos na Seção \@ref(vaccines). Por isso, apresentaremos a seguir as duas geometrias usadas para criar imagens: __geom_tile__ e __geom_raster__. Elas se comportam de maneira semelhante (para ver o que as difere, consulte a página de ajuda). Para criar uma imagem em __ggplot2__, precisamos de um _data frame_ com as coordenadas x e y, além dos valores associados a cada uma delas. Aqui temos um _data frame_:
 
 ```{r}
 x <- expand.grid(x = 1:12, y = 1:10) %>%
 mutate(z = 1:120)
 ```
 
-Observe que esta é a versão _tidy_ de uma matriz, `matrix(1:120, 12, 10)`. Para representar graficamente a imagem, usamos o seguinte código:
+Note que esta é a versão organizada de uma matriz, `matrix(1:120, 12, 10)`. Para representar graficamente a imagem, usamos o seguinte código:
 
 ```{r, eval=FALSE}
 x %>% ggplot(aes(x, y, fill = z)) +
 geom_raster()
 ```
 
-Com essas imagens, eles geralmente desejam alterar a escala de cores. Isso pode ser feito através da camada `scale_fill_gradientn`.
+Para essas imagens, geralmente é necessário alterar a escala de cores. Isso pode ser feito através da camada `scale_fill_gradientn`.
 
 ```{r ggplot2-image-new-colors}
 x %>% ggplot(aes(x, y, fill = z)) +
