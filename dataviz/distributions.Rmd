@@ -587,7 +587,7 @@ heights %>% ggplot(aes(x=sex, y=height, fill=sex)) +
 geom_boxplot()
 ```
 
-O diagrama mostra imediatamente que os homens são, em média, mais altos que as mulheres. Além disso, os desvios padrão parecem ser semelhantes. Mas a aproximação normal também funciona para os dados de altura feminina coletados pela pesquisa? Esperamos que eles sigam uma distribuição normal, assim como os meninos. No entanto, gráficos exploratórios revelam que a aproximação não é tão útil:
+O diagrama mostra imediatamente que os homens são, em média, mais altos que as mulheres. Além disso, os desvios padrão parecem ser semelhantes. Entretnto, será que a aproximação normal também funciona para os dados de altura feminina coletados pela pesquisa? Esperamos que eles sigam uma distribuição normal, assim como os meninos. No entanto, gráficos exploratórios revelam que a aproximação não é tão útil:
 
 
 ```{r histogram-qqplot-female-heights, echo=FALSE, out.width="100%", fig.width = 6, fig.height = 3}
@@ -600,23 +600,23 @@ geom_qq() + geom_abline() + ylab("Standard Units")
 grid.arrange(p1, p2, ncol=2)
 ```
 
-Vemos algo que não vemos nos meninos: o gráfico de densidade tem uma segunda protuberância. Além disso, o gráfico QQ mostra que os pontos mais altos tendem a ser mais altos do que o esperado pela distribuição normal. Finalmente, também vemos cinco pontos no gráfico QQ que sugerem alturas inferiores às esperadas para uma distribuição normal. Ao reportar novamente ao ET, podemos precisar fornecer um histograma, em vez de apenas a média e o desvio padrão para as alturas das fêmeas.
+Vemos algo que não vemos nos meninos: o gráfico de densidade tem uma segunda "protuberância". Além disso, o gráfico QQ mostra que os pontos mais altos tendem a ser maiores do que o esperado pela distribuição normal. Também vemos cinco pontos no gráfico QQ que sugerem alturas inferiores às esperadas para uma distribuição normal. Ao reportar novamente ao ET, podemos precisar fornecer um histograma das alturas femininas, em vez de apenas a média e o desvio padrão.
 
-No entanto, relemos a citação de Tukey e percebemos que percebemos o que não esperávamos ver. Se olharmos para outras distribuições de altura feminina, descobrimos que elas são bem aproximadas com uma distribuição normal. Então, por que nossos alunos são diferentes? Nossa classe é um requisito para o time de basquete feminino? Existe uma pequena proporção de mulheres que dizem ser mais altas do que são? Outra explicação, talvez mais provável, é que, na forma em que os alunos entraram em suas alturas, `FEMALE` era o sexo padrão e alguns machos entraram em suas alturas, mas esqueceram de mudar a variável sexo. De qualquer forma, a visualização de dados ajudou a descobrir uma possível falha em nossos dados.
+No entanto, ao reler a citação de Tukey percebemos algo que não esperávamos ver. Se olharmos para outros conjuntos de dados de distribuição de alturas femininas, podemos descobrir que elas são bem aproximadas com uma distribuição normal. Então, por que nossas alunas são diferentes? Seria nossa classe composta por um time de basquete feminino? Será que há uma parte das mulheres dizendo ser mais altas do que realmente são? Uma outra explicação mais provável pode estar na forma em que os alunos entraram em suas alturas. `FEMALE` (feminino) era a opção de gênero padrão, logo alguns homens, ao inserirem suas alturas, podem ter esquecido de mudar essa opção. De qualquer forma, a visualização de dados ajudou a descobrir uma possível falha em nossos dados.
 
-Em relação aos cinco menores valores, observe que esses valores são:
+Em relação aos cinco menores valores, note que esses valores são:
 ```{r}
 heights %>% filter(sex == "Female") %>%
 top_n(5, desc(height)) %>%
 pull(height)
 ```
 
-Como essas são as alturas autorreferidas, uma possibilidade é que os alunos desejem entrar `5'1"`, `5'2"`, `5'3"` ou `5'5"`.
+Como essas as alturas são inseridas pelos próprios alunos, há uma possibilidade que eles desejavam dizer na verdade `5'1"`, `5'2"`, `5'3"` ou `5'5"` (medida em pés e polegadas).
 
 
 ## Exercícios
 
-1\. Defina variáveis que contêm as alturas de machos e fêmeas desta maneira:
+1\. Defina variáveis contendo alturas de homens e mulheres desta maneira:
 
 ```{r, eval=FALSE}
 library(dslabs)
@@ -625,13 +625,13 @@ male <- heights$height[heights$sex == "Male"]
 female <- heights$height[heights$sex == "Female"]
 ```
 
-Quantas medições temos para cada uma?
+Quantas medições temos para cada uma delas?
 
 
-2\. Suponha que não possamos fazer um gráfico e queremos comparar as distribuições lado a lado. Não podemos simplesmente listar todos os números. Em vez disso, veremos os percentis. Crie uma tabela de cinco linhas que mostre `female_percentiles` e `male_percentiles` com os percentis 10, 30, 50, ..., 90 para cada sexo. Em seguida, crie um _data frame_ com esses dois como colunas.
+2\. Suponha que não possamos fazer um gráfico e queremos comparar as distribuições lado a lado. Não podemos simplesmente listar todos os números. Em vez disso, veremos os percentis. Crie uma tabela com cinco linhas mostrando os percentis 10, 30, 50, 70 e 90 para cada um dos sexos. Denomine as tabelas como `female_percentiles` para mulheres e `male_percentiles` para homens. Em seguida, crie um _data frame_ inserindo cada tabela como uma coluna.
 
 
-3\. Estude os seguintes gráficos de caixa mostrando os tamanhos da população por país:
+3\. Analise os seguintes _boxplots_ mostrando os tamanhos de população por país:
 
 ```{r boxplot-exercise, echo=FALSE, message=FALSE}
 library(tidyverse)
@@ -641,7 +641,7 @@ data(gapminder)
 tab <- gapminder %>% filter(year == 2010) %>% group_by(continent) %>% select(continent, population)
 tab %>% ggplot(aes(x=continent, y=population/10^6)) +
 geom_boxplot() +
-scale_y_continuous(trans = "log10", breaks = c(1,10,100,1000)) + ylab("Population in millions")
+scale_y_continuous(trans = "log10", breaks = c(1,10,100,1000)) + ylab("População em milhões")
 ```
 
 Qual continente tem o país com o maior tamanho populacional?
@@ -649,19 +649,19 @@ Qual continente tem o país com o maior tamanho populacional?
 4\. Qual continente tem o maior tamanho médio de população?
 
 
-5\. Qual é o tamanho médio da população da África para o milhão mais próximo?
+5\. Qual é o tamanho médio da população da África (arredonde para o valor mais próximo)?
 
 
 6\. Qual a proporção de países na Europa com populações inferiores a 14 milhões?
 
-para. 0,99
+a. 0,99
 b. 0,75
 c. 0,50
 d. 0,25
 
-7\. Se usarmos uma transformação logarítmica, qual continente dos anteriores tem o maior intervalo interquartil?
+7\. Se usarmos uma transformação logarítmica, qual dos continentes apresentados anteriormente apresenta o maior intervalo interquartil?
 
-8\. Carregue o conjunto de dados de altura e crie um vetor `x` com apenas as alturas masculinas:
+8\. Carregue o conjunto de dados de alturas (`heights`) e crie um vetor `x` com apenas as alturas masculinas:
 
 ```{r, eval=FALSE}
 library(dslabs)
@@ -669,7 +669,7 @@ data(heights)
 x <- heights$height[heights$sex=="Male"]
 ```
 
-Qual a proporção dos dados entre 69 e 72 polegadas (mais alto que 69, mas menor ou igual a 72)? Dica: use um operador lógico e `mean`.
+Qual a proporção dos dados entre 69 e 72 polegadas (maior que 69, mas menor ou igual a 72)? Dica: use um operador lógico e a função `mean`.
 
 9\. Suponha que a única coisa que você saiba sobre os dados seja o desvio médio e padrão. Use a aproximação normal para estimar a proporção que você acabou de calcular. Dica: Comece calculando a média e o desvio padrão. Então use a função `pnorm` prever as proporções.
 
