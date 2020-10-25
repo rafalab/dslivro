@@ -875,13 +875,13 @@ qplot(sample = scale(x)) + geom_abline()
 ```
 
 
-Se fornecermos um fator e um vetor numérico, obteremos um gráfico como o que vemos abaixo. Observe que no código estamos usando o argumento `data`. Como o _data frame_ não é o primeiro argumento em `qplot`, temos que usar o operador de ponto.
+Se fornecermos um _factor_ e um vetor numérico, obteremos um gráfico como o que veremos a seguir. Observe que no código estamos usando o argumento `data`. Como o _data frame_ não é o primeiro argumento em `qplot`, temos que usar o operador de ponto.
 
 ```{r qplot-example-3, eval=FALSE}
 heights %>% qplot(sex, height, data = .)
 ```
 
-Também podemos selecionar uma geometria específica usando o argumento `geom`. Portanto, para converter o diagrama acima em um diagrama de caixa, usamos o seguinte código:
+Também podemos selecionar uma geometria específica usando o argumento `geom`. Portanto, para converter o gráfico anterior em um _boxplot_, usamos o seguinte código:
 
 ```{r qplot-example-4, eval=FALSE}
 heights %>% qplot(sex, height, data = ., geom = "boxplot")
@@ -899,7 +899,7 @@ Embora não tanto quanto com `ggplot`, temos alguma flexibilidade para melhorar 
 qplot(x, bins=15, color = I("black"), xlab = "Population")
 ```
 
-**Nota técnica**: o motivo pelo qual usamos `I("black")` é porque nós queremos `qplot` tentar `"black"` como um personagem ao invés de um fator. Esse é o comportamento padrão dentro `aes`, que é chamado internamente aqui. Em geral, a função `I` usado em R para dizer "mantenha como está".
+**Nota técnica**: o motivo pelo qual usamos `I("black")` é porque nós queremos que `qplot` trate `"black"` como caracteres ao invés de um _factor_. Esse é o comportamento padrão dentro do `aes`, que é chamado internamente aqui. Em geral, a função `I` é usada no R para dizer "mantenha como está".
 
 
 
