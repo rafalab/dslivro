@@ -671,32 +671,32 @@ x <- heights$height[heights$sex=="Male"]
 
 Qual a proporção dos dados entre 69 e 72 polegadas (maior que 69, mas menor ou igual a 72)? Dica: use um operador lógico e a função `mean`.
 
-9\. Suponha que a única coisa que você saiba sobre os dados seja o desvio médio e padrão. Use a aproximação normal para estimar a proporção que você acabou de calcular. Dica: Comece calculando a média e o desvio padrão. Então use a função `pnorm` prever as proporções.
+9\. Suponha que a única coisa que você saiba sobre os dados seja a média e o desvio padrão. Use a aproximação normal para estimar a proporção que você acabou de calcular. Dica: comece calculando a média e o desvio padrão. Então, use a função `pnorm` prever as proporções.
 
-10\. Observe que a aproximação calculada na pergunta nove está muito próxima do cálculo exato na primeira pergunta. Agora faça a mesma tarefa para mais discrepâncias. Compare o cálculo exato e a aproximação normal do intervalo (79,81) .Quantas vezes maior é a proporção real do que a aproximação?
+10\. Observe que a aproximação calculada na pergunta nove está muito próxima do cálculo exato realizado na primeira questão. Agora faça a mesma tarefa para valores mais extremos. Compare o cálculo exato e a aproximação normal do intervalo (79,81]. Quantas vezes maior é a proporção real do que a aproximação?
 
-Onze\. Aproxima a distribuição de homens adultos no mundo como uma distribuição normal, com uma média de 69 polegadas e um desvio padrão de 3 polegadas. Usando essa aproximação, encontre a proporção de homens adultos com 7 pés de altura ou mais, conhecidos como "sete rodapés". Dica: use a função `pnorm`.
+11\. Considere a distribuição de homens adultos no mundo como uma distribuição normal, com uma altura média de 69 polegadas e um desvio padrão de 3 polegadas. Usando essa aproximação, encontre a proporção de homens adultos com 7 pés de altura (equivalente a 84 polegadas ou 2,13 metros) ou mais, conhecidos como "_seven-footers_". Dica: use a função `pnorm`.
 
-12\. Existem cerca de um bilhão de homens entre 18 e 40 anos no mundo. Use sua resposta à pergunta anterior para estimar quantos desses homens (18 a 40 anos) têm sete pés de altura ou mais no mundo.
+12\. Existem cerca de um bilhão de homens entre 18 e 40 anos no mundo. Use sua resposta à pergunta anterior para estimar quantos desses homens (18 a 40 anos) têm sete pés de altura (84" ou 2,13 m) ou mais no mundo.
 
-13\. Existem cerca de 10 jogadores da National Basketball Association (NBA) com 7 pés de altura ou mais. Usando a resposta para as duas perguntas anteriores, qual a proporção de sete rodapés do mundo, com idades entre 18 e 40 anos, na NBA?
+13\. Existem cerca de 10 jogadores da liga americana de basquete (NBA - _National Basketball Association_) com 7 pés de altura ou mais. Usando a resposta para as duas perguntas anteriores, qual a proporção de _seven-footers_ do mundo, com idades entre 18 e 40 anos, na NBA?
 
-14\. Repita os cálculos feitos na pergunta anterior para a altura do jogador de basquete Lebron James: 6 pés e 8 polegadas. Existem cerca de 150 jogadores que são pelo menos tão altos.
+14\. Repita os cálculos feitos na pergunta anterior para a altura do jogador de basquete Lebron James: 6 pés e 8 polegadas (equivalente a 80" ou 2,03m). Existem cerca de 150 jogadores que são pelo menos tão altos.
 
-Quinze\. Ao responder às perguntas acima, descobrimos que não é incomum que um jogador de sete pés se torne jogador da NBA. Então, o que seria uma crítica justa aos nossos cálculos?
+15\. Ao responder às perguntas anteriores, descobrimos que não é raro que algué com de sete pés de altura se torne jogador da NBA. Assim, qual das opções a seguir representa uma crítica justa aos nossos cálculos?
 
-para. Prática e talento são o que fazem um ótimo jogador de basquete, não a altura.
-b. A abordagem normal não é apropriada para alturas.
-c. Conforme observado na Questão 10, a aproximação normal tende a subestimar valores discrepantes. Pode haver mais _sete rodapés_ do que previmos.
-d. Conforme observado na Questão 10, a aproximação normal tende a superestimar valores discrepantes. Pode haver menos _sete rodapés_ do que previmos.
+a. Prática e talento são o que fazem um ótimo jogador de basquete, não a altura.
+b. A aproximação normal não é apropriada para alturas.
+c. Conforme observado na questão 10, a aproximação normal tende a subestimar valores discrepantes. É possível que existam mais _seven-footers_ do que previmos.
+d. Conforme observado na questão 10, a aproximação normal tende a superestimar valores discrepantes. É possível que existam menos _seven-footers_ do que previmos.
 
-## Gegplot2 geometrias {#other-geometries}
+## Geometrias ggplot2  {#other-geometries}
 
 No capítulo \@ref(ggplot2) apresentamos o pacote __ggplot2__ para visualização de dados. Aqui, demonstramos como gerar gráficos relacionados a distribuições, especificamente os gráficos mostrados anteriormente neste capítulo.
 
 ### Gráficos de barra
 
-Para gerar um diagrama de barras (_barplots_ em inglês), podemos usar a geometria `geom_bar`. Por padrão, R conta os casos em cada categoria e desenha uma barra. Aqui vemos o gráfico de barras para as regiões dos Estados Unidos.
+Para gerar um gráfico de barras (_barplots_ em inglês), podemos usar a geometria `geom_bar`. Por padrão, R conta os casos em cada categoria e desenha uma barra. Aqui vemos o gráfico de barras para as regiões dos Estados Unidos.
 
 ```{r barplot-geom}
 murders %>% ggplot(aes(region)) + geom_bar()
