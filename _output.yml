@@ -24,4 +24,4 @@ bookdown::gitbook:
     edit:
       link: https://github.com/rafalab/dslivro/edit/master/%s
       text: "Edit"
-new_session: yes 
+#new_session: yes 

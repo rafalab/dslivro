@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 7 ggplot2 | Introdução à Ciência de Dados</title>
   <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 7 ggplot2 | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Rafael A. Irizarry" />
 
 
-<meta name="date" content="2020-06-26" />
+<meta name="date" content="2020-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="introdução-à-visualização-de-dados.html"/>
 <link rel="next" href="distributions.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,10 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -187,17 +189,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#exercícios-1"><i class="fa fa-check"></i><b>2.5</b> Exercícios</a></li>
 <li class="chapter" data-level="2.6" data-path="r-basics.html"><a href="r-basics.html#vetores"><i class="fa fa-check"></i><b>2.6</b> Vetores</a>
 <ul>
-<li class="chapter" data-level="2.6.1" data-path="r-basics.html"><a href="r-basics.html#como-criar-vetores"><i class="fa fa-check"></i><b>2.6.1</b> Como criar vetores</a></li>
+<li class="chapter" data-level="2.6.1" data-path="r-basics.html"><a href="r-basics.html#criando-vetores"><i class="fa fa-check"></i><b>2.6.1</b> Criando vetores</a></li>
 <li class="chapter" data-level="2.6.2" data-path="r-basics.html"><a href="r-basics.html#nomes"><i class="fa fa-check"></i><b>2.6.2</b> Nomes</a></li>
 <li class="chapter" data-level="2.6.3" data-path="r-basics.html"><a href="r-basics.html#sequências"><i class="fa fa-check"></i><b>2.6.3</b> Sequências</a></li>
-<li class="chapter" data-level="2.6.4" data-path="r-basics.html"><a href="r-basics.html#como-criar-um-subconjunto"><i class="fa fa-check"></i><b>2.6.4</b> Como criar um subconjunto</a></li>
+<li class="chapter" data-level="2.6.4" data-path="r-basics.html"><a href="r-basics.html#criando-subconjuntos"><i class="fa fa-check"></i><b>2.6.4</b> Criando subconjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="r-basics.html"><a href="r-basics.html#conversão-forçada"><i class="fa fa-check"></i><b>2.7</b> Conversão forçada</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="r-basics.html"><a href="r-basics.html#não-disponível-na"><i class="fa fa-check"></i><b>2.7.1</b> <em>Não disponível</em> (NA)</a></li>
+<li class="chapter" data-level="2.7.1" data-path="r-basics.html"><a href="r-basics.html#valores-na"><i class="fa fa-check"></i><b>2.7.1</b> Valores NA</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="r-basics.html"><a href="r-basics.html#exercícios-2"><i class="fa fa-check"></i><b>2.8</b> Exercícios</a></li>
-<li class="chapter" data-level="2.9" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.9</b> <em>Ordenação</em></a>
+<li class="chapter" data-level="2.9" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.9</b> Ordenação</a>
 <ul>
 <li class="chapter" data-level="2.9.1" data-path="r-basics.html"><a href="r-basics.html#sort"><i class="fa fa-check"></i><b>2.9.1</b> <code>sort</code></a></li>
 <li class="chapter" data-level="2.9.2" data-path="r-basics.html"><a href="r-basics.html#order"><i class="fa fa-check"></i><b>2.9.2</b> <code>order</code></a></li>
@@ -208,13 +210,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="r-basics.html"><a href="r-basics.html#exercícios-3"><i class="fa fa-check"></i><b>2.10</b> Exercícios</a></li>
 <li class="chapter" data-level="2.11" data-path="r-basics.html"><a href="r-basics.html#aritmética-vetorial"><i class="fa fa-check"></i><b>2.11</b> Aritmética vetorial</a>
 <ul>
-<li class="chapter" data-level="2.11.1" data-path="r-basics.html"><a href="r-basics.html#rescalar-um-vetor"><i class="fa fa-check"></i><b>2.11.1</b> <em>Rescalar</em> um vetor</a></li>
+<li class="chapter" data-level="2.11.1" data-path="r-basics.html"><a href="r-basics.html#reescalonando-um-vetor"><i class="fa fa-check"></i><b>2.11.1</b> Reescalonando um vetor</a></li>
 <li class="chapter" data-level="2.11.2" data-path="r-basics.html"><a href="r-basics.html#dois-vetores"><i class="fa fa-check"></i><b>2.11.2</b> Dois vetores</a></li>
 </ul></li>
 <li class="chapter" data-level="2.12" data-path="r-basics.html"><a href="r-basics.html#exercícios-4"><i class="fa fa-check"></i><b>2.12</b> Exercícios</a></li>
 <li class="chapter" data-level="2.13" data-path="r-basics.html"><a href="r-basics.html#indexação"><i class="fa fa-check"></i><b>2.13</b> Indexação</a>
 <ul>
-<li class="chapter" data-level="2.13.1" data-path="r-basics.html"><a href="r-basics.html#criar-subconjuntos-com-lógicas"><i class="fa fa-check"></i><b>2.13.1</b> Criar subconjuntos com lógicas</a></li>
+<li class="chapter" data-level="2.13.1" data-path="r-basics.html"><a href="r-basics.html#criando-subconjuntos-com-objetos-do-tipo-lógico"><i class="fa fa-check"></i><b>2.13.1</b> Criando subconjuntos com objetos do tipo lógico</a></li>
 <li class="chapter" data-level="2.13.2" data-path="r-basics.html"><a href="r-basics.html#operadores-lógicos"><i class="fa fa-check"></i><b>2.13.2</b> Operadores lógicos</a></li>
 <li class="chapter" data-level="2.13.3" data-path="r-basics.html"><a href="r-basics.html#which"><i class="fa fa-check"></i><b>2.13.3</b> <code>which</code></a></li>
 <li class="chapter" data-level="2.13.4" data-path="r-basics.html"><a href="r-basics.html#match"><i class="fa fa-check"></i><b>2.13.4</b> <code>match</code></a></li>
@@ -286,11 +288,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="importing-data.html"><a href="importing-data.html#caminhos-e-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1</b> Caminhos e diretório de trabalho</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="importing-data.html"><a href="importing-data.html#o-sistema-de-arquivos"><i class="fa fa-check"></i><b>5.1.1</b> O sistema de arquivos</a></li>
-<li class="chapter" data-level="5.1.2" data-path="importing-data.html"><a href="importing-data.html#caminhos-relativos-e-completos"><i class="fa fa-check"></i><b>5.1.2</b> Caminhos relativos e completos</a></li>
+<li class="chapter" data-level="5.1.1" data-path="importing-data.html"><a href="importing-data.html#sistema-de-arquivos"><i class="fa fa-check"></i><b>5.1.1</b> Sistema de arquivos</a></li>
+<li class="chapter" data-level="5.1.2" data-path="importing-data.html"><a href="importing-data.html#caminhos-relativos-e-absolutos"><i class="fa fa-check"></i><b>5.1.2</b> Caminhos relativos e absolutos</a></li>
 <li class="chapter" data-level="5.1.3" data-path="importing-data.html"><a href="importing-data.html#o-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1.3</b> O diretório de trabalho</a></li>
-<li class="chapter" data-level="5.1.4" data-path="importing-data.html"><a href="importing-data.html#como-gerar-nomes-de-caminhos"><i class="fa fa-check"></i><b>5.1.4</b> Como gerar nomes de caminhos</a></li>
-<li class="chapter" data-level="5.1.5" data-path="importing-data.html"><a href="importing-data.html#como-copiar-arquivos-usando-caminhos"><i class="fa fa-check"></i><b>5.1.5</b> Como copiar arquivos usando caminhos</a></li>
+<li class="chapter" data-level="5.1.4" data-path="importing-data.html"><a href="importing-data.html#gerando-nomes-de-caminhos"><i class="fa fa-check"></i><b>5.1.4</b> Gerando nomes de caminhos</a></li>
+<li class="chapter" data-level="5.1.5" data-path="importing-data.html"><a href="importing-data.html#copiando-arquivos-usando-caminhos"><i class="fa fa-check"></i><b>5.1.5</b> Copiando arquivos usando caminhos</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="importing-data.html"><a href="importing-data.html#os-pacotes-readr-e-readxl"><i class="fa fa-check"></i><b>5.2</b> Os pacotes readr e readxl</a>
 <ul>
@@ -298,8 +300,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="importing-data.html"><a href="importing-data.html#readxl"><i class="fa fa-check"></i><b>5.2.2</b> readxl</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="importing-data.html"><a href="importing-data.html#exercícios-13"><i class="fa fa-check"></i><b>5.3</b> Exercícios</a></li>
-<li class="chapter" data-level="5.4" data-path="importing-data.html"><a href="importing-data.html#como-baixar-arquivos"><i class="fa fa-check"></i><b>5.4</b> Como baixar arquivos</a></li>
-<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação R</a>
+<li class="chapter" data-level="5.4" data-path="importing-data.html"><a href="importing-data.html#como-fazer-download-de-arquivos"><i class="fa fa-check"></i><b>5.4</b> Como fazer <em>download</em> de arquivos</a></li>
+<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-do-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação do R</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="importing-data.html"><a href="importing-data.html#scan"><i class="fa fa-check"></i><b>5.5.1</b> <code>scan</code></a></li>
 </ul></li>
@@ -313,51 +315,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#os-componentes-de-um-gráfico"><i class="fa fa-check"></i><b>7.1</b> Os componentes de um gráfico</a></li>
-<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-ggplot"><i class="fa fa-check"></i><b>7.2</b> objetos <code>ggplot</code></a></li>
+<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-ggplot"><i class="fa fa-check"></i><b>7.2</b> Objetos <code>ggplot</code></a></li>
 <li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrias"><i class="fa fa-check"></i><b>7.3</b> Geometrias</a></li>
 <li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#mapeamentos-estéticos"><i class="fa fa-check"></i><b>7.4</b> Mapeamentos estéticos</a></li>
 <li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#camadas"><i class="fa fa-check"></i><b>7.5</b> Camadas</a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#como-testar-vários-argumentos"><i class="fa fa-check"></i><b>7.5.1</b> Como testar vários argumentos</a></li>
+<li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#trabalhando-com-argumentos"><i class="fa fa-check"></i><b>7.5.1</b> Trabalhando com argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético-global-versus-local"><i class="fa fa-check"></i><b>7.6</b> Mapeamento estético global versus local</a></li>
 <li class="chapter" data-level="7.7" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>7.7</b> Escalas</a></li>
-<li class="chapter" data-level="7.8" data-path="ggplot2.html"><a href="ggplot2.html#tags-e-títulos"><i class="fa fa-check"></i><b>7.8</b> Tags e títulos</a></li>
-<li class="chapter" data-level="7.9" data-path="ggplot2.html"><a href="ggplot2.html#categorias-como-cores"><i class="fa fa-check"></i><b>7.9</b> Categorias como cores</a></li>
-<li class="chapter" data-level="7.10" data-path="ggplot2.html"><a href="ggplot2.html#anotação-formas-e-ajustes"><i class="fa fa-check"></i><b>7.10</b> Anotação, formas e ajustes</a></li>
+<li class="chapter" data-level="7.8" data-path="ggplot2.html"><a href="ggplot2.html#rótulos-e-títulos"><i class="fa fa-check"></i><b>7.8</b> Rótulos e títulos</a></li>
+<li class="chapter" data-level="7.9" data-path="ggplot2.html"><a href="ggplot2.html#usando-categorias-como-cores"><i class="fa fa-check"></i><b>7.9</b> Usando categorias como cores</a></li>
+<li class="chapter" data-level="7.10" data-path="ggplot2.html"><a href="ggplot2.html#anotações-formas-e-ajustes"><i class="fa fa-check"></i><b>7.10</b> Anotações, formas e ajustes</a></li>
 <li class="chapter" data-level="7.11" data-path="ggplot2.html"><a href="ggplot2.html#add-on-packages"><i class="fa fa-check"></i><b>7.11</b> Pacotes complementares</a></li>
 <li class="chapter" data-level="7.12" data-path="ggplot2.html"><a href="ggplot2.html#como-combinar-tudo"><i class="fa fa-check"></i><b>7.12</b> Como combinar tudo</a></li>
 <li class="chapter" data-level="7.13" data-path="ggplot2.html"><a href="ggplot2.html#qplot"><i class="fa fa-check"></i><b>7.13</b> Gráficos rápidos com <code>qplot</code></a></li>
-<li class="chapter" data-level="7.14" data-path="ggplot2.html"><a href="ggplot2.html#grades-de-gráfico"><i class="fa fa-check"></i><b>7.14</b> Grades de gráfico</a></li>
+<li class="chapter" data-level="7.14" data-path="ggplot2.html"><a href="ggplot2.html#grade-de-gráficos"><i class="fa fa-check"></i><b>7.14</b> Grade de gráficos</a></li>
 <li class="chapter" data-level="7.15" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-15"><i class="fa fa-check"></i><b>7.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Como visualizar distribuições de dados</a>
+<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Visualizando distribuições de dados</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="distributions.html"><a href="distributions.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>8.1</b> Tipos de variáveis</a></li>
 <li class="chapter" data-level="8.2" data-path="distributions.html"><a href="distributions.html#estudo-de-caso-descrevendo-a-altura-dos-alunos"><i class="fa fa-check"></i><b>8.2</b> Estudo de caso: descrevendo a altura dos alunos</a></li>
-<li class="chapter" data-level="8.3" data-path="distributions.html"><a href="distributions.html#a-função-de-distribuição"><i class="fa fa-check"></i><b>8.3</b> A função de distribuição</a></li>
-<li class="chapter" data-level="8.4" data-path="distributions.html"><a href="distributions.html#cdf-intro"><i class="fa fa-check"></i><b>8.4</b> Funções de distribuição cumulativa</a></li>
+<li class="chapter" data-level="8.3" data-path="distributions.html"><a href="distributions.html#função-de-distribuição"><i class="fa fa-check"></i><b>8.3</b> Função de distribuição</a></li>
+<li class="chapter" data-level="8.4" data-path="distributions.html"><a href="distributions.html#cdf-intro"><i class="fa fa-check"></i><b>8.4</b> Funções de distribuição acumulada</a></li>
 <li class="chapter" data-level="8.5" data-path="distributions.html"><a href="distributions.html#histogramas"><i class="fa fa-check"></i><b>8.5</b> Histogramas</a></li>
-<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#densidade-suave"><i class="fa fa-check"></i><b>8.6</b> Densidade suave</a>
+<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#curvas-de-densidade"><i class="fa fa-check"></i><b>8.6</b> Curvas de densidade</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="distributions.html"><a href="distributions.html#como-interpretar-o-eixo-y"><i class="fa fa-check"></i><b>8.6.1</b> Como interpretar o eixo y</a></li>
-<li class="chapter" data-level="8.6.2" data-path="distributions.html"><a href="distributions.html#densidades-permitem-camadas"><i class="fa fa-check"></i><b>8.6.2</b> Densidades permitem camadas</a></li>
+<li class="chapter" data-level="8.6.1" data-path="distributions.html"><a href="distributions.html#interpretando-o-eixo-y"><i class="fa fa-check"></i><b>8.6.1</b> Interpretando o eixo y</a></li>
+<li class="chapter" data-level="8.6.2" data-path="distributions.html"><a href="distributions.html#densidades-permitem-a-estratificação"><i class="fa fa-check"></i><b>8.6.2</b> Densidades permitem a estratificação</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="distributions.html"><a href="distributions.html#exercícios-16"><i class="fa fa-check"></i><b>8.7</b> Exercícios</a></li>
-<li class="chapter" data-level="8.8" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>8.8</b> A distribuição normal</a></li>
+<li class="chapter" data-level="8.8" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>8.8</b> Distribuição normal</a></li>
 <li class="chapter" data-level="8.9" data-path="distributions.html"><a href="distributions.html#unidades-padrão"><i class="fa fa-check"></i><b>8.9</b> Unidades padrão</a></li>
 <li class="chapter" data-level="8.10" data-path="distributions.html"><a href="distributions.html#gráficos-qq"><i class="fa fa-check"></i><b>8.10</b> Gráficos QQ</a></li>
 <li class="chapter" data-level="8.11" data-path="distributions.html"><a href="distributions.html#percentis"><i class="fa fa-check"></i><b>8.11</b> Percentis</a></li>
-<li class="chapter" data-level="8.12" data-path="distributions.html"><a href="distributions.html#diagramas-de-caixas"><i class="fa fa-check"></i><b>8.12</b> Diagramas de caixas</a></li>
+<li class="chapter" data-level="8.12" data-path="distributions.html"><a href="distributions.html#diagramas-de-caixas-boxplots"><i class="fa fa-check"></i><b>8.12</b> Diagramas de caixas (<em>boxplots</em>)</a></li>
 <li class="chapter" data-level="8.13" data-path="distributions.html"><a href="distributions.html#stratification"><i class="fa fa-check"></i><b>8.13</b> Estratificação</a></li>
-<li class="chapter" data-level="8.14" data-path="distributions.html"><a href="distributions.html#student-height-cont"><i class="fa fa-check"></i><b>8.14</b> Estudo de caso: descrição das alturas dos alunos (continuação)</a></li>
+<li class="chapter" data-level="8.14" data-path="distributions.html"><a href="distributions.html#student-height-cont"><i class="fa fa-check"></i><b>8.14</b> Estudo de caso: descrevendo as alturas dos alunos (continuação)</a></li>
 <li class="chapter" data-level="8.15" data-path="distributions.html"><a href="distributions.html#exercícios-17"><i class="fa fa-check"></i><b>8.15</b> Exercícios</a></li>
-<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Gegplot2 geometrias</a>
+<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Geometrias ggplot2</a>
 <ul>
 <li class="chapter" data-level="8.16.1" data-path="distributions.html"><a href="distributions.html#gráficos-de-barra"><i class="fa fa-check"></i><b>8.16.1</b> Gráficos de barra</a></li>
 <li class="chapter" data-level="8.16.2" data-path="distributions.html"><a href="distributions.html#histogramas-1"><i class="fa fa-check"></i><b>8.16.2</b> Histogramas</a></li>
 <li class="chapter" data-level="8.16.3" data-path="distributions.html"><a href="distributions.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>8.16.3</b> Gráficos de densidade</a></li>
-<li class="chapter" data-level="8.16.4" data-path="distributions.html"><a href="distributions.html#diagramas-de-caixas-1"><i class="fa fa-check"></i><b>8.16.4</b> Diagramas de caixas</a></li>
+<li class="chapter" data-level="8.16.4" data-path="distributions.html"><a href="distributions.html#boxplots"><i class="fa fa-check"></i><b>8.16.4</b> <em>Boxplots</em></a></li>
 <li class="chapter" data-level="8.16.5" data-path="distributions.html"><a href="distributions.html#gráficos-qq-1"><i class="fa fa-check"></i><b>8.16.5</b> Gráficos QQ</a></li>
 <li class="chapter" data-level="8.16.6" data-path="distributions.html"><a href="distributions.html#imagens"><i class="fa fa-check"></i><b>8.16.6</b> Imagens</a></li>
 <li class="chapter" data-level="8.16.7" data-path="distributions.html"><a href="distributions.html#gráficos-rápidos"><i class="fa fa-check"></i><b>8.16.7</b> Gráficos rápidos</a></li>
@@ -366,8 +368,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>9</b> Visualização de dados na prática</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="gapminder.html"><a href="gapminder.html#estudo-de-caso-novas-idéias-sobre-pobreza"><i class="fa fa-check"></i><b>9.1</b> Estudo de caso: novas idéias sobre pobreza</a></li>
-<li class="chapter" data-level="9.2" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-dispersão"><i class="fa fa-check"></i><b>9.2</b> Diagrama de dispersão</a></li>
+<li class="chapter" data-level="9.1" data-path="gapminder.html"><a href="gapminder.html#estudo-de-caso-novas-perspectivas-sobre-pobreza"><i class="fa fa-check"></i><b>9.1</b> Estudo de caso: novas perspectivas sobre pobreza</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="gapminder.html"><a href="gapminder.html#teste-de-hans-rosling"><i class="fa fa-check"></i><b>9.1.1</b> Teste de Hans Rosling</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="gapminder.html"><a href="gapminder.html#diagramas-de-dispersão-scatterplots"><i class="fa fa-check"></i><b>9.2</b> Diagramas de dispersão (<em>scatterplots</em>)</a></li>
 <li class="chapter" data-level="9.3" data-path="gapminder.html"><a href="gapminder.html#separe-em-facetas"><i class="fa fa-check"></i><b>9.3</b> Separe em facetas</a>
 <ul>
 <li class="chapter" data-level="9.3.1" data-path="gapminder.html"><a href="gapminder.html#facet_wrap"><i class="fa fa-check"></i><b>9.3.1</b> <code>facet_wrap</code></a></li>
@@ -375,53 +380,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="gapminder.html"><a href="gapminder.html#gráficos-de-séries-temporais"><i class="fa fa-check"></i><b>9.4</b> Gráficos de séries temporais</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="gapminder.html"><a href="gapminder.html#etiquetas-em-vez-de-legendas"><i class="fa fa-check"></i><b>9.4.1</b> Etiquetas em vez de legendas</a></li>
+<li class="chapter" data-level="9.4.1" data-path="gapminder.html"><a href="gapminder.html#rótulos-em-vez-de-legendas"><i class="fa fa-check"></i><b>9.4.1</b> Rótulos em vez de legendas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="gapminder.html"><a href="gapminder.html#transformações-de-dados"><i class="fa fa-check"></i><b>9.5</b> Transformações de dados</a>
 <ul>
 <li class="chapter" data-level="9.5.1" data-path="gapminder.html"><a href="gapminder.html#transformação-logarítmica"><i class="fa fa-check"></i><b>9.5.1</b> Transformação logarítmica</a></li>
 <li class="chapter" data-level="9.5.2" data-path="gapminder.html"><a href="gapminder.html#qual-base"><i class="fa fa-check"></i><b>9.5.2</b> Qual base?</a></li>
-<li class="chapter" data-level="9.5.3" data-path="gapminder.html"><a href="gapminder.html#transformar-valores-ou-escala"><i class="fa fa-check"></i><b>9.5.3</b> Transformar valores ou escala?</a></li>
+<li class="chapter" data-level="9.5.3" data-path="gapminder.html"><a href="gapminder.html#transformar-os-valores-ou-a-escala"><i class="fa fa-check"></i><b>9.5.3</b> Transformar os valores ou a escala?</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="gapminder.html"><a href="gapminder.html#como-visualizar-distribuições-multimodais"><i class="fa fa-check"></i><b>9.6</b> Como visualizar distribuições multimodais</a></li>
-<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-várias-distribuições-com-gráficos-de-caixas-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar várias distribuições com gráficos de caixas e gráficos <em>ridge</em></a>
+<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-múltiplas-distribuições-com-boxplots-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar múltiplas distribuições com <em>boxplots</em> e gráficos <em>ridge</em></a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-caixa"><i class="fa fa-check"></i><b>9.7.1</b> Diagrama de caixa</a></li>
-<li class="chapter" data-level="9.7.2" data-path="gapminder.html"><a href="gapminder.html#exemplo-distribuições-de-renda-1970-versus-2010"><i class="fa fa-check"></i><b>9.7.2</b> Exemplo: distribuições de renda 1970 versus 2010</a></li>
-<li class="chapter" data-level="9.7.3" data-path="gapminder.html"><a href="gapminder.html#como-acessar-variáveis-calculadas"><i class="fa fa-check"></i><b>9.7.3</b> Como acessar variáveis calculadas</a></li>
-<li class="chapter" data-level="9.7.4" data-path="gapminder.html"><a href="gapminder.html#densidades-ponderadas"><i class="fa fa-check"></i><b>9.7.4</b> Densidades ponderadas</a></li>
+<li class="chapter" data-level="9.7.1" data-path="gapminder.html"><a href="gapminder.html#boxplots-diagramas-de-caixa"><i class="fa fa-check"></i><b>9.7.1</b> <em>Boxplots</em> (diagramas de caixa)</a></li>
+<li class="chapter" data-level="9.7.2" data-path="gapminder.html"><a href="gapminder.html#gráficos-ridge"><i class="fa fa-check"></i><b>9.7.2</b> Gráficos <em>ridge</em></a></li>
+<li class="chapter" data-level="9.7.3" data-path="gapminder.html"><a href="gapminder.html#exemplo-distribuições-de-renda-1970-versus-2010"><i class="fa fa-check"></i><b>9.7.3</b> Exemplo: distribuições de renda 1970 versus 2010</a></li>
+<li class="chapter" data-level="9.7.4" data-path="gapminder.html"><a href="gapminder.html#como-acessar-variáveis-calculadas"><i class="fa fa-check"></i><b>9.7.4</b> Como acessar variáveis calculadas</a></li>
+<li class="chapter" data-level="9.7.5" data-path="gapminder.html"><a href="gapminder.html#densidades-ponderadas"><i class="fa fa-check"></i><b>9.7.5</b> Densidades ponderadas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.8" data-path="gapminder.html"><a href="gapminder.html#a-falácia-ecológica-e-a-importância-de-mostrar-os-dados"><i class="fa fa-check"></i><b>9.8</b> A falácia ecológica e a importância de mostrar os dados</a>
 <ul>
-<li class="chapter" data-level="9.8.1" data-path="gapminder.html"><a href="gapminder.html#logit"><i class="fa fa-check"></i><b>9.8.1</b> Transformação de logística</a></li>
-<li class="chapter" data-level="9.8.2" data-path="gapminder.html"><a href="gapminder.html#mostrar-os-dados"><i class="fa fa-check"></i><b>9.8.2</b> Mostrar os dados</a></li>
+<li class="chapter" data-level="9.8.1" data-path="gapminder.html"><a href="gapminder.html#logit"><i class="fa fa-check"></i><b>9.8.1</b> Transformação logística</a></li>
+<li class="chapter" data-level="9.8.2" data-path="gapminder.html"><a href="gapminder.html#mostre-os-dados"><i class="fa fa-check"></i><b>9.8.2</b> Mostre os dados</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html"><i class="fa fa-check"></i><b>10</b> Princípios de visualização de dados</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-codificar-dados-usando-pistas-visuais"><i class="fa fa-check"></i><b>10.1</b> Como codificar dados usando pistas visuais</a></li>
+<li class="chapter" data-level="10.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#codificando-dados-usando-dicas-visuais"><i class="fa fa-check"></i><b>10.1</b> Codificando dados usando dicas visuais</a></li>
 <li class="chapter" data-level="10.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#saiba-quando-incluir-0"><i class="fa fa-check"></i><b>10.2</b> Saiba quando incluir 0</a></li>
 <li class="chapter" data-level="10.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#não-distorça-quantidades"><i class="fa fa-check"></i><b>10.3</b> Não distorça quantidades</a></li>
-<li class="chapter" data-level="10.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#classificar-categorias-por-valor-significativo"><i class="fa fa-check"></i><b>10.4</b> Classificar categorias por valor significativo</a></li>
-<li class="chapter" data-level="10.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#mostrar-os-dados-1"><i class="fa fa-check"></i><b>10.5</b> Mostrar os dados</a></li>
-<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-facilitar-comparações"><i class="fa fa-check"></i><b>10.6</b> Como facilitar comparações</a>
+<li class="chapter" data-level="10.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#ordenando-categorias-por-um-valor-significativo"><i class="fa fa-check"></i><b>10.4</b> Ordenando categorias por um valor significativo</a></li>
+<li class="chapter" data-level="10.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#mostre-os-dados-1"><i class="fa fa-check"></i><b>10.5</b> Mostre os dados</a></li>
+<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#facilite-comparações"><i class="fa fa-check"></i><b>10.6</b> Facilite comparações</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-eixos-comuns"><i class="fa fa-check"></i><b>10.6.1</b> Use eixos comuns</a></li>
+<li class="chapter" data-level="10.6.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-eixos-em-comum"><i class="fa fa-check"></i><b>10.6.1</b> Use eixos em comum</a></li>
 <li class="chapter" data-level="10.6.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#alinhe-os-gráficos-verticalmente-para-ver-alterações-horizontais-e-horizontalmente-para-ver-alterações-verticais"><i class="fa fa-check"></i><b>10.6.2</b> Alinhe os gráficos verticalmente para ver alterações horizontais e horizontalmente para ver alterações verticais</a></li>
 <li class="chapter" data-level="10.6.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#considere-transformações"><i class="fa fa-check"></i><b>10.6.3</b> Considere transformações</a></li>
 <li class="chapter" data-level="10.6.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#as-indicações-visuais-comparadas-devem-ser-adjacentes"><i class="fa fa-check"></i><b>10.6.4</b> As indicações visuais comparadas devem ser adjacentes</a></li>
 <li class="chapter" data-level="10.6.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-cores"><i class="fa fa-check"></i><b>10.6.5</b> Use cores</a></li>
 </ul></li>
 <li class="chapter" data-level="10.7" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#pense-no-daltônico"><i class="fa fa-check"></i><b>10.7</b> Pense no daltônico</a></li>
-<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Gráficos para duas variáveis</a>
+<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#plotagens-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Plotagens para duas variáveis</a>
 <ul>
 <li class="chapter" data-level="10.8.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-de-inclinação"><i class="fa fa-check"></i><b>10.8.1</b> Gráficos de inclinação</a></li>
 <li class="chapter" data-level="10.8.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráfico-de-bland-altman"><i class="fa fa-check"></i><b>10.8.2</b> Gráfico de Bland-Altman</a></li>
 </ul></li>
-<li class="chapter" data-level="10.9" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-codificar-uma-terceira-variável"><i class="fa fa-check"></i><b>10.9</b> Como codificar uma terceira variável</a></li>
-<li class="chapter" data-level="10.10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#evitar-gráficos-pseudo-tridimensionais"><i class="fa fa-check"></i><b>10.10</b> Evitar gráficos pseudo-tridimensionais</a></li>
+<li class="chapter" data-level="10.9" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#codificando-uma-terceira-variável"><i class="fa fa-check"></i><b>10.9</b> Codificando uma terceira variável</a></li>
+<li class="chapter" data-level="10.10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#evite-gráficos-pseudo-tridimensionais"><i class="fa fa-check"></i><b>10.10</b> Evite gráficos pseudo-tridimensionais</a></li>
 <li class="chapter" data-level="10.11" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#evite-muitos-dígitos-significativos"><i class="fa fa-check"></i><b>10.11</b> Evite muitos dígitos significativos</a></li>
-<li class="chapter" data-level="10.12" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#conheça-o-seu-público"><i class="fa fa-check"></i><b>10.12</b> Conheça o seu público</a></li>
+<li class="chapter" data-level="10.12" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#conheça-seu-público"><i class="fa fa-check"></i><b>10.12</b> Conheça seu público</a></li>
 <li class="chapter" data-level="10.13" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#exercícios-19"><i class="fa fa-check"></i><b>10.13</b> Exercícios</a></li>
 <li class="chapter" data-level="10.14" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#vaccines"><i class="fa fa-check"></i><b>10.14</b> Estudo de caso: vacinas e doenças infecciosas</a></li>
 <li class="chapter" data-level="10.15" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#exercícios-20"><i class="fa fa-check"></i><b>10.15</b> Exercícios</a></li>
@@ -437,7 +443,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.7" data-path="robust-summaries.html"><a href="robust-summaries.html#estudo-de-caso-altura-do-aluno-autorreferida"><i class="fa fa-check"></i><b>11.7</b> Estudo de caso: altura do aluno autorreferida</a></li>
 </ul></li>
 <li class="part"><span><b>III Estatísticas com R</b></span></li>
-<li class="chapter" data-level="12" data-path="introdução-às-estatísticas-com-r.html"><a href="introdução-às-estatísticas-com-r.html"><i class="fa fa-check"></i><b>12</b> Introdução às estatísticas com R</a></li>
+<li class="chapter" data-level="12" data-path="introdução-à-estatística-com-r.html"><a href="introdução-à-estatística-com-r.html"><i class="fa fa-check"></i><b>12</b> Introdução à estatística com R</a></li>
 <li class="chapter" data-level="13" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>13</b> Probabilidade</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-discreta"><i class="fa fa-check"></i><b>13.1</b> Probabilidade discreta</a>
@@ -472,23 +478,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#modelos-de-amostragem"><i class="fa fa-check"></i><b>14.2</b> Modelos de amostragem</a></li>
 <li class="chapter" data-level="14.3" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#a-distribuição-de-probabilidade-de-uma-variável-aleatória"><i class="fa fa-check"></i><b>14.3</b> A distribuição de probabilidade de uma variável aleatória</a></li>
 <li class="chapter" data-level="14.4" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#distribuições-versus-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>14.4</b> Distribuições versus distribuições de probabilidade</a></li>
-<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.5</b> O valor esperado e o erro padrão</a>
+<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#notação-para-variáveis-aleatórias"><i class="fa fa-check"></i><b>14.5</b> Notação para variáveis aleatórias</a></li>
+<li class="chapter" data-level="14.6" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.6</b> O valor esperado e o erro padrão</a>
 <ul>
-<li class="chapter" data-level="14.5.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#população-sd-versus-amostra-sd"><i class="fa fa-check"></i><b>14.5.1</b> População SD versus amostra SD</a></li>
+<li class="chapter" data-level="14.6.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#desvio-padrão-da-população-versus-desvio-padrão-da-amostra"><i class="fa fa-check"></i><b>14.6.1</b> Desvio padrão da população versus desvio padrão da amostra</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#teorema-do-limite-central"><i class="fa fa-check"></i><b>14.6</b> Teorema do limite central</a></li>
-<li class="chapter" data-level="14.7" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#propriedades-estatísticas-das-médias"><i class="fa fa-check"></i><b>14.7</b> Propriedades estatísticas das médias</a></li>
-<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.8</b> Lei dos grandes números</a>
+<li class="chapter" data-level="14.7" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#teorema-do-limite-central"><i class="fa fa-check"></i><b>14.7</b> Teorema do Limite Central</a></li>
+<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#propriedades-estatísticas-das-médias"><i class="fa fa-check"></i><b>14.8</b> Propriedades estatísticas das médias</a></li>
+<li class="chapter" data-level="14.9" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.9</b> Lei dos grandes números</a>
 <ul>
-<li class="chapter" data-level="14.8.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#interpretação-incorreta-da-lei-das-médias"><i class="fa fa-check"></i><b>14.8.1</b> Interpretação incorreta da lei das médias</a></li>
+<li class="chapter" data-level="14.9.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#interpretação-incorreta-da-lei-das-médias"><i class="fa fa-check"></i><b>14.9.1</b> Interpretação incorreta da lei das médias</a></li>
 </ul></li>
-<li class="chapter" data-level="14.9" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-24"><i class="fa fa-check"></i><b>14.9</b> Exercícios</a></li>
-<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-o-grande-short"><i class="fa fa-check"></i><b>14.10</b> Estudo de caso: o grande short</a>
+<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-24"><i class="fa fa-check"></i><b>14.10</b> Exercícios</a></li>
+<li class="chapter" data-level="14.11" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-the-big-short"><i class="fa fa-check"></i><b>14.11</b> Estudo de caso: <em>The Big Short</em></a>
 <ul>
-<li class="chapter" data-level="14.10.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#taxas-de-juros-explicadas-com-um-modelo-de-oportunidade"><i class="fa fa-check"></i><b>14.10.1</b> Taxas de juros explicadas com um modelo de oportunidade</a></li>
-<li class="chapter" data-level="14.10.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-grande-curto"><i class="fa fa-check"></i><b>14.10.2</b> O Grande Curto</a></li>
+<li class="chapter" data-level="14.11.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#taxas-de-juros-explicadas-com-modelo-de-probabilidade"><i class="fa fa-check"></i><b>14.11.1</b> Taxas de juros explicadas com modelo de probabilidade</a></li>
+<li class="chapter" data-level="14.11.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#the-big-short"><i class="fa fa-check"></i><b>14.11.2</b> <em>The Big Short</em></a></li>
 </ul></li>
-<li class="chapter" data-level="14.11" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-25"><i class="fa fa-check"></i><b>14.11</b> Exercícios</a></li>
+<li class="chapter" data-level="14.12" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-25"><i class="fa fa-check"></i><b>14.12</b> Exercícios</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
@@ -512,75 +519,76 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="ggplot2" class="section level1" number="7">
 <h1><span class="header-section-number">Capítulo 7</span> ggplot2</h1>
-<p>A visualização de dados exploratórios é talvez a maior vantagem de R. É possível passar rapidamente da ideia para os dados para representar graficamente com um equilíbrio único de flexibilidade e facilidade. Por exemplo, o Excel pode ser mais fácil que o R para alguns gráficos, mas não é tão flexível. O D3.js pode ser mais flexível e poderoso que o R, mas leva muito mais tempo para gerar um gráfico.</p>
-<p>Ao longo do livro, criaremos gráficos usando o pacote <strong>ggplot2</strong><a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="ggplot2.html#cb262-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb262-2"><a href="ggplot2.html#cb262-2"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
-<p>Existem muitas opções gráficas disponíveis em R. De fato, os recursos gráficos que vêm com uma instalação básica do R já são bastante poderosos. Também existem outros pacotes para criar gráficos como __grid__e<strong>lattice</strong>. Neste livro, decidimos usar <strong>ggplot2</strong> porque ele divide gráficos em componentes de uma maneira que permite aos iniciantes criar gráficos relativamente complexos e esteticamente agradáveis usando sintaxe intuitiva e relativamente fácil de lembrar.</p>
-<p>Um dos motivos pelo qual <strong>ggplot2</strong> é geralmente mais intuitivo para iniciantes é porque ele usa uma gramática gráfica<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>, o _gg_do<strong>ggplot2</strong>. Isso é análogo a como a aprendizagem de gramática pode ajudar um aluno a criar centenas de frases diferentes, aprendendo apenas um pequeno número de verbos, substantivos e adjetivos, em vez de memorizar cada frase específica. Da mesma forma, aprendendo uma pequena quantidade dos componentes básicos do <strong>ggplot2</strong> e sua gramática, você poderá criar centenas de gráficos diferentes.</p>
-<p>Outro motivo pelo qual <strong>ggplot2</strong> é fácil para iniciantes é que seu comportamento padrão foi cuidadosamente escolhido para satisfazer a grande maioria dos casos e também é visualmente agradável. Como resultado, é possível criar gráficos informativos e elegantes com código relativamente simples e legível.</p>
-<p>Uma limitação de __ggplot2_<em>é que ele foi projetado para funcionar exclusivamente com tabelas de dados no formato_tidy</em> (onde linhas são observações e colunas são variáveis). No entanto, uma porcentagem substancial dos conjuntos de dados com os quais os iniciantes trabalham estão neste formato ou podem ser convertidos para ele. Uma vantagem dessa abordagem é que, desde que nossos dados sejam arrumados, <strong>ggplot2</strong> simplifica o aprendizado de código e gramática de gráficos para uma variedade de gráficos.</p>
-<p>Para usar <strong>ggplot2</strong>, eles terão que aprender várias funções e argumentos. Como é difícil memorizar, recomendamos que você tenha a folha de referência do ggplot2 à mão. Você pode obter uma cópia aqui: [<a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf" class="uri">https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf</a>…………….(<a href="https://www.rstudio.com/wp-content/uploads/" class="uri">https://www.rstudio.com/wp-content/uploads/</a> 2015/03/ ggplot2-cheatsheet.pdf) ou simplesmente faça uma pesquisa na Internet por “ggplot2 cheat sheet”.</p>
+<p>A visualização exploratória de dados é talvez a maior vantagem do R. Com R pode-se rapidamente converter uma ideia em um gráfico, manipulando os dados com um balanço único entre flexibilidade e facilidade. Por exemplo, usar o Excel pode ser mais fácil do que o R para alguns gráficos, mas não é nem de longe tão flexível. D3.js pode ser mais flexível e poderoso que o R, mas leva muito mais tempo para gerar um gráfico.</p>
+<p>Ao longo deste livro, criaremos gráficos usando o pacote <strong>ggplot2</strong><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="ggplot2.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb262-2"><a href="ggplot2.html#cb262-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>Muitos muitos outros métodos para criar gráficas estão disponíveis no R. De fato, os recursos gráficos que vêm com uma instalação básica do R já são bastante poderosos. Também existem outros pacotes para criar gráficos como o <strong>grid</strong> e o <strong>lattice</strong>. Neste livro, decidimos usar o <strong>ggplot2</strong> porque ele divide gráficos em componentes que permitem a iniciantes criar gráficos relativamente complexos e esteticamente agradáveis usando sintaxe intuitiva e relativamente fácil de lembrar.</p>
+<p>Um dos motivos pelo qual <strong>ggplot2</strong> é considerado mais intuitivo para iniciantes é o fato dele usar uma gramática gráfica<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>, o <em>gg</em> em <strong>ggplot2</strong>. Isso é análogo à forma como a aprender gramática pode ajudar um iniciante a criar centenas de diferentes frases apenas aprendendo um punhado de verbos, substantivos e adjetivos, em vez de memorizar cada frase específica. Da mesma forma, aprendendo uma pequena quantidade dos componentes básicos do <strong>ggplot2</strong> e sua gramática, você poderá criar centenas de gráficos diferentes.</p>
+<p>Outra razão pela qual <strong>ggplot2</strong> é fácil para iniciantes é que seu comportamento padrão foi cuidadosamente escolhido para satisfazer a grande maioria dos casos e também é visualmente agradável. Como resultado, é possível criar gráficos informativos e elegantes com código relativamente simples e legível.</p>
+<p>Uma limitação do <strong>ggplot2</strong> é que ele foi projetado para funcionar exclusivamente com tabelas de dados no formato <em>tidy</em> (onde linhas são observações e colunas são variáveis). No entanto, uma porcentagem substancial dos <em>datasets</em> com os quais os iniciantes trabalham estão nesse formato ou podem ser convertidos para ele. Uma vantagem dessa abordagem é que, desde que nossos dados estejam “arrumados” (<em>tidy</em> em inglês), <strong>ggplot2</strong> simplifica o aprendizado de código e gramática de plotagem para uma variedade de gráficos.</p>
+<p>Para usar <strong>ggplot2</strong>, você terá que aprender uma série de funções e argumentos. Como é difícil memorizar, recomendamos que você tenha a folha de referência do ggplot2 à mão. Você pode obter uma cópia aqui: <a href="https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf</a> ou simplesmente faça uma pesquisa na Internet por “<em>ggplot2 cheat sheet</em>.”</p>
 <div id="os-componentes-de-um-gráfico" class="section level2" number="7.1">
 <h2><span class="header-section-number">7.1</span> Os componentes de um gráfico</h2>
-<p>Construiremos um gráfico que resume o conjunto de dados de assassinatos por armas nos Estados Unidos da seguinte forma:</p>
+<p>Construiremos um gráfico que resume o <em>dataset</em> de assassinatos por armas nos Estados Unidos da seguinte forma:</p>
 <p><img src="livro_files/figure-html/ggplot-example-plot-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Podemos ver claramente quanto os estados variam de acordo com o tamanho da população e o número total de assassinatos. Não é de surpreender que também exista uma relação clara entre o total de assassinatos e o tamanho da população. Um estado que cai na linha tracejada cinza tem a mesma taxa de homicídios que a média dos EUA. As quatro regiões geográficas são indicadas com cores, o que mostra como a maioria dos estados do sul tem taxas de homicídio acima da média.</p>
-<p>Essa visualização de dados mostra praticamente todas as informações na tabela de dados. O código necessário para criar o gráfico é relativamente simples. Vamos aprender a criá-lo parte por parte.</p>
-<p>O primeiro passo para aprender <strong>ggplot2</strong> é ser capaz de separar um gráfico em componentes. Começaremos examinando o gráfico acima e introduzindo algumas das terminologias de <strong>ggplot2</strong>. Os três principais componentes a serem considerados são:</p>
+<p>Podemos ver claramente o quanto os estados variam de acordo com o tamanho da população e o número total de assassinatos. Não é de surpreender que também exista uma relação clara entre o total de assassinatos e o tamanho da população. Estados plotados sobre a linha cinza tracejada têm a mesma taxa de homicídios que a média dos EUA. As quatro regiões geográficas são indicadas pelas cores (<em>Northeast</em>: nordeste; <em>South</em>: sul; <em>North Central</em>: central norte; <em>West</em>: oeste), o que mostra como a maioria dos estados do sul tem taxas de homicídio acima da média.</p>
+<p>Essa visualização de dados mostra praticamente todas as informações na tabela de dados. Além disso, o código necessário para criar esse gráfico é relativamente simples. Vamos aprender a criá-lo parte por parte.</p>
+<p>O primeiro passo para aprender <strong>ggplot2</strong> é ser capaz de separar um gráfico em componentes. Começaremos examinando o gráfico acima e introduzindo algumas das terminologias do <strong>ggplot2</strong>. Os três principais componentes a serem considerados são:</p>
 <ul>
-<li><strong>Data</strong>: O conjunto de dados dos canhões de armas dos EUA está sendo resumido. Nós nos referimos a isso como o componente <strong>data</strong>.</li>
-<li><strong>Geometria</strong>: O gráfico acima é um diagrama de dispersão. Isso é chamado de componente <strong>geometry</strong>. Outras geometrias possíveis são diagrama de barras, histograma, densidades suaves, gráfico QQ e diagrama de caixa.</li>
-<li><strong>Mapeamento estético</strong>: o gráfico usa várias dicas visuais para representar as informações fornecidas pelo conjunto de dados. Os dois sinais mais importantes neste gráfico são as posições dos pontos no eixo xe no eixo y, representando o tamanho da população e o número total de assassinatos, respectivamente. Cada ponto representa uma observação diferente e mapeamos os dados dessas observações e as pistas visuais nas escalas x e y. A cor é outra dica visual que atribuímos à região. Nós nos referimos a isso como o componente <strong>mapeamento estético</strong>. Como definimos o mapeamento depende de qual <strong>geometria</strong> estamos usando.</li>
+<li><strong>Dados</strong>: A tabela de dados de assassinatos nos EUA está sendo resumida. Nós nos referimos a isso como o componente de <strong>dados</strong> (<em>data</em>).</li>
+<li><strong>Geometria</strong>: O gráfico acima é um diagrama de dispersão. Isso é chamado de componente de <strong>geometria</strong> (<em>geometry</em>). Outras geometrias possíveis são gráfico de barras (<em>barplot</em>), histograma, densidades suaves (<em>smooth densities</em>), gráfico Q-Q (<em>qqplot</em>) e diagrama de caixa (<em>boxplot</em>).</li>
+<li><strong>Mapeamento estético</strong>: o gráfico usa vários sinais visuais para representar as informações fornecidas pelo <em>dataset</em>. Os dois sinais mais importantes neste gráfico são as posições dos pontos nos eixos x e y, representando o tamanho da população e o número total de assassinatos, respectivamente. Cada ponto representa uma observação diferente. Assim, mapeamos os dados dessas observações para tais sinais visuais, como por exemplo, as escalas x e y. A cor é outro sinal visual que mapeamos para a região. Nós nos referimos a isso como o componente <strong>mapeamento estético</strong> (em inglês <em>Aesthetic mapping</em>). A definição do mapeamento depende de qual <strong>geometria</strong> estamos usando.</li>
 </ul>
 <p>Também observamos que:</p>
 <ul>
-<li>Os pontos são rotulados com abreviações de estado.</li>
-<li>O intervalo do eixo xe o eixo y parecem ser definidos pelo intervalo dos dados. Ambos estão em escalas logarítmicas.</li>
-<li>Existem rótulos, um título, uma lenda e usamos o estilo da revista “The Economist”.</li>
+<li>Os pontos são rotulados com as abreviações dos estado.</li>
+<li>Os intervalos dos eixos x e y parecem ser definidos pelo intervalo dos dados. Ambos estão em escalas logarítmicas.</li>
+<li>Existem rótulos, um título, uma lenda e usamos o estilo da revista “<em>The Economist</em>.”</li>
 </ul>
-<p>Agora vamos construir o gráfico parte por parte. Vamos começar carregando o conjunto de dados:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="ggplot2.html#cb263-1"></a><span class="kw">library</span>(dslabs)</span>
-<span id="cb263-2"><a href="ggplot2.html#cb263-2"></a><span class="kw">data</span>(murders)</span></code></pre></div>
+<p>Agora, vamos construir o gráfico parte por parte.
+Vamos começar carregando o <em>dataset</em>:</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="ggplot2.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb263-2"><a href="ggplot2.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(murders)</span></code></pre></div>
 </div>
 <div id="objetos-ggplot" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> objetos <code>ggplot</code></h2>
-<p>A primeira etapa na criação de um gráfico <strong>ggplot2</strong> é definir um objeto <code>ggplot</code>. Fazemos isso com a função <code>ggplot</code>, que inicializa o gráfico. Se lermos a página de ajuda para esta função, veremos que o primeiro argumento é usado para especificar quais dados estão associados a este objeto:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="ggplot2.html#cb264-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> murders)</span></code></pre></div>
-<p>Também podemos <em>pipe</em> os dados como o primeiro argumento. Portanto, essa linha de código é equivalente à anterior:</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="ggplot2.html#cb265-1"></a>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>()</span></code></pre></div>
+<h2><span class="header-section-number">7.2</span> Objetos <code>ggplot</code></h2>
+<p>A primeira etapa na criação de um gráfico <strong>ggplot2</strong> é definir um objeto <code>ggplot</code>. Fazemos isso com a função <code>ggplot</code>, que inicializa o gráfico. Se lermos a página de ajuda dessa função, veremos que o primeiro argumento é usado para especificar quais dados estão associados a este objeto:</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="ggplot2.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> murders)</span></code></pre></div>
+<p>Também podemos usar o operador <em>pipe</em> para inserir os dados como o primeiro argumento. Portanto, linha de código abaixo é equivalente à anterior:</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="ggplot2.html#cb265-1" aria-hidden="true" tabindex="-1"></a>murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>()</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-2-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>O código cria um gráfico, neste caso, um quadro em branco, pois a geometria não foi definida. A única opção de estilo que vemos é um fundo cinza.</p>
-<p>O que aconteceu é que o objeto foi criado e, por não ter sido designado, foi automaticamente avaliado. Mas podemos atribuir nosso gráfico a um objeto, por exemplo:</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="ggplot2.html#cb266-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> murders)</span>
-<span id="cb266-2"><a href="ggplot2.html#cb266-2"></a><span class="kw">class</span>(p)</span>
-<span id="cb266-3"><a href="ggplot2.html#cb266-3"></a><span class="co">#&gt; [1] &quot;gg&quot;     &quot;ggplot&quot;</span></span></code></pre></div>
-<p>Para representar o gráfico associado a este objeto, simplesmente imprimimos o objeto <code>p</code>. Cada uma das duas linhas de código a seguir produz o mesmo gráfico que vemos acima:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="ggplot2.html#cb267-1"></a><span class="kw">print</span>(p)</span>
-<span id="cb267-2"><a href="ggplot2.html#cb267-2"></a>p</span></code></pre></div>
+<p>O código acima renderiza um quadro vazio, pois nenhuma geometria foi definida. A única opção de estilo que vemos é um fundo cinza.</p>
+<p>O que aconteceu é que o objeto foi criado, mas por não ter sido atribuído a nenhuma variável, ele foi automaticamente executado. Podemos atribuir nosso gráfico a um objeto, por exemplo, desta forma:</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="ggplot2.html#cb266-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> murders)</span>
+<span id="cb266-2"><a href="ggplot2.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(p)</span>
+<span id="cb266-3"><a href="ggplot2.html#cb266-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;gg&quot;     &quot;ggplot&quot;</span></span></code></pre></div>
+<p>Para renderizar o gráfico associado a esse objeto, podemos simplesmente imprimir o objeto <code>p</code>. Cada uma das duas linhas de código a seguir produz o mesmo gráfico que vemos acima:</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="ggplot2.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span>
+<span id="cb267-2"><a href="ggplot2.html#cb267-2" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 </div>
 <div id="geometrias" class="section level2" number="7.3">
 <h2><span class="header-section-number">7.3</span> Geometrias</h2>
-<p>No <code>ggplot2</code> criamos gráficos adicionando <em>layers</em> (<em>layers</em> em inglês). As camadas podem definir geometrias, calcular estatísticas de resumo, definir quais escalas (<em>scales</em> em inglês) usar ou até alterar estilos. Para adicionar camadas, usamos o símbolo <code>+</code>. Em geral, uma linha de código ficará assim:</p>
+<p>No <code>ggplot2</code> criamos gráficos adicionando <em>camadas</em> (<em>layers</em> em inglês). As camadas podem definir geometrias, calcular estatísticas resumidas, definir quais escalas usar ou, até mesmo, alterar estilos. Para adicionar camadas, usamos o símbolo <code>+</code>. Em geral, uma linha de código ficará assim:</p>
 <blockquote>
 <blockquote>
-<p>DADOS%&gt;% <code>ggplot()</code> + CAMADA 1 + CAMADA 2 + … + CAMADA N</p>
+<p>DADOS %&gt;% <code>ggplot()</code> + CAMADA 1 + CAMADA 2 + … + CAMADA N</p>
 </blockquote>
 </blockquote>
-<p>Geralmente, a primeira camada que adicionamos define a geometria. Queremos fazer um diagrama de dispersão. Que geometria devemos usar?</p>
+<p>Geralmente, a primeira camada que adicionamos define a geometria. Por exemplo, se queremos fazer um diagrama de dispersão, qual geometria devemos usar?</p>
 <p>Observando rapidamente a folha de referência, vemos que a função usada para criar gráficos com essa geometria é <code>geom_point</code>.</p>
 <p><img src="R/img/ggplot2-cheatsheeta.png" width="45%" style="display: block; margin: auto;" /><img src="R/img/ggplot2-cheatsheetb.png" width="45%" style="display: block; margin: auto;" /></p>
-<p>(Imagem cortesia de RStudio<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>. Licença CC-BY-4.0<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a>.)</p>
+<p>(Imagem cedida pelo RStudio<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a>. Licença CC-BY-4.0<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a>.)</p>
 <!--(Source: [RStudio](https://github.com/rstudio/cheatsheets/raw/master/data-visualization-2.1.pdf))-->
-<p>Os nomes das funções de geometria seguem o padrão: <code>geom_X</code> onde X é o nome da geometria. Alguns exemplos incluem <code>geom_point</code>, <code>geom_bar</code> e <code>geom_histogram</code>.</p>
-<p>Para que <code>geom_point</code> funciona bem, precisamos fornecer dados e uma correspondência. Nós já conectamos o objeto <code>p</code> com tabela de dados <code>murders</code> e se adicionarmos a camada <code>geom_point</code>, isso por padrão usa os dados do assassinato. Para descobrir quais correspondências são esperadas, leia a seção <strong>Estética</strong> da página de ajuda de <code>geom_point</code>:</p>
-<pre><code>&gt; Aesthetics
+<p>Os nomes das funções de geometrias seguem o padrão: <code>geom_X</code>, onde X é o nome da geometria. Alguns exemplos incluem <code>geom_point</code>, <code>geom_bar</code> e <code>geom_histogram</code>.</p>
+<p>Para que <code>geom_point</code> funcione bem, precisamos fornecer dados e uma correspondência. Nós já conectamos o objeto <code>p</code> com tabela de dados <code>murders</code>. Se adicionarmos a camada <code>geom_point</code>, o padrão é usar os dados que foram conectados. Para descobrir quais correspondências são esperadas, leia a seção <strong>Aesthetics</strong> (estética) da página de ajuda de <code>geom_point</code>:</p>
+<pre><code>&gt; Aesthetics (Estética)
 &gt;
-&gt; geom_point understands the following aesthetics (required aesthetics are in bold):
+&gt; _geom_point_ entende a seguinte estética (estéticas obrigatórias estão em negrito):
 &gt;
-&gt; x
+&gt; __x__
 &gt;
-&gt; y
+&gt; __y__
 &gt;
 &gt; alpha
 &gt;
@@ -589,258 +597,269 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="mapeamentos-estéticos" class="section level2" number="7.4">
 <h2><span class="header-section-number">7.4</span> Mapeamentos estéticos</h2>
-<p>Os __mapeamentos estéticos_ descrevem como as propriedades dos dados estão conectadas às características do gráfico, como a distância ao longo de um eixo, o tamanho ou a cor. A função <code>aes</code> conecta os dados com o que vemos no gráfico, definindo atribuições estéticas e essa será uma das funções que mais serão usadas na representação gráfica. O resultado da função <code>aes</code> é frequentemente usado como argumento para uma função de geometria. Este exemplo produz um gráfico de dispersão do total de assassinatos versus população em milhões:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="ggplot2.html#cb269-1"></a>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb269-2"><a href="ggplot2.html#cb269-2"></a><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, <span class="dt">y =</span> total))</span></code></pre></div>
-<p>Nós podemos remover o <code>x =</code> e <code>y =</code> se quiséssemos, pois esse é o primeiro e o segundo argumento esperado, como visto na página de ajuda.</p>
+<p>Os __mapeamentos estéticos_ descrevem como as propriedades dos dados estão conectadas às características do gráfico, como a distância ao longo de um eixo, o tamanho ou a cor. A função <code>aes</code> conecta os dados com o que vemos no gráfico, definindo atribuições estéticas. Essa será uma das funções que mais serão usadas na representação gráfica. O resultado da função <code>aes</code> é frequentemente usado como argumento para uma função de geometria. Este exemplo produz um gráfico de dispersão do total de assassinatos versus população em milhões:</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="ggplot2.html#cb269-1" aria-hidden="true" tabindex="-1"></a>murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb269-2"><a href="ggplot2.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, <span class="at">y =</span> total))</span></code></pre></div>
+<p>Podemos remover o <code>x =</code> e <code>y =</code> se quiséssemos, uma vez que esses são os dois argumentos esperados, respectivamente, como visto na página de ajuda.</p>
 <p>Em vez de definir nosso gráfico do zero, também podemos adicionar uma camada ao objeto <code>p</code> que foi definido anteriormente como <code>p &lt;- ggplot(data = murders)</code>:</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="ggplot2.html#cb270-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total))</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="ggplot2.html#cb270-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total))</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-3-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>A escala e os rótulos são definidos por padrão ao adicionar essa camada. Como as funções <strong>dplyr</strong>, <code>aes</code> ele também usa os nomes de variáveis do componente do objeto: podemos usar <code>population</code> e <code>total</code> sem ter que chamá-los como <code>assassinatos $population</code> and <code>murders$ total NA a é NA população NA total NA aes</code>, eles receberão um erro.</p>
+<p>A escala e os rótulos são definidos por padrão ao adicionar essa camada. Assim como as funções <strong>dplyr</strong>, <code>aes</code> também usa os nomes de variáveis obtidos do componente do objeto: podemos usar <code>population</code> e <code>total</code> sem ter que chamá-los como <code>assassinatos$population</code> ou <code>murders$total</code>. O comportamento de reconhecer as variáveis de componentes de dados é bastante específico da função <code>aes</code>. Na maioria das funções, se você tentar acessar os valores de <code>population</code> ou <code>total</code> fora de <code>aes</code>, receberá uma mensagem de erro.</p>
 </div>
 <div id="camadas" class="section level2" number="7.5">
 <h2><span class="header-section-number">7.5</span> Camadas</h2>
-<p>Uma segunda camada no gráfico que queremos criar envolve adicionar um rótulo a cada ponto para identificar o estado. As funções <code>geom_label</code> e <code>geom_text</code> nos permite adicionar texto ao gráfico com ou sem um retângulo atrás do texto, respectivamente.</p>
-<p>Como cada ponto (cada estado neste caso) possui um rótulo, precisamos de um mapeamento estético para fazer a conexão entre os pontos e os rótulos. Lendo a página de ajuda, aprendemos que o mapeamento entre o ponto e o rótulo é fornecido através do argumento <code>label</code> do <code>aes</code>. Portanto, o código fica assim:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="ggplot2.html#cb271-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total)) <span class="op">+</span></span>
-<span id="cb271-2"><a href="ggplot2.html#cb271-2"></a><span class="kw">geom_text</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb))</span></code></pre></div>
+<p>Podemos criar uma segunda camada no gráfico para adicionar um rótulo a cada ponto para identificar o estado. As funções <code>geom_label</code> e <code>geom_text</code> nos permite adicionar texto ao gráfico com ou sem um retângulo atrás do texto, respectivamente.</p>
+<p>Como cada ponto (cada estado neste caso) possui um rótulo, precisamos de um mapeamento estético para fazer a conexão entre pontos e rótulos. Lendo a página de ajuda, aprendemos que o mapeamento entre o ponto e o rótulo é fornecido através do argumento <code>label</code> da função <code>aes</code>. Portanto, o código fica assim:</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="ggplot2.html#cb271-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total)) <span class="sc">+</span></span>
+<span id="cb271-2"><a href="ggplot2.html#cb271-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total, <span class="at">label =</span> abb))</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-4-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Adicionamos com sucesso uma segunda camada ao gráfico.</p>
 <p>Como exemplo do comportamento único de <code>aes</code> mencionado acima, observe que esta chamada:</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="ggplot2.html#cb272-1"></a>p_test &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb))</span></code></pre></div>
-<p>ok enquanto esta chamada:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="ggplot2.html#cb273-1"></a>p_test &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total), <span class="dt">label =</span> abb)</span></code></pre></div>
-<p>lhe dará um erro desde <code>abb</code> não foi encontrado porque está fora de funcionamento <code>aes</code>. A capa <code>geom_text</code> não sei onde encontrar <code>abb</code> porque é um nome de coluna e não uma variável global.</p>
-<div id="como-testar-vários-argumentos" class="section level3" number="7.5.1">
-<h3><span class="header-section-number">7.5.1</span> Como testar vários argumentos</h3>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="ggplot2.html#cb274-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb274-2"><a href="ggplot2.html#cb274-2"></a><span class="kw">geom_text</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb))</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="ggplot2.html#cb272-1" aria-hidden="true" tabindex="-1"></a>p_test <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total, <span class="at">label =</span> abb))</span></code></pre></div>
+<p>funciona corretamente, enquanto esta chamada:</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="ggplot2.html#cb273-1" aria-hidden="true" tabindex="-1"></a>p_test <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_text</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total), <span class="at">label =</span> abb)</span></code></pre></div>
+<p>dará um erro, uma vez que <code>abb</code> não foi encontrado por está fora da função <code>aes</code>. A camada <code>geom_text</code> não sabe onde encontrar <code>abb</code> porque é um nome de coluna e não uma variável global.</p>
+<div id="trabalhando-com-argumentos" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Trabalhando com argumentos</h3>
+<p>Cada função de geometria possui diversos outros argumentos além de <code>aes</code> e <code>dados</code>. Esses argumentos tendem a ser específicos para cada função. Por exemplo, no gráfico que desejamos fazer, os pontos são maiores que o tamanho padrão. No arquivo de ajuda, vemos que o argumento <code>size</code> (tamanho na tradução) é uma estética e podemos alterá-lo assim:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="ggplot2.html#cb274-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb274-2"><a href="ggplot2.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total, <span class="at">label =</span> abb))</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-5-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p><code>size</code> <strong>no</strong> é um mapeamento: enquanto os mapeamentos usam dados de observações específicas e precisam estar dentro <code>aes()</code>, as operações que queremos afetar todos os pontos da mesma maneira não precisam ser incluídas dentro <code>aes</code>.</p>
-<p>Agora, como os pontos são maiores, é difícil ver os rótulos. Se lermos a página de ajuda para <code>geom_text</code>, vemos que o argumento <code>nudge_x</code> mova o texto levemente para a direita ou esquerda:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="ggplot2.html#cb275-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb275-2"><a href="ggplot2.html#cb275-2"></a><span class="kw">geom_text</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb), <span class="dt">nudge_x =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p><code>size</code> <strong>não</strong> é um mapeamento: enquanto os mapeamentos usam dados de observações específicas e precisam estar dentro da função <code>aes()</code>, as operações que afetam todos os pontos da mesma maneira não precisam ser incluídas dentro <code>aes</code>.</p>
+<p>Agora, como os pontos ficaram maiores, se tornou difícil ver os rótulos. Se lermos a página de ajuda para <code>geom_text</code>, vemos que o argumento <code>nudge_x</code> move o texto levemente para a direita ou para a esquerda:</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="ggplot2.html#cb275-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb275-2"><a href="ggplot2.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total, <span class="at">label =</span> abb), <span class="at">nudge_x =</span> <span class="fl">1.5</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-6-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p>Isso é preferível, pois facilita a leitura do texto. Na seção <a href="ggplot2.html#add-on-packages">7.11</a> aprenderemos uma maneira melhor de garantir que possamos ver os pontos e os rótulos.</p>
 </div>
 </div>
 <div id="mapeamento-estético-global-versus-local" class="section level2" number="7.6">
 <h2><span class="header-section-number">7.6</span> Mapeamento estético global versus local</h2>
-<p>Na linha de código anterior, definimos o mapeamento <code>aes(population/10^6, total)</code> duas vezes, uma vez em cada geometria. Podemos evitar isso usando um mapeamento estético <em>global</em> quando definimos o quadro em branco que o objeto nos fornece <code>ggplot</code>. Lembre-se de que a função <code>ggplot</code> ele contém um argumento que nos permite definir mapeamentos estéticos:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="ggplot2.html#cb276-1"></a><span class="kw">args</span>(ggplot)</span>
-<span id="cb276-2"><a href="ggplot2.html#cb276-2"></a><span class="co">#&gt; function (data = NULL, mapping = aes(), ..., environment = parent.frame()) </span></span>
-<span id="cb276-3"><a href="ggplot2.html#cb276-3"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
+<p>Na linha de código anterior, definimos o mapeamento <code>aes(population/10^6, total)</code> duas vezes, uma vez em cada geometria. Podemos evitar isso usando um mapeamento estético <em>global</em> no momento em que definimos o objeto <code>ggplot</code> em branco. Lembre-se de que a função <code>ggplot</code> contém um argumento que nos permite definir mapeamentos estéticos:</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="ggplot2.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">args</span>(ggplot)</span>
+<span id="cb276-2"><a href="ggplot2.html#cb276-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; function (data = NULL, mapping = aes(), ..., environment = parent.frame()) </span></span>
+<span id="cb276-3"><a href="ggplot2.html#cb276-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
 <p>Se definirmos um mapeamento em <code>ggplot</code>, todas as geometrias adicionadas como camadas serão atribuídas por padrão a esse mapeamento. Redefinimos <code>p</code>:</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="ggplot2.html#cb277-1"></a>p &lt;-<span class="st"> </span>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb))</span></code></pre></div>
-<p>e então podemos escrever o código a seguir para produzir o gráfico acima:</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="ggplot2.html#cb278-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb278-2"><a href="ggplot2.html#cb278-2"></a><span class="kw">geom_text</span>(<span class="dt">nudge_x =</span> <span class="fl">1.5</span>)</span></code></pre></div>
-<p>Mantemos os argumentos <code>size</code> e <code>nudge_x</code> no <code>geom_point</code> e <code>geom_text</code>, respectivamente, porque queremos aumentar apenas o tamanho dos pontos e ajustar a posição (<em>nudge</em> em inglês) dos rótulos. Se colocarmos esses argumentos em <code>aes</code>, eles serão aplicados aos dois gráficos. Observe também que a função <code>geom_point</code> não precisa de discussão <code>label</code> e, portanto, ignora essa estética.</p>
-<p>Se necessário, podemos substituir o mapeamento global definindo um novo mapeamento dentro de cada camada. Essas definições <em>local_substituem o_global</em>. Aqui está um exemplo:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="ggplot2.html#cb279-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb279-2"><a href="ggplot2.html#cb279-2"></a><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">800</span>, <span class="dt">label =</span> <span class="st">&quot;Hello there!&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="ggplot2.html#cb277-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total, <span class="at">label =</span> abb))</span></code></pre></div>
+<p>e então podemos simplesmente escrever o código a seguir para produzir o gráfico anterior:</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="ggplot2.html#cb278-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb278-2"><a href="ggplot2.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p>Mantemos os argumentos <code>size</code> e <code>nudge_x</code> em <code>geom_point</code> e <code>geom_text</code>, respectivamente, porque queremos aumentar apenas o tamanho dos pontos e ajustar a posição (<em>nudge</em> em inglês) dos rótulos. Se colocarmos esses argumentos em <code>aes</code>, eles serão aplicados aos dois gráficos. Observe também que a função <code>geom_point</code> não precisa do argumento <code>label</code> e, portanto, ignora essa estética.</p>
+<p>Se necessário, podemos substituir o mapeamento global definindo um novo mapeamento dentro de cada camada. Essas definições a nível <em>local</em> substituem as definições de nível <em>global</em>. Aqui está um exemplo:</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="ggplot2.html#cb279-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb279-2"><a href="ggplot2.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="dv">800</span>, <span class="at">label =</span> <span class="st">&quot;Olá!&quot;</span>))</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-8-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Claramente, a segunda chamada para <code>geom_text</code> não use <code>population</code> e <code>total</code>.</p>
+<p>Claramente, a segunda chamada para <code>geom_text</code> não usa <code>population</code> e <code>total</code>.</p>
 </div>
 <div id="escalas" class="section level2" number="7.7">
 <h2><span class="header-section-number">7.7</span> Escalas</h2>
 <p>Primeiro, as escalas que queremos estão em uma escala logarítmica. Esse não é o padrão, portanto, essa alteração precisa ser adicionada por meio de uma camada <em>scale</em>. Uma rápida olhada na folha de referência revela que a função <code>scale_x_continuous</code> nos permite controlar o comportamento das escalas. Usamos assim:</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="ggplot2.html#cb280-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb280-2"><a href="ggplot2.html#cb280-2"></a><span class="kw">geom_text</span>(<span class="dt">nudge_x =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
-<span id="cb280-3"><a href="ggplot2.html#cb280-3"></a><span class="kw">scale_x_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log10&quot;</span>) <span class="op">+</span></span>
-<span id="cb280-4"><a href="ggplot2.html#cb280-4"></a><span class="kw">scale_y_continuous</span>(<span class="dt">trans =</span> <span class="st">&quot;log10&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="ggplot2.html#cb280-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb280-2"><a href="ggplot2.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb280-3"><a href="ggplot2.html#cb280-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>) <span class="sc">+</span></span>
+<span id="cb280-4"><a href="ggplot2.html#cb280-4" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_continuous</span>(<span class="at">trans =</span> <span class="st">&quot;log10&quot;</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-9-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Como agora estamos na escala logarítmica, o ajuste na posição deve ser menor.</p>
+<p>Como agora estamos usando a escala logarítmica, o ajuste na posição (<em>nudge</em>) deve ser menor.</p>
 <p>Essa transformação específica é tão comum que <strong>ggplot2</strong> oferece duas funções especializadas <code>scale_x_log10</code> e <code>scale_y_log10</code>, que podemos usar para reescrever o código assim:</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="ggplot2.html#cb281-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb281-2"><a href="ggplot2.html#cb281-2"></a><span class="kw">geom_text</span>(<span class="dt">nudge_x =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
-<span id="cb281-3"><a href="ggplot2.html#cb281-3"></a><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb281-4"><a href="ggplot2.html#cb281-4"></a><span class="kw">scale_y_log10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="ggplot2.html#cb281-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb281-2"><a href="ggplot2.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb281-3"><a href="ggplot2.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb281-4"><a href="ggplot2.html#cb281-4" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_log10</span>()</span></code></pre></div>
 </div>
-<div id="tags-e-títulos" class="section level2" number="7.8">
-<h2><span class="header-section-number">7.8</span> Tags e títulos</h2>
-<p>Da mesma forma, a folha de referência revela que, para alterar os rótulos e adicionar um título, usamos as seguintes funções:</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="ggplot2.html#cb282-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb282-2"><a href="ggplot2.html#cb282-2"></a><span class="kw">geom_text</span>(<span class="dt">nudge_x =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
-<span id="cb282-3"><a href="ggplot2.html#cb282-3"></a><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb282-4"><a href="ggplot2.html#cb282-4"></a><span class="kw">scale_y_log10</span>() <span class="op">+</span></span>
-<span id="cb282-5"><a href="ggplot2.html#cb282-5"></a><span class="kw">xlab</span>(<span class="st">&quot;Populations in millions (log scale)&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-6"><a href="ggplot2.html#cb282-6"></a><span class="kw">ylab</span>(<span class="st">&quot;Total number of murders (log scale)&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-7"><a href="ggplot2.html#cb282-7"></a><span class="kw">ggtitle</span>(<span class="st">&quot;US Gun Murders in 2010&quot;</span>)</span></code></pre></div>
+<div id="rótulos-e-títulos" class="section level2" number="7.8">
+<h2><span class="header-section-number">7.8</span> Rótulos e títulos</h2>
+<p>Da mesma forma, a folha de referência nos mostra que para alterar os rótulos e adicionar um título usamos as seguintes funções:</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="ggplot2.html#cb282-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb282-2"><a href="ggplot2.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb282-3"><a href="ggplot2.html#cb282-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb282-4"><a href="ggplot2.html#cb282-4" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb282-5"><a href="ggplot2.html#cb282-5" aria-hidden="true" tabindex="-1"></a><span class="fu">xlab</span>(<span class="st">&quot;População em milhões (escala logarítmica)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-6"><a href="ggplot2.html#cb282-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ylab</span>(<span class="st">&quot;Total de assassinatos (escala logarítmica)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb282-7"><a href="ggplot2.html#cb282-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtitle</span>(<span class="st">&quot;Assassinatos por armas nos EUA em 2010&quot;</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-10-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Estamos quase terminando! A única coisa que precisamos é adicionar cor, legenda e alterações opcionais ao estilo.</p>
+<p>Estamos quase terminando! O que precisamos fazer agora é adicionar cor, legenda e realizar algumas alterações opcionais no estilo.</p>
 </div>
-<div id="categorias-como-cores" class="section level2" number="7.9">
-<h2><span class="header-section-number">7.9</span> Categorias como cores</h2>
+<div id="usando-categorias-como-cores" class="section level2" number="7.9">
+<h2><span class="header-section-number">7.9</span> Usando categorias como cores</h2>
 <p>Podemos mudar a cor dos pontos usando o argumento <code>col</code> na função <code>geom_point</code>. Para facilitar a demonstração de novos recursos, redefiniremos <code>p</code> para ser tudo, exceto a camada de pontos:</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="ggplot2.html#cb283-1"></a>p &lt;-<span class="st"> </span>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb)) <span class="op">+</span></span>
-<span id="cb283-2"><a href="ggplot2.html#cb283-2"></a><span class="kw">geom_text</span>(<span class="dt">nudge_x =</span> <span class="fl">0.05</span>) <span class="op">+</span></span>
-<span id="cb283-3"><a href="ggplot2.html#cb283-3"></a><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb283-4"><a href="ggplot2.html#cb283-4"></a><span class="kw">scale_y_log10</span>() <span class="op">+</span></span>
-<span id="cb283-5"><a href="ggplot2.html#cb283-5"></a><span class="kw">xlab</span>(<span class="st">&quot;Populations in millions (log scale)&quot;</span>) <span class="op">+</span></span>
-<span id="cb283-6"><a href="ggplot2.html#cb283-6"></a><span class="kw">ylab</span>(<span class="st">&quot;Total number of murders (log scale)&quot;</span>) <span class="op">+</span></span>
-<span id="cb283-7"><a href="ggplot2.html#cb283-7"></a><span class="kw">ggtitle</span>(<span class="st">&quot;US Gun Murders in 2010&quot;</span>)</span></code></pre></div>
-<p>e depois testaremos o que acontece quando adicionamos chamadas diferentes a <code>geom_point</code>. Por exemplo, podemos deixar todos os pontos em azul adicionando o argumento <code>color</code>:</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="ggplot2.html#cb284-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>, <span class="dt">color =</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="ggplot2.html#cb283-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total, <span class="at">label =</span> abb)) <span class="sc">+</span></span>
+<span id="cb283-2"><a href="ggplot2.html#cb283-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text</span>(<span class="at">nudge_x =</span> <span class="fl">0.05</span>) <span class="sc">+</span></span>
+<span id="cb283-3"><a href="ggplot2.html#cb283-3" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb283-4"><a href="ggplot2.html#cb283-4" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb283-5"><a href="ggplot2.html#cb283-5" aria-hidden="true" tabindex="-1"></a><span class="fu">xlab</span>(<span class="st">&quot;População em milhões (escala logarítmica)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb283-6"><a href="ggplot2.html#cb283-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ylab</span>(<span class="st">&quot;Total de assassinatos (escala logarítmica)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb283-7"><a href="ggplot2.html#cb283-7" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtitle</span>(<span class="st">&quot;Assassinatos por armas nos EUA em 2010&quot;</span>)</span></code></pre></div>
+<p>a seguir, teste para ver o que acontece quando adicionamos chamadas diferentes a <code>geom_point</code>. Por exemplo, podemos deixar todos os pontos em azul adicionando o argumento <code>color</code>:</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="ggplot2.html#cb284-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span><span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-11-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>No entanto, não queremos isso. Queremos atribuir cores de acordo com a região geográfica. Um bom comportamento padrão para <strong>ggplot2</strong> é que, se atribuirmos uma variável categórica à cor, ela atribuirá automaticamente uma cor diferente a cada categoria, além de uma legenda.</p>
-<p>Como a escolha da cor é determinada por uma característica de cada observação, esse é um mapeamento estético. Para atribuir uma cor a cada ponto, precisamos usar <code>aes</code>. Usamos o seguinte código:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="ggplot2.html#cb285-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>region), <span class="dt">size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p>Isso, é claro, não é o que queremos. Queremos atribuir cores de acordo com a região geográfica. Um bom comportamento padrão para <strong>ggplot2</strong> é que, se atribuirmos uma variável categórica à cor, ela atribuirá automaticamente uma cor diferente a cada categoria, além de adicionar uma legenda.</p>
+<p>Como a escolha da cor é determinada por uma característica de cada observação, isso é considerado um mapeamento estético. Logo, para atribuir uma cor a cada ponto, precisamos usar <code>aes</code>. Usamos o seguinte código:</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="ggplot2.html#cb285-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col=</span>region), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-12-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Os mapeamentos <code>x</code> e <code>y</code> são herdados daqueles já definidos em <code>p</code> então nós não os redefinimos. Nós também nos mudamos <code>aes</code> para o primeiro argumento, pois é aí que os mapeamentos são esperados nesta chamada.</p>
-<p>Aqui está outro comportamento padrão útil: <strong>ggplot2</strong> adiciona automaticamente uma legenda que atribui a cor à região. Para evitar adicionar essa legenda, definimos o argumento <code>geom_point</code> como <code>show.legend = FALSE</code>.</p>
+<p>Os mapeamentos <code>x</code> e <code>y</code> são herdados daqueles já definidos em <code>p</code>, portanto não é necessário rededfini-los. Nós também mudamos <code>aes</code> para o primeiro argumento, pois é aí que os mapeamentos são esperados nesta chamada de função.</p>
+<p>Aqui está outro comportamento padrão útil: <strong>ggplot2</strong> adiciona automaticamente uma legenda que atribui a cor à região. Para evitar adicionar essa legenda, configuramos <code>geom_point</code> com o argumento <code>show.legend = FALSE</code>.</p>
 </div>
-<div id="anotação-formas-e-ajustes" class="section level2" number="7.10">
-<h2><span class="header-section-number">7.10</span> Anotação, formas e ajustes</h2>
+<div id="anotações-formas-e-ajustes" class="section level2" number="7.10">
+<h2><span class="header-section-number">7.10</span> Anotações, formas e ajustes</h2>
 <p>Muitas vezes, queremos adicionar formas ou anotações às figuras que não são derivadas diretamente do mapeamento estético; alguns exemplos incluem etiquetas, caixas, áreas sombreadas e linhas.</p>
-<p>Aqui, queremos adicionar uma linha que represente a taxa média de homicídios em todo o país. Depois de determinar a taxa por milhão a ser <span class="math inline">\(r\)</span>, esta linha é definida pela fórmula: <span class="math inline">\(y = r x\)</span> com <span class="math inline">\(y\)</span> e <span class="math inline">\(x\)</span> nossos eixos: total de assassinatos e população em milhões, respectivamente. Na escala logarítmica, essa linha se torna: <span class="math inline">\(\log(y) = \log(r) + \log(x)\)</span>. Então, no nosso gráfico, é uma linha com a inclinação 1 e intercepta <span class="math inline">\(\log(r)\)</span>. Para calcular esse valor, usamos nosso conhecimento de <strong>dplyr</strong>:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="ggplot2.html#cb286-1"></a>r &lt;-<span class="st"> </span>murders <span class="op">%&gt;%</span></span>
-<span id="cb286-2"><a href="ggplot2.html#cb286-2"></a><span class="kw">summarize</span>(<span class="dt">rate =</span> <span class="kw">sum</span>(total)<span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(population) <span class="op">*</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>) <span class="op">%&gt;%</span></span>
-<span id="cb286-3"><a href="ggplot2.html#cb286-3"></a><span class="kw">pull</span>(rate)</span></code></pre></div>
-<p>Para adicionar uma linha, usamos a função <code>geom_abline</code>. <strong>ggplot2</strong> usa <code>ab</code> no nome para nos lembrar de que estamos fornecendo a interceptação ( <code>a</code>) e o brinco ( <code>b</code>) A linha padrão possui a inclinação 1 e intercepta 0, portanto, apenas precisamos definir a interceptação:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="ggplot2.html#cb287-1"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>region), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb287-2"><a href="ggplot2.html#cb287-2"></a><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">log10</span>(r))</span></code></pre></div>
+<p>Aqui, queremos adicionar uma linha que represente a taxa média de homicídios em todo o país. Após determinar a taxa por milhão e armazená-la na variável <span class="math inline">\(r\)</span>, a linha será definida pela fórmula: <span class="math inline">\(y = r x\)</span>, sendo <span class="math inline">\(y\)</span> e <span class="math inline">\(x\)</span> nossos eixos: total de assassinatos e população em milhões, respectivamente. Na escala logarítmica, essa linha se torna: <span class="math inline">\(\log(y) = \log(r) + \log(x)\)</span>. Então, no nosso gráfico é uma linha com a inclinação 1 e intercepta <span class="math inline">\(\log(r)\)</span>. Para calcular esse valor, usamos nosso conhecimento de <strong>dplyr</strong>:</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="ggplot2.html#cb286-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> murders <span class="sc">%&gt;%</span></span>
+<span id="cb286-2"><a href="ggplot2.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total)<span class="sc">/</span> <span class="fu">sum</span>(population) <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb286-3"><a href="ggplot2.html#cb286-3" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(rate)</span></code></pre></div>
+<p>Para adicionar uma linha, usamos a função <code>geom_abline</code>. <strong>ggplot2</strong> usa <code>ab</code> no nome para nos lembrar de que estamos fornecendo a interceptação (<code>a</code>) e a inclinação (<code>b</code>). A linha padrão possui a inclinação 1 e intercepta 0, portanto, apenas precisamos definir a interceptação:</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="ggplot2.html#cb287-1" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col=</span>region), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb287-2"><a href="ggplot2.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">log10</span>(r))</span></code></pre></div>
 <p><img src="livro_files/figure-html/ggplot-example-13-1.png" width="70%" style="display: block; margin: auto;" /></p>
-<p>Aqui <code>geom_abline</code> não usa nenhuma informação do objeto de dados.</p>
-<p>Podemos alterar o tipo de linha e a cor das linhas usando argumentos. Além disso, primeiro o desenhamos para que não cubra nossos pontos.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="ggplot2.html#cb288-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">log10</span>(r), <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
-<span id="cb288-2"><a href="ggplot2.html#cb288-2"></a><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>region), <span class="dt">size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p>Aqui, <code>geom_abline</code> não usa nenhuma informação do objeto de dados.</p>
+<p>Podemos alterar o tipo de linha e a cor das linhas usando argumentos. Além disso, devemos desenhar a linha primeiro para que não cubra nossos pontos.</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="ggplot2.html#cb288-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">log10</span>(r), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb288-2"><a href="ggplot2.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col=</span>region), <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p>Observe que redefinimos <code>p</code> e vamos usar esse novo <code>p</code> abaixo e na próxima seção.</p>
 <p>Os gráficos padrão criados por <strong>ggplot2</strong> já são muito úteis. No entanto, geralmente precisamos fazer pequenos ajustes no comportamento padrão. Embora nem sempre seja óbvio como fazer isso, mesmo com a folha de referência, <strong>ggplot2</strong> é muito flexível.</p>
-<p>Por exemplo, podemos fazer alterações na legenda através da função <code>scale_color_discrete</code>. Em nosso gráfico original, a palavra <em>region</em> está em maiúscula e podemos alterá-la assim:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="ggplot2.html#cb289-1"></a>p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Region&quot;</span>)</span></code></pre></div>
+<p>Por exemplo, podemos fazer alterações na legenda através da função <code>scale_color_discrete</code>. Em nosso gráfico original, a palavra <em>region</em> está iniciada com letra maiúscula. Podemos alterá-la assim:</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="ggplot2.html#cb289-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> p <span class="sc">+</span> <span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Region&quot;</span>)</span></code></pre></div>
 </div>
 <div id="add-on-packages" class="section level2" number="7.11">
 <h2><span class="header-section-number">7.11</span> Pacotes complementares</h2>
-<p>O poder do <strong>ggplot2</strong> aumentou ainda mais devido à disponibilidade de pacotes adicionais. As alterações restantes necessárias para dar os retoques finais em nosso gráfico exigem os pacotes __ggthemes__e<strong>ggrepel</strong>.</p>
-<p>O estilo de um gráfico <strong>ggplot2</strong> pode ser alterado usando as funções de <code>theme</code>. Vários temas (<em>themes</em> em inglês) estão incluídos como parte do pacote <strong>ggplot2</strong>. De fato, para a maioria dos gráficos deste livro, usamos uma função do pacote <strong>dslabs</strong> que define automaticamente um tema padrão:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="ggplot2.html#cb290-1"></a><span class="kw">ds_theme_set</span>()</span></code></pre></div>
-<p>O pacote <strong>ggthemes</strong> adiciona muitos outros temas, incluindo o tema <code>theme_economist</code> que nós escolhemos. Após a instalação do pacote, eles podem alterar o estilo adicionando uma camada como a seguinte:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="ggplot2.html#cb291-1"></a><span class="kw">library</span>(ggthemes)</span>
-<span id="cb291-2"><a href="ggplot2.html#cb291-2"></a>p <span class="op">+</span><span class="st"> </span><span class="kw">theme_economist</span>()</span></code></pre></div>
-<p>Você pode ver como são os outros temas simplesmente alterando a função. Por exemplo, eles podem testar o tema <code>theme_fivethirtyeight()</code> em vez do anterior.</p>
-<p>A diferença final tem a ver com a posição dos rótulos. No nosso gráfico, alguns dos rótulos se sobrepõem. O pacote de plug-ins <strong>ggrepel</strong> inclui uma geometria que adiciona rótulos, garantindo que eles não se sobreponham. Para usá-lo, simplesmente mudamos <code>geom_text</code> para <code>geom_text_repel</code>.</p>
+<p>O poder do <strong>ggplot2</strong> é aumentado ainda mais devido à disponibilidade de pacotes complementares (do inglês <em>add-on packages</em>). As alterações restantes necessárias para dar os retoques finais em nosso gráfico requerem os pacotes <strong>ggthemes</strong> e <strong>ggrepel</strong>.</p>
+<p>O estilo de um gráfico <strong>ggplot2</strong> pode ser alterado usando as funções <code>theme</code>. Diversos temas estão incluídos como parte do pacote <strong>ggplot2</strong>. De fato, para a maioria dos gráficos deste livro, usamos uma função do pacote <strong>dslabs</strong> que define automaticamente um tema padrão:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="ggplot2.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ds_theme_set</span>()</span></code></pre></div>
+<p>O pacote <strong>ggthemes</strong> permite adicionar muitos outros temas, incluindo o tema <code>theme_economist</code> que nós escolhemos. Após a instalação do pacote, você pode alterar o estilo adicionando uma camada da seguinte forma:</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="ggplot2.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb291-2"><a href="ggplot2.html#cb291-2" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_economist</span>()</span></code></pre></div>
+<p>Você pode ver como são os outros temas simplesmente alterando a função. Por exemplo, você pode testar o tema <code>theme_fivethirtyeight()</code> no lugar do anterior.</p>
+<p>A diferença final tem a ver com a posição dos rótulos. No nosso gráfico, alguns dos rótulos se sobrepõem. O pacote de plug-ins <strong>ggrepel</strong> inclui uma geometria que adiciona rótulos garantindo que eles não se sobreponham. Para usá-lo, simplesmente mudamos <code>geom_text</code> para <code>geom_text_repel</code>.</p>
 </div>
 <div id="como-combinar-tudo" class="section level2" number="7.12">
 <h2><span class="header-section-number">7.12</span> Como combinar tudo</h2>
 <p>Agora que terminamos o teste, podemos escrever um código que produza o gráfico desejado do zero.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="ggplot2.html#cb292-1"></a><span class="kw">library</span>(ggthemes)</span>
-<span id="cb292-2"><a href="ggplot2.html#cb292-2"></a><span class="kw">library</span>(ggrepel)</span>
-<span id="cb292-3"><a href="ggplot2.html#cb292-3"></a></span>
-<span id="cb292-4"><a href="ggplot2.html#cb292-4"></a>r &lt;-<span class="st"> </span>murders <span class="op">%&gt;%</span></span>
-<span id="cb292-5"><a href="ggplot2.html#cb292-5"></a><span class="kw">summarize</span>(<span class="dt">rate =</span> <span class="kw">sum</span>(total)<span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(population) <span class="op">*</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>) <span class="op">%&gt;%</span></span>
-<span id="cb292-6"><a href="ggplot2.html#cb292-6"></a><span class="kw">pull</span>(rate)</span>
-<span id="cb292-7"><a href="ggplot2.html#cb292-7"></a></span>
-<span id="cb292-8"><a href="ggplot2.html#cb292-8"></a>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(population<span class="op">/</span><span class="dv">10</span><span class="op">^</span><span class="dv">6</span>, total, <span class="dt">label =</span> abb)) <span class="op">+</span></span>
-<span id="cb292-9"><a href="ggplot2.html#cb292-9"></a><span class="kw">geom_abline</span>(<span class="dt">intercept =</span> <span class="kw">log10</span>(r), <span class="dt">lty =</span> <span class="dv">2</span>, <span class="dt">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="op">+</span></span>
-<span id="cb292-10"><a href="ggplot2.html#cb292-10"></a><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">col=</span>region), <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb292-11"><a href="ggplot2.html#cb292-11"></a><span class="kw">geom_text_repel</span>() <span class="op">+</span></span>
-<span id="cb292-12"><a href="ggplot2.html#cb292-12"></a><span class="kw">scale_x_log10</span>() <span class="op">+</span></span>
-<span id="cb292-13"><a href="ggplot2.html#cb292-13"></a><span class="kw">scale_y_log10</span>() <span class="op">+</span></span>
-<span id="cb292-14"><a href="ggplot2.html#cb292-14"></a><span class="kw">xlab</span>(<span class="st">&quot;Populations in millions (log scale)&quot;</span>) <span class="op">+</span></span>
-<span id="cb292-15"><a href="ggplot2.html#cb292-15"></a><span class="kw">ylab</span>(<span class="st">&quot;Total number of murders (log scale)&quot;</span>) <span class="op">+</span></span>
-<span id="cb292-16"><a href="ggplot2.html#cb292-16"></a><span class="kw">ggtitle</span>(<span class="st">&quot;US Gun Murders in 2010&quot;</span>) <span class="op">+</span></span>
-<span id="cb292-17"><a href="ggplot2.html#cb292-17"></a><span class="kw">scale_color_discrete</span>(<span class="dt">name =</span> <span class="st">&quot;Region&quot;</span>) <span class="op">+</span></span>
-<span id="cb292-18"><a href="ggplot2.html#cb292-18"></a><span class="kw">theme_economist</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="ggplot2.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggthemes)</span>
+<span id="cb292-2"><a href="ggplot2.html#cb292-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span>
+<span id="cb292-3"><a href="ggplot2.html#cb292-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb292-4"><a href="ggplot2.html#cb292-4" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> murders <span class="sc">%&gt;%</span></span>
+<span id="cb292-5"><a href="ggplot2.html#cb292-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summarize</span>(<span class="at">rate =</span> <span class="fu">sum</span>(total)<span class="sc">/</span> <span class="fu">sum</span>(population) <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb292-6"><a href="ggplot2.html#cb292-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pull</span>(rate)</span>
+<span id="cb292-7"><a href="ggplot2.html#cb292-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb292-8"><a href="ggplot2.html#cb292-8" aria-hidden="true" tabindex="-1"></a>murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(population<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, total, <span class="at">label =</span> abb)) <span class="sc">+</span></span>
+<span id="cb292-9"><a href="ggplot2.html#cb292-9" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fu">log10</span>(r), <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;darkgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb292-10"><a href="ggplot2.html#cb292-10" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col=</span>region), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb292-11"><a href="ggplot2.html#cb292-11" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_text_repel</span>() <span class="sc">+</span></span>
+<span id="cb292-12"><a href="ggplot2.html#cb292-12" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb292-13"><a href="ggplot2.html#cb292-13" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
+<span id="cb292-14"><a href="ggplot2.html#cb292-14" aria-hidden="true" tabindex="-1"></a><span class="fu">xlab</span>(<span class="st">&quot;População em milhões (escala logarítmica)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb292-15"><a href="ggplot2.html#cb292-15" aria-hidden="true" tabindex="-1"></a><span class="fu">ylab</span>(<span class="st">&quot;Total de assassinatos (escala logarítmica)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb292-16"><a href="ggplot2.html#cb292-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggtitle</span>(<span class="st">&quot;Assassinatos por armas nos EUA em 2010&quot;</span>) <span class="sc">+</span></span>
+<span id="cb292-17"><a href="ggplot2.html#cb292-17" aria-hidden="true" tabindex="-1"></a><span class="fu">scale_color_discrete</span>(<span class="at">name =</span> <span class="st">&quot;Region&quot;</span>) <span class="sc">+</span></span>
+<span id="cb292-18"><a href="ggplot2.html#cb292-18" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_economist</span>()</span></code></pre></div>
 <p><img src="livro_files/figure-html/final-ggplot-example-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="qplot" class="section level2" number="7.13">
 <h2><span class="header-section-number">7.13</span> Gráficos rápidos com <code>qplot</code></h2>
-<p>Nós aprendemos as poderosas técnicas ggplot para gerar visualizações. No entanto, há casos em que precisamos apenas de um gráfico rápido de, por exemplo, um histograma dos valores em um vetor, um gráfico de dispersão dos valores em dois vetores ou um gráfico de caixa usando vetores categóricos e numéricos. Já demonstramos como gerar esses gráficos com <code>hist</code>, <code>plot</code> e <code>boxplot</code>. No entanto, se queremos ser consistentes com o estilo ggplot, podemos usar a função <code>qplot</code>.</p>
+<p>Nós aprendemos poderosas técnicas para gerar visualizações com ggplot. No entanto, há casos em que precisamos apenas de um gráfico rápido, como por exemplo, um histograma dos valores em um vetor, um gráfico de dispersão dos valores em dois vetores ou um <em>boxplot</em> usando vetores categóricos e numéricos. Já demonstramos como gerar esses gráficos com <code>hist</code>, <code>plot</code> e <code>boxplot</code>. Entretanto, se queremos ser consistentes com o estilo ggplot, podemos usar a função <code>qplot</code>.</p>
 <p>Se tivermos valores em dois vetores como:</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="ggplot2.html#cb293-1"></a><span class="kw">data</span>(murders)</span>
-<span id="cb293-2"><a href="ggplot2.html#cb293-2"></a>x &lt;-<span class="st"> </span><span class="kw">log10</span>(murders<span class="op">$</span>population)</span>
-<span id="cb293-3"><a href="ggplot2.html#cb293-3"></a>y &lt;-<span class="st"> </span>murders<span class="op">$</span>total</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="ggplot2.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(murders)</span>
+<span id="cb293-2"><a href="ggplot2.html#cb293-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">log10</span>(murders<span class="sc">$</span>population)</span>
+<span id="cb293-3"><a href="ggplot2.html#cb293-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> murders<span class="sc">$</span>total</span></code></pre></div>
 <p>e queremos fazer um diagrama de dispersão com ggplot, teríamos que escrever algo como:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="ggplot2.html#cb294-1"></a><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y) <span class="op">%&gt;%</span></span>
-<span id="cb294-2"><a href="ggplot2.html#cb294-2"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(x, y)) <span class="op">+</span></span>
-<span id="cb294-3"><a href="ggplot2.html#cb294-3"></a><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="ggplot2.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">x =</span> x, <span class="at">y =</span> y) <span class="sc">%&gt;%</span></span>
+<span id="cb294-2"><a href="ggplot2.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb294-3"><a href="ggplot2.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>()</span></code></pre></div>
 <p>Parece ser muito código para um gráfico tão simples. A função <code>qplot</code> sacrifica a flexibilidade oferecida pelo <code>ggplot</code>, mas permite gerar rapidamente um gráfico.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="ggplot2.html#cb295-1"></a><span class="kw">qplot</span>(x, y)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="ggplot2.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qplot</span>(x, y)</span></code></pre></div>
 <p>Vamos aprender mais sobre <code>qplot</code> na seção <a href="distributions.html#other-geometries">8.16</a></p>
 </div>
-<div id="grades-de-gráfico" class="section level2" number="7.14">
-<h2><span class="header-section-number">7.14</span> Grades de gráfico</h2>
+<div id="grade-de-gráficos" class="section level2" number="7.14">
+<h2><span class="header-section-number">7.14</span> Grade de gráficos</h2>
 <p>Muitas vezes, temos que colocar gráficos próximos um do outro. O pacote <strong>gridExtra</strong> nos permite fazer isso:</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="ggplot2.html#cb296-1"></a><span class="kw">library</span>(gridExtra)</span>
-<span id="cb296-2"><a href="ggplot2.html#cb296-2"></a>p1 &lt;-<span class="st"> </span><span class="kw">qplot</span>(x)</span>
-<span id="cb296-3"><a href="ggplot2.html#cb296-3"></a>p2 &lt;-<span class="st"> </span><span class="kw">qplot</span>(x,y)</span>
-<span id="cb296-4"><a href="ggplot2.html#cb296-4"></a><span class="kw">grid.arrange</span>(p1, p2, <span class="dt">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="ggplot2.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span>
+<span id="cb296-2"><a href="ggplot2.html#cb296-2" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">qplot</span>(x)</span>
+<span id="cb296-3"><a href="ggplot2.html#cb296-3" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">qplot</span>(x,y)</span>
+<span id="cb296-4"><a href="ggplot2.html#cb296-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grid.arrange</span>(p1, p2, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="livro_files/figure-html/gridExtra-example-1.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="exercícios-15" class="section level2" number="7.15">
 <h2><span class="header-section-number">7.15</span> Exercícios</h2>
-<p>Comece carregando os pacotes __dplyr__e<strong>ggplot2</strong>, bem como os dados <code>murders</code> e <code>heights</code>.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="ggplot2.html#cb297-1"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb297-2"><a href="ggplot2.html#cb297-2"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb297-3"><a href="ggplot2.html#cb297-3"></a><span class="kw">library</span>(dslabs)</span>
-<span id="cb297-4"><a href="ggplot2.html#cb297-4"></a><span class="kw">data</span>(heights)</span>
-<span id="cb297-5"><a href="ggplot2.html#cb297-5"></a><span class="kw">data</span>(murders)</span></code></pre></div>
+<p>Comece carregando os pacotes <strong>dplyr</strong> e <strong>ggplot2</strong>, bem como os dados <code>murders</code> e <code>heights</code>.</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="ggplot2.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb297-2"><a href="ggplot2.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb297-3"><a href="ggplot2.html#cb297-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span>
+<span id="cb297-4"><a href="ggplot2.html#cb297-4" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(heights)</span>
+<span id="cb297-5"><a href="ggplot2.html#cb297-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(murders)</span></code></pre></div>
 <p>1. Com <strong>ggplot2</strong>, os gráficos podem ser salvos como objetos. Por exemplo, podemos associar um conjunto de dados a um objeto gráfico da seguinte maneira:</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="ggplot2.html#cb298-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> murders)</span></code></pre></div>
-<p>Quão <code>data</code> é o primeiro argumento, não precisamos explicá-lo:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="ggplot2.html#cb299-1"></a>p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(murders)</span></code></pre></div>
-<p>e também podemos usar o <em>pipe</em>:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="ggplot2.html#cb300-1"></a>p &lt;-<span class="st"> </span>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="ggplot2.html#cb298-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> murders)</span></code></pre></div>
+<p>Como <code>data</code> é o primeiro argumento, não precisamos declará-lo:</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="ggplot2.html#cb299-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(murders)</span></code></pre></div>
+<p>ou também podemos usar o <em>pipe</em>:</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="ggplot2.html#cb300-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>()</span></code></pre></div>
 <p>Qual é a classe do objeto <code>p</code>?</p>
-<p>2. Lembre-se de que para imprimir um objeto, você pode usar o comando <code>print</code> ou apenas escreva o objeto. Imprimir o objeto <code>p</code> definido no exercício um e descreva o que você vê.</p>
-<p>para. Nada acontece.
-b. Um gráfico de quadro branco em branco.
-c. Um diagrama de dispersão.
-d. Um histograma.</p>
-<p>3. Usando o <em>pipe</em> <code>%&gt;%</code> criar um objeto <code>p</code> mas desta vez associado ao conjunto de dados <code>heights</code> em vez do conjunto de dados <code>murders</code>.</p>
-<p>4. Qual é a classe do objeto <code>p</code> o que você acabou de criar?</p>
-<p>5. Agora vamos adicionar uma camada e os mapeamentos estéticos correspondentes. Para os dados de assassinatos, plotamos o total de assassinatos versus o tamanho da população. Explore o conjunto de dados <code>murders</code> para lembrar quais são os nomes dessas duas variáveis e escolher a resposta correta. <strong>Hint</strong>: Look <code>?murders</code>.</p>
-<p>para. <code>state</code> e <code>abb</code>
-b. <code>total_murders</code> e <code>population_size</code>
-c. <code>total</code> e <code>population</code>
-d. <code>murders</code> e <code>size</code></p>
-<p>6. Para criar o gráfico de dispersão, adicionamos uma camada com <code>geom_point</code>. O mapeamento estético requer que definamos as variáveis do eixo xe do eixo y, respectivamente. Portanto, o código fica assim:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="ggplot2.html#cb301-1"></a>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> , <span class="dt">y =</span> )) <span class="op">+</span></span>
-<span id="cb301-2"><a href="ggplot2.html#cb301-2"></a><span class="kw">geom_point</span>()</span></code></pre></div>
+<p>2. Lembre-se de que para imprimir um objeto, você pode usar o comando <code>print</code> ou apenas escrever o nome objeto. Imprima o objeto <code>p</code> definido no exercício 1 e descreva o que você vê.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Nada acontece.</li>
+<li>Um gráfico em branco.</li>
+<li>Um diagrama de dispersão.</li>
+<li>Um histograma.</li>
+</ol>
+<p>3. Usando o <em>pipe</em> <code>%&gt;%</code>, crie um objeto <code>p</code> desta vez associado ao conjunto de dados <code>heights</code> em vez do conjunto de dados <code>murders</code>.</p>
+<p>4. Qual é a classe do objeto <code>p</code> que você acabou de criar?</p>
+<p>5. Agora vamos adicionar uma camada e os mapeamentos estéticos correspondentes. Para os dados de assassinatos, plote o total de assassinatos versus o tamanho da população. Explore o conjunto de dados <code>murders</code> para lembrar quais são os nomes dessas duas variáveis e escolha a resposta correta. <strong>Dica</strong>: use <code>?murders</code>.</p>
+<ol style="list-style-type: lower-alpha">
+<li><code>state</code> e <code>abb</code></li>
+<li><code>total_murders</code> e <code>population_size</code></li>
+<li><code>total</code> e <code>population</code></li>
+<li><code>murders</code> e <code>size</code></li>
+</ol>
+<p>6. Para criar um gráfico de dispersão, adicionamos uma camada com <code>geom_point</code>. O mapeamento estético requer que definamos as variáveis dos eixos x e y, respectivamente. Portanto, o código fica assim:</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="ggplot2.html#cb301-1" aria-hidden="true" tabindex="-1"></a>murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> , <span class="at">y =</span> )) <span class="sc">+</span></span>
+<span id="cb301-2"><a href="ggplot2.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>()</span></code></pre></div>
 <p>exceto que temos que definir as duas variáveis <code>x</code> e <code>y</code>. Preencha o espaço com os nomes corretos das variáveis.</p>
-<p>7. Lembre-se de que, se não usarmos nomes de argumentos, podemos obter o mesmo gráfico se inserirmos os nomes das variáveis na ordem correta, assim:</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="ggplot2.html#cb302-1"></a>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(population, total)) <span class="op">+</span></span>
-<span id="cb302-2"><a href="ggplot2.html#cb302-2"></a><span class="kw">geom_point</span>()</span></code></pre></div>
-<p>Refaça o gráfico, mas agora com total no eixo x e população no eixo y.</p>
-<p>8. Se, em vez de pontos, queremos adicionar texto, podemos usar as geometrias <code>geom_text()</code> ou <code>geom_label()</code>. O código a seguir:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="ggplot2.html#cb303-1"></a>murders <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(population, total)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_label</span>()</span></code></pre></div>
-<p>nos dará a mensagem de erro: <code>Error: geom_label requires the following missing aesthetics: label</code></p>
+<p>7. Note que, se não usarmos nomes de argumentos, podemos obter o mesmo gráfico se inserirmos os nomes das variáveis na ordem correta, assim:</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="ggplot2.html#cb302-1" aria-hidden="true" tabindex="-1"></a>murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(population, total)) <span class="sc">+</span></span>
+<span id="cb302-2"><a href="ggplot2.html#cb302-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>()</span></code></pre></div>
+<p>Refaça o gráfico, mas agora com total de assassnatos no eixo x e o tamanho da população no eixo y.</p>
+<p>8. Se, em vez de pontos quisérmos adicionar textos, podemos usar as geometrias <code>geom_text()</code> ou <code>geom_label()</code>. O código a seguir:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="ggplot2.html#cb303-1" aria-hidden="true" tabindex="-1"></a>murders <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(population, total)) <span class="sc">+</span> <span class="fu">geom_label</span>()</span></code></pre></div>
+<p>nos dará a mensagem de erro: <code>Error: geom_label requires the following missing aesthetics: label</code> (ou na tradução <code>Erro: geom_label requer a seguinte estética ausente: label</code>)</p>
 <p>Por que isso acontece?</p>
-<p>para. Precisamos mapear um caractere para cada ponto através do argumento label em <code>aes</code>.
-b. Precisamos deixar <code>geom_label</code> saber qual caractere usar no gráfico.
-c. A geometria <code>geom_label</code> não requer valores do eixo xe do eixo y.
-d. <code>geom_label</code> não é um comando de <strong>ggplot2</strong>.</p>
-<p>9. Reescreva o código acima para usar a abreviação como o rótulo via <code>aes</code>.</p>
-<p>10. Mude a cor dos rótulos para azul. Como se faz?</p>
-<p>para. Adicionando uma coluna chamada <code>blue</code> para <code>murders</code>.
-b. Como cada etiqueta precisa de uma cor diferente, mapeamos as cores através <code>aes</code>.
-c. Usando o argumento <code>color</code> no <code>ggplot</code>.
-d. Como queremos que todas as cores sejam azuis, não precisamos atribuir cores, basta usar o argumento de cores em <code>geom_label</code>.</p>
-<p>Onze. Reescreva o código acima para que os rótulos fiquem azuis.</p>
-<p>12. Agora, suponha que desejamos usar cores para representar as diferentes regiões. Nesse caso, qual das seguintes opções é a mais apropriada?</p>
-<p>para. Adicione uma coluna chamada <code>color</code> para <code>murders</code> com a cor que queremos usar.
-b. Como cada tag precisa de uma cor diferente, mapeie as cores através do argumento de cores de <code>aes</code> .
-c. Use o argumento <code>color</code> no <code>ggplot</code>.
-d. Como queremos que todas as cores sejam azuis, não precisamos atribuir cores, basta usar o argumento de cores em <code>geom_label</code>.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Precisamos mapear caracteres para cada ponto através do argumento <em>label</em> em <code>aes</code>.</li>
+<li>Precisamos deixar <code>geom_label</code> saber quais caracteres usar no gráfico.</li>
+<li>A geometria <code>geom_label</code> não requer valores dos eixos x e y.</li>
+<li><code>geom_label</code> não é um comando de <strong>ggplot2</strong>.</li>
+</ol>
+<p>9. Reescreva o código acima para usar a abreviação como o rótulo através da função <code>aes</code>.</p>
+<p>10. Mude a cor dos rótulos para azul. Como faremos isso?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Adicionando uma coluna chamada <code>blue</code> em <code>murders</code>.</li>
+<li>Como cada etiqueta precisa de uma cor diferente, mapeamos as cores através <code>aes</code>.</li>
+<li>Usando o argumento <code>color</code> no <code>ggplot</code>.</li>
+<li>Como queremos que todas as cores sejam azuis, não precisamos atribuir cores, basta usar o argumento de cores em <code>geom_label</code>.</li>
+</ol>
+<p>11. Reescreva o código acima para que os rótulos fiquem azuis.</p>
+<p>12. Agora, suponha que desejemos usar cores para representar as diferentes regiões. Nesse caso, qual das seguintes opções é a mais apropriada?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Adicione uma coluna chamada <code>color</code> em <code>murders</code> com a cor que queremos usar.</li>
+<li>Como cada tag precisa de uma cor diferente, mapeie as cores através do argumento de cores da função <code>aes</code> .</li>
+<li>Use o argumento <code>color</code> do <code>ggplot</code>.</li>
+<li>Como queremos que todas as cores sejam azuis, não precisamos atribuir cores, basta usar o argumento de cores em <code>geom_label</code>.</li>
+</ol>
 <p>13. Reescreva o código acima para que a cor dos rótulos seja determinada pela região do estado.</p>
 <p>14. Agora vamos mudar o eixo x para uma escala logarítmica para levar em conta o fato de que a distribuição da população é assimétrica. Vamos começar definindo um objeto <code>p</code> salvando o gráfico que criamos até agora:</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="ggplot2.html#cb304-1"></a>p &lt;-<span class="st"> </span>murders <span class="op">%&gt;%</span></span>
-<span id="cb304-2"><a href="ggplot2.html#cb304-2"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(population, total, <span class="dt">label =</span> abb, <span class="dt">color =</span> region)) <span class="op">+</span></span>
-<span id="cb304-3"><a href="ggplot2.html#cb304-3"></a><span class="kw">geom_label</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="ggplot2.html#cb304-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> murders <span class="sc">%&gt;%</span></span>
+<span id="cb304-2"><a href="ggplot2.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(population, total, <span class="at">label =</span> abb, <span class="at">color =</span> region)) <span class="sc">+</span></span>
+<span id="cb304-3"><a href="ggplot2.html#cb304-3" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_label</span>()</span></code></pre></div>
 <p>Para alterar o eixo y para uma escala logarítmica, aprendemos sobre a função <code>scale_x_log10()</code>. Adicione esta camada ao objeto <code>p</code> para alterar a escala e criar o gráfico.</p>
-<p>Quinze. Repita o exercício anterior, mas agora mude os dois eixos para que estejam na escala logarítmica.</p>
+<p>15. Repita o exercício anterior, mas agora mude os dois eixos para que estejam na escala logarítmica.</p>
 <p>16. Agora edite o código acima para adicionar o título “Dados de assassinatos por armas” ao argumento. Dica: use a função <code>ggtitle</code>.</p>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="24">
-<li id="fn24"><p><a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a><a href="ggplot2.html#fnref24" class="footnote-back">↩︎</a></p></li>
-<li id="fn25"><p><a href="http://www.springer.com/us/book/9780387245447" class="uri">http://www.springer.com/us/book/9780387245447</a><a href="ggplot2.html#fnref25" class="footnote-back">↩︎</a></p></li>
-<li id="fn26"><p><a href="https://github.com/rstudio/cheatsheets" class="uri">https://github.com/rstudio/cheatsheets</a><a href="ggplot2.html#fnref26" class="footnote-back">↩︎</a></p></li>
-<li id="fn27"><p><a href="https://github.com/rstudio/cheatsheets/blob/master/LICENSE" class="uri">https://github.com/rstudio/cheatsheets/blob/master/LICENSE</a><a href="ggplot2.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<ol start="25">
+<li id="fn25"><p><a href="https://ggplot2.tidyverse.org/" class="uri">https://ggplot2.tidyverse.org/</a><a href="ggplot2.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p><a href="http://www.springer.com/us/book/9780387245447" class="uri">http://www.springer.com/us/book/9780387245447</a><a href="ggplot2.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<li id="fn27"><p><a href="https://github.com/rstudio/cheatsheets" class="uri">https://github.com/rstudio/cheatsheets</a><a href="ggplot2.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p><a href="https://github.com/rstudio/cheatsheets/blob/master/LICENSE" class="uri">https://github.com/rstudio/cheatsheets/blob/master/LICENSE</a><a href="ggplot2.html#fnref28" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -891,7 +910,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["livro.pdf", "livro.epub"],
 "toc": {
 "collapse": "section"
 }

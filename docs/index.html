@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Introdução à Ciência de Dados</title>
   <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Rafael A. Irizarry" />
 
 
-<meta name="date" content="2020-06-26" />
+<meta name="date" content="2020-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 
 <link rel="next" href="agradecimentos.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,10 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -187,17 +189,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#exercícios-1"><i class="fa fa-check"></i><b>2.5</b> Exercícios</a></li>
 <li class="chapter" data-level="2.6" data-path="r-basics.html"><a href="r-basics.html#vetores"><i class="fa fa-check"></i><b>2.6</b> Vetores</a>
 <ul>
-<li class="chapter" data-level="2.6.1" data-path="r-basics.html"><a href="r-basics.html#como-criar-vetores"><i class="fa fa-check"></i><b>2.6.1</b> Como criar vetores</a></li>
+<li class="chapter" data-level="2.6.1" data-path="r-basics.html"><a href="r-basics.html#criando-vetores"><i class="fa fa-check"></i><b>2.6.1</b> Criando vetores</a></li>
 <li class="chapter" data-level="2.6.2" data-path="r-basics.html"><a href="r-basics.html#nomes"><i class="fa fa-check"></i><b>2.6.2</b> Nomes</a></li>
 <li class="chapter" data-level="2.6.3" data-path="r-basics.html"><a href="r-basics.html#sequências"><i class="fa fa-check"></i><b>2.6.3</b> Sequências</a></li>
-<li class="chapter" data-level="2.6.4" data-path="r-basics.html"><a href="r-basics.html#como-criar-um-subconjunto"><i class="fa fa-check"></i><b>2.6.4</b> Como criar um subconjunto</a></li>
+<li class="chapter" data-level="2.6.4" data-path="r-basics.html"><a href="r-basics.html#criando-subconjuntos"><i class="fa fa-check"></i><b>2.6.4</b> Criando subconjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="r-basics.html"><a href="r-basics.html#conversão-forçada"><i class="fa fa-check"></i><b>2.7</b> Conversão forçada</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="r-basics.html"><a href="r-basics.html#não-disponível-na"><i class="fa fa-check"></i><b>2.7.1</b> <em>Não disponível</em> (NA)</a></li>
+<li class="chapter" data-level="2.7.1" data-path="r-basics.html"><a href="r-basics.html#valores-na"><i class="fa fa-check"></i><b>2.7.1</b> Valores NA</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="r-basics.html"><a href="r-basics.html#exercícios-2"><i class="fa fa-check"></i><b>2.8</b> Exercícios</a></li>
-<li class="chapter" data-level="2.9" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.9</b> <em>Ordenação</em></a>
+<li class="chapter" data-level="2.9" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.9</b> Ordenação</a>
 <ul>
 <li class="chapter" data-level="2.9.1" data-path="r-basics.html"><a href="r-basics.html#sort"><i class="fa fa-check"></i><b>2.9.1</b> <code>sort</code></a></li>
 <li class="chapter" data-level="2.9.2" data-path="r-basics.html"><a href="r-basics.html#order"><i class="fa fa-check"></i><b>2.9.2</b> <code>order</code></a></li>
@@ -208,13 +210,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="r-basics.html"><a href="r-basics.html#exercícios-3"><i class="fa fa-check"></i><b>2.10</b> Exercícios</a></li>
 <li class="chapter" data-level="2.11" data-path="r-basics.html"><a href="r-basics.html#aritmética-vetorial"><i class="fa fa-check"></i><b>2.11</b> Aritmética vetorial</a>
 <ul>
-<li class="chapter" data-level="2.11.1" data-path="r-basics.html"><a href="r-basics.html#rescalar-um-vetor"><i class="fa fa-check"></i><b>2.11.1</b> <em>Rescalar</em> um vetor</a></li>
+<li class="chapter" data-level="2.11.1" data-path="r-basics.html"><a href="r-basics.html#reescalonando-um-vetor"><i class="fa fa-check"></i><b>2.11.1</b> Reescalonando um vetor</a></li>
 <li class="chapter" data-level="2.11.2" data-path="r-basics.html"><a href="r-basics.html#dois-vetores"><i class="fa fa-check"></i><b>2.11.2</b> Dois vetores</a></li>
 </ul></li>
 <li class="chapter" data-level="2.12" data-path="r-basics.html"><a href="r-basics.html#exercícios-4"><i class="fa fa-check"></i><b>2.12</b> Exercícios</a></li>
 <li class="chapter" data-level="2.13" data-path="r-basics.html"><a href="r-basics.html#indexação"><i class="fa fa-check"></i><b>2.13</b> Indexação</a>
 <ul>
-<li class="chapter" data-level="2.13.1" data-path="r-basics.html"><a href="r-basics.html#criar-subconjuntos-com-lógicas"><i class="fa fa-check"></i><b>2.13.1</b> Criar subconjuntos com lógicas</a></li>
+<li class="chapter" data-level="2.13.1" data-path="r-basics.html"><a href="r-basics.html#criando-subconjuntos-com-objetos-do-tipo-lógico"><i class="fa fa-check"></i><b>2.13.1</b> Criando subconjuntos com objetos do tipo lógico</a></li>
 <li class="chapter" data-level="2.13.2" data-path="r-basics.html"><a href="r-basics.html#operadores-lógicos"><i class="fa fa-check"></i><b>2.13.2</b> Operadores lógicos</a></li>
 <li class="chapter" data-level="2.13.3" data-path="r-basics.html"><a href="r-basics.html#which"><i class="fa fa-check"></i><b>2.13.3</b> <code>which</code></a></li>
 <li class="chapter" data-level="2.13.4" data-path="r-basics.html"><a href="r-basics.html#match"><i class="fa fa-check"></i><b>2.13.4</b> <code>match</code></a></li>
@@ -286,11 +288,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="importing-data.html"><a href="importing-data.html#caminhos-e-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1</b> Caminhos e diretório de trabalho</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="importing-data.html"><a href="importing-data.html#o-sistema-de-arquivos"><i class="fa fa-check"></i><b>5.1.1</b> O sistema de arquivos</a></li>
-<li class="chapter" data-level="5.1.2" data-path="importing-data.html"><a href="importing-data.html#caminhos-relativos-e-completos"><i class="fa fa-check"></i><b>5.1.2</b> Caminhos relativos e completos</a></li>
+<li class="chapter" data-level="5.1.1" data-path="importing-data.html"><a href="importing-data.html#sistema-de-arquivos"><i class="fa fa-check"></i><b>5.1.1</b> Sistema de arquivos</a></li>
+<li class="chapter" data-level="5.1.2" data-path="importing-data.html"><a href="importing-data.html#caminhos-relativos-e-absolutos"><i class="fa fa-check"></i><b>5.1.2</b> Caminhos relativos e absolutos</a></li>
 <li class="chapter" data-level="5.1.3" data-path="importing-data.html"><a href="importing-data.html#o-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1.3</b> O diretório de trabalho</a></li>
-<li class="chapter" data-level="5.1.4" data-path="importing-data.html"><a href="importing-data.html#como-gerar-nomes-de-caminhos"><i class="fa fa-check"></i><b>5.1.4</b> Como gerar nomes de caminhos</a></li>
-<li class="chapter" data-level="5.1.5" data-path="importing-data.html"><a href="importing-data.html#como-copiar-arquivos-usando-caminhos"><i class="fa fa-check"></i><b>5.1.5</b> Como copiar arquivos usando caminhos</a></li>
+<li class="chapter" data-level="5.1.4" data-path="importing-data.html"><a href="importing-data.html#gerando-nomes-de-caminhos"><i class="fa fa-check"></i><b>5.1.4</b> Gerando nomes de caminhos</a></li>
+<li class="chapter" data-level="5.1.5" data-path="importing-data.html"><a href="importing-data.html#copiando-arquivos-usando-caminhos"><i class="fa fa-check"></i><b>5.1.5</b> Copiando arquivos usando caminhos</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="importing-data.html"><a href="importing-data.html#os-pacotes-readr-e-readxl"><i class="fa fa-check"></i><b>5.2</b> Os pacotes readr e readxl</a>
 <ul>
@@ -298,8 +300,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="importing-data.html"><a href="importing-data.html#readxl"><i class="fa fa-check"></i><b>5.2.2</b> readxl</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="importing-data.html"><a href="importing-data.html#exercícios-13"><i class="fa fa-check"></i><b>5.3</b> Exercícios</a></li>
-<li class="chapter" data-level="5.4" data-path="importing-data.html"><a href="importing-data.html#como-baixar-arquivos"><i class="fa fa-check"></i><b>5.4</b> Como baixar arquivos</a></li>
-<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação R</a>
+<li class="chapter" data-level="5.4" data-path="importing-data.html"><a href="importing-data.html#como-fazer-download-de-arquivos"><i class="fa fa-check"></i><b>5.4</b> Como fazer <em>download</em> de arquivos</a></li>
+<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-do-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação do R</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="importing-data.html"><a href="importing-data.html#scan"><i class="fa fa-check"></i><b>5.5.1</b> <code>scan</code></a></li>
 </ul></li>
@@ -313,51 +315,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#os-componentes-de-um-gráfico"><i class="fa fa-check"></i><b>7.1</b> Os componentes de um gráfico</a></li>
-<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-ggplot"><i class="fa fa-check"></i><b>7.2</b> objetos <code>ggplot</code></a></li>
+<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-ggplot"><i class="fa fa-check"></i><b>7.2</b> Objetos <code>ggplot</code></a></li>
 <li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrias"><i class="fa fa-check"></i><b>7.3</b> Geometrias</a></li>
 <li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#mapeamentos-estéticos"><i class="fa fa-check"></i><b>7.4</b> Mapeamentos estéticos</a></li>
 <li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#camadas"><i class="fa fa-check"></i><b>7.5</b> Camadas</a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#como-testar-vários-argumentos"><i class="fa fa-check"></i><b>7.5.1</b> Como testar vários argumentos</a></li>
+<li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#trabalhando-com-argumentos"><i class="fa fa-check"></i><b>7.5.1</b> Trabalhando com argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético-global-versus-local"><i class="fa fa-check"></i><b>7.6</b> Mapeamento estético global versus local</a></li>
 <li class="chapter" data-level="7.7" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>7.7</b> Escalas</a></li>
-<li class="chapter" data-level="7.8" data-path="ggplot2.html"><a href="ggplot2.html#tags-e-títulos"><i class="fa fa-check"></i><b>7.8</b> Tags e títulos</a></li>
-<li class="chapter" data-level="7.9" data-path="ggplot2.html"><a href="ggplot2.html#categorias-como-cores"><i class="fa fa-check"></i><b>7.9</b> Categorias como cores</a></li>
-<li class="chapter" data-level="7.10" data-path="ggplot2.html"><a href="ggplot2.html#anotação-formas-e-ajustes"><i class="fa fa-check"></i><b>7.10</b> Anotação, formas e ajustes</a></li>
+<li class="chapter" data-level="7.8" data-path="ggplot2.html"><a href="ggplot2.html#rótulos-e-títulos"><i class="fa fa-check"></i><b>7.8</b> Rótulos e títulos</a></li>
+<li class="chapter" data-level="7.9" data-path="ggplot2.html"><a href="ggplot2.html#usando-categorias-como-cores"><i class="fa fa-check"></i><b>7.9</b> Usando categorias como cores</a></li>
+<li class="chapter" data-level="7.10" data-path="ggplot2.html"><a href="ggplot2.html#anotações-formas-e-ajustes"><i class="fa fa-check"></i><b>7.10</b> Anotações, formas e ajustes</a></li>
 <li class="chapter" data-level="7.11" data-path="ggplot2.html"><a href="ggplot2.html#add-on-packages"><i class="fa fa-check"></i><b>7.11</b> Pacotes complementares</a></li>
 <li class="chapter" data-level="7.12" data-path="ggplot2.html"><a href="ggplot2.html#como-combinar-tudo"><i class="fa fa-check"></i><b>7.12</b> Como combinar tudo</a></li>
 <li class="chapter" data-level="7.13" data-path="ggplot2.html"><a href="ggplot2.html#qplot"><i class="fa fa-check"></i><b>7.13</b> Gráficos rápidos com <code>qplot</code></a></li>
-<li class="chapter" data-level="7.14" data-path="ggplot2.html"><a href="ggplot2.html#grades-de-gráfico"><i class="fa fa-check"></i><b>7.14</b> Grades de gráfico</a></li>
+<li class="chapter" data-level="7.14" data-path="ggplot2.html"><a href="ggplot2.html#grade-de-gráficos"><i class="fa fa-check"></i><b>7.14</b> Grade de gráficos</a></li>
 <li class="chapter" data-level="7.15" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-15"><i class="fa fa-check"></i><b>7.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Como visualizar distribuições de dados</a>
+<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Visualizando distribuições de dados</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="distributions.html"><a href="distributions.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>8.1</b> Tipos de variáveis</a></li>
 <li class="chapter" data-level="8.2" data-path="distributions.html"><a href="distributions.html#estudo-de-caso-descrevendo-a-altura-dos-alunos"><i class="fa fa-check"></i><b>8.2</b> Estudo de caso: descrevendo a altura dos alunos</a></li>
-<li class="chapter" data-level="8.3" data-path="distributions.html"><a href="distributions.html#a-função-de-distribuição"><i class="fa fa-check"></i><b>8.3</b> A função de distribuição</a></li>
-<li class="chapter" data-level="8.4" data-path="distributions.html"><a href="distributions.html#cdf-intro"><i class="fa fa-check"></i><b>8.4</b> Funções de distribuição cumulativa</a></li>
+<li class="chapter" data-level="8.3" data-path="distributions.html"><a href="distributions.html#função-de-distribuição"><i class="fa fa-check"></i><b>8.3</b> Função de distribuição</a></li>
+<li class="chapter" data-level="8.4" data-path="distributions.html"><a href="distributions.html#cdf-intro"><i class="fa fa-check"></i><b>8.4</b> Funções de distribuição acumulada</a></li>
 <li class="chapter" data-level="8.5" data-path="distributions.html"><a href="distributions.html#histogramas"><i class="fa fa-check"></i><b>8.5</b> Histogramas</a></li>
-<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#densidade-suave"><i class="fa fa-check"></i><b>8.6</b> Densidade suave</a>
+<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#curvas-de-densidade"><i class="fa fa-check"></i><b>8.6</b> Curvas de densidade</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="distributions.html"><a href="distributions.html#como-interpretar-o-eixo-y"><i class="fa fa-check"></i><b>8.6.1</b> Como interpretar o eixo y</a></li>
-<li class="chapter" data-level="8.6.2" data-path="distributions.html"><a href="distributions.html#densidades-permitem-camadas"><i class="fa fa-check"></i><b>8.6.2</b> Densidades permitem camadas</a></li>
+<li class="chapter" data-level="8.6.1" data-path="distributions.html"><a href="distributions.html#interpretando-o-eixo-y"><i class="fa fa-check"></i><b>8.6.1</b> Interpretando o eixo y</a></li>
+<li class="chapter" data-level="8.6.2" data-path="distributions.html"><a href="distributions.html#densidades-permitem-a-estratificação"><i class="fa fa-check"></i><b>8.6.2</b> Densidades permitem a estratificação</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="distributions.html"><a href="distributions.html#exercícios-16"><i class="fa fa-check"></i><b>8.7</b> Exercícios</a></li>
-<li class="chapter" data-level="8.8" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>8.8</b> A distribuição normal</a></li>
+<li class="chapter" data-level="8.8" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>8.8</b> Distribuição normal</a></li>
 <li class="chapter" data-level="8.9" data-path="distributions.html"><a href="distributions.html#unidades-padrão"><i class="fa fa-check"></i><b>8.9</b> Unidades padrão</a></li>
 <li class="chapter" data-level="8.10" data-path="distributions.html"><a href="distributions.html#gráficos-qq"><i class="fa fa-check"></i><b>8.10</b> Gráficos QQ</a></li>
 <li class="chapter" data-level="8.11" data-path="distributions.html"><a href="distributions.html#percentis"><i class="fa fa-check"></i><b>8.11</b> Percentis</a></li>
-<li class="chapter" data-level="8.12" data-path="distributions.html"><a href="distributions.html#diagramas-de-caixas"><i class="fa fa-check"></i><b>8.12</b> Diagramas de caixas</a></li>
+<li class="chapter" data-level="8.12" data-path="distributions.html"><a href="distributions.html#diagramas-de-caixas-boxplots"><i class="fa fa-check"></i><b>8.12</b> Diagramas de caixas (<em>boxplots</em>)</a></li>
 <li class="chapter" data-level="8.13" data-path="distributions.html"><a href="distributions.html#stratification"><i class="fa fa-check"></i><b>8.13</b> Estratificação</a></li>
-<li class="chapter" data-level="8.14" data-path="distributions.html"><a href="distributions.html#student-height-cont"><i class="fa fa-check"></i><b>8.14</b> Estudo de caso: descrição das alturas dos alunos (continuação)</a></li>
+<li class="chapter" data-level="8.14" data-path="distributions.html"><a href="distributions.html#student-height-cont"><i class="fa fa-check"></i><b>8.14</b> Estudo de caso: descrevendo as alturas dos alunos (continuação)</a></li>
 <li class="chapter" data-level="8.15" data-path="distributions.html"><a href="distributions.html#exercícios-17"><i class="fa fa-check"></i><b>8.15</b> Exercícios</a></li>
-<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Gegplot2 geometrias</a>
+<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Geometrias ggplot2</a>
 <ul>
 <li class="chapter" data-level="8.16.1" data-path="distributions.html"><a href="distributions.html#gráficos-de-barra"><i class="fa fa-check"></i><b>8.16.1</b> Gráficos de barra</a></li>
 <li class="chapter" data-level="8.16.2" data-path="distributions.html"><a href="distributions.html#histogramas-1"><i class="fa fa-check"></i><b>8.16.2</b> Histogramas</a></li>
 <li class="chapter" data-level="8.16.3" data-path="distributions.html"><a href="distributions.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>8.16.3</b> Gráficos de densidade</a></li>
-<li class="chapter" data-level="8.16.4" data-path="distributions.html"><a href="distributions.html#diagramas-de-caixas-1"><i class="fa fa-check"></i><b>8.16.4</b> Diagramas de caixas</a></li>
+<li class="chapter" data-level="8.16.4" data-path="distributions.html"><a href="distributions.html#boxplots"><i class="fa fa-check"></i><b>8.16.4</b> <em>Boxplots</em></a></li>
 <li class="chapter" data-level="8.16.5" data-path="distributions.html"><a href="distributions.html#gráficos-qq-1"><i class="fa fa-check"></i><b>8.16.5</b> Gráficos QQ</a></li>
 <li class="chapter" data-level="8.16.6" data-path="distributions.html"><a href="distributions.html#imagens"><i class="fa fa-check"></i><b>8.16.6</b> Imagens</a></li>
 <li class="chapter" data-level="8.16.7" data-path="distributions.html"><a href="distributions.html#gráficos-rápidos"><i class="fa fa-check"></i><b>8.16.7</b> Gráficos rápidos</a></li>
@@ -366,8 +368,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>9</b> Visualização de dados na prática</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="gapminder.html"><a href="gapminder.html#estudo-de-caso-novas-idéias-sobre-pobreza"><i class="fa fa-check"></i><b>9.1</b> Estudo de caso: novas idéias sobre pobreza</a></li>
-<li class="chapter" data-level="9.2" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-dispersão"><i class="fa fa-check"></i><b>9.2</b> Diagrama de dispersão</a></li>
+<li class="chapter" data-level="9.1" data-path="gapminder.html"><a href="gapminder.html#estudo-de-caso-novas-perspectivas-sobre-pobreza"><i class="fa fa-check"></i><b>9.1</b> Estudo de caso: novas perspectivas sobre pobreza</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="gapminder.html"><a href="gapminder.html#teste-de-hans-rosling"><i class="fa fa-check"></i><b>9.1.1</b> Teste de Hans Rosling</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="gapminder.html"><a href="gapminder.html#diagramas-de-dispersão-scatterplots"><i class="fa fa-check"></i><b>9.2</b> Diagramas de dispersão (<em>scatterplots</em>)</a></li>
 <li class="chapter" data-level="9.3" data-path="gapminder.html"><a href="gapminder.html#separe-em-facetas"><i class="fa fa-check"></i><b>9.3</b> Separe em facetas</a>
 <ul>
 <li class="chapter" data-level="9.3.1" data-path="gapminder.html"><a href="gapminder.html#facet_wrap"><i class="fa fa-check"></i><b>9.3.1</b> <code>facet_wrap</code></a></li>
@@ -375,53 +380,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="gapminder.html"><a href="gapminder.html#gráficos-de-séries-temporais"><i class="fa fa-check"></i><b>9.4</b> Gráficos de séries temporais</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="gapminder.html"><a href="gapminder.html#etiquetas-em-vez-de-legendas"><i class="fa fa-check"></i><b>9.4.1</b> Etiquetas em vez de legendas</a></li>
+<li class="chapter" data-level="9.4.1" data-path="gapminder.html"><a href="gapminder.html#rótulos-em-vez-de-legendas"><i class="fa fa-check"></i><b>9.4.1</b> Rótulos em vez de legendas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="gapminder.html"><a href="gapminder.html#transformações-de-dados"><i class="fa fa-check"></i><b>9.5</b> Transformações de dados</a>
 <ul>
 <li class="chapter" data-level="9.5.1" data-path="gapminder.html"><a href="gapminder.html#transformação-logarítmica"><i class="fa fa-check"></i><b>9.5.1</b> Transformação logarítmica</a></li>
 <li class="chapter" data-level="9.5.2" data-path="gapminder.html"><a href="gapminder.html#qual-base"><i class="fa fa-check"></i><b>9.5.2</b> Qual base?</a></li>
-<li class="chapter" data-level="9.5.3" data-path="gapminder.html"><a href="gapminder.html#transformar-valores-ou-escala"><i class="fa fa-check"></i><b>9.5.3</b> Transformar valores ou escala?</a></li>
+<li class="chapter" data-level="9.5.3" data-path="gapminder.html"><a href="gapminder.html#transformar-os-valores-ou-a-escala"><i class="fa fa-check"></i><b>9.5.3</b> Transformar os valores ou a escala?</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="gapminder.html"><a href="gapminder.html#como-visualizar-distribuições-multimodais"><i class="fa fa-check"></i><b>9.6</b> Como visualizar distribuições multimodais</a></li>
-<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-várias-distribuições-com-gráficos-de-caixas-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar várias distribuições com gráficos de caixas e gráficos <em>ridge</em></a>
+<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-múltiplas-distribuições-com-boxplots-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar múltiplas distribuições com <em>boxplots</em> e gráficos <em>ridge</em></a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-caixa"><i class="fa fa-check"></i><b>9.7.1</b> Diagrama de caixa</a></li>
-<li class="chapter" data-level="9.7.2" data-path="gapminder.html"><a href="gapminder.html#exemplo-distribuições-de-renda-1970-versus-2010"><i class="fa fa-check"></i><b>9.7.2</b> Exemplo: distribuições de renda 1970 versus 2010</a></li>
-<li class="chapter" data-level="9.7.3" data-path="gapminder.html"><a href="gapminder.html#como-acessar-variáveis-calculadas"><i class="fa fa-check"></i><b>9.7.3</b> Como acessar variáveis calculadas</a></li>
-<li class="chapter" data-level="9.7.4" data-path="gapminder.html"><a href="gapminder.html#densidades-ponderadas"><i class="fa fa-check"></i><b>9.7.4</b> Densidades ponderadas</a></li>
+<li class="chapter" data-level="9.7.1" data-path="gapminder.html"><a href="gapminder.html#boxplots-diagramas-de-caixa"><i class="fa fa-check"></i><b>9.7.1</b> <em>Boxplots</em> (diagramas de caixa)</a></li>
+<li class="chapter" data-level="9.7.2" data-path="gapminder.html"><a href="gapminder.html#gráficos-ridge"><i class="fa fa-check"></i><b>9.7.2</b> Gráficos <em>ridge</em></a></li>
+<li class="chapter" data-level="9.7.3" data-path="gapminder.html"><a href="gapminder.html#exemplo-distribuições-de-renda-1970-versus-2010"><i class="fa fa-check"></i><b>9.7.3</b> Exemplo: distribuições de renda 1970 versus 2010</a></li>
+<li class="chapter" data-level="9.7.4" data-path="gapminder.html"><a href="gapminder.html#como-acessar-variáveis-calculadas"><i class="fa fa-check"></i><b>9.7.4</b> Como acessar variáveis calculadas</a></li>
+<li class="chapter" data-level="9.7.5" data-path="gapminder.html"><a href="gapminder.html#densidades-ponderadas"><i class="fa fa-check"></i><b>9.7.5</b> Densidades ponderadas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.8" data-path="gapminder.html"><a href="gapminder.html#a-falácia-ecológica-e-a-importância-de-mostrar-os-dados"><i class="fa fa-check"></i><b>9.8</b> A falácia ecológica e a importância de mostrar os dados</a>
 <ul>
-<li class="chapter" data-level="9.8.1" data-path="gapminder.html"><a href="gapminder.html#logit"><i class="fa fa-check"></i><b>9.8.1</b> Transformação de logística</a></li>
-<li class="chapter" data-level="9.8.2" data-path="gapminder.html"><a href="gapminder.html#mostrar-os-dados"><i class="fa fa-check"></i><b>9.8.2</b> Mostrar os dados</a></li>
+<li class="chapter" data-level="9.8.1" data-path="gapminder.html"><a href="gapminder.html#logit"><i class="fa fa-check"></i><b>9.8.1</b> Transformação logística</a></li>
+<li class="chapter" data-level="9.8.2" data-path="gapminder.html"><a href="gapminder.html#mostre-os-dados"><i class="fa fa-check"></i><b>9.8.2</b> Mostre os dados</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html"><i class="fa fa-check"></i><b>10</b> Princípios de visualização de dados</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-codificar-dados-usando-pistas-visuais"><i class="fa fa-check"></i><b>10.1</b> Como codificar dados usando pistas visuais</a></li>
+<li class="chapter" data-level="10.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#codificando-dados-usando-dicas-visuais"><i class="fa fa-check"></i><b>10.1</b> Codificando dados usando dicas visuais</a></li>
 <li class="chapter" data-level="10.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#saiba-quando-incluir-0"><i class="fa fa-check"></i><b>10.2</b> Saiba quando incluir 0</a></li>
 <li class="chapter" data-level="10.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#não-distorça-quantidades"><i class="fa fa-check"></i><b>10.3</b> Não distorça quantidades</a></li>
-<li class="chapter" data-level="10.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#classificar-categorias-por-valor-significativo"><i class="fa fa-check"></i><b>10.4</b> Classificar categorias por valor significativo</a></li>
-<li class="chapter" data-level="10.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#mostrar-os-dados-1"><i class="fa fa-check"></i><b>10.5</b> Mostrar os dados</a></li>
-<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-facilitar-comparações"><i class="fa fa-check"></i><b>10.6</b> Como facilitar comparações</a>
+<li class="chapter" data-level="10.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#ordenando-categorias-por-um-valor-significativo"><i class="fa fa-check"></i><b>10.4</b> Ordenando categorias por um valor significativo</a></li>
+<li class="chapter" data-level="10.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#mostre-os-dados-1"><i class="fa fa-check"></i><b>10.5</b> Mostre os dados</a></li>
+<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#facilite-comparações"><i class="fa fa-check"></i><b>10.6</b> Facilite comparações</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-eixos-comuns"><i class="fa fa-check"></i><b>10.6.1</b> Use eixos comuns</a></li>
+<li class="chapter" data-level="10.6.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-eixos-em-comum"><i class="fa fa-check"></i><b>10.6.1</b> Use eixos em comum</a></li>
 <li class="chapter" data-level="10.6.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#alinhe-os-gráficos-verticalmente-para-ver-alterações-horizontais-e-horizontalmente-para-ver-alterações-verticais"><i class="fa fa-check"></i><b>10.6.2</b> Alinhe os gráficos verticalmente para ver alterações horizontais e horizontalmente para ver alterações verticais</a></li>
 <li class="chapter" data-level="10.6.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#considere-transformações"><i class="fa fa-check"></i><b>10.6.3</b> Considere transformações</a></li>
 <li class="chapter" data-level="10.6.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#as-indicações-visuais-comparadas-devem-ser-adjacentes"><i class="fa fa-check"></i><b>10.6.4</b> As indicações visuais comparadas devem ser adjacentes</a></li>
 <li class="chapter" data-level="10.6.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-cores"><i class="fa fa-check"></i><b>10.6.5</b> Use cores</a></li>
 </ul></li>
 <li class="chapter" data-level="10.7" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#pense-no-daltônico"><i class="fa fa-check"></i><b>10.7</b> Pense no daltônico</a></li>
-<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Gráficos para duas variáveis</a>
+<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#plotagens-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Plotagens para duas variáveis</a>
 <ul>
 <li class="chapter" data-level="10.8.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-de-inclinação"><i class="fa fa-check"></i><b>10.8.1</b> Gráficos de inclinação</a></li>
 <li class="chapter" data-level="10.8.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráfico-de-bland-altman"><i class="fa fa-check"></i><b>10.8.2</b> Gráfico de Bland-Altman</a></li>
 </ul></li>
-<li class="chapter" data-level="10.9" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-codificar-uma-terceira-variável"><i class="fa fa-check"></i><b>10.9</b> Como codificar uma terceira variável</a></li>
-<li class="chapter" data-level="10.10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#evitar-gráficos-pseudo-tridimensionais"><i class="fa fa-check"></i><b>10.10</b> Evitar gráficos pseudo-tridimensionais</a></li>
+<li class="chapter" data-level="10.9" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#codificando-uma-terceira-variável"><i class="fa fa-check"></i><b>10.9</b> Codificando uma terceira variável</a></li>
+<li class="chapter" data-level="10.10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#evite-gráficos-pseudo-tridimensionais"><i class="fa fa-check"></i><b>10.10</b> Evite gráficos pseudo-tridimensionais</a></li>
 <li class="chapter" data-level="10.11" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#evite-muitos-dígitos-significativos"><i class="fa fa-check"></i><b>10.11</b> Evite muitos dígitos significativos</a></li>
-<li class="chapter" data-level="10.12" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#conheça-o-seu-público"><i class="fa fa-check"></i><b>10.12</b> Conheça o seu público</a></li>
+<li class="chapter" data-level="10.12" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#conheça-seu-público"><i class="fa fa-check"></i><b>10.12</b> Conheça seu público</a></li>
 <li class="chapter" data-level="10.13" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#exercícios-19"><i class="fa fa-check"></i><b>10.13</b> Exercícios</a></li>
 <li class="chapter" data-level="10.14" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#vaccines"><i class="fa fa-check"></i><b>10.14</b> Estudo de caso: vacinas e doenças infecciosas</a></li>
 <li class="chapter" data-level="10.15" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#exercícios-20"><i class="fa fa-check"></i><b>10.15</b> Exercícios</a></li>
@@ -437,7 +443,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.7" data-path="robust-summaries.html"><a href="robust-summaries.html#estudo-de-caso-altura-do-aluno-autorreferida"><i class="fa fa-check"></i><b>11.7</b> Estudo de caso: altura do aluno autorreferida</a></li>
 </ul></li>
 <li class="part"><span><b>III Estatísticas com R</b></span></li>
-<li class="chapter" data-level="12" data-path="introdução-às-estatísticas-com-r.html"><a href="introdução-às-estatísticas-com-r.html"><i class="fa fa-check"></i><b>12</b> Introdução às estatísticas com R</a></li>
+<li class="chapter" data-level="12" data-path="introdução-à-estatística-com-r.html"><a href="introdução-à-estatística-com-r.html"><i class="fa fa-check"></i><b>12</b> Introdução à estatística com R</a></li>
 <li class="chapter" data-level="13" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>13</b> Probabilidade</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-discreta"><i class="fa fa-check"></i><b>13.1</b> Probabilidade discreta</a>
@@ -472,23 +478,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#modelos-de-amostragem"><i class="fa fa-check"></i><b>14.2</b> Modelos de amostragem</a></li>
 <li class="chapter" data-level="14.3" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#a-distribuição-de-probabilidade-de-uma-variável-aleatória"><i class="fa fa-check"></i><b>14.3</b> A distribuição de probabilidade de uma variável aleatória</a></li>
 <li class="chapter" data-level="14.4" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#distribuições-versus-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>14.4</b> Distribuições versus distribuições de probabilidade</a></li>
-<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.5</b> O valor esperado e o erro padrão</a>
+<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#notação-para-variáveis-aleatórias"><i class="fa fa-check"></i><b>14.5</b> Notação para variáveis aleatórias</a></li>
+<li class="chapter" data-level="14.6" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.6</b> O valor esperado e o erro padrão</a>
 <ul>
-<li class="chapter" data-level="14.5.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#população-sd-versus-amostra-sd"><i class="fa fa-check"></i><b>14.5.1</b> População SD versus amostra SD</a></li>
+<li class="chapter" data-level="14.6.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#desvio-padrão-da-população-versus-desvio-padrão-da-amostra"><i class="fa fa-check"></i><b>14.6.1</b> Desvio padrão da população versus desvio padrão da amostra</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#teorema-do-limite-central"><i class="fa fa-check"></i><b>14.6</b> Teorema do limite central</a></li>
-<li class="chapter" data-level="14.7" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#propriedades-estatísticas-das-médias"><i class="fa fa-check"></i><b>14.7</b> Propriedades estatísticas das médias</a></li>
-<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.8</b> Lei dos grandes números</a>
+<li class="chapter" data-level="14.7" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#teorema-do-limite-central"><i class="fa fa-check"></i><b>14.7</b> Teorema do Limite Central</a></li>
+<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#propriedades-estatísticas-das-médias"><i class="fa fa-check"></i><b>14.8</b> Propriedades estatísticas das médias</a></li>
+<li class="chapter" data-level="14.9" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.9</b> Lei dos grandes números</a>
 <ul>
-<li class="chapter" data-level="14.8.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#interpretação-incorreta-da-lei-das-médias"><i class="fa fa-check"></i><b>14.8.1</b> Interpretação incorreta da lei das médias</a></li>
+<li class="chapter" data-level="14.9.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#interpretação-incorreta-da-lei-das-médias"><i class="fa fa-check"></i><b>14.9.1</b> Interpretação incorreta da lei das médias</a></li>
 </ul></li>
-<li class="chapter" data-level="14.9" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-24"><i class="fa fa-check"></i><b>14.9</b> Exercícios</a></li>
-<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-o-grande-short"><i class="fa fa-check"></i><b>14.10</b> Estudo de caso: o grande short</a>
+<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-24"><i class="fa fa-check"></i><b>14.10</b> Exercícios</a></li>
+<li class="chapter" data-level="14.11" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-the-big-short"><i class="fa fa-check"></i><b>14.11</b> Estudo de caso: <em>The Big Short</em></a>
 <ul>
-<li class="chapter" data-level="14.10.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#taxas-de-juros-explicadas-com-um-modelo-de-oportunidade"><i class="fa fa-check"></i><b>14.10.1</b> Taxas de juros explicadas com um modelo de oportunidade</a></li>
-<li class="chapter" data-level="14.10.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-grande-curto"><i class="fa fa-check"></i><b>14.10.2</b> O Grande Curto</a></li>
+<li class="chapter" data-level="14.11.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#taxas-de-juros-explicadas-com-modelo-de-probabilidade"><i class="fa fa-check"></i><b>14.11.1</b> Taxas de juros explicadas com modelo de probabilidade</a></li>
+<li class="chapter" data-level="14.11.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#the-big-short"><i class="fa fa-check"></i><b>14.11.2</b> <em>The Big Short</em></a></li>
 </ul></li>
-<li class="chapter" data-level="14.11" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-25"><i class="fa fa-check"></i><b>14.11</b> Exercícios</a></li>
+<li class="chapter" data-level="14.12" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-25"><i class="fa fa-check"></i><b>14.12</b> Exercícios</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
@@ -514,10 +521,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 class="title">Introdução à Ciência de Dados</h1>
 <h2 class="subtitle"><em>Análise de Dados e Algoritmos de Previsão com R</em></h2>
 <p class="author"><em>Rafael A. Irizarry</em></p>
-<p class="date"><em>2020-06-26</em></p>
+<p class="date"><em>2020-11-16</em></p>
 </div>
-<div id="prefácio" class="section level1 unnumbered" number="">
+<div id="prefácio" class="section level1 unnumbered">
 <h1>Prefácio</h1>
+<p>v1</p>
 <p>Este livro começou como as notas de aulas empregadas para ministrar o curso na HarvardX <a href="https://www.edx.org/professional-certificate/harvardx-data-science">Data Science Series</a><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <p>Os códigos em Rmarkdown usados para gerar o livro estão disponíveis no <a href="https://github.com/rafalab/dsbook">GitHub</a><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. Observe que o tema usado para plotagem de gráficos em todo o livro pode ser recriado usando a função <code>ds_theme_set()</code> do pacote <strong>dslabs</strong>.</p>
 <p>Um PDF gratuito, da versão de 24 de outubro de 2019, em inglês, deste livro está disponível no <a href="https://leanpub.com/datasciencebook">Leanpub</a><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
@@ -582,7 +590,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["livro.pdf", "livro.epub"],
 "toc": {
 "collapse": "section"
 }

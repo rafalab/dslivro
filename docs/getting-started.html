@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 1 Introdução ao R e RStudio | Introdução à Ciência de Dados</title>
   <meta name="description" content="Este livro apresenta conceitos e habilidades que ajudarão você a enfrentar os desafios da vida real em análise de dados. Ele abrange conceitos de probabilidade, inferência estatística, regressão linear e aprendizado de máquina. Além disso, permitirá que você desenvolva habilidades como programação em R, manipulação de dados com dplyr, visualização de dados com ggplot2, organização de arquivos no ambiente UNIX/Linux, controle de versão com GitHub e elaboração de documentos reprodutíveis com Rmarkdown." />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 1 Introdução ao R e RStudio | Introdução à Ciência de Dados" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Rafael A. Irizarry" />
 
 
-<meta name="date" content="2020-06-26" />
+<meta name="date" content="2020-11-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="introdução.html"/>
 <link rel="next" href="r-basics.html"/>
-<script src="libs/header-attrs-2.3/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,10 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -187,17 +189,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5" data-path="r-basics.html"><a href="r-basics.html#exercícios-1"><i class="fa fa-check"></i><b>2.5</b> Exercícios</a></li>
 <li class="chapter" data-level="2.6" data-path="r-basics.html"><a href="r-basics.html#vetores"><i class="fa fa-check"></i><b>2.6</b> Vetores</a>
 <ul>
-<li class="chapter" data-level="2.6.1" data-path="r-basics.html"><a href="r-basics.html#como-criar-vetores"><i class="fa fa-check"></i><b>2.6.1</b> Como criar vetores</a></li>
+<li class="chapter" data-level="2.6.1" data-path="r-basics.html"><a href="r-basics.html#criando-vetores"><i class="fa fa-check"></i><b>2.6.1</b> Criando vetores</a></li>
 <li class="chapter" data-level="2.6.2" data-path="r-basics.html"><a href="r-basics.html#nomes"><i class="fa fa-check"></i><b>2.6.2</b> Nomes</a></li>
 <li class="chapter" data-level="2.6.3" data-path="r-basics.html"><a href="r-basics.html#sequências"><i class="fa fa-check"></i><b>2.6.3</b> Sequências</a></li>
-<li class="chapter" data-level="2.6.4" data-path="r-basics.html"><a href="r-basics.html#como-criar-um-subconjunto"><i class="fa fa-check"></i><b>2.6.4</b> Como criar um subconjunto</a></li>
+<li class="chapter" data-level="2.6.4" data-path="r-basics.html"><a href="r-basics.html#criando-subconjuntos"><i class="fa fa-check"></i><b>2.6.4</b> Criando subconjuntos</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="r-basics.html"><a href="r-basics.html#conversão-forçada"><i class="fa fa-check"></i><b>2.7</b> Conversão forçada</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="r-basics.html"><a href="r-basics.html#não-disponível-na"><i class="fa fa-check"></i><b>2.7.1</b> <em>Não disponível</em> (NA)</a></li>
+<li class="chapter" data-level="2.7.1" data-path="r-basics.html"><a href="r-basics.html#valores-na"><i class="fa fa-check"></i><b>2.7.1</b> Valores NA</a></li>
 </ul></li>
 <li class="chapter" data-level="2.8" data-path="r-basics.html"><a href="r-basics.html#exercícios-2"><i class="fa fa-check"></i><b>2.8</b> Exercícios</a></li>
-<li class="chapter" data-level="2.9" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.9</b> <em>Ordenação</em></a>
+<li class="chapter" data-level="2.9" data-path="r-basics.html"><a href="r-basics.html#ordenação"><i class="fa fa-check"></i><b>2.9</b> Ordenação</a>
 <ul>
 <li class="chapter" data-level="2.9.1" data-path="r-basics.html"><a href="r-basics.html#sort"><i class="fa fa-check"></i><b>2.9.1</b> <code>sort</code></a></li>
 <li class="chapter" data-level="2.9.2" data-path="r-basics.html"><a href="r-basics.html#order"><i class="fa fa-check"></i><b>2.9.2</b> <code>order</code></a></li>
@@ -208,13 +210,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.10" data-path="r-basics.html"><a href="r-basics.html#exercícios-3"><i class="fa fa-check"></i><b>2.10</b> Exercícios</a></li>
 <li class="chapter" data-level="2.11" data-path="r-basics.html"><a href="r-basics.html#aritmética-vetorial"><i class="fa fa-check"></i><b>2.11</b> Aritmética vetorial</a>
 <ul>
-<li class="chapter" data-level="2.11.1" data-path="r-basics.html"><a href="r-basics.html#rescalar-um-vetor"><i class="fa fa-check"></i><b>2.11.1</b> <em>Rescalar</em> um vetor</a></li>
+<li class="chapter" data-level="2.11.1" data-path="r-basics.html"><a href="r-basics.html#reescalonando-um-vetor"><i class="fa fa-check"></i><b>2.11.1</b> Reescalonando um vetor</a></li>
 <li class="chapter" data-level="2.11.2" data-path="r-basics.html"><a href="r-basics.html#dois-vetores"><i class="fa fa-check"></i><b>2.11.2</b> Dois vetores</a></li>
 </ul></li>
 <li class="chapter" data-level="2.12" data-path="r-basics.html"><a href="r-basics.html#exercícios-4"><i class="fa fa-check"></i><b>2.12</b> Exercícios</a></li>
 <li class="chapter" data-level="2.13" data-path="r-basics.html"><a href="r-basics.html#indexação"><i class="fa fa-check"></i><b>2.13</b> Indexação</a>
 <ul>
-<li class="chapter" data-level="2.13.1" data-path="r-basics.html"><a href="r-basics.html#criar-subconjuntos-com-lógicas"><i class="fa fa-check"></i><b>2.13.1</b> Criar subconjuntos com lógicas</a></li>
+<li class="chapter" data-level="2.13.1" data-path="r-basics.html"><a href="r-basics.html#criando-subconjuntos-com-objetos-do-tipo-lógico"><i class="fa fa-check"></i><b>2.13.1</b> Criando subconjuntos com objetos do tipo lógico</a></li>
 <li class="chapter" data-level="2.13.2" data-path="r-basics.html"><a href="r-basics.html#operadores-lógicos"><i class="fa fa-check"></i><b>2.13.2</b> Operadores lógicos</a></li>
 <li class="chapter" data-level="2.13.3" data-path="r-basics.html"><a href="r-basics.html#which"><i class="fa fa-check"></i><b>2.13.3</b> <code>which</code></a></li>
 <li class="chapter" data-level="2.13.4" data-path="r-basics.html"><a href="r-basics.html#match"><i class="fa fa-check"></i><b>2.13.4</b> <code>match</code></a></li>
@@ -286,11 +288,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.1" data-path="importing-data.html"><a href="importing-data.html#caminhos-e-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1</b> Caminhos e diretório de trabalho</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="importing-data.html"><a href="importing-data.html#o-sistema-de-arquivos"><i class="fa fa-check"></i><b>5.1.1</b> O sistema de arquivos</a></li>
-<li class="chapter" data-level="5.1.2" data-path="importing-data.html"><a href="importing-data.html#caminhos-relativos-e-completos"><i class="fa fa-check"></i><b>5.1.2</b> Caminhos relativos e completos</a></li>
+<li class="chapter" data-level="5.1.1" data-path="importing-data.html"><a href="importing-data.html#sistema-de-arquivos"><i class="fa fa-check"></i><b>5.1.1</b> Sistema de arquivos</a></li>
+<li class="chapter" data-level="5.1.2" data-path="importing-data.html"><a href="importing-data.html#caminhos-relativos-e-absolutos"><i class="fa fa-check"></i><b>5.1.2</b> Caminhos relativos e absolutos</a></li>
 <li class="chapter" data-level="5.1.3" data-path="importing-data.html"><a href="importing-data.html#o-diretório-de-trabalho"><i class="fa fa-check"></i><b>5.1.3</b> O diretório de trabalho</a></li>
-<li class="chapter" data-level="5.1.4" data-path="importing-data.html"><a href="importing-data.html#como-gerar-nomes-de-caminhos"><i class="fa fa-check"></i><b>5.1.4</b> Como gerar nomes de caminhos</a></li>
-<li class="chapter" data-level="5.1.5" data-path="importing-data.html"><a href="importing-data.html#como-copiar-arquivos-usando-caminhos"><i class="fa fa-check"></i><b>5.1.5</b> Como copiar arquivos usando caminhos</a></li>
+<li class="chapter" data-level="5.1.4" data-path="importing-data.html"><a href="importing-data.html#gerando-nomes-de-caminhos"><i class="fa fa-check"></i><b>5.1.4</b> Gerando nomes de caminhos</a></li>
+<li class="chapter" data-level="5.1.5" data-path="importing-data.html"><a href="importing-data.html#copiando-arquivos-usando-caminhos"><i class="fa fa-check"></i><b>5.1.5</b> Copiando arquivos usando caminhos</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="importing-data.html"><a href="importing-data.html#os-pacotes-readr-e-readxl"><i class="fa fa-check"></i><b>5.2</b> Os pacotes readr e readxl</a>
 <ul>
@@ -298,8 +300,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="importing-data.html"><a href="importing-data.html#readxl"><i class="fa fa-check"></i><b>5.2.2</b> readxl</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="importing-data.html"><a href="importing-data.html#exercícios-13"><i class="fa fa-check"></i><b>5.3</b> Exercícios</a></li>
-<li class="chapter" data-level="5.4" data-path="importing-data.html"><a href="importing-data.html#como-baixar-arquivos"><i class="fa fa-check"></i><b>5.4</b> Como baixar arquivos</a></li>
-<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação R</a>
+<li class="chapter" data-level="5.4" data-path="importing-data.html"><a href="importing-data.html#como-fazer-download-de-arquivos"><i class="fa fa-check"></i><b>5.4</b> Como fazer <em>download</em> de arquivos</a></li>
+<li class="chapter" data-level="5.5" data-path="importing-data.html"><a href="importing-data.html#funções-básicas-de-importação-do-r"><i class="fa fa-check"></i><b>5.5</b> Funções básicas de importação do R</a>
 <ul>
 <li class="chapter" data-level="5.5.1" data-path="importing-data.html"><a href="importing-data.html#scan"><i class="fa fa-check"></i><b>5.5.1</b> <code>scan</code></a></li>
 </ul></li>
@@ -313,51 +315,51 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>7</b> ggplot2</a>
 <ul>
 <li class="chapter" data-level="7.1" data-path="ggplot2.html"><a href="ggplot2.html#os-componentes-de-um-gráfico"><i class="fa fa-check"></i><b>7.1</b> Os componentes de um gráfico</a></li>
-<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-ggplot"><i class="fa fa-check"></i><b>7.2</b> objetos <code>ggplot</code></a></li>
+<li class="chapter" data-level="7.2" data-path="ggplot2.html"><a href="ggplot2.html#objetos-ggplot"><i class="fa fa-check"></i><b>7.2</b> Objetos <code>ggplot</code></a></li>
 <li class="chapter" data-level="7.3" data-path="ggplot2.html"><a href="ggplot2.html#geometrias"><i class="fa fa-check"></i><b>7.3</b> Geometrias</a></li>
 <li class="chapter" data-level="7.4" data-path="ggplot2.html"><a href="ggplot2.html#mapeamentos-estéticos"><i class="fa fa-check"></i><b>7.4</b> Mapeamentos estéticos</a></li>
 <li class="chapter" data-level="7.5" data-path="ggplot2.html"><a href="ggplot2.html#camadas"><i class="fa fa-check"></i><b>7.5</b> Camadas</a>
 <ul>
-<li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#como-testar-vários-argumentos"><i class="fa fa-check"></i><b>7.5.1</b> Como testar vários argumentos</a></li>
+<li class="chapter" data-level="7.5.1" data-path="ggplot2.html"><a href="ggplot2.html#trabalhando-com-argumentos"><i class="fa fa-check"></i><b>7.5.1</b> Trabalhando com argumentos</a></li>
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="ggplot2.html"><a href="ggplot2.html#mapeamento-estético-global-versus-local"><i class="fa fa-check"></i><b>7.6</b> Mapeamento estético global versus local</a></li>
 <li class="chapter" data-level="7.7" data-path="ggplot2.html"><a href="ggplot2.html#escalas"><i class="fa fa-check"></i><b>7.7</b> Escalas</a></li>
-<li class="chapter" data-level="7.8" data-path="ggplot2.html"><a href="ggplot2.html#tags-e-títulos"><i class="fa fa-check"></i><b>7.8</b> Tags e títulos</a></li>
-<li class="chapter" data-level="7.9" data-path="ggplot2.html"><a href="ggplot2.html#categorias-como-cores"><i class="fa fa-check"></i><b>7.9</b> Categorias como cores</a></li>
-<li class="chapter" data-level="7.10" data-path="ggplot2.html"><a href="ggplot2.html#anotação-formas-e-ajustes"><i class="fa fa-check"></i><b>7.10</b> Anotação, formas e ajustes</a></li>
+<li class="chapter" data-level="7.8" data-path="ggplot2.html"><a href="ggplot2.html#rótulos-e-títulos"><i class="fa fa-check"></i><b>7.8</b> Rótulos e títulos</a></li>
+<li class="chapter" data-level="7.9" data-path="ggplot2.html"><a href="ggplot2.html#usando-categorias-como-cores"><i class="fa fa-check"></i><b>7.9</b> Usando categorias como cores</a></li>
+<li class="chapter" data-level="7.10" data-path="ggplot2.html"><a href="ggplot2.html#anotações-formas-e-ajustes"><i class="fa fa-check"></i><b>7.10</b> Anotações, formas e ajustes</a></li>
 <li class="chapter" data-level="7.11" data-path="ggplot2.html"><a href="ggplot2.html#add-on-packages"><i class="fa fa-check"></i><b>7.11</b> Pacotes complementares</a></li>
 <li class="chapter" data-level="7.12" data-path="ggplot2.html"><a href="ggplot2.html#como-combinar-tudo"><i class="fa fa-check"></i><b>7.12</b> Como combinar tudo</a></li>
 <li class="chapter" data-level="7.13" data-path="ggplot2.html"><a href="ggplot2.html#qplot"><i class="fa fa-check"></i><b>7.13</b> Gráficos rápidos com <code>qplot</code></a></li>
-<li class="chapter" data-level="7.14" data-path="ggplot2.html"><a href="ggplot2.html#grades-de-gráfico"><i class="fa fa-check"></i><b>7.14</b> Grades de gráfico</a></li>
+<li class="chapter" data-level="7.14" data-path="ggplot2.html"><a href="ggplot2.html#grade-de-gráficos"><i class="fa fa-check"></i><b>7.14</b> Grade de gráficos</a></li>
 <li class="chapter" data-level="7.15" data-path="ggplot2.html"><a href="ggplot2.html#exercícios-15"><i class="fa fa-check"></i><b>7.15</b> Exercícios</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Como visualizar distribuições de dados</a>
+<li class="chapter" data-level="8" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>8</b> Visualizando distribuições de dados</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="distributions.html"><a href="distributions.html#tipos-de-variáveis"><i class="fa fa-check"></i><b>8.1</b> Tipos de variáveis</a></li>
 <li class="chapter" data-level="8.2" data-path="distributions.html"><a href="distributions.html#estudo-de-caso-descrevendo-a-altura-dos-alunos"><i class="fa fa-check"></i><b>8.2</b> Estudo de caso: descrevendo a altura dos alunos</a></li>
-<li class="chapter" data-level="8.3" data-path="distributions.html"><a href="distributions.html#a-função-de-distribuição"><i class="fa fa-check"></i><b>8.3</b> A função de distribuição</a></li>
-<li class="chapter" data-level="8.4" data-path="distributions.html"><a href="distributions.html#cdf-intro"><i class="fa fa-check"></i><b>8.4</b> Funções de distribuição cumulativa</a></li>
+<li class="chapter" data-level="8.3" data-path="distributions.html"><a href="distributions.html#função-de-distribuição"><i class="fa fa-check"></i><b>8.3</b> Função de distribuição</a></li>
+<li class="chapter" data-level="8.4" data-path="distributions.html"><a href="distributions.html#cdf-intro"><i class="fa fa-check"></i><b>8.4</b> Funções de distribuição acumulada</a></li>
 <li class="chapter" data-level="8.5" data-path="distributions.html"><a href="distributions.html#histogramas"><i class="fa fa-check"></i><b>8.5</b> Histogramas</a></li>
-<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#densidade-suave"><i class="fa fa-check"></i><b>8.6</b> Densidade suave</a>
+<li class="chapter" data-level="8.6" data-path="distributions.html"><a href="distributions.html#curvas-de-densidade"><i class="fa fa-check"></i><b>8.6</b> Curvas de densidade</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="distributions.html"><a href="distributions.html#como-interpretar-o-eixo-y"><i class="fa fa-check"></i><b>8.6.1</b> Como interpretar o eixo y</a></li>
-<li class="chapter" data-level="8.6.2" data-path="distributions.html"><a href="distributions.html#densidades-permitem-camadas"><i class="fa fa-check"></i><b>8.6.2</b> Densidades permitem camadas</a></li>
+<li class="chapter" data-level="8.6.1" data-path="distributions.html"><a href="distributions.html#interpretando-o-eixo-y"><i class="fa fa-check"></i><b>8.6.1</b> Interpretando o eixo y</a></li>
+<li class="chapter" data-level="8.6.2" data-path="distributions.html"><a href="distributions.html#densidades-permitem-a-estratificação"><i class="fa fa-check"></i><b>8.6.2</b> Densidades permitem a estratificação</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="distributions.html"><a href="distributions.html#exercícios-16"><i class="fa fa-check"></i><b>8.7</b> Exercícios</a></li>
-<li class="chapter" data-level="8.8" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>8.8</b> A distribuição normal</a></li>
+<li class="chapter" data-level="8.8" data-path="distributions.html"><a href="distributions.html#normal-distribution"><i class="fa fa-check"></i><b>8.8</b> Distribuição normal</a></li>
 <li class="chapter" data-level="8.9" data-path="distributions.html"><a href="distributions.html#unidades-padrão"><i class="fa fa-check"></i><b>8.9</b> Unidades padrão</a></li>
 <li class="chapter" data-level="8.10" data-path="distributions.html"><a href="distributions.html#gráficos-qq"><i class="fa fa-check"></i><b>8.10</b> Gráficos QQ</a></li>
 <li class="chapter" data-level="8.11" data-path="distributions.html"><a href="distributions.html#percentis"><i class="fa fa-check"></i><b>8.11</b> Percentis</a></li>
-<li class="chapter" data-level="8.12" data-path="distributions.html"><a href="distributions.html#diagramas-de-caixas"><i class="fa fa-check"></i><b>8.12</b> Diagramas de caixas</a></li>
+<li class="chapter" data-level="8.12" data-path="distributions.html"><a href="distributions.html#diagramas-de-caixas-boxplots"><i class="fa fa-check"></i><b>8.12</b> Diagramas de caixas (<em>boxplots</em>)</a></li>
 <li class="chapter" data-level="8.13" data-path="distributions.html"><a href="distributions.html#stratification"><i class="fa fa-check"></i><b>8.13</b> Estratificação</a></li>
-<li class="chapter" data-level="8.14" data-path="distributions.html"><a href="distributions.html#student-height-cont"><i class="fa fa-check"></i><b>8.14</b> Estudo de caso: descrição das alturas dos alunos (continuação)</a></li>
+<li class="chapter" data-level="8.14" data-path="distributions.html"><a href="distributions.html#student-height-cont"><i class="fa fa-check"></i><b>8.14</b> Estudo de caso: descrevendo as alturas dos alunos (continuação)</a></li>
 <li class="chapter" data-level="8.15" data-path="distributions.html"><a href="distributions.html#exercícios-17"><i class="fa fa-check"></i><b>8.15</b> Exercícios</a></li>
-<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Gegplot2 geometrias</a>
+<li class="chapter" data-level="8.16" data-path="distributions.html"><a href="distributions.html#other-geometries"><i class="fa fa-check"></i><b>8.16</b> Geometrias ggplot2</a>
 <ul>
 <li class="chapter" data-level="8.16.1" data-path="distributions.html"><a href="distributions.html#gráficos-de-barra"><i class="fa fa-check"></i><b>8.16.1</b> Gráficos de barra</a></li>
 <li class="chapter" data-level="8.16.2" data-path="distributions.html"><a href="distributions.html#histogramas-1"><i class="fa fa-check"></i><b>8.16.2</b> Histogramas</a></li>
 <li class="chapter" data-level="8.16.3" data-path="distributions.html"><a href="distributions.html#gráficos-de-densidade"><i class="fa fa-check"></i><b>8.16.3</b> Gráficos de densidade</a></li>
-<li class="chapter" data-level="8.16.4" data-path="distributions.html"><a href="distributions.html#diagramas-de-caixas-1"><i class="fa fa-check"></i><b>8.16.4</b> Diagramas de caixas</a></li>
+<li class="chapter" data-level="8.16.4" data-path="distributions.html"><a href="distributions.html#boxplots"><i class="fa fa-check"></i><b>8.16.4</b> <em>Boxplots</em></a></li>
 <li class="chapter" data-level="8.16.5" data-path="distributions.html"><a href="distributions.html#gráficos-qq-1"><i class="fa fa-check"></i><b>8.16.5</b> Gráficos QQ</a></li>
 <li class="chapter" data-level="8.16.6" data-path="distributions.html"><a href="distributions.html#imagens"><i class="fa fa-check"></i><b>8.16.6</b> Imagens</a></li>
 <li class="chapter" data-level="8.16.7" data-path="distributions.html"><a href="distributions.html#gráficos-rápidos"><i class="fa fa-check"></i><b>8.16.7</b> Gráficos rápidos</a></li>
@@ -366,8 +368,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9" data-path="gapminder.html"><a href="gapminder.html"><i class="fa fa-check"></i><b>9</b> Visualização de dados na prática</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="gapminder.html"><a href="gapminder.html#estudo-de-caso-novas-idéias-sobre-pobreza"><i class="fa fa-check"></i><b>9.1</b> Estudo de caso: novas idéias sobre pobreza</a></li>
-<li class="chapter" data-level="9.2" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-dispersão"><i class="fa fa-check"></i><b>9.2</b> Diagrama de dispersão</a></li>
+<li class="chapter" data-level="9.1" data-path="gapminder.html"><a href="gapminder.html#estudo-de-caso-novas-perspectivas-sobre-pobreza"><i class="fa fa-check"></i><b>9.1</b> Estudo de caso: novas perspectivas sobre pobreza</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="gapminder.html"><a href="gapminder.html#teste-de-hans-rosling"><i class="fa fa-check"></i><b>9.1.1</b> Teste de Hans Rosling</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="gapminder.html"><a href="gapminder.html#diagramas-de-dispersão-scatterplots"><i class="fa fa-check"></i><b>9.2</b> Diagramas de dispersão (<em>scatterplots</em>)</a></li>
 <li class="chapter" data-level="9.3" data-path="gapminder.html"><a href="gapminder.html#separe-em-facetas"><i class="fa fa-check"></i><b>9.3</b> Separe em facetas</a>
 <ul>
 <li class="chapter" data-level="9.3.1" data-path="gapminder.html"><a href="gapminder.html#facet_wrap"><i class="fa fa-check"></i><b>9.3.1</b> <code>facet_wrap</code></a></li>
@@ -375,53 +380,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="gapminder.html"><a href="gapminder.html#gráficos-de-séries-temporais"><i class="fa fa-check"></i><b>9.4</b> Gráficos de séries temporais</a>
 <ul>
-<li class="chapter" data-level="9.4.1" data-path="gapminder.html"><a href="gapminder.html#etiquetas-em-vez-de-legendas"><i class="fa fa-check"></i><b>9.4.1</b> Etiquetas em vez de legendas</a></li>
+<li class="chapter" data-level="9.4.1" data-path="gapminder.html"><a href="gapminder.html#rótulos-em-vez-de-legendas"><i class="fa fa-check"></i><b>9.4.1</b> Rótulos em vez de legendas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="gapminder.html"><a href="gapminder.html#transformações-de-dados"><i class="fa fa-check"></i><b>9.5</b> Transformações de dados</a>
 <ul>
 <li class="chapter" data-level="9.5.1" data-path="gapminder.html"><a href="gapminder.html#transformação-logarítmica"><i class="fa fa-check"></i><b>9.5.1</b> Transformação logarítmica</a></li>
 <li class="chapter" data-level="9.5.2" data-path="gapminder.html"><a href="gapminder.html#qual-base"><i class="fa fa-check"></i><b>9.5.2</b> Qual base?</a></li>
-<li class="chapter" data-level="9.5.3" data-path="gapminder.html"><a href="gapminder.html#transformar-valores-ou-escala"><i class="fa fa-check"></i><b>9.5.3</b> Transformar valores ou escala?</a></li>
+<li class="chapter" data-level="9.5.3" data-path="gapminder.html"><a href="gapminder.html#transformar-os-valores-ou-a-escala"><i class="fa fa-check"></i><b>9.5.3</b> Transformar os valores ou a escala?</a></li>
 </ul></li>
 <li class="chapter" data-level="9.6" data-path="gapminder.html"><a href="gapminder.html#como-visualizar-distribuições-multimodais"><i class="fa fa-check"></i><b>9.6</b> Como visualizar distribuições multimodais</a></li>
-<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-várias-distribuições-com-gráficos-de-caixas-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar várias distribuições com gráficos de caixas e gráficos <em>ridge</em></a>
+<li class="chapter" data-level="9.7" data-path="gapminder.html"><a href="gapminder.html#como-comparar-múltiplas-distribuições-com-boxplots-e-gráficos-ridge"><i class="fa fa-check"></i><b>9.7</b> Como comparar múltiplas distribuições com <em>boxplots</em> e gráficos <em>ridge</em></a>
 <ul>
-<li class="chapter" data-level="9.7.1" data-path="gapminder.html"><a href="gapminder.html#diagrama-de-caixa"><i class="fa fa-check"></i><b>9.7.1</b> Diagrama de caixa</a></li>
-<li class="chapter" data-level="9.7.2" data-path="gapminder.html"><a href="gapminder.html#exemplo-distribuições-de-renda-1970-versus-2010"><i class="fa fa-check"></i><b>9.7.2</b> Exemplo: distribuições de renda 1970 versus 2010</a></li>
-<li class="chapter" data-level="9.7.3" data-path="gapminder.html"><a href="gapminder.html#como-acessar-variáveis-calculadas"><i class="fa fa-check"></i><b>9.7.3</b> Como acessar variáveis calculadas</a></li>
-<li class="chapter" data-level="9.7.4" data-path="gapminder.html"><a href="gapminder.html#densidades-ponderadas"><i class="fa fa-check"></i><b>9.7.4</b> Densidades ponderadas</a></li>
+<li class="chapter" data-level="9.7.1" data-path="gapminder.html"><a href="gapminder.html#boxplots-diagramas-de-caixa"><i class="fa fa-check"></i><b>9.7.1</b> <em>Boxplots</em> (diagramas de caixa)</a></li>
+<li class="chapter" data-level="9.7.2" data-path="gapminder.html"><a href="gapminder.html#gráficos-ridge"><i class="fa fa-check"></i><b>9.7.2</b> Gráficos <em>ridge</em></a></li>
+<li class="chapter" data-level="9.7.3" data-path="gapminder.html"><a href="gapminder.html#exemplo-distribuições-de-renda-1970-versus-2010"><i class="fa fa-check"></i><b>9.7.3</b> Exemplo: distribuições de renda 1970 versus 2010</a></li>
+<li class="chapter" data-level="9.7.4" data-path="gapminder.html"><a href="gapminder.html#como-acessar-variáveis-calculadas"><i class="fa fa-check"></i><b>9.7.4</b> Como acessar variáveis calculadas</a></li>
+<li class="chapter" data-level="9.7.5" data-path="gapminder.html"><a href="gapminder.html#densidades-ponderadas"><i class="fa fa-check"></i><b>9.7.5</b> Densidades ponderadas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.8" data-path="gapminder.html"><a href="gapminder.html#a-falácia-ecológica-e-a-importância-de-mostrar-os-dados"><i class="fa fa-check"></i><b>9.8</b> A falácia ecológica e a importância de mostrar os dados</a>
 <ul>
-<li class="chapter" data-level="9.8.1" data-path="gapminder.html"><a href="gapminder.html#logit"><i class="fa fa-check"></i><b>9.8.1</b> Transformação de logística</a></li>
-<li class="chapter" data-level="9.8.2" data-path="gapminder.html"><a href="gapminder.html#mostrar-os-dados"><i class="fa fa-check"></i><b>9.8.2</b> Mostrar os dados</a></li>
+<li class="chapter" data-level="9.8.1" data-path="gapminder.html"><a href="gapminder.html#logit"><i class="fa fa-check"></i><b>9.8.1</b> Transformação logística</a></li>
+<li class="chapter" data-level="9.8.2" data-path="gapminder.html"><a href="gapminder.html#mostre-os-dados"><i class="fa fa-check"></i><b>9.8.2</b> Mostre os dados</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html"><i class="fa fa-check"></i><b>10</b> Princípios de visualização de dados</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-codificar-dados-usando-pistas-visuais"><i class="fa fa-check"></i><b>10.1</b> Como codificar dados usando pistas visuais</a></li>
+<li class="chapter" data-level="10.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#codificando-dados-usando-dicas-visuais"><i class="fa fa-check"></i><b>10.1</b> Codificando dados usando dicas visuais</a></li>
 <li class="chapter" data-level="10.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#saiba-quando-incluir-0"><i class="fa fa-check"></i><b>10.2</b> Saiba quando incluir 0</a></li>
 <li class="chapter" data-level="10.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#não-distorça-quantidades"><i class="fa fa-check"></i><b>10.3</b> Não distorça quantidades</a></li>
-<li class="chapter" data-level="10.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#classificar-categorias-por-valor-significativo"><i class="fa fa-check"></i><b>10.4</b> Classificar categorias por valor significativo</a></li>
-<li class="chapter" data-level="10.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#mostrar-os-dados-1"><i class="fa fa-check"></i><b>10.5</b> Mostrar os dados</a></li>
-<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-facilitar-comparações"><i class="fa fa-check"></i><b>10.6</b> Como facilitar comparações</a>
+<li class="chapter" data-level="10.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#ordenando-categorias-por-um-valor-significativo"><i class="fa fa-check"></i><b>10.4</b> Ordenando categorias por um valor significativo</a></li>
+<li class="chapter" data-level="10.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#mostre-os-dados-1"><i class="fa fa-check"></i><b>10.5</b> Mostre os dados</a></li>
+<li class="chapter" data-level="10.6" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#facilite-comparações"><i class="fa fa-check"></i><b>10.6</b> Facilite comparações</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-eixos-comuns"><i class="fa fa-check"></i><b>10.6.1</b> Use eixos comuns</a></li>
+<li class="chapter" data-level="10.6.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-eixos-em-comum"><i class="fa fa-check"></i><b>10.6.1</b> Use eixos em comum</a></li>
 <li class="chapter" data-level="10.6.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#alinhe-os-gráficos-verticalmente-para-ver-alterações-horizontais-e-horizontalmente-para-ver-alterações-verticais"><i class="fa fa-check"></i><b>10.6.2</b> Alinhe os gráficos verticalmente para ver alterações horizontais e horizontalmente para ver alterações verticais</a></li>
 <li class="chapter" data-level="10.6.3" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#considere-transformações"><i class="fa fa-check"></i><b>10.6.3</b> Considere transformações</a></li>
 <li class="chapter" data-level="10.6.4" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#as-indicações-visuais-comparadas-devem-ser-adjacentes"><i class="fa fa-check"></i><b>10.6.4</b> As indicações visuais comparadas devem ser adjacentes</a></li>
 <li class="chapter" data-level="10.6.5" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#use-cores"><i class="fa fa-check"></i><b>10.6.5</b> Use cores</a></li>
 </ul></li>
 <li class="chapter" data-level="10.7" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#pense-no-daltônico"><i class="fa fa-check"></i><b>10.7</b> Pense no daltônico</a></li>
-<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Gráficos para duas variáveis</a>
+<li class="chapter" data-level="10.8" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#plotagens-para-duas-variáveis"><i class="fa fa-check"></i><b>10.8</b> Plotagens para duas variáveis</a>
 <ul>
 <li class="chapter" data-level="10.8.1" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráficos-de-inclinação"><i class="fa fa-check"></i><b>10.8.1</b> Gráficos de inclinação</a></li>
 <li class="chapter" data-level="10.8.2" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#gráfico-de-bland-altman"><i class="fa fa-check"></i><b>10.8.2</b> Gráfico de Bland-Altman</a></li>
 </ul></li>
-<li class="chapter" data-level="10.9" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#como-codificar-uma-terceira-variável"><i class="fa fa-check"></i><b>10.9</b> Como codificar uma terceira variável</a></li>
-<li class="chapter" data-level="10.10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#evitar-gráficos-pseudo-tridimensionais"><i class="fa fa-check"></i><b>10.10</b> Evitar gráficos pseudo-tridimensionais</a></li>
+<li class="chapter" data-level="10.9" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#codificando-uma-terceira-variável"><i class="fa fa-check"></i><b>10.9</b> Codificando uma terceira variável</a></li>
+<li class="chapter" data-level="10.10" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#evite-gráficos-pseudo-tridimensionais"><i class="fa fa-check"></i><b>10.10</b> Evite gráficos pseudo-tridimensionais</a></li>
 <li class="chapter" data-level="10.11" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#evite-muitos-dígitos-significativos"><i class="fa fa-check"></i><b>10.11</b> Evite muitos dígitos significativos</a></li>
-<li class="chapter" data-level="10.12" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#conheça-o-seu-público"><i class="fa fa-check"></i><b>10.12</b> Conheça o seu público</a></li>
+<li class="chapter" data-level="10.12" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#conheça-seu-público"><i class="fa fa-check"></i><b>10.12</b> Conheça seu público</a></li>
 <li class="chapter" data-level="10.13" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#exercícios-19"><i class="fa fa-check"></i><b>10.13</b> Exercícios</a></li>
 <li class="chapter" data-level="10.14" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#vaccines"><i class="fa fa-check"></i><b>10.14</b> Estudo de caso: vacinas e doenças infecciosas</a></li>
 <li class="chapter" data-level="10.15" data-path="princípios-de-visualização-de-dados.html"><a href="princípios-de-visualização-de-dados.html#exercícios-20"><i class="fa fa-check"></i><b>10.15</b> Exercícios</a></li>
@@ -437,7 +443,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.7" data-path="robust-summaries.html"><a href="robust-summaries.html#estudo-de-caso-altura-do-aluno-autorreferida"><i class="fa fa-check"></i><b>11.7</b> Estudo de caso: altura do aluno autorreferida</a></li>
 </ul></li>
 <li class="part"><span><b>III Estatísticas com R</b></span></li>
-<li class="chapter" data-level="12" data-path="introdução-às-estatísticas-com-r.html"><a href="introdução-às-estatísticas-com-r.html"><i class="fa fa-check"></i><b>12</b> Introdução às estatísticas com R</a></li>
+<li class="chapter" data-level="12" data-path="introdução-à-estatística-com-r.html"><a href="introdução-à-estatística-com-r.html"><i class="fa fa-check"></i><b>12</b> Introdução à estatística com R</a></li>
 <li class="chapter" data-level="13" data-path="probabilidade.html"><a href="probabilidade.html"><i class="fa fa-check"></i><b>13</b> Probabilidade</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="probabilidade.html"><a href="probabilidade.html#probabilidade-discreta"><i class="fa fa-check"></i><b>13.1</b> Probabilidade discreta</a>
@@ -472,23 +478,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#modelos-de-amostragem"><i class="fa fa-check"></i><b>14.2</b> Modelos de amostragem</a></li>
 <li class="chapter" data-level="14.3" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#a-distribuição-de-probabilidade-de-uma-variável-aleatória"><i class="fa fa-check"></i><b>14.3</b> A distribuição de probabilidade de uma variável aleatória</a></li>
 <li class="chapter" data-level="14.4" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#distribuições-versus-distribuições-de-probabilidade"><i class="fa fa-check"></i><b>14.4</b> Distribuições versus distribuições de probabilidade</a></li>
-<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.5</b> O valor esperado e o erro padrão</a>
+<li class="chapter" data-level="14.5" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#notação-para-variáveis-aleatórias"><i class="fa fa-check"></i><b>14.5</b> Notação para variáveis aleatórias</a></li>
+<li class="chapter" data-level="14.6" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-valor-esperado-e-o-erro-padrão"><i class="fa fa-check"></i><b>14.6</b> O valor esperado e o erro padrão</a>
 <ul>
-<li class="chapter" data-level="14.5.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#população-sd-versus-amostra-sd"><i class="fa fa-check"></i><b>14.5.1</b> População SD versus amostra SD</a></li>
+<li class="chapter" data-level="14.6.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#desvio-padrão-da-população-versus-desvio-padrão-da-amostra"><i class="fa fa-check"></i><b>14.6.1</b> Desvio padrão da população versus desvio padrão da amostra</a></li>
 </ul></li>
-<li class="chapter" data-level="14.6" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#teorema-do-limite-central"><i class="fa fa-check"></i><b>14.6</b> Teorema do limite central</a></li>
-<li class="chapter" data-level="14.7" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#propriedades-estatísticas-das-médias"><i class="fa fa-check"></i><b>14.7</b> Propriedades estatísticas das médias</a></li>
-<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.8</b> Lei dos grandes números</a>
+<li class="chapter" data-level="14.7" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#teorema-do-limite-central"><i class="fa fa-check"></i><b>14.7</b> Teorema do Limite Central</a></li>
+<li class="chapter" data-level="14.8" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#propriedades-estatísticas-das-médias"><i class="fa fa-check"></i><b>14.8</b> Propriedades estatísticas das médias</a></li>
+<li class="chapter" data-level="14.9" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#lei-dos-grandes-números"><i class="fa fa-check"></i><b>14.9</b> Lei dos grandes números</a>
 <ul>
-<li class="chapter" data-level="14.8.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#interpretação-incorreta-da-lei-das-médias"><i class="fa fa-check"></i><b>14.8.1</b> Interpretação incorreta da lei das médias</a></li>
+<li class="chapter" data-level="14.9.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#interpretação-incorreta-da-lei-das-médias"><i class="fa fa-check"></i><b>14.9.1</b> Interpretação incorreta da lei das médias</a></li>
 </ul></li>
-<li class="chapter" data-level="14.9" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-24"><i class="fa fa-check"></i><b>14.9</b> Exercícios</a></li>
-<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-o-grande-short"><i class="fa fa-check"></i><b>14.10</b> Estudo de caso: o grande short</a>
+<li class="chapter" data-level="14.10" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-24"><i class="fa fa-check"></i><b>14.10</b> Exercícios</a></li>
+<li class="chapter" data-level="14.11" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#estudo-de-caso-the-big-short"><i class="fa fa-check"></i><b>14.11</b> Estudo de caso: <em>The Big Short</em></a>
 <ul>
-<li class="chapter" data-level="14.10.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#taxas-de-juros-explicadas-com-um-modelo-de-oportunidade"><i class="fa fa-check"></i><b>14.10.1</b> Taxas de juros explicadas com um modelo de oportunidade</a></li>
-<li class="chapter" data-level="14.10.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#o-grande-curto"><i class="fa fa-check"></i><b>14.10.2</b> O Grande Curto</a></li>
+<li class="chapter" data-level="14.11.1" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#taxas-de-juros-explicadas-com-modelo-de-probabilidade"><i class="fa fa-check"></i><b>14.11.1</b> Taxas de juros explicadas com modelo de probabilidade</a></li>
+<li class="chapter" data-level="14.11.2" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#the-big-short"><i class="fa fa-check"></i><b>14.11.2</b> <em>The Big Short</em></a></li>
 </ul></li>
-<li class="chapter" data-level="14.11" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-25"><i class="fa fa-check"></i><b>14.11</b> Exercícios</a></li>
+<li class="chapter" data-level="14.12" data-path="variáveis-aleatórias.html"><a href="variáveis-aleatórias.html#exercícios-25"><i class="fa fa-check"></i><b>14.12</b> Exercícios</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado com bookdown</a></li>
@@ -520,23 +527,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>R é gratuito e de código aberto<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</li>
 <li>Ele roda em todas as principais plataformas: Windows, Mac Os, UNIX/Linux.</li>
 <li><em>Scripts</em> e objetos de dados podem ser compartilhados diretamente entre plataformas.</li>
-<li>Existe uma grande, crescente e ativa comunidade de usuários de R e, consequentemente, inúmeros recursos para aprender e buscar informações<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a><a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a><a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</li>
+<li>Existe uma grande, crescente e ativa comunidade de usuários de R e, consequentemente, inúmeros recursos para aprender e buscar informações<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a><a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> <a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>.</li>
 <li>É fácil para que outros contribuam com plug-ins que permitem que desenvolvedores compartilhem implementações de <em>software</em> com novas metodologias para ciência de dados. Isso dá aos usuários do R acesso antecipado aos métodos e ferramentas mais recentes desenvolvidos para uma ampla variedade de disciplinas, incluindo ecologia, biologia molecular, ciências sociais e geografia, entre outros campos.</li>
 </ol>
 </div>
 <div id="o-console-do-r" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> O console do R</h2>
 <p>A análise de dados interativa geralmente ocorre no console do R que executa comandos à medida que são digitados. Existem várias maneiras de obter acesso a um console R. Uma forma é simplesmente iniciar o R no seu computador. O console fica assim:</p>
-<p><img src="R/img/R_console.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="R/img/R_console.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Como um exemplo rápido, tente usar o console para calcular uma gorjeta de 15% em uma refeição que custa $19,71:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started.html#cb1-1"></a><span class="fl">0.15</span> <span class="op">*</span><span class="st"> </span><span class="fl">19.71</span></span>
-<span id="cb1-2"><a href="getting-started.html#cb1-2"></a><span class="co">#&gt; [1] 2.96</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="getting-started.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fl">0.15</span> <span class="sc">*</span> <span class="fl">19.71</span></span>
+<span id="cb1-2"><a href="getting-started.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.96</span></span></code></pre></div>
 <p><strong>Nota: neste livro, as caixas cinza são usadas para mostrar o código R escrito no console R. O símbolo <code>#&gt;</code> é usado para denotar a saída do console R.</strong></p>
 </div>
 <div id="scripts" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> <em>Scripts</em></h2>
 <p>Uma das grandes vantagens do R, quando comparado a <em>softwares</em> de interface gráfica do tipo <em>point and click</em>, é que você pode salvar seu trabalho como <em>scripts</em>, que podem ser editados e salvos com um editor de texto. O material deste livro foi desenvolvido usando o <em>Integrated Development Environment</em> (IDE) do RStudio<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>. O RStudio inclui um editor com muitos recursos específicos de R, um console para executar seu código e outros painéis úteis, incluindo um para exibir figuras.</p>
-<p><img src="R/img/rstudio.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="R/img/rstudio.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>A maioria dos consoles R disponíveis na Web também inclui um painel para editar <em>scripts</em>, mas nem todos permitem salvar <em>scripts</em> para uso posterior.</p>
 <p>Todos os <em>scripts</em> R usados para gerar este livro podem ser encontrados no GitHub<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>.</p>
 </div>
@@ -546,20 +553,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="painéis" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Painéis</h3>
 <p>Quando iniciar o RStudio pela primeira vez, você verá três painéis. O painel esquerdo mostra o console do R. À direita, o painel superior inclui guias como <em>Environment</em> (ambiente) e <em>History</em> (histórico), enquanto o painel inferior mostra cinco guias: <em>Files</em> (arquivos), <em>Plots</em> (gráficos), <em>Packages</em> (pacotes), <em>Help</em> (ajuda) e <em>Viewer</em> (visualizador). Essas guias podem ser diferentes nas novas versões do RStudio. Você pode clicar em cada guia para percorrer as diferentes opções.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_16.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Para iniciar um novo <em>script</em>, clique em <em>File</em>, depois em <em>New File</em> e, em seguida, em <em>R Script</em>.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_42.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Isso inicia um novo painel à esquerda e é aqui que você pode começar a digitar seu <em>script</em>.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_49.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_21_49.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 </div>
 <div id="combinações-de-teclas-atalhos" class="section level3" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Combinações de teclas (atalhos)</h3>
 <p>Muitas das tarefas que realizamos com o <em>mouse</em> podem ser realizadas com uma combinação de teclas (<em>key bindings</em> em inglês). Por exemplo, acabamos de mostrar como usar o <em>mouse</em> para iniciar um novo <em>script</em>, mas você também pode usar a seguinte combinação de teclas: Ctrl + Shift + N no Windows e Command + Shift + N no Mac.</p>
 <p>Embora muitas vezes demonstremos como usar o mouse neste tutorial, <strong>recomendamos fortemente que você memorize combinações de teclas para as operações que use com mais frequência</strong>. O RStudio inclui uma folha de dicas (<em>cheatsheets</em>, em inglês) com os comandos mais usados. Você pode obtê-lo diretamente do RStudio assim:</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_20.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <!-- and it looks like this:
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_54.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_22_54.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 -->
 <p>Recomendamos manter isso à mão, para que você possa procurar por combinações de teclas quando perceber que está repetindo tarefas na interface gráfica.</p>
 </div>
@@ -568,19 +575,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Existem muitos editores projetados especificamente para programar. Isso é útil porque a cor e o recuo são adicionados automaticamente para tornar o código mais legível. O RStudio é um desses editores e foi desenvolvido especificamente para R. Uma das principais vantagens do RStudio sobre outros editores é que podemos testar facilmente nosso código enquanto editamos nossos <em>scripts</em>. Aqui está um exemplo.</p>
 <p>Vamos começar abrindo um novo <em>script</em> como fizemos antes. Então, vamos nomear o <em>script</em>. Podemos fazer isso através do editor salvando o novo <em>script</em> atual ainda sem nome. Para começar, clique no ícone Salvar ou use a combinação de teclas Ctrl + S no Windows e Command + S no Mac.
 <!--
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_26_37.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_26_37.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 --></p>
 <p>Quando você tenta salvar o documento pela primeira vez, o RStudio solicita um nome. Uma boa convenção é usar um nome descritivo, com letras minúsculas, sem espaços, apenas hífens para separar as palavras e, em seguida, seguido pelo sufixo <em>.R</em>. Vamos chamar esse <em>script</em>: <em>my-first-script.R</em>.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_27_44.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Agora estamos prontos para começar a editar nosso primeiro <em>script</em>. As primeiras linhas de código em um <em>script</em> R são dedicadas ao carregamento dos pacotes que iremos usar. Outro recurso útil do RStudio é que, uma vez que digitamos <code>library()</code>, o RStudio começa a auto-completar o que estamos escrevendo com as bibliotecas que instalamos. Veja o que acontece quando escrevemos <code>library(ti)</code>:</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_29_47.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Outra característica que você deve ter notado é que, quando digita <code>library(</code>, o segundo parêntese é adicionado automaticamente. Isso ajudará a evitar um dos erros de programação mais comuns: esquecer de fechar um parêntese.</p>
 <p>Agora podemos continuar escrevendo código. Como exemplo, criaremos um gráfico mostrando totais de assassinatos <em>versus</em> tamanho da população por estado nos EUA. Uma vez que você termine de escrever o código necessário para construir esse gráfico, você pode testá-lo executando-o. Para fazer isso, clique no botão <em>Run</em> no canto superior direito do painel de edição. Você também pode usar a combinação de teclas: Ctrl + Shift + Enter no Windows ou Command + Shift + Return no Mac.</p>
 <!--
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_44_07.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_44_07.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 -->
 <p>Assim que executar o código, você verá que ele aparece no console do R e, neste caso, o gráfico resultante aparecerá no console de gráficos. Note que o console gráfico possui uma interface útil que permite que você navegue por diferentes gráficos gerados (clicando nas setas para ir frente ou para trás), amplie regiões do gráfico ou salve os gráficos como arquivos.</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_45_18.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_45_18.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 <p>Para executar uma linha de cada vez, em vez de todo o <em>script</em>, você pode usar Control-Enter no Windows e Command-Return no Mac.</p>
 </div>
 <div id="como-alterar-opções-globais" class="section level3" number="1.4.4">
@@ -588,43 +595,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Você pode mudar bastante a aparência e a funcionalidade do RStudio.</p>
 <p>Para alterar as opções globais, clique em <em>Tools</em> (ferramentas) e, em seguida, em <em>Global Options…</em>.</p>
 <!--
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_46_54.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_46_54.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Como exemplo, mostramos como alterar a aparência do editor. Para fazer isso, clique em _Appearance_ e, em seguida, consulte as opções de _Editor theme_.
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_03.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_03.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Você pode clicar nelas e ver exemplos de como será o seu editor.
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_11.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_11.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Pessoalmente, gosto da opção _Cobalt_, que faz com que seu editor fique assim:
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_24.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_47_24.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Como um segundo exemplo,
 -->
 <p>Como exemplo, mostramos como fazer uma mudança que <strong>recomendamos bastante</strong>: altere a opção <em>Save workspace to .RData on exit</em> (salvar espaço de trabalho para .RData na saída) para <em>Never</em> (nunca) e desmarque a opção <em>Restore .RData into workspace at start</em> (restaurar o arquivo <code>.RData</code> no espaço de trabalho ao iniciar). Por padrão, quando alguém sai do R, o programa salva todos os objetos que ele criou em um arquivo chamado .RData. Isso ocorre para que, ao reiniciar a sessão no mesmo arquivo, o programa carregue esses objetos. No entanto, descobrimos que isso causa confusão, principalmente quando compartilhamos código com colegas e assumimos que eles têm esse arquivo .RData. Para alterar essas opções, faça com que suas configurações na aba <em>General</em> fiquem assim:</p>
-<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_56_08.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="instalando-pacotes-r" class="section level2" number="1.5">
 <h2><span class="header-section-number">1.5</span> Instalando pacotes R</h2>
 <p>As funcionalidades fornecidas por uma versão do R recém-instalada são apenas uma pequena parte de tudo que é possível. De fato, nos referimos ao que você obtém após sua primeira instalação como <em>base R</em>. Funcionalidades adicionais podem ser adicionadas a partir de plugins (<em>add-ons</em>, em inglês) disponibilizados por desenvolvedores. Atualmente, existem centenas de plugins disponíveis no CRAN e muitos outros compartilhados em outros repositórios como o GitHub. No entanto, como nem todo mundo precisa de todas as funções disponíveis, o R disponibiliza diferentes componentes através de pacotes (<em>packages</em>, em inglês). O R facilita a instalação de pacotes dentro do próprio R. Por exemplo, para instalar o pacote <strong>dslabs</strong>, que usamos para compartilhar os conjuntos de dados e códigos relacionados a este livro, você deve escrever:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="getting-started.html#cb2-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;dslabs&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="getting-started.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;dslabs&quot;</span>)</span></code></pre></div>
 <p>No RStudio, você pode navegar para a guia <em>Tools</em> e selecionar <em>install packages</em> (instalar pacotes). Em seguida, podemos carregar o pacote em nossas sessões R usando a função <code>library</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="getting-started.html#cb3-1"></a><span class="kw">library</span>(dslabs)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="getting-started.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dslabs)</span></code></pre></div>
 <p>Ao ler este livro, você verá que carregamos pacotes sem instalá-los. Isso ocorre porque, quando um pacote é instalado, ele permanece instalado e só precisa ser carregado com <code>library</code>. O pacote permanece carregado até terminarmos a sessão R. Se você tentar carregar um pacote e obtiver uma mensagem de erro, provavelmente significa que ele não está instalado e você deve instalá-lo primeiro.</p>
 <p>Podemos instalar mais de um pacote por vez, fornecendo uma lista de nomes para esta função:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="getting-started.html#cb4-1"></a><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;dslabs&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="getting-started.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">&quot;tidyverse&quot;</span>, <span class="st">&quot;dslabs&quot;</span>))</span></code></pre></div>
 <!--
 Eles também podem instalar pacotes usando o RStudio da seguinte maneira:
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_23_41.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_23_41.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Uma vantagem do uso do RStudio é que ele preenche automaticamente os nomes dos pacotes assim que eles começam a digitar, útil quando eles não se lembram da ortografia exata do pacote:
 
-<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png" width="70%" style="display: block; margin: auto;" />
+<img src="productivity/img/windows-screenshots/VirtualBox_Windows-7-Enterprise_22_03_2018_16_24_18.png" width="500px" style="display: block; margin-left: auto; margin-right: auto; background-color: #000; padding:3px;" style="display: block; margin: auto;" />
 
 Depois de selecionar seu pacote, recomendamos que você selecione todos os valores padrão:
 
@@ -635,7 +642,7 @@ Depois de selecionar seu pacote, recomendamos que você selecione todos os valor
 <p>Após a instalação dos pacotes, você pode carregá-los no R e não precisa instalá-los novamente, a menos que instale uma nova versão do R. Lembre-se de que os pacotes estão instalados no R e não no RStudio.</p>
 <p>É útil manter uma lista de todos os pacotes necessários para o trabalho em um <em>script</em> porque, se você necessitar realizar uma nova instalação do R, você poderá reinstalar todos os pacotes simplesmente executando um <em>script</em>.</p>
 <p>Você pode ver todos os pacotes que já instalou usando a seguinte função:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="getting-started.html#cb5-1"></a><span class="kw">installed.packages</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="getting-started.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">installed.packages</span>()</span></code></pre></div>
 
 </div>
 </div>
@@ -702,7 +709,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": null,
+"download": ["livro.pdf", "livro.epub"],
 "toc": {
 "collapse": "section"
 }
