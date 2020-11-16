@@ -28,7 +28,6 @@ knitr::write_bib(c(
 ```
 
 # Prefácio {-}
-v1
 
 Este livro começou como as notas de aulas empregadas para ministrar o curso na HarvardX [Data Science Series](https://www.edx.org/professional-certificate/harvardx-data-science)^[https://www.edx.org/professional-certificate/harvardx-data-science].
 
