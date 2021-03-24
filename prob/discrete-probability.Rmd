@@ -33,12 +33,12 @@ Se estivermos chamando aleatoriamente prováveis eleitores de uma população qu
 
 ## Simulações de Monte Carlo para dados categóricos
 
-Os computadores oferecem uma maneira de realizar o experimento aleatório simples descrito acima: escolher uma bolinha aleatoriamente a partir de uma urna que contém três bolinhas azuis e duas vermelhas. Geradores de números aleatórios nos permitem imitar o processo de escolha aleatória.
+Os computadores oferecem uma maneira de realizar o experimento aleatório simples descrito acima: escolher uma bolinha aleatoriamente a partir de uma urna contendo três bolinhas azuis e duas vermelhas. Geradores de números aleatórios nos permitem imitar o processo de escolha aleatória.
 
-Um exemplo é a função `sample` em R. Demonstramos seu uso no código abaixo. Primeiro, usamos a função `rep` para gerar a urna:
+Um exemplo é a função `sample` em R. Demonstramos seu uso no código abaixo. Primeiramente, usamos a função `rep` para gerar a urna:
 
 ```{r}
-beads <- rep(c("red", "blue"), times = c(2,3))
+beads <- rep(c("red", "blue"), times = c(2, 3))
 beads
 ```
 
@@ -50,9 +50,9 @@ sample(beads, 1)
 
 Essa linha de código produz um resultado aleatório. Queremos repetir esse experimento um número infinito de vezes, mas é impossível repetí-lo para sempre. No entanto, podemos repetir o experimento um número suficientemente grande de vezes para que os resultados sejam praticamente equivalentes a repetí-lo para sempre. **Este é um exemplo de uma simulação de _Monte Carlo_**.
 
-Muito do que estatísticos matemáticos e teóricos estudam, que não discutimos neste livro, refere-se a fornecer definições rigorosas de "virtualmente equivalente", além de estudar o quão perto um grande número de experimentos nos leva ao que acontece no limite. Mais adiante nesta seção, oferecemos uma abordagem prática para determinar o que é "grande o suficiente".
+Muito do que estatísticos matemáticos e teóricos estudam, que não cobriremos neste livro, refere-se a fornecer definições rigorosas de "praticamente equivalente", assim como estudar o quão perto um grande número de experimentos nos leva ao que acontece no limite. Mais adiante nesta seção, mostraremos uma abordagem prática para determinar o que é "grande o suficiente".
 
-Para realizar nossa primeira simulação de Monte Carlo, usamos a função `replicate`, o que nos permite repetir a mesma tarefa várias vezes. Aqui, repetimos o evento aleatório $B =$ 10.000 vezes:
+Para realizar nossa primeira simulação de Monte Carlo, usamos a função `replicate`, que nos permite repetir a mesma tarefa um número qualquer de vezes. Aqui, repetimos o evento aleatório $B =$ 10.000 vezes:
 
 ```{r}
 B <- 10000
@@ -72,13 +72,13 @@ e `prop.table` nos dá as proporções:
 prop.table(tab)
 ```
 
-Os números acima são probabilidades estimadas fornecidas por uma simulação de Monte Carlo. A teoria estatística, que não discutimos aqui, nos diz que à medida que em $B$ aumenta, as estimativas se aproximam de 3/5 = 0,6 e 2/5 = 0,4.
+Os números acima são probabilidades estimadas obitdas por uma simulação de Monte Carlo. A teoria estatística, que não discutimos aqui, nos diz que à medida em que $B$ aumenta, as estimativas se aproximam de 3/5 = 0,6 e 2/5 = 0,4.
 
 Embora este seja um exemplo simples e pouco útil, usaremos simulações de Monte Carlo para estimar probabilidades nos casos em que é difícil calcular as quantidades exatas. Antes de nos aprofundarmos em exemplos mais complexos, usaremos alguns simples para demonstrar as ferramentas de computação disponíveis em R.
 
-### Defina a semente aleatória
+### Definindo a semente aleatória
 
-Antes de continuar, explicaremos brevemente a seguinte linha de código importante:
+Antes de continuar, explicaremos brevemente a importante linha de código a seguir:
 
 ```{r}
 set.seed(1986)
@@ -112,7 +112,7 @@ sample(beads, 6)
 
 `Error in sample.int(length(x), size, replace, prob) : cannot take a sample larger than the population when 'replace = FALSE'`
 
-No entanto, a função `sample` pode ser usada diretamente, sem o uso de `replicate`, para repetir o mesmo experimento, escolhendo 1 dos 5 mármores, continuamente, sob as mesmas condições. Para fazer isso, amostramos _com reposição_: a bolinha é devolvida à urna após a seleção.
+No entanto, a função `sample` pode ser usada diretamente, sem o uso do `replicate`, para repetir o mesmo experimento de escolher 1 dentre 5 bolinhas, continuamente, sob as mesmas condições. Para fazer isso, amostramos _com reposição_: a bolinha é devolvida à urna após a seleção.
 Nós podemos dizer para a função `sample` fazer isso mudando o argumento `replace`, que por padrão é `FALSE`, para `replace = TRUE`:
 
 ```{r}
