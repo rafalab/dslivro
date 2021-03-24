@@ -26,14 +26,14 @@ Se estivermos chamando aleatoriamente prováveis eleitores de uma população qu
 
 | | | |
 |-------------------------|---|----|
-| Pr (escolha um republicano) | = | 0,44 |
-| Pr (escolha um democrata) | = | 0,44 |
-| Pr (escolha indecisa) | = | 0,10 |
-| Pr (escolha um verde) | = | 0,02 |
+| Pr(escolha um republicano) | = | 0,44 |
+| Pr(escolha um democrata) | = | 0,44 |
+| Pr(escolha indecisa) | = | 0,10 |
+| Pr(escolha um verde) | = | 0,02 |
 
-Simulações de Monte Carlo para dados categóricos
+## Simulações de Monte Carlo para dados categóricos
 
-Os computadores oferecem uma maneira de realizar o experimento aleatório simples descrito acima: escolhendo um mármore aleatoriamente a partir de uma urna que contém três bolinhas azuis e duas vermelhas. Geradores de números aleatórios nos permitem imitar o processo de escolha aleatória.
+Os computadores oferecem uma maneira de realizar o experimento aleatório simples descrito acima: escolher uma bolinha aleatoriamente a partir de uma urna que contém três bolinhas azuis e duas vermelhas. Geradores de números aleatórios nos permitem imitar o processo de escolha aleatória.
 
 Um exemplo é a função `sample` em R. Demonstramos seu uso no código abaixo. Primeiro, usamos a função `rep` para gerar a urna:
 
@@ -42,15 +42,15 @@ beads <- rep(c("red", "blue"), times = c(2,3))
 beads
 ```
 
-e depois usamos `sample` escolher um mármore aleatoriamente:
+e depois usamos `sample` escolher uma bolinha aleatoriamente:
 
 ```{r}
 sample(beads, 1)
 ```
 
-Essa linha de código produz um resultado aleatório. Queremos repetir esse experimento um número infinito de vezes, mas é impossível repeti-lo para sempre. No entanto, podemos repetir o experimento um número suficientemente grande de vezes para que os resultados sejam praticamente equivalentes a repeti-lo para sempre. **Este é um exemplo de simulação de _Monte Carlo_**.
+Essa linha de código produz um resultado aleatório. Queremos repetir esse experimento um número infinito de vezes, mas é impossível repetí-lo para sempre. No entanto, podemos repetir o experimento um número suficientemente grande de vezes para que os resultados sejam praticamente equivalentes a repetí-lo para sempre. **Este é um exemplo de uma simulação de _Monte Carlo_**.
 
-Muito do que estudam estatísticos matemáticos e teóricos, que não discutimos neste livro, refere-se a fornecer definições rigorosas de "virtualmente equivalente", além de estudar o quão perto um grande número de experimentos nos leva ao que acontece no limite. . Mais adiante nesta seção, oferecemos uma abordagem prática para determinar o que é "grande o suficiente".
+Muito do que estatísticos matemáticos e teóricos estudam, que não discutimos neste livro, refere-se a fornecer definições rigorosas de "virtualmente equivalente", além de estudar o quão perto um grande número de experimentos nos leva ao que acontece no limite. Mais adiante nesta seção, oferecemos uma abordagem prática para determinar o que é "grande o suficiente".
 
 Para realizar nossa primeira simulação de Monte Carlo, usamos a função `replicate`, o que nos permite repetir a mesma tarefa várias vezes. Aqui, repetimos o evento aleatório $B =$ 10.000 vezes:
 
@@ -72,9 +72,9 @@ e `prop.table` nos dá as proporções:
 prop.table(tab)
 ```
 
-Os números acima são probabilidades estimadas fornecidas por uma simulação de Monte Carlo. A teoria estatística, que não discutimos aqui, nos diz que onde $B$ à medida que aumenta, as estimativas se aproximam de 3/5 = 0,6 e 2/5 = 0,4.
+Os números acima são probabilidades estimadas fornecidas por uma simulação de Monte Carlo. A teoria estatística, que não discutimos aqui, nos diz que à medida que em $B$ aumenta, as estimativas se aproximam de 3/5 = 0,6 e 2/5 = 0,4.
 
-Embora este seja um exemplo simples e pouco útil, usaremos simulações de Monte Carlo para estimar probabilidades nos casos em que é difícil calcular quantidades exatas. Antes de nos aprofundarmos em exemplos mais complexos, usaremos alguns simples para demonstrar as ferramentas de computação disponíveis em R.
+Embora este seja um exemplo simples e pouco útil, usaremos simulações de Monte Carlo para estimar probabilidades nos casos em que é difícil calcular as quantidades exatas. Antes de nos aprofundarmos em exemplos mais complexos, usaremos alguns simples para demonstrar as ferramentas de computação disponíveis em R.
 
 ### Defina a semente aleatória
 
@@ -86,17 +86,17 @@ set.seed(1986)
 
 Ao longo deste livro, usamos geradores de números aleatórios. Isso implica que muitos dos resultados que apresentamos podem mudar por acaso e uma versão congelada do livro pode mostrar um resultado diferente do que eles obtêm quando tentam codificar como observam no livro. Isso não é um problema, pois os resultados são aleatórios e podem mudar. No entanto, se você quiser garantir que os resultados sejam exatamente os mesmos sempre que executá-los, poderá definir a semente de geração de número aleatório R (_seed_) para um número específico. Definimos isso em 1986. Queremos evitar o uso da mesma semente todas as vezes. Uma maneira popular de escolher a semente é subtraindo o mês e o dia do ano. Por exemplo, para 20 de dezembro de 2018, lançamos a semente em 1986: $2018 - 12 - 20 = 1986$.
 
-Você pode obter mais informações sobre como corrigir a semente consultando a documentação:
+Você pode obter mais informações sobre como definir a semente consultando a documentação:
 
-```{r,eval=FALSE}
+```{r, eval=FALSE}
 ?set.seed
 ```
 
-Nos exercícios, podemos pedir que você conserte a semente para garantir que seus resultados sejam exatamente o que esperamos.
+Nos exercícios, podemos pedir que você defina a semente para garantir que seus resultados sejam exatamente o que esperamos.
 
-### Com e sem substituição
+### Com e sem reposição
 
-A função `sample` ele tem um argumento que nos permite escolher mais de um item da urna. No entanto, por padrão, essa seleção ocorre _sem substituição_: após a seleção de uma bola de gude, ela não é colocada de volta na urna. Observe o que acontece quando pedimos para selecionar cinco bolas de gude aleatoriamente:
+A função `sample` tem um argumento que nos permite escolher mais de um item da urna. No entanto, por padrão, essa seleção ocorre _sem reposição_: após a seleção de uma bolinha, ela não é colocada de volta na urna. Observe o que acontece quando pedimos para selecionar cinco bolinhas aleatoriamente:
 
 ```{r}
 sample(beads, 5)
@@ -112,23 +112,23 @@ sample(beads, 6)
 
 `Error in sample.int(length(x), size, replace, prob) : cannot take a sample larger than the population when 'replace = FALSE'`
 
-No entanto, a função `sample` pode ser usado diretamente, sem o uso de `replicate`, para repetir o mesmo experimento, escolhendo 1 dos 5 mármores, continuamente, nas mesmas condições. Para fazer isso, amostramos _com substituição_: o mármore é devolvido à urna após a seleção.
-Nós podemos dizer `sample` eu fazer isso mudando o argumento `replace` que por padrão é `FALSE`, para `replace = TRUE`:
+No entanto, a função `sample` pode ser usada diretamente, sem o uso de `replicate`, para repetir o mesmo experimento, escolhendo 1 dos 5 mármores, continuamente, sob as mesmas condições. Para fazer isso, amostramos _com reposição_: a bolinha é devolvida à urna após a seleção.
+Nós podemos dizer para a função `sample` fazer isso mudando o argumento `replace`, que por padrão é `FALSE`, para `replace = TRUE`:
 
 ```{r}
 events <- sample(beads, B, replace = TRUE)
 prop.table(table(events))
 ```
 
-Não surpreende que obtenham resultados muito semelhantes aos obtidos anteriormente com `replicate`.
+Não surpreendetemente, obtemos resultados muito semelhantes aos obtidos anteriormente com `replicate`.
 
 ## Independência
 
-Dizemos que dois eventos são independentes se o resultado de um não afeta o outro. O exemplo clássico é o lançamento de moedas. Toda vez que jogamos uma moeda, a probabilidade de ver caras é 1/2, independentemente dos resultados dos lançamentos anteriores. O mesmo acontece quando coletamos bolas de gude de uma urna de substituição. No exemplo acima, a probabilidade de vermelho é 0,40, independentemente das seleções anteriores.
+Dizemos que dois eventos são independentes se o resultado de um não afeta o outro. O exemplo clássico é o lançamento de moedas. Toda vez que jogamos uma moeda, a probabilidade de ver caras é 1/2, independentemente dos resultados dos lançamentos anteriores. O mesmo acontece quando coletamos bolinhas de uma urna com reposição. No exemplo acima, a probabilidade de vermelho é 0,40, independentemente das seleções anteriores.
 
 Muitos exemplos de eventos não independentes vêm de jogos de cartas. Quando negociamos a primeira carta, a probabilidade de obter um K é 1/13, pois há treze possibilidades: Duas, Três, $\dots$, Ten, J, Q, K e As. Mas se dermos um K como primeira carta e não a substituirmos no baralho, a probabilidade de uma segunda carta ser K é menor, porque só restam três Ks: a probabilidade é 3 de 51. Portanto, esses eventos **não são independentes**: o primeiro resultado afeta o seguinte.
 
-Para ver um caso extremo de eventos não independentes, considere nosso exemplo de escolha de cinco bolinhas aleatoriamente **sem** substituição:
+Para ver um caso extremo de eventos não independentes, considere nosso exemplo de escolha de cinco bolinhas aleatoriamente **sem** reposição:
 
 ```{r, echo=FALSE}
 set.seed(1)
@@ -138,17 +138,17 @@ set.seed(1)
 x <- sample(beads, 5)
 ```
 
-Se eles tiverem que adivinhar a cor do primeiro mármore, irão prever o azul, pois o azul tem 60% de chance. Mas se mostrarmos o resultado dos últimos quatro resultados:
+Se você tivesse que adivinhar a cor da primeira bolinha, você diria azul, já que o azul tem 60% de chance. Mas se mostrarmos o resultado das últimas quatro tentativas:
 
 ```{r}
 x[2:5]
 ```
 
-você ainda adivinharia o azul? Claro que não. Agora você sabe que a probabilidade de vermelho é 1, pois o único mármore restante é vermelho. Os eventos não são independentes, portanto as probabilidades mudam.
+você ainda adivinharia o azul? Claro que não. Agora você sabe que a probabilidade de vermelho é 1, pois a única bolinha restante é vermelho. Os eventos não são independentes, portanto as probabilidades mudam.
 
 ## Probabilidades condicionais
 
-Quando os eventos não são independentes, as _probabilidades condicionais_ são úteis. Já vimos um exemplo de probabilidade condicional: calculamos a probabilidade de que uma segunda carta seja K desde que a primeira carta fosse K. Em probabilidade, usamos a seguinte notação:
+Quando os eventos não são independentes, as _probabilidades condicionais_ são úteis. Já vimos um exemplo de probabilidade condicional: calculamos a probabilidade de que uma segunda carta seja K, dado que a primeira carta é K. Em probabilidade, usamos a seguinte notação:
 
 $$
 \mbox{Pr}(\mbox{Card 2 is a king} \mid \mbox{Card 1 is a king}) = 3/51
