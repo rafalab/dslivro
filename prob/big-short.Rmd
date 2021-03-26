@@ -53,7 +53,7 @@ implicando que $x$ é:
 
 ou uma taxa de juros de `r - p*loss_per_foreclosure/(1-p)/ 180000`.
 
-No entanto, ainda temos um problema. Embora essa taxa de juros garanta que, em média, eles atinjam um ponto de equilíbrio, há 50% de chance de perder dinheiro. Se o seu banco perder dinheiro, eles terão que fechá-lo. Portanto, devemos escolher uma taxa de juros que nos proteja disso. Ao mesmo tempo, se a taxa de juros for muito alta, seus clientes irão para outro banco; portanto, devemos estar dispostos a correr alguns riscos. Então, digamos que você queira que suas chances de perder dinheiro sejam de 1 em 100. O que a quantidade de $x$ deve ser agora? Isso é um pouco mais difícil. Nós queremos que a soma $S$ tenha:
+No entanto, ainda temos um problema. Embora essa taxa de juros garanta que, em média, eles atinjam um ponto de equilíbrio, há 50% de chance de perder dinheiro. Se o seu banco perder dinheiro, eles terão que fechá-lo. Portanto, devemos escolher uma taxa de juros que nos proteja disso. Ao mesmo tempo, se a taxa de juros for muito alta, seus clientes irão para outro banco; portanto, devemos estar dispostos a correr alguns riscos. Então, digamos que você queira que suas chances de perder dinheiro sejam de 1 em 100. Qual deve ser o valor de $x$ agora? Isso é um pouco mais difícil. Nós queremos que a soma $S$ tenha:
 
 $$\mbox{Pr}(S<0) = 0.01$$
 
@@ -72,7 +72,7 @@ Agora vamos usar um "truque" matemático que é muito comum em estatística. Adi
 Se $\mbox{Pr}(S<0) = 0.01$, então:
 
 $$
-\mbox{Pr}\left(\frac{S - \mbox{E}[S]}{\mbox{SE}[S]} < \frac{ - \mbox{E}[S]}{\mbox{SE}[S]}\right)
+\mbox{Pr}\left(\frac{S - \mbox{E}[S]}{\mbox{SE}[S]} < -\frac{ \mbox{E}[S]}{\mbox{SE}[S]}\right)
 $$
 E lembre-se disso $\mbox{E}[S]$ e $\mbox{SE}[S]$ são o valor esperado e o erro padrão de $S$, respectivamente. Tudo o que fizemos acima foi somar e dividir pela mesma quantia em ambos os lados. Fizemos isso porque agora o termo à esquerda é uma variável aleatória normal padrão, à qual iremos renomear como $Z$. Agora preenchemos os espaços em branco com a fórmula atual para o valor esperado e o erro padrão:
 
