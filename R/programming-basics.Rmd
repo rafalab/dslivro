@@ -92,7 +92,7 @@ all(z)
 
 ## Como definir funções
 
-À medida que ganha mais experiência, você observará que realizará as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor `x` usando funções `sum` e `length`: `sum(x)/length(x)`. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função `mean`, que está incluída na pacote __base__ do R. No entanto, você encontrará situações em que a função ainda não existe e o R permite que você escreva uma. Uma versão simplificada de uma função que calcula a média pode ser implementada da seguinte maneira:
+À medida que ganha mais experiência, você observará que realizará as mesmas operações repetidamente. Um exemplo simples é o cálculo de médias. Podemos calcular a média de um vetor `x` usando funções `sum` e `length`: `sum(x)/length(x)`. Como fazemos isso repetidamente, é muito mais eficiente escrever uma função que execute essa operação. Essa operação específica é tão comum que alguém já escreveu a função `mean`, que está incluída no pacote __base__ do R. No entanto, você encontrará situações em que a função ainda não existe e o R permite que você escreva uma. Uma versão simplificada de uma função que calcula a média pode ser implementada da seguinte maneira:
 
 ```{r}
 avg <- function(x){
@@ -109,7 +109,7 @@ x <- 1:100
 identical(mean(x), avg(x))
 ```
 
-Observe que as variáveis definidas em uma função não são gravadas no espaço de trabalho. Então, enquanto usamos `s` e `n` quando chamamos (_call_ em inglês) `avg`, os valores são criados e alterados apenas durante a chamada. Aqui podemos ver um exemplo ilustrativo:
+Observe que as variáveis definidas em uma função não são gravadas no ambiente de trabalho. Então, enquanto usamos `s` e `n` quando chamamos (_call_ em inglês) `avg`, os valores são criados e alterados apenas durante a chamada. Aqui podemos ver um exemplo ilustrativo:
 
 ```{r}
 s <- 3
@@ -243,7 +243,7 @@ lines(n, n*(n+1)/2)
 
 ## Vectorização e funcionais {#vectorization}
 
-Embora os laços do tipo _for_ sejam um conceito importante para entender, eles não são muito usados em R. À medida em que você aprende mais R, descobre que vetorização é preferível aos laços/loops, pois resulta em um código mais curto e claro. Já vimos exemplos na seção de aritmética vetorial. Uma função vetorizada é uma função que aplicará a mesma operação a cada um dos seus elementos.
+Embora os laços do tipo _for_ sejam um conceito importante para entender, eles não são muito usados em R. À medida em que você aprende mais R, descobre que vetorização é preferível aos laços/_loops_, pois resulta em um código mais curto e claro. Já vimos exemplos na seção de aritmética vetorial. Uma função vetorizada é uma função que aplicará a mesma operação a cada um dos seus elementos.
 
 ```{r}
 x <- 1:10
@@ -259,7 +259,7 @@ n <- 1:25
 compute_s_n(n)
 ```
 
-Os funcionais são funções que nos ajudam a aplicar a mesma função a cada entrada em um vetor, matriz, _data.frame_ ou lista. Aqui, abordamos o funcional que opera em vetores numéricos, lógicos e de caracteres: `sapply`.
+Os funcionais são funções que nos ajudam a aplicar a mesma função a cada entrada em um vetor, matriz, _data frame_ ou lista. Aqui, abordamos o funcional que opera em vetores numéricos, lógicos e de caracteres: `sapply`.
 
 A função `sapply` nos permite executar operações na base de elemento a elemento (_element-wise_, em inglês) em qualquer função. Aqui podemos ver como funciona:
 
@@ -315,7 +315,7 @@ my_func <- function(y){
 }
 ```
 
-7\. Escreva uma função `compute_s_n` que, para qualquer $n$, calcule a soma $S_n = 1^2 + 2^2 + 3^2 + \dots n^2$. Qual é o valor da soma quando $n = 10$?
+7\. Escreva uma função `compute_s_n` que, para qualquer $n$, calcule a soma $S_n = 1^2 + 2^2 + 3^2 + \dots + n^2$. Qual é o valor da soma quando $n = 10$?
 
 8\. Definir um vetor numérico vazio, `s_n`, de tamanho 25, usando `s_n <- vector("numeric", 25)` e armazene os resultados de $S_1, S_2, \dots S_{25}$, usando um laço do tipo _for_.
 
