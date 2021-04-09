@@ -241,9 +241,9 @@ lines(n, n*(n+1)/2)
 
 -->
 
-## Vectorização e funcionais {#vectorization}
+## Vetorização e funcionais {#vectorization}
 
-Embora os laços do tipo _for_ sejam um conceito importante para entender, eles não são muito usados em R. À medida em que você aprende mais R, descobre que vetorização é preferível aos laços/_loops_, pois resulta em um código mais curto e claro. Já vimos exemplos na seção de aritmética vetorial. Uma função vetorizada é uma função que aplicará a mesma operação a cada um dos seus elementos.
+Embora os laços do tipo _for_ sejam um conceito importante para entender, eles não são muito usados em R. À medida em que você aprende mais R, descobre que vetorização é preferível aos laços/_loops_, pois resulta em um código mais curto e claro. Já vimos exemplos na seção de aritmética vetorial. Uma função vetorizada é uma função que aplicará a mesma operação a cada um dos elementos do vetor.
 
 ```{r}
 x <- 1:10
@@ -252,7 +252,7 @@ y <- 1:10
 x*y
 ```
 
-Para fazer esse cálculo, não precisamos de loops de for. No entanto, nem todas as funções funcionam dessa maneira. Por exemplo, a função que acabamos de escrever, `compute_s_n`, não é vetorizada, pois espera um escalar. Por exemplo, o código abaixo não executa a função para todas as entradas de `n`:
+Para fazer esse cálculo, não precisamos de _loops_ de for. No entanto, nem todas as funções funcionam dessa maneira. Por exemplo, a função que acabamos de escrever, `compute_s_n`, não é vetorizada, pois espera um escalar. Por exemplo, o código abaixo não executa a função para todas as entradas de `n`:
 
 ```{r, eval=FALSE}
 n <- 1:25
@@ -301,7 +301,7 @@ d. `all(!x)`
 
 3\. A função `nchar` informa quantos caracteres um vetor de caracteres possui. Escreva uma linha de código que atribua o objeto `new_names` a abreviação de estado quando o nome do estado tiver mais de 8 caracteres.
 
-4\. Crie uma função `sum_n` que, por qualquer valor, digamos $n$, calcule a soma dos números inteiros de 1 a n (inclusive). Use a função para determinar a soma dos números inteiros de 1 a 5.000.
+4\. Crie uma função `sum_n` que, para qualquer valor de $n$, calcule a soma dos números inteiros de 1 a n (inclusive). Use a função para determinar a soma dos números inteiros de 1 a 5.000.
 
 5\. Crie uma função `altman_plot` que possua dois argumentos, `x` e `y`, e faça um gráfico da diferença em relação à soma.
 
